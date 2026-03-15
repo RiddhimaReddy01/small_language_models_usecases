@@ -168,7 +168,13 @@ def _evaluate_task(model_label: str, model_name: str, adapter, task: Task, run_c
     )
 
 
-def run_evaluation(run_config: RunConfig, output_dir: str | Path) -> dict[str, object]:
+def run_evaluation(
+    run_config: RunConfig,
+    output_dir: str | Path,
+    *,
+    benchmark_output_dir: str | Path | None = None,
+    source_config_path: str | Path | None = None,
+) -> dict[str, object]:
     task_pool = load_task_pool(
         human_eval_limit=run_config.evaluation.human_eval_sample,
         mbpp_limit=run_config.evaluation.mbpp_sample,
@@ -244,7 +250,18 @@ def run_evaluation(run_config: RunConfig, output_dir: str | Path) -> dict[str, o
     write_results_jsonl(results, results_path)
     write_summary_json(summaries, summary_path)
     write_markdown_report(summaries, report_path)
-    return {"run_dir": str(run_dir), "summary": summaries}
+
+    benchmark_dir = (
+        Path(benchmark_output_dir)
+        if benchmark_output_dir is not None
+        else Path(output_dir).resolve().parent / "benchmarks"
+    )
+    benchmark_export = export_benchmark_tables(
+        run_dir,
+        benchmark_dir,
+        source_config_path=source_config_path,
+    )
+    return {"run_dir": str(run_dir), "summary": summaries, "benchmark_export": benchmark_export}
 
 
 def build_run_arg_parser() -> argparse.ArgumentParser:
@@ -332,6 +349,10 @@ def main(argv: list[str] | None = None) -> int:
     args = parser.parse_args(args_list)
 
     run_config = load_run_config(args.config)
-    outcome = run_evaluation(run_config, args.output_dir)
+    outcome = run_evaluation(
+        run_config,
+        args.output_dir,
+        source_config_path=args.config,
+    )
     print(f"Run completed. Artifacts written to {outcome['run_dir']}")
     return 0
