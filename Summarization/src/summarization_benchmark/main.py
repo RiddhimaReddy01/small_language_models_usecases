@@ -20,10 +20,11 @@ def parse_args() -> argparse.Namespace:
 def main() -> None:
     args = parse_args()
     config = load_config(args.config)
-    summary, results_path, summary_path = run_benchmark(config)
+    summary, results_path, summary_path, tables_path = run_benchmark(config)
     print(json.dumps(summary, indent=2))
     print(f"\nPer-sample results saved to: {results_path}")
     print(f"Aggregate summary saved to: {summary_path}")
+    print(f"Metrics tables saved to: {tables_path}")
 
 
 if __name__ == "__main__":

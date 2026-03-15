@@ -95,19 +95,37 @@ Note: the three reliability metrics are heuristic approximations, not formal fac
 
 ## Install
 
-Use the Python interpreter available on your machine. In this environment, the direct Anaconda path is the safest option:
+Create a local virtual environment so the project is easy to run on another laptop:
 
 ```powershell
-& 'C:\Users\riddh\anaconda3\python.exe' -m pip install -r requirements.txt
+python -m venv .venv
+.\.venv\Scripts\Activate.ps1
+python -m pip install --upgrade pip
+python -m pip install -r requirements.txt
 ```
+
+If you prefer Conda, use your normal Conda environment and run the same `python -m pip install -r requirements.txt` command inside it.
 
 ## Run
 
+Use the smoke test first. It evaluates 2 samples with `t5-small`, which is much faster for validating that installs, downloads, inference, metrics, and output writing all work correctly on a laptop.
+
 ```powershell
-& 'C:\Users\riddh\anaconda3\python.exe' .\scripts\run_benchmark.py --config .\configs\default.json
+python .\scripts\run_benchmark.py --config .\configs\smoke_test.json
+```
+
+Then run the fuller CPU benchmark:
+
+```powershell
+python .\scripts\run_benchmark.py --config .\configs\default.json
 ```
 
 To try another model, edit the config file or create a second config and pass it with `--config`.
+
+Note:
+
+- The first run downloads the dataset and model weights from Hugging Face, so it needs internet access.
+- Later runs reuse the local cache and are much faster to start.
 
 ## Outputs
 
@@ -115,3 +133,10 @@ The run writes:
 
 - `outputs/summarization_results.csv`
 - `outputs/summarization_summary.json`
+- `outputs/summarization_metrics_tables.md`
+
+The smoke test writes:
+
+- `outputs/smoke_test/summarization_results.csv`
+- `outputs/smoke_test/summarization_summary.json`
+- `outputs/smoke_test/summarization_metrics_tables.md`
