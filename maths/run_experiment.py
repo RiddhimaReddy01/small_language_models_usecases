@@ -1,4 +1,4 @@
-from math_benchmark.cli.run_experiment import main
+from cli.run_experiment import main
 
 
 if __name__ == "__main__":

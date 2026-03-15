@@ -9,15 +9,15 @@ from pathlib import Path
 
 import requests
 
-from eval_pipeline.data_loaders import load_dataset_config
-from eval_pipeline.metrics import is_correct
-from eval_pipeline.parsers import extract_final_answer
+from src.data_loaders import load_dataset_config
+from src.metrics import is_correct
+from src.parsers import extract_final_answer
 
 
 MODEL_ID = "gemini-2.5-flash"
 API_TEMPLATE = "https://generativelanguage.googleapis.com/v1beta/models/{model}:generateContent?key={key}"
 ROOT = Path(__file__).resolve().parent.parent
-RAW_RESULTS_DIR = ROOT / "results" / "raw"
+RAW_RESULTS_DIR = ROOT / "outputs" / "predictions"
 
 
 def build_prompt(question: str) -> str:
@@ -56,7 +56,11 @@ def evaluate_gemini(api_key: str, dataset_name: str, sample_size: int = 30):
     print(f"Evaluating Gemini on {dataset_name} ({sample_size} samples)")
     print(f"{'=' * 80}")
 
-    samples = load_dataset_config(f"data/{dataset_name.lower()}.jsonl", sample_size, seed=12345)
+    samples = load_dataset_config(
+        str(ROOT / "data" / "processed" / f"{dataset_name.lower()}.jsonl"),
+        sample_size,
+        seed=12345,
+    )
     records = []
 
     for idx, sample in enumerate(samples):

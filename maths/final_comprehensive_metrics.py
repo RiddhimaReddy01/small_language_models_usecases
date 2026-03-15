@@ -1,4 +1,4 @@
-from math_benchmark.cli.generate_reports import main
+from cli.generate_reports import main
 
 
 if __name__ == "__main__":
