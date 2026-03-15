@@ -42,7 +42,7 @@ Why this is the best fit for a local laptop CPU:
 - It is much lighter than full `bart-large-cnn` while usually staying stronger than very small generic models like `t5-small`.
 - It is realistic for a 30-article CPU benchmark without turning runtime into a multi-hour job.
 
-If your laptop is memory-constrained, change `model.model_name` in [configs/default.json](c:\Users\riddh\OneDrive\Desktop\SLM use cases\Summarization\configs\default.json) to `t5-small`.
+If your laptop is memory-constrained, change `model.model_name` in `configs/default.json` to `t5-small`.
 
 ## Prompt
 
@@ -127,9 +127,27 @@ Note:
 - The first run downloads the dataset and model weights from Hugging Face, so it needs internet access.
 - Later runs reuse the local cache and are much faster to start.
 
+## Expected output
+
+After a successful smoke test, you should see progress output followed by three generated files under `outputs/smoke_test/`.
+
+Example:
+
+```text
+Evaluating: 100%|##########| 2/2 [00:03<00:00,  1.77s/it]
+
+Per-sample results saved to: outputs/smoke_test/summarization_results.csv
+Aggregate summary saved to: outputs/smoke_test/summarization_summary.json
+Metrics tables saved to: outputs/smoke_test/summarization_metrics_tables.md
+```
+
+The exact timing numbers will vary by machine, but the run should complete and produce all three files.
+
 ## Outputs
 
-The run writes:
+The runner creates the configured output directory automatically if it does not already exist.
+
+The default benchmark writes:
 
 - `outputs/summarization_results.csv`
 - `outputs/summarization_summary.json`
