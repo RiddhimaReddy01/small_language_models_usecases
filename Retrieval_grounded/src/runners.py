@@ -1,8 +1,9 @@
 """Main experiment runner for retrieval-grounded QA benchmark."""
 
 import argparse
-import json
 import os
+import platform
+import sys
 import time
 from concurrent.futures import ProcessPoolExecutor, as_completed
 from pathlib import Path
@@ -22,13 +23,18 @@ from .metrics import (
     compute_unsupported_answer_rate,
 )
 from .parsers import BenchmarkConfig, load_config, to_dict
-from .reporting import save_json
+from .reporting import save_json, save_metric_tables
 from .worker import eval_model as worker_eval_model
 
 try:
     from .inference_gemini import run_gemini_inference
 except ImportError:
     run_gemini_inference = None
+
+try:
+    import transformers
+except ImportError:
+    transformers = None
 
 
 def parse_args():
@@ -204,6 +210,18 @@ def run_experiment(config: BenchmarkConfig, args: argparse.Namespace) -> tuple[d
     return all_results, all_predictions
 
 
+def collect_environment_metadata() -> dict:
+    """Capture environment details for reproducibility/debugging."""
+    return {
+        "platform": platform.platform(),
+        "python_version": sys.version.split()[0],
+        "torch_version": getattr(torch, "__version__", "unknown"),
+        "transformers_version": getattr(transformers, "__version__", "not_installed"),
+        "cuda_available": torch.cuda.is_available(),
+        "cuda_device_count": torch.cuda.device_count() if torch.cuda.is_available() else 0,
+    }
+
+
 def main() -> None:
     args = parse_args()
     config = load_config(args.config)
@@ -226,7 +244,12 @@ def main() -> None:
     for model_id, preds in all_predictions.items():
         safe_model = model_id.replace("/", "_")
         save_json(output_root / "predictions" / f"predictions_{safe_model}.json", preds)
-    save_json(output_root / "logs" / "run_metadata.json", {"config": to_dict(config)})
+    environment = collect_environment_metadata()
+    save_metric_tables(output_root / "metrics", all_results, to_dict(config), environment)
+    save_json(
+        output_root / "logs" / "run_metadata.json",
+        {"config": to_dict(config), "environment": environment},
+    )
     print(f"Done. Outputs saved under {output_root}")
 
 
