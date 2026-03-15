@@ -1,0 +1,110 @@
+{
+  "schema_version": "1.0",
+  "benchmarks": [
+    {
+      "name": "classification",
+      "benchmark_root": "classification",
+      "config_paths": [
+        "classification/classification_eval/config.py",
+        "classification/classification_eval/runner.py"
+      ],
+      "code_paths": [
+        "classification/classification_eval/datasets.py",
+        "classification/classification_eval/models.py",
+        "classification/classification_eval/evaluator.py"
+      ]
+    },
+    {
+      "name": "text_generation",
+      "benchmark_root": "text_generation",
+      "config_paths": [
+        "text_generation/configs/models.json",
+        "text_generation/run_benchmark.py",
+        "text_generation/run_model_suite.py"
+      ],
+      "code_paths": [
+        "text_generation/scripts/data_loader.py",
+        "text_generation/scripts/inference_runner.py",
+        "text_generation/scripts/metrics_collector.py",
+        "text_generation/scripts/reporting.py"
+      ]
+    },
+    {
+      "name": "information_extraction",
+      "benchmark_root": "Information Extraction",
+      "config_paths": [
+        "Information Extraction/configs/sroie_cpu_quick.json",
+        "Information Extraction/src/ie_benchmark/config.py"
+      ],
+      "code_paths": [
+        "Information Extraction/src/ie_benchmark/dataset.py",
+        "Information Extraction/src/ie_benchmark/inference.py",
+        "Information Extraction/src/ie_benchmark/pipeline.py",
+        "Information Extraction/src/ie_benchmark/reporting.py"
+      ]
+    },
+    {
+      "name": "summarization",
+      "benchmark_root": "Summarization",
+      "config_paths": [
+        "Summarization/configs/smoke_test.json",
+        "Summarization/src/summarization_benchmark/config.py"
+      ],
+      "code_paths": [
+        "Summarization/src/summarization_benchmark/data.py",
+        "Summarization/src/summarization_benchmark/inference.py",
+        "Summarization/src/summarization_benchmark/runner.py"
+      ]
+    },
+    {
+      "name": "code_generation",
+      "benchmark_root": "code_generation",
+      "config_paths": [
+        "code_generation/configs/examples/quick_run_config.json",
+        "code_generation/src/codegen_eval/config.py"
+      ],
+      "code_paths": [
+        "code_generation/src/codegen_eval/dataset_loader.py",
+        "code_generation/src/codegen_eval/runner.py",
+        "code_generation/src/codegen_eval/reporting.py"
+      ]
+    },
+    {
+      "name": "instruction_following",
+      "benchmark_root": "instruction_following",
+      "config_paths": [
+        "instruction_following/src/instruction_following/cli.py"
+      ],
+      "code_paths": [
+        "instruction_following/src/instruction_following/pipeline_core.py",
+        "instruction_following/scripts/analyze_results.py"
+      ]
+    },
+    {
+      "name": "maths",
+      "benchmark_root": "maths",
+      "config_paths": [
+        "maths/configs/config.smoke.yaml",
+        "maths/cli/run_experiment.py"
+      ],
+      "code_paths": [
+        "maths/src/data_loaders.py",
+        "maths/src/experiment.py",
+        "maths/src/reporting.py"
+      ]
+    },
+    {
+      "name": "retrieval_grounded",
+      "benchmark_root": "Retrieval_grounded",
+      "config_paths": [
+        "Retrieval_grounded/configs/config.smoke.yaml",
+        "Retrieval_grounded/src/parsers.py"
+      ],
+      "code_paths": [
+        "Retrieval_grounded/src/data_loaders.py",
+        "Retrieval_grounded/src/runners.py",
+        "Retrieval_grounded/src/reporting.py"
+      ]
+    }
+  ]
+}

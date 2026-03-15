@@ -5,7 +5,10 @@ import shutil
 import unittest
 import uuid
 from pathlib import Path
+import sys
 from unittest.mock import patch
+
+sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "src"))
 
 from codegen_eval.reporting import (
     export_combined_benchmark_tables,
