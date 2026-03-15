@@ -30,10 +30,8 @@ cache/
 *.safetensors
 
 # Results
-results.json
-results_detailed.json
-results_with_baseline.json
-results_corrected.json
+results/*.json
+!results/.gitkeep
 *.log
 
 # IDE

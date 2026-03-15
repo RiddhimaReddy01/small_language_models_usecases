@@ -1,9 +1,12 @@
 """Run only the Gemini baseline against the first fast preset prompt slice."""
 import os
-import sys
 import time
 
-from pipeline_core import DEFAULT_GEMINI_MODEL, run_pipeline
+from _bootstrap import bootstrap
+
+bootstrap()
+
+from instruction_following.pipeline_core import DEFAULT_GEMINI_MODEL, run_pipeline
 
 
 def main():
@@ -16,7 +19,7 @@ def main():
         models=[os.getenv("GEMINI_MODEL", DEFAULT_GEMINI_MODEL)],
         num_prompts=20,
         device="cpu",
-        output_path="results_with_baseline.json",
+        output_path="results/results_with_baseline.json",
         include_gemini=True,
         gemini_api_key=os.getenv("GEMINI_API_KEY"),
         gemini_model=os.getenv("GEMINI_MODEL", DEFAULT_GEMINI_MODEL),

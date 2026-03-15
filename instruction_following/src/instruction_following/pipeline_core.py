@@ -10,10 +10,10 @@ from datasets import load_dataset
 from tqdm import tqdm
 from transformers import AutoModelForCausalLM, AutoTokenizer
 
-from constraint_validators import ConstraintValidator
+from instruction_following.constraint_validators import ConstraintValidator
 
 if TYPE_CHECKING:
-    from gemini_wrapper import GeminiClient
+    from instruction_following.gemini_wrapper import GeminiClient
 
 DEFAULT_INFERENCE_PARAMS = {
     "temperature": 0.0,
@@ -370,6 +370,7 @@ def print_metrics_table(all_results: Sequence[Dict]) -> None:
 
 def save_results(all_results: Sequence[Dict], output_path: str) -> None:
     """Write results to disk."""
+    os.makedirs(os.path.dirname(output_path) or ".", exist_ok=True)
     with open(output_path, "w", encoding="utf-8") as handle:
         json.dump(list(all_results), handle, indent=2)
     print(f"\nSaved results to {output_path}")
@@ -396,7 +397,7 @@ def run_pipeline(
     if include_gemini:
         if not gemini_api_key:
             raise ValueError("GEMINI_API_KEY is required when --include-gemini is used.")
-        from gemini_wrapper import GeminiClient
+        from instruction_following.gemini_wrapper import GeminiClient
 
         gemini_client = GeminiClient(gemini_api_key, gemini_model)
 

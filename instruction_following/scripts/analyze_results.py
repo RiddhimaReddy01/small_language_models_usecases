@@ -1,17 +1,34 @@
 """Analyze and visualize evaluation results."""
 import json
-from typing import Dict, List
 import sys
+from pathlib import Path
+from typing import Dict, List
+
+DEFAULT_RESULTS_PATH = Path("results/results_detailed.json")
 
 
-def load_results(filepath: str = "results.json") -> List[Dict]:
+def load_results(filepath: str = str(DEFAULT_RESULTS_PATH)) -> List[Dict]:
     """Load results from JSON file."""
     try:
-        with open(filepath, 'r') as f:
+        with open(filepath, "r", encoding="utf-8") as f:
             return json.load(f)
     except FileNotFoundError:
         print(f"Results file not found: {filepath}")
         return []
+
+
+def get_pass_rate(result: Dict) -> float:
+    """Support both legacy and nested metric layouts."""
+    if "pass_rate" in result:
+        return result["pass_rate"]
+    return result.get("capability_metrics", {}).get("pass_rate", 0.0)
+
+
+def get_constraint_satisfaction_rate(result: Dict) -> float:
+    """Support both legacy and nested metric layouts."""
+    if "constraint_satisfaction_rate" in result:
+        return result["constraint_satisfaction_rate"]
+    return result.get("capability_metrics", {}).get("constraint_satisfaction_rate", 0.0)
 
 
 def print_summary(results: List[Dict]):
@@ -26,8 +43,8 @@ def print_summary(results: List[Dict]):
 
     for result in results:
         model = result.get("model", "Unknown")
-        pass_rate = result.get("pass_rate", 0)
-        csr = result.get("constraint_satisfaction_rate", 0)
+        pass_rate = get_pass_rate(result)
+        csr = get_constraint_satisfaction_rate(result)
         num_prompts = result.get("num_prompts", 0)
 
         print(f"\nModel: {model}")
@@ -40,15 +57,15 @@ def print_summary(results: List[Dict]):
     print("RANKINGS")
     print("-" * 80)
 
-    sorted_by_pass = sorted(results, key=lambda x: x.get("pass_rate", 0), reverse=True)
+    sorted_by_pass = sorted(results, key=get_pass_rate, reverse=True)
     print("\nBy Pass Rate:")
     for i, r in enumerate(sorted_by_pass, 1):
-        print(f"  {i}. {r['model']}: {r['pass_rate']:.1%}")
+        print(f"  {i}. {r['model']}: {get_pass_rate(r):.1%}")
 
-    sorted_by_csr = sorted(results, key=lambda x: x.get("constraint_satisfaction_rate", 0), reverse=True)
+    sorted_by_csr = sorted(results, key=get_constraint_satisfaction_rate, reverse=True)
     print("\nBy Constraint Satisfaction Rate:")
     for i, r in enumerate(sorted_by_csr, 1):
-        print(f"  {i}. {r['model']}: {r['constraint_satisfaction_rate']:.1%}")
+        print(f"  {i}. {r['model']}: {get_constraint_satisfaction_rate(r):.1%}")
 
     print("\n" + "=" * 80)
 
@@ -77,14 +94,15 @@ def print_detailed_responses(results: List[Dict], model_idx: int = 0):
 
 def main():
     """Analyze results."""
-    results = load_results()
+    results_path = sys.argv[1] if len(sys.argv) > 1 and sys.argv[1] != "--verbose" else str(DEFAULT_RESULTS_PATH)
+    results = load_results(results_path)
     if results:
         print_summary(results)
-        if len(sys.argv) > 1 and sys.argv[1] == "--verbose":
+        if "--verbose" in sys.argv[1:]:
             for i in range(len(results)):
                 print_detailed_responses(results, i)
     else:
-        print("No evaluation results found. Run 'python run_fast.py' first.")
+        print("No evaluation results found. Run 'python scripts/run_fast.py' first.")
 
 
 if __name__ == "__main__":

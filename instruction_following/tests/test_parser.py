@@ -1,5 +1,10 @@
 """Test the constraint validator parser."""
-from constraint_validators import ConstraintValidator
+from pathlib import Path
+import sys
+
+sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "src"))
+
+from instruction_following.constraint_validators import ConstraintValidator
 
 # Test cases
 test_cases = [
