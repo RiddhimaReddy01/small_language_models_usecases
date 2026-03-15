@@ -12,8 +12,6 @@ except ImportError:
     AutoTokenizer = None
 
 
-# --- Capability Metrics ---
-
 def exact_match(prediction: str, reference: str) -> bool:
     """Check if prediction exactly matches reference (normalized)."""
     return normalize_answer(prediction) == normalize_answer(reference)
@@ -99,12 +97,10 @@ def compute_answer_length_accuracy(
     return 100.0 * within_limit / len(predictions)
 
 
-# --- Reliability Metrics ---
-
 def is_hallucinated(prediction: str, context: str) -> bool:
-    """Answer not present in context → hallucination."""
+    """Answer not present in context -> hallucination."""
     if not prediction or not prediction.strip():
-        return False  # empty is not hallucination
+        return False
     return not is_answer_in_context(prediction, context)
 
 
@@ -140,7 +136,6 @@ def is_partial_answer(prediction: str, reference: str) -> bool:
         return False
     if not pred_norm or not ref_norm:
         return False
-    # Partial: pred is substring of ref, or token F1 > 0 but not exact match
     if pred_norm in ref_norm:
         return True
     f1 = token_f1(prediction, reference)
@@ -159,8 +154,6 @@ def compute_partial_answer_rate(
     )
     return 100.0 * partial / len(predictions)
 
-
-# --- Aggregate ---
 
 def compute_all_metrics(
     predictions: List[str],

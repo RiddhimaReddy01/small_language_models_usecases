@@ -9,5 +9,5 @@
     "Qwen/Qwen2.5-Coder-1.5B-Instruct"
   ],
   "device": "auto",
-  "output_dir": "results"
+  "output_dir": "outputs"
 }

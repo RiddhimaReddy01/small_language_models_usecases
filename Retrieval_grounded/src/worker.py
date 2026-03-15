@@ -4,23 +4,22 @@ Runs in separate process; tasks are assigned to free workers from the pool.
 """
 
 import time
-from typing import Any
 
 import torch
 
-from config import BenchmarkConfig
-from dataset import QAExample
-from inference import load_model, run_inference, get_memory_mb
-from metrics import (
+from .data_loaders import QAExample
+from .inference import get_memory_mb, load_model, run_inference
+from .metrics import (
+    add_operational_metrics,
+    compute_answer_length_accuracy,
+    compute_context_utilization_rate,
     compute_em,
     compute_f1,
-    compute_context_utilization_rate,
-    compute_answer_length_accuracy,
     compute_hallucination_rate,
-    compute_unsupported_answer_rate,
     compute_partial_answer_rate,
-    add_operational_metrics,
+    compute_unsupported_answer_rate,
 )
+from .parsers import BenchmarkConfig
 
 
 def _get_device_for_worker(device: str, worker_id: int) -> str:

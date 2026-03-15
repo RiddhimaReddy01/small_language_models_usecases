@@ -8,14 +8,14 @@ cd "$(dirname "$0")"
 case "${1:-full}" in
   quick)
     echo "Quick run: single SLM + Gemini"
-    python run.py --models Qwen/Qwen2.5-Coder-0.5B-Instruct --baseline-gemini
+    python cli/run_experiment.py --config configs/config.tiny.yaml
     ;;
   gemini)
-    echo "Gemini only (requires GEMINI_API_KEY)"
-    python run.py --gemini-only
+    echo "Smoke run with minimal config"
+    python cli/run_experiment.py --config configs/config.smoke.yaml
     ;;
   full|*)
-    echo "Full run: all SLMs + Gemini"
-    python run.py --baseline-gemini
+    echo "Full run with default config"
+    python cli/run_experiment.py --config configs/config.yaml
     ;;
 esac

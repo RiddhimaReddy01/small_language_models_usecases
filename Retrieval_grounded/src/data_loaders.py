@@ -3,7 +3,6 @@ Dataset loading and sampling for Retrieval-Grounded QA.
 Supports SQuAD (default) and Natural Questions.
 """
 
-import re
 from dataclasses import dataclass
 from typing import Optional
 
@@ -28,7 +27,6 @@ def _truncate_to_tokens(text: str, max_tokens: int, tokenizer=None) -> str:
             return text
         decoded = tokenizer.decode(tokens[:max_tokens], skip_special_tokens=True)
         return decoded.strip()
-    # Fallback: ~4 chars per token for English
     words = text.split()
     approx_chars = max_tokens * 4
     if len(text) <= approx_chars:
@@ -56,7 +54,6 @@ def load_squad(split: str = "validation", max_examples: Optional[int] = 30) -> l
         answer = texts[0].strip()
         if not answer:
             continue
-        # Skip duplicate contexts
         key = (ex["context"][:100], ex["question"])
         if key in seen:
             continue
@@ -116,11 +113,11 @@ def sample_dataset(
     """
     Sample dataset with CPU-friendly constraints:
     - n_questions: number of QA pairs
-    - max_context_tokens: truncate context to ≤ N tokens
+    - max_context_tokens: truncate context to <= N tokens
     - max_answer_tokens: filter out examples where reference answer exceeds N tokens
     """
     if dataset_name.lower() in ("nq", "natural_questions", "naturalquestions"):
-        raw = load_natural_questions(max_examples=n_questions * 3)  # Over-sample for filtering
+        raw = load_natural_questions(max_examples=n_questions * 3)
     else:
         raw = load_squad("validation", max_examples=n_questions * 3)
 
@@ -128,13 +125,11 @@ def sample_dataset(
     for ex in raw:
         if len(sampled) >= n_questions:
             break
-        # Filter by answer length
         ans_tokens = len(ex.answer.split()) if not tokenizer else len(
             tokenizer.encode(ex.answer, add_special_tokens=False)
         )
         if ans_tokens > max_answer_tokens:
             continue
-        # Truncate context
         context = _truncate_to_tokens(ex.context, max_context_tokens, tokenizer)
         sampled.append(QAExample(
             id=ex.id,

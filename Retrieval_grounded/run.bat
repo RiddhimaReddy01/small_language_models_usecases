@@ -5,12 +5,12 @@ REM Usage: run.bat [quick ^| gemini ^| full]
 cd /d "%~dp0"
 
 if "%1"=="quick" (
-    echo Quick run: single SLM + Gemini
-    python run.py --models Qwen/Qwen2.5-Coder-0.5B-Instruct --baseline-gemini
+    echo Quick run with tiny config
+    python cli/run_experiment.py --config configs/config.tiny.yaml
 ) else if "%1"=="gemini" (
-    echo Gemini only (requires GEMINI_API_KEY)
-    python run.py --gemini-only
+    echo Smoke run with minimal config
+    python cli/run_experiment.py --config configs/config.smoke.yaml
 ) else (
-    echo Full run: all SLMs
-    python run.py
+    echo Full run with default config
+    python cli/run_experiment.py --config configs/config.yaml
 )

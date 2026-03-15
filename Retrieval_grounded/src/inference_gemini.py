@@ -7,11 +7,10 @@ Runs requests in parallel for faster completion.
 import time
 from concurrent.futures import ThreadPoolExecutor, as_completed
 
-from config import PROMPT_TEMPLATE
-from dataset import QAExample
-from inference import InferenceResult
+from .data_loaders import QAExample
+from .inference import InferenceResult
+from .prompts import PROMPT_TEMPLATE
 
-# Model fallback order: try 3.1 Flash Lite first, then 2.5 Flash Lite, 2.5 Flash, 1.5 Flash
 GEMINI_MODEL_FALLBACK = [
     "gemini-3.1-flash-lite-preview",
     "gemini-2.5-flash-lite",
@@ -19,7 +18,7 @@ GEMINI_MODEL_FALLBACK = [
     "gemini-1.5-flash",
 ]
 
-DEFAULT_CONCURRENCY = 10  # parallel API calls
+DEFAULT_CONCURRENCY = 10
 
 
 def _build_prompt(context: str, question: str) -> str:
@@ -32,7 +31,6 @@ def _is_rate_limit(e: Exception) -> bool:
 
 
 def _is_model_unavailable(e: Exception) -> bool:
-    """Model deprecated, not found, or unavailable."""
     err = str(e).lower()
     return (
         "404" in err or "not found" in err or "deprecated" in err
@@ -41,7 +39,6 @@ def _is_model_unavailable(e: Exception) -> bool:
 
 
 def _single_request(ex: QAExample, model, gen_cfg) -> InferenceResult:
-    """Single API call; used by worker threads."""
     prompt = _build_prompt(ex.context, ex.question)
     start = time.perf_counter()
     response = model.generate_content(prompt, generation_config=gen_cfg)
@@ -67,11 +64,6 @@ def run_gemini_inference(
     temperature: float = 0.0,
     concurrency: int = DEFAULT_CONCURRENCY,
 ) -> tuple[str, list[InferenceResult]]:
-    """
-    Run Gemini API inference in parallel. Returns (model_used, list[InferenceResult]).
-    Tries Gemini 3.1 Flash Lite first; falls back to 2.5 Flash Lite, 2.5 Flash, 1.5 Flash
-    if deprecated or unavailable. Retries on rate limit with exponential backoff.
-    """
     import google.generativeai as genai
 
     genai.configure(api_key=api_key)
@@ -85,8 +77,8 @@ def run_gemini_inference(
         top_p=1.0,
     )
 
-    concurrency = min(concurrency, len(examples), 15)  # cap to avoid rate limits
-    results = [None] * len(examples)  # preserve order
+    concurrency = min(concurrency, len(examples), 15)
+    results = [None] * len(examples)
     pending = list(enumerate(examples))
 
     while pending:

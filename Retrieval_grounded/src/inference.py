@@ -3,7 +3,6 @@ Model inference for Retrieval-Grounded QA.
 Deterministic decoding: temperature=0, top_p=1.
 """
 
-import gc
 import time
 from dataclasses import dataclass
 from typing import Optional
@@ -11,8 +10,8 @@ from typing import Optional
 import torch
 from transformers import AutoModelForCausalLM, AutoTokenizer
 
-from config import PROMPT_TEMPLATE
-from dataset import QAExample
+from .data_loaders import QAExample
+from .prompts import PROMPT_TEMPLATE
 
 
 @dataclass
@@ -60,7 +59,7 @@ def run_inference(
 ) -> list[InferenceResult]:
     """
     Run inference on examples with deterministic decoding.
-    temperature=0, top_p=1 → greedy/deterministic.
+    temperature=0, top_p=1 -> greedy/deterministic.
     """
     if pad_token_id is None:
         pad_token_id = tokenizer.pad_token_id or tokenizer.eos_token_id
@@ -88,8 +87,6 @@ def run_inference(
         output_ids = outputs[0][input_ids.shape[1]:]
         output_token_count = len(output_ids)
         pred_text = tokenizer.decode(output_ids, skip_special_tokens=True).strip()
-
-        # Clean trailing newlines and common suffixes
         pred_text = pred_text.split("\n")[0].strip()
 
         results.append(InferenceResult(
