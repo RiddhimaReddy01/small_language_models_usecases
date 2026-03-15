@@ -12,6 +12,7 @@ EXCLUDED_MODELS = {"gemma_7b"}
 REPORT_OUTPUTS = {
     "json": "benchmark_metrics.json",
     "markdown": "BENCHMARK_RESULTS.md",
+    "tables": "FINAL_COMPREHENSIVE_TABLES.md",
     "summary": "EVALUATION_SUMMARY.txt",
 }
 
@@ -294,6 +295,88 @@ def render_markdown(all_metrics: Dict[str, Dict[str, Any]], has_real_gemini: boo
     return "\n".join(parts)
 
 
+def render_final_tables(all_metrics: Dict[str, Dict[str, Any]], has_real_gemini: bool) -> str:
+    sorted_acc = sorted(all_metrics.items(), key=lambda item: item[1]["Final Ans Acc %"], reverse=True)
+    note = (
+        "Gemini results below are based on real API calls (`results_gemini_real_api.json`)."
+        if has_real_gemini
+        else "Gemini results below are based on the available non-live benchmark files."
+    )
+    capability_rows = [
+        [
+            model,
+            f"{metrics['Final Ans Acc %']:.1f}",
+            f"{metrics['Pass@3 %']:.1f}",
+            f"{metrics['Majority Vote %']:.1f}",
+            f"{metrics['Acc Variance']:.2f}",
+            f"{metrics['Hallucin Rate %']:.1f}",
+            f"{metrics['Perturb Ratio %']:.1f}",
+            f"{metrics['Confident Err %']:.1f}",
+        ]
+        for model, metrics in sorted_acc
+    ]
+    operational_rows = [
+        [
+            model,
+            f"{metrics['Output Cons %']:.1f}",
+            f"{metrics['Answer Stab %']:.1f}",
+            f"{metrics['Reproducib %']:.1f}",
+            f"{metrics['Format Comp %']:.1f}",
+            f"{metrics['Traceable %']:.1f}",
+            f"{metrics['Error Trace %']:.1f}",
+            f"{metrics['ECE']:.2f}",
+            f"{metrics['Latency (s)']:.2f}",
+            f"{metrics['Throughput (s/min)']:.2f}",
+            "0 (cloud)" if metrics["RAM (GB)"] == 0 else str(metrics["RAM (GB)"]),
+            str(metrics["Sample Count"]),
+        ]
+        for model, metrics in sorted_acc
+    ]
+    parts = [
+        "# Final Comprehensive Metrics Tables",
+        "",
+        note,
+        "",
+        "## Capability Metrics",
+        "",
+        markdown_table(
+            [
+                "Model",
+                "Final Answer Accuracy (%)",
+                "Pass@3 (%)",
+                "Majority Vote Accuracy (%)",
+                "Accuracy Variance",
+                "Hallucination Rate (%)",
+                "Perturbation Robustness (%)",
+                "Confident Error Rate (%)",
+            ],
+            capability_rows,
+        ),
+        "",
+        "## Operational Metrics",
+        "",
+        markdown_table(
+            [
+                "Model",
+                "Output Consistency (%)",
+                "Answer Stability (%)",
+                "Reproducibility (%)",
+                "Format Compliance (%)",
+                "Traceable Reasoning (%)",
+                "Error Traceability (%)",
+                "Expected Calibration Error",
+                "Latency (s)",
+                "Throughput (queries/min)",
+                "RAM (GB)",
+                "Samples",
+            ],
+            operational_rows,
+        ),
+        "",
+    ]
+    return "\n".join(parts)
+
+
 def render_summary(all_metrics: Dict[str, Dict[str, Any]], has_real_gemini: bool, sources: List[str]) -> str:
     sorted_acc = sorted(all_metrics.items(), key=lambda item: item[1]["Final Ans Acc %"], reverse=True)
     sorted_speed = sorted(all_metrics.items(), key=lambda item: item[1]["Latency (s)"])
@@ -316,7 +399,7 @@ def render_summary(all_metrics: Dict[str, Dict[str, Any]], has_real_gemini: bool
     return "\n".join(lines) + "\n"
 
 
-def generate_reports(root: Path) -> Tuple[Dict[str, Any], str, str, List[str]]:
+def generate_reports(root: Path) -> Tuple[Dict[str, Any], str, str, str, List[str]]:
     result_files = discover_result_files(root)
     payloads = [load_result_payload(path) for path in result_files]
     sources = [path.name for path in result_files]
@@ -329,5 +412,6 @@ def generate_reports(root: Path) -> Tuple[Dict[str, Any], str, str, List[str]]:
     has_real_gemini = any("real" in model.lower() and "gemini" in model.lower() for model in all_metrics)
     structured = build_structured_metrics(all_metrics, has_real_gemini)
     markdown = render_markdown(all_metrics, has_real_gemini)
+    tables = render_final_tables(all_metrics, has_real_gemini)
     summary = render_summary(all_metrics, has_real_gemini, sources)
-    return structured, markdown, summary, sources
+    return structured, markdown, tables, summary, sources
