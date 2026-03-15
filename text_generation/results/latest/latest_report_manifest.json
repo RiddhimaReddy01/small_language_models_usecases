@@ -1,0 +1,20 @@
+{
+  "models": [
+    "qwen-2.5-3b",
+    "phi-3.5-mini"
+  ],
+  "summary_path": "C:\\Users\\riddh\\OneDrive\\Desktop\\SLM use cases\\text_generation\\results\\latest\\benchmark_summary.json",
+  "tables_path": "C:\\Users\\riddh\\OneDrive\\Desktop\\SLM use cases\\text_generation\\results\\latest\\metrics_tables.md",
+  "comparison_path": "C:\\Users\\riddh\\OneDrive\\Desktop\\SLM use cases\\text_generation\\results\\latest\\model_comparison.md",
+  "suite_id": "20260315_000947",
+  "suite_dir": "C:\\Users\\riddh\\OneDrive\\Desktop\\SLM use cases\\text_generation\\results\\runs\\suite_20260315_000947",
+  "models_config": "C:\\Users\\riddh\\OneDrive\\Desktop\\SLM use cases\\text_generation\\configs\\models.json",
+  "models_config_snapshot": "C:\\Users\\riddh\\OneDrive\\Desktop\\SLM use cases\\text_generation\\results\\runs\\suite_20260315_000947\\models_config_snapshot.json",
+  "seed": 42,
+  "task_type": "samples",
+  "gguf_engine": "llama_cpp",
+  "raw_result_files": [
+    "qwen-2.5-3b.json",
+    "phi-3.5-mini.json"
+  ]
+}

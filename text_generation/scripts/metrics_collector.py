@@ -1,4 +1,5 @@
 import nltk
+import re
 from nltk.tokenize import sent_tokenize, word_tokenize
 from rouge_score import rouge_scorer
 
@@ -16,6 +17,23 @@ try:
     HAS_BERTSCORE = True
 except ImportError:
     HAS_BERTSCORE = False
+
+
+def _safe_sent_tokenize(text):
+    """Fallback to a simple regex split when punkt resources are unavailable."""
+    try:
+        return sent_tokenize(text)
+    except LookupError:
+        parts = re.split(r'(?<=[.!?])\s+', text.strip())
+        return [part for part in parts if part]
+
+
+def _safe_word_tokenize(text):
+    """Fallback to regex tokenization when punkt resources are unavailable."""
+    try:
+        return word_tokenize(text)
+    except LookupError:
+        return re.findall(r"\b\w+\b", text)
 
 class TextGenMetricsCollector:
     def __init__(self):
@@ -46,10 +64,10 @@ class TextGenMetricsCollector:
         # 1. Length/Format constraints
         if "length" in constraints:
             if constraints["length"] == "one sentence":
-                sentences = sent_tokenize(response.strip())
+                sentences = _safe_sent_tokenize(response.strip())
                 if len(sentences) == 1: satisfied_count += 1
             elif "short" in constraints["length"]:
-                words = word_tokenize(response)
+                words = _safe_word_tokenize(response)
                 if len(words) < 150: satisfied_count += 1
             elif "lines" in constraints["length"]:
                 lines = [l for l in response.strip().split('\n') if l.strip()]
@@ -65,7 +83,7 @@ class TextGenMetricsCollector:
                 except:
                     results["format_compliance_rate"] = 0.0
             elif constraints["format"].lower() == "single word":
-                words = word_tokenize(response.strip())
+                words = _safe_word_tokenize(response.strip())
                 # Filter out punctuation
                 words = [w for w in words if w.isalnum()]
                 if len(words) <= 2: satisfied_count += 1 # Allow for minor filler

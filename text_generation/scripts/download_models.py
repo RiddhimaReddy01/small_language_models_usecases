@@ -1,4 +1,5 @@
 import os
+import argparse
 import requests
 from tqdm import tqdm
 
@@ -21,6 +22,10 @@ def download_file(url, target_path):
             f.write(data)
 
 def main():
+    parser = argparse.ArgumentParser(description="Download GGUF models for text generation benchmarks")
+    parser.add_argument("--force", action="store_true", help="Re-download models even if files already exist")
+    args = parser.parse_args()
+
     models_dir = "models"
     os.makedirs(models_dir, exist_ok=True)
 
@@ -28,7 +33,7 @@ def main():
         filename = os.path.basename(url)
         target_path = os.path.join(models_dir, filename)
         
-        if os.path.exists(target_path):
+        if os.path.exists(target_path) and not args.force:
             print(f"Model {filename} already exists at {target_path}")
             continue
             

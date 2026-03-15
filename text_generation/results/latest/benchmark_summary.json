@@ -1,0 +1,62 @@
+[
+  {
+    "model": "qwen-2.5-3b",
+    "total_tasks": 15,
+    "successful_tasks": 15,
+    "failed_tasks": 0,
+    "success_rate": 1.0,
+    "failure_rate": 0.0,
+    "avg_constraint_satisfaction_rate": 0.13333333333333333,
+    "avg_format_compliance_rate": 1.0,
+    "avg_rouge1": 0.0,
+    "avg_rouge2": 0.0,
+    "avg_rougeL": 0.0,
+    "avg_bert_score_f1": 0.0,
+    "avg_hallucination_rate": 0.0,
+    "avg_unsupported_claim_count": 0.0,
+    "avg_unsafe_response_rate": 0.0,
+    "avg_refusal_rate": 0.06666666666666667,
+    "avg_ttft": 0.5061319510142008,
+    "avg_total_time": 22.108068180084228,
+    "avg_tokens_generated": 241.86666666666667,
+    "avg_tps": 10.873643444250126,
+    "avg_peak_ram_mb": 2486.09375,
+    "avg_ram_delta_mb": 28.840364583333333,
+    "avg_model_load_time": 6.151077032089233,
+    "avg_cost_usd": 0.0,
+    "total_cost_usd": 0.0,
+    "source_files": [
+      "qwen-2.5-3b.json"
+    ]
+  },
+  {
+    "model": "phi-3.5-mini",
+    "total_tasks": 15,
+    "successful_tasks": 15,
+    "failed_tasks": 0,
+    "success_rate": 1.0,
+    "failure_rate": 0.0,
+    "avg_constraint_satisfaction_rate": 0.0,
+    "avg_format_compliance_rate": 1.0,
+    "avg_rouge1": 0.0,
+    "avg_rouge2": 0.0,
+    "avg_rougeL": 0.0,
+    "avg_bert_score_f1": 0.0,
+    "avg_hallucination_rate": 0.0,
+    "avg_unsupported_claim_count": 0.0,
+    "avg_unsafe_response_rate": 0.0,
+    "avg_refusal_rate": 0.06666666666666667,
+    "avg_ttft": 0.8434635321299235,
+    "avg_total_time": 45.61795371373494,
+    "avg_tokens_generated": 402.8666666666667,
+    "avg_tps": 9.131041887920551,
+    "avg_peak_ram_mb": 3035.5567708333333,
+    "avg_ram_delta_mb": -86.91953125,
+    "avg_model_load_time": 3.2468502521514893,
+    "avg_cost_usd": 0.0,
+    "total_cost_usd": 0.0,
+    "source_files": [
+      "phi-3.5-mini.json"
+    ]
+  }
+]

@@ -1,19 +1,22 @@
 import time
 import os
 import json
+import shutil
+import subprocess
 import psutil
 import requests
 from tqdm import tqdm
 from typing import Dict, Any, Optional, List
 
 class TextGenInferenceRunner:
-    def __init__(self, model_path: str = None, n_ctx: int = 2048, n_threads: int = None, n_batch: int = 512, mock: bool = False, model_type: str = "gguf"):
+    def __init__(self, model_path: str = None, n_ctx: int = 2048, n_threads: int = None, n_batch: int = 512, mock: bool = False, model_type: str = "gguf", gguf_engine: str = "llama_cpp"):
         self.model_path = model_path
         self.n_ctx = n_ctx
         self.n_batch = n_batch
         self.n_threads = n_threads or 12
         self.mock = mock
         self.model_type = model_type.lower()
+        self.gguf_engine = gguf_engine.lower()
         self.model = None 
         self.load_time = 0.0
         self.api_key = None
@@ -28,15 +31,36 @@ class TextGenInferenceRunner:
             return self.load_time
 
         if self.model_type == "gguf":
+            if not self.model_path:
+                raise ValueError("A GGUF model path is required for local inference.")
+            if not os.path.exists(self.model_path):
+                raise FileNotFoundError(f"Model file not found: {self.model_path}")
+            if os.path.getsize(self.model_path) == 0:
+                raise ValueError(f"Model file is empty: {self.model_path}")
             print(f"Loading GGUF model from {self.model_path}...")
-            from llama_cpp import Llama
-            self.model = Llama(
-                model_path=self.model_path, 
-                n_ctx=self.n_ctx, 
-                n_threads=self.n_threads, 
-                n_batch=self.n_batch, 
-                verbose=False
-            )
+            if self.gguf_engine == "llama_cpp":
+                try:
+                    from llama_cpp import Llama
+                except ImportError as exc:
+                    raise ImportError(
+                        "llama_cpp is not installed. Install llama-cpp-python in the active environment."
+                    ) from exc
+                self.model = Llama(
+                    model_path=self.model_path, 
+                    n_ctx=self.n_ctx, 
+                    n_threads=self.n_threads, 
+                    n_batch=self.n_batch, 
+                    verbose=False
+                )
+            elif self.gguf_engine == "llama_cli":
+                cli_path = shutil.which("llama-cli")
+                if not cli_path:
+                    raise FileNotFoundError(
+                        "llama-cli was not found on PATH. Install llama.cpp CLI or use --gguf_engine llama_cpp."
+                    )
+                self.model = cli_path
+            else:
+                raise ValueError(f"Unsupported GGUF engine: {self.gguf_engine}")
             self.load_time = time.time() - start_time
         elif self.model_type == "ollama":
             # API based
@@ -67,21 +91,44 @@ class TextGenInferenceRunner:
         if self.model_type == "gguf":
             if not self.model:
                 raise ValueError("Model not loaded.")
-            
-            output_stream = self.model(
-                prompt,
-                max_tokens=max_tokens,
-                temperature=temperature,
-                stream=True
-            )
-            
-            for i, chunk in enumerate(output_stream):
-                if i == 0:
-                    ttft = time.time() - start_time
-                
-                text = chunk['choices'][0]['text']
-                response_text += text
-                tokens_generated += 1
+
+            if self.gguf_engine == "llama_cpp":
+                output_stream = self.model(
+                    prompt,
+                    max_tokens=max_tokens,
+                    temperature=temperature,
+                    stream=True
+                )
+
+                for i, chunk in enumerate(output_stream):
+                    if i == 0:
+                        ttft = time.time() - start_time
+
+                    text = chunk['choices'][0]['text']
+                    response_text += text
+                    tokens_generated += 1
+            elif self.gguf_engine == "llama_cli":
+                cmd = [
+                    self.model,
+                    "-m", self.model_path,
+                    "-c", str(self.n_ctx),
+                    "-n", str(max_tokens),
+                    "--temp", str(temperature),
+                    "--threads", str(self.n_threads),
+                    "-p", prompt,
+                    "--no-display-prompt",
+                ]
+                completed = subprocess.run(
+                    cmd,
+                    capture_output=True,
+                    text=True,
+                    encoding="utf-8",
+                    errors="replace",
+                    check=True,
+                )
+                response_text = completed.stdout.strip()
+                tokens_generated = len(response_text.split())
+                ttft = (time.time() - start_time) / 10
 
         elif self.model_type == "ollama":
             url = "http://localhost:11434/api/generate"

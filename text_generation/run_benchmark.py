@@ -1,17 +1,31 @@
 import json
 import os
 import argparse
-import time
+import random
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from scripts.data_loader import TextGenDataLoader
 from scripts.inference_runner import TextGenInferenceRunner
 from scripts.metrics_collector import TextGenMetricsCollector
+from scripts.reporting import generate_reports, publish_report_bundle
 
-def main():
+
+def derive_model_name(args):
+    if getattr(args, "model_name", None):
+        return args.model_name
+    if args.mock:
+        return "mock"
+    if args.model_type == "gguf":
+        return os.path.splitext(os.path.basename(args.model_path))[0]
+    return args.model_path
+
+
+def build_parser():
     parser = argparse.ArgumentParser(description="SLM Text Generation Benchmark Runner")
-    parser.add_argument("--model_path", type=str, required=True, help="Path to GGUF model file")
+    parser.add_argument("--model_path", type=str, help="Path to GGUF model file or remote model identifier")
+    parser.add_argument("--model_name", type=str, help="Friendly model name to save in outputs")
     parser.add_argument("--task_type", type=str, default="samples", help="Task type to run (samples, summarization, etc.)")
-    parser.add_argument("--output_name", type=str, default="results.json", help="Name of output file in results/ directory")
+    parser.add_argument("--output_name", type=str, default="results.json", help="Name of output file in the output directory")
+    parser.add_argument("--output_dir", type=str, default="results", help="Directory where results and reports are saved")
     parser.add_argument("--workers", type=int, default=1, help="Number of parallel workers (1 for serial)")
     parser.add_argument("--mock", action="store_true", help="Run in mock mode (no model needed)")
     parser.add_argument("--sample_size", type=int, default=None, help="Number of tasks to sample from the dataset")
@@ -20,7 +34,20 @@ def main():
     parser.add_argument("--repeats", type=int, default=1, help="Number of repetitions for reliability testing")
     parser.add_argument("--perturb", action="store_true", help="Add minor typos to test robustness")
     parser.add_argument("--api_key", type=str, help="API key for cloud models (e.g. Gemini)")
-    args = parser.parse_args()
+    parser.add_argument("--n_ctx", type=int, default=2048, help="Context window for local GGUF models")
+    parser.add_argument("--n_threads", type=int, default=None, help="Thread count for local GGUF models")
+    parser.add_argument("--n_batch", type=int, default=512, help="Batch size for local GGUF models")
+    parser.add_argument("--gguf_engine", type=str, default="llama_cpp", choices=["llama_cpp", "llama_cli"], help="Inference engine for GGUF models")
+    parser.add_argument("--seed", type=int, default=42, help="Deterministic seed for sampling and prompt perturbation")
+    return parser
+
+
+def validate_args(args):
+    if not args.mock and not args.model_path:
+        raise ValueError("--model_path is required unless --mock is used")
+
+def run_benchmark(args):
+    validate_args(args)
 
     # 1. Load Data
     loader = TextGenDataLoader()
@@ -30,17 +57,19 @@ def main():
         return
     
     if args.sample_size and args.sample_size < len(tasks):
-        import random
-        random.seed(42) # For reproducibility
+        random.seed(args.seed)
         tasks = random.sample(tasks, args.sample_size)
         print(f"Sampled {args.sample_size} tasks for benchmarking.")
 
     # 2. Initialize Runner
     runner = TextGenInferenceRunner(
         model_path=args.model_path,
-        n_ctx=2048,
+        n_ctx=args.n_ctx,
+        n_threads=args.n_threads,
+        n_batch=args.n_batch,
         mock=args.mock,
-        model_type=args.model_type
+        model_type=args.model_type,
+        gguf_engine=args.gguf_engine,
     )
     runner.load_model(api_key=args.api_key)
 
@@ -90,6 +119,7 @@ def main():
             return {
                 "task_id": task.get("id"),
                 "run_id": run_id,
+                "model_name": derive_model_name(args),
                 "task_type": task.get("task"),
                 "prompt": prompt,
                 "response": response,
@@ -103,6 +133,7 @@ def main():
             return {
                 "task_id": task.get("id"),
                 "run_id": run_id,
+                "model_name": derive_model_name(args),
                 "error": str(e),
                 "metrics": {"operational": {"status": "failed"}}
             }
@@ -119,12 +150,62 @@ def main():
                 final_results.append(process_task(task, i))
 
     # 5. Save Results
-    output_path = os.path.join("results", args.output_name)
-    os.makedirs("results", exist_ok=True)
+    output_path = os.path.join(args.output_dir, args.output_name)
+    os.makedirs(args.output_dir, exist_ok=True)
     with open(output_path, 'w') as f:
         json.dump(final_results, f, indent=4)
-    
+
+    metadata = {
+        "model_name": derive_model_name(args),
+        "model_path": args.model_path,
+        "model_type": args.model_type,
+        "mock": args.mock,
+        "task_type": args.task_type,
+        "sample_size": args.sample_size,
+        "temperature": args.temperature,
+        "workers": args.workers,
+        "repeats": args.repeats,
+        "perturb": args.perturb,
+        "n_ctx": args.n_ctx,
+        "n_threads": args.n_threads,
+        "n_batch": args.n_batch,
+        "gguf_engine": args.gguf_engine,
+        "seed": args.seed,
+        "result_file": args.output_name,
+    }
+    metadata_path = os.path.join(args.output_dir, f"{os.path.splitext(args.output_name)[0]}_metadata.json")
+    with open(metadata_path, "w", encoding="utf-8") as handle:
+        json.dump(metadata, handle, indent=4)
+
+    report_outputs = generate_reports(args.output_dir, input_files=[args.output_name])
+    latest_outputs = publish_report_bundle(
+        report_outputs,
+        os.path.join("results", "latest"),
+        extra_manifest={
+            "model_name": metadata["model_name"],
+            "task_type": args.task_type,
+            "seed": args.seed,
+            "result_file": output_path,
+            "metadata_path": metadata_path,
+            "gguf_engine": args.gguf_engine,
+        },
+    )
     print(f"Benchmark complete. Results saved to {output_path}")
+    print(f"Summary tables saved to {report_outputs['tables_path']}")
+    print(f"Latest published tables saved to {latest_outputs['tables_md']}")
+    return {
+        "results_path": output_path,
+        "metadata_path": metadata_path,
+        "report_outputs": report_outputs,
+        "latest_outputs": latest_outputs,
+        "model_name": metadata["model_name"],
+    }
+
+
+def main():
+    parser = build_parser()
+    args = parser.parse_args()
+    run_benchmark(args)
 
 if __name__ == "__main__":
     main()
