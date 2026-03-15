@@ -17,6 +17,12 @@
       "summary_path": "outputs/20260314_054734/summary.json",
       "benchmark_name": "sroie_ie_cpu_two_more_models",
       "sample_size": 10
+    },
+    {
+      "model": "Gemini-2.5-Flash",
+      "summary_path": "outputs/20260314_071350/summary.json",
+      "benchmark_name": "sroie_ie_gemini_iter",
+      "sample_size": 4
     }
   ]
 }
