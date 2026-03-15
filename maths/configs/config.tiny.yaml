@@ -1,0 +1,21 @@
+datasets:
+  - name: GSM8K
+    path: data/processed/gsm8k.jsonl
+    sample_size: 9
+  - name: SVAMP
+    path: data/processed/svamp.jsonl
+    sample_size: 9
+
+models:
+  - id: gemini_2_0_flash
+    type: gemini
+    api_url_env: GEMINI_API_URL
+    api_key_env: GEMINI_API_KEY
+
+runner:
+  concurrency: 2
+  timeout_seconds: 90
+
+protocol:
+  repeats_on_subset: 2
+  robustness_perturbations: 2

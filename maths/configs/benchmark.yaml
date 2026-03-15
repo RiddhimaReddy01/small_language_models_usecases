@@ -1,0 +1,30 @@
+datasets:
+  - name: GSM8K
+    path: data/gsm8k.jsonl
+    purpose: multi-step reasoning
+    dataset_size: 8500
+    sample_size: 30
+  - name: SVAMP
+    path: data/svamp.jsonl
+    purpose: robustness to word changes
+    dataset_size: 1000
+    sample_size: 30
+
+models:
+  - id: gemini_2_0_flash
+    type: gemini
+    api_url_env: GEMINI_API_URL
+    api_key_env: GEMINI_API_KEY
+    parameters: Multimodal LLM
+    reason: baseline - state-of-the-art LLM
+
+runner:
+  concurrency: 4
+  timeout_seconds: 180
+
+protocol:
+  repeats_on_subset: 3
+  robustness_perturbations: 5
+  time_budget_minutes: 30
+  stratification: easy_medium_hard_equal
+

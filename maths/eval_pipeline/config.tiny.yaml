@@ -1,0 +1,60 @@
+datasets:
+  - name: GSM8K
+    path: data/gsm8k.jsonl
+    purpose: grade school reasoning
+    dataset_size: 8500
+    sample_size: 2
+  - name: SVAMP
+    path: data/svamp.jsonl
+    purpose: arithmetic reasoning
+    dataset_size: 1000
+    sample_size: 2
+  - name: MATH
+    path: data/math_subset.jsonl
+    purpose: complex reasoning
+    dataset_size: 12000
+    sample_size: 2
+
+models:
+  - id: gemini_flash_lite
+    type: api
+    parameters: API
+    quantization: managed
+    ram_budget: managed
+    reason: baseline reference model
+    api_url_env: GEMINI_API_URL
+    api_key_env: GEMINI_API_KEY
+  - id: phi3_mini
+    type: local
+    provider_model: phi3:mini
+    parameters: 3.8B
+    quantization: 4-bit
+    ram_budget: <8GB
+    reason: strong reasoning for size
+    endpoint_env: LOCAL_SLM_ENDPOINT_PHI3
+  - id: gemma_2b
+    type: local
+    provider_model: gemma2:2b
+    parameters: 2B
+    quantization: 4-bit
+    ram_budget: <8GB
+    reason: efficient baseline
+    endpoint_env: LOCAL_SLM_ENDPOINT_GEMMA2B
+  - id: mistral_7b
+    type: local
+    provider_model: mistral:7b
+    parameters: 7B
+    quantization: 4-bit
+    ram_budget: <8GB
+    reason: upper bound SLM within 30-minute budget
+    endpoint_env: LOCAL_SLM_ENDPOINT_MISTRAL7B
+
+runner:
+  concurrency: 1
+  timeout_seconds: 60
+
+protocol:
+  repeats_on_subset: 1
+  robustness_perturbations: 0
+  time_budget_minutes: 2
+  stratification: easy_medium_hard_equal
