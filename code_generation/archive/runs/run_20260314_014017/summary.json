@@ -1,0 +1,28 @@
+[
+  {
+    "model": "Qwen2.5 1.5B (Ollama Tiny)",
+    "model_name": "qwen2.5:1.5b",
+    "time_budget_minutes": 4,
+    "human_eval_attempted": 0,
+    "mbpp_attempted": 2,
+    "total_attempted": 2,
+    "tasks_completed_in_budget": 2,
+    "pass@1": 0.0,
+    "syntax_error_rate": 1.0,
+    "runtime_failure_rate": 0.0,
+    "logical_failure_rate": 0.0,
+    "reliability_score": 0.0,
+    "self_consistency_score": null,
+    "format_compliance": 1.0,
+    "signature_compliance": 0.0,
+    "instruction_adherence": 1.0,
+    "deterministic_reproducibility": null,
+    "unsafe_code_rate": 0.0,
+    "avg_latency_seconds": 96.27273274999993,
+    "p95_latency_seconds": 190.961593,
+    "tokens_per_second": 6.366006064287934,
+    "peak_ram_gb": 0.0,
+    "avg_output_tokens": 20,
+    "cost_per_request": 0.0
+  }
+]

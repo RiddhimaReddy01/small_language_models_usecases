@@ -1,0 +1,28 @@
+[
+  {
+    "model": "SmolLM2 360M (Transformers Tiny)",
+    "model_name": "HuggingFaceTB/SmolLM2-360M-Instruct",
+    "time_budget_minutes": 3,
+    "human_eval_attempted": 0,
+    "mbpp_attempted": 2,
+    "total_attempted": 2,
+    "tasks_completed_in_budget": 2,
+    "pass@1": 1.0,
+    "syntax_error_rate": 0.0,
+    "runtime_failure_rate": 0.0,
+    "logical_failure_rate": 0.0,
+    "reliability_score": 1.0,
+    "self_consistency_score": null,
+    "format_compliance": 1.0,
+    "signature_compliance": 1.0,
+    "instruction_adherence": 1.0,
+    "deterministic_reproducibility": null,
+    "unsafe_code_rate": 0.0,
+    "avg_latency_seconds": 5.698205250000228,
+    "p95_latency_seconds": 5.929776900000434,
+    "tokens_per_second": 8.104664843459929,
+    "peak_ram_gb": 0.012638092041015625,
+    "avg_output_tokens": 45,
+    "cost_per_request": 0.0
+  }
+]

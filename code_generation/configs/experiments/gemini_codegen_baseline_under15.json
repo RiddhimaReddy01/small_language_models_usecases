@@ -1,0 +1,31 @@
+{
+  "evaluation": {
+    "human_eval_sample": 0,
+    "mbpp_sample": 2,
+    "time_budget_minutes": 4,
+    "execution_timeout_seconds": 3,
+    "seed": 456,
+    "prompt_variant": "fast_cpu",
+    "generations_per_task": 1,
+    "reproducibility_retries": 0
+  },
+  "generation": {
+    "temperature": 0.15,
+    "min_new_tokens": 48,
+    "max_new_tokens": 96,
+    "top_p": 0.9,
+    "seed": 456,
+    "profile": "fast_cpu",
+    "adaptive_max_new_tokens": true
+  },
+  "models": [
+    {
+      "label": "Gemini 3 Flash (Baseline)",
+      "kind": "gemini",
+      "model_name": "models/gemini-3-flash-preview",
+      "api_key_env": "GEMINI_API_KEY",
+      "input_cost_per_1k_tokens": 0.0,
+      "output_cost_per_1k_tokens": 0.0
+    }
+  ]
+}

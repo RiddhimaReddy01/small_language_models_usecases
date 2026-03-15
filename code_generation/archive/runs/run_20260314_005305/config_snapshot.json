@@ -1,0 +1,58 @@
+{
+  "evaluation": {
+    "human_eval_sample": 0,
+    "mbpp_sample": 3,
+    "time_budget_minutes": 10,
+    "execution_timeout_seconds": 4,
+    "seed": 123,
+    "prompt_variant": "default",
+    "generations_per_task": 1,
+    "reproducibility_retries": 0,
+    "blocked_imports": [
+      "subprocess",
+      "socket",
+      "requests",
+      "urllib",
+      "httpx",
+      "aiohttp",
+      "ftplib",
+      "telnetlib",
+      "shutil"
+    ],
+    "blocked_calls": [
+      "os.system",
+      "os.remove",
+      "os.rmdir",
+      "os.unlink",
+      "os.removedirs",
+      "shutil.rmtree",
+      "subprocess.run",
+      "subprocess.Popen",
+      "subprocess.call",
+      "socket.socket",
+      "requests.get",
+      "requests.post",
+      "urllib.request.urlopen"
+    ]
+  },
+  "generation": {
+    "temperature": 0.4,
+    "max_new_tokens": 32,
+    "top_p": 0.9,
+    "seed": 123
+  },
+  "models": [
+    {
+      "label": "Gemma 2B (Ollama Easy)",
+      "kind": "ollama",
+      "model_name": "gemma2:2b",
+      "load_in_4bit": false,
+      "use_chat_template": false,
+      "api_key_env": "GEMINI_API_KEY",
+      "max_input_tokens": null,
+      "input_cost_per_1k_tokens": 0.0,
+      "output_cost_per_1k_tokens": 0.0,
+      "extra": {}
+    }
+  ]
+}

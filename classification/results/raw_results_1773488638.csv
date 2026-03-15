@@ -1,0 +1,3 @@
+text,true_label,prediction,latency,is_valid,dataset,status
+This product was excellent and arrived quickly.,positive,positive,1.3633723258972168,True,demo-upload,success
+The experience was frustrating and disappointing.,negative,negative,1.0093426704406738,True,demo-upload,success

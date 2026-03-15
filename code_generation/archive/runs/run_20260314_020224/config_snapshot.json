@@ -1,0 +1,58 @@
+{
+  "evaluation": {
+    "human_eval_sample": 0,
+    "mbpp_sample": 2,
+    "time_budget_minutes": 4,
+    "execution_timeout_seconds": 3,
+    "seed": 456,
+    "prompt_variant": "default",
+    "generations_per_task": 1,
+    "reproducibility_retries": 0,
+    "blocked_imports": [
+      "subprocess",
+      "socket",
+      "requests",
+      "urllib",
+      "httpx",
+      "aiohttp",
+      "ftplib",
+      "telnetlib",
+      "shutil"
+    ],
+    "blocked_calls": [
+      "os.system",
+      "os.remove",
+      "os.rmdir",
+      "os.unlink",
+      "os.removedirs",
+      "shutil.rmtree",
+      "subprocess.run",
+      "subprocess.Popen",
+      "subprocess.call",
+      "socket.socket",
+      "requests.get",
+      "requests.post",
+      "urllib.request.urlopen"
+    ]
+  },
+  "generation": {
+    "temperature": 0.3,
+    "max_new_tokens": 96,
+    "top_p": 0.9,
+    "seed": 456
+  },
+  "models": [
+    {
+      "label": "Qwen2.5 Coder 1.5B (Transformers Tiny)",
+      "kind": "hf_local",
+      "model_name": "Qwen/Qwen2.5-Coder-1.5B-Instruct",
+      "load_in_4bit": false,
+      "use_chat_template": true,
+      "api_key_env": "GEMINI_API_KEY",
+      "max_input_tokens": null,
+      "input_cost_per_1k_tokens": 0.0,
+      "output_cost_per_1k_tokens": 0.0,
+      "extra": {}
+    }
+  ]
+}

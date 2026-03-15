@@ -1,0 +1,63 @@
+{
+    "operational": [
+        {
+            "dataset": "SST-2",
+            "total_samples": 6,
+            "total_time": 2.400668144226074,
+            "throughput": 2.499304210134498,
+            "latency_mean": 0.39777199427286786,
+            "latency_p95": 0.5045669674873352,
+            "cpu_util_avg": 68.4,
+            "mem_usage_delta_mb": 14.8359375,
+            "parse_failure_rate": 0.0
+        },
+        {
+            "dataset": "Emotion",
+            "total_samples": 6,
+            "total_time": 1.204514980316162,
+            "throughput": 4.981258098114409,
+            "latency_mean": 0.1994462013244629,
+            "latency_p95": 0.35391801595687866,
+            "cpu_util_avg": 78.75,
+            "mem_usage_delta_mb": 16.02734375,
+            "parse_failure_rate": 0.5
+        },
+        {
+            "dataset": "AG News",
+            "total_samples": 4,
+            "total_time": 0.559070348739624,
+            "throughput": 7.154734657306824,
+            "latency_mean": 0.13740533590316772,
+            "latency_p95": 0.3104618549346923,
+            "cpu_util_avg": 30.2,
+            "mem_usage_delta_mb": -4.92578125,
+            "parse_failure_rate": 0.75
+        }
+    ],
+    "capability": {
+        "SST-2": {
+            "accuracy": 0.8333333333333334,
+            "macro_f1": 0.8285714285714285,
+            "weighted_f1": 0.8285714285714286,
+            "precision": 0.875,
+            "recall": 0.8333333333333333,
+            "validity_rate": 1.0
+        },
+        "Emotion": {
+            "accuracy": 0.3333333333333333,
+            "macro_f1": 0.2857142857142857,
+            "weighted_f1": 0.3333333333333333,
+            "precision": 0.2857142857142857,
+            "recall": 0.2857142857142857,
+            "validity_rate": 0.5
+        },
+        "AG News": {
+            "accuracy": 0.0,
+            "macro_f1": 0.0,
+            "weighted_f1": 0.0,
+            "precision": 0.0,
+            "recall": 0.0,
+            "validity_rate": 0.25
+        }
+    }
+}

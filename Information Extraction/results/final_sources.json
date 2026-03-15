@@ -1,0 +1,22 @@
+{
+  "sources": [
+    {
+      "model": "SmolLM2-1.7B-Instruct",
+      "summary_path": "outputs/20260314_063054/summary.json",
+      "benchmark_name": "sroie_ie_cpu_iter_smol17b",
+      "sample_size": 4
+    },
+    {
+      "model": "Qwen2.5-0.5B-Instruct",
+      "summary_path": "outputs/20260314_061420/summary.json",
+      "benchmark_name": "sroie_ie_cpu_iter",
+      "sample_size": 4
+    },
+    {
+      "model": "Qwen2.5-1.5B-Instruct",
+      "summary_path": "outputs/20260314_054734/summary.json",
+      "benchmark_name": "sroie_ie_cpu_two_more_models",
+      "sample_size": 10
+    }
+  ]
+}

@@ -1,0 +1,25 @@
+{
+  "dataset": {
+    "name": "cnn_dailymail",
+    "config_name": "3.0.0",
+    "split": "test",
+    "num_articles": 30,
+    "max_article_tokens": 400,
+    "seed": 42
+  },
+  "model": {
+    "model_name": "t5-small",
+    "embedding_model": "sentence-transformers/all-MiniLM-L6-v2",
+    "max_new_tokens": 60,
+    "temperature": 0.0,
+    "top_p": 1.0,
+    "do_sample": false,
+    "word_limit": 20
+  },
+  "prompt": {
+    "template": "Summarize the following article in one sentence.\n\nArticle:\n{article}\n\nSummary:"
+  },
+  "output": {
+    "output_dir": "outputs/fast_cpu"
+  }
+}

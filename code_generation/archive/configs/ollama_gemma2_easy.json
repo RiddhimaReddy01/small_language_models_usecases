@@ -1,0 +1,25 @@
+{
+  "evaluation": {
+    "human_eval_sample": 0,
+    "mbpp_sample": 3,
+    "time_budget_minutes": 10,
+    "execution_timeout_seconds": 4,
+    "seed": 123,
+    "prompt_variant": "default",
+    "generations_per_task": 1,
+    "reproducibility_retries": 0
+  },
+  "generation": {
+    "temperature": 0.4,
+    "max_new_tokens": 32,
+    "top_p": 0.9,
+    "seed": 123
+  },
+  "models": [
+    {
+      "label": "Gemma 2B (Ollama Easy)",
+      "kind": "ollama",
+      "model_name": "gemma2:2b"
+    }
+  ]
+}

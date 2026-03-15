@@ -1,0 +1,44 @@
+{
+  "evaluation": {
+    "human_eval_sample": 0,
+    "mbpp_sample": 2,
+    "time_budget_minutes": 6,
+    "execution_timeout_seconds": 3,
+    "seed": 456,
+    "prompt_variant": "fast_cpu",
+    "generations_per_task": 1,
+    "reproducibility_retries": 0
+  },
+  "generation": {
+    "temperature": 0.15,
+    "min_new_tokens": 48,
+    "max_new_tokens": 96,
+    "top_p": 0.9,
+    "seed": 456,
+    "profile": "fast_cpu",
+    "adaptive_max_new_tokens": true
+  },
+  "models": [
+    {
+      "label": "DeepSeek Coder 1.3B Q4 (llama.cpp Tiny)",
+      "kind": "llama_cpp",
+      "model_name": "deepseek-coder-1.3b-instruct-q4_k_m.gguf",
+      "use_chat_template": true,
+      "extra": {
+        "model_path": "C:\\\\models\\\\deepseek-coder-1.3b-instruct-q4_k_m.gguf",
+        "chat_format": "deepseek",
+        "context_preset": "fast_cpu",
+        "n_threads": 8,
+        "n_threads_batch": 8,
+        "n_gpu_layers": 0,
+        "use_mmap": true,
+        "use_mlock": false,
+        "verbose": false,
+        "stop": [
+          "<|EOT|>",
+          "### Instruction:"
+        ]
+      }
+    }
+  ]
+}

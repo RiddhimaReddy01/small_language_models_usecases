@@ -1,0 +1,9 @@
+llama-cpp-python
+pandas
+numpy
+psutil
+tqdm
+requests
+rouge-score
+bert-score
+nltk

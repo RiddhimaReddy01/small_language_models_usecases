@@ -1,0 +1,28 @@
+[
+  {
+    "model": "Mistral 7B (Ollama)",
+    "model_name": "mistral:7b",
+    "time_budget_minutes": 20,
+    "human_eval_attempted": 5,
+    "mbpp_attempted": 5,
+    "total_attempted": 10,
+    "tasks_completed_in_budget": 5,
+    "pass@1": 0.0,
+    "syntax_error_rate": 0.4,
+    "runtime_failure_rate": 0.6,
+    "logical_failure_rate": 0.0,
+    "reliability_score": 0.0,
+    "self_consistency_score": null,
+    "format_compliance": 0.1,
+    "signature_compliance": 0.1,
+    "instruction_adherence": 0.1,
+    "deterministic_reproducibility": null,
+    "unsafe_code_rate": 0.0,
+    "avg_latency_seconds": 130.73098971999988,
+    "p95_latency_seconds": 185.45746280000003,
+    "tokens_per_second": 0.423451139292303,
+    "peak_ram_gb": 0.012298583984375,
+    "avg_output_tokens": 48,
+    "cost_per_request": 0.0
+  }
+]

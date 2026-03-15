@@ -1,0 +1,25 @@
+{
+  "evaluation": {
+    "human_eval_sample": 0,
+    "mbpp_sample": 4,
+    "time_budget_minutes": 6,
+    "execution_timeout_seconds": 4,
+    "seed": 321,
+    "prompt_variant": "default",
+    "generations_per_task": 1,
+    "reproducibility_retries": 0
+  },
+  "generation": {
+    "temperature": 0.35,
+    "max_new_tokens": 24,
+    "top_p": 0.9,
+    "seed": 321
+  },
+  "models": [
+    {
+      "label": "Qwen2.5 1.5B (Ollama Fast)",
+      "kind": "ollama",
+      "model_name": "qwen2.5:1.5b"
+    }
+  ]
+}

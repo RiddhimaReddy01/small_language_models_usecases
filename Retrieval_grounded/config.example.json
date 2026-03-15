@@ -1,0 +1,13 @@
+{
+  "dataset_name": "squad",
+  "num_questions": 30,
+  "max_context_tokens": 300,
+  "max_answer_tokens": 10,
+  "models": [
+    "Qwen/Qwen2.5-Coder-0.5B-Instruct",
+    "deepseek-ai/deepseek-coder-1.3b-instruct",
+    "Qwen/Qwen2.5-Coder-1.5B-Instruct"
+  ],
+  "device": "auto",
+  "output_dir": "results"
+}

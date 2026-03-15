@@ -1,0 +1,28 @@
+[
+  {
+    "model": "Phi-3 Mini",
+    "model_name": "microsoft/Phi-3-mini-4k-instruct",
+    "time_budget_minutes": 1,
+    "human_eval_attempted": 1,
+    "mbpp_attempted": 0,
+    "total_attempted": 1,
+    "tasks_completed_in_budget": 1,
+    "pass@1": 0.0,
+    "syntax_error_rate": 0.0,
+    "runtime_failure_rate": 1.0,
+    "logical_failure_rate": 0.0,
+    "reliability_score": 0.0,
+    "self_consistency_score": null,
+    "format_compliance": 1.0,
+    "signature_compliance": 1.0,
+    "instruction_adherence": 1.0,
+    "deterministic_reproducibility": null,
+    "unsafe_code_rate": 0.0,
+    "avg_latency_seconds": 357.83484059999955,
+    "p95_latency_seconds": 357.83484059999955,
+    "tokens_per_second": 0.2209117091503462,
+    "peak_ram_gb": 0.012603759765625,
+    "avg_output_tokens": 79,
+    "cost_per_request": 0.0
+  }
+]

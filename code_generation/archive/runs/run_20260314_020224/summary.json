@@ -1,0 +1,28 @@
+[
+  {
+    "model": "Qwen2.5 Coder 1.5B (Transformers Tiny)",
+    "model_name": "Qwen/Qwen2.5-Coder-1.5B-Instruct",
+    "time_budget_minutes": 4,
+    "human_eval_attempted": 0,
+    "mbpp_attempted": 2,
+    "total_attempted": 2,
+    "tasks_completed_in_budget": 2,
+    "pass@1": 1.0,
+    "syntax_error_rate": 0.0,
+    "runtime_failure_rate": 0.0,
+    "logical_failure_rate": 0.0,
+    "reliability_score": 1.0,
+    "self_consistency_score": null,
+    "format_compliance": 1.0,
+    "signature_compliance": 1.0,
+    "instruction_adherence": 1.0,
+    "deterministic_reproducibility": null,
+    "unsafe_code_rate": 0.0,
+    "avg_latency_seconds": 97.17601489999993,
+    "p95_latency_seconds": 150.28067759999976,
+    "tokens_per_second": 0.6475691498588936,
+    "peak_ram_gb": 0.012630462646484375,
+    "avg_output_tokens": 48.5,
+    "cost_per_request": 0.0
+  }
+]

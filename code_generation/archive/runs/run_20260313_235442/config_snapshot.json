@@ -1,0 +1,82 @@
+{
+  "evaluation": {
+    "human_eval_sample": 1,
+    "mbpp_sample": 1,
+    "time_budget_minutes": 2,
+    "execution_timeout_seconds": 10,
+    "seed": 42,
+    "prompt_variant": "default",
+    "generations_per_task": 1,
+    "reproducibility_retries": 0,
+    "blocked_imports": [
+      "subprocess",
+      "socket",
+      "requests",
+      "urllib",
+      "httpx",
+      "aiohttp",
+      "ftplib",
+      "telnetlib",
+      "shutil"
+    ],
+    "blocked_calls": [
+      "os.system",
+      "os.remove",
+      "os.rmdir",
+      "os.unlink",
+      "os.removedirs",
+      "shutil.rmtree",
+      "subprocess.run",
+      "subprocess.Popen",
+      "subprocess.call",
+      "socket.socket",
+      "requests.get",
+      "requests.post",
+      "urllib.request.urlopen"
+    ]
+  },
+  "generation": {
+    "temperature": 0.2,
+    "max_new_tokens": 128,
+    "top_p": 1.0,
+    "seed": 42
+  },
+  "models": [
+    {
+      "label": "Phi-3 Mini (HF API)",
+      "kind": "hf_api",
+      "model_name": "microsoft/Phi-3-mini-4k-instruct",
+      "load_in_4bit": false,
+      "use_chat_template": false,
+      "api_key_env": "HF_TOKEN",
+      "max_input_tokens": null,
+      "input_cost_per_1k_tokens": 0.0,
+      "output_cost_per_1k_tokens": 0.0,
+      "extra": {}
+    },
+    {
+      "label": "Gemma 2B (HF API)",
+      "kind": "hf_api",
+      "model_name": "google/gemma-2-2b-it",
+      "load_in_4bit": false,
+      "use_chat_template": false,
+      "api_key_env": "HF_TOKEN",
+      "max_input_tokens": null,
+      "input_cost_per_1k_tokens": 0.0,
+      "output_cost_per_1k_tokens": 0.0,
+      "extra": {}
+    },
+    {
+      "label": "Mistral 7B (HF API)",
+      "kind": "hf_api",
+      "model_name": "mistralai/Mistral-7B-Instruct-v0.3",
+      "load_in_4bit": false,
+      "use_chat_template": false,
+      "api_key_env": "HF_TOKEN",
+      "max_input_tokens": null,
+      "input_cost_per_1k_tokens": 0.0,
+      "output_cost_per_1k_tokens": 0.0,
+      "extra": {}
+    }
+  ]
+}

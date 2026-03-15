@@ -1,0 +1,55 @@
+{
+  "benchmark_name": "sroie_ie_quick_benchmark",
+  "dataset": {
+    "name": "SROIE",
+    "clean_path": "data/processed/sroie_clean.jsonl",
+    "noisy_path": "data/processed/sroie_noisy.jsonl",
+    "target_fields": [
+      "company",
+      "address",
+      "date",
+      "total"
+    ]
+  },
+  "sampling": {
+    "sample_size": 50,
+    "sampling_method": "random",
+    "random_seed": 42,
+    "clean_sample_size": 40,
+    "noisy_sample_size": 10
+  },
+  "models": [
+    {
+      "name": "Phi-3-mini",
+      "model_id": "microsoft/Phi-3-mini-4k-instruct"
+    },
+    {
+      "name": "Qwen2.5-3B-Instruct",
+      "model_id": "Qwen/Qwen2.5-3B-Instruct"
+    },
+    {
+      "name": "Gemma-2B",
+      "model_id": "google/gemma-2-2b-it"
+    }
+  ],
+  "inference": {
+    "device": "auto",
+    "quantization": "4bit",
+    "double_quantization": true,
+    "compute_dtype": "float16",
+    "temperature": 0.0,
+    "do_sample": false,
+    "top_p": 1.0,
+    "max_new_tokens": 400,
+    "max_input_chars": 6000,
+    "torch_threads": 4,
+    "low_cpu_mem_usage": true,
+    "trust_remote_code": false
+  },
+  "evaluation": {
+    "runs_per_model": 3,
+    "required_output_format": "json",
+    "date_format": "%Y-%m-%d"
+  },
+  "output_dir": "outputs"
+}

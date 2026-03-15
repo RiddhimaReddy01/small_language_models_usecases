@@ -1,0 +1,13 @@
+text,true_label,prediction,latency,is_valid,dataset,status
+"director of photography benoit delhomme shot the movie in delicious colors , and the costumes and sets are grand . ",positive,positive,43.6470685005188,True,SST-2,success
+"even on those rare occasions when the narrator stops yammering , miller 's hand often feels unsure . ",negative,negative,52.45940852165222,True,SST-2,success
+i am still feeling a tad strange in those pearly whites,surprise,surprise,107.97295689582825,True,Emotion,success
+i feel very tender for anyone who is upset by the bee movie sort of like how you feel about old aunts who dont realize how prickly their whiskers are getting slightly repulsed but very sad for their decline,love,sadness,51.24833798408508,True,Emotion,success
+i have no energy to get angry or upset anymore i just feel a little resigned,sadness,sadness,53.17829155921936,True,Emotion,success
+i decide that picking the easy route would get me nowhere and i feel like other people want me tortured so i follow the blue path,fear,fear,50.67182636260986,True,Emotion,success
+i didnt react with the way that i really feel im ecstatic for your marriage to tonks,joy,joy,33.512194871902466,True,Emotion,success
+i cannot explain why but i need to say please understand my feeling i have heart and im not a heartless person,anger,love,58.66692399978638,True,Emotion,success
+Barrick Acquires Stake in Celtic Resources Canada #39;s Barrick Gold Corp. said Thursday it was acquiring a 9 percent stake in London-based Celtic Resources Holding Ltd. - a deal that potentially gives the Canadian gold giant major clout ahead of next year #39;s auction of Russia #39;s biggest gold deposit.,Business,Business,40.850794553756714,True,AG News,success
+"SHANGHAI ATP: Canas struggles to first round win SHANGHAI: A tired but determined Guillermo Canas of Argentina held off a strong early charge from Spains Guillermo Garcia-Lopez to win his first round Shanghai ATP match 7-6, 6-1 on Monday.",Sports,Sports,8.482930898666382,True,AG News,success
+"Kremlin rules out public inquiry on Beslan LONDON President Vladimir Putin of Russia has ruled out a public inquiry into the Beslan school siege and snarled at those who think he should do business with Chechen militants, two British newspapers said Tuesday.",World,World,4.731952905654907,True,AG News,success
+Microsoft previews  quot;Whitehorse quot; developer tools Microsoft released on Tuesday a preview version of new tools intended to make it easier for companies to create custom Web applications.,Sci/Tech,Business,4.095712900161743,True,AG News,success

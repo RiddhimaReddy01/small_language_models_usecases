@@ -1,0 +1,17 @@
+dataset,text,true_label,prediction,latency,is_valid,status
+SST-2,it 's a stunning lyrical work of considerable force and truth . ,positive,positive,4.664948463439941,True,success
+SST-2,"director of photography benoit delhomme shot the movie in delicious colors , and the costumes and sets are grand . ",positive,positive,1.324906349182129,True,success
+SST-2,"you really have to wonder how on earth anyone , anywhere could have thought they 'd make audiences guffaw with a script as utterly diabolical as this . ",negative,negative,1.6989061832427979,True,success
+SST-2,"what 's surprising about full frontal is that despite its overt self-awareness , parts of the movie still manage to break past the artifice and thoroughly engage you . ",positive,positive,1.635910987854004,True,success
+SST-2,"even on those rare occasions when the narrator stops yammering , miller 's hand often feels unsure . ",negative,negative,1.3861110210418701,True,success
+SST-2,verbinski implements every hack-artist trick to give us the ooky-spookies . ,negative,positive,1.0843260288238525,True,success
+Emotion,im thinking well i could be a bit smaller but for health reasons and i should see a doctor more regularly because im feeling crappy,sadness,sadness,2.286132335662842,True,success
+Emotion,i have spent of my waking hours enjoying the freedom of not owning a cellphone feeling smug about it in situations in which a phone would have been awfully convenient and fielding incredulous questions,joy,joy,1.9019112586975098,True,success
+Emotion,i feel so damn curious with what this blond doctor plan to do this night,surprise,surprise,0.9291896820068359,True,success
+Emotion,im feeling pretty anxious,fear,fear,0.7020950317382812,True,success
+Emotion,i was feeling the need for some christmas crafting this week especially after seeing a couple of lovely quilty christmas projects at stitch group,love,joy,1.3518800735473633,True,success
+Emotion,i wake too early so i feel grumpy,anger,sadness,0.7784633636474609,True,success
+AG News,"China Closes 1,600 Internet Cafes in Crackdown China shut 1,600 Internet cafes between February and August and imposed \$12.1 million worth of fines for allowing children to play violent or adult-only games and other violations, state media said.",Sci/Tech,World,3.442456007003784,True,success
+AG News,"Large Explosion Heard in Central Baghdad (Reuters) Reuters - A large blast was heard in central\Baghdad on Thursday, witnesses said.",World,World,1.727426290512085,True,success
+AG News,"Ford: Monthly Sales Drop, Company Looks To New Vehicles Cruising along the ever-stretching road of decline. Auto giant Ford Motor (nyse: F - news - people ) reported vehicle sales in October that fell 5 from a year ago.",Business,Business,2.2139816284179688,True,success
+AG News,"Agassi Overcomes Verdasco Power  STOCKHOLM (Reuters) - Andre Agassi marched into the  Stockholm Open semifinals Friday, beating Spanish eighth seed  Fernando Verdasco 7-6, 6-2 in his toughest match of the  tournament.",Sports,Sports,2.5869665145874023,True,success
