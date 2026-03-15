@@ -9,7 +9,20 @@ from tqdm import tqdm
 from typing import Dict, Any, Optional, List
 
 class TextGenInferenceRunner:
-    def __init__(self, model_path: str = None, n_ctx: int = 2048, n_threads: int = None, n_batch: int = 512, mock: bool = False, model_type: str = "gguf", gguf_engine: str = "llama_cpp"):
+    def __init__(
+        self,
+        model_path: str = None,
+        n_ctx: int = 2048,
+        n_threads: int = None,
+        n_batch: int = 512,
+        mock: bool = False,
+        model_type: str = "gguf",
+        gguf_engine: str = "llama_cpp",
+        cloud_request_delay_s: float = 0.0,
+        cloud_max_retries: int = 0,
+        cloud_backoff_base_s: float = 2.0,
+        cloud_timeout_s: int = 120,
+    ):
         self.model_path = model_path
         self.n_ctx = n_ctx
         self.n_batch = n_batch
@@ -17,9 +30,58 @@ class TextGenInferenceRunner:
         self.mock = mock
         self.model_type = model_type.lower()
         self.gguf_engine = gguf_engine.lower()
+        self.cloud_request_delay_s = max(0.0, cloud_request_delay_s)
+        self.cloud_max_retries = max(0, cloud_max_retries)
+        self.cloud_backoff_base_s = max(0.1, cloud_backoff_base_s)
+        self.cloud_timeout_s = max(1, cloud_timeout_s)
         self.model = None 
         self.load_time = 0.0
         self.api_key = None
+
+    def _cloud_post(self, url: str, **request_kwargs):
+        if self.cloud_request_delay_s:
+            time.sleep(self.cloud_request_delay_s)
+
+        last_error = None
+        for attempt in range(self.cloud_max_retries + 1):
+            try:
+                response = requests.post(url, timeout=self.cloud_timeout_s, **request_kwargs)
+                response.raise_for_status()
+                return response
+            except requests.HTTPError as exc:
+                status_code = exc.response.status_code if exc.response is not None else None
+                if status_code not in (429, 500, 502, 503, 504) or attempt >= self.cloud_max_retries:
+                    raise
+
+                retry_after = 0.0
+                if exc.response is not None:
+                    retry_header = exc.response.headers.get("Retry-After")
+                    if retry_header:
+                        try:
+                            retry_after = float(retry_header)
+                        except ValueError:
+                            retry_after = 0.0
+                sleep_s = max(retry_after, self.cloud_backoff_base_s * (2 ** attempt))
+                last_error = exc
+                print(
+                    f"Cloud request retry {attempt + 1}/{self.cloud_max_retries} "
+                    f"after HTTP {status_code}; sleeping {sleep_s:.1f}s"
+                )
+                time.sleep(sleep_s)
+            except requests.RequestException as exc:
+                if attempt >= self.cloud_max_retries:
+                    raise
+                sleep_s = self.cloud_backoff_base_s * (2 ** attempt)
+                last_error = exc
+                print(
+                    f"Cloud request retry {attempt + 1}/{self.cloud_max_retries} "
+                    f"after network error; sleeping {sleep_s:.1f}s"
+                )
+                time.sleep(sleep_s)
+
+        if last_error:
+            raise last_error
+        raise RuntimeError("Cloud request failed without a captured exception.")
 
     def load_model(self, api_key: Optional[str] = None):
         """Prepares the model for inference."""
@@ -68,6 +130,10 @@ class TextGenInferenceRunner:
         elif self.model_type == "google":
             if not self.api_key:
                 print("Warning: No API key provided for Google model.")
+            self.load_time = 0.001
+        elif self.model_type == "openai":
+            if not self.api_key:
+                print("Warning: No API key provided for OpenAI model.")
             self.load_time = 0.001
         else:
             raise ValueError(f"Unsupported model type: {self.model_type}")
@@ -153,8 +219,7 @@ class TextGenInferenceRunner:
                 "contents": [{"parts": [{"text": prompt}]}],
                 "generationConfig": {"maxOutputTokens": max_tokens, "temperature": temperature}
             }
-            resp = requests.post(url, json=payload, timeout=60)
-            resp.raise_for_status()
+            resp = self._cloud_post(url, json=payload)
             result = resp.json()
             
             if "candidates" in result and result["candidates"]:
@@ -170,6 +235,28 @@ class TextGenInferenceRunner:
                 response_text = f"Error: {json.dumps(result)}"
             
             tokens_generated = len(response_text.split()) * 1.3
+            ttft = (time.time() - start_time) / 5 # Estimated
+
+        elif self.model_type == "openai":
+            model_id = self.model_path or "gpt-4o-mini"
+            url = "https://api.openai.com/v1/chat/completions"
+            headers = {
+                "Authorization": f"Bearer {self.api_key}",
+                "Content-Type": "application/json",
+            }
+            payload = {
+                "model": model_id,
+                "messages": [{"role": "user", "content": prompt}],
+                "temperature": temperature,
+                "max_tokens": max_tokens,
+            }
+            resp = self._cloud_post(url, headers=headers, json=payload)
+            result = resp.json()
+            choices = result.get("choices", [])
+            if choices:
+                response_text = choices[0].get("message", {}).get("content", "").strip()
+            usage = result.get("usage", {})
+            tokens_generated = usage.get("completion_tokens", len(response_text.split()))
             ttft = (time.time() - start_time) / 5 # Estimated
 
         total_time = time.time() - start_time

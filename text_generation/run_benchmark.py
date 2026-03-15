@@ -30,7 +30,7 @@ def build_parser():
     parser.add_argument("--mock", action="store_true", help="Run in mock mode (no model needed)")
     parser.add_argument("--sample_size", type=int, default=None, help="Number of tasks to sample from the dataset")
     parser.add_argument("--temperature", type=float, default=0.7, help="Inference temperature")
-    parser.add_argument("--model_type", type=str, default="gguf", choices=["gguf", "ollama", "google"], help="Model type (gguf, ollama, or google)")
+    parser.add_argument("--model_type", type=str, default="gguf", choices=["gguf", "ollama", "google", "openai"], help="Model type (gguf, ollama, google, or openai)")
     parser.add_argument("--repeats", type=int, default=1, help="Number of repetitions for reliability testing")
     parser.add_argument("--perturb", action="store_true", help="Add minor typos to test robustness")
     parser.add_argument("--api_key", type=str, help="API key for cloud models (e.g. Gemini)")
@@ -39,6 +39,10 @@ def build_parser():
     parser.add_argument("--n_batch", type=int, default=512, help="Batch size for local GGUF models")
     parser.add_argument("--gguf_engine", type=str, default="llama_cpp", choices=["llama_cpp", "llama_cli"], help="Inference engine for GGUF models")
     parser.add_argument("--seed", type=int, default=42, help="Deterministic seed for sampling and prompt perturbation")
+    parser.add_argument("--cloud_request_delay_s", type=float, default=0.0, help="Delay before each cloud API request")
+    parser.add_argument("--cloud_max_retries", type=int, default=0, help="Maximum retries for transient cloud API failures")
+    parser.add_argument("--cloud_backoff_base_s", type=float, default=2.0, help="Base backoff in seconds for cloud API retries")
+    parser.add_argument("--cloud_timeout_s", type=int, default=120, help="Timeout in seconds for cloud API requests")
     return parser
 
 
@@ -70,6 +74,10 @@ def run_benchmark(args):
         mock=args.mock,
         model_type=args.model_type,
         gguf_engine=args.gguf_engine,
+        cloud_request_delay_s=args.cloud_request_delay_s,
+        cloud_max_retries=args.cloud_max_retries,
+        cloud_backoff_base_s=args.cloud_backoff_base_s,
+        cloud_timeout_s=args.cloud_timeout_s,
     )
     runner.load_model(api_key=args.api_key)
 
@@ -106,6 +114,8 @@ def run_benchmark(args):
             # Estimate cost: Gemini 1.5 Flash is roughly $0.075/1M tokens (very cheap)
             if args.model_type == "google":
                 operational_metrics["cost_usd"] = (operational_metrics.get("tokens_generated", 0) / 1000000) * 0.075
+            elif args.model_type == "openai":
+                operational_metrics["cost_usd"] = (operational_metrics.get("tokens_generated", 0) / 1000000) * 0.60
             else:
                 operational_metrics["cost_usd"] = 0.0 # Local SLM
 
@@ -171,13 +181,17 @@ def run_benchmark(args):
         "n_batch": args.n_batch,
         "gguf_engine": args.gguf_engine,
         "seed": args.seed,
+        "cloud_request_delay_s": args.cloud_request_delay_s,
+        "cloud_max_retries": args.cloud_max_retries,
+        "cloud_backoff_base_s": args.cloud_backoff_base_s,
+        "cloud_timeout_s": args.cloud_timeout_s,
         "result_file": args.output_name,
     }
     metadata_path = os.path.join(args.output_dir, f"{os.path.splitext(args.output_name)[0]}_metadata.json")
     with open(metadata_path, "w", encoding="utf-8") as handle:
         json.dump(metadata, handle, indent=4)
 
-    report_outputs = generate_reports(args.output_dir, input_files=[args.output_name])
+    report_outputs = generate_reports(args.output_dir)
     latest_outputs = publish_report_bundle(
         report_outputs,
         os.path.join("results", "latest"),
@@ -188,6 +202,10 @@ def run_benchmark(args):
             "result_file": output_path,
             "metadata_path": metadata_path,
             "gguf_engine": args.gguf_engine,
+            "cloud_request_delay_s": args.cloud_request_delay_s,
+            "cloud_max_retries": args.cloud_max_retries,
+            "cloud_backoff_base_s": args.cloud_backoff_base_s,
+            "cloud_timeout_s": args.cloud_timeout_s,
         },
     )
     print(f"Benchmark complete. Results saved to {output_path}")

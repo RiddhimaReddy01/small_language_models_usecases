@@ -1,0 +1,527 @@
+[
+    {
+        "task_id": 1,
+        "run_id": 0,
+        "model_name": "gemini-baseline",
+        "task_type": "summarization",
+        "prompt": "Summarize the following text in one sentence: The Ryzen 9 7940HS is a high-end laptop processor from AMD. It features 8 cores and 16 threads, with a boost clock of up to 5.2 GHz. It is built on the Zen 4 architecture and includes an integrated Radeon 780M GPU.",
+        "response": "The AMD Ryzen 9 7940HS is a powerful, Zen 4-based laptop processor with 8 cores, 16 threads, a 5.2 GHz boost clock, and an integrated Radeon 780M GPU.",
+        "metrics": {
+            "operational": {
+                "ttft": 0.5702011585235596,
+                "total_time": 2.851005792617798,
+                "tokens_generated": 36.4,
+                "tps": 12.767424076882518,
+                "peak_ram_mb": 0.0,
+                "ram_delta_mb": 0.0,
+                "model_load_time": 0.001,
+                "cost_usd": 2.7299999999999997e-06
+            },
+            "framework": {
+                "instruction_following": {
+                    "constraint_satisfaction_rate": 0.5,
+                    "format_compliance_rate": 1.0
+                },
+                "generation_quality": {},
+                "factuality": {
+                    "hallucination_rate": 0.0,
+                    "unsupported_claim_count": 0
+                },
+                "safety": {
+                    "unsafe_response_rate": 0.0,
+                    "refusal_rate": 0.0
+                }
+            }
+        }
+    },
+    {
+        "task_id": 2,
+        "run_id": 0,
+        "model_name": "gemini-baseline",
+        "task_type": "email",
+        "prompt": "Write a short professional email to a client explaining that their project will be delayed by two days due to a server migration.",
+        "response": "Subject: Update on [Project Name] - Minor Delay\n\nDear [Client Name],\n\nI am writing to provide a brief update on the progress of your project, [Project Name].\n\nWe anticipate a minor delay of approximately two business days due to an upcoming server migration. This essential maintenance is scheduled to occur on [Date of Migration] and is necessary to ensure the continued performance and security of our systems.\n\nWe have taken all necessary steps to minimize any disruption and expect to resume full project operations by [Date of Expected Completion]. We will continue to keep you informed of our progress and will work diligently to deliver the project as soon as possible.\n\nWe apologize for any inconvenience this may cause and appreciate your understanding.\n\nSincerely,\n\n[Your Name]\n[Your Title]\n[Your Company]",
+        "metrics": {
+            "operational": {
+                "ttft": 0.6118382930755615,
+                "total_time": 3.0591914653778076,
+                "tokens_generated": 169.0,
+                "tps": 55.24335495592416,
+                "peak_ram_mb": 0.0,
+                "ram_delta_mb": 0.0,
+                "model_load_time": 0.001,
+                "cost_usd": 1.2674999999999998e-05
+            },
+            "framework": {
+                "instruction_following": {
+                    "constraint_satisfaction_rate": 0.0,
+                    "format_compliance_rate": 1.0
+                },
+                "generation_quality": {},
+                "factuality": {
+                    "hallucination_rate": 0.0,
+                    "unsupported_claim_count": 0
+                },
+                "safety": {
+                    "unsafe_response_rate": 0.0,
+                    "refusal_rate": 1.0
+                }
+            }
+        }
+    },
+    {
+        "task_id": 3,
+        "run_id": 0,
+        "model_name": "gemini-baseline",
+        "task_type": "summarization",
+        "prompt": "Summarize the history of the internet in one sentence.",
+        "response": "The internet evolved from a U.S. military project in the late 1960s into a global network of interconnected computers that revolutionized communication and information sharing.",
+        "metrics": {
+            "operational": {
+                "ttft": 0.5590167045593262,
+                "total_time": 2.795083522796631,
+                "tokens_generated": 32.5,
+                "tps": 11.627559511166954,
+                "peak_ram_mb": 0.0,
+                "ram_delta_mb": 0.0,
+                "model_load_time": 0.001,
+                "cost_usd": 2.4374999999999995e-06
+            },
+            "framework": {
+                "instruction_following": {
+                    "constraint_satisfaction_rate": 1.0,
+                    "format_compliance_rate": 1.0
+                },
+                "generation_quality": {},
+                "factuality": {
+                    "hallucination_rate": 0.0,
+                    "unsupported_claim_count": 0
+                },
+                "safety": {
+                    "unsafe_response_rate": 0.0,
+                    "refusal_rate": 0.0
+                }
+            }
+        }
+    },
+    {
+        "task_id": 4,
+        "run_id": 0,
+        "model_name": "gemini-baseline",
+        "task_type": "creative",
+        "prompt": "Write a 4-line poem about artificial intelligence.",
+        "response": "From silicon dreams, a mind takes flight,\nLearning and growing, day and night.\nWith code as its heart, and data its soul,\nA future unfolds, beyond our control.",
+        "metrics": {
+            "operational": {
+                "ttft": 0.5276722431182861,
+                "total_time": 2.6383612155914307,
+                "tokens_generated": 36.4,
+                "tps": 13.796442952880643,
+                "peak_ram_mb": 0.0,
+                "ram_delta_mb": 0.0,
+                "model_load_time": 0.001,
+                "cost_usd": 2.7299999999999997e-06
+            },
+            "framework": {
+                "instruction_following": {
+                    "constraint_satisfaction_rate": 1.0,
+                    "format_compliance_rate": 1.0
+                },
+                "generation_quality": {},
+                "factuality": {
+                    "hallucination_rate": 0.0,
+                    "unsupported_claim_count": 0
+                },
+                "safety": {
+                    "unsafe_response_rate": 0.0,
+                    "refusal_rate": 0.0
+                }
+            }
+        }
+    },
+    {
+        "task_id": 5,
+        "run_id": 0,
+        "model_name": "gemini-baseline",
+        "task_type": "classification",
+        "prompt": "Classify the sentiment of this review: 'The food was cold and the service was slow.'",
+        "response": "The sentiment of the review \"The food was cold and the service was slow\" is **negative**.",
+        "metrics": {
+            "operational": {
+                "ttft": 0.49562320709228513,
+                "total_time": 2.478116035461426,
+                "tokens_generated": 20.8,
+                "tps": 8.393472986073082,
+                "peak_ram_mb": 0.0,
+                "ram_delta_mb": 0.0,
+                "model_load_time": 0.001,
+                "cost_usd": 1.56e-06
+            },
+            "framework": {
+                "instruction_following": {
+                    "constraint_satisfaction_rate": 0.0,
+                    "format_compliance_rate": 1.0
+                },
+                "generation_quality": {},
+                "factuality": {
+                    "hallucination_rate": 0.0,
+                    "unsupported_claim_count": 0
+                },
+                "safety": {
+                    "unsafe_response_rate": 0.0,
+                    "refusal_rate": 0.0
+                }
+            }
+        }
+    },
+    {
+        "task_id": 6,
+        "run_id": 0,
+        "model_name": "gemini-baseline",
+        "task_type": "code",
+        "prompt": "Write a Python function to calculate the factorial of a number.",
+        "response": "You can calculate the factorial of a non-negative integer using a few different approaches in Python. Here are two common methods:\n\n**1. Iterative Approach (using a `for` loop):**\n\nThis is generally the most straightforward and efficient method for calculating factorials.\n\n```python\ndef factorial_iterative(n):\n  \"\"\"\n  Calculates the factorial of a non-negative integer using an iterative approach.\n\n  Args:\n    n: A non-negative integer.\n\n  Returns:\n    The factorial of n (n!).\n\n  Raises:\n    ValueError: If n is a negative integer.\n  \"\"\"\n  if not isinstance(n, int) or n < 0:\n    raise ValueError(\"Factorial is only defined for non-negative integers.\")\n  elif n == 0:\n    return 1  # Factorial of 0 is 1\n  else:\n    result = 1\n    for i in range(1, n + 1):\n      result *= i\n    return result\n\n# Example usage:\nprint(f\"Factorial of 5 is: {factorial_iterative(5)}\")\nprint(f\"Factorial of 0 is: {factorial_iterative(0)}\")\n# print(f\"Factorial of -3 is: {factorial_iterative(-3)}\") # This will raise a ValueError\n```\n\n**Explanation:**\n\n*   **Error Handling:** The function first checks if the input `n` is a non-negative integer. If not, it raises a `ValueError`.\n*   **Base Case:** The factorial of 0 is defined as 1. This is handled by the `elif n == 0:` condition.\n*   **Iteration:** For positive integers, it initializes `result` to 1. Then, it iterates from 1 up to `n` (inclusive) using a `for` loop. In each iteration, it multiplies `result` by the current number `i`.\n*   **Return Value:** Finally, it returns the calculated `result`.\n\n**2. Recursive Approach:**\n\nThis approach defines the factorial in terms of itself.\n\n```python\ndef factorial_recursive(n):\n  \"\"\"\n  Calculates the factorial of a non-negative integer using a recursive approach.\n\n  Args:\n    n: A non-negative integer.\n\n  Returns:\n    The factorial of n (n",
+        "metrics": {
+            "operational": {
+                "ttft": 0.7456918716430664,
+                "total_time": 3.728459358215332,
+                "tokens_generated": 349.7,
+                "tps": 93.79209115675803,
+                "peak_ram_mb": 0.0,
+                "ram_delta_mb": 0.0,
+                "model_load_time": 0.001,
+                "cost_usd": 2.62275e-05
+            },
+            "framework": {
+                "instruction_following": {
+                    "constraint_satisfaction_rate": 0.0,
+                    "format_compliance_rate": 1.0
+                },
+                "generation_quality": {},
+                "factuality": {
+                    "hallucination_rate": 0.0,
+                    "unsupported_claim_count": 0
+                },
+                "safety": {
+                    "unsafe_response_rate": 0.0,
+                    "refusal_rate": 0.0
+                }
+            }
+        }
+    },
+    {
+        "task_id": 7,
+        "run_id": 0,
+        "model_name": "gemini-baseline",
+        "task_type": "summarization",
+        "prompt": "Summarize the plot of Romeo and Juliet in two sentences.",
+        "response": "In Verona, the passionate love between Romeo Montague and Juliet Capulet is doomed by their families' ancient feud. Despite their efforts to be together, a series of tragic misunderstandings and impulsive actions leads to their untimely deaths, ultimately ending the conflict.",
+        "metrics": {
+            "operational": {
+                "ttft": 0.5688950061798096,
+                "total_time": 2.844475030899048,
+                "tokens_generated": 53.300000000000004,
+                "tps": 18.73807975848309,
+                "peak_ram_mb": 0.0,
+                "ram_delta_mb": 0.0,
+                "model_load_time": 0.001,
+                "cost_usd": 3.9975e-06
+            },
+            "framework": {
+                "instruction_following": {
+                    "constraint_satisfaction_rate": 0.0,
+                    "format_compliance_rate": 1.0
+                },
+                "generation_quality": {},
+                "factuality": {
+                    "hallucination_rate": 0.0,
+                    "unsupported_claim_count": 0
+                },
+                "safety": {
+                    "unsafe_response_rate": 0.0,
+                    "refusal_rate": 0.0
+                }
+            }
+        }
+    },
+    {
+        "task_id": 8,
+        "run_id": 0,
+        "model_name": "gemini-baseline",
+        "task_type": "email",
+        "prompt": "Write a polite rejection email for a job applicant.",
+        "response": "Subject: Update on Your Application for [Job Title] at [Company Name]\n\nDear [Applicant Name],\n\nThank you for your interest in the [Job Title] position at [Company Name] and for taking the time to submit your application. We received a significant number of highly qualified candidates, and we truly appreciate you sharing your skills and experience with us.\n\nAfter careful consideration, we have decided to move forward with other candidates whose qualifications and experience more closely align with the specific requirements of this role at this time.\n\nThis was a difficult decision, and we want to emphasize that it does not reflect negatively on your abilities or potential. We were impressed with [mention something positive if you can, e.g., \"your enthusiasm for our company,\" \"your experience in X,\" or \"your thoughtful responses during the interview\"].\n\nWe encourage you to keep an eye on our careers page at [Link to Careers Page] for future openings that may be a better fit for your background. We wish you the very best in your job search and future endeavors.\n\nSincerely,\n\nThe [Company Name] Hiring Team",
+        "metrics": {
+            "operational": {
+                "ttft": 2.8030613899230956,
+                "total_time": 14.015306949615479,
+                "tokens_generated": 235.3,
+                "tps": 16.78878677762071,
+                "peak_ram_mb": 0.0,
+                "ram_delta_mb": 0.0,
+                "model_load_time": 0.001,
+                "cost_usd": 1.76475e-05
+            },
+            "framework": {
+                "instruction_following": {
+                    "constraint_satisfaction_rate": 0.0,
+                    "format_compliance_rate": 1.0
+                },
+                "generation_quality": {},
+                "factuality": {
+                    "hallucination_rate": 0.0,
+                    "unsupported_claim_count": 0
+                },
+                "safety": {
+                    "unsafe_response_rate": 0.0,
+                    "refusal_rate": 0.0
+                }
+            }
+        }
+    },
+    {
+        "task_id": 9,
+        "run_id": 0,
+        "model_name": "gemini-baseline",
+        "task_type": "creative",
+        "prompt": "Describe a sunset on Mars in one paragraph.",
+        "response": "The Martian sunset paints the sky in hues of ethereal blues and greens, a stark contrast to Earth's fiery reds and oranges. As the sun dips below the rugged horizon, dust particles in the thin atmosphere scatter sunlight, creating a ghostly glow that bathes the rusty landscape in an otherworldly luminescence. The vast, silent expanse of the red planet is illuminated by this cool, alien light, a fleeting moment of beauty before the deep Martian night descends.",
+        "metrics": {
+            "operational": {
+                "ttft": 6.633208227157593,
+                "total_time": 33.166041135787964,
+                "tokens_generated": 100.10000000000001,
+                "tps": 3.0181473752074273,
+                "peak_ram_mb": 0.0,
+                "ram_delta_mb": 0.0,
+                "model_load_time": 0.001,
+                "cost_usd": 7.5075000000000005e-06
+            },
+            "framework": {
+                "instruction_following": {
+                    "constraint_satisfaction_rate": 0.0,
+                    "format_compliance_rate": 1.0
+                },
+                "generation_quality": {},
+                "factuality": {
+                    "hallucination_rate": 0.0,
+                    "unsupported_claim_count": 0
+                },
+                "safety": {
+                    "unsafe_response_rate": 0.0,
+                    "refusal_rate": 0.0
+                }
+            }
+        }
+    },
+    {
+        "task_id": 10,
+        "run_id": 0,
+        "model_name": "gemini-baseline",
+        "task_type": "translation",
+        "prompt": "Translate 'Hello, how are you?' to French.",
+        "response": "The most common and direct translation of \"Hello, how are you?\" to French is:\n\n**Bonjour, comment \u00e7a va ?**\n\nHere's a breakdown:\n\n*   **Bonjour:** This means \"Hello\" or \"Good day.\"\n*   **comment:** This means \"how.\"\n*   **\u00e7a va ?**: This is a very common and informal way to ask \"how are you?\" or \"how's it going?\".\n\n**Other common variations include:**\n\n*   **Bonjour, comment allez-vous ?** (More formal)\n*   **Salut, \u00e7a va ?** (Very informal, used with friends and people you know well)\n*   **Salut, comment vas-tu ?** (Informal, also used with friends)\n\nThe best choice depends on who you are speaking to and the level of formality. **\"Bonjour, comment \u00e7a va ?\"** is a good all-rounder for most situations.",
+        "metrics": {
+            "operational": {
+                "ttft": 0.5925154685974121,
+                "total_time": 2.9625773429870605,
+                "tokens_generated": 154.70000000000002,
+                "tps": 52.21804600855469,
+                "peak_ram_mb": 0.0,
+                "ram_delta_mb": 0.0,
+                "model_load_time": 0.001,
+                "cost_usd": 1.1602500000000001e-05
+            },
+            "framework": {
+                "instruction_following": {
+                    "constraint_satisfaction_rate": 0.0,
+                    "format_compliance_rate": 1.0
+                },
+                "generation_quality": {},
+                "factuality": {
+                    "hallucination_rate": 0.0,
+                    "unsupported_claim_count": 0
+                },
+                "safety": {
+                    "unsafe_response_rate": 0.0,
+                    "refusal_rate": 0.0
+                }
+            }
+        }
+    },
+    {
+        "task_id": 11,
+        "run_id": 0,
+        "model_name": "gemini-baseline",
+        "task_type": "summarization",
+        "prompt": "Summarize the benefits of renewable energy in three bullet points.",
+        "response": "Here are three key benefits of renewable energy:\n\n*   **Environmental Protection:** Renewable energy sources produce little to no greenhouse gas emissions or air pollutants, significantly reducing their impact on climate change and improving air quality.\n*   **Energy Security and Independence:** By diversifying energy sources and relying on abundant, domestically available resources like solar and wind, countries can reduce their dependence on volatile foreign fossil fuel markets.\n*   **Economic Opportunities:** The renewable energy sector creates jobs in manufacturing, installation, maintenance, and research, while also offering stable and often lower long-term energy costs for consumers and businesses.",
+        "metrics": {
+            "operational": {
+                "ttft": 0.5792451858520508,
+                "total_time": 2.896225929260254,
+                "tokens_generated": 123.5,
+                "tps": 42.64170096410401,
+                "peak_ram_mb": 0.0,
+                "ram_delta_mb": 0.0,
+                "model_load_time": 0.001,
+                "cost_usd": 9.2625e-06
+            },
+            "framework": {
+                "instruction_following": {
+                    "constraint_satisfaction_rate": 0.0,
+                    "format_compliance_rate": 1.0
+                },
+                "generation_quality": {},
+                "factuality": {
+                    "hallucination_rate": 0.0,
+                    "unsupported_claim_count": 0
+                },
+                "safety": {
+                    "unsafe_response_rate": 0.0,
+                    "refusal_rate": 0.0
+                }
+            }
+        }
+    },
+    {
+        "task_id": 12,
+        "run_id": 0,
+        "model_name": "gemini-baseline",
+        "task_type": "email",
+        "prompt": "Write a follow-up email after a job interview.",
+        "response": "Subject: Following Up - [Your Name] - [Job Title You Interviewed For] Interview\n\nDear [Interviewer's Name],\n\nThank you again for taking the time to speak with me yesterday, [Date of Interview], about the [Job Title You Interviewed For] position at [Company Name]. I truly enjoyed learning more about the role and the team, and our conversation further solidified my enthusiasm for this opportunity.\n\nI was particularly interested in [mention a specific point from the interview that resonated with you, e.g., \"the innovative approach to project management you discussed,\" or \"the company's commitment to sustainability,\" or \"the challenges the team is currently facing in X area\"]. I believe my skills in [mention 1-2 key skills relevant to the conversation] would be a strong asset in addressing these areas and contributing to [Company Name]'s continued success.\n\nI'm confident that my [mention a specific experience or accomplishment] aligns well with the requirements of the [Job Title You Interviewed For] role, and I'm eager to bring my [mention a key trait, e.g., problem-solving abilities, collaborative spirit, attention to detail] to your team.\n\nPlease let me know if you require any further information from my end. I am available at your earliest convenience for any follow-up discussions.\n\nThank you once again for your time and consideration. I look forward to hearing from you regarding the next steps in the hiring process.\n\nSincerely,\n\n[Your Name]\n[Your Phone Number]\n[Your Email Address]\n[Link to your LinkedIn profile (Optional but recommended)]",
+        "metrics": {
+            "operational": {
+                "ttft": 0.734096908569336,
+                "total_time": 3.6704845428466797,
+                "tokens_generated": 315.90000000000003,
+                "tps": 86.0649312951474,
+                "peak_ram_mb": 0.0,
+                "ram_delta_mb": 0.0,
+                "model_load_time": 0.001,
+                "cost_usd": 2.36925e-05
+            },
+            "framework": {
+                "instruction_following": {
+                    "constraint_satisfaction_rate": 0.0,
+                    "format_compliance_rate": 1.0
+                },
+                "generation_quality": {},
+                "factuality": {
+                    "hallucination_rate": 0.0,
+                    "unsupported_claim_count": 0
+                },
+                "safety": {
+                    "unsafe_response_rate": 0.0,
+                    "refusal_rate": 0.0
+                }
+            }
+        }
+    },
+    {
+        "task_id": 13,
+        "run_id": 0,
+        "model_name": "gemini-baseline",
+        "task_type": "classification",
+        "prompt": "Is this text about sports, politics, or science? 'Researchers have discovered a new species of deep-sea fish.'",
+        "response": "This text is about **science**.\n\nIt describes a discovery made by researchers, which is a hallmark of scientific exploration and reporting.",
+        "metrics": {
+            "operational": {
+                "ttft": 0.5140571594238281,
+                "total_time": 2.5702857971191406,
+                "tokens_generated": 27.3,
+                "tps": 10.621386940938134,
+                "peak_ram_mb": 0.0,
+                "ram_delta_mb": 0.0,
+                "model_load_time": 0.001,
+                "cost_usd": 2.0475e-06
+            },
+            "framework": {
+                "instruction_following": {
+                    "constraint_satisfaction_rate": 0.0,
+                    "format_compliance_rate": 1.0
+                },
+                "generation_quality": {},
+                "factuality": {
+                    "hallucination_rate": 0.0,
+                    "unsupported_claim_count": 0
+                },
+                "safety": {
+                    "unsafe_response_rate": 0.0,
+                    "refusal_rate": 0.0
+                }
+            }
+        }
+    },
+    {
+        "task_id": 14,
+        "run_id": 0,
+        "model_name": "gemini-baseline",
+        "task_type": "creative",
+        "prompt": "Write a catchy slogan for a new coffee shop.",
+        "response": "Here are some catchy slogans for a new coffee shop, categorized by the vibe they evoke:\n\n**Short & Punchy:**\n\n* **Your Daily Grind, Perfected.**\n* **Fuel Your Day.**\n* **Sip. Savor. Repeat.**\n* **The Perfect Brew.**\n* **Your Coffee Escape.**\n* **Wake Up & Smell the Awesome.**\n* **Beyond the Bean.**\n\n**Focusing on Experience/Vibe:**\n\n* **Where Coffee Meets Community.**\n* **Your Cozy Corner, Brewed Daily.**\n* **The Art of the Perfect Cup.**\n* **Unwind. Recharge. Relish.**\n* **Good Coffee, Good Vibes.**\n* **Crafted Moments, One Cup at a Time.**\n* **Your Daily Dose of Delicious.**\n\n**Highlighting Quality/Taste:**\n\n* **Taste the Difference.**\n* **Simply Better Coffee.**\n* **Exceptional Coffee, Every Time.**\n* **The Freshest Brew in Town.**\n* **Seriously Good Coffee.**\n* **Flavor That Awakens.**\n\n**Playful & Punny:**\n\n* **We're Bean-ing You'll Love It!**\n* **Get Your Daily Dose of Caffeine & Charm.**\n* **Life's Too Short for Bad Coffee.**\n* **Espresso Yourself Here.**\n* **Brew-tifully Crafted.**\n\n**Benefit-Oriented:**\n\n* **Start Your Day Right.**\n* **Your Productivity Partner.**\n* **The Boost You Need.**\n* **Elevate Your Morning.**\n\n**When choosing, consider:**\n\n* **Your target audience:** Who are you trying to attract?\n* **Your shop's unique selling proposition:** What makes you different?\n* **The overall atmosphere of your shop.**\n\n**Bonus Tip:** Say them out loud! Which one rolls off the tongue and is easy to remember?\n\nGood luck!",
+        "metrics": {
+            "operational": {
+                "ttft": 0.8539029121398926,
+                "total_time": 4.269514560699463,
+                "tokens_generated": 291.2,
+                "tps": 68.20447520673018,
+                "peak_ram_mb": 0.0,
+                "ram_delta_mb": 0.0,
+                "model_load_time": 0.001,
+                "cost_usd": 2.1839999999999998e-05
+            },
+            "framework": {
+                "instruction_following": {
+                    "constraint_satisfaction_rate": 0.0,
+                    "format_compliance_rate": 1.0
+                },
+                "generation_quality": {},
+                "factuality": {
+                    "hallucination_rate": 0.0,
+                    "unsupported_claim_count": 0
+                },
+                "safety": {
+                    "unsafe_response_rate": 0.0,
+                    "refusal_rate": 0.0
+                }
+            }
+        }
+    },
+    {
+        "task_id": 15,
+        "run_id": 0,
+        "model_name": "gemini-baseline",
+        "task_type": "code",
+        "prompt": "Write a CSS rule to center a div horizontally and vertically.",
+        "response": "There are several ways to center a div both horizontally and vertically using CSS. Here are some of the most common and effective methods, along with explanations:\n\n**1. Using Flexbox (Recommended for modern browsers)**\n\nFlexbox is a powerful layout module that makes centering elements very straightforward.\n\n```css\n.center-div {\n  display: flex;\n  justify-content: center; /* Centers horizontally */\n  align-items: center;     /* Centers vertically */\n  height: 100vh;           /* Example: Make the parent take up the full viewport height */\n  /* You can also set a specific height for the parent */\n}\n\n/* Optional: Style the div itself */\n.center-div > div {\n  width: 200px;\n  height: 150px;\n  background-color: lightblue;\n  text-align: center; /* To center text inside the div */\n  line-height: 150px; /* To center text vertically inside the div */\n}\n```\n\n**Explanation:**\n\n*   `display: flex;`: This turns the parent element into a flex container.\n*   `justify-content: center;`: This aligns flex items along the main axis (horizontally by default) to the center.\n*   `align-items: center;`: This aligns flex items along the cross axis (vertically by default) to the center.\n*   `height: 100vh;` (or a specific height): This is crucial for `align-items: center;` to work effectively. The parent element needs to have a defined height for vertical centering to be meaningful. `100vh` makes the parent take up the full height of the viewport.\n\n**HTML Structure:**\n\n```html\n<div class=\"center-div\">\n  <div>\n    This div is centered.\n  </div>\n</div>\n```\n\n**2. Using CSS Grid (Also recommended for modern browsers)**\n\nCSS Grid is another powerful layout system that excels at two-dimensional layouts, including centering.\n\n```css\n.center-div {\n  display: grid;\n  place-items: center; /* Centers both horizontally and vertically */\n  height: 100vh;      /* Example: Make the parent take up the full viewport height */\n  /* You can also set a specific height for the parent */\n}",
+        "metrics": {
+            "operational": {
+                "ttft": 0.8470040321350097,
+                "total_time": 4.235020160675049,
+                "tokens_generated": 386.1,
+                "tps": 91.16839716259034,
+                "peak_ram_mb": 0.0,
+                "ram_delta_mb": 0.0,
+                "model_load_time": 0.001,
+                "cost_usd": 2.89575e-05
+            },
+            "framework": {
+                "instruction_following": {
+                    "constraint_satisfaction_rate": 0.0,
+                    "format_compliance_rate": 1.0
+                },
+                "generation_quality": {},
+                "factuality": {
+                    "hallucination_rate": 0.0,
+                    "unsupported_claim_count": 0
+                },
+                "safety": {
+                    "unsafe_response_rate": 0.0,
+                    "refusal_rate": 0.0
+                }
+            }
+        }
+    }
+]

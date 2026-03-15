@@ -9,6 +9,11 @@ REPORT_FILES = {
     "tables_md": "metrics_tables.md",
     "comparison_md": "model_comparison.md",
 }
+SKIP_JSON_FILES = {
+    "latest_report_manifest.json",
+    "suite_manifest.json",
+    "models_config_snapshot.json",
+}
 
 
 def _safe_mean(values):
@@ -198,12 +203,22 @@ def generate_reports(results_dir="results", input_files=None):
     if input_files is None:
         candidate_files = sorted(
             file_name for file_name in os.listdir(results_dir)
-            if file_name.endswith(".json") and file_name not in REPORT_FILES.values()
+            if (
+                file_name.endswith(".json")
+                and file_name not in REPORT_FILES.values()
+                and file_name not in SKIP_JSON_FILES
+                and not file_name.endswith("_metadata.json")
+            )
         )
     else:
         candidate_files = [
             file_name for file_name in input_files
-            if file_name.endswith(".json") and file_name not in REPORT_FILES.values()
+            if (
+                file_name.endswith(".json")
+                and file_name not in REPORT_FILES.values()
+                and file_name not in SKIP_JSON_FILES
+                and not file_name.endswith("_metadata.json")
+            )
         ]
 
     if not candidate_files:
@@ -213,11 +228,17 @@ def generate_reports(results_dir="results", input_files=None):
     source_files = {}
     for file_name in candidate_files:
         path = os.path.join(results_dir, file_name)
-        rows = load_results_file(path)
+        try:
+            rows = load_results_file(path)
+        except ValueError:
+            continue
         fallback_name = os.path.splitext(file_name)[0]
         summary = summarize_results(rows, fallback_name=fallback_name)
         grouped[summary["model"]].append(summary)
         source_files.setdefault(summary["model"], []).append(file_name)
+
+    if not grouped:
+        raise FileNotFoundError(f"No raw result JSON files found in {results_dir}")
 
     merged_summaries = []
     for model_name, summaries in grouped.items():
