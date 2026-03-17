@@ -4,6 +4,8 @@ from pathlib import Path
 
 import yaml
 
+from sddf.ingest import normalize_maths_results
+from sddf.pipeline import run_sddf_postprocess
 from src.data_loaders import load_dataset_config
 from src.metrics import accuracy, agreement, is_correct, mean_latency, normalize_answer
 from src.parsers import extract_final_answer
@@ -237,5 +239,7 @@ def run_benchmark(config_path: str | Path, output_path: str | Path, seed: int = 
             output_path.write_text(json.dumps(partial_output, indent=2), encoding="utf-8")
     output = {"seed": seed, "mode": "dry_run" if dry_run else "live", "config_path": str(config_path), "experiments": results}
     output_path.write_text(json.dumps(output, indent=2), encoding="utf-8")
+    sddf_rows = normalize_maths_results(output)
+    run_sddf_postprocess(sddf_rows, task="maths", output_dir=output_path.parent)
     print(f"Saved final results to {output_path}")
     return output

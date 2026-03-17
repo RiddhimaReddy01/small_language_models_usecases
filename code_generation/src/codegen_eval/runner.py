@@ -32,6 +32,8 @@ from .reporting import (
 from .safety import scan_code_safety
 from .sandbox import PASS_MARKER, build_execution_script, execute_code
 from .types import RunConfig, Task, TaskRunResult
+from sddf.ingest import normalize_code_generation_results
+from sddf.pipeline import run_sddf_postprocess
 
 
 def _classify_execution(stdout: str, stderr: str, returncode: int, timed_out: bool) -> tuple[str, str | None]:
@@ -250,6 +252,8 @@ def run_evaluation(
     write_results_jsonl(results, results_path)
     write_summary_json(summaries, summary_path)
     write_markdown_report(summaries, report_path)
+    sddf_rows = normalize_code_generation_results([result.to_dict() for result in results])
+    run_sddf_postprocess(sddf_rows, task="code_generation", output_dir=run_dir)
 
     benchmark_dir = (
         Path(benchmark_output_dir)

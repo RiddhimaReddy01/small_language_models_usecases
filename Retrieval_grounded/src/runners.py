@@ -25,6 +25,8 @@ from .metrics import (
 from .parsers import BenchmarkConfig, load_config, to_dict
 from .reporting import save_json, save_metric_tables
 from .worker import eval_model as worker_eval_model
+from sddf.ingest import normalize_retrieval_grounded_predictions
+from sddf.pipeline import run_sddf_postprocess
 
 try:
     from .inference_gemini import run_gemini_inference
@@ -147,6 +149,10 @@ def run_experiment(config: BenchmarkConfig, args: argparse.Namespace) -> tuple[d
                     "prediction": r.predicted_answer,
                     "reference": r.reference_answer,
                     "context": ctx[:200] + "..." if len(ctx) > 200 else ctx,
+                    "latency_sec": r.latency_sec,
+                    "input_tokens": r.input_tokens,
+                    "output_tokens": r.output_tokens,
+                    "memory_mb": memory_mb,
                 }
                 for r, ctx in zip(inference_results, contexts)
             ]
@@ -206,6 +212,19 @@ def run_experiment(config: BenchmarkConfig, args: argparse.Namespace) -> tuple[d
                 },
                 "operational": op_metrics,
             }
+            all_predictions[gemini_id] = [
+                {
+                    "id": r.example_id,
+                    "prediction": r.predicted_answer,
+                    "reference": r.reference_answer,
+                    "context": ctx[:200] + "..." if len(ctx) > 200 else ctx,
+                    "latency_sec": r.latency_sec,
+                    "input_tokens": r.input_tokens,
+                    "output_tokens": r.output_tokens,
+                    "memory_mb": 0.0,
+                }
+                for r, ctx in zip(inference_results, contexts)
+            ]
 
     return all_results, all_predictions
 
@@ -250,6 +269,8 @@ def main() -> None:
         output_root / "logs" / "run_metadata.json",
         {"config": to_dict(config), "environment": environment},
     )
+    sddf_rows = normalize_retrieval_grounded_predictions(all_predictions)
+    run_sddf_postprocess(sddf_rows, task="retrieval_grounded", output_dir=output_root)
     print(f"Done. Outputs saved under {output_root}")
 
 

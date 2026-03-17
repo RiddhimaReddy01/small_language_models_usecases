@@ -1,2 +1,10 @@
-﻿text_generation/models/
+text_generation/models/
 *.gguf
+__pycache__/
+*.pyc
+.edge-cdp-profile/
+reports_index.html
+historical_report_readiness.json
+*/reports/
+*/*/reports/
+*/*/*/reports/

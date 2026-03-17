@@ -3,6 +3,9 @@ import os
 import argparse
 import random
 from concurrent.futures import ThreadPoolExecutor, as_completed
+
+from sddf.ingest import normalize_text_generation_results
+from sddf.pipeline import run_sddf_postprocess
 from scripts.data_loader import TextGenDataLoader
 from scripts.inference_runner import TextGenInferenceRunner
 from scripts.metrics_collector import TextGenMetricsCollector
@@ -191,6 +194,14 @@ def run_benchmark(args):
     with open(metadata_path, "w", encoding="utf-8") as handle:
         json.dump(metadata, handle, indent=4)
 
+    sddf_rows = normalize_text_generation_results(final_results, metadata=metadata)
+    sddf_summary = run_sddf_postprocess(
+        sddf_rows,
+        task="text_generation",
+        output_dir=args.output_dir,
+        rule_config={"constraint_rules": {}},
+    )
+
     report_outputs = generate_reports(args.output_dir)
     latest_outputs = publish_report_bundle(
         report_outputs,
@@ -209,11 +220,13 @@ def run_benchmark(args):
         },
     )
     print(f"Benchmark complete. Results saved to {output_path}")
+    print(f"SDDF rows archived to {sddf_summary['archive_path']}")
     print(f"Summary tables saved to {report_outputs['tables_path']}")
     print(f"Latest published tables saved to {latest_outputs['tables_md']}")
     return {
         "results_path": output_path,
         "metadata_path": metadata_path,
+        "sddf_summary": sddf_summary,
         "report_outputs": report_outputs,
         "latest_outputs": latest_outputs,
         "model_name": metadata["model_name"],

@@ -114,6 +114,10 @@ def eval_model(
             "prediction": r.predicted_answer,
             "reference": r.reference_answer,
             "context": ctx[:200] + "..." if len(ctx) > 200 else ctx,
+            "latency_sec": r.latency_sec,
+            "input_tokens": r.input_tokens,
+            "output_tokens": r.output_tokens,
+            "memory_mb": None,
         }
         for r, ctx in zip(inference_results, contexts)
     ]

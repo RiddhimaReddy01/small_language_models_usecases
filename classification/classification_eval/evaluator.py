@@ -14,6 +14,9 @@ import psutil
 from sklearn.metrics import accuracy_score, f1_score, precision_score, recall_score
 from tqdm import tqdm
 
+from sddf.ingest import normalize_classification_results
+from sddf.pipeline import run_sddf_postprocess
+
 
 class Evaluator:
     def __init__(self, model_wrapper, num_workers=1, output_file="results/live_results.csv"):
@@ -167,7 +170,9 @@ def save_results(all_results, ops_metrics, capability_metrics, output_dir="resul
     os.makedirs(output_dir, exist_ok=True)
     timestamp = int(time.time())
 
-    pd.DataFrame(all_results).to_csv(f"{output_dir}/raw_results_{timestamp}.csv", index=False)
+    raw_results_path = f"{output_dir}/raw_results_{timestamp}.csv"
+    raw_df = pd.DataFrame(all_results)
+    raw_df.to_csv(raw_results_path, index=False)
     summary = {
         "metadata": run_metadata or {},
         "operational": ops_metrics,
@@ -176,6 +181,10 @@ def save_results(all_results, ops_metrics, capability_metrics, output_dir="resul
     with open(f"{output_dir}/metrics_summary_{timestamp}.json", "w", encoding="utf-8") as handle:
         json.dump(summary, handle, indent=4)
 
-    print(f"\nResults saved to {output_dir}/")
-    return timestamp
+    model_name = (run_metadata or {}).get("model", "unknown")
+    sddf_rows = normalize_classification_results(raw_df, model_name=model_name, run_metadata=run_metadata)
+    sddf_summary = run_sddf_postprocess(sddf_rows, task="classification", output_dir=output_dir)
 
+    print(f"\nResults saved to {output_dir}/")
+    print(f"SDDF rows archived to {sddf_summary['archive_path']}")
+    return timestamp

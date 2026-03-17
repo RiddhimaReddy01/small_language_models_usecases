@@ -9,6 +9,8 @@ import torch
 from datasets import load_dataset
 from tqdm import tqdm
 from transformers import AutoModelForCausalLM, AutoTokenizer
+from sddf.ingest import normalize_instruction_following_results
+from sddf.pipeline import run_sddf_postprocess
 
 from instruction_following.constraint_validators import ConstraintValidator
 
@@ -373,6 +375,8 @@ def save_results(all_results: Sequence[Dict], output_path: str) -> None:
     os.makedirs(os.path.dirname(output_path) or ".", exist_ok=True)
     with open(output_path, "w", encoding="utf-8") as handle:
         json.dump(list(all_results), handle, indent=2)
+    sddf_rows = normalize_instruction_following_results(list(all_results))
+    run_sddf_postprocess(sddf_rows, task="instruction_following", output_dir=os.path.dirname(output_path) or ".")
     print(f"\nSaved results to {output_path}")
 
 

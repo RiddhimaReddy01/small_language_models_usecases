@@ -5,6 +5,8 @@ from ie_benchmark.dataset import load_and_sample_dataset
 from ie_benchmark.inference import build_generator
 from ie_benchmark.metrics import aggregate_run_metrics, compute_run_metrics, prediction_consistency
 from ie_benchmark.reporting import make_output_dir, write_csv, write_json, write_jsonl, write_markdown_table
+from sddf.ingest import normalize_ie_predictions
+from sddf.pipeline import run_sddf_postprocess
 
 
 def run_benchmark(config_path: str) -> int:
@@ -37,7 +39,9 @@ def run_benchmark(config_path: str) -> int:
                         "run": run_idx + 1,
                         "doc_id": result.doc_id,
                         "split": result.split,
+                        "text": example.text,
                         "prediction": result.prediction,
+                        "reference_fields": example.fields,
                         "schema_valid": result.schema_valid,
                         "latency_seconds": result.latency_seconds,
                         "input_tokens": result.input_tokens,
@@ -94,4 +98,6 @@ def run_benchmark(config_path: str) -> int:
     write_markdown_table(output_dir / "operational_metrics.md", operational_rows)
     write_json(output_dir / "summary.json", summary_payload)
     write_jsonl(output_dir / "per_example_predictions.jsonl", prediction_dump)
+    sddf_rows = normalize_ie_predictions(prediction_dump, config.dataset.target_fields)
+    run_sddf_postprocess(sddf_rows, task="information_extraction", output_dir=output_dir)
     return 0

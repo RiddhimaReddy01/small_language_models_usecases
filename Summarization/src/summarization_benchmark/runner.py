@@ -11,6 +11,9 @@ import psutil
 import torch
 from tqdm import tqdm
 
+from sddf.ingest import normalize_summarization_results
+from sddf.pipeline import run_sddf_postprocess
+
 from summarization_benchmark.config import BenchmarkConfig
 from summarization_benchmark.data import load_and_filter_samples
 from summarization_benchmark.inference import generate_summary, load_model_components
@@ -165,6 +168,8 @@ def save_outputs(config: BenchmarkConfig, results: list[ExampleResult], summary:
     pd.DataFrame(asdict(result) for result in results).to_csv(results_path, index=False)
     summary_path.write_text(json.dumps(summary, indent=2), encoding="utf-8")
     tables_path = save_metrics_tables(summary, output_dir)
+    sddf_rows = normalize_summarization_results(results, config)
+    run_sddf_postprocess(sddf_rows, task="summarization", output_dir=output_dir)
     return results_path, summary_path, tables_path
 
 
