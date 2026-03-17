@@ -110,6 +110,39 @@ class SddfReportingTests(unittest.TestCase):
             if tmp.exists():
                 shutil.rmtree(tmp)
 
+    def test_generate_part_b_report_uses_inference_fallback_without_archive(self) -> None:
+        tmp = Path("tests/.tmp_part_b_inferred")
+        if tmp.exists():
+            shutil.rmtree(tmp)
+        try:
+            run_dir = tmp / "classification_results"
+            run_dir.mkdir(parents=True, exist_ok=True)
+            (run_dir / "raw_results_123.csv").write_text(
+                "text,true_label,prediction,latency,is_valid,dataset,status\nhello,pos,pos,0.1,1,demo,success\n",
+                encoding="utf-8",
+            )
+            (run_dir / "metrics_summary_123.json").write_text(
+                json.dumps(
+                    {
+                        "metadata": {"model": "phi3:mini", "workers": 1},
+                        "capability": {"demo": {"accuracy": 1.0}},
+                        "operational": [{"dataset": "demo", "total_samples": 1}],
+                    }
+                ),
+                encoding="utf-8",
+            )
+
+            outputs = generate_part_b_report(run_dir, "classification")
+            report_text = Path(outputs["report_path"]).read_text(encoding="utf-8")
+            summary = json.loads(Path(outputs["summary_path"]).read_text(encoding="utf-8"))
+
+            self.assertIn("Inferred dominant dimension", report_text)
+            self.assertEqual(summary["statuses"]["matched_slm_llm_analysis"]["status"], "partial")
+            self.assertIn("Historical comparison", report_text)
+        finally:
+            if tmp.exists():
+                shutil.rmtree(tmp)
+
 
 if __name__ == "__main__":
     unittest.main()

@@ -63,25 +63,48 @@ def _extract_classification(run_root: Path) -> dict[str, Any]:
 
 
 def _extract_text_generation(run_root: Path) -> dict[str, Any]:
-    manifest = _load_json(run_root / "suite_manifest.json")
-    raw_files = [run_root / name for name in manifest.get("raw_result_files", [])]
-    example_count = 0
-    if raw_files and raw_files[0].exists():
-        example_count = len(_load_json(raw_files[0]))
+    manifest_path = run_root / "suite_manifest.json"
+    if manifest_path.exists():
+        manifest = _load_json(manifest_path)
+        raw_files = [run_root / name for name in manifest.get("raw_result_files", [])]
+        example_count = 0
+        if raw_files and raw_files[0].exists():
+            example_count = len(_load_json(raw_files[0]))
+        return {
+            "task_definition": {"task": "text_generation", "task_type": manifest.get("task_type")},
+            "dataset_and_sampling": {"task_type": manifest.get("task_type"), "seed": manifest.get("seed"), "repeats": manifest.get("repeats")},
+            "experimental_setup": {
+                "resolved_models": manifest.get("resolved_models", []),
+                "temperature": manifest.get("temperature"),
+                "workers": manifest.get("workers"),
+                "gguf_engine": manifest.get("gguf_engine"),
+            },
+            "metrics": {
+                "benchmark_summary_path": str((run_root / "benchmark_summary.json").resolve()) if (run_root / "benchmark_summary.json").exists() else None,
+                "metrics_tables_path": str((run_root / "metrics_tables.md").resolve()) if (run_root / "metrics_tables.md").exists() else None,
+            },
+            "raw_benchmark_results": {"raw_files": [str(path.resolve()) for path in raw_files if path.exists()], "example_count_per_run": example_count},
+        }
+
+    metadata = _load_json(run_root / "results_metadata.json")
+    results_path = run_root / metadata.get("result_file", "results.json")
+    results_payload = _load_json(results_path) if results_path.exists() else []
     return {
-        "task_definition": {"task": "text_generation", "task_type": manifest.get("task_type")},
-        "dataset_and_sampling": {"task_type": manifest.get("task_type"), "seed": manifest.get("seed"), "repeats": manifest.get("repeats")},
+        "task_definition": {"task": "text_generation", "task_type": metadata.get("task_type")},
+        "dataset_and_sampling": {"task_type": metadata.get("task_type"), "seed": metadata.get("seed"), "repeats": metadata.get("repeats")},
         "experimental_setup": {
-            "resolved_models": manifest.get("resolved_models", []),
-            "temperature": manifest.get("temperature"),
-            "workers": manifest.get("workers"),
-            "gguf_engine": manifest.get("gguf_engine"),
+            "model_name": metadata.get("model_name"),
+            "model_path": metadata.get("model_path"),
+            "model_type": metadata.get("model_type"),
+            "temperature": metadata.get("temperature"),
+            "workers": metadata.get("workers"),
+            "gguf_engine": metadata.get("gguf_engine"),
         },
         "metrics": {
-            "benchmark_summary_path": str((run_root / "benchmark_summary.json").resolve()) if (run_root / "benchmark_summary.json").exists() else None,
+            "benchmark_summary": _load_json(run_root / "benchmark_summary.json") if (run_root / "benchmark_summary.json").exists() else None,
             "metrics_tables_path": str((run_root / "metrics_tables.md").resolve()) if (run_root / "metrics_tables.md").exists() else None,
         },
-        "raw_benchmark_results": {"raw_files": [str(path.resolve()) for path in raw_files if path.exists()], "example_count_per_run": example_count},
+        "raw_benchmark_results": {"raw_files": [str(results_path.resolve())] if results_path.exists() else [], "example_count_per_run": len(results_payload) if isinstance(results_payload, list) else 0},
     }
 
 

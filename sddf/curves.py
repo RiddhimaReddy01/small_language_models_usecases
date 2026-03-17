@@ -36,6 +36,22 @@ def compute_ratio_curve(
                 "valid_output_llm": float(group["valid_output_llm"].mean()) if "valid_output_llm" in group else None,
             }
         )
+    if not rows:
+        return pd.DataFrame(
+            columns=[
+                "difficulty_bin",
+                "n",
+                "metric_slm",
+                "metric_llm",
+                "ratio",
+                "delta",
+                "bin_center",
+                "latency_sec_slm",
+                "latency_sec_llm",
+                "valid_output_slm",
+                "valid_output_llm",
+            ]
+        )
     return pd.DataFrame(rows).sort_values("difficulty_bin").reset_index(drop=True)
 
 

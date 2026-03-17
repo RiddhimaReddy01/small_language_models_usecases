@@ -31,7 +31,10 @@ def _lookup_readiness(readiness_json: str | None, benchmark: str, run_path: str)
 def main() -> None:
     args = parse_args()
     run_path = Path(args.run_path)
-    default_output = (run_path / "sddf" / "reports") if (run_path / "sddf").exists() else (run_path / "reports")
+    if run_path.is_file():
+        default_output = run_path.parent / "reports"
+    else:
+        default_output = (run_path / "sddf" / "reports") if (run_path / "sddf").exists() else (run_path / "reports")
     output_dir = Path(args.output_dir) if args.output_dir else default_output
     output_dir.mkdir(parents=True, exist_ok=True)
 

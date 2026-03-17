@@ -6,7 +6,11 @@ import time
 from pathlib import Path
 
 import google.generativeai as genai
-import ollama
+
+try:
+    import ollama
+except ImportError:  # pragma: no cover - optional local backend
+    ollama = None
 
 
 class ModelWrapper:
@@ -56,6 +60,12 @@ class OllamaWrapper(ModelWrapper):
         self.max_text_chars = max_text_chars
 
     def predict(self, text, labels):
+        if ollama is None:
+            return {
+                "prediction": None,
+                "latency": 0.0,
+                "status": "error: ollama package is not installed",
+            }
         prompt = self._build_prompt(text, labels)
         start_time = time.time()
         try:
@@ -179,4 +189,3 @@ Respond with only one label and no extra words.
 
 Text:
 {compact_text}"""
-
