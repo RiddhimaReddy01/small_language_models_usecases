@@ -12,6 +12,11 @@ try:
 except ImportError:  # pragma: no cover - optional local backend
     ollama = None
 
+try:
+    from huggingface_hub import InferenceClient
+except ImportError:  # pragma: no cover - optional hosted backend
+    InferenceClient = None
+
 
 class ModelWrapper:
     def predict(self, text, labels):
@@ -176,6 +181,88 @@ class GeminiWrapper(ModelWrapper):
         self.active_model_name = self.fallback_model_name
         self.model = genai.GenerativeModel(self.active_model_name)
         return True
+
+    def _build_prompt(self, text, labels):
+        labels_str = ", ".join(labels)
+        compact_text = self._prepare_text(text, max_chars=self.max_text_chars)
+        return f"""You are a text classification system.
+
+Choose exactly one label from the list:
+{labels_str}
+
+Respond with only one label and no extra words.
+
+Text:
+{compact_text}"""
+
+
+class HuggingFaceApiWrapper(ModelWrapper):
+    def __init__(self, model_name, token_envs=None, max_text_chars=1200):
+        if InferenceClient is None:
+            raise RuntimeError("huggingface_hub is required for Hugging Face hosted inference.")
+        token = None
+        for env_name in token_envs or ("HF_API_KEY", "HF_TOKEN", "HUGGINGFACEHUB_API_TOKEN"):
+            token = os.environ.get(env_name)
+            if token:
+                break
+        if not token:
+            raise ValueError("Hugging Face API token not found in HF_API_KEY, HF_TOKEN, or HUGGINGFACEHUB_API_TOKEN.")
+        self.model_name = model_name
+        self.client = InferenceClient(model=model_name, token=token, provider="auto", timeout=120)
+        self.max_text_chars = max_text_chars
+
+    def predict(self, text, labels):
+        prompt = self._build_prompt(text, labels)
+        start_time = time.time()
+        try:
+            raw_output = self.client.text_generation(
+                prompt,
+                model=self.model_name,
+                max_new_tokens=8,
+                temperature=0.0,
+                top_p=0.1,
+                do_sample=False,
+                return_full_text=False,
+            )
+        except Exception as text_exc:
+            try:
+                response = self.client.chat_completion(
+                    messages=[{"role": "user", "content": prompt}],
+                    model=self.model_name,
+                    max_tokens=8,
+                    temperature=0.0,
+                    top_p=0.1,
+                )
+                raw_output = self._extract_chat_text(response)
+            except Exception as chat_exc:
+                return {
+                    "prediction": None,
+                    "latency": time.time() - start_time,
+                    "status": f"error: {chat_exc or text_exc}",
+                }
+
+        return {
+            "prediction": self._clean_prediction(str(raw_output)),
+            "latency": time.time() - start_time,
+            "status": f"success:hf_api:{self.model_name}",
+        }
+
+    def _extract_chat_text(self, response):
+        choices = getattr(response, "choices", None)
+        if not choices:
+            return ""
+        message = getattr(choices[0], "message", None)
+        if message is None:
+            return ""
+        content = getattr(message, "content", "")
+        if isinstance(content, list):
+            parts = []
+            for item in content:
+                text = getattr(item, "text", None)
+                if text:
+                    parts.append(str(text))
+            return "\n".join(parts)
+        return str(content or "")
 
     def _build_prompt(self, text, labels):
         labels_str = ", ".join(labels)

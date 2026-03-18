@@ -1,0 +1,105 @@
+{
+    "suite_id": "20260315_000842",
+    "suite_dir": "C:\\Users\\riddh\\OneDrive\\Desktop\\SLM use cases\\text_generation\\results\\runs\\suite_20260315_000842",
+    "models_config": "C:\\Users\\riddh\\OneDrive\\Desktop\\SLM use cases\\text_generation\\configs\\models.json",
+    "models_config_snapshot": "C:\\Users\\riddh\\OneDrive\\Desktop\\SLM use cases\\text_generation\\results\\runs\\suite_20260315_000842\\models_config_snapshot.json",
+    "task_type": "samples",
+    "seed": 42,
+    "temperature": 0.7,
+    "workers": 1,
+    "repeats": 1,
+    "perturb": false,
+    "gguf_engine": "llama_cpp",
+    "raw_result_files": [
+        "qwen-2.5-3b.json",
+        "phi-3.5-mini.json"
+    ],
+    "resolved_models": [
+        {
+            "model_name": "qwen-2.5-3b",
+            "config": {
+                "model_path": "models/qwen2.5-3b-instruct-q4_k_m.gguf",
+                "description": "Alibaba Qwen 2.5 3B Instruct",
+                "n_ctx": 4096,
+                "n_threads": 4,
+                "model_name": "qwen-2.5-3b"
+            },
+            "resolved_model_path": "C:\\Users\\riddh\\OneDrive\\Desktop\\SLM use cases\\text_generation\\configs\\models\\qwen2.5-3b-instruct-q4_k_m.gguf",
+            "model_file": {
+                "path": "C:\\Users\\riddh\\OneDrive\\Desktop\\SLM use cases\\text_generation\\configs\\models\\qwen2.5-3b-instruct-q4_k_m.gguf",
+                "exists": false
+            }
+        },
+        {
+            "model_name": "phi-3.5-mini",
+            "config": {
+                "model_path": "models/Phi-3.5-mini-instruct-Q4_K_M.gguf",
+                "description": "Microsoft Phi-3.5 Mini Instruct",
+                "n_ctx": 4096,
+                "n_threads": 4,
+                "model_name": "phi-3.5-mini"
+            },
+            "resolved_model_path": "C:\\Users\\riddh\\OneDrive\\Desktop\\SLM use cases\\text_generation\\configs\\models\\Phi-3.5-mini-instruct-Q4_K_M.gguf",
+            "model_file": {
+                "path": "C:\\Users\\riddh\\OneDrive\\Desktop\\SLM use cases\\text_generation\\configs\\models\\Phi-3.5-mini-instruct-Q4_K_M.gguf",
+                "exists": false
+            }
+        }
+    ],
+    "runs": [
+        {
+            "results_path": "C:\\Users\\riddh\\OneDrive\\Desktop\\SLM use cases\\text_generation\\results\\runs\\suite_20260315_000842\\qwen-2.5-3b.json",
+            "metadata_path": "C:\\Users\\riddh\\OneDrive\\Desktop\\SLM use cases\\text_generation\\results\\runs\\suite_20260315_000842\\qwen-2.5-3b_metadata.json",
+            "report_outputs": {
+                "summary_path": "C:\\Users\\riddh\\OneDrive\\Desktop\\SLM use cases\\text_generation\\results\\runs\\suite_20260315_000842\\benchmark_summary.json",
+                "tables_path": "C:\\Users\\riddh\\OneDrive\\Desktop\\SLM use cases\\text_generation\\results\\runs\\suite_20260315_000842\\metrics_tables.md",
+                "comparison_path": "C:\\Users\\riddh\\OneDrive\\Desktop\\SLM use cases\\text_generation\\results\\runs\\suite_20260315_000842\\model_comparison.md",
+                "models": [
+                    "qwen-2.5-3b"
+                ]
+            },
+            "latest_outputs": {
+                "summary_json": "C:\\Users\\riddh\\OneDrive\\Desktop\\SLM use cases\\text_generation\\results\\latest\\benchmark_summary.json",
+                "tables_md": "C:\\Users\\riddh\\OneDrive\\Desktop\\SLM use cases\\text_generation\\results\\latest\\metrics_tables.md",
+                "comparison_md": "C:\\Users\\riddh\\OneDrive\\Desktop\\SLM use cases\\text_generation\\results\\latest\\model_comparison.md",
+                "manifest": "C:\\Users\\riddh\\OneDrive\\Desktop\\SLM use cases\\text_generation\\results\\latest\\latest_report_manifest.json"
+            },
+            "model_name": "qwen-2.5-3b"
+        },
+        {
+            "results_path": "C:\\Users\\riddh\\OneDrive\\Desktop\\SLM use cases\\text_generation\\results\\runs\\suite_20260315_000842\\phi-3.5-mini.json",
+            "metadata_path": "C:\\Users\\riddh\\OneDrive\\Desktop\\SLM use cases\\text_generation\\results\\runs\\suite_20260315_000842\\phi-3.5-mini_metadata.json",
+            "report_outputs": {
+                "summary_path": "C:\\Users\\riddh\\OneDrive\\Desktop\\SLM use cases\\text_generation\\results\\runs\\suite_20260315_000842\\benchmark_summary.json",
+                "tables_path": "C:\\Users\\riddh\\OneDrive\\Desktop\\SLM use cases\\text_generation\\results\\runs\\suite_20260315_000842\\metrics_tables.md",
+                "comparison_path": "C:\\Users\\riddh\\OneDrive\\Desktop\\SLM use cases\\text_generation\\results\\runs\\suite_20260315_000842\\model_comparison.md",
+                "models": [
+                    "phi-3.5-mini"
+                ]
+            },
+            "latest_outputs": {
+                "summary_json": "C:\\Users\\riddh\\OneDrive\\Desktop\\SLM use cases\\text_generation\\results\\latest\\benchmark_summary.json",
+                "tables_md": "C:\\Users\\riddh\\OneDrive\\Desktop\\SLM use cases\\text_generation\\results\\latest\\metrics_tables.md",
+                "comparison_md": "C:\\Users\\riddh\\OneDrive\\Desktop\\SLM use cases\\text_generation\\results\\latest\\model_comparison.md",
+                "manifest": "C:\\Users\\riddh\\OneDrive\\Desktop\\SLM use cases\\text_generation\\results\\latest\\latest_report_manifest.json"
+            },
+            "model_name": "phi-3.5-mini"
+        }
+    ],
+    "skipped": [],
+    "report_outputs": {
+        "summary_path": "C:\\Users\\riddh\\OneDrive\\Desktop\\SLM use cases\\text_generation\\results\\runs\\suite_20260315_000842\\benchmark_summary.json",
+        "tables_path": "C:\\Users\\riddh\\OneDrive\\Desktop\\SLM use cases\\text_generation\\results\\runs\\suite_20260315_000842\\metrics_tables.md",
+        "comparison_path": "C:\\Users\\riddh\\OneDrive\\Desktop\\SLM use cases\\text_generation\\results\\runs\\suite_20260315_000842\\model_comparison.md",
+        "models": [
+            "qwen-2.5-3b",
+            "phi-3.5-mini"
+        ]
+    },
+    "latest_outputs": {
+        "summary_json": "C:\\Users\\riddh\\OneDrive\\Desktop\\SLM use cases\\text_generation\\results\\latest\\benchmark_summary.json",
+        "tables_md": "C:\\Users\\riddh\\OneDrive\\Desktop\\SLM use cases\\text_generation\\results\\latest\\metrics_tables.md",
+        "comparison_md": "C:\\Users\\riddh\\OneDrive\\Desktop\\SLM use cases\\text_generation\\results\\latest\\model_comparison.md",
+        "manifest": "C:\\Users\\riddh\\OneDrive\\Desktop\\SLM use cases\\text_generation\\results\\latest\\latest_report_manifest.json"
+    }
+}

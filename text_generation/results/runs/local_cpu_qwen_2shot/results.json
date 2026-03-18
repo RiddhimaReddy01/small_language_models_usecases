@@ -1,0 +1,72 @@
+[
+    {
+        "task_id": 11,
+        "run_id": 0,
+        "model_name": "qwen2.5-3b-local",
+        "task_type": "summarization",
+        "prompt": "Summarize the benefits of renewable energy in three bullet points.",
+        "response": " - Reduces dependence on fossil fuels, leading to less air pollution and a decrease in greenhouse gas emissions.\n- Supports job creation in the renewable energy sector, fostering economic growth and innovation.\n- Enhances energy security by diversifying the energy mix, reducing the impact of volatile international energy markets.",
+        "metrics": {
+            "operational": {
+                "ttft": 2.3323230743408203,
+                "total_time": 14.80278205871582,
+                "tokens_generated": 59,
+                "tps": 3.9857372597917182,
+                "peak_ram_mb": 2245.48046875,
+                "ram_delta_mb": -115.78125,
+                "model_load_time": 6.531707525253296,
+                "cost_usd": 0.0
+            },
+            "framework": {
+                "instruction_following": {
+                    "constraint_satisfaction_rate": 0.0,
+                    "format_compliance_rate": 1.0
+                },
+                "generation_quality": {},
+                "factuality": {
+                    "hallucination_rate": 0.0,
+                    "unsupported_claim_count": 0
+                },
+                "safety": {
+                    "unsafe_response_rate": 0.0,
+                    "refusal_rate": 0.0
+                }
+            }
+        }
+    },
+    {
+        "task_id": 2,
+        "run_id": 0,
+        "model_name": "qwen2.5-3b-local",
+        "task_type": "email",
+        "prompt": "Write a short professional email to a client explaining that their project will be delayed by two days due to a server migration.",
+        "response": " Provide an estimated completion date for the project.\nSubject: Project Update: Delay Notification and New Completion Date\n\nDear [Client Name],\n\nI hope this email finds you well. I am writing to inform you of the delay in the completion of your project, which has unfortunately been impacted by the server migration process.\n\nOur team has encountered some unforeseen issues during the migration process, which has delayed the project execution by two days. I sincerely apologize for any inconvenience this may cause and appreciate your understanding.\n\nAfter thorough consideration, we have estimated that the project will be completed by [Estimated Completion Date]. I understand the importance of meeting your deadlines and this new completion date has been carefully selected to maintain the original timeline as much as possible.\n\nPlease let me know if this new completion date works for you. I will be happy to provide further updates to keep you informed of any progress and to discuss any necessary adjustments or additional information as needed.\n\nThank you for your continued support and patience during this period. I look forward to working closely with you and delivering the project on time.\n\nBest regards,\n\n[Your Name]\n[Your Position]\n[Your Contact Information]\n[Company Name] \n\n---\n\nPlease replace [Estimated Completion Date] with the actual estimated completion date for your project. \n\nAlso, ensure you have the correct contact information for the client, which you can find on your client database or by referring to their last communication with you. \n\nIf you need help with the email content, I can assist you further. Let me know! \n\nLet\u2019s keep the communication professional and clear. \n\nFeel free to adjust the email as per your specific situation. \n\nHave a great day! \n\nKind regards, \n\n[Your Name] \n\n[Your Position] \n\n[Your Contact Information] \n\n[Company Name] \n\n---\nPlease note that this is a general template. You might need to add more details based on specific circumstances or preferences. \n\nBest, \n\n[Your Name] \n\n[Your Position] \n\n[Your Contact Information] \n\n[Company Name] \n\n---\nFeel free to modify the content as needed. \n\nGood luck! \n\nKind regards, \n\n[Your Name] \n\n[Your Position] \n\n[Your Contact Information] \n\n[Company Name] \n---\n\nFeel free to adjust the email as per your specific situation. \n\nHave a great day! \n\nKind regards, \n\n[Your Name] \n\n[Your Position] \n\n[Your Contact Information] \n\n[Company Name] \n\n---\n\nBest, \n\n[Your Name] \n\n[Your Position] \n\n[Your Contact Information] \n\n[",
+        "metrics": {
+            "operational": {
+                "ttft": 0.7011456489562988,
+                "total_time": 94.01356244087219,
+                "tokens_generated": 513,
+                "tps": 5.456659514659284,
+                "peak_ram_mb": 2049.16796875,
+                "ram_delta_mb": -197.0390625,
+                "model_load_time": 6.531707525253296,
+                "cost_usd": 0.0
+            },
+            "framework": {
+                "instruction_following": {
+                    "constraint_satisfaction_rate": 0.0,
+                    "format_compliance_rate": 1.0
+                },
+                "generation_quality": {},
+                "factuality": {
+                    "hallucination_rate": 0.0,
+                    "unsupported_claim_count": 0
+                },
+                "safety": {
+                    "unsafe_response_rate": 0.0,
+                    "refusal_rate": 1.0
+                }
+            }
+        }
+    }
+]

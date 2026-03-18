@@ -1,0 +1,51 @@
+{
+  "hf_api:meta-llama/Llama-3.2-1B-Instruct": {
+    "model": "hf_api:meta-llama/Llama-3.2-1B-Instruct",
+    "capability": {
+      "exact_match": 0.0,
+      "f1_score": 27.727272727272723,
+      "context_utilization_rate": 0.0,
+      "answer_length_accuracy": 66.66666666666667
+    },
+    "reliability": {
+      "hallucination_rate": 100.0,
+      "unsupported_answer_rate": 100.0,
+      "partial_answer_rate": 66.66666666666667
+    },
+    "operational": {
+      "latency_ms": 923.4836666631358,
+      "latency_p50_ms": 918.0870000272989,
+      "latency_p95_ms": 914.1464999993332,
+      "tokens_per_sec": 14.979510556280792,
+      "output_tokens_total": 83,
+      "input_tokens_avg": 71.16666666666667,
+      "memory_mb": 0.0,
+      "wall_time_sec": 5.548556566238403,
+      "questions": 6
+    }
+  },
+  "gemini/gemini-3.1-flash-lite-preview": {
+    "model": "gemini/gemini-3.1-flash-lite-preview",
+    "capability": {
+      "exact_match": 50.0,
+      "f1_score": 50.0,
+      "context_utilization_rate": 50.0,
+      "answer_length_accuracy": 83.33333333333333
+    },
+    "reliability": {
+      "hallucination_rate": 50.0,
+      "unsupported_answer_rate": 50.0,
+      "partial_answer_rate": 0.0
+    },
+    "operational": {
+      "latency_ms": 4564.556933318575,
+      "latency_p50_ms": 1115.8705999841914,
+      "latency_p95_ms": 22451.590100012254,
+      "tokens_per_sec": 2.4098724499866533,
+      "output_tokens_total": 66,
+      "input_tokens_avg": 94.83333333333333,
+      "memory_mb": 0.0,
+      "questions": 6
+    }
+  }
+}

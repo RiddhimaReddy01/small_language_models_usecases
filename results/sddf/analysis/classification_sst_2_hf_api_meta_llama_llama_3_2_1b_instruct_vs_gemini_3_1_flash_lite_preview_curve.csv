@@ -1,0 +1,2 @@
+difficulty_bin,n,metric_slm,metric_llm,ratio,delta,bin_center,latency_sec_slm,latency_sec_llm,valid_output_slm,valid_output_llm,ratio_smooth
+0,1,0.0,1.0,0.0,-1.0,3.584962500721156,0.9274575710296631,1.0919673442840576,1.0,1.0,0.0

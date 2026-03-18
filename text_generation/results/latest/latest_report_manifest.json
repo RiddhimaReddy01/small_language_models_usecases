@@ -1,23 +1,18 @@
 {
   "models": [
-    "gemini-baseline",
-    "phi-3.5-mini",
-    "qwen-2.5-3b"
+    "hf_llama32_1b"
   ],
   "summary_path": "C:\\Users\\riddh\\OneDrive\\Desktop\\SLM use cases\\text_generation\\results\\latest\\benchmark_summary.json",
   "tables_path": "C:\\Users\\riddh\\OneDrive\\Desktop\\SLM use cases\\text_generation\\results\\latest\\metrics_tables.md",
   "comparison_path": "C:\\Users\\riddh\\OneDrive\\Desktop\\SLM use cases\\text_generation\\results\\latest\\model_comparison.md",
-  "suite_id": "20260315_000947",
-  "suite_dir": "C:\\\\Users\\\\riddh\\\\OneDrive\\\\Desktop\\\\SLM use cases\\\\text_generation\\\\results\\\\runs\\\\suite_20260315_000947",
-  "models_config": "C:\\\\Users\\\\riddh\\\\OneDrive\\\\Desktop\\\\SLM use cases\\\\text_generation\\\\configs\\\\models.json",
-  "models_config_snapshot": "C:\\\\Users\\\\riddh\\\\OneDrive\\\\Desktop\\\\SLM use cases\\\\text_generation\\\\results\\\\runs\\\\suite_20260315_000947\\\\models_config_snapshot.json",
-  "seed": 42,
+  "model_name": "hf_llama32_1b",
   "task_type": "samples",
+  "seed": 42,
+  "result_file": "results/runs/hf_llama32_1b_2shot\\results.json",
+  "metadata_path": "results/runs/hf_llama32_1b_2shot\\results_metadata.json",
   "gguf_engine": "llama_cpp",
-  "raw_result_files": [
-    "qwen-2.5-3b.json",
-    "phi-3.5-mini.json",
-    "gemini-baseline.json"
-  ],
-  "baseline_note": "Gemini baseline run uses gemini-2.5-flash-lite with 2s request pacing and retry/backoff."
+  "cloud_request_delay_s": 0.0,
+  "cloud_max_retries": 0,
+  "cloud_backoff_base_s": 2.0,
+  "cloud_timeout_s": 120
 }

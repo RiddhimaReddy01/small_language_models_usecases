@@ -1,0 +1,44 @@
+{
+  "benchmark": "text_generation",
+  "run_path": "C:\\Users\\riddh\\OneDrive\\Desktop\\SLM use cases\\text_generation\\results\\runs\\suite_20260315_000947",
+  "sddf_root": null,
+  "statuses": {
+    "dominant_difficulty_dimension": {
+      "status": "unsupported",
+      "reason": "No SDDF archive found for this run."
+    },
+    "difficulty_annotation_binning": {
+      "status": "unsupported",
+      "reason": "No SDDF archive found for this run."
+    },
+    "matched_slm_llm_analysis": {
+      "status": "unsupported",
+      "reason": "No SDDF archive found for this run."
+    },
+    "capability_curve_tipping_point": {
+      "status": "unsupported",
+      "reason": "No SDDF archive found for this run."
+    },
+    "uncertainty_analysis": {
+      "status": "unsupported",
+      "reason": "No SDDF archive found for this run."
+    },
+    "failure_taxonomy": {
+      "status": "unsupported",
+      "reason": "No SDDF archive found for this run."
+    },
+    "quality_gate": {
+      "status": "unsupported",
+      "reason": "No SDDF archive found for this run."
+    },
+    "deployment_zones": {
+      "status": "unsupported",
+      "reason": "No SDDF archive found for this run."
+    },
+    "routing_policy": {
+      "status": "unsupported",
+      "reason": "No SDDF archive found for this run."
+    }
+  },
+  "pairs": []
+}

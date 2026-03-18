@@ -1,0 +1,44 @@
+{
+  "benchmark": "information_extraction",
+  "run_path": "C:\\Users\\riddh\\OneDrive\\Desktop\\SLM use cases\\Information Extraction\\outputs_hf_llama1b_smoke\\20260317_191820",
+  "sddf_root": "C:\\Users\\riddh\\OneDrive\\Desktop\\SLM use cases\\Information Extraction\\outputs_hf_llama1b_smoke\\20260317_191820\\sddf",
+  "statuses": {
+    "dominant_difficulty_dimension": {
+      "status": "available",
+      "reason": "Computed from SDDF archive."
+    },
+    "difficulty_annotation_binning": {
+      "status": "available",
+      "reason": "Computed from SDDF archive."
+    },
+    "matched_slm_llm_analysis": {
+      "status": "partial",
+      "reason": "Inferred from aggregate historical evidence because matched SLM and LLM rows were not available."
+    },
+    "capability_curve_tipping_point": {
+      "status": "partial",
+      "reason": "Inferred from aggregate historical evidence because matched SLM and LLM rows were not available."
+    },
+    "uncertainty_analysis": {
+      "status": "partial",
+      "reason": "Inferred from aggregate historical evidence because matched SLM and LLM rows were not available."
+    },
+    "failure_taxonomy": {
+      "status": "available",
+      "reason": "Computed from SDDF archive."
+    },
+    "quality_gate": {
+      "status": "partial",
+      "reason": "Inferred from aggregate historical evidence because matched SLM and LLM rows were not available."
+    },
+    "deployment_zones": {
+      "status": "partial",
+      "reason": "Inferred from aggregate historical evidence because matched SLM and LLM rows were not available."
+    },
+    "routing_policy": {
+      "status": "partial",
+      "reason": "Inferred from aggregate historical evidence because matched SLM and LLM rows were not available."
+    }
+  },
+  "pairs": []
+}

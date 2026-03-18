@@ -1,0 +1,15 @@
+{
+  "model_name": "hf_llama32_1b + gemini-2.5-flash-fresh",
+  "model_path": "multi-run",
+  "model_type": "huggingface+google",
+  "task_type": "samples",
+  "sample_size": 2,
+  "seed": 42,
+  "repeats": 1,
+  "workers": 1,
+  "result_file": "results.json",
+  "source_runs": [
+    "c:\\Users\\riddh\\OneDrive\\Desktop\\SLM use cases\\text_generation\\results\\runs\\hf_llama32_1b_2shot",
+    "c:\\Users\\riddh\\OneDrive\\Desktop\\SLM use cases\\text_generation\\results\\runs\\gemini_fresh_2shot"
+  ]
+}

@@ -7,6 +7,7 @@ import psutil
 import requests
 from tqdm import tqdm
 from typing import Dict, Any, Optional, List
+from huggingface_hub import InferenceClient
 
 class TextGenInferenceRunner:
     def __init__(
@@ -131,6 +132,11 @@ class TextGenInferenceRunner:
             if not self.api_key:
                 print("Warning: No API key provided for Google model.")
             self.load_time = 0.001
+        elif self.model_type == "huggingface":
+            if not self.api_key:
+                print("Warning: No API key provided for Hugging Face model.")
+            self.model = InferenceClient(model=self.model_path, token=self.api_key, provider="auto", timeout=self.cloud_timeout_s)
+            self.load_time = 0.001
         elif self.model_type == "openai":
             if not self.api_key:
                 print("Warning: No API key provided for OpenAI model.")
@@ -236,6 +242,19 @@ class TextGenInferenceRunner:
             
             tokens_generated = len(response_text.split()) * 1.3
             ttft = (time.time() - start_time) / 5 # Estimated
+
+        elif self.model_type == "huggingface":
+            try:
+                completion = self.model.chat_completion(
+                    messages=[{"role": "user", "content": prompt}],
+                    max_tokens=max_tokens,
+                    temperature=temperature,
+                )
+                response_text = (completion.choices[0].message.content or "").strip()
+            except Exception:
+                response_text = str(self.model.text_generation(prompt, max_new_tokens=max_tokens, temperature=temperature)).strip()
+            tokens_generated = len(response_text.split())
+            ttft = (time.time() - start_time) / 5
 
         elif self.model_type == "openai":
             model_id = self.model_path or "gpt-4o-mini"

@@ -5,6 +5,7 @@ import time
 from typing import Any, Dict, Optional
 
 import requests
+from huggingface_hub import InferenceClient
 
 
 class RunnerConfigError(RuntimeError):
@@ -75,7 +76,7 @@ class HuggingFaceRunner(BaseRunner):
         self.hf_model = hf_model or model_id
         self.api_key = os.environ.get(api_key_env)
         self.api_key_env = api_key_env
-        self.api_url = "https://router.huggingface.co/models"
+        self.client = InferenceClient(model=self.hf_model, token=self.api_key, provider="auto", timeout=180)
 
     def _simulate(self, prompt: str, request_id: Optional[str]) -> Dict[str, Any]:
         seed_material = f"{self.model_id}:{request_id or 'default'}:{prompt}".encode("utf-8")
@@ -98,19 +99,15 @@ class HuggingFaceRunner(BaseRunner):
         if not self.api_key:
             raise RunnerConfigError(f"Missing Hugging Face API key. Set env var '{self.api_key_env}'.")
         start = time.time()
-        headers = {"Authorization": f"Bearer {self.api_key}", "Content-Type": "application/json"}
-        body = {"inputs": prompt, "parameters": {"max_new_tokens": 256, "temperature": 0.0}}
         try:
-            response = requests.post(f"{self.api_url}/{self.hf_model}", json=body, headers=headers, timeout=timeout)
-            response.raise_for_status()
-            data = response.json()
-            text = None
-            if isinstance(data, list) and data:
-                text = data[0].get("generated_text") or str(data[0])
-            elif isinstance(data, dict):
-                text = data.get("generated_text") or data.get("text") or str(data)
-            if not text:
-                text = str(data)
+            try:
+                text = self.client.chat_completion(
+                    messages=[{"role": "user", "content": prompt}],
+                    max_tokens=256,
+                    temperature=0.0,
+                ).choices[0].message.content
+            except Exception:
+                text = self.client.text_generation(prompt, max_new_tokens=256, temperature=0.0)
             return {"text": text, "latency": time.time() - start, "status": "ok", "error": None, "mode": "live"}
         except Exception as exc:
             return {"text": None, "latency": time.time() - start, "status": "error", "error": str(exc), "mode": "live"}
@@ -119,6 +116,8 @@ class HuggingFaceRunner(BaseRunner):
 class GeminiRunner(BaseRunner):
     def __init__(self, model_id: str, api_url_env: str = "GEMINI_API_URL", api_key_env: str = "GEMINI_API_KEY", dry_run: bool = False):
         super().__init__(model_id=model_id, dry_run=dry_run)
+        api_url_env = api_url_env or "GEMINI_API_URL"
+        api_key_env = api_key_env or "GEMINI_API_KEY"
         self.api_url = os.environ.get(api_url_env)
         self.api_key = os.environ.get(api_key_env)
         self.api_url_env = api_url_env

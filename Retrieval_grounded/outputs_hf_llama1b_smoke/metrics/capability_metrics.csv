@@ -1,0 +1,3 @@
+Model,Exact Match (%),F1 Score (%),Context Utilization (%),Answer Length Accuracy (%)
+hf_api:meta-llama/Llama-3.2-1B-Instruct,0.00,27.73,0.00,66.67
+gemini/gemini-3.1-flash-lite-preview,50.00,50.00,50.00,83.33

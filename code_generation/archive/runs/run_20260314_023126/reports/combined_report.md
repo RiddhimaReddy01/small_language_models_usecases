@@ -1,0 +1,235 @@
+# Part A - Benchmark Setup
+
+- Benchmark: `code_generation`
+- Run path: `c:\Users\riddh\OneDrive\Desktop\SLM use cases\code_generation\archive\runs\run_20260314_023126`
+
+## Task Definition
+
+```json
+{
+  "task": "code_generation",
+  "datasets": [
+    "MBPP"
+  ]
+}
+```
+
+## Dataset and Sampling
+
+```json
+{
+  "human_eval_sample": 0,
+  "mbpp_sample": 2,
+  "time_budget_minutes": 3,
+  "execution_timeout_seconds": 3,
+  "seed": 456,
+  "prompt_variant": "fast_cpu",
+  "generations_per_task": 1,
+  "reproducibility_retries": 0,
+  "blocked_imports": [
+    "subprocess",
+    "socket",
+    "requests",
+    "urllib",
+    "httpx",
+    "aiohttp",
+    "ftplib",
+    "telnetlib",
+    "shutil"
+  ],
+  "blocked_calls": [
+    "os.system",
+    "os.remove",
+    "os.rmdir",
+    "os.unlink",
+    "os.removedirs",
+    "shutil.rmtree",
+    "subprocess.run",
+    "subprocess.Popen",
+    "subprocess.call",
+    "socket.socket",
+    "requests.get",
+    "requests.post",
+    "urllib.request.urlopen"
+  ]
+}
+```
+
+## Experimental Setup
+
+```json
+{
+  "models": [
+    {
+      "label": "SmolLM2 360M (Transformers Tiny)",
+      "kind": "hf_local",
+      "model_name": "HuggingFaceTB/SmolLM2-360M-Instruct",
+      "load_in_4bit": false,
+      "use_chat_template": true,
+      "api_key_env": "GEMINI_API_KEY",
+      "max_input_tokens": null,
+      "input_cost_per_1k_tokens": 0.0,
+      "output_cost_per_1k_tokens": 0.0,
+      "extra": {}
+    }
+  ],
+  "generation": {
+    "temperature": 0.15,
+    "max_new_tokens": 96,
+    "min_new_tokens": 48,
+    "top_p": 0.9,
+    "seed": 456,
+    "profile": "fast_cpu",
+    "adaptive_max_new_tokens": true
+  }
+}
+```
+
+## Metrics
+
+```json
+[
+  {
+    "model": "SmolLM2 360M (Transformers Tiny)",
+    "model_name": "HuggingFaceTB/SmolLM2-360M-Instruct",
+    "time_budget_minutes": 3,
+    "human_eval_attempted": 0,
+    "mbpp_attempted": 2,
+    "total_attempted": 2,
+    "tasks_completed_in_budget": 2,
+    "pass@1": 1.0,
+    "syntax_error_rate": 0.0,
+    "runtime_failure_rate": 0.0,
+    "logical_failure_rate": 0.0,
+    "reliability_score": 1.0,
+    "self_consistency_score": null,
+    "format_compliance": 1.0,
+    "signature_compliance": 1.0,
+    "instruction_adherence": 1.0,
+    "deterministic_reproducibility": null,
+    "unsafe_code_rate": 0.0,
+    "avg_latency_seconds": 5.698205250000228,
+    "p95_latency_seconds": 5.929776900000434,
+    "tokens_per_second": 8.104664843459929,
+    "peak_ram_gb": 0.012638092041015625,
+    "avg_output_tokens": 45,
+    "cost_per_request": 0.0
+  }
+]
+```
+
+## Raw Benchmark Results
+
+```json
+{
+  "task_result_count": 2
+}
+```
+
+# Part B - SDDF Analysis
+
+- Benchmark: `code_generation`
+- Run path: `c:\Users\riddh\OneDrive\Desktop\SLM use cases\code_generation\archive\runs\run_20260314_023126`
+- Interpretation note: sections marked `partial` are inference-augmented summaries derived from historical benchmark artifacts rather than fresh matched reruns.
+
+## SDDF: Dominant Difficulty Dimension
+
+- Status: `partial`
+- Reason: Inferred from historical benchmark artifacts; no SDDF archive was available for direct computation.
+
+### Inferred dominant dimension
+
+- Inferred dominant difficulty dimension: `R_hat`
+- Basis: historical code-generation failures track algorithmic reasoning depth and state tracking more than formatting or syntax alone.
+- Caveat: inferred from historical task structure and aggregate benchmark behavior rather than recalculated from a fresh matched rerun.
+
+## Difficulty Annotation + Binning
+
+- Status: `partial`
+- Reason: Inferred from historical benchmark artifacts; no SDDF archive was available for direct computation.
+
+### Inferred binning rule
+
+- Low difficulty bucket: single-loop or direct-map programming tasks
+- Mid difficulty bucket: moderate control flow with limited state
+- High difficulty bucket: algorithmic problems requiring recursion, stacks, or multi-step decomposition
+- Caveat: bins are historical workload strata, not newly recomputed row-level bins.
+
+## Matched SLM vs LLM Analysis
+
+- Status: `partial`
+- Reason: Inferred from historical benchmark artifacts; no SDDF archive was available for direct computation.
+
+### Historical comparison
+
+- Historical code-generation results suggest API baselines retain an advantage on non-trivial algorithmic tasks, while local SLMs only pass trivial tasks reliably.
+- Because the saved artifacts are aggregate, this remains a directional comparison rather than a paired one.
+- Caveat: this comparison is aggregate and not example-matched, so it should not be treated as a strict paired test.
+
+## Capability Curve + Tipping Point
+
+- Status: `partial`
+- Reason: Inferred from historical benchmark artifacts; no SDDF archive was available for direct computation.
+
+### Inferred transition point
+
+- Historical tipping signal: historical evidence suggests a sharp break once tasks move beyond trivial single-loop logic into algorithmic reasoning.
+- Operational reading: local SLMs can sometimes handle trivial tasks, but non-trivial algorithms are still a strong escalation signal.
+- Caveat: tipping point is inferred from prior benchmark patterns, not estimated from a fresh ratio curve on matched rows.
+
+## Uncertainty Analysis
+
+- Status: `partial`
+- Reason: Inferred from historical benchmark artifacts; no SDDF archive was available for direct computation.
+
+### Historical uncertainty
+
+- Historical sample size signal: `2` task results were saved.
+- Uncertainty source: completed-task counts are unstable and some local runs were incomplete, so exact thresholds should be treated cautiously.
+- Caveat: no bootstrap confidence interval was available without matched rerun rows.
+
+## Failure Taxonomy
+
+- Status: `partial`
+- Reason: Inferred from historical benchmark artifacts; no SDDF archive was available for direct computation.
+
+### Inferred failure modes
+
+- algorithmic reasoning failure despite syntactic validity
+- incorrect API or library usage
+- state-tracking errors in multi-step solutions
+- Caveat: taxonomy is inferred from benchmark-level failures and task design, not exhaustively labeled per example.
+
+## Quality Gate
+
+- Status: `partial`
+- Reason: Inferred from historical benchmark artifacts; no SDDF archive was available for direct computation.
+
+### Suggested gate
+
+- accept SLM outputs only on trivial, low-reasoning tasks with passing tests
+- escalate recursive, multi-structure, or benchmark-hard tasks by default
+- Caveat: gate thresholds are policy recommendations inferred from historical evidence, not learned from fresh matched supervision.
+
+## Deployment Zones
+
+- Status: `partial`
+- Reason: Inferred from historical benchmark artifacts; no SDDF archive was available for direct computation.
+
+### Inferred deployment stance
+
+- Likely SDDF stance: LLM-preferred except for trivial code generation slices.
+- Why: historical pass rates show the primary bottleneck is reasoning depth, not formatting.
+- Caveat: zone assignment is a benchmark-level recommendation and should be revalidated after reruns.
+
+## Routing Policy
+
+- Status: `partial`
+- Reason: Inferred from historical benchmark artifacts; no SDDF archive was available for direct computation.
+
+### Suggested routing policy
+
+- reserve SLMs for simple transformation or boilerplate tasks
+- route algorithmic or benchmark-hard tasks directly to stronger models
+- Caveat: this is a hand-authored routing rule from historical evidence, not a learned router threshold.
+

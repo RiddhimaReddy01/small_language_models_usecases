@@ -218,7 +218,7 @@ def normalize_instruction_following_results(
             )
             item.update(
                 {
-                    "example_id": f"{model_name}:{index}",
+                    "example_id": str(index),
                     "task": "instruction_following",
                     "dataset": dataset_name or "instruction_following",
                     "model_name": model_name,
@@ -290,10 +290,15 @@ def normalize_maths_results(payload: dict[str, Any]) -> pd.DataFrame:
         dataset_name = experiment.get("dataset", "maths")
         for record in experiment.get("records", []):
             base = record.get("base", {})
+            request_id = str(base.get("request_id") or "")
+            normalized_example_id = request_id
+            marker = f":{model_name}:"
+            if marker in request_id:
+                normalized_example_id = request_id.replace(marker, ":", 1)
             item = _base_row()
             item.update(
                 {
-                    "example_id": base.get("request_id"),
+                    "example_id": normalized_example_id,
                     "task": "maths",
                     "dataset": dataset_name,
                     "model_name": model_name,

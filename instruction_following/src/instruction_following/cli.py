@@ -23,7 +23,7 @@ def parse_args():
     parser.add_argument(
         "--models",
         nargs="*",
-        help="Optional explicit list of Hugging Face model ids. Overrides --preset.",
+        help="Optional explicit list of model ids. Prefix hosted HF models with 'hf_api:'. Overrides --preset.",
     )
     parser.add_argument("--num-prompts", type=int, default=None, help="Number of prompts to evaluate.")
     parser.add_argument("--device", default="cpu", help="Torch device map, e.g. cpu or cuda.")

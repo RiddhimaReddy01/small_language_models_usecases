@@ -1,0 +1,13 @@
+dataset_name: squad
+dataset_split: validation
+num_questions: 30
+max_context_tokens: 300
+max_answer_tokens: 10
+models:
+  - Qwen/Qwen2.5-Coder-0.5B-Instruct
+temperature: 0.0
+top_p: 1.0
+max_new_tokens: 30
+do_sample: false
+device: cpu
+output_dir: Retrieval_grounded/outputs_qwen05b_cpu

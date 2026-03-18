@@ -1,0 +1,44 @@
+{
+  "benchmark": "text_generation",
+  "run_path": "C:\\Users\\riddh\\OneDrive\\Desktop\\SLM use cases\\text_generation\\results\\runs\\gemini_fresh_2shot",
+  "sddf_root": "C:\\Users\\riddh\\OneDrive\\Desktop\\SLM use cases\\text_generation\\results\\runs\\gemini_fresh_2shot\\sddf",
+  "statuses": {
+    "dominant_difficulty_dimension": {
+      "status": "available",
+      "reason": "Computed from SDDF archive."
+    },
+    "difficulty_annotation_binning": {
+      "status": "available",
+      "reason": "Computed from SDDF archive."
+    },
+    "matched_slm_llm_analysis": {
+      "status": "partial",
+      "reason": "Archive exists, but no matched SLM and LLM rows were found."
+    },
+    "capability_curve_tipping_point": {
+      "status": "partial",
+      "reason": "Archive exists, but no matched SLM and LLM rows were found."
+    },
+    "uncertainty_analysis": {
+      "status": "partial",
+      "reason": "Archive exists, but no matched SLM and LLM rows were found."
+    },
+    "failure_taxonomy": {
+      "status": "available",
+      "reason": "Computed from SDDF archive."
+    },
+    "quality_gate": {
+      "status": "partial",
+      "reason": "Archive exists, but no matched SLM and LLM rows were found."
+    },
+    "deployment_zones": {
+      "status": "partial",
+      "reason": "Archive exists, but no matched SLM and LLM rows were found."
+    },
+    "routing_policy": {
+      "status": "partial",
+      "reason": "Archive exists, but no matched SLM and LLM rows were found."
+    }
+  },
+  "pairs": []
+}

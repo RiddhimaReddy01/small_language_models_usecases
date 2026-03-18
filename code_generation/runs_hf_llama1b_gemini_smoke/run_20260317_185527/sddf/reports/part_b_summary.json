@@ -1,0 +1,44 @@
+{
+  "benchmark": "code_generation",
+  "run_path": "C:\\Users\\riddh\\OneDrive\\Desktop\\SLM use cases\\code_generation\\runs_hf_llama1b_gemini_smoke\\run_20260317_185527",
+  "sddf_root": "C:\\Users\\riddh\\OneDrive\\Desktop\\SLM use cases\\code_generation\\runs_hf_llama1b_gemini_smoke\\run_20260317_185527\\sddf",
+  "statuses": {
+    "dominant_difficulty_dimension": {
+      "status": "available",
+      "reason": "Computed from SDDF archive."
+    },
+    "difficulty_annotation_binning": {
+      "status": "available",
+      "reason": "Computed from SDDF archive."
+    },
+    "matched_slm_llm_analysis": {
+      "status": "available",
+      "reason": "Computed from SDDF archive."
+    },
+    "capability_curve_tipping_point": {
+      "status": "available",
+      "reason": "Computed from SDDF archive."
+    },
+    "uncertainty_analysis": {
+      "status": "available",
+      "reason": "Computed from SDDF archive."
+    },
+    "failure_taxonomy": {
+      "status": "available",
+      "reason": "Computed from SDDF archive."
+    },
+    "quality_gate": {
+      "status": "available",
+      "reason": "Computed from SDDF archive."
+    },
+    "deployment_zones": {
+      "status": "available",
+      "reason": "Computed from SDDF archive."
+    },
+    "routing_policy": {
+      "status": "available",
+      "reason": "Computed from SDDF archive."
+    }
+  },
+  "pairs": []
+}

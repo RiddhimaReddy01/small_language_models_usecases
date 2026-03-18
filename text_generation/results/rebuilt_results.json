@@ -1,0 +1,527 @@
+[
+    {
+        "task_id": 1,
+        "run_id": 0,
+        "model_name": "mock",
+        "task_type": "summarization",
+        "prompt": "Summarize the following text in one sentence: The Ryzen 9 7940HS is a high-end laptop processor from AMD. It features 8 cores and 16 threads, with a boost clock of up to 5.2 GHz. It is built on the Zen 4 architecture and includes an integrated Radeon 780M GPU.",
+        "response": "Mock response for: Summarize the follow",
+        "metrics": {
+            "operational": {
+                "ttft": 0.1,
+                "tps": 10,
+                "total_time": 0.5,
+                "peak_ram_mb": 100,
+                "tokens_generated": 5,
+                "ram_delta_mb": 0,
+                "model_load_time": 0.0,
+                "cost_usd": 0.0
+            },
+            "framework": {
+                "instruction_following": {
+                    "constraint_satisfaction_rate": 0.5,
+                    "format_compliance_rate": 1.0
+                },
+                "generation_quality": {},
+                "factuality": {
+                    "hallucination_rate": 0.0,
+                    "unsupported_claim_count": 0
+                },
+                "safety": {
+                    "unsafe_response_rate": 0.0,
+                    "refusal_rate": 0.0
+                }
+            }
+        }
+    },
+    {
+        "task_id": 2,
+        "run_id": 0,
+        "model_name": "mock",
+        "task_type": "email",
+        "prompt": "Write a short professional email to a client explaining that their project will be delayed by two days due to a server migration.",
+        "response": "Mock response for: Write a short profes",
+        "metrics": {
+            "operational": {
+                "ttft": 0.1,
+                "tps": 10,
+                "total_time": 0.5,
+                "peak_ram_mb": 100,
+                "tokens_generated": 5,
+                "ram_delta_mb": 0,
+                "model_load_time": 0.0,
+                "cost_usd": 0.0
+            },
+            "framework": {
+                "instruction_following": {
+                    "constraint_satisfaction_rate": 0.5,
+                    "format_compliance_rate": 1.0
+                },
+                "generation_quality": {},
+                "factuality": {
+                    "hallucination_rate": 0.0,
+                    "unsupported_claim_count": 0
+                },
+                "safety": {
+                    "unsafe_response_rate": 0.0,
+                    "refusal_rate": 0.0
+                }
+            }
+        }
+    },
+    {
+        "task_id": 3,
+        "run_id": 0,
+        "model_name": "mock",
+        "task_type": "summarization",
+        "prompt": "Summarize the history of the internet in one sentence.",
+        "response": "Mock response for: Summarize the histor",
+        "metrics": {
+            "operational": {
+                "ttft": 0.1,
+                "tps": 10,
+                "total_time": 0.5,
+                "peak_ram_mb": 100,
+                "tokens_generated": 5,
+                "ram_delta_mb": 0,
+                "model_load_time": 0.0,
+                "cost_usd": 0.0
+            },
+            "framework": {
+                "instruction_following": {
+                    "constraint_satisfaction_rate": 1.0,
+                    "format_compliance_rate": 1.0
+                },
+                "generation_quality": {},
+                "factuality": {
+                    "hallucination_rate": 0.0,
+                    "unsupported_claim_count": 0
+                },
+                "safety": {
+                    "unsafe_response_rate": 0.0,
+                    "refusal_rate": 0.0
+                }
+            }
+        }
+    },
+    {
+        "task_id": 4,
+        "run_id": 0,
+        "model_name": "mock",
+        "task_type": "creative",
+        "prompt": "Write a 4-line poem about artificial intelligence.",
+        "response": "Mock response for: Write a 4-line poem ",
+        "metrics": {
+            "operational": {
+                "ttft": 0.1,
+                "tps": 10,
+                "total_time": 0.5,
+                "peak_ram_mb": 100,
+                "tokens_generated": 5,
+                "ram_delta_mb": 0,
+                "model_load_time": 0.0,
+                "cost_usd": 0.0
+            },
+            "framework": {
+                "instruction_following": {
+                    "constraint_satisfaction_rate": 0.0,
+                    "format_compliance_rate": 1.0
+                },
+                "generation_quality": {},
+                "factuality": {
+                    "hallucination_rate": 0.0,
+                    "unsupported_claim_count": 0
+                },
+                "safety": {
+                    "unsafe_response_rate": 0.0,
+                    "refusal_rate": 0.0
+                }
+            }
+        }
+    },
+    {
+        "task_id": 5,
+        "run_id": 0,
+        "model_name": "mock",
+        "task_type": "classification",
+        "prompt": "Classify the sentiment of this review: 'The food was cold and the service was slow.'",
+        "response": "Mock response for: Classify the sentime",
+        "metrics": {
+            "operational": {
+                "ttft": 0.1,
+                "tps": 10,
+                "total_time": 0.5,
+                "peak_ram_mb": 100,
+                "tokens_generated": 5,
+                "ram_delta_mb": 0,
+                "model_load_time": 0.0,
+                "cost_usd": 0.0
+            },
+            "framework": {
+                "instruction_following": {
+                    "constraint_satisfaction_rate": 0.0,
+                    "format_compliance_rate": 1.0
+                },
+                "generation_quality": {},
+                "factuality": {
+                    "hallucination_rate": 0.0,
+                    "unsupported_claim_count": 0
+                },
+                "safety": {
+                    "unsafe_response_rate": 0.0,
+                    "refusal_rate": 0.0
+                }
+            }
+        }
+    },
+    {
+        "task_id": 6,
+        "run_id": 0,
+        "model_name": "mock",
+        "task_type": "code",
+        "prompt": "Write a Python function to calculate the factorial of a number.",
+        "response": "Mock response for: Write a Python funct",
+        "metrics": {
+            "operational": {
+                "ttft": 0.1,
+                "tps": 10,
+                "total_time": 0.5,
+                "peak_ram_mb": 100,
+                "tokens_generated": 5,
+                "ram_delta_mb": 0,
+                "model_load_time": 0.0,
+                "cost_usd": 0.0
+            },
+            "framework": {
+                "instruction_following": {
+                    "constraint_satisfaction_rate": 0.0,
+                    "format_compliance_rate": 1.0
+                },
+                "generation_quality": {},
+                "factuality": {
+                    "hallucination_rate": 0.0,
+                    "unsupported_claim_count": 0
+                },
+                "safety": {
+                    "unsafe_response_rate": 0.0,
+                    "refusal_rate": 0.0
+                }
+            }
+        }
+    },
+    {
+        "task_id": 7,
+        "run_id": 0,
+        "model_name": "mock",
+        "task_type": "summarization",
+        "prompt": "Summarize the plot of Romeo and Juliet in two sentences.",
+        "response": "Mock response for: Summarize the plot o",
+        "metrics": {
+            "operational": {
+                "ttft": 0.1,
+                "tps": 10,
+                "total_time": 0.5,
+                "peak_ram_mb": 100,
+                "tokens_generated": 5,
+                "ram_delta_mb": 0,
+                "model_load_time": 0.0,
+                "cost_usd": 0.0
+            },
+            "framework": {
+                "instruction_following": {
+                    "constraint_satisfaction_rate": 0.0,
+                    "format_compliance_rate": 1.0
+                },
+                "generation_quality": {},
+                "factuality": {
+                    "hallucination_rate": 0.0,
+                    "unsupported_claim_count": 0
+                },
+                "safety": {
+                    "unsafe_response_rate": 0.0,
+                    "refusal_rate": 0.0
+                }
+            }
+        }
+    },
+    {
+        "task_id": 8,
+        "run_id": 0,
+        "model_name": "mock",
+        "task_type": "email",
+        "prompt": "Write a polite rejection email for a job applicant.",
+        "response": "Mock response for: Write a polite rejec",
+        "metrics": {
+            "operational": {
+                "ttft": 0.1,
+                "tps": 10,
+                "total_time": 0.5,
+                "peak_ram_mb": 100,
+                "tokens_generated": 5,
+                "ram_delta_mb": 0,
+                "model_load_time": 0.0,
+                "cost_usd": 0.0
+            },
+            "framework": {
+                "instruction_following": {
+                    "constraint_satisfaction_rate": 0.5,
+                    "format_compliance_rate": 1.0
+                },
+                "generation_quality": {},
+                "factuality": {
+                    "hallucination_rate": 0.0,
+                    "unsupported_claim_count": 0
+                },
+                "safety": {
+                    "unsafe_response_rate": 0.0,
+                    "refusal_rate": 0.0
+                }
+            }
+        }
+    },
+    {
+        "task_id": 9,
+        "run_id": 0,
+        "model_name": "mock",
+        "task_type": "creative",
+        "prompt": "Describe a sunset on Mars in one paragraph.",
+        "response": "Mock response for: Describe a sunset on",
+        "metrics": {
+            "operational": {
+                "ttft": 0.1,
+                "tps": 10,
+                "total_time": 0.5,
+                "peak_ram_mb": 100,
+                "tokens_generated": 5,
+                "ram_delta_mb": 0,
+                "model_load_time": 0.0,
+                "cost_usd": 0.0
+            },
+            "framework": {
+                "instruction_following": {
+                    "constraint_satisfaction_rate": 0.0,
+                    "format_compliance_rate": 1.0
+                },
+                "generation_quality": {},
+                "factuality": {
+                    "hallucination_rate": 0.0,
+                    "unsupported_claim_count": 0
+                },
+                "safety": {
+                    "unsafe_response_rate": 0.0,
+                    "refusal_rate": 0.0
+                }
+            }
+        }
+    },
+    {
+        "task_id": 10,
+        "run_id": 0,
+        "model_name": "mock",
+        "task_type": "translation",
+        "prompt": "Translate 'Hello, how are you?' to French.",
+        "response": "Mock response for: Translate 'Hello, ho",
+        "metrics": {
+            "operational": {
+                "ttft": 0.1,
+                "tps": 10,
+                "total_time": 0.5,
+                "peak_ram_mb": 100,
+                "tokens_generated": 5,
+                "ram_delta_mb": 0,
+                "model_load_time": 0.0,
+                "cost_usd": 0.0
+            },
+            "framework": {
+                "instruction_following": {
+                    "constraint_satisfaction_rate": 0.0,
+                    "format_compliance_rate": 1.0
+                },
+                "generation_quality": {},
+                "factuality": {
+                    "hallucination_rate": 0.0,
+                    "unsupported_claim_count": 0
+                },
+                "safety": {
+                    "unsafe_response_rate": 0.0,
+                    "refusal_rate": 0.0
+                }
+            }
+        }
+    },
+    {
+        "task_id": 11,
+        "run_id": 0,
+        "model_name": "mock",
+        "task_type": "summarization",
+        "prompt": "Summarize the benefits of renewable energy in three bullet points.",
+        "response": "Mock response for: Summarize the benefi",
+        "metrics": {
+            "operational": {
+                "ttft": 0.1,
+                "tps": 10,
+                "total_time": 0.5,
+                "peak_ram_mb": 100,
+                "tokens_generated": 5,
+                "ram_delta_mb": 0,
+                "model_load_time": 0.0,
+                "cost_usd": 0.0
+            },
+            "framework": {
+                "instruction_following": {
+                    "constraint_satisfaction_rate": 0.0,
+                    "format_compliance_rate": 1.0
+                },
+                "generation_quality": {},
+                "factuality": {
+                    "hallucination_rate": 0.0,
+                    "unsupported_claim_count": 0
+                },
+                "safety": {
+                    "unsafe_response_rate": 0.0,
+                    "refusal_rate": 0.0
+                }
+            }
+        }
+    },
+    {
+        "task_id": 12,
+        "run_id": 0,
+        "model_name": "mock",
+        "task_type": "email",
+        "prompt": "Write a follow-up email after a job interview.",
+        "response": "Mock response for: Write a follow-up em",
+        "metrics": {
+            "operational": {
+                "ttft": 0.1,
+                "tps": 10,
+                "total_time": 0.5,
+                "peak_ram_mb": 100,
+                "tokens_generated": 5,
+                "ram_delta_mb": 0,
+                "model_load_time": 0.0,
+                "cost_usd": 0.0
+            },
+            "framework": {
+                "instruction_following": {
+                    "constraint_satisfaction_rate": 0.5,
+                    "format_compliance_rate": 1.0
+                },
+                "generation_quality": {},
+                "factuality": {
+                    "hallucination_rate": 0.0,
+                    "unsupported_claim_count": 0
+                },
+                "safety": {
+                    "unsafe_response_rate": 0.0,
+                    "refusal_rate": 0.0
+                }
+            }
+        }
+    },
+    {
+        "task_id": 13,
+        "run_id": 0,
+        "model_name": "mock",
+        "task_type": "classification",
+        "prompt": "Is this text about sports, politics, or science? 'Researchers have discovered a new species of deep-sea fish.'",
+        "response": "Mock response for: Is this text about s",
+        "metrics": {
+            "operational": {
+                "ttft": 0.1,
+                "tps": 10,
+                "total_time": 0.5,
+                "peak_ram_mb": 100,
+                "tokens_generated": 5,
+                "ram_delta_mb": 0,
+                "model_load_time": 0.0,
+                "cost_usd": 0.0
+            },
+            "framework": {
+                "instruction_following": {
+                    "constraint_satisfaction_rate": 0.0,
+                    "format_compliance_rate": 1.0
+                },
+                "generation_quality": {},
+                "factuality": {
+                    "hallucination_rate": 0.0,
+                    "unsupported_claim_count": 0
+                },
+                "safety": {
+                    "unsafe_response_rate": 0.0,
+                    "refusal_rate": 0.0
+                }
+            }
+        }
+    },
+    {
+        "task_id": 14,
+        "run_id": 0,
+        "model_name": "mock",
+        "task_type": "creative",
+        "prompt": "Write a catchy slogan for a new coffee shop.",
+        "response": "Mock response for: Write a catchy sloga",
+        "metrics": {
+            "operational": {
+                "ttft": 0.1,
+                "tps": 10,
+                "total_time": 0.5,
+                "peak_ram_mb": 100,
+                "tokens_generated": 5,
+                "ram_delta_mb": 0,
+                "model_load_time": 0.0,
+                "cost_usd": 0.0
+            },
+            "framework": {
+                "instruction_following": {
+                    "constraint_satisfaction_rate": 1.0,
+                    "format_compliance_rate": 1.0
+                },
+                "generation_quality": {},
+                "factuality": {
+                    "hallucination_rate": 0.0,
+                    "unsupported_claim_count": 0
+                },
+                "safety": {
+                    "unsafe_response_rate": 0.0,
+                    "refusal_rate": 0.0
+                }
+            }
+        }
+    },
+    {
+        "task_id": 15,
+        "run_id": 0,
+        "model_name": "mock",
+        "task_type": "code",
+        "prompt": "Write a CSS rule to center a div horizontally and vertically.",
+        "response": "Mock response for: Write a CSS rule to ",
+        "metrics": {
+            "operational": {
+                "ttft": 0.1,
+                "tps": 10,
+                "total_time": 0.5,
+                "peak_ram_mb": 100,
+                "tokens_generated": 5,
+                "ram_delta_mb": 0,
+                "model_load_time": 0.0,
+                "cost_usd": 0.0
+            },
+            "framework": {
+                "instruction_following": {
+                    "constraint_satisfaction_rate": 0.0,
+                    "format_compliance_rate": 1.0
+                },
+                "generation_quality": {},
+                "factuality": {
+                    "hallucination_rate": 0.0,
+                    "unsupported_claim_count": 0
+                },
+                "safety": {
+                    "unsafe_response_rate": 0.0,
+                    "refusal_rate": 0.0
+                }
+            }
+        }
+    }
+]

@@ -6,7 +6,7 @@ import time
 from dataclasses import dataclass
 from typing import Any
 
-from ie_benchmark.backends import GeminiBackend, OpenAICompatibleBackend
+from ie_benchmark.backends import GeminiBackend, HuggingFaceApiBackend, OpenAICompatibleBackend
 from ie_benchmark.config import InferenceConfig, ModelConfig
 from ie_benchmark.prompting import build_prompt
 
@@ -254,6 +254,8 @@ class APIServerGenerator:
 def build_generator(model_config: ModelConfig, inference_config: InferenceConfig) -> HuggingFaceGenerator:
     if inference_config.backend == "gemini":
         return GeminiGenerator(model_config, inference_config)
+    if inference_config.backend == "huggingface_api":
+        return HuggingFaceAPIGenerator(model_config, inference_config)
     if inference_config.backend in {"ollama", "openai_compatible"}:
         return APIServerGenerator(model_config, inference_config)
     return HuggingFaceGenerator(model_config, inference_config)
@@ -264,6 +266,38 @@ class GeminiGenerator:
         self.model_config = model_config
         self.inference_config = inference_config
         self.backend = GeminiBackend(model_config, inference_config)
+
+    def predict(self, doc_id: str, split: str, text: str, target_fields: list[str]) -> PredictionResult:
+        if self.inference_config.max_input_chars:
+            text = text[: self.inference_config.max_input_chars]
+        response = self.backend.predict(text, target_fields)
+        schema_valid = True
+        try:
+            payload = _extract_json_object(response.raw_output)
+            prediction = _normalize_prediction(payload, target_fields)
+        except Exception:
+            schema_valid = False
+            prediction = {field: "" for field in target_fields}
+        return PredictionResult(
+            model_name=self.model_config.name,
+            doc_id=doc_id,
+            split=split,
+            raw_output=response.raw_output,
+            prediction=prediction,
+            schema_valid=schema_valid,
+            latency_seconds=response.latency_seconds,
+            input_tokens=response.input_tokens,
+            output_tokens=response.output_tokens,
+            peak_memory_mb=response.peak_memory_mb,
+            backend_metadata=response.metadata,
+        )
+
+
+class HuggingFaceAPIGenerator:
+    def __init__(self, model_config: ModelConfig, inference_config: InferenceConfig) -> None:
+        self.model_config = model_config
+        self.inference_config = inference_config
+        self.backend = HuggingFaceApiBackend(model_config, inference_config)
 
     def predict(self, doc_id: str, split: str, text: str, target_fields: list[str]) -> PredictionResult:
         if self.inference_config.max_input_chars:

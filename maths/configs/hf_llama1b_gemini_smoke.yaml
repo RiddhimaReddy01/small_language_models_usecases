@@ -1,0 +1,24 @@
+datasets:
+  - name: GSM8K
+    path: maths/data/processed/gsm8k.jsonl
+    sample_size: 2
+  - name: SVAMP
+    path: maths/data/processed/svamp.jsonl
+    sample_size: 2
+
+models:
+  - id: llama3_2_1b_hf
+    type: huggingface
+    hf_model: meta-llama/Llama-3.2-1B-Instruct
+    api_key_env: HF_TOKEN
+  - id: gemini_flash
+    type: gemini
+    api_key_env: GEMINI_API_KEY
+
+runner:
+  concurrency: 1
+  timeout_seconds: 90
+
+protocol:
+  repeats_on_subset: 0
+  robustness_perturbations: 0

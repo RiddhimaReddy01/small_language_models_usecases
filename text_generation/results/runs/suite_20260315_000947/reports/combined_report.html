@@ -1,0 +1,157 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Combined Report</title>
+  <style>
+body { font-family: Georgia, 'Times New Roman', serif; margin: 40px auto; max-width: 920px; padding: 0 20px; color: #1f2937; line-height: 1.6; }
+h1, h2, h3 { color: #0f172a; }
+code { background: #f3f4f6; padding: 2px 5px; border-radius: 4px; }
+pre { background: #111827; color: #f9fafb; padding: 16px; border-radius: 10px; overflow-x: auto; }
+a { color: #0f766e; }
+img { max-width: 100%; height: auto; border: 1px solid #e5e7eb; border-radius: 8px; }
+.card { border: 1px solid #e5e7eb; border-radius: 12px; padding: 16px 18px; margin-bottom: 14px; background: #ffffff; }
+.muted { color: #6b7280; }
+</style>
+</head>
+<body>
+<h1>Part A - Benchmark Setup</h1>
+<ul>
+<li>Benchmark: <code>text_generation</code></li>
+<li>Run path: <code>C:\Users\riddh\OneDrive\Desktop\SLM use cases\text_generation\results\runs\suite_20260315_000947</code></li>
+</ul>
+<h2>Task Definition</h2>
+<pre><code class="language-json">{
+  &quot;task&quot;: &quot;text_generation&quot;,
+  &quot;task_type&quot;: &quot;samples&quot;
+}
+</code></pre>
+<h2>Dataset and Sampling</h2>
+<pre><code class="language-json">{
+  &quot;task_type&quot;: &quot;samples&quot;,
+  &quot;seed&quot;: 42,
+  &quot;repeats&quot;: 1
+}
+</code></pre>
+<h2>Experimental Setup</h2>
+<pre><code class="language-json">{
+  &quot;resolved_models&quot;: [
+    {
+      &quot;model_name&quot;: &quot;qwen-2.5-3b&quot;,
+      &quot;config&quot;: {
+        &quot;model_path&quot;: &quot;models/qwen2.5-3b-instruct-q4_k_m.gguf&quot;,
+        &quot;description&quot;: &quot;Alibaba Qwen 2.5 3B Instruct&quot;,
+        &quot;n_ctx&quot;: 4096,
+        &quot;n_threads&quot;: 4,
+        &quot;model_name&quot;: &quot;qwen-2.5-3b&quot;
+      },
+      &quot;resolved_model_path&quot;: &quot;C:\\Users\\riddh\\OneDrive\\Desktop\\SLM use cases\\text_generation\\models\\qwen2.5-3b-instruct-q4_k_m.gguf&quot;,
+      &quot;model_file&quot;: {
+        &quot;path&quot;: &quot;C:\\Users\\riddh\\OneDrive\\Desktop\\SLM use cases\\text_generation\\models\\qwen2.5-3b-instruct-q4_k_m.gguf&quot;,
+        &quot;exists&quot;: true,
+        &quot;size_bytes&quot;: 2104932768,
+        &quot;sha256_prefix&quot;: &quot;00a761a854977223da3a93cae937e32ab38dc0e997318f8ef270d2856f237310&quot;,
+        &quot;sha256_prefix_bytes&quot;: 1048576
+      }
+    },
+    {
+      &quot;model_name&quot;: &quot;phi-3.5-mini&quot;,
+      &quot;config&quot;: {
+        &quot;model_path&quot;: &quot;models/Phi-3.5-mini-instruct-Q4_K_M.gguf&quot;,
+        &quot;description&quot;: &quot;Microsoft Phi-3.5 Mini Instruct&quot;,
+        &quot;n_ctx&quot;: 4096,
+        &quot;n_threads&quot;: 4,
+        &quot;model_name&quot;: &quot;phi-3.5-mini&quot;
+      },
+      &quot;resolved_model_path&quot;: &quot;C:\\Users\\riddh\\OneDrive\\Desktop\\SLM use cases\\text_generation\\models\\Phi-3.5-mini-instruct-Q4_K_M.gguf&quot;,
+      &quot;model_file&quot;: {
+        &quot;path&quot;: &quot;C:\\Users\\riddh\\OneDrive\\Desktop\\SLM use cases\\text_generation\\models\\Phi-3.5-mini-instruct-Q4_K_M.gguf&quot;,
+        &quot;exists&quot;: true,
+        &quot;size_bytes&quot;: 2393232672,
+        &quot;sha256_prefix&quot;: &quot;12de553f7876ed5dd28cfa46edc9ca9dc4ea81b598d6e098cb4961a4168686f8&quot;,
+        &quot;sha256_prefix_bytes&quot;: 1048576
+      }
+    }
+  ],
+  &quot;temperature&quot;: 0.7,
+  &quot;workers&quot;: 1,
+  &quot;gguf_engine&quot;: &quot;llama_cpp&quot;
+}
+</code></pre>
+<h2>Metrics</h2>
+<pre><code class="language-json">{
+  &quot;benchmark_summary_path&quot;: &quot;C:\\Users\\riddh\\OneDrive\\Desktop\\SLM use cases\\text_generation\\results\\runs\\suite_20260315_000947\\benchmark_summary.json&quot;,
+  &quot;metrics_tables_path&quot;: &quot;C:\\Users\\riddh\\OneDrive\\Desktop\\SLM use cases\\text_generation\\results\\runs\\suite_20260315_000947\\metrics_tables.md&quot;
+}
+</code></pre>
+<h2>Raw Benchmark Results</h2>
+<pre><code class="language-json">{
+  &quot;raw_files&quot;: [
+    &quot;C:\\Users\\riddh\\OneDrive\\Desktop\\SLM use cases\\text_generation\\results\\runs\\suite_20260315_000947\\qwen-2.5-3b.json&quot;,
+    &quot;C:\\Users\\riddh\\OneDrive\\Desktop\\SLM use cases\\text_generation\\results\\runs\\suite_20260315_000947\\phi-3.5-mini.json&quot;
+  ],
+  &quot;example_count_per_run&quot;: 15
+}
+</code></pre>
+<h1>Part B - SDDF Analysis</h1>
+<ul>
+<li>Benchmark: <code>text_generation</code></li>
+<li>Run path: <code>C:\Users\riddh\OneDrive\Desktop\SLM use cases\text_generation\results\runs\suite_20260315_000947</code></li>
+</ul>
+<h2>SDDF: Dominant Difficulty Dimension</h2>
+<ul>
+<li>Status: <code>unsupported</code></li>
+<li>Reason: No SDDF archive found for this run.</li>
+</ul>
+<p>Not enough evidence to render this section.</p>
+<h2>Difficulty Annotation + Binning</h2>
+<ul>
+<li>Status: <code>unsupported</code></li>
+<li>Reason: No SDDF archive found for this run.</li>
+</ul>
+<p>Not enough evidence to render this section.</p>
+<h2>Matched SLM vs LLM Analysis</h2>
+<ul>
+<li>Status: <code>unsupported</code></li>
+<li>Reason: No SDDF archive found for this run.</li>
+</ul>
+<p>Not enough evidence to render this section.</p>
+<h2>Capability Curve + Tipping Point</h2>
+<ul>
+<li>Status: <code>unsupported</code></li>
+<li>Reason: No SDDF archive found for this run.</li>
+</ul>
+<p>Not enough evidence to render this section.</p>
+<h2>Uncertainty Analysis</h2>
+<ul>
+<li>Status: <code>unsupported</code></li>
+<li>Reason: No SDDF archive found for this run.</li>
+</ul>
+<p>Not enough evidence to render this section.</p>
+<h2>Failure Taxonomy</h2>
+<ul>
+<li>Status: <code>unsupported</code></li>
+<li>Reason: No SDDF archive found for this run.</li>
+</ul>
+<p>Not enough evidence to render this section.</p>
+<h2>Quality Gate</h2>
+<ul>
+<li>Status: <code>unsupported</code></li>
+<li>Reason: No SDDF archive found for this run.</li>
+</ul>
+<p>Not enough evidence to render this section.</p>
+<h2>Deployment Zones</h2>
+<ul>
+<li>Status: <code>unsupported</code></li>
+<li>Reason: No SDDF archive found for this run.</li>
+</ul>
+<p>Not enough evidence to render this section.</p>
+<h2>Routing Policy</h2>
+<ul>
+<li>Status: <code>unsupported</code></li>
+<li>Reason: No SDDF archive found for this run.</li>
+</ul>
+<p>Not enough evidence to render this section.</p>
+</body>
+</html>

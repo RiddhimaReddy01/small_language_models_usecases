@@ -7,6 +7,7 @@ import time
 
 import psutil
 import torch
+from huggingface_hub import InferenceClient
 from transformers import AutoModelForSeq2SeqLM, AutoTokenizer
 
 from summarization_benchmark.config import ModelConfig, PromptConfig
@@ -46,6 +47,13 @@ def load_model_components(model_config: ModelConfig):
         if not api_key:
             raise ValueError("GEMINI_API_KEY is not set.")
         client = genai.Client(api_key=api_key)
+        return None, client
+
+    if model_config.provider == "huggingface_api":
+        api_key = os.getenv("HF_TOKEN") or os.getenv("HF_API_KEY") or os.getenv("HUGGINGFACEHUB_API_TOKEN")
+        if not api_key:
+            raise ValueError("HF_TOKEN or HF_API_KEY is not set.")
+        client = InferenceClient(model=model_config.model_name, token=api_key, provider="auto", timeout=180)
         return None, client
 
     tokenizer = AutoTokenizer.from_pretrained(model_config.model_name)
@@ -94,6 +102,40 @@ def generate_summary(
                 raise
         latency_seconds = time.perf_counter() - start
         raw_response_text = response.text or ""
+        generated_summary = postprocess_summary(raw_response_text)
+        if not is_complete_sentence(generated_summary):
+            generated_summary = ""
+        output_tokens = len(generated_summary.split())
+        return {
+            "raw_response_text": raw_response_text,
+            "generated_summary": generated_summary,
+            "output_tokens": output_tokens,
+            "latency_seconds": latency_seconds,
+            "tokens_per_second": (output_tokens / latency_seconds) if latency_seconds > 0 else math.nan,
+            "memory_mb": math.nan,
+        }
+
+    if model_config.provider == "huggingface_api":
+        prompt = prompt_config.template.format(article=article)
+        start = time.perf_counter()
+        try:
+            response = model.chat_completion(
+                messages=[{"role": "user", "content": prompt}],
+                max_tokens=model_config.max_new_tokens,
+                temperature=model_config.temperature,
+                top_p=model_config.top_p,
+            )
+            raw_response_text = response.choices[0].message.content or ""
+        except Exception:
+            raw_response_text = str(
+                model.text_generation(
+                    prompt,
+                    max_new_tokens=model_config.max_new_tokens,
+                    temperature=model_config.temperature,
+                    top_p=model_config.top_p,
+                )
+            )
+        latency_seconds = time.perf_counter() - start
         generated_summary = postprocess_summary(raw_response_text)
         if not is_complete_sentence(generated_summary):
             generated_summary = ""

@@ -1,0 +1,3 @@
+| Model | Exact Match (%) | F1 Score (%) | Context Utilization (%) | Answer Length Accuracy (%) |
+| --- | --- | --- | --- | --- |
+| gemini/gemini-3.1-flash-lite-preview | 63.33 | 77.78 | 83.33 | 90.00 |

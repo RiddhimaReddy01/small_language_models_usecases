@@ -1,37 +1,28 @@
 {
   "schema_version": "1.0",
-  "exported_at": "2026-03-14T09:45:30.450151+00:00",
-  "source_run_dir": "C:\\Users\\riddh\\OneDrive\\Desktop\\SLM use cases\\code_generation\\runs\\run_20260314_041630",
-  "source_summary_path": "C:\\Users\\riddh\\OneDrive\\Desktop\\SLM use cases\\code_generation\\runs\\run_20260314_041630\\summary.json",
-  "source_report_path": "C:\\Users\\riddh\\OneDrive\\Desktop\\SLM use cases\\code_generation\\runs\\run_20260314_041630\\report.md",
-  "source_config_snapshot_path": "C:\\Users\\riddh\\OneDrive\\Desktop\\SLM use cases\\code_generation\\runs\\run_20260314_041630\\config_snapshot.json",
-  "source_config_path": "C:\\Users\\riddh\\OneDrive\\Desktop\\SLM use cases\\code_generation\\configs\\experiments\\transformers_codegen_top3_mbpp20.json",
+  "exported_at": "2026-03-17T23:55:36.008629+00:00",
+  "source_run_dir": "C:\\Users\\riddh\\OneDrive\\Desktop\\SLM use cases\\code_generation\\runs_hf_llama1b_gemini_smoke\\run_20260317_185527",
+  "source_summary_path": "C:\\Users\\riddh\\OneDrive\\Desktop\\SLM use cases\\code_generation\\runs_hf_llama1b_gemini_smoke\\run_20260317_185527\\summary.json",
+  "source_report_path": "C:\\Users\\riddh\\OneDrive\\Desktop\\SLM use cases\\code_generation\\runs_hf_llama1b_gemini_smoke\\run_20260317_185527\\report.md",
+  "source_config_snapshot_path": "C:\\Users\\riddh\\OneDrive\\Desktop\\SLM use cases\\code_generation\\runs_hf_llama1b_gemini_smoke\\run_20260317_185527\\config_snapshot.json",
+  "source_config_path": "C:\\Users\\riddh\\OneDrive\\Desktop\\SLM use cases\\code_generation\\configs\\examples\\hf_api_llama1b_gemini_smoke.json",
   "source_runs": [
     {
-      "run_dir": "C:\\Users\\riddh\\OneDrive\\Desktop\\SLM use cases\\code_generation\\runs\\run_20260314_041630",
-      "summary_path": "C:\\Users\\riddh\\OneDrive\\Desktop\\SLM use cases\\code_generation\\runs\\run_20260314_041630\\summary.json",
-      "report_path": "C:\\Users\\riddh\\OneDrive\\Desktop\\SLM use cases\\code_generation\\runs\\run_20260314_041630\\report.md",
-      "config_snapshot_path": "C:\\Users\\riddh\\OneDrive\\Desktop\\SLM use cases\\code_generation\\runs\\run_20260314_041630\\config_snapshot.json",
-      "config_path": "C:\\Users\\riddh\\OneDrive\\Desktop\\SLM use cases\\code_generation\\configs\\experiments\\transformers_codegen_top3_mbpp20.json",
-      "rate_limited": false
-    },
-    {
-      "run_dir": "C:\\Users\\riddh\\OneDrive\\Desktop\\SLM use cases\\code_generation\\runs\\run_20260314_043918",
-      "summary_path": "C:\\Users\\riddh\\OneDrive\\Desktop\\SLM use cases\\code_generation\\runs\\run_20260314_043918\\summary.json",
-      "report_path": "C:\\Users\\riddh\\OneDrive\\Desktop\\SLM use cases\\code_generation\\runs\\run_20260314_043918\\report.md",
-      "config_snapshot_path": "C:\\Users\\riddh\\OneDrive\\Desktop\\SLM use cases\\code_generation\\runs\\run_20260314_043918\\config_snapshot.json",
-      "config_path": "C:\\Users\\riddh\\OneDrive\\Desktop\\SLM use cases\\code_generation\\configs\\experiments\\gemini_codegen_baseline_mbpp20.json",
-      "rate_limited": true
+      "run_dir": "C:\\Users\\riddh\\OneDrive\\Desktop\\SLM use cases\\code_generation\\runs_hf_llama1b_gemini_smoke\\run_20260317_185527",
+      "summary_path": "C:\\Users\\riddh\\OneDrive\\Desktop\\SLM use cases\\code_generation\\runs_hf_llama1b_gemini_smoke\\run_20260317_185527\\summary.json",
+      "report_path": "C:\\Users\\riddh\\OneDrive\\Desktop\\SLM use cases\\code_generation\\runs_hf_llama1b_gemini_smoke\\run_20260317_185527\\report.md",
+      "config_snapshot_path": "C:\\Users\\riddh\\OneDrive\\Desktop\\SLM use cases\\code_generation\\runs_hf_llama1b_gemini_smoke\\run_20260317_185527\\config_snapshot.json",
+      "config_path": "C:\\Users\\riddh\\OneDrive\\Desktop\\SLM use cases\\code_generation\\configs\\examples\\hf_api_llama1b_gemini_smoke.json"
     }
   ],
   "deprecated_runs": [],
   "evaluation": {
-    "human_eval_sample": 0,
-    "mbpp_sample": 20,
-    "time_budget_minutes": 4,
-    "execution_timeout_seconds": 3,
-    "seed": 456,
-    "prompt_variant": "fast_cpu",
+    "human_eval_sample": 1,
+    "mbpp_sample": 1,
+    "time_budget_minutes": 2,
+    "execution_timeout_seconds": 10,
+    "seed": 42,
+    "prompt_variant": "default",
     "generations_per_task": 1,
     "reproducibility_retries": 0,
     "blocked_imports": [
@@ -62,55 +53,31 @@
     ]
   },
   "generation": {
-    "temperature": 0.15,
-    "max_new_tokens": 96,
+    "temperature": 0.2,
+    "max_new_tokens": 128,
     "min_new_tokens": 48,
-    "top_p": 0.9,
-    "seed": 456,
-    "profile": "fast_cpu",
-    "adaptive_max_new_tokens": true
+    "top_p": 1.0,
+    "seed": 42,
+    "profile": "default",
+    "adaptive_max_new_tokens": false
   },
   "models": [
     {
-      "label": "Qwen2.5 Coder 0.5B (Transformers Fast)",
-      "kind": "hf_local",
-      "model_name": "Qwen/Qwen2.5-Coder-0.5B-Instruct",
+      "label": "Llama 3.2 1B (HF API)",
+      "kind": "hf_api",
+      "model_name": "meta-llama/Llama-3.2-1B-Instruct",
       "load_in_4bit": false,
-      "use_chat_template": true,
-      "api_key_env": "GEMINI_API_KEY",
+      "use_chat_template": false,
+      "api_key_env": "HF_TOKEN",
       "max_input_tokens": null,
       "input_cost_per_1k_tokens": 0.0,
       "output_cost_per_1k_tokens": 0.0,
       "extra": {}
     },
     {
-      "label": "DeepSeek Coder 1.3B (Transformers Fast)",
-      "kind": "hf_local",
-      "model_name": "deepseek-ai/deepseek-coder-1.3b-instruct",
-      "load_in_4bit": false,
-      "use_chat_template": true,
-      "api_key_env": "GEMINI_API_KEY",
-      "max_input_tokens": null,
-      "input_cost_per_1k_tokens": 0.0,
-      "output_cost_per_1k_tokens": 0.0,
-      "extra": {}
-    },
-    {
-      "label": "Qwen2.5 Coder 1.5B (Transformers Fast)",
-      "kind": "hf_local",
-      "model_name": "Qwen/Qwen2.5-Coder-1.5B-Instruct",
-      "load_in_4bit": false,
-      "use_chat_template": true,
-      "api_key_env": "GEMINI_API_KEY",
-      "max_input_tokens": null,
-      "input_cost_per_1k_tokens": 0.0,
-      "output_cost_per_1k_tokens": 0.0,
-      "extra": {}
-    },
-    {
-      "label": "Gemini 2.5 Flash Lite (Baseline)",
+      "label": "Gemini Flash",
       "kind": "gemini",
-      "model_name": "models/gemini-2.5-flash-lite",
+      "model_name": "gemini-2.5-flash",
       "load_in_4bit": false,
       "use_chat_template": false,
       "api_key_env": "GEMINI_API_KEY",

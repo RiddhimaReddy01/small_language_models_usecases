@@ -330,6 +330,35 @@ def evaluate_gemini_model(gemini_client: "GeminiClient", prompts: List[Dict]) ->
     return results
 
 
+def evaluate_hf_api_model(model_name: str, prompts: List[Dict], inference_params: Dict) -> Optional[Dict]:
+    """Evaluate a hosted Hugging Face model across prompts."""
+    from instruction_following.hf_api_wrapper import HuggingFaceClient
+
+    hf_model_name = model_name.split(":", 1)[1] if model_name.startswith("hf_api:") else model_name
+    client = HuggingFaceClient(hf_model_name)
+    results = init_result(model_name, len(prompts), is_baseline=False)
+    counts = init_counters()
+
+    for prompt_data in tqdm(prompts, desc=model_name):
+        instruction = prompt_data["instruction"]
+        constraints = prompt_data.get("constraints", [])
+        try:
+            response, latency, output_tokens = client.generate(
+                instruction,
+                max_new_tokens=inference_params["max_new_tokens"],
+                temperature=inference_params["temperature"],
+                top_p=inference_params["top_p"],
+            )
+        except Exception as exc:
+            print(f"[HF_API_ERROR] {model_name}: {str(exc)[:120]}")
+            continue
+        record_response(results, counts, instruction, response, latency, output_tokens, constraints)
+
+    if counts["evaluated_prompts"] == 0:
+        return None
+    return finalize_result(results, counts)
+
+
 def print_metrics_table(all_results: Sequence[Dict]) -> None:
     """Print concise capability/reliability and operational tables."""
     if not all_results:
@@ -410,6 +439,12 @@ def run_pipeline(
             gemini_result = evaluate_gemini_model(gemini_client, prompts)
             if gemini_result:
                 results.append(gemini_result)
+            continue
+
+        if model_name.startswith("hf_api:"):
+            hf_result = evaluate_hf_api_model(model_name, prompts, inference_params)
+            if hf_result:
+                results.append(hf_result)
             continue
 
         local_result = evaluate_local_model(model_name, prompts, device, inference_params)

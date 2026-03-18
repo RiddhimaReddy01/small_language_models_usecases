@@ -7,7 +7,7 @@ from pathlib import Path
 from .config import DEFAULT_SEED, UserDatasetConfig
 from .datasets import load_builtin_datasets, load_uploaded_dataset
 from .evaluator import Evaluator, save_results
-from .models import GeminiWrapper, OllamaWrapper
+from .models import GeminiWrapper, HuggingFaceApiWrapper, OllamaWrapper
 
 
 def parse_args():
@@ -36,10 +36,13 @@ def parse_args():
     parser.add_argument("--sample-per-class", type=int, help="Samples per class for uploaded data")
     parser.add_argument("--max-samples", type=int, help="Hard cap on total uploaded samples")
     parser.add_argument("--seed", type=int, default=DEFAULT_SEED, help="Random seed for sampling")
+    parser.add_argument("--output-dir", type=str, default="results", help="Directory where run artifacts are written")
     return parser.parse_args()
 
 
 def _build_model(model_name):
+    if model_name.lower().startswith("hf_api:"):
+        return HuggingFaceApiWrapper(model_name.split(":", 1)[1])
     if "gemini" in model_name.lower():
         return GeminiWrapper(model_name)
     return OllamaWrapper(model_name)
@@ -83,7 +86,8 @@ def run():
     model = _build_model(args.model)
 
     timestamp = int(time.time())
-    live_file = f"results/live_results_{args.model.replace(':', '_')}_{timestamp}.csv"
+    output_dir = args.output_dir
+    live_file = f"{output_dir}/live_results_{args.model.replace(':', '_')}_{timestamp}.csv"
     evaluator = Evaluator(model, num_workers=args.workers, output_file=live_file)
     print(f"Live results will be saved to: {live_file}")
 
@@ -101,6 +105,7 @@ def run():
         evaluator.results,
         all_ops_metrics,
         all_capability_metrics,
+        output_dir=output_dir,
         run_metadata={
             "model": args.model,
             "workers": args.workers,
@@ -115,4 +120,3 @@ def run():
     print("\n" + "=" * 30)
     print("EVALUATION COMPLETE")
     print("=" * 30)
-

@@ -1,0 +1,107 @@
+{
+  "benchmark": "text_generation",
+  "run_path": "C:\\Users\\riddh\\OneDrive\\Desktop\\SLM use cases\\text_generation\\results\\runs\\combined_sddf_2shot",
+  "sddf_root": "C:\\Users\\riddh\\OneDrive\\Desktop\\SLM use cases\\text_generation\\results\\runs\\combined_sddf_2shot\\sddf",
+  "statuses": {
+    "dominant_difficulty_dimension": {
+      "status": "available",
+      "reason": "Computed from SDDF archive."
+    },
+    "difficulty_annotation_binning": {
+      "status": "available",
+      "reason": "Computed from SDDF archive."
+    },
+    "matched_slm_llm_analysis": {
+      "status": "available",
+      "reason": "Computed from SDDF archive."
+    },
+    "capability_curve_tipping_point": {
+      "status": "available",
+      "reason": "Computed from SDDF archive."
+    },
+    "uncertainty_analysis": {
+      "status": "available",
+      "reason": "Computed from SDDF archive."
+    },
+    "failure_taxonomy": {
+      "status": "available",
+      "reason": "Computed from SDDF archive."
+    },
+    "quality_gate": {
+      "status": "available",
+      "reason": "Computed from SDDF archive."
+    },
+    "deployment_zones": {
+      "status": "available",
+      "reason": "Computed from SDDF archive."
+    },
+    "routing_policy": {
+      "status": "available",
+      "reason": "Computed from SDDF archive."
+    }
+  },
+  "pairs": [
+    {
+      "dataset": "samples",
+      "slm_name": "phi3.5-mini-local",
+      "llm_name": "gemini-2.5-flash-fresh",
+      "matched_examples": 2,
+      "tipping_point": null,
+      "tipping_ci": {
+        "tipping_point": null,
+        "ci_low": null,
+        "ci_high": null
+      },
+      "gate_thresholds": null,
+      "gate_metrics": null,
+      "zones": [
+        {
+          "difficulty_bin": 1,
+          "bin_center": 0.0,
+          "ratio_smooth": 0.0,
+          "zone": "C"
+        }
+      ],
+      "ratio_ci": [
+        {
+          "difficulty_bin": 1,
+          "ratio_ci_low": 0.0,
+          "ratio_ci_high": 0.0,
+          "ratio_boot_mean": 0.0
+        }
+      ],
+      "plot_path": "c:\\Users\\riddh\\OneDrive\\Desktop\\SLM use cases\\text_generation\\results\\runs\\combined_sddf_2shot\\sddf\\reports\\samples_phi3_5_mini_local_vs_gemini_2_5_flash_fresh.png"
+    },
+    {
+      "dataset": "samples",
+      "slm_name": "qwen2.5-3b-local",
+      "llm_name": "gemini-2.5-flash-fresh",
+      "matched_examples": 2,
+      "tipping_point": null,
+      "tipping_ci": {
+        "tipping_point": null,
+        "ci_low": null,
+        "ci_high": null
+      },
+      "gate_thresholds": null,
+      "gate_metrics": null,
+      "zones": [
+        {
+          "difficulty_bin": 1,
+          "bin_center": 0.0,
+          "ratio_smooth": 0.0,
+          "zone": "C"
+        }
+      ],
+      "ratio_ci": [
+        {
+          "difficulty_bin": 1,
+          "ratio_ci_low": 0.0,
+          "ratio_ci_high": 0.0,
+          "ratio_boot_mean": 0.0
+        }
+      ],
+      "plot_path": "c:\\Users\\riddh\\OneDrive\\Desktop\\SLM use cases\\text_generation\\results\\runs\\combined_sddf_2shot\\sddf\\reports\\samples_qwen2_5_3b_local_vs_gemini_2_5_flash_fresh.png"
+    }
+  ]
+}

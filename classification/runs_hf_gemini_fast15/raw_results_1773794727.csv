@@ -1,0 +1,17 @@
+text,true_label,prediction,latency,is_valid,dataset,status
+it 's a stunning lyrical work of considerable force and truth . ,positive,positive,0.7989003658294678,True,SST-2,success:gemini-3.1-flash-lite-preview
+"director of photography benoit delhomme shot the movie in delicious colors , and the costumes and sets are grand . ",positive,positive,0.8289794921875,True,SST-2,success:gemini-3.1-flash-lite-preview
+"you really have to wonder how on earth anyone , anywhere could have thought they 'd make audiences guffaw with a script as utterly diabolical as this . ",negative,negative,0.8580417633056641,True,SST-2,success:gemini-3.1-flash-lite-preview
+"what 's surprising about full frontal is that despite its overt self-awareness , parts of the movie still manage to break past the artifice and thoroughly engage you . ",positive,positive,0.7142763137817383,True,SST-2,success:gemini-3.1-flash-lite-preview
+"even on those rare occasions when the narrator stops yammering , miller 's hand often feels unsure . ",negative,negative,0.7080557346343994,True,SST-2,success:gemini-3.1-flash-lite-preview
+verbinski implements every hack-artist trick to give us the ooky-spookies . ,negative,negative,0.9338088035583496,True,SST-2,success:gemini-3.1-flash-lite-preview
+im thinking well i could be a bit smaller but for health reasons and i should see a doctor more regularly because im feeling crappy,sadness,sadness,0.7861747741699219,True,Emotion,success:gemini-3.1-flash-lite-preview
+i have spent of my waking hours enjoying the freedom of not owning a cellphone feeling smug about it in situations in which a phone would have been awfully convenient and fielding incredulous questions,joy,joy,1.0306751728057861,True,Emotion,success:gemini-3.1-flash-lite-preview
+i feel so damn curious with what this blond doctor plan to do this night,surprise,surprise,0.7268023490905762,True,Emotion,success:gemini-3.1-flash-lite-preview
+im feeling pretty anxious,fear,fear,0.7077655792236328,True,Emotion,success:gemini-3.1-flash-lite-preview
+i was feeling the need for some christmas crafting this week especially after seeing a couple of lovely quilty christmas projects at stitch group,love,joy,0.5704643726348877,True,Emotion,success:gemini-3.1-flash-lite-preview
+i wake too early so i feel grumpy,anger,anger,58.42348504066467,True,Emotion,success:gemini-3.1-flash-lite-preview
+"China Closes 1,600 Internet Cafes in Crackdown China shut 1,600 Internet cafes between February and August and imposed \$12.1 million worth of fines for allowing children to play violent or adult-only games and other violations, state media said.",Sci/Tech,Sci/Tech,10.501066446304321,True,AG News,success:gemini-3.1-flash-lite-preview
+"Large Explosion Heard in Central Baghdad (Reuters) Reuters - A large blast was heard in central\Baghdad on Thursday, witnesses said.",World,World,0.9261569976806641,True,AG News,success:gemini-3.1-flash-lite-preview
+"Ford: Monthly Sales Drop, Company Looks To New Vehicles Cruising along the ever-stretching road of decline. Auto giant Ford Motor (nyse: F - news - people ) reported vehicle sales in October that fell 5 from a year ago.",Business,Business,0.7234854698181152,True,AG News,success:gemini-3.1-flash-lite-preview
+"Agassi Overcomes Verdasco Power  STOCKHOLM (Reuters) - Andre Agassi marched into the  Stockholm Open semifinals Friday, beating Spanish eighth seed  Fernando Verdasco 7-6, 6-2 in his toughest match of the  tournament.",Sports,Sports,0.8091332912445068,True,AG News,success:gemini-3.1-flash-lite-preview

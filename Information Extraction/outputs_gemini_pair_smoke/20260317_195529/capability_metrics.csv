@@ -1,0 +1,2 @@
+Model,Macro F1,Micro F1,Exact Match,Schema Valid Rate,Hallucination Rate,F1 Clean,F1 Noisy,Robustness Drop
+gemini-2.5-flash-lite,0.625,0.625,0.0,1.0,0.25,0.625,,

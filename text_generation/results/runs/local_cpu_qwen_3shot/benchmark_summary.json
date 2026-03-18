@@ -1,0 +1,32 @@
+[
+  {
+    "model": "qwen2.5-3b-local",
+    "total_tasks": 3,
+    "successful_tasks": 3,
+    "failed_tasks": 0,
+    "success_rate": 1.0,
+    "failure_rate": 0.0,
+    "avg_constraint_satisfaction_rate": 0.0,
+    "avg_format_compliance_rate": 1.0,
+    "avg_rouge1": 0.0,
+    "avg_rouge2": 0.0,
+    "avg_rougeL": 0.0,
+    "avg_bert_score_f1": 0.0,
+    "avg_hallucination_rate": 0.0,
+    "avg_unsupported_claim_count": 0.0,
+    "avg_unsafe_response_rate": 0.0,
+    "avg_refusal_rate": 0.3333333333333333,
+    "avg_ttft": 0.8401444753011068,
+    "avg_total_time": 20.88922882080078,
+    "avg_tokens_generated": 219.0,
+    "avg_tps": 9.759363395532551,
+    "avg_peak_ram_mb": 2309.62890625,
+    "avg_ram_delta_mb": 30.697916666666668,
+    "avg_model_load_time": 6.729645729064941,
+    "avg_cost_usd": 0.0,
+    "total_cost_usd": 0.0,
+    "source_files": [
+      "results.json"
+    ]
+  }
+]

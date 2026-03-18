@@ -33,7 +33,7 @@ def build_parser():
     parser.add_argument("--mock", action="store_true", help="Run in mock mode (no model needed)")
     parser.add_argument("--sample_size", type=int, default=None, help="Number of tasks to sample from the dataset")
     parser.add_argument("--temperature", type=float, default=0.7, help="Inference temperature")
-    parser.add_argument("--model_type", type=str, default="gguf", choices=["gguf", "ollama", "google", "openai"], help="Model type (gguf, ollama, google, or openai)")
+    parser.add_argument("--model_type", type=str, default="gguf", choices=["gguf", "ollama", "google", "openai", "huggingface"], help="Model type (gguf, ollama, google, openai, or huggingface)")
     parser.add_argument("--repeats", type=int, default=1, help="Number of repetitions for reliability testing")
     parser.add_argument("--perturb", action="store_true", help="Add minor typos to test robustness")
     parser.add_argument("--api_key", type=str, help="API key for cloud models (e.g. Gemini)")
