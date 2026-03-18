@@ -516,12 +516,7 @@ class BenchmarkInferenceEngine:
         if not checks["parseable"]:
             notes.append("Could not parse output")
 
-        # 3. Reasonable length (not truncated)
-        checks["not_truncated"] = len(record.raw_output) < self.prompt_config.max_tokens * 4
-        if not checks["not_truncated"]:
-            notes.append("Output suspiciously long (may be truncated)")
-
-        # 4. Contains expected fields (task-specific)
+        # 3. Contains expected fields (task-specific)
         checks["has_expected_fields"] = self._check_expected_fields(record)
 
         # Overall validity

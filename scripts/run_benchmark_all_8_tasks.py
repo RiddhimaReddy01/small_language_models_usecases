@@ -125,7 +125,7 @@ def run_task(task: str, model: str, examples_csv: Path, task_num: int, total: in
         instruction_wrapper="Q: {input}\nA:",
         temperature=0.7,
         top_p=0.9,
-        max_tokens=200,
+        max_tokens=512,  # Increased from 200 to accommodate Llama's longer responses
         stop_tokens=["\n\n"],
         parsing_rules={},
         seed=42

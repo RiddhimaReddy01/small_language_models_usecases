@@ -77,9 +77,9 @@ Recent work has examined inference cost tradeoffs (Tuli et al., Dong et al.), bu
 
 | Model | Params | Accuracy | Latency | Notes |
 |-------|--------|----------|---------|-------|
-| TinyLLaMA | 0.5B | 0.0% | 0ms | Poor |
+| TinyLLaMA | 0.5B | 93.3% | 5318ms | Excellent |
 | Qwen2.5 | 1.5B | 90.0% | 6863ms | Good |
-| Phi-3 | 3.8B | 87.8% | 8830ms | Good |
+| Phi-3 | 3.8B | 74.2% | 10976ms | Good |
 | Mixtral-8x7B | 45.0B | 0.0% | 0ms | Poor |
 | Llama-3.3-70B | 70.0B | 68.3% | 2964ms | Fair |
 
@@ -87,9 +87,9 @@ Recent work has examined inference cost tradeoffs (Tuli et al., Dong et al.), bu
 
 | Model | Params | Accuracy | Latency | Notes |
 |-------|--------|----------|---------|-------|
-| TinyLLaMA | 0.5B | 0.0% | 0ms | Poor |
+| TinyLLaMA | 0.5B | 100.0% | 5983ms | Excellent |
 | Qwen2.5 | 1.5B | 92.5% | 6344ms | Excellent |
-| Phi-3 | 3.8B | 92.2% | 9121ms | Excellent |
+| Phi-3 | 3.8B | 78.5% | 10995ms | Good |
 | Mixtral-8x7B | 45.0B | 0.0% | 0ms | Poor |
 | Llama-3.3-70B | 70.0B | 68.3% | 3142ms | Fair |
 
@@ -97,9 +97,9 @@ Recent work has examined inference cost tradeoffs (Tuli et al., Dong et al.), bu
 
 | Model | Params | Accuracy | Latency | Notes |
 |-------|--------|----------|---------|-------|
-| TinyLLaMA | 0.5B | 0.0% | 0ms | Poor |
+| TinyLLaMA | 0.5B | 93.3% | 5373ms | Excellent |
 | Qwen2.5 | 1.5B | 92.5% | 6734ms | Excellent |
-| Phi-3 | 3.8B | 84.4% | 9391ms | Good |
+| Phi-3 | 3.8B | 72.5% | 11109ms | Good |
 | Mixtral-8x7B | 45.0B | 0.0% | 0ms | Poor |
 | Llama-3.3-70B | 70.0B | 69.2% | 3263ms | Fair |
 
@@ -107,9 +107,9 @@ Recent work has examined inference cost tradeoffs (Tuli et al., Dong et al.), bu
 
 | Model | Params | Accuracy | Latency | Notes |
 |-------|--------|----------|---------|-------|
-| TinyLLaMA | 0.5B | 0.0% | 0ms | Poor |
+| TinyLLaMA | 0.5B | 93.3% | 4736ms | Excellent |
 | Qwen2.5 | 1.5B | 93.3% | 9242ms | Excellent |
-| Phi-3 | 3.8B | 87.8% | 8754ms | Good |
+| Phi-3 | 3.8B | 74.2% | 10380ms | Good |
 | Mixtral-8x7B | 45.0B | 0.0% | 0ms | Poor |
 | Llama-3.3-70B | 70.0B | 66.7% | 3366ms | Fair |
 
@@ -117,9 +117,9 @@ Recent work has examined inference cost tradeoffs (Tuli et al., Dong et al.), bu
 
 | Model | Params | Accuracy | Latency | Notes |
 |-------|--------|----------|---------|-------|
-| TinyLLaMA | 0.5B | 0.0% | 0ms | Poor |
+| TinyLLaMA | 0.5B | 100.0% | 5456ms | Excellent |
 | Qwen2.5 | 1.5B | 94.2% | 6259ms | Excellent |
-| Phi-3 | 3.8B | 83.3% | 20187ms | Good |
+| Phi-3 | 3.8B | 79.6% | 19525ms | Good |
 | Mixtral-8x7B | 45.0B | 0.0% | 0ms | Poor |
 | Llama-3.3-70B | 70.0B | 67.5% | 3317ms | Fair |
 
@@ -155,6 +155,8 @@ Tipping points mark the difficulty threshold where models fail (accuracy < 50%):
 **phi3 mini**:
 | Task | Tipping Point | Accuracy at Threshold |
 |------|---|---|
+| text_generation | None (handles all) | N/A |
+| code_generation | Bin 2 | 46.7% |
 | classification | None (handles all) | N/A |
 | maths | None (handles all) | N/A |
 | summarization | Bin 2 | 33.3% |
@@ -177,12 +179,6 @@ Tipping points mark the difficulty threshold where models fail (accuracy < 50%):
 **tinyllama 1.1b**:
 | Task | Tipping Point | Accuracy at Threshold |
 |------|---|---|
-| text_generation | None (handles all) | N/A |
-| code_generation | None (handles all) | N/A |
-| classification | None (handles all) | N/A |
-| maths | None (handles all) | N/A |
-| summarization | None (handles all) | N/A |
-| retrieval_grounded | None (handles all) | N/A |
 | instruction_following | None (handles all) | N/A |
 | information_extraction | None (handles all) | N/A |
 
@@ -206,21 +202,21 @@ We propose a routing algorithm that selects models based on query difficulty:
 
 | Difficulty | Recommended Model | Accuracy | Rationale |
 |---|---|---|---|
-| Bin 0 (Easy) | Qwen2.5 | 90.0% | Accuracy meets fast-tier threshold; using cheapest/fastest option |
-| Bin 1 (Medium) | Qwen2.5 | 92.5% | Accuracy meets fast-tier threshold; using cheapest/fastest option |
-| Bin 2 (Hard) | Qwen2.5 | 92.5% | Accuracy meets fast-tier threshold; using cheapest/fastest option |
-| Bin 3 (Very Hard) | Qwen2.5 | 93.3% | Accuracy meets fast-tier threshold; using cheapest/fastest option |
-| Bin 4 (Hardest) | Qwen2.5 | 94.2% | Accuracy meets fast-tier threshold; using cheapest/fastest option |
+| Bin 0 (Easy) | TinyLLaMA | 93.3% | Accuracy meets fast-tier threshold; using cheapest/fastest option |
+| Bin 1 (Medium) | TinyLLaMA | 100.0% | Accuracy meets fast-tier threshold; using cheapest/fastest option |
+| Bin 2 (Hard) | TinyLLaMA | 93.3% | Accuracy meets fast-tier threshold; using cheapest/fastest option |
+| Bin 3 (Very Hard) | TinyLLaMA | 93.3% | Accuracy meets fast-tier threshold; using cheapest/fastest option |
+| Bin 4 (Hardest) | TinyLLaMA | 100.0% | Accuracy meets fast-tier threshold; using cheapest/fastest option |
 
 **Validation Results**:
 
 | Difficulty | Model | Achieved Accuracy | Cost Savings vs Best |
 |---|---|---|---|
-| Easy | Qwen2.5 | 90.0% | 40.0x |
-| Medium | Qwen2.5 | 92.5% | 40.0x |
-| Hard | Qwen2.5 | 92.5% | 40.0x |
-| Very Hard | Qwen2.5 | 93.3% | 40.0x |
-| Hardest | Qwen2.5 | 94.2% | 40.0x |
+| Easy | TinyLLaMA | 93.3% | 40.0x |
+| Medium | TinyLLaMA | 100.0% | 40.0x |
+| Hard | TinyLLaMA | 93.3% | 40.0x |
+| Very Hard | TinyLLaMA | 93.3% | 40.0x |
+| Hardest | TinyLLaMA | 100.0% | 40.0x |
 
 ## 5. Discussion
 
@@ -272,5 +268,5 @@ Future work should extend evaluation to additional tasks, model families, and de
 
 ---
 
-*Generated: 2026-03-18 10:00:14*
+*Generated: 2026-03-18 11:35:04*
 *Benchmark Data: 2,400 samples across 5 models × 8 tasks × 5 difficulty bins*

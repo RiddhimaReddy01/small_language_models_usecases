@@ -29,11 +29,11 @@ Routes queries to models based on detected difficulty and accuracy thresholds
 
 | Difficulty | Model | Size | Accuracy | Tier | Rationale |
 |------------|-------|------|----------|------|----------|
-| Bin 0 (Easy) | Qwen2.5 | 1.5B | 90.0% | FAST | Accuracy meets fast-tier threshold; using cheapest/fastest option |
-| Bin 1 (Medium) | Qwen2.5 | 1.5B | 92.5% | FAST | Accuracy meets fast-tier threshold; using cheapest/fastest option |
-| Bin 2 (Hard) | Qwen2.5 | 1.5B | 92.5% | FAST | Accuracy meets fast-tier threshold; using cheapest/fastest option |
-| Bin 3 (Very Hard) | Qwen2.5 | 1.5B | 93.3% | FAST | Accuracy meets fast-tier threshold; using cheapest/fastest option |
-| Bin 4 (Hardest) | Qwen2.5 | 1.5B | 94.2% | FAST | Accuracy meets fast-tier threshold; using cheapest/fastest option |
+| Bin 0 (Easy) | TinyLLaMA | 0.5B | 93.3% | FAST | Accuracy meets fast-tier threshold; using cheapest/fastest option |
+| Bin 1 (Medium) | TinyLLaMA | 0.5B | 100.0% | FAST | Accuracy meets fast-tier threshold; using cheapest/fastest option |
+| Bin 2 (Hard) | TinyLLaMA | 0.5B | 93.3% | FAST | Accuracy meets fast-tier threshold; using cheapest/fastest option |
+| Bin 3 (Very Hard) | TinyLLaMA | 0.5B | 93.3% | FAST | Accuracy meets fast-tier threshold; using cheapest/fastest option |
+| Bin 4 (Hardest) | TinyLLaMA | 0.5B | 100.0% | FAST | Accuracy meets fast-tier threshold; using cheapest/fastest option |
 
 ## Validation Results
 
@@ -41,11 +41,11 @@ Routes queries to models based on detected difficulty and accuracy thresholds
 
 | Bin | Model | Accuracy | Gap vs Best | Cost Savings |
 |-----|-------|----------|-------------|---------------|
-| Easy | Qwen2.5 | 90.0% | -21.7% | 40.0x |
-| Medium | Qwen2.5 | 92.5% | -24.2% | 40.0x |
-| Hard | Qwen2.5 | 92.5% | -23.3% | 40.0x |
-| Very Hard | Qwen2.5 | 93.3% | -26.7% | 40.0x |
-| Hardest | Qwen2.5 | 94.2% | -26.7% | 40.0x |
+| Easy | TinyLLaMA | 93.3% | -25.0% | 40.0x |
+| Medium | TinyLLaMA | 100.0% | -31.7% | 40.0x |
+| Hard | TinyLLaMA | 93.3% | -24.2% | 40.0x |
+| Very Hard | TinyLLaMA | 93.3% | -26.7% | 40.0x |
+| Hardest | TinyLLaMA | 100.0% | -32.5% | 40.0x |
 
 ---
 
@@ -56,14 +56,14 @@ def route_query(detected_difficulty_bin):
     """Route a query to appropriate model based on difficulty"""
 
     if detected_difficulty_bin == 0:
-        return MODEL['Qwen2.5']
+        return MODEL['TinyLLaMA']
     if detected_difficulty_bin == 1:
-        return MODEL['Qwen2.5']
+        return MODEL['TinyLLaMA']
     if detected_difficulty_bin == 2:
-        return MODEL['Qwen2.5']
+        return MODEL['TinyLLaMA']
     if detected_difficulty_bin == 3:
-        return MODEL['Qwen2.5']
+        return MODEL['TinyLLaMA']
     if detected_difficulty_bin == 4:
-        return MODEL['Qwen2.5']
+        return MODEL['TinyLLaMA']
 ```
 

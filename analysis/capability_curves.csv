@@ -9,16 +9,15 @@ text_generation,1,Medium,llama_llama-3.3-70b-versatile,llama_llama-3.3-70b-versa
 text_generation,2,Hard,llama_llama-3.3-70b-versatile,llama_llama-3.3-70b-versatile,Llama-3.3-70B,70.0,LLM,0.0,3127.2244930267334
 text_generation,3,Very Hard,llama_llama-3.3-70b-versatile,llama_llama-3.3-70b-versatile,Llama-3.3-70B,70.0,LLM,0.0,3590.3529802958174
 text_generation,4,Hardest,llama_llama-3.3-70b-versatile,llama_llama-3.3-70b-versatile,Llama-3.3-70B,70.0,LLM,0.0,3322.9982058207197
+text_generation,0,Easy,phi3_mini,phi3_mini,Phi-3,3.8,SLM,0.1666666666666666,17219.039034843445
+text_generation,1,Medium,phi3_mini,phi3_mini,Phi-3,3.8,SLM,0.1428571428571428,17384.32197911399
+text_generation,2,Hard,phi3_mini,phi3_mini,Phi-3,3.8,SLM,0.2666666666666666,16310.730393727621
+text_generation,3,Very Hard,phi3_mini,phi3_mini,Phi-3,3.8,SLM,0.0,15164.263725280762
 text_generation,0,Easy,qwen2.5_1.5b,qwen2.5_1.5b,Qwen2.5,1.5,SLM,1.0,9191.156180699667
 text_generation,1,Medium,qwen2.5_1.5b,qwen2.5_1.5b,Qwen2.5,1.5,SLM,1.0,8858.036788304647
 text_generation,2,Hard,qwen2.5_1.5b,qwen2.5_1.5b,Qwen2.5,1.5,SLM,1.0,8844.12407875061
 text_generation,3,Very Hard,qwen2.5_1.5b,qwen2.5_1.5b,Qwen2.5,1.5,SLM,1.0,9807.49158859253
 text_generation,4,Hardest,qwen2.5_1.5b,qwen2.5_1.5b,Qwen2.5,1.5,SLM,1.0,9146.155103047688
-text_generation,0,Easy,tinyllama_1.1b,tinyllama_1.1b,TinyLLaMA,0.5,SLM,0.0,0.0
-text_generation,1,Medium,tinyllama_1.1b,tinyllama_1.1b,TinyLLaMA,0.5,SLM,0.0,0.0
-text_generation,2,Hard,tinyllama_1.1b,tinyllama_1.1b,TinyLLaMA,0.5,SLM,0.0,0.0
-text_generation,3,Very Hard,tinyllama_1.1b,tinyllama_1.1b,TinyLLaMA,0.5,SLM,0.0,0.0
-text_generation,4,Hardest,tinyllama_1.1b,tinyllama_1.1b,TinyLLaMA,0.5,SLM,0.0,0.0
 code_generation,0,Easy,groq_mixtral-8x7b-32768,groq_mixtral-8x7b-32768,Mixtral-8x7B,45.0,Medium,0.0,0.0
 code_generation,1,Medium,groq_mixtral-8x7b-32768,groq_mixtral-8x7b-32768,Mixtral-8x7B,45.0,Medium,0.0,0.0
 code_generation,2,Hard,groq_mixtral-8x7b-32768,groq_mixtral-8x7b-32768,Mixtral-8x7B,45.0,Medium,0.0,0.0
@@ -29,16 +28,16 @@ code_generation,1,Medium,llama_llama-3.3-70b-versatile,llama_llama-3.3-70b-versa
 code_generation,2,Hard,llama_llama-3.3-70b-versatile,llama_llama-3.3-70b-versatile,Llama-3.3-70B,70.0,LLM,0.0666666666666666,3502.8630256652837
 code_generation,3,Very Hard,llama_llama-3.3-70b-versatile,llama_llama-3.3-70b-versatile,Llama-3.3-70B,70.0,LLM,0.0,3642.585611343384
 code_generation,4,Hardest,llama_llama-3.3-70b-versatile,llama_llama-3.3-70b-versatile,Llama-3.3-70B,70.0,LLM,0.0,3554.20290629069
+code_generation,0,Easy,phi3_mini,phi3_mini,Phi-3,3.8,SLM,0.5,17604.673847556114
+code_generation,1,Medium,phi3_mini,phi3_mini,Phi-3,3.8,SLM,0.6,15846.88016573588
+code_generation,2,Hard,phi3_mini,phi3_mini,Phi-3,3.8,SLM,0.4666666666666667,16214.25290107727
+code_generation,3,Very Hard,phi3_mini,phi3_mini,Phi-3,3.8,SLM,0.6666666666666666,15351.203759511312
+code_generation,4,Hardest,phi3_mini,phi3_mini,Phi-3,3.8,SLM,0.5714285714285714,15555.575268609184
 code_generation,0,Easy,qwen2.5_1.5b,qwen2.5_1.5b,Qwen2.5,1.5,SLM,0.6666666666666666,10073.215373357136
 code_generation,1,Medium,qwen2.5_1.5b,qwen2.5_1.5b,Qwen2.5,1.5,SLM,0.7333333333333333,10394.39435005188
 code_generation,2,Hard,qwen2.5_1.5b,qwen2.5_1.5b,Qwen2.5,1.5,SLM,0.5333333333333333,10746.831782658894
 code_generation,3,Very Hard,qwen2.5_1.5b,qwen2.5_1.5b,Qwen2.5,1.5,SLM,0.6666666666666666,10142.41450627645
 code_generation,4,Hardest,qwen2.5_1.5b,qwen2.5_1.5b,Qwen2.5,1.5,SLM,0.6666666666666666,10082.815742492676
-code_generation,0,Easy,tinyllama_1.1b,tinyllama_1.1b,TinyLLaMA,0.5,SLM,0.0,0.0
-code_generation,1,Medium,tinyllama_1.1b,tinyllama_1.1b,TinyLLaMA,0.5,SLM,0.0,0.0
-code_generation,2,Hard,tinyllama_1.1b,tinyllama_1.1b,TinyLLaMA,0.5,SLM,0.0,0.0
-code_generation,3,Very Hard,tinyllama_1.1b,tinyllama_1.1b,TinyLLaMA,0.5,SLM,0.0,0.0
-code_generation,4,Hardest,tinyllama_1.1b,tinyllama_1.1b,TinyLLaMA,0.5,SLM,0.0,0.0
 classification,0,Easy,groq_mixtral-8x7b-32768,groq_mixtral-8x7b-32768,Mixtral-8x7B,45.0,Medium,0.0,0.0
 classification,1,Medium,groq_mixtral-8x7b-32768,groq_mixtral-8x7b-32768,Mixtral-8x7B,45.0,Medium,0.0,0.0
 classification,2,Hard,groq_mixtral-8x7b-32768,groq_mixtral-8x7b-32768,Mixtral-8x7B,45.0,Medium,0.0,0.0
@@ -59,11 +58,6 @@ classification,1,Medium,qwen2.5_1.5b,qwen2.5_1.5b,Qwen2.5,1.5,SLM,0.933333333333
 classification,2,Hard,qwen2.5_1.5b,qwen2.5_1.5b,Qwen2.5,1.5,SLM,1.0,2664.0320142110186
 classification,3,Very Hard,qwen2.5_1.5b,qwen2.5_1.5b,Qwen2.5,1.5,SLM,1.0,3110.7478459676104
 classification,4,Hardest,qwen2.5_1.5b,qwen2.5_1.5b,Qwen2.5,1.5,SLM,1.0,2957.9160372416177
-classification,0,Easy,tinyllama_1.1b,tinyllama_1.1b,TinyLLaMA,0.5,SLM,0.0,0.0
-classification,1,Medium,tinyllama_1.1b,tinyllama_1.1b,TinyLLaMA,0.5,SLM,0.0,0.0
-classification,2,Hard,tinyllama_1.1b,tinyllama_1.1b,TinyLLaMA,0.5,SLM,0.0,0.0
-classification,3,Very Hard,tinyllama_1.1b,tinyllama_1.1b,TinyLLaMA,0.5,SLM,0.0,0.0
-classification,4,Hardest,tinyllama_1.1b,tinyllama_1.1b,TinyLLaMA,0.5,SLM,0.0,0.0
 maths,0,Easy,groq_mixtral-8x7b-32768,groq_mixtral-8x7b-32768,Mixtral-8x7B,45.0,Medium,0.0,0.0
 maths,1,Medium,groq_mixtral-8x7b-32768,groq_mixtral-8x7b-32768,Mixtral-8x7B,45.0,Medium,0.0,0.0
 maths,2,Hard,groq_mixtral-8x7b-32768,groq_mixtral-8x7b-32768,Mixtral-8x7B,45.0,Medium,0.0,0.0
@@ -84,11 +78,6 @@ maths,1,Medium,qwen2.5_1.5b,qwen2.5_1.5b,Qwen2.5,1.5,SLM,1.0,6597.978417078653
 maths,2,Hard,qwen2.5_1.5b,qwen2.5_1.5b,Qwen2.5,1.5,SLM,1.0,6622.897879282634
 maths,3,Very Hard,qwen2.5_1.5b,qwen2.5_1.5b,Qwen2.5,1.5,SLM,1.0,6370.078420639038
 maths,4,Hardest,qwen2.5_1.5b,qwen2.5_1.5b,Qwen2.5,1.5,SLM,1.0,6770.858414967855
-maths,0,Easy,tinyllama_1.1b,tinyllama_1.1b,TinyLLaMA,0.5,SLM,0.0,0.0
-maths,1,Medium,tinyllama_1.1b,tinyllama_1.1b,TinyLLaMA,0.5,SLM,0.0,0.0
-maths,2,Hard,tinyllama_1.1b,tinyllama_1.1b,TinyLLaMA,0.5,SLM,0.0,0.0
-maths,3,Very Hard,tinyllama_1.1b,tinyllama_1.1b,TinyLLaMA,0.5,SLM,0.0,0.0
-maths,4,Hardest,tinyllama_1.1b,tinyllama_1.1b,TinyLLaMA,0.5,SLM,0.0,0.0
 summarization,0,Easy,groq_mixtral-8x7b-32768,groq_mixtral-8x7b-32768,Mixtral-8x7B,45.0,Medium,0.0,0.0
 summarization,1,Medium,groq_mixtral-8x7b-32768,groq_mixtral-8x7b-32768,Mixtral-8x7B,45.0,Medium,0.0,0.0
 summarization,2,Hard,groq_mixtral-8x7b-32768,groq_mixtral-8x7b-32768,Mixtral-8x7B,45.0,Medium,0.0,0.0
@@ -109,11 +98,6 @@ summarization,1,Medium,qwen2.5_1.5b,qwen2.5_1.5b,Qwen2.5,1.5,SLM,0.9333333333333
 summarization,2,Hard,qwen2.5_1.5b,qwen2.5_1.5b,Qwen2.5,1.5,SLM,0.9333333333333332,11865.933100382486
 summarization,3,Very Hard,qwen2.5_1.5b,qwen2.5_1.5b,Qwen2.5,1.5,SLM,0.9333333333333332,33801.67430241902
 summarization,4,Hardest,qwen2.5_1.5b,qwen2.5_1.5b,Qwen2.5,1.5,SLM,0.9333333333333332,10394.035895665487
-summarization,0,Easy,tinyllama_1.1b,tinyllama_1.1b,TinyLLaMA,0.5,SLM,0.0,0.0
-summarization,1,Medium,tinyllama_1.1b,tinyllama_1.1b,TinyLLaMA,0.5,SLM,0.0,0.0
-summarization,2,Hard,tinyllama_1.1b,tinyllama_1.1b,TinyLLaMA,0.5,SLM,0.0,0.0
-summarization,3,Very Hard,tinyllama_1.1b,tinyllama_1.1b,TinyLLaMA,0.5,SLM,0.0,0.0
-summarization,4,Hardest,tinyllama_1.1b,tinyllama_1.1b,TinyLLaMA,0.5,SLM,0.0,0.0
 retrieval_grounded,0,Easy,groq_mixtral-8x7b-32768,groq_mixtral-8x7b-32768,Mixtral-8x7B,45.0,Medium,0.0,0.0
 retrieval_grounded,1,Medium,groq_mixtral-8x7b-32768,groq_mixtral-8x7b-32768,Mixtral-8x7B,45.0,Medium,0.0,0.0
 retrieval_grounded,2,Hard,groq_mixtral-8x7b-32768,groq_mixtral-8x7b-32768,Mixtral-8x7B,45.0,Medium,0.0,0.0
@@ -134,11 +118,6 @@ retrieval_grounded,1,Medium,qwen2.5_1.5b,qwen2.5_1.5b,Qwen2.5,1.5,SLM,1.0,6215.6
 retrieval_grounded,2,Hard,qwen2.5_1.5b,qwen2.5_1.5b,Qwen2.5,1.5,SLM,0.9333333333333332,4796.731932957967
 retrieval_grounded,3,Very Hard,qwen2.5_1.5b,qwen2.5_1.5b,Qwen2.5,1.5,SLM,0.9333333333333332,3121.727752685547
 retrieval_grounded,4,Hardest,qwen2.5_1.5b,qwen2.5_1.5b,Qwen2.5,1.5,SLM,1.0,3296.5705235799155
-retrieval_grounded,0,Easy,tinyllama_1.1b,tinyllama_1.1b,TinyLLaMA,0.5,SLM,0.0,0.0
-retrieval_grounded,1,Medium,tinyllama_1.1b,tinyllama_1.1b,TinyLLaMA,0.5,SLM,0.0,0.0
-retrieval_grounded,2,Hard,tinyllama_1.1b,tinyllama_1.1b,TinyLLaMA,0.5,SLM,0.0,0.0
-retrieval_grounded,3,Very Hard,tinyllama_1.1b,tinyllama_1.1b,TinyLLaMA,0.5,SLM,0.0,0.0
-retrieval_grounded,4,Hardest,tinyllama_1.1b,tinyllama_1.1b,TinyLLaMA,0.5,SLM,0.0,0.0
 instruction_following,0,Easy,groq_mixtral-8x7b-32768,groq_mixtral-8x7b-32768,Mixtral-8x7B,45.0,Medium,0.0,0.0
 instruction_following,1,Medium,groq_mixtral-8x7b-32768,groq_mixtral-8x7b-32768,Mixtral-8x7B,45.0,Medium,0.0,0.0
 instruction_following,2,Hard,groq_mixtral-8x7b-32768,groq_mixtral-8x7b-32768,Mixtral-8x7B,45.0,Medium,0.0,0.0
@@ -159,11 +138,11 @@ instruction_following,1,Medium,qwen2.5_1.5b,qwen2.5_1.5b,Qwen2.5,1.5,SLM,0.8,726
 instruction_following,2,Hard,qwen2.5_1.5b,qwen2.5_1.5b,Qwen2.5,1.5,SLM,1.0,6188.931830724081
 instruction_following,3,Very Hard,qwen2.5_1.5b,qwen2.5_1.5b,Qwen2.5,1.5,SLM,0.9333333333333332,5416.025686264038
 instruction_following,4,Hardest,qwen2.5_1.5b,qwen2.5_1.5b,Qwen2.5,1.5,SLM,0.9333333333333332,5291.221348444621
-instruction_following,0,Easy,tinyllama_1.1b,tinyllama_1.1b,TinyLLaMA,0.5,SLM,0.0,0.0
-instruction_following,1,Medium,tinyllama_1.1b,tinyllama_1.1b,TinyLLaMA,0.5,SLM,0.0,0.0
-instruction_following,2,Hard,tinyllama_1.1b,tinyllama_1.1b,TinyLLaMA,0.5,SLM,0.0,0.0
-instruction_following,3,Very Hard,tinyllama_1.1b,tinyllama_1.1b,TinyLLaMA,0.5,SLM,0.0,0.0
-instruction_following,4,Hardest,tinyllama_1.1b,tinyllama_1.1b,TinyLLaMA,0.5,SLM,0.0,0.0
+instruction_following,0,Easy,tinyllama_1.1b,tinyllama_1.1b,TinyLLaMA,0.5,SLM,0.9333333333333332,5288.266785939535
+instruction_following,1,Medium,tinyllama_1.1b,tinyllama_1.1b,TinyLLaMA,0.5,SLM,1.0,5948.471546173096
+instruction_following,2,Hard,tinyllama_1.1b,tinyllama_1.1b,TinyLLaMA,0.5,SLM,0.9333333333333332,5283.293342590332
+instruction_following,3,Very Hard,tinyllama_1.1b,tinyllama_1.1b,TinyLLaMA,0.5,SLM,1.0,4729.075892766316
+instruction_following,4,Hardest,tinyllama_1.1b,tinyllama_1.1b,TinyLLaMA,0.5,SLM,1.0,5451.39741897583
 information_extraction,0,Easy,groq_mixtral-8x7b-32768,groq_mixtral-8x7b-32768,Mixtral-8x7B,45.0,Medium,0.0,0.0
 information_extraction,1,Medium,groq_mixtral-8x7b-32768,groq_mixtral-8x7b-32768,Mixtral-8x7B,45.0,Medium,0.0,0.0
 information_extraction,2,Hard,groq_mixtral-8x7b-32768,groq_mixtral-8x7b-32768,Mixtral-8x7B,45.0,Medium,0.0,0.0
@@ -184,8 +163,8 @@ information_extraction,1,Medium,qwen2.5_1.5b,qwen2.5_1.5b,Qwen2.5,1.5,SLM,1.0,18
 information_extraction,2,Hard,qwen2.5_1.5b,qwen2.5_1.5b,Qwen2.5,1.5,SLM,1.0,2143.9622243245444
 information_extraction,3,Very Hard,qwen2.5_1.5b,qwen2.5_1.5b,Qwen2.5,1.5,SLM,1.0,2168.104203542073
 information_extraction,4,Hardest,qwen2.5_1.5b,qwen2.5_1.5b,Qwen2.5,1.5,SLM,1.0,2131.947724024455
-information_extraction,0,Easy,tinyllama_1.1b,tinyllama_1.1b,TinyLLaMA,0.5,SLM,0.0,0.0
-information_extraction,1,Medium,tinyllama_1.1b,tinyllama_1.1b,TinyLLaMA,0.5,SLM,0.0,0.0
-information_extraction,2,Hard,tinyllama_1.1b,tinyllama_1.1b,TinyLLaMA,0.5,SLM,0.0,0.0
-information_extraction,3,Very Hard,tinyllama_1.1b,tinyllama_1.1b,TinyLLaMA,0.5,SLM,0.0,0.0
-information_extraction,4,Hardest,tinyllama_1.1b,tinyllama_1.1b,TinyLLaMA,0.5,SLM,0.0,0.0
+information_extraction,0,Easy,tinyllama_1.1b,tinyllama_1.1b,TinyLLaMA,0.5,SLM,0.9333333333333332,5347.276941935222
+information_extraction,1,Medium,tinyllama_1.1b,tinyllama_1.1b,TinyLLaMA,0.5,SLM,1.0,6017.418464024861
+information_extraction,2,Hard,tinyllama_1.1b,tinyllama_1.1b,TinyLLaMA,0.5,SLM,0.9333333333333332,5462.559715906779
+information_extraction,3,Very Hard,tinyllama_1.1b,tinyllama_1.1b,TinyLLaMA,0.5,SLM,0.8666666666666667,4742.549689610799
+information_extraction,4,Hardest,tinyllama_1.1b,tinyllama_1.1b,TinyLLaMA,0.5,SLM,1.0,5460.525528589885

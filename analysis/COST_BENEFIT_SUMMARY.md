@@ -14,9 +14,9 @@
 
 | Model | Avg Latency (ms) | Tokens/sec |
 |-------|-----------------|------------|
-| TinyLLaMA | 5.0 | 200 |
+| TinyLLaMA | 5317.8 | 200 |
 | Qwen2.5 | 6863.0 | 100 |
-| Phi-3 | 8830.3 | 80 |
+| Phi-3 | 10975.7 | 80 |
 | Mixtral-8x7B | 2.0 | 5000 |
 | Llama-3.3-70B | 2963.6 | 3000 |
 
@@ -27,16 +27,10 @@
 Recommended models (best tradeoff):
 
 - **TinyLLaMA (0.5B)**
-  - Accuracy: 0.0%
-  - Latency: 5.0ms
+  - Accuracy: 93.3%
+  - Latency: 5317.8ms
   - Cost: $0.00/1K tokens
-  - Score: 200.40
-
-- **Qwen2.5 (1.5B)**
-  - Accuracy: 90.0%
-  - Latency: 6863.0ms
-  - Cost: $0.00/1K tokens
-  - Score: 200.54
+  - Score: 200.56
 
 - **Mixtral-8x7B (45.0B)**
   - Accuracy: 0.0%
@@ -55,16 +49,10 @@ Recommended models (best tradeoff):
 Recommended models (best tradeoff):
 
 - **TinyLLaMA (0.5B)**
-  - Accuracy: 0.0%
-  - Latency: 5.0ms
+  - Accuracy: 100.0%
+  - Latency: 5982.9ms
   - Cost: $0.00/1K tokens
-  - Score: 200.40
-
-- **Qwen2.5 (1.5B)**
-  - Accuracy: 92.5%
-  - Latency: 6344.5ms
-  - Cost: $0.00/1K tokens
-  - Score: 200.56
+  - Score: 200.60
 
 - **Mixtral-8x7B (45.0B)**
   - Accuracy: 0.0%
@@ -83,14 +71,8 @@ Recommended models (best tradeoff):
 Recommended models (best tradeoff):
 
 - **TinyLLaMA (0.5B)**
-  - Accuracy: 0.0%
-  - Latency: 5.0ms
-  - Cost: $0.00/1K tokens
-  - Score: 200.40
-
-- **Qwen2.5 (1.5B)**
-  - Accuracy: 92.5%
-  - Latency: 6734.2ms
+  - Accuracy: 93.3%
+  - Latency: 5372.9ms
   - Cost: $0.00/1K tokens
   - Score: 200.56
 
@@ -111,22 +93,10 @@ Recommended models (best tradeoff):
 Recommended models (best tradeoff):
 
 - **TinyLLaMA (0.5B)**
-  - Accuracy: 0.0%
-  - Latency: 5.0ms
-  - Cost: $0.00/1K tokens
-  - Score: 200.40
-
-- **Qwen2.5 (1.5B)**
   - Accuracy: 93.3%
-  - Latency: 9242.3ms
+  - Latency: 4735.8ms
   - Cost: $0.00/1K tokens
   - Score: 200.56
-
-- **Phi-3 (3.8B)**
-  - Accuracy: 87.8%
-  - Latency: 8754.3ms
-  - Cost: $0.00/1K tokens
-  - Score: 200.53
 
 - **Mixtral-8x7B (45.0B)**
   - Accuracy: 0.0%
@@ -145,16 +115,10 @@ Recommended models (best tradeoff):
 Recommended models (best tradeoff):
 
 - **TinyLLaMA (0.5B)**
-  - Accuracy: 0.0%
-  - Latency: 5.0ms
+  - Accuracy: 100.0%
+  - Latency: 5456.0ms
   - Cost: $0.00/1K tokens
-  - Score: 200.40
-
-- **Qwen2.5 (1.5B)**
-  - Accuracy: 94.2%
-  - Latency: 6258.9ms
-  - Cost: $0.00/1K tokens
-  - Score: 200.57
+  - Score: 200.60
 
 - **Mixtral-8x7B (45.0B)**
   - Accuracy: 0.0%
