@@ -5,11 +5,11 @@
   "instruction_wrapper": "Q: {input}\nA:",
   "temperature": 0.7,
   "top_p": 0.9,
-  "max_tokens": 200,
+  "max_tokens": 512,
   "stop_tokens": [
     "\n\n"
   ],
   "parsing_rules": {},
   "seed": 42,
-  "timestamp_created": "2026-03-18T11:12:41.778453"
+  "timestamp_created": "2026-03-18T12:16:04.896974"
 }
