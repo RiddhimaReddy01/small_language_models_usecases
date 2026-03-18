@@ -354,13 +354,21 @@ class BenchmarkInferenceEngine:
         dataset_manifest: DatasetManifest,
         prompt_config: PromptConfig,
         output_dir: Path,
-        backend: str = "ollama"
+        backend: str = None
     ):
         self.task = task
         self.model_name = model_name
         self.dataset_manifest = dataset_manifest
         self.prompt_config = prompt_config
         self.output_dir = Path(output_dir)
+        # Auto-detect backend from model name if not specified
+        if backend is None:
+            if model_name.startswith("groq_"):
+                backend = "groq"
+            elif model_name.startswith("llama_"):
+                backend = "groq"
+            else:
+                backend = "ollama"
         self.backend = backend
 
         # Create run
@@ -438,7 +446,7 @@ class BenchmarkInferenceEngine:
     def _infer_ollama(self, prompt: str) -> str:
         """Ollama inference"""
         import ollama
-        client = ollama.Client()
+        client = ollama.Client(timeout=120.0)  # 120s timeout for local models
         response = client.generate(
             model=self.model_name,
             prompt=prompt,
@@ -460,9 +468,11 @@ class BenchmarkInferenceEngine:
             raise RuntimeError("GROQ_API_KEY environment variable not set")
 
         client = Groq(api_key=api_key)
+        # Strip "groq_" prefix if present for API call
+        model_id = self.model_name.replace("groq_", "") if self.model_name.startswith("groq_") else self.model_name
         message = client.chat.completions.create(
             messages=[{"role": "user", "content": prompt}],
-            model=self.model_name,
+            model=model_id,
             temperature=self.prompt_config.temperature,
             top_p=self.prompt_config.top_p,
             max_tokens=self.prompt_config.max_tokens,

@@ -155,14 +155,13 @@ def run_task(task: str, model: str, examples_csv: Path, task_num: int, total: in
 
     print(f"[OUTPUT] {task_output}\n")
 
-    # Create engine
+    # Create engine (backend auto-detected from model name)
     engine = BenchmarkInferenceEngine(
         task=task,
         model_name=model,
         dataset_manifest=dataset_manifest,
         prompt_config=prompt_config,
-        output_dir=task_output,
-        backend=BACKEND
+        output_dir=task_output
     )
 
     # Run inference
