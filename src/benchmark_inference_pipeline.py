@@ -468,8 +468,12 @@ class BenchmarkInferenceEngine:
             raise RuntimeError("GROQ_API_KEY environment variable not set")
 
         client = Groq(api_key=api_key)
-        # Strip "groq_" prefix if present for API call
-        model_id = self.model_name.replace("groq_", "") if self.model_name.startswith("groq_") else self.model_name
+        # Strip "groq_" and "llama_" prefixes for Groq API call
+        model_id = self.model_name
+        if model_id.startswith("groq_"):
+            model_id = model_id[5:]  # Remove "groq_"
+        if model_id.startswith("llama_"):
+            model_id = model_id[6:]  # Remove "llama_"
         message = client.chat.completions.create(
             messages=[{"role": "user", "content": prompt}],
             model=model_id,
