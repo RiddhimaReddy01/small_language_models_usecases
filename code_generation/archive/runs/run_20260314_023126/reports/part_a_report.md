@@ -1,7 +1,7 @@
 # Part A - Benchmark Setup
 
 - Benchmark: `code_generation`
-- Run path: `c:\Users\riddh\OneDrive\Desktop\SLM use cases\code_generation\archive\runs\run_20260314_023126`
+- Run path: `code_generation\archive\runs\run_20260314_023126`
 
 ## Task Definition
 

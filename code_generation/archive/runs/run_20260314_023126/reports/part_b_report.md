@@ -1,7 +1,7 @@
 # Part B - SDDF Analysis
 
 - Benchmark: `code_generation`
-- Run path: `c:\Users\riddh\OneDrive\Desktop\SLM use cases\code_generation\archive\runs\run_20260314_023126`
+- Run path: `code_generation\archive\runs\run_20260314_023126`
 - Interpretation note: sections marked `partial` are inference-augmented summaries derived from historical benchmark artifacts rather than fresh matched reruns.
 
 ## SDDF: Dominant Difficulty Dimension

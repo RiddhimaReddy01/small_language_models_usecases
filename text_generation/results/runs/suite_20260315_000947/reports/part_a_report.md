@@ -1,7 +1,7 @@
 # Part A - Benchmark Setup
 
 - Benchmark: `text_generation`
-- Run path: `C:\Users\riddh\OneDrive\Desktop\SLM use cases\text_generation\results\runs\suite_20260315_000947`
+- Run path: `text_generation\results\runs\suite_20260315_000947`
 
 ## Task Definition
 
@@ -74,8 +74,8 @@
 
 ```json
 {
-  "benchmark_summary_path": "C:\\Users\\riddh\\OneDrive\\Desktop\\SLM use cases\\text_generation\\results\\runs\\suite_20260315_000947\\benchmark_summary.json",
-  "metrics_tables_path": "C:\\Users\\riddh\\OneDrive\\Desktop\\SLM use cases\\text_generation\\results\\runs\\suite_20260315_000947\\metrics_tables.md"
+  "benchmark_summary_path": null,
+  "metrics_tables_path": null
 }
 ```
 

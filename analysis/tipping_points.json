@@ -1,0 +1,202 @@
+{
+  "tinyllama_1.1b": {
+    "text_generation": {
+      "tipping_bin": 0,
+      "bin_name": "Easy",
+      "accuracy_at_threshold": 0.0
+    },
+    "code_generation": {
+      "tipping_bin": 0,
+      "bin_name": "Easy",
+      "accuracy_at_threshold": 0.0
+    },
+    "classification": {
+      "tipping_bin": 0,
+      "bin_name": "Easy",
+      "accuracy_at_threshold": 0.0
+    },
+    "maths": {
+      "tipping_bin": 0,
+      "bin_name": "Easy",
+      "accuracy_at_threshold": 0.0
+    },
+    "summarization": {
+      "tipping_bin": 0,
+      "bin_name": "Easy",
+      "accuracy_at_threshold": 0.0
+    },
+    "retrieval_grounded": {
+      "tipping_bin": 0,
+      "bin_name": "Easy",
+      "accuracy_at_threshold": 0.0
+    },
+    "instruction_following": {
+      "tipping_bin": 0,
+      "bin_name": "Easy",
+      "accuracy_at_threshold": 0.0
+    },
+    "information_extraction": {
+      "tipping_bin": 0,
+      "bin_name": "Easy",
+      "accuracy_at_threshold": 0.0
+    }
+  },
+  "qwen2.5_1.5b": {
+    "text_generation": {
+      "tipping_bin": null,
+      "bin_name": "No tipping point",
+      "note": "Model handles all difficulty levels above threshold"
+    },
+    "code_generation": {
+      "tipping_bin": null,
+      "bin_name": "No tipping point",
+      "note": "Model handles all difficulty levels above threshold"
+    },
+    "classification": {
+      "tipping_bin": null,
+      "bin_name": "No tipping point",
+      "note": "Model handles all difficulty levels above threshold"
+    },
+    "maths": {
+      "tipping_bin": null,
+      "bin_name": "No tipping point",
+      "note": "Model handles all difficulty levels above threshold"
+    },
+    "summarization": {
+      "tipping_bin": null,
+      "bin_name": "No tipping point",
+      "note": "Model handles all difficulty levels above threshold"
+    },
+    "retrieval_grounded": {
+      "tipping_bin": null,
+      "bin_name": "No tipping point",
+      "note": "Model handles all difficulty levels above threshold"
+    },
+    "instruction_following": {
+      "tipping_bin": null,
+      "bin_name": "No tipping point",
+      "note": "Model handles all difficulty levels above threshold"
+    },
+    "information_extraction": {
+      "tipping_bin": null,
+      "bin_name": "No tipping point",
+      "note": "Model handles all difficulty levels above threshold"
+    }
+  },
+  "phi3_mini": {
+    "classification": {
+      "tipping_bin": null,
+      "bin_name": "No tipping point",
+      "note": "Model handles all difficulty levels above threshold"
+    },
+    "maths": {
+      "tipping_bin": null,
+      "bin_name": "No tipping point",
+      "note": "Model handles all difficulty levels above threshold"
+    },
+    "summarization": {
+      "tipping_bin": 2,
+      "bin_name": "Hard",
+      "accuracy_at_threshold": 0.3333333333333333
+    },
+    "retrieval_grounded": {
+      "tipping_bin": null,
+      "bin_name": "No tipping point",
+      "note": "Model handles all difficulty levels above threshold"
+    },
+    "instruction_following": {
+      "tipping_bin": null,
+      "bin_name": "No tipping point",
+      "note": "Model handles all difficulty levels above threshold"
+    },
+    "information_extraction": {
+      "tipping_bin": null,
+      "bin_name": "No tipping point",
+      "note": "Model handles all difficulty levels above threshold"
+    }
+  },
+  "groq_mixtral-8x7b-32768": {
+    "text_generation": {
+      "tipping_bin": 0,
+      "bin_name": "Easy",
+      "accuracy_at_threshold": 0.0
+    },
+    "code_generation": {
+      "tipping_bin": 0,
+      "bin_name": "Easy",
+      "accuracy_at_threshold": 0.0
+    },
+    "classification": {
+      "tipping_bin": 0,
+      "bin_name": "Easy",
+      "accuracy_at_threshold": 0.0
+    },
+    "maths": {
+      "tipping_bin": 0,
+      "bin_name": "Easy",
+      "accuracy_at_threshold": 0.0
+    },
+    "summarization": {
+      "tipping_bin": 0,
+      "bin_name": "Easy",
+      "accuracy_at_threshold": 0.0
+    },
+    "retrieval_grounded": {
+      "tipping_bin": 0,
+      "bin_name": "Easy",
+      "accuracy_at_threshold": 0.0
+    },
+    "instruction_following": {
+      "tipping_bin": 0,
+      "bin_name": "Easy",
+      "accuracy_at_threshold": 0.0
+    },
+    "information_extraction": {
+      "tipping_bin": 0,
+      "bin_name": "Easy",
+      "accuracy_at_threshold": 0.0
+    }
+  },
+  "llama_llama-3.3-70b-versatile": {
+    "text_generation": {
+      "tipping_bin": 0,
+      "bin_name": "Easy",
+      "accuracy_at_threshold": 0.0
+    },
+    "code_generation": {
+      "tipping_bin": 0,
+      "bin_name": "Easy",
+      "accuracy_at_threshold": 0.0666666666666666
+    },
+    "classification": {
+      "tipping_bin": null,
+      "bin_name": "No tipping point",
+      "note": "Model handles all difficulty levels above threshold"
+    },
+    "maths": {
+      "tipping_bin": null,
+      "bin_name": "No tipping point",
+      "note": "Model handles all difficulty levels above threshold"
+    },
+    "summarization": {
+      "tipping_bin": null,
+      "bin_name": "No tipping point",
+      "note": "Model handles all difficulty levels above threshold"
+    },
+    "retrieval_grounded": {
+      "tipping_bin": null,
+      "bin_name": "No tipping point",
+      "note": "Model handles all difficulty levels above threshold"
+    },
+    "instruction_following": {
+      "tipping_bin": null,
+      "bin_name": "No tipping point",
+      "note": "Model handles all difficulty levels above threshold"
+    },
+    "information_extraction": {
+      "tipping_bin": null,
+      "bin_name": "No tipping point",
+      "note": "Model handles all difficulty levels above threshold"
+    }
+  }
+}

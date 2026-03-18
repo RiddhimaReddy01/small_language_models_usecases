@@ -1,0 +1,76 @@
+example_id,sample_id,difficulty_bin,difficulty_score,input_text,model_size
+maths_0,sample_0,0,1.003828302581013,Solve: 2x + 5 = 13 (Example 1),0.5B
+maths_1,sample_1,0,0.012156629708674371,Calculate: (12 + 8) * 3 - 5 (Example 2),0.5B
+maths_2,sample_2,0,0.3173652960997182,What is the square root of 144? (Example 3),0.5B
+maths_3,sample_3,0,0.5742164815696541,Solve: 3x^2 + 2x - 1 = 0 (Example 4),0.5B
+maths_4,sample_4,0,0.7995891892924227,Calculate: (5! + 3!) / 4 (Example 5),0.5B
+maths_5,sample_5,0,0.2530855938675443,Solve: 2x + 5 = 13 (Example 6),0.5B
+maths_6,sample_6,0,1.3413725552092037,Calculate: (12 + 8) * 3 - 5 (Example 7),0.5B
+maths_7,sample_7,0,0.9287715031721206,What is the square root of 144? (Example 8),0.5B
+maths_8,sample_8,0,0.05221717730919345,Solve: 3x^2 + 2x - 1 = 0 (Example 9),0.5B
+maths_9,sample_9,0,0.3146293795224094,Calculate: (5! + 3!) / 4 (Example 10),0.5B
+maths_10,sample_10,0,0.4964704879720665,Solve: 2x + 5 = 13 (Example 11),0.5B
+maths_11,sample_11,0,1.4030562962380977,Calculate: (12 + 8) * 3 - 5 (Example 12),0.5B
+maths_12,sample_12,0,0.9201549029083812,What is the square root of 144? (Example 13),0.5B
+maths_13,sample_13,0,0.32036751983769696,Solve: 3x^2 + 2x - 1 = 0 (Example 14),0.5B
+maths_14,sample_14,0,1.4355842145072644,Calculate: (5! + 3!) / 4 (Example 15),0.5B
+maths_15,sample_15,1,3.4342499148782935,Solve: 2x + 5 = 13 (Example 1),0.5B
+maths_16,sample_16,1,3.256824747638217,Calculate: (12 + 8) * 3 - 5 (Example 2),0.5B
+maths_17,sample_17,1,3.248628101687502,What is the square root of 144? (Example 3),0.5B
+maths_18,sample_18,1,2.935469433292139,Solve: 3x^2 + 2x - 1 = 0 (Example 4),0.5B
+maths_19,sample_19,1,2.9779629473147984,Calculate: (5! + 3!) / 4 (Example 5),0.5B
+maths_20,sample_20,1,2.911576633285942,Solve: 2x + 5 = 13 (Example 6),0.5B
+maths_21,sample_21,1,3.283300518858586,Calculate: (12 + 8) * 3 - 5 (Example 7),0.5B
+maths_22,sample_22,1,2.247003426853575,What is the square root of 144? (Example 8),0.5B
+maths_23,sample_23,1,3.115140171092343,Solve: 3x^2 + 2x - 1 = 0 (Example 9),0.5B
+maths_24,sample_24,1,2.941670151145207,Calculate: (5! + 3!) / 4 (Example 10),0.5B
+maths_25,sample_25,1,3.0981202060601456,Solve: 2x + 5 = 13 (Example 11),0.5B
+maths_26,sample_26,1,2.271199661140591,Calculate: (12 + 8) * 3 - 5 (Example 12),0.5B
+maths_27,sample_27,1,2.6240505874968827,What is the square root of 144? (Example 13),0.5B
+maths_28,sample_28,1,2.1138234569454,Solve: 3x^2 + 2x - 1 = 0 (Example 14),0.5B
+maths_29,sample_29,1,2.2085027097786742,Calculate: (5! + 3!) / 4 (Example 15),0.5B
+maths_30,sample_30,2,5.039916514172447,Solve: 2x + 5 = 13 (Example 1),0.5B
+maths_31,sample_31,2,4.453570093491375,Calculate: (12 + 8) * 3 - 5 (Example 2),0.5B
+maths_32,sample_32,2,4.900578037495518,What is the square root of 144? (Example 3),0.5B
+maths_33,sample_33,2,4.965626392243043,Solve: 3x^2 + 2x - 1 = 0 (Example 4),0.5B
+maths_34,sample_34,2,5.2400341509018435,Calculate: (5! + 3!) / 4 (Example 5),0.5B
+maths_35,sample_35,2,5.256519628020664,Solve: 2x + 5 = 13 (Example 6),0.5B
+maths_36,sample_36,2,4.628574251374596,Calculate: (12 + 8) * 3 - 5 (Example 7),0.5B
+maths_37,sample_37,2,4.56909244402172,What is the square root of 144? (Example 8),0.5B
+maths_38,sample_38,2,5.260395089821116,Solve: 3x^2 + 2x - 1 = 0 (Example 9),0.5B
+maths_39,sample_39,2,4.496578567727149,Calculate: (5! + 3!) / 4 (Example 10),0.5B
+maths_40,sample_40,2,4.633447309145842,Solve: 2x + 5 = 13 (Example 11),0.5B
+maths_41,sample_41,2,4.085353352946338,Calculate: (12 + 8) * 3 - 5 (Example 12),0.5B
+maths_42,sample_42,2,5.212882944159372,What is the square root of 144? (Example 13),0.5B
+maths_43,sample_43,2,4.406154023743627,Solve: 3x^2 + 2x - 1 = 0 (Example 14),0.5B
+maths_44,sample_44,2,4.595307396192077,Calculate: (5! + 3!) / 4 (Example 15),0.5B
+maths_45,sample_45,3,6.042407196498871,Solve: 2x + 5 = 13 (Example 1),0.5B
+maths_46,sample_46,3,7.086753976893109,Calculate: (12 + 8) * 3 - 5 (Example 2),0.5B
+maths_47,sample_47,3,6.4896090133554365,What is the square root of 144? (Example 3),0.5B
+maths_48,sample_48,3,6.4479087554910315,Solve: 3x^2 + 2x - 1 = 0 (Example 4),0.5B
+maths_49,sample_49,3,6.313988543689328,Calculate: (5! + 3!) / 4 (Example 5),0.5B
+maths_50,sample_50,3,6.2175171502832,Solve: 2x + 5 = 13 (Example 6),0.5B
+maths_51,sample_51,3,6.004228528950626,Calculate: (12 + 8) * 3 - 5 (Example 7),0.5B
+maths_52,sample_52,3,7.41235957310894,What is the square root of 144? (Example 8),0.5B
+maths_53,sample_53,3,6.675015939173928,Solve: 3x^2 + 2x - 1 = 0 (Example 9),0.5B
+maths_54,sample_54,3,6.210499692266123,Calculate: (5! + 3!) / 4 (Example 10),0.5B
+maths_55,sample_55,3,6.6529728340238155,Solve: 2x + 5 = 13 (Example 11),0.5B
+maths_56,sample_56,3,6.822465585323354,Calculate: (12 + 8) * 3 - 5 (Example 12),0.5B
+maths_57,sample_57,3,7.456746213059507,What is the square root of 144? (Example 13),0.5B
+maths_58,sample_58,3,6.134840178319023,Solve: 3x^2 + 2x - 1 = 0 (Example 14),0.5B
+maths_59,sample_59,3,7.375897633774121,Calculate: (5! + 3!) / 4 (Example 15),0.5B
+maths_60,sample_60,4,8.244049283388634,Solve: 2x + 5 = 13 (Example 1),0.5B
+maths_61,sample_61,4,9.315208531028249,Calculate: (12 + 8) * 3 - 5 (Example 2),0.5B
+maths_62,sample_62,4,8.690562817708633,What is the square root of 144? (Example 3),0.5B
+maths_63,sample_63,4,8.02021708597885,Solve: 3x^2 + 2x - 1 = 0 (Example 4),0.5B
+maths_64,sample_64,4,8.378716996171805,Calculate: (5! + 3!) / 4 (Example 5),0.5B
+maths_65,sample_65,4,9.16423787418794,Solve: 2x + 5 = 13 (Example 6),0.5B
+maths_66,sample_66,4,8.776833443017395,Calculate: (12 + 8) * 3 - 5 (Example 7),0.5B
+maths_67,sample_67,4,8.333412517652981,What is the square root of 144? (Example 8),0.5B
+maths_68,sample_68,4,8.59108736157365,Solve: 3x^2 + 2x - 1 = 0 (Example 9),0.5B
+maths_69,sample_69,4,9.106089747891495,Calculate: (5! + 3!) / 4 (Example 10),0.5B
+maths_70,sample_70,4,9.259068403317663,Solve: 2x + 5 = 13 (Example 11),0.5B
+maths_71,sample_71,4,8.487537417977888,Calculate: (12 + 8) * 3 - 5 (Example 12),0.5B
+maths_72,sample_72,4,8.403174023360629,What is the square root of 144? (Example 13),0.5B
+maths_73,sample_73,4,9.262480007256412,Solve: 3x^2 + 2x - 1 = 0 (Example 14),0.5B
+maths_74,sample_74,4,8.092814973117116,Calculate: (5! + 3!) / 4 (Example 15),0.5B

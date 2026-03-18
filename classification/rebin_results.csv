@@ -1,0 +1,76 @@
+example_id,sample_id,difficulty_bin,difficulty_score,input_text,model_size
+classification_0,sample_0,0,0.828387383615854,Classify sentiment: 'This movie was amazing!'  (Example 1),0.5B
+classification_1,sample_1,0,1.1209720164977688,"Classify sentiment: 'Terrible experience, never again' (Example 2)",0.5B
+classification_2,sample_2,0,0.22408824277711553,"Classify sentiment: 'It was okay, nothing special' (Example 3)",0.5B
+classification_3,sample_3,0,0.6235097900955644,Categorize text: Political or Sports? (Example 4),0.5B
+classification_4,sample_4,0,1.497192257982971,Is this email spam or not spam? (Example 5),0.5B
+classification_5,sample_5,0,1.1601226137021636,Classify sentiment: 'This movie was amazing!'  (Example 6),0.5B
+classification_6,sample_6,0,0.20395750250871297,"Classify sentiment: 'Terrible experience, never again' (Example 7)",0.5B
+classification_7,sample_7,0,1.082601657177313,"Classify sentiment: 'It was okay, nothing special' (Example 8)",0.5B
+classification_8,sample_8,0,1.0727913131750664,Categorize text: Political or Sports? (Example 9),0.5B
+classification_9,sample_9,0,1.2609437335371476,Is this email spam or not spam? (Example 10),0.5B
+classification_10,sample_10,0,1.14295400096672,Classify sentiment: 'This movie was amazing!'  (Example 11),0.5B
+classification_11,sample_11,0,0.8251882289427968,"Classify sentiment: 'Terrible experience, never again' (Example 12)",0.5B
+classification_12,sample_12,0,0.17722502983625393,"Classify sentiment: 'It was okay, nothing special' (Example 13)",0.5B
+classification_13,sample_13,0,1.4994616998912305,Categorize text: Political or Sports? (Example 14),0.5B
+classification_14,sample_14,0,0.44306912916891356,Is this email spam or not spam? (Example 15),0.5B
+classification_15,sample_15,1,2.5064969260259025,Classify sentiment: 'This movie was amazing!'  (Example 1),0.5B
+classification_16,sample_16,1,3.204754123439871,"Classify sentiment: 'Terrible experience, never again' (Example 2)",0.5B
+classification_17,sample_17,1,3.441244225907419,"Classify sentiment: 'It was okay, nothing special' (Example 3)",0.5B
+classification_18,sample_18,1,3.089428660306375,Categorize text: Political or Sports? (Example 4),0.5B
+classification_19,sample_19,1,2.144892106741734,Is this email spam or not spam? (Example 5),0.5B
+classification_20,sample_20,1,2.108632597073158,Classify sentiment: 'This movie was amazing!'  (Example 6),0.5B
+classification_21,sample_21,1,2.861140806221392,"Classify sentiment: 'Terrible experience, never again' (Example 7)",0.5B
+classification_22,sample_22,1,3.302969722177277,"Classify sentiment: 'It was okay, nothing special' (Example 8)",0.5B
+classification_23,sample_23,1,2.5866256011964346,Categorize text: Political or Sports? (Example 9),0.5B
+classification_24,sample_24,1,2.8803377749059837,Is this email spam or not spam? (Example 10),0.5B
+classification_25,sample_25,1,3.390814003476243,Classify sentiment: 'This movie was amazing!'  (Example 11),0.5B
+classification_26,sample_26,1,2.8288835438975735,"Classify sentiment: 'Terrible experience, never again' (Example 12)",0.5B
+classification_27,sample_27,1,2.715130739732663,"Classify sentiment: 'It was okay, nothing special' (Example 13)",0.5B
+classification_28,sample_28,1,3.455825640729955,Categorize text: Political or Sports? (Example 14),0.5B
+classification_29,sample_29,1,2.7029173714123553,Is this email spam or not spam? (Example 15),0.5B
+classification_30,sample_30,2,5.0275160447726215,Classify sentiment: 'This movie was amazing!'  (Example 1),0.5B
+classification_31,sample_31,2,4.206057547224372,"Classify sentiment: 'Terrible experience, never again' (Example 2)",0.5B
+classification_32,sample_32,2,5.442915944826428,"Classify sentiment: 'It was okay, nothing special' (Example 3)",0.5B
+classification_33,sample_33,2,5.00131089144552,Categorize text: Political or Sports? (Example 4),0.5B
+classification_34,sample_34,2,5.320199388164427,Is this email spam or not spam? (Example 5),0.5B
+classification_35,sample_35,2,5.231293736767498,Classify sentiment: 'This movie was amazing!'  (Example 6),0.5B
+classification_36,sample_36,2,4.09418666726961,"Classify sentiment: 'Terrible experience, never again' (Example 7)",0.5B
+classification_37,sample_37,2,5.242244801439993,"Classify sentiment: 'It was okay, nothing special' (Example 8)",0.5B
+classification_38,sample_38,2,4.686954873008105,Categorize text: Political or Sports? (Example 9),0.5B
+classification_39,sample_39,2,4.2213734692084826,Is this email spam or not spam? (Example 10),0.5B
+classification_40,sample_40,2,4.089209486851486,Classify sentiment: 'This movie was amazing!'  (Example 11),0.5B
+classification_41,sample_41,2,5.364868691468208,"Classify sentiment: 'Terrible experience, never again' (Example 12)",0.5B
+classification_42,sample_42,2,4.432208714009818,"Classify sentiment: 'It was okay, nothing special' (Example 13)",0.5B
+classification_43,sample_43,2,5.390834600373661,Categorize text: Political or Sports? (Example 14),0.5B
+classification_44,sample_44,2,4.469853263644207,Is this email spam or not spam? (Example 15),0.5B
+classification_45,sample_45,3,7.166028883279717,Classify sentiment: 'This movie was amazing!'  (Example 1),0.5B
+classification_46,sample_46,3,6.31751399578206,"Classify sentiment: 'Terrible experience, never again' (Example 2)",0.5B
+classification_47,sample_47,3,7.2996805186136235,"Classify sentiment: 'It was okay, nothing special' (Example 3)",0.5B
+classification_48,sample_48,3,7.159056752233979,Categorize text: Political or Sports? (Example 4),0.5B
+classification_49,sample_49,3,6.762901662469904,Is this email spam or not spam? (Example 5),0.5B
+classification_50,sample_50,3,6.295666603540788,Classify sentiment: 'This movie was amazing!'  (Example 6),0.5B
+classification_51,sample_51,3,7.136355198511948,"Classify sentiment: 'Terrible experience, never again' (Example 7)",0.5B
+classification_52,sample_52,3,7.045676163476615,"Classify sentiment: 'It was okay, nothing special' (Example 8)",0.5B
+classification_53,sample_53,3,7.2566205015794445,Categorize text: Political or Sports? (Example 9),0.5B
+classification_54,sample_54,3,7.427276894961625,Is this email spam or not spam? (Example 10),0.5B
+classification_55,sample_55,3,7.089484553608229,Classify sentiment: 'This movie was amazing!'  (Example 11),0.5B
+classification_56,sample_56,3,7.264972864871661,"Classify sentiment: 'Terrible experience, never again' (Example 12)",0.5B
+classification_57,sample_57,3,6.895285217213837,"Classify sentiment: 'It was okay, nothing special' (Example 13)",0.5B
+classification_58,sample_58,3,7.442328211416069,Categorize text: Political or Sports? (Example 14),0.5B
+classification_59,sample_59,3,7.092154224100446,Is this email spam or not spam? (Example 15),0.5B
+classification_60,sample_60,4,8.541741802833425,Classify sentiment: 'This movie was amazing!'  (Example 1),0.5B
+classification_61,sample_61,4,8.14050065097741,"Classify sentiment: 'Terrible experience, never again' (Example 2)",0.5B
+classification_62,sample_62,4,8.084723545455228,"Classify sentiment: 'It was okay, nothing special' (Example 3)",0.5B
+classification_63,sample_63,4,8.970546397953987,Categorize text: Political or Sports? (Example 4),0.5B
+classification_64,sample_64,4,8.366334777312966,Is this email spam or not spam? (Example 5),0.5B
+classification_65,sample_65,4,9.337921333721253,Classify sentiment: 'This movie was amazing!'  (Example 6),0.5B
+classification_66,sample_66,4,8.686341763467302,"Classify sentiment: 'Terrible experience, never again' (Example 7)",0.5B
+classification_67,sample_67,4,9.338405459415199,"Classify sentiment: 'It was okay, nothing special' (Example 8)",0.5B
+classification_68,sample_68,4,8.391351723163359,Categorize text: Political or Sports? (Example 9),0.5B
+classification_69,sample_69,4,9.454748517655785,Is this email spam or not spam? (Example 10),0.5B
+classification_70,sample_70,4,8.612042939515462,Classify sentiment: 'This movie was amazing!'  (Example 11),0.5B
+classification_71,sample_71,4,8.492000169596185,"Classify sentiment: 'Terrible experience, never again' (Example 12)",0.5B
+classification_72,sample_72,4,9.49304269741462,"Classify sentiment: 'It was okay, nothing special' (Example 13)",0.5B
+classification_73,sample_73,4,8.286543719433523,Categorize text: Political or Sports? (Example 14),0.5B
+classification_74,sample_74,4,9.03275051542444,Is this email spam or not spam? (Example 15),0.5B

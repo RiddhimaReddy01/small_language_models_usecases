@@ -1,0 +1,151 @@
+2026-03-18 08:12:17,631 - text_generation_mixtral-8x7b-32768_bf70b814 - INFO - Run ID: bf70b814-4a13-42c9-8d39-2bd2a8270bc8
+2026-03-18 08:12:17,646 - text_generation_mixtral-8x7b-32768_bf70b814 - INFO - Processing text_generation_0 (bin 0, 1/75)
+2026-03-18 08:12:17,648 - text_generation_mixtral-8x7b-32768_bf70b814 - ERROR - text_generation_0: Inference failed after 0.00s: No module named 'groq'
+2026-03-18 08:12:17,652 - text_generation_mixtral-8x7b-32768_bf70b814 - INFO - Processing text_generation_1 (bin 0, 2/75)
+2026-03-18 08:12:17,656 - text_generation_mixtral-8x7b-32768_bf70b814 - ERROR - text_generation_1: Inference failed after 0.00s: No module named 'groq'
+2026-03-18 08:12:17,658 - text_generation_mixtral-8x7b-32768_bf70b814 - INFO - Processing text_generation_2 (bin 0, 3/75)
+2026-03-18 08:12:17,664 - text_generation_mixtral-8x7b-32768_bf70b814 - ERROR - text_generation_2: Inference failed after 0.00s: No module named 'groq'
+2026-03-18 08:12:17,666 - text_generation_mixtral-8x7b-32768_bf70b814 - INFO - Processing text_generation_3 (bin 0, 4/75)
+2026-03-18 08:12:17,668 - text_generation_mixtral-8x7b-32768_bf70b814 - ERROR - text_generation_3: Inference failed after 0.00s: No module named 'groq'
+2026-03-18 08:12:17,668 - text_generation_mixtral-8x7b-32768_bf70b814 - INFO - Processing text_generation_4 (bin 0, 5/75)
+2026-03-18 08:12:17,672 - text_generation_mixtral-8x7b-32768_bf70b814 - ERROR - text_generation_4: Inference failed after 0.00s: No module named 'groq'
+2026-03-18 08:12:17,674 - text_generation_mixtral-8x7b-32768_bf70b814 - INFO - Processing text_generation_5 (bin 0, 6/75)
+2026-03-18 08:12:17,678 - text_generation_mixtral-8x7b-32768_bf70b814 - ERROR - text_generation_5: Inference failed after 0.00s: No module named 'groq'
+2026-03-18 08:12:17,678 - text_generation_mixtral-8x7b-32768_bf70b814 - INFO - Processing text_generation_6 (bin 0, 7/75)
+2026-03-18 08:12:17,682 - text_generation_mixtral-8x7b-32768_bf70b814 - ERROR - text_generation_6: Inference failed after 0.00s: No module named 'groq'
+2026-03-18 08:12:17,684 - text_generation_mixtral-8x7b-32768_bf70b814 - INFO - Processing text_generation_7 (bin 0, 8/75)
+2026-03-18 08:12:17,686 - text_generation_mixtral-8x7b-32768_bf70b814 - ERROR - text_generation_7: Inference failed after 0.00s: No module named 'groq'
+2026-03-18 08:12:17,689 - text_generation_mixtral-8x7b-32768_bf70b814 - INFO - Processing text_generation_8 (bin 0, 9/75)
+2026-03-18 08:12:17,693 - text_generation_mixtral-8x7b-32768_bf70b814 - ERROR - text_generation_8: Inference failed after 0.00s: No module named 'groq'
+2026-03-18 08:12:17,695 - text_generation_mixtral-8x7b-32768_bf70b814 - INFO - Processing text_generation_9 (bin 0, 10/75)
+2026-03-18 08:12:17,698 - text_generation_mixtral-8x7b-32768_bf70b814 - ERROR - text_generation_9: Inference failed after 0.00s: No module named 'groq'
+2026-03-18 08:12:17,698 - text_generation_mixtral-8x7b-32768_bf70b814 - INFO - Processing text_generation_10 (bin 0, 11/75)
+2026-03-18 08:12:17,703 - text_generation_mixtral-8x7b-32768_bf70b814 - ERROR - text_generation_10: Inference failed after 0.00s: No module named 'groq'
+2026-03-18 08:12:17,706 - text_generation_mixtral-8x7b-32768_bf70b814 - INFO - Processing text_generation_11 (bin 0, 12/75)
+2026-03-18 08:12:17,709 - text_generation_mixtral-8x7b-32768_bf70b814 - ERROR - text_generation_11: Inference failed after 0.00s: No module named 'groq'
+2026-03-18 08:12:17,709 - text_generation_mixtral-8x7b-32768_bf70b814 - INFO - Processing text_generation_12 (bin 0, 13/75)
+2026-03-18 08:12:17,716 - text_generation_mixtral-8x7b-32768_bf70b814 - ERROR - text_generation_12: Inference failed after 0.00s: No module named 'groq'
+2026-03-18 08:12:17,717 - text_generation_mixtral-8x7b-32768_bf70b814 - INFO - Processing text_generation_13 (bin 0, 14/75)
+2026-03-18 08:12:17,719 - text_generation_mixtral-8x7b-32768_bf70b814 - ERROR - text_generation_13: Inference failed after 0.00s: No module named 'groq'
+2026-03-18 08:12:17,721 - text_generation_mixtral-8x7b-32768_bf70b814 - INFO - Processing text_generation_14 (bin 0, 15/75)
+2026-03-18 08:12:17,726 - text_generation_mixtral-8x7b-32768_bf70b814 - ERROR - text_generation_14: Inference failed after 0.00s: No module named 'groq'
+2026-03-18 08:12:17,728 - text_generation_mixtral-8x7b-32768_bf70b814 - INFO - Processing text_generation_15 (bin 1, 16/75)
+2026-03-18 08:12:17,732 - text_generation_mixtral-8x7b-32768_bf70b814 - ERROR - text_generation_15: Inference failed after 0.00s: No module named 'groq'
+2026-03-18 08:12:17,734 - text_generation_mixtral-8x7b-32768_bf70b814 - INFO - Processing text_generation_16 (bin 1, 17/75)
+2026-03-18 08:12:17,738 - text_generation_mixtral-8x7b-32768_bf70b814 - ERROR - text_generation_16: Inference failed after 0.00s: No module named 'groq'
+2026-03-18 08:12:17,740 - text_generation_mixtral-8x7b-32768_bf70b814 - INFO - Processing text_generation_17 (bin 1, 18/75)
+2026-03-18 08:12:17,743 - text_generation_mixtral-8x7b-32768_bf70b814 - ERROR - text_generation_17: Inference failed after 0.00s: No module named 'groq'
+2026-03-18 08:12:17,743 - text_generation_mixtral-8x7b-32768_bf70b814 - INFO - Processing text_generation_18 (bin 1, 19/75)
+2026-03-18 08:12:17,749 - text_generation_mixtral-8x7b-32768_bf70b814 - ERROR - text_generation_18: Inference failed after 0.00s: No module named 'groq'
+2026-03-18 08:12:17,749 - text_generation_mixtral-8x7b-32768_bf70b814 - INFO - Processing text_generation_19 (bin 1, 20/75)
+2026-03-18 08:12:17,751 - text_generation_mixtral-8x7b-32768_bf70b814 - ERROR - text_generation_19: Inference failed after 0.00s: No module named 'groq'
+2026-03-18 08:12:17,751 - text_generation_mixtral-8x7b-32768_bf70b814 - INFO - Processing text_generation_20 (bin 1, 21/75)
+2026-03-18 08:12:17,755 - text_generation_mixtral-8x7b-32768_bf70b814 - ERROR - text_generation_20: Inference failed after 0.00s: No module named 'groq'
+2026-03-18 08:12:17,755 - text_generation_mixtral-8x7b-32768_bf70b814 - INFO - Processing text_generation_21 (bin 1, 22/75)
+2026-03-18 08:12:17,759 - text_generation_mixtral-8x7b-32768_bf70b814 - ERROR - text_generation_21: Inference failed after 0.00s: No module named 'groq'
+2026-03-18 08:12:17,761 - text_generation_mixtral-8x7b-32768_bf70b814 - INFO - Processing text_generation_22 (bin 1, 23/75)
+2026-03-18 08:12:17,764 - text_generation_mixtral-8x7b-32768_bf70b814 - ERROR - text_generation_22: Inference failed after 0.00s: No module named 'groq'
+2026-03-18 08:12:17,766 - text_generation_mixtral-8x7b-32768_bf70b814 - INFO - Processing text_generation_23 (bin 1, 24/75)
+2026-03-18 08:12:17,770 - text_generation_mixtral-8x7b-32768_bf70b814 - ERROR - text_generation_23: Inference failed after 0.00s: No module named 'groq'
+2026-03-18 08:12:17,775 - text_generation_mixtral-8x7b-32768_bf70b814 - INFO - Processing text_generation_24 (bin 1, 25/75)
+2026-03-18 08:12:17,779 - text_generation_mixtral-8x7b-32768_bf70b814 - ERROR - text_generation_24: Inference failed after 0.00s: No module named 'groq'
+2026-03-18 08:12:17,781 - text_generation_mixtral-8x7b-32768_bf70b814 - INFO - Processing text_generation_25 (bin 1, 26/75)
+2026-03-18 08:12:17,785 - text_generation_mixtral-8x7b-32768_bf70b814 - ERROR - text_generation_25: Inference failed after 0.00s: No module named 'groq'
+2026-03-18 08:12:17,785 - text_generation_mixtral-8x7b-32768_bf70b814 - INFO - Processing text_generation_26 (bin 1, 27/75)
+2026-03-18 08:12:17,789 - text_generation_mixtral-8x7b-32768_bf70b814 - ERROR - text_generation_26: Inference failed after 0.00s: No module named 'groq'
+2026-03-18 08:12:17,792 - text_generation_mixtral-8x7b-32768_bf70b814 - INFO - Processing text_generation_27 (bin 1, 28/75)
+2026-03-18 08:12:17,794 - text_generation_mixtral-8x7b-32768_bf70b814 - ERROR - text_generation_27: Inference failed after 0.00s: No module named 'groq'
+2026-03-18 08:12:17,796 - text_generation_mixtral-8x7b-32768_bf70b814 - INFO - Processing text_generation_28 (bin 1, 29/75)
+2026-03-18 08:12:17,798 - text_generation_mixtral-8x7b-32768_bf70b814 - ERROR - text_generation_28: Inference failed after 0.00s: No module named 'groq'
+2026-03-18 08:12:17,800 - text_generation_mixtral-8x7b-32768_bf70b814 - INFO - Processing text_generation_29 (bin 1, 30/75)
+2026-03-18 08:12:17,804 - text_generation_mixtral-8x7b-32768_bf70b814 - ERROR - text_generation_29: Inference failed after 0.00s: No module named 'groq'
+2026-03-18 08:12:17,806 - text_generation_mixtral-8x7b-32768_bf70b814 - INFO - Processing text_generation_30 (bin 2, 31/75)
+2026-03-18 08:12:17,808 - text_generation_mixtral-8x7b-32768_bf70b814 - ERROR - text_generation_30: Inference failed after 0.00s: No module named 'groq'
+2026-03-18 08:12:17,810 - text_generation_mixtral-8x7b-32768_bf70b814 - INFO - Processing text_generation_31 (bin 2, 32/75)
+2026-03-18 08:12:17,815 - text_generation_mixtral-8x7b-32768_bf70b814 - ERROR - text_generation_31: Inference failed after 0.00s: No module named 'groq'
+2026-03-18 08:12:17,815 - text_generation_mixtral-8x7b-32768_bf70b814 - INFO - Processing text_generation_32 (bin 2, 33/75)
+2026-03-18 08:12:17,819 - text_generation_mixtral-8x7b-32768_bf70b814 - ERROR - text_generation_32: Inference failed after 0.00s: No module named 'groq'
+2026-03-18 08:12:17,822 - text_generation_mixtral-8x7b-32768_bf70b814 - INFO - Processing text_generation_33 (bin 2, 34/75)
+2026-03-18 08:12:17,825 - text_generation_mixtral-8x7b-32768_bf70b814 - ERROR - text_generation_33: Inference failed after 0.00s: No module named 'groq'
+2026-03-18 08:12:17,827 - text_generation_mixtral-8x7b-32768_bf70b814 - INFO - Processing text_generation_34 (bin 2, 35/75)
+2026-03-18 08:12:17,830 - text_generation_mixtral-8x7b-32768_bf70b814 - ERROR - text_generation_34: Inference failed after 0.00s: No module named 'groq'
+2026-03-18 08:12:17,834 - text_generation_mixtral-8x7b-32768_bf70b814 - INFO - Processing text_generation_35 (bin 2, 36/75)
+2026-03-18 08:12:17,836 - text_generation_mixtral-8x7b-32768_bf70b814 - ERROR - text_generation_35: Inference failed after 0.00s: No module named 'groq'
+2026-03-18 08:12:17,838 - text_generation_mixtral-8x7b-32768_bf70b814 - INFO - Processing text_generation_36 (bin 2, 37/75)
+2026-03-18 08:12:17,840 - text_generation_mixtral-8x7b-32768_bf70b814 - ERROR - text_generation_36: Inference failed after 0.00s: No module named 'groq'
+2026-03-18 08:12:17,842 - text_generation_mixtral-8x7b-32768_bf70b814 - INFO - Processing text_generation_37 (bin 2, 38/75)
+2026-03-18 08:12:17,846 - text_generation_mixtral-8x7b-32768_bf70b814 - ERROR - text_generation_37: Inference failed after 0.00s: No module named 'groq'
+2026-03-18 08:12:17,848 - text_generation_mixtral-8x7b-32768_bf70b814 - INFO - Processing text_generation_38 (bin 2, 39/75)
+2026-03-18 08:12:17,851 - text_generation_mixtral-8x7b-32768_bf70b814 - ERROR - text_generation_38: Inference failed after 0.00s: No module named 'groq'
+2026-03-18 08:12:17,853 - text_generation_mixtral-8x7b-32768_bf70b814 - INFO - Processing text_generation_39 (bin 2, 40/75)
+2026-03-18 08:12:17,857 - text_generation_mixtral-8x7b-32768_bf70b814 - ERROR - text_generation_39: Inference failed after 0.00s: No module named 'groq'
+2026-03-18 08:12:17,859 - text_generation_mixtral-8x7b-32768_bf70b814 - INFO - Processing text_generation_40 (bin 2, 41/75)
+2026-03-18 08:12:17,862 - text_generation_mixtral-8x7b-32768_bf70b814 - ERROR - text_generation_40: Inference failed after 0.00s: No module named 'groq'
+2026-03-18 08:12:17,864 - text_generation_mixtral-8x7b-32768_bf70b814 - INFO - Processing text_generation_41 (bin 2, 42/75)
+2026-03-18 08:12:17,867 - text_generation_mixtral-8x7b-32768_bf70b814 - ERROR - text_generation_41: Inference failed after 0.00s: No module named 'groq'
+2026-03-18 08:12:17,869 - text_generation_mixtral-8x7b-32768_bf70b814 - INFO - Processing text_generation_42 (bin 2, 43/75)
+2026-03-18 08:12:17,872 - text_generation_mixtral-8x7b-32768_bf70b814 - ERROR - text_generation_42: Inference failed after 0.00s: No module named 'groq'
+2026-03-18 08:12:17,874 - text_generation_mixtral-8x7b-32768_bf70b814 - INFO - Processing text_generation_43 (bin 2, 44/75)
+2026-03-18 08:12:17,878 - text_generation_mixtral-8x7b-32768_bf70b814 - ERROR - text_generation_43: Inference failed after 0.00s: No module named 'groq'
+2026-03-18 08:12:17,880 - text_generation_mixtral-8x7b-32768_bf70b814 - INFO - Processing text_generation_44 (bin 2, 45/75)
+2026-03-18 08:12:17,882 - text_generation_mixtral-8x7b-32768_bf70b814 - ERROR - text_generation_44: Inference failed after 0.00s: No module named 'groq'
+2026-03-18 08:12:17,884 - text_generation_mixtral-8x7b-32768_bf70b814 - INFO - Processing text_generation_45 (bin 3, 46/75)
+2026-03-18 08:12:17,888 - text_generation_mixtral-8x7b-32768_bf70b814 - ERROR - text_generation_45: Inference failed after 0.00s: No module named 'groq'
+2026-03-18 08:12:17,890 - text_generation_mixtral-8x7b-32768_bf70b814 - INFO - Processing text_generation_46 (bin 3, 47/75)
+2026-03-18 08:12:17,892 - text_generation_mixtral-8x7b-32768_bf70b814 - ERROR - text_generation_46: Inference failed after 0.00s: No module named 'groq'
+2026-03-18 08:12:17,894 - text_generation_mixtral-8x7b-32768_bf70b814 - INFO - Processing text_generation_47 (bin 3, 48/75)
+2026-03-18 08:12:17,898 - text_generation_mixtral-8x7b-32768_bf70b814 - ERROR - text_generation_47: Inference failed after 0.00s: No module named 'groq'
+2026-03-18 08:12:17,900 - text_generation_mixtral-8x7b-32768_bf70b814 - INFO - Processing text_generation_48 (bin 3, 49/75)
+2026-03-18 08:12:17,904 - text_generation_mixtral-8x7b-32768_bf70b814 - ERROR - text_generation_48: Inference failed after 0.00s: No module named 'groq'
+2026-03-18 08:12:17,906 - text_generation_mixtral-8x7b-32768_bf70b814 - INFO - Processing text_generation_49 (bin 3, 50/75)
+2026-03-18 08:12:17,910 - text_generation_mixtral-8x7b-32768_bf70b814 - ERROR - text_generation_49: Inference failed after 0.00s: No module named 'groq'
+2026-03-18 08:12:17,912 - text_generation_mixtral-8x7b-32768_bf70b814 - INFO - Processing text_generation_50 (bin 3, 51/75)
+2026-03-18 08:12:17,914 - text_generation_mixtral-8x7b-32768_bf70b814 - ERROR - text_generation_50: Inference failed after 0.00s: No module named 'groq'
+2026-03-18 08:12:17,918 - text_generation_mixtral-8x7b-32768_bf70b814 - INFO - Processing text_generation_51 (bin 3, 52/75)
+2026-03-18 08:12:17,920 - text_generation_mixtral-8x7b-32768_bf70b814 - ERROR - text_generation_51: Inference failed after 0.00s: No module named 'groq'
+2026-03-18 08:12:17,922 - text_generation_mixtral-8x7b-32768_bf70b814 - INFO - Processing text_generation_52 (bin 3, 53/75)
+2026-03-18 08:12:17,924 - text_generation_mixtral-8x7b-32768_bf70b814 - ERROR - text_generation_52: Inference failed after 0.00s: No module named 'groq'
+2026-03-18 08:12:17,926 - text_generation_mixtral-8x7b-32768_bf70b814 - INFO - Processing text_generation_53 (bin 3, 54/75)
+2026-03-18 08:12:17,930 - text_generation_mixtral-8x7b-32768_bf70b814 - ERROR - text_generation_53: Inference failed after 0.00s: No module named 'groq'
+2026-03-18 08:12:17,934 - text_generation_mixtral-8x7b-32768_bf70b814 - INFO - Processing text_generation_54 (bin 3, 55/75)
+2026-03-18 08:12:17,936 - text_generation_mixtral-8x7b-32768_bf70b814 - ERROR - text_generation_54: Inference failed after 0.00s: No module named 'groq'
+2026-03-18 08:12:17,940 - text_generation_mixtral-8x7b-32768_bf70b814 - INFO - Processing text_generation_55 (bin 3, 56/75)
+2026-03-18 08:12:17,944 - text_generation_mixtral-8x7b-32768_bf70b814 - ERROR - text_generation_55: Inference failed after 0.00s: No module named 'groq'
+2026-03-18 08:12:17,946 - text_generation_mixtral-8x7b-32768_bf70b814 - INFO - Processing text_generation_56 (bin 3, 57/75)
+2026-03-18 08:12:17,948 - text_generation_mixtral-8x7b-32768_bf70b814 - ERROR - text_generation_56: Inference failed after 0.00s: No module named 'groq'
+2026-03-18 08:12:17,950 - text_generation_mixtral-8x7b-32768_bf70b814 - INFO - Processing text_generation_57 (bin 3, 58/75)
+2026-03-18 08:12:17,954 - text_generation_mixtral-8x7b-32768_bf70b814 - ERROR - text_generation_57: Inference failed after 0.00s: No module named 'groq'
+2026-03-18 08:12:17,955 - text_generation_mixtral-8x7b-32768_bf70b814 - INFO - Processing text_generation_58 (bin 3, 59/75)
+2026-03-18 08:12:17,959 - text_generation_mixtral-8x7b-32768_bf70b814 - ERROR - text_generation_58: Inference failed after 0.00s: No module named 'groq'
+2026-03-18 08:12:17,959 - text_generation_mixtral-8x7b-32768_bf70b814 - INFO - Processing text_generation_59 (bin 3, 60/75)
+2026-03-18 08:12:17,965 - text_generation_mixtral-8x7b-32768_bf70b814 - ERROR - text_generation_59: Inference failed after 0.00s: No module named 'groq'
+2026-03-18 08:12:17,967 - text_generation_mixtral-8x7b-32768_bf70b814 - INFO - Processing text_generation_60 (bin 4, 61/75)
+2026-03-18 08:12:17,969 - text_generation_mixtral-8x7b-32768_bf70b814 - ERROR - text_generation_60: Inference failed after 0.00s: No module named 'groq'
+2026-03-18 08:12:17,971 - text_generation_mixtral-8x7b-32768_bf70b814 - INFO - Processing text_generation_61 (bin 4, 62/75)
+2026-03-18 08:12:17,975 - text_generation_mixtral-8x7b-32768_bf70b814 - ERROR - text_generation_61: Inference failed after 0.00s: No module named 'groq'
+2026-03-18 08:12:17,975 - text_generation_mixtral-8x7b-32768_bf70b814 - INFO - Processing text_generation_62 (bin 4, 63/75)
+2026-03-18 08:12:17,980 - text_generation_mixtral-8x7b-32768_bf70b814 - ERROR - text_generation_62: Inference failed after 0.00s: No module named 'groq'
+2026-03-18 08:12:17,982 - text_generation_mixtral-8x7b-32768_bf70b814 - INFO - Processing text_generation_63 (bin 4, 64/75)
+2026-03-18 08:12:17,985 - text_generation_mixtral-8x7b-32768_bf70b814 - ERROR - text_generation_63: Inference failed after 0.00s: No module named 'groq'
+2026-03-18 08:12:17,987 - text_generation_mixtral-8x7b-32768_bf70b814 - INFO - Processing text_generation_64 (bin 4, 65/75)
+2026-03-18 08:12:17,989 - text_generation_mixtral-8x7b-32768_bf70b814 - ERROR - text_generation_64: Inference failed after 0.00s: No module named 'groq'
+2026-03-18 08:12:17,991 - text_generation_mixtral-8x7b-32768_bf70b814 - INFO - Processing text_generation_65 (bin 4, 66/75)
+2026-03-18 08:12:17,996 - text_generation_mixtral-8x7b-32768_bf70b814 - ERROR - text_generation_65: Inference failed after 0.00s: No module named 'groq'
+2026-03-18 08:12:17,998 - text_generation_mixtral-8x7b-32768_bf70b814 - INFO - Processing text_generation_66 (bin 4, 67/75)
+2026-03-18 08:12:18,003 - text_generation_mixtral-8x7b-32768_bf70b814 - ERROR - text_generation_66: Inference failed after 0.00s: No module named 'groq'
+2026-03-18 08:12:18,004 - text_generation_mixtral-8x7b-32768_bf70b814 - INFO - Processing text_generation_67 (bin 4, 68/75)
+2026-03-18 08:12:18,006 - text_generation_mixtral-8x7b-32768_bf70b814 - ERROR - text_generation_67: Inference failed after 0.00s: No module named 'groq'
+2026-03-18 08:12:18,008 - text_generation_mixtral-8x7b-32768_bf70b814 - INFO - Processing text_generation_68 (bin 4, 69/75)
+2026-03-18 08:12:18,011 - text_generation_mixtral-8x7b-32768_bf70b814 - ERROR - text_generation_68: Inference failed after 0.00s: No module named 'groq'
+2026-03-18 08:12:18,013 - text_generation_mixtral-8x7b-32768_bf70b814 - INFO - Processing text_generation_69 (bin 4, 70/75)
+2026-03-18 08:12:18,015 - text_generation_mixtral-8x7b-32768_bf70b814 - ERROR - text_generation_69: Inference failed after 0.00s: No module named 'groq'
+2026-03-18 08:12:18,017 - text_generation_mixtral-8x7b-32768_bf70b814 - INFO - Processing text_generation_70 (bin 4, 71/75)
+2026-03-18 08:12:18,019 - text_generation_mixtral-8x7b-32768_bf70b814 - ERROR - text_generation_70: Inference failed after 0.00s: No module named 'groq'
+2026-03-18 08:12:18,021 - text_generation_mixtral-8x7b-32768_bf70b814 - INFO - Processing text_generation_71 (bin 4, 72/75)
+2026-03-18 08:12:18,025 - text_generation_mixtral-8x7b-32768_bf70b814 - ERROR - text_generation_71: Inference failed after 0.00s: No module named 'groq'
+2026-03-18 08:12:18,028 - text_generation_mixtral-8x7b-32768_bf70b814 - INFO - Processing text_generation_72 (bin 4, 73/75)
+2026-03-18 08:12:18,031 - text_generation_mixtral-8x7b-32768_bf70b814 - ERROR - text_generation_72: Inference failed after 0.00s: No module named 'groq'
+2026-03-18 08:12:18,035 - text_generation_mixtral-8x7b-32768_bf70b814 - INFO - Processing text_generation_73 (bin 4, 74/75)
+2026-03-18 08:12:18,037 - text_generation_mixtral-8x7b-32768_bf70b814 - ERROR - text_generation_73: Inference failed after 0.00s: No module named 'groq'
+2026-03-18 08:12:18,039 - text_generation_mixtral-8x7b-32768_bf70b814 - INFO - Processing text_generation_74 (bin 4, 75/75)
+2026-03-18 08:12:18,043 - text_generation_mixtral-8x7b-32768_bf70b814 - ERROR - text_generation_74: Inference failed after 0.00s: No module named 'groq'

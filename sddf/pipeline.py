@@ -10,7 +10,7 @@ from .curves import compute_ratio_curve, smooth_ratio_curve
 from .difficulty import annotate_dominant_dimension, make_difficulty_bins
 from .matching import match_model_outputs
 from .schema import validate_results_schema
-from .tipping import estimate_tipping_point
+from .tipping import estimate_tipping_point, tipping_sensitivity
 from .uncertainty import bootstrap_ratio_curve, bootstrap_tipping_point
 
 
@@ -116,6 +116,7 @@ def _analyze_pairs(combined: pd.DataFrame, analysis_dir: Path, higher_is_better:
                     matched = match_model_outputs(group, slm_name, llm_name)
                 except Exception:
                     continue
+                matched = _ensure_pair_bins(matched)
                 if matched.empty or matched["difficulty_bin"].nunique() == 0:
                     continue
 
@@ -124,12 +125,17 @@ def _analyze_pairs(combined: pd.DataFrame, analysis_dir: Path, higher_is_better:
                     continue
                 smooth = smooth_ratio_curve(curve)
                 tip = estimate_tipping_point(smooth)
+                sensitivity = tipping_sensitivity(smooth)
                 ratio_ci = bootstrap_ratio_curve(matched, n_boot=min(200, max(20, len(matched) * 10)))
                 tip_ci = bootstrap_tipping_point(matched, n_boot=min(200, max(20, len(matched) * 10)))
 
                 pair_slug = _slugify(f"{task}_{dataset}_{slm_name}_vs_{llm_name}")
                 smooth.to_csv(analysis_dir / f"{pair_slug}_curve.csv", index=False)
                 ratio_ci.to_csv(analysis_dir / f"{pair_slug}_ratio_ci.csv", index=False)
+                (analysis_dir / f"{pair_slug}_tipping_sensitivity.json").write_text(
+                    json.dumps(sensitivity, indent=2),
+                    encoding="utf-8",
+                )
 
                 summary = {
                     "task": task,
@@ -138,9 +144,11 @@ def _analyze_pairs(combined: pd.DataFrame, analysis_dir: Path, higher_is_better:
                     "llm_name": llm_name,
                     "matched_examples": int(len(matched)),
                     "tipping_point": tip,
+                    "tipping_sensitivity": sensitivity,
                     "tipping_ci": tip_ci,
                     "curve_path": str((analysis_dir / f"{pair_slug}_curve.csv").resolve()),
                     "ratio_ci_path": str((analysis_dir / f"{pair_slug}_ratio_ci.csv").resolve()),
+                    "tipping_sensitivity_path": str((analysis_dir / f"{pair_slug}_tipping_sensitivity.json").resolve()),
                 }
                 (analysis_dir / f"{pair_slug}_summary.json").write_text(json.dumps(summary, indent=2), encoding="utf-8")
                 summaries.append(summary)
@@ -148,6 +156,29 @@ def _analyze_pairs(combined: pd.DataFrame, analysis_dir: Path, higher_is_better:
     manifest_path = analysis_dir / "pair_summaries.json"
     manifest_path.write_text(json.dumps(summaries, indent=2), encoding="utf-8")
     return summaries
+
+
+def _ensure_pair_bins(matched: pd.DataFrame) -> pd.DataFrame:
+    if matched.empty or "difficulty_bin" not in matched.columns:
+        return matched
+
+    out = matched.copy()
+    if out["difficulty_bin"].notna().any():
+        return out
+
+    if "difficulty_score" not in out.columns or out["difficulty_score"].dropna().empty:
+        return out
+
+    unique_scores = out["difficulty_score"].dropna().nunique()
+    if unique_scores <= 1:
+        out["difficulty_bin"] = 0
+        return out
+
+    try:
+        out["difficulty_bin"] = pd.qcut(out["difficulty_score"], q=min(5, unique_scores), labels=False, duplicates="drop")
+    except Exception:
+        out["difficulty_bin"] = pd.cut(out["difficulty_score"], bins=min(5, unique_scores), labels=False, include_lowest=True)
+    return out
 
 
 def _slugify(value: str) -> str:

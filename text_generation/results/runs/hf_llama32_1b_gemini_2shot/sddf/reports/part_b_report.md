@@ -28,32 +28,35 @@
 - Status: `available`
 - Reason: Computed from SDDF archive.
 
-### Historical comparison
+### Pairs
 
-- Historical text-generation evidence indicates local SLMs are competitive on open-ended generation quality but fall behind on heavy multi-constraint adherence.
-- Caveat: this comparison is aggregate and not example-matched, so it should not be treated as a strict paired test.
+- `hf_llama32_1b` vs `gemini-2.5-flash-fresh` on `samples`: 2 matched examples
 
 ## Capability Curve + Tipping Point
 
 - Status: `available`
 - Reason: Computed from SDDF archive.
 
-### Inferred transition point
+### hf_llama32_1b vs gemini-2.5-flash-fresh
 
-- Historical tipping signal: historical evidence suggests the main break occurs once MC-style constraint burden reaches roughly 3 simultaneous requirements.
-- Operational reading: generation quality remains acceptable, but compliance deteriorates quickly once multiple hard constraints stack up.
-- Caveat: tipping point is inferred from prior benchmark patterns, not estimated from a fresh ratio curve on matched rows.
+- Tipping point: `None`
+- Tipping sensitivity: `{'0.90': None, '0.93': None, '0.95': None, '0.97': None}`
+- Plot file: `text_generation\results\runs\hf_llama32_1b_gemini_2shot\sddf\reports\samples_hf_llama32_1b_vs_gemini_2_5_flash_fresh.png`
+
+![Capability curve](samples_hf_llama32_1b_vs_gemini_2_5_flash_fresh.png)
+
 
 ## Uncertainty Analysis
 
 - Status: `available`
 - Reason: Computed from SDDF archive.
 
-### Historical uncertainty
+### hf_llama32_1b vs gemini-2.5-flash-fresh
 
-- Historical sample size signal: `4` examples per run.
-- Uncertainty source: the saved matched rerun is tiny, so the inferred transition is directional only.
-- Caveat: no bootstrap confidence interval was available without matched rerun rows.
+- Tipping median: `None`
+- 95% CI: `None` to `None`
+- Threshold sweep: `{'0.90': None, '0.93': None, '0.95': None, '0.97': None}`
+
 
 ## Failure Taxonomy
 
@@ -63,6 +66,7 @@
 - Heuristic structural failures: 0
 - Heuristic fixable failures: 4
 - Invalid outputs: 0
+- Validity note: partial or invalid runs should be excluded from strict cross-model comparison.
 - Note: this taxonomy is heuristic and should be reviewed against task-specific failure labels.
 
 ## Quality Gate
@@ -70,32 +74,27 @@
 - Status: `available`
 - Reason: Computed from SDDF archive.
 
-### Suggested gate
+### hf_llama32_1b vs gemini-2.5-flash-fresh
 
-- accept SLM outputs on unconstrained or lightly constrained prompts
-- apply validators or constrained decoding before accepting multi-constraint generations
-- Caveat: gate thresholds are policy recommendations inferred from historical evidence, not learned from fresh matched supervision.
+
 
 ## Deployment Zones
 
 - Status: `available`
 - Reason: Computed from SDDF archive.
 
-### Inferred deployment stance
+### hf_llama32_1b vs gemini-2.5-flash-fresh
 
-- Likely SDDF stance: Hybrid or SLM-with-mitigation depending on constraint burden.
-- Why: local SLMs are competitive on free-form generation, but constraint-heavy prompts benefit from a gate or escalation.
-- Caveat: zone assignment is a benchmark-level recommendation and should be revalidated after reruns.
+- Bin `0` at difficulty `0.000` -> Zone `A`
+
 
 ## Routing Policy
 
 - Status: `available`
 - Reason: Computed from SDDF archive.
 
-### Suggested routing policy
+### hf_llama32_1b vs gemini-2.5-flash-fresh
 
-- send simple prompts to the SLM path
-- use constrained decoding for moderate constraint bundles
-- escalate high-constraint prompts to an LLM path when exact compliance matters
-- Caveat: this is a hand-authored routing rule from historical evidence, not a learned router threshold.
+- No routing threshold learned.
+
 

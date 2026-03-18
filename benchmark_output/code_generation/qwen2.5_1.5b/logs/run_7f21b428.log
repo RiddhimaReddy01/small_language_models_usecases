@@ -1,0 +1,151 @@
+2026-03-18 01:42:44,518 - code_generation_qwen2.5:1.5b_7f21b428 - INFO - Run ID: 7f21b428-895b-4bed-ae07-4e76e43a09be
+2026-03-18 01:42:44,530 - code_generation_qwen2.5:1.5b_7f21b428 - INFO - Processing code_generation_0 (bin 0, 1/75)
+2026-03-18 01:42:44,531 - code_generation_qwen2.5:1.5b_7f21b428 - ERROR - code_generation_0: Inference failed after 0.00s: No module named 'ollama'
+2026-03-18 01:42:44,532 - code_generation_qwen2.5:1.5b_7f21b428 - INFO - Processing code_generation_1 (bin 0, 2/75)
+2026-03-18 01:42:44,533 - code_generation_qwen2.5:1.5b_7f21b428 - ERROR - code_generation_1: Inference failed after 0.00s: No module named 'ollama'
+2026-03-18 01:42:44,535 - code_generation_qwen2.5:1.5b_7f21b428 - INFO - Processing code_generation_2 (bin 0, 3/75)
+2026-03-18 01:42:44,536 - code_generation_qwen2.5:1.5b_7f21b428 - ERROR - code_generation_2: Inference failed after 0.00s: No module named 'ollama'
+2026-03-18 01:42:44,538 - code_generation_qwen2.5:1.5b_7f21b428 - INFO - Processing code_generation_3 (bin 0, 4/75)
+2026-03-18 01:42:44,538 - code_generation_qwen2.5:1.5b_7f21b428 - ERROR - code_generation_3: Inference failed after 0.00s: No module named 'ollama'
+2026-03-18 01:42:44,539 - code_generation_qwen2.5:1.5b_7f21b428 - INFO - Processing code_generation_4 (bin 0, 5/75)
+2026-03-18 01:42:44,540 - code_generation_qwen2.5:1.5b_7f21b428 - ERROR - code_generation_4: Inference failed after 0.00s: No module named 'ollama'
+2026-03-18 01:42:44,541 - code_generation_qwen2.5:1.5b_7f21b428 - INFO - Processing code_generation_5 (bin 0, 6/75)
+2026-03-18 01:42:44,542 - code_generation_qwen2.5:1.5b_7f21b428 - ERROR - code_generation_5: Inference failed after 0.00s: No module named 'ollama'
+2026-03-18 01:42:44,542 - code_generation_qwen2.5:1.5b_7f21b428 - INFO - Processing code_generation_6 (bin 0, 7/75)
+2026-03-18 01:42:44,543 - code_generation_qwen2.5:1.5b_7f21b428 - ERROR - code_generation_6: Inference failed after 0.00s: No module named 'ollama'
+2026-03-18 01:42:44,544 - code_generation_qwen2.5:1.5b_7f21b428 - INFO - Processing code_generation_7 (bin 0, 8/75)
+2026-03-18 01:42:44,545 - code_generation_qwen2.5:1.5b_7f21b428 - ERROR - code_generation_7: Inference failed after 0.00s: No module named 'ollama'
+2026-03-18 01:42:44,546 - code_generation_qwen2.5:1.5b_7f21b428 - INFO - Processing code_generation_8 (bin 0, 9/75)
+2026-03-18 01:42:44,547 - code_generation_qwen2.5:1.5b_7f21b428 - ERROR - code_generation_8: Inference failed after 0.00s: No module named 'ollama'
+2026-03-18 01:42:44,548 - code_generation_qwen2.5:1.5b_7f21b428 - INFO - Processing code_generation_9 (bin 0, 10/75)
+2026-03-18 01:42:44,549 - code_generation_qwen2.5:1.5b_7f21b428 - ERROR - code_generation_9: Inference failed after 0.00s: No module named 'ollama'
+2026-03-18 01:42:44,550 - code_generation_qwen2.5:1.5b_7f21b428 - INFO - Processing code_generation_10 (bin 0, 11/75)
+2026-03-18 01:42:44,551 - code_generation_qwen2.5:1.5b_7f21b428 - ERROR - code_generation_10: Inference failed after 0.00s: No module named 'ollama'
+2026-03-18 01:42:44,552 - code_generation_qwen2.5:1.5b_7f21b428 - INFO - Processing code_generation_11 (bin 0, 12/75)
+2026-03-18 01:42:44,552 - code_generation_qwen2.5:1.5b_7f21b428 - ERROR - code_generation_11: Inference failed after 0.00s: No module named 'ollama'
+2026-03-18 01:42:44,553 - code_generation_qwen2.5:1.5b_7f21b428 - INFO - Processing code_generation_12 (bin 0, 13/75)
+2026-03-18 01:42:44,554 - code_generation_qwen2.5:1.5b_7f21b428 - ERROR - code_generation_12: Inference failed after 0.00s: No module named 'ollama'
+2026-03-18 01:42:44,555 - code_generation_qwen2.5:1.5b_7f21b428 - INFO - Processing code_generation_13 (bin 0, 14/75)
+2026-03-18 01:42:44,555 - code_generation_qwen2.5:1.5b_7f21b428 - ERROR - code_generation_13: Inference failed after 0.00s: No module named 'ollama'
+2026-03-18 01:42:44,556 - code_generation_qwen2.5:1.5b_7f21b428 - INFO - Processing code_generation_14 (bin 0, 15/75)
+2026-03-18 01:42:44,557 - code_generation_qwen2.5:1.5b_7f21b428 - ERROR - code_generation_14: Inference failed after 0.00s: No module named 'ollama'
+2026-03-18 01:42:44,558 - code_generation_qwen2.5:1.5b_7f21b428 - INFO - Processing code_generation_15 (bin 1, 16/75)
+2026-03-18 01:42:44,559 - code_generation_qwen2.5:1.5b_7f21b428 - ERROR - code_generation_15: Inference failed after 0.00s: No module named 'ollama'
+2026-03-18 01:42:44,560 - code_generation_qwen2.5:1.5b_7f21b428 - INFO - Processing code_generation_16 (bin 1, 17/75)
+2026-03-18 01:42:44,561 - code_generation_qwen2.5:1.5b_7f21b428 - ERROR - code_generation_16: Inference failed after 0.00s: No module named 'ollama'
+2026-03-18 01:42:44,563 - code_generation_qwen2.5:1.5b_7f21b428 - INFO - Processing code_generation_17 (bin 1, 18/75)
+2026-03-18 01:42:44,564 - code_generation_qwen2.5:1.5b_7f21b428 - ERROR - code_generation_17: Inference failed after 0.00s: No module named 'ollama'
+2026-03-18 01:42:44,565 - code_generation_qwen2.5:1.5b_7f21b428 - INFO - Processing code_generation_18 (bin 1, 19/75)
+2026-03-18 01:42:44,566 - code_generation_qwen2.5:1.5b_7f21b428 - ERROR - code_generation_18: Inference failed after 0.00s: No module named 'ollama'
+2026-03-18 01:42:44,568 - code_generation_qwen2.5:1.5b_7f21b428 - INFO - Processing code_generation_19 (bin 1, 20/75)
+2026-03-18 01:42:44,569 - code_generation_qwen2.5:1.5b_7f21b428 - ERROR - code_generation_19: Inference failed after 0.00s: No module named 'ollama'
+2026-03-18 01:42:44,570 - code_generation_qwen2.5:1.5b_7f21b428 - INFO - Processing code_generation_20 (bin 1, 21/75)
+2026-03-18 01:42:44,571 - code_generation_qwen2.5:1.5b_7f21b428 - ERROR - code_generation_20: Inference failed after 0.00s: No module named 'ollama'
+2026-03-18 01:42:44,573 - code_generation_qwen2.5:1.5b_7f21b428 - INFO - Processing code_generation_21 (bin 1, 22/75)
+2026-03-18 01:42:44,574 - code_generation_qwen2.5:1.5b_7f21b428 - ERROR - code_generation_21: Inference failed after 0.00s: No module named 'ollama'
+2026-03-18 01:42:44,578 - code_generation_qwen2.5:1.5b_7f21b428 - INFO - Processing code_generation_22 (bin 1, 23/75)
+2026-03-18 01:42:44,581 - code_generation_qwen2.5:1.5b_7f21b428 - ERROR - code_generation_22: Inference failed after 0.00s: No module named 'ollama'
+2026-03-18 01:42:44,583 - code_generation_qwen2.5:1.5b_7f21b428 - INFO - Processing code_generation_23 (bin 1, 24/75)
+2026-03-18 01:42:44,584 - code_generation_qwen2.5:1.5b_7f21b428 - ERROR - code_generation_23: Inference failed after 0.00s: No module named 'ollama'
+2026-03-18 01:42:44,587 - code_generation_qwen2.5:1.5b_7f21b428 - INFO - Processing code_generation_24 (bin 1, 25/75)
+2026-03-18 01:42:44,589 - code_generation_qwen2.5:1.5b_7f21b428 - ERROR - code_generation_24: Inference failed after 0.00s: No module named 'ollama'
+2026-03-18 01:42:44,592 - code_generation_qwen2.5:1.5b_7f21b428 - INFO - Processing code_generation_25 (bin 1, 26/75)
+2026-03-18 01:42:44,594 - code_generation_qwen2.5:1.5b_7f21b428 - ERROR - code_generation_25: Inference failed after 0.00s: No module named 'ollama'
+2026-03-18 01:42:44,596 - code_generation_qwen2.5:1.5b_7f21b428 - INFO - Processing code_generation_26 (bin 1, 27/75)
+2026-03-18 01:42:44,597 - code_generation_qwen2.5:1.5b_7f21b428 - ERROR - code_generation_26: Inference failed after 0.00s: No module named 'ollama'
+2026-03-18 01:42:44,599 - code_generation_qwen2.5:1.5b_7f21b428 - INFO - Processing code_generation_27 (bin 1, 28/75)
+2026-03-18 01:42:44,600 - code_generation_qwen2.5:1.5b_7f21b428 - ERROR - code_generation_27: Inference failed after 0.00s: No module named 'ollama'
+2026-03-18 01:42:44,601 - code_generation_qwen2.5:1.5b_7f21b428 - INFO - Processing code_generation_28 (bin 1, 29/75)
+2026-03-18 01:42:44,602 - code_generation_qwen2.5:1.5b_7f21b428 - ERROR - code_generation_28: Inference failed after 0.00s: No module named 'ollama'
+2026-03-18 01:42:44,603 - code_generation_qwen2.5:1.5b_7f21b428 - INFO - Processing code_generation_29 (bin 1, 30/75)
+2026-03-18 01:42:44,605 - code_generation_qwen2.5:1.5b_7f21b428 - ERROR - code_generation_29: Inference failed after 0.00s: No module named 'ollama'
+2026-03-18 01:42:44,606 - code_generation_qwen2.5:1.5b_7f21b428 - INFO - Processing code_generation_30 (bin 2, 31/75)
+2026-03-18 01:42:44,608 - code_generation_qwen2.5:1.5b_7f21b428 - ERROR - code_generation_30: Inference failed after 0.00s: No module named 'ollama'
+2026-03-18 01:42:44,610 - code_generation_qwen2.5:1.5b_7f21b428 - INFO - Processing code_generation_31 (bin 2, 32/75)
+2026-03-18 01:42:44,611 - code_generation_qwen2.5:1.5b_7f21b428 - ERROR - code_generation_31: Inference failed after 0.00s: No module named 'ollama'
+2026-03-18 01:42:44,613 - code_generation_qwen2.5:1.5b_7f21b428 - INFO - Processing code_generation_32 (bin 2, 33/75)
+2026-03-18 01:42:44,614 - code_generation_qwen2.5:1.5b_7f21b428 - ERROR - code_generation_32: Inference failed after 0.00s: No module named 'ollama'
+2026-03-18 01:42:44,615 - code_generation_qwen2.5:1.5b_7f21b428 - INFO - Processing code_generation_33 (bin 2, 34/75)
+2026-03-18 01:42:44,616 - code_generation_qwen2.5:1.5b_7f21b428 - ERROR - code_generation_33: Inference failed after 0.00s: No module named 'ollama'
+2026-03-18 01:42:44,618 - code_generation_qwen2.5:1.5b_7f21b428 - INFO - Processing code_generation_34 (bin 2, 35/75)
+2026-03-18 01:42:44,619 - code_generation_qwen2.5:1.5b_7f21b428 - ERROR - code_generation_34: Inference failed after 0.00s: No module named 'ollama'
+2026-03-18 01:42:44,621 - code_generation_qwen2.5:1.5b_7f21b428 - INFO - Processing code_generation_35 (bin 2, 36/75)
+2026-03-18 01:42:44,624 - code_generation_qwen2.5:1.5b_7f21b428 - ERROR - code_generation_35: Inference failed after 0.00s: No module named 'ollama'
+2026-03-18 01:42:44,631 - code_generation_qwen2.5:1.5b_7f21b428 - INFO - Processing code_generation_36 (bin 2, 37/75)
+2026-03-18 01:42:44,633 - code_generation_qwen2.5:1.5b_7f21b428 - ERROR - code_generation_36: Inference failed after 0.00s: No module named 'ollama'
+2026-03-18 01:42:44,636 - code_generation_qwen2.5:1.5b_7f21b428 - INFO - Processing code_generation_37 (bin 2, 38/75)
+2026-03-18 01:42:44,639 - code_generation_qwen2.5:1.5b_7f21b428 - ERROR - code_generation_37: Inference failed after 0.00s: No module named 'ollama'
+2026-03-18 01:42:44,642 - code_generation_qwen2.5:1.5b_7f21b428 - INFO - Processing code_generation_38 (bin 2, 39/75)
+2026-03-18 01:42:44,646 - code_generation_qwen2.5:1.5b_7f21b428 - ERROR - code_generation_38: Inference failed after 0.00s: No module named 'ollama'
+2026-03-18 01:42:44,650 - code_generation_qwen2.5:1.5b_7f21b428 - INFO - Processing code_generation_39 (bin 2, 40/75)
+2026-03-18 01:42:44,655 - code_generation_qwen2.5:1.5b_7f21b428 - ERROR - code_generation_39: Inference failed after 0.00s: No module named 'ollama'
+2026-03-18 01:42:44,658 - code_generation_qwen2.5:1.5b_7f21b428 - INFO - Processing code_generation_40 (bin 2, 41/75)
+2026-03-18 01:42:44,664 - code_generation_qwen2.5:1.5b_7f21b428 - ERROR - code_generation_40: Inference failed after 0.00s: No module named 'ollama'
+2026-03-18 01:42:44,677 - code_generation_qwen2.5:1.5b_7f21b428 - INFO - Processing code_generation_41 (bin 2, 42/75)
+2026-03-18 01:42:44,685 - code_generation_qwen2.5:1.5b_7f21b428 - ERROR - code_generation_41: Inference failed after 0.00s: No module named 'ollama'
+2026-03-18 01:42:44,688 - code_generation_qwen2.5:1.5b_7f21b428 - INFO - Processing code_generation_42 (bin 2, 43/75)
+2026-03-18 01:42:44,691 - code_generation_qwen2.5:1.5b_7f21b428 - ERROR - code_generation_42: Inference failed after 0.00s: No module named 'ollama'
+2026-03-18 01:42:44,695 - code_generation_qwen2.5:1.5b_7f21b428 - INFO - Processing code_generation_43 (bin 2, 44/75)
+2026-03-18 01:42:44,699 - code_generation_qwen2.5:1.5b_7f21b428 - ERROR - code_generation_43: Inference failed after 0.00s: No module named 'ollama'
+2026-03-18 01:42:44,701 - code_generation_qwen2.5:1.5b_7f21b428 - INFO - Processing code_generation_44 (bin 2, 45/75)
+2026-03-18 01:42:44,703 - code_generation_qwen2.5:1.5b_7f21b428 - ERROR - code_generation_44: Inference failed after 0.00s: No module named 'ollama'
+2026-03-18 01:42:44,707 - code_generation_qwen2.5:1.5b_7f21b428 - INFO - Processing code_generation_45 (bin 3, 46/75)
+2026-03-18 01:42:44,710 - code_generation_qwen2.5:1.5b_7f21b428 - ERROR - code_generation_45: Inference failed after 0.00s: No module named 'ollama'
+2026-03-18 01:42:44,715 - code_generation_qwen2.5:1.5b_7f21b428 - INFO - Processing code_generation_46 (bin 3, 47/75)
+2026-03-18 01:42:44,722 - code_generation_qwen2.5:1.5b_7f21b428 - ERROR - code_generation_46: Inference failed after 0.00s: No module named 'ollama'
+2026-03-18 01:42:44,730 - code_generation_qwen2.5:1.5b_7f21b428 - INFO - Processing code_generation_47 (bin 3, 48/75)
+2026-03-18 01:42:44,733 - code_generation_qwen2.5:1.5b_7f21b428 - ERROR - code_generation_47: Inference failed after 0.00s: No module named 'ollama'
+2026-03-18 01:42:44,734 - code_generation_qwen2.5:1.5b_7f21b428 - INFO - Processing code_generation_48 (bin 3, 49/75)
+2026-03-18 01:42:44,735 - code_generation_qwen2.5:1.5b_7f21b428 - ERROR - code_generation_48: Inference failed after 0.00s: No module named 'ollama'
+2026-03-18 01:42:44,737 - code_generation_qwen2.5:1.5b_7f21b428 - INFO - Processing code_generation_49 (bin 3, 50/75)
+2026-03-18 01:42:44,738 - code_generation_qwen2.5:1.5b_7f21b428 - ERROR - code_generation_49: Inference failed after 0.00s: No module named 'ollama'
+2026-03-18 01:42:44,739 - code_generation_qwen2.5:1.5b_7f21b428 - INFO - Processing code_generation_50 (bin 3, 51/75)
+2026-03-18 01:42:44,740 - code_generation_qwen2.5:1.5b_7f21b428 - ERROR - code_generation_50: Inference failed after 0.00s: No module named 'ollama'
+2026-03-18 01:42:44,741 - code_generation_qwen2.5:1.5b_7f21b428 - INFO - Processing code_generation_51 (bin 3, 52/75)
+2026-03-18 01:42:44,742 - code_generation_qwen2.5:1.5b_7f21b428 - ERROR - code_generation_51: Inference failed after 0.00s: No module named 'ollama'
+2026-03-18 01:42:44,744 - code_generation_qwen2.5:1.5b_7f21b428 - INFO - Processing code_generation_52 (bin 3, 53/75)
+2026-03-18 01:42:44,747 - code_generation_qwen2.5:1.5b_7f21b428 - ERROR - code_generation_52: Inference failed after 0.00s: No module named 'ollama'
+2026-03-18 01:42:44,749 - code_generation_qwen2.5:1.5b_7f21b428 - INFO - Processing code_generation_53 (bin 3, 54/75)
+2026-03-18 01:42:44,752 - code_generation_qwen2.5:1.5b_7f21b428 - ERROR - code_generation_53: Inference failed after 0.00s: No module named 'ollama'
+2026-03-18 01:42:44,754 - code_generation_qwen2.5:1.5b_7f21b428 - INFO - Processing code_generation_54 (bin 3, 55/75)
+2026-03-18 01:42:44,756 - code_generation_qwen2.5:1.5b_7f21b428 - ERROR - code_generation_54: Inference failed after 0.00s: No module named 'ollama'
+2026-03-18 01:42:44,759 - code_generation_qwen2.5:1.5b_7f21b428 - INFO - Processing code_generation_55 (bin 3, 56/75)
+2026-03-18 01:42:44,762 - code_generation_qwen2.5:1.5b_7f21b428 - ERROR - code_generation_55: Inference failed after 0.00s: No module named 'ollama'
+2026-03-18 01:42:44,766 - code_generation_qwen2.5:1.5b_7f21b428 - INFO - Processing code_generation_56 (bin 3, 57/75)
+2026-03-18 01:42:44,768 - code_generation_qwen2.5:1.5b_7f21b428 - ERROR - code_generation_56: Inference failed after 0.00s: No module named 'ollama'
+2026-03-18 01:42:44,773 - code_generation_qwen2.5:1.5b_7f21b428 - INFO - Processing code_generation_57 (bin 3, 58/75)
+2026-03-18 01:42:44,781 - code_generation_qwen2.5:1.5b_7f21b428 - ERROR - code_generation_57: Inference failed after 0.00s: No module named 'ollama'
+2026-03-18 01:42:44,782 - code_generation_qwen2.5:1.5b_7f21b428 - INFO - Processing code_generation_58 (bin 3, 59/75)
+2026-03-18 01:42:44,783 - code_generation_qwen2.5:1.5b_7f21b428 - ERROR - code_generation_58: Inference failed after 0.00s: No module named 'ollama'
+2026-03-18 01:42:44,784 - code_generation_qwen2.5:1.5b_7f21b428 - INFO - Processing code_generation_59 (bin 3, 60/75)
+2026-03-18 01:42:44,786 - code_generation_qwen2.5:1.5b_7f21b428 - ERROR - code_generation_59: Inference failed after 0.00s: No module named 'ollama'
+2026-03-18 01:42:44,790 - code_generation_qwen2.5:1.5b_7f21b428 - INFO - Processing code_generation_60 (bin 4, 61/75)
+2026-03-18 01:42:44,791 - code_generation_qwen2.5:1.5b_7f21b428 - ERROR - code_generation_60: Inference failed after 0.00s: No module named 'ollama'
+2026-03-18 01:42:44,798 - code_generation_qwen2.5:1.5b_7f21b428 - INFO - Processing code_generation_61 (bin 4, 62/75)
+2026-03-18 01:42:44,799 - code_generation_qwen2.5:1.5b_7f21b428 - ERROR - code_generation_61: Inference failed after 0.00s: No module named 'ollama'
+2026-03-18 01:42:44,801 - code_generation_qwen2.5:1.5b_7f21b428 - INFO - Processing code_generation_62 (bin 4, 63/75)
+2026-03-18 01:42:44,802 - code_generation_qwen2.5:1.5b_7f21b428 - ERROR - code_generation_62: Inference failed after 0.00s: No module named 'ollama'
+2026-03-18 01:42:44,805 - code_generation_qwen2.5:1.5b_7f21b428 - INFO - Processing code_generation_63 (bin 4, 64/75)
+2026-03-18 01:42:44,806 - code_generation_qwen2.5:1.5b_7f21b428 - ERROR - code_generation_63: Inference failed after 0.00s: No module named 'ollama'
+2026-03-18 01:42:44,809 - code_generation_qwen2.5:1.5b_7f21b428 - INFO - Processing code_generation_64 (bin 4, 65/75)
+2026-03-18 01:42:44,813 - code_generation_qwen2.5:1.5b_7f21b428 - ERROR - code_generation_64: Inference failed after 0.00s: No module named 'ollama'
+2026-03-18 01:42:44,816 - code_generation_qwen2.5:1.5b_7f21b428 - INFO - Processing code_generation_65 (bin 4, 66/75)
+2026-03-18 01:42:44,818 - code_generation_qwen2.5:1.5b_7f21b428 - ERROR - code_generation_65: Inference failed after 0.00s: No module named 'ollama'
+2026-03-18 01:42:44,819 - code_generation_qwen2.5:1.5b_7f21b428 - INFO - Processing code_generation_66 (bin 4, 67/75)
+2026-03-18 01:42:44,821 - code_generation_qwen2.5:1.5b_7f21b428 - ERROR - code_generation_66: Inference failed after 0.00s: No module named 'ollama'
+2026-03-18 01:42:44,822 - code_generation_qwen2.5:1.5b_7f21b428 - INFO - Processing code_generation_67 (bin 4, 68/75)
+2026-03-18 01:42:44,823 - code_generation_qwen2.5:1.5b_7f21b428 - ERROR - code_generation_67: Inference failed after 0.00s: No module named 'ollama'
+2026-03-18 01:42:44,825 - code_generation_qwen2.5:1.5b_7f21b428 - INFO - Processing code_generation_68 (bin 4, 69/75)
+2026-03-18 01:42:44,826 - code_generation_qwen2.5:1.5b_7f21b428 - ERROR - code_generation_68: Inference failed after 0.00s: No module named 'ollama'
+2026-03-18 01:42:44,828 - code_generation_qwen2.5:1.5b_7f21b428 - INFO - Processing code_generation_69 (bin 4, 70/75)
+2026-03-18 01:42:44,831 - code_generation_qwen2.5:1.5b_7f21b428 - ERROR - code_generation_69: Inference failed after 0.00s: No module named 'ollama'
+2026-03-18 01:42:44,833 - code_generation_qwen2.5:1.5b_7f21b428 - INFO - Processing code_generation_70 (bin 4, 71/75)
+2026-03-18 01:42:44,835 - code_generation_qwen2.5:1.5b_7f21b428 - ERROR - code_generation_70: Inference failed after 0.00s: No module named 'ollama'
+2026-03-18 01:42:44,837 - code_generation_qwen2.5:1.5b_7f21b428 - INFO - Processing code_generation_71 (bin 4, 72/75)
+2026-03-18 01:42:44,839 - code_generation_qwen2.5:1.5b_7f21b428 - ERROR - code_generation_71: Inference failed after 0.00s: No module named 'ollama'
+2026-03-18 01:42:44,840 - code_generation_qwen2.5:1.5b_7f21b428 - INFO - Processing code_generation_72 (bin 4, 73/75)
+2026-03-18 01:42:44,848 - code_generation_qwen2.5:1.5b_7f21b428 - ERROR - code_generation_72: Inference failed after 0.01s: No module named 'ollama'
+2026-03-18 01:42:44,852 - code_generation_qwen2.5:1.5b_7f21b428 - INFO - Processing code_generation_73 (bin 4, 74/75)
+2026-03-18 01:42:44,855 - code_generation_qwen2.5:1.5b_7f21b428 - ERROR - code_generation_73: Inference failed after 0.00s: No module named 'ollama'
+2026-03-18 01:42:44,857 - code_generation_qwen2.5:1.5b_7f21b428 - INFO - Processing code_generation_74 (bin 4, 75/75)
+2026-03-18 01:42:44,861 - code_generation_qwen2.5:1.5b_7f21b428 - ERROR - code_generation_74: Inference failed after 0.00s: No module named 'ollama'

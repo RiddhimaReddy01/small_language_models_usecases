@@ -2,6 +2,8 @@ from __future__ import annotations
 
 import pandas as pd
 
+DEFAULT_TIPPING_THRESHOLDS = [0.90, 0.93, 0.95, 0.97]
+
 
 def estimate_tipping_point(
     smooth_df: pd.DataFrame,
@@ -20,3 +22,19 @@ def estimate_tipping_point(
         else:
             run = 0
     return None
+
+
+def tipping_sensitivity(
+    smooth_df: pd.DataFrame,
+    thresholds: list[float] | None = None,
+    require_consecutive: int = 2,
+) -> dict[str, float | None]:
+    thresholds = thresholds or DEFAULT_TIPPING_THRESHOLDS
+    return {
+        f"{threshold:.2f}": estimate_tipping_point(
+            smooth_df,
+            threshold=threshold,
+            require_consecutive=require_consecutive,
+        )
+        for threshold in thresholds
+    }

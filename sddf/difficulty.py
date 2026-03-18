@@ -72,6 +72,8 @@ def compute_constraint_count(example: dict[str, Any] | str, rules: dict[str, Any
 
 
 def compute_reasoning_proxy(example: dict[str, Any], baseline_stats: dict[str, Any] | None = None) -> float:
+    # R_hat is a baseline-estimated reasoning proxy derived from observable signals.
+    # It is not ground-truth reasoning complexity.
     score = 0.0
     question = str(example.get("question", example.get("prompt", example.get("text", ""))))
     score += len(question.split()) * 0.05

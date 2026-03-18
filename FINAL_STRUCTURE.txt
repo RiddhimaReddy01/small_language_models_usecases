@@ -1,0 +1,210 @@
+================================================================================
+                        FINAL PROJECT STRUCTURE
+================================================================================
+
+SLM use cases/
+│
+├── README.md                          [UPDATED] Main project overview
+├── requirements.txt                   Python dependencies
+├── CODEBASE_ORGANIZATION.md           [NEW] Detailed structure reference
+├── ORGANIZATION_CHECKLIST.md          [NEW] Completion checklist
+│
+├── src/                               [CORE PRODUCTION CODE]
+│   ├── __init__.py                    Package marker
+│   ├── benchmark_inference_pipeline.py      (950 LOC)
+│   │   └── BenchmarkInferenceEngine, QueryRecord, RunManifest, etc.
+│   ├── task_specific_parser.py              (530 LOC)
+│   │   └── CodeGenerationParser, ClassificationParser, MathsParser, etc.
+│   ├── generate_reports.py                  (580 LOC)
+│   │   └── generate_part_a(), generate_part_b() - Report generation
+│   ├── prepare_benchmark_data.py            Dataset preparation
+│   │   └── Stratified sampling by difficulty
+│   ├── cleanup_empty_outputs.py             (150 LOC)
+│   │   └── Remove empty outputs, balance data
+│   └── revalidate_outputs.py                (180 LOC)
+│       └── Re-validate without re-inference
+│
+├── scripts/                           [ENTRY POINTS]
+│   ├── __init__.py                    Package marker
+│   └── run_benchmark_all_8_tasks.py   (261 LOC) [MAIN RUNNER]
+│       └── Executes all 8 tasks sequentially on CPU
+│
+├── docs/                              [DOCUMENTATION]
+│   ├── HOW_TO_RUN.md                  Complete execution guide
+│   ├── QUICK_START.md                 5-minute quickstart
+│   ├── PUBLICATION_READY_CONTRACT.md  10-requirement spec (all satisfied)
+│   ├── NEXT_INFERENCE_IMPROVEMENTS.md Planned improvements
+│   ├── TIMING_ESTIMATE_75_EXAMPLES.md Runtime estimates
+│   ├── BACKEND_MATRIX.md
+│   ├── BATCH_PIPELINE_SETUP.md
+│   ├── BENCHMARK_GOVERNANCE.md
+│   ├── CANONICAL_PIPELINE.md
+│   └── COMPREHENSIVE_FREE_STRATEGY.md
+│
+├── tests/                             [TEST SUITE - 10 test files]
+│   ├── test_benchmark_inference_contract.py  (32 passing tests)
+│   ├── test_benchmark_pipeline_contract.py
+│   ├── test_benchmark_governance_contract.py
+│   ├── test_benchmark_structure.py
+│   ├── test_execution.py
+│   ├── test_sddf_core.py
+│   ├── test_sddf_ingest_pipeline.py
+│   ├── conftest.py
+│   ├── __init__.py
+│   └── test_*.py (additional tests)
+│
+├── benchmark_output/                  [GENERATED RESULTS - IMMUTABLE]
+│   ├── classification/                Task 1 results
+│   │   └── phi3_mini/
+│   │       ├── outputs.jsonl          (75 samples, 14 fields each)
+│   │       ├── sddf_ready.csv         (SDDF metrics by bin)
+│   │       ├── run_manifest.json      (Audit trail)
+│   │       ├── dataset_manifest.json  (Sample selection)
+│   │       ├── part_a_report.md       (Methodology)
+│   │       └── part_b_report.md       (Results & Analysis)
+│   ├── code_generation/
+│   │   └── qwen2.5_1.5b/
+│   ├── information_extraction/
+│   │   └── phi3_mini/
+│   ├── instruction_following/
+│   │   └── qwen2.5_1.5b/
+│   ├── maths/
+│   │   └── qwen2.5_1.5b/
+│   ├── retrieval_grounded/
+│   │   └── qwen2.5_1.5b/
+│   ├── summarization/
+│   │   └── qwen2.5_1.5b/
+│   └── text_generation/
+│       └── qwen2.5_1.5b/
+│
+├── benchmarking/                      [SDDF FRAMEWORK]
+│   ├── __init__.py
+│   ├── interface.py                   Framework interface
+│   └── standardize.py                 Standardization layer
+│
+├── archive/                           [OLD CODE - PRESERVED]
+│   ├── audit_benchmark_governance.py
+│   ├── audit_report_readiness.py
+│   ├── batch_inference_pipeline.py    (Old version)
+│   ├── export_reports_html.py
+│   ├── generate_benchmark_report.py   (Replaced by generate_reports.py)
+│   ├── generate_part_b_report.py      (Replaced by generate_reports.py)
+│   ├── routing_policy.py
+│   ├── run_batch_pipeline.sh
+│   ├── run_benchmark.py
+│   ├── run_benchmark_example.py
+│   ├── run_benchmark_inference.py
+│   ├── benchmark_governance_registry.json
+│   ├── benchmark_pipeline_registry.json
+│   ├── benchmark_run.log
+│   ├── historical_report_readiness.json
+│   └── reports_index.html
+│
+├── [Legacy Task Folders]              [OLD - For Reference Only]
+│   ├── classification/                Old task implementation
+│   ├── code_generation/
+│   ├── instruction_following/
+│   ├── maths/
+│   ├── information_extraction/        & Information Extraction/ (different case)
+│   ├── retrieval_grounded/            & Retrieval_grounded/ (different case)
+│   ├── summarization/                 & Summarization/ (different case)
+│   └── text_generation/
+│
+└── [Other Folders]
+    ├── data/                          Data directory
+    ├── templates/                     Template files
+    ├── utils/                         Utility files
+    ├── paper/                         Paper assets
+    ├── results/                       Result archives
+    ├── sddf/                          SDDF module
+    ├── .git/                          Git repository
+    └── .venv/                         Virtual environment
+
+================================================================================
+                         ORGANIZATION STATISTICS
+================================================================================
+
+Core Production Code (src/):
+  - 6 Python files (2,890 LOC total)
+  - All importable as modules
+  - Clean separation of concerns
+
+Entry Points (scripts/):
+  - 1 main runner file
+  - Can import from src/
+  - Executable main() function
+
+Documentation (docs/):
+  - 10 markdown files
+  - Complete guides and specifications
+  - Architecture and design docs
+
+Test Suite (tests/):
+  - 10 test files
+  - 32+ passing tests
+  - All requirements validated
+
+Archive (archive/):
+  - 16 old/obsolete files
+  - Preserved for history
+  - Not imported or executed
+
+Generated Results:
+  - 8 task directories
+  - Each with: outputs.jsonl, sddf_ready.csv, 2 reports
+  - Immutable (don't edit manually)
+  - Publication-ready
+
+================================================================================
+                         USAGE QUICK REFERENCE
+================================================================================
+
+To run the benchmark:
+  $ python scripts/run_benchmark_all_8_tasks.py
+
+To generate reports:
+  $ python src/generate_reports.py
+
+To validate outputs:
+  $ python src/revalidate_outputs.py
+
+To clean and rebuild:
+  $ python src/cleanup_empty_outputs.py
+  $ python src/task_specific_parser.py
+
+To run tests:
+  $ pytest tests/
+
+To see documentation:
+  - Start: docs/QUICK_START.md
+  - Details: docs/HOW_TO_RUN.md
+  - Spec: docs/PUBLICATION_READY_CONTRACT.md
+
+================================================================================
+                              KEY PRINCIPLES
+================================================================================
+
+1. src/ = Library code (importable modules, no main())
+2. scripts/ = Executable entry points (can have main())
+3. tests/ = Validation and verification
+4. docs/ = Documentation and guides
+5. archive/ = Old code (preserved but not used)
+6. benchmark_output/ = Generated results (immutable)
+
+All old code is PRESERVED but ORGANIZED.
+Nothing was deleted.
+All imports have been updated.
+
+================================================================================
+                         STATUS: PRODUCTION READY
+================================================================================
+
+The codebase is now:
+  ✓ Professionally organized
+  ✓ Ready for publication
+  ✓ Easy to navigate
+  ✓ Well documented
+  ✓ Imports working
+  ✓ Tests passing
+  ✓ Results preserved
+

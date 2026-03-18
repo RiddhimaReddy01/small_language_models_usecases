@@ -28,33 +28,50 @@
 - Status: `available`
 - Reason: Computed from SDDF archive.
 
-### Historical comparison
+### Pairs
 
-- Historical code-generation results suggest API baselines retain an advantage on non-trivial algorithmic tasks, while local SLMs only pass trivial tasks reliably.
-- Because the saved artifacts are aggregate, this remains a directional comparison rather than a paired one.
-- Caveat: this comparison is aggregate and not example-matched, so it should not be treated as a strict paired test.
+- `meta-llama/Llama-3.2-1B-Instruct` vs `gemini-2.5-flash` on `HumanEval`: 1 matched examples
+- `meta-llama/Llama-3.2-1B-Instruct` vs `gemini-2.5-flash` on `MBPP`: 1 matched examples
 
 ## Capability Curve + Tipping Point
 
 - Status: `available`
 - Reason: Computed from SDDF archive.
 
-### Inferred transition point
+### meta-llama/Llama-3.2-1B-Instruct vs gemini-2.5-flash
 
-- Historical tipping signal: historical evidence suggests a sharp break once tasks move beyond trivial single-loop logic into algorithmic reasoning.
-- Operational reading: local SLMs can sometimes handle trivial tasks, but non-trivial algorithms are still a strong escalation signal.
-- Caveat: tipping point is inferred from prior benchmark patterns, not estimated from a fresh ratio curve on matched rows.
+- Tipping point: `None`
+- Tipping sensitivity: `{'0.90': None, '0.93': None, '0.95': None, '0.97': None}`
+- Plot file: `code_generation\runs_hf_llama1b_gemini_smoke\run_20260317_185527\sddf\reports\humaneval_meta_llama_llama_3_2_1b_instruct_vs_gemini_2_5_flash.png`
+
+![Capability curve](humaneval_meta_llama_llama_3_2_1b_instruct_vs_gemini_2_5_flash.png)
+
+### meta-llama/Llama-3.2-1B-Instruct vs gemini-2.5-flash
+
+- Tipping point: `None`
+- Tipping sensitivity: `{'0.90': None, '0.93': None, '0.95': None, '0.97': None}`
+- Plot file: `code_generation\runs_hf_llama1b_gemini_smoke\run_20260317_185527\sddf\reports\mbpp_meta_llama_llama_3_2_1b_instruct_vs_gemini_2_5_flash.png`
+
+![Capability curve](mbpp_meta_llama_llama_3_2_1b_instruct_vs_gemini_2_5_flash.png)
+
 
 ## Uncertainty Analysis
 
 - Status: `available`
 - Reason: Computed from SDDF archive.
 
-### Historical uncertainty
+### meta-llama/Llama-3.2-1B-Instruct vs gemini-2.5-flash
 
-- Historical sample size signal: `4` task results were saved.
-- Uncertainty source: completed-task counts are unstable and some local runs were incomplete, so exact thresholds should be treated cautiously.
-- Caveat: no bootstrap confidence interval was available without matched rerun rows.
+- Tipping median: `None`
+- 95% CI: `None` to `None`
+- Threshold sweep: `{'0.90': None, '0.93': None, '0.95': None, '0.97': None}`
+
+### meta-llama/Llama-3.2-1B-Instruct vs gemini-2.5-flash
+
+- Tipping median: `None`
+- 95% CI: `None` to `None`
+- Threshold sweep: `{'0.90': None, '0.93': None, '0.95': None, '0.97': None}`
+
 
 ## Failure Taxonomy
 
@@ -64,6 +81,7 @@
 - Heuristic structural failures: 0
 - Heuristic fixable failures: 4
 - Invalid outputs: 2
+- Validity note: partial or invalid runs should be excluded from strict cross-model comparison.
 - Note: this taxonomy is heuristic and should be reviewed against task-specific failure labels.
 
 ## Quality Gate
@@ -71,31 +89,38 @@
 - Status: `available`
 - Reason: Computed from SDDF archive.
 
-### Suggested gate
+### meta-llama/Llama-3.2-1B-Instruct vs gemini-2.5-flash
 
-- accept SLM outputs only on trivial, low-reasoning tasks with passing tests
-- escalate recursive, multi-structure, or benchmark-hard tasks by default
-- Caveat: gate thresholds are policy recommendations inferred from historical evidence, not learned from fresh matched supervision.
+
+### meta-llama/Llama-3.2-1B-Instruct vs gemini-2.5-flash
+
+
 
 ## Deployment Zones
 
 - Status: `available`
 - Reason: Computed from SDDF archive.
 
-### Inferred deployment stance
+### meta-llama/Llama-3.2-1B-Instruct vs gemini-2.5-flash
 
-- Likely SDDF stance: LLM-preferred except for trivial code generation slices.
-- Why: historical pass rates show the primary bottleneck is reasoning depth, not formatting.
-- Caveat: zone assignment is a benchmark-level recommendation and should be revalidated after reruns.
+- Bin `0` at difficulty `0.000` -> Zone `C`
+
+### meta-llama/Llama-3.2-1B-Instruct vs gemini-2.5-flash
+
+- Bin `0` at difficulty `0.000` -> Zone `C`
+
 
 ## Routing Policy
 
 - Status: `available`
 - Reason: Computed from SDDF archive.
 
-### Suggested routing policy
+### meta-llama/Llama-3.2-1B-Instruct vs gemini-2.5-flash
 
-- reserve SLMs for simple transformation or boilerplate tasks
-- route algorithmic or benchmark-hard tasks directly to stronger models
-- Caveat: this is a hand-authored routing rule from historical evidence, not a learned router threshold.
+- No routing threshold learned.
+
+### meta-llama/Llama-3.2-1B-Instruct vs gemini-2.5-flash
+
+- No routing threshold learned.
+
 

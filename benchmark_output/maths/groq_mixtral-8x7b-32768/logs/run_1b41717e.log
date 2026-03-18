@@ -1,0 +1,151 @@
+2026-03-18 08:12:29,858 - maths_mixtral-8x7b-32768_1b41717e - INFO - Run ID: 1b41717e-0867-44c2-b720-8e7a4223d1eb
+2026-03-18 08:12:29,868 - maths_mixtral-8x7b-32768_1b41717e - INFO - Processing maths_0 (bin 0, 1/75)
+2026-03-18 08:12:29,871 - maths_mixtral-8x7b-32768_1b41717e - ERROR - maths_0: Inference failed after 0.00s: No module named 'groq'
+2026-03-18 08:12:29,873 - maths_mixtral-8x7b-32768_1b41717e - INFO - Processing maths_1 (bin 0, 2/75)
+2026-03-18 08:12:29,875 - maths_mixtral-8x7b-32768_1b41717e - ERROR - maths_1: Inference failed after 0.00s: No module named 'groq'
+2026-03-18 08:12:29,877 - maths_mixtral-8x7b-32768_1b41717e - INFO - Processing maths_2 (bin 0, 3/75)
+2026-03-18 08:12:29,881 - maths_mixtral-8x7b-32768_1b41717e - ERROR - maths_2: Inference failed after 0.00s: No module named 'groq'
+2026-03-18 08:12:29,884 - maths_mixtral-8x7b-32768_1b41717e - INFO - Processing maths_3 (bin 0, 4/75)
+2026-03-18 08:12:29,888 - maths_mixtral-8x7b-32768_1b41717e - ERROR - maths_3: Inference failed after 0.00s: No module named 'groq'
+2026-03-18 08:12:29,890 - maths_mixtral-8x7b-32768_1b41717e - INFO - Processing maths_4 (bin 0, 5/75)
+2026-03-18 08:12:29,892 - maths_mixtral-8x7b-32768_1b41717e - ERROR - maths_4: Inference failed after 0.00s: No module named 'groq'
+2026-03-18 08:12:29,895 - maths_mixtral-8x7b-32768_1b41717e - INFO - Processing maths_5 (bin 0, 6/75)
+2026-03-18 08:12:29,897 - maths_mixtral-8x7b-32768_1b41717e - ERROR - maths_5: Inference failed after 0.00s: No module named 'groq'
+2026-03-18 08:12:29,897 - maths_mixtral-8x7b-32768_1b41717e - INFO - Processing maths_6 (bin 0, 7/75)
+2026-03-18 08:12:29,901 - maths_mixtral-8x7b-32768_1b41717e - ERROR - maths_6: Inference failed after 0.00s: No module named 'groq'
+2026-03-18 08:12:29,901 - maths_mixtral-8x7b-32768_1b41717e - INFO - Processing maths_7 (bin 0, 8/75)
+2026-03-18 08:12:29,907 - maths_mixtral-8x7b-32768_1b41717e - ERROR - maths_7: Inference failed after 0.00s: No module named 'groq'
+2026-03-18 08:12:29,909 - maths_mixtral-8x7b-32768_1b41717e - INFO - Processing maths_8 (bin 0, 9/75)
+2026-03-18 08:12:29,912 - maths_mixtral-8x7b-32768_1b41717e - ERROR - maths_8: Inference failed after 0.00s: No module named 'groq'
+2026-03-18 08:12:29,916 - maths_mixtral-8x7b-32768_1b41717e - INFO - Processing maths_9 (bin 0, 10/75)
+2026-03-18 08:12:29,918 - maths_mixtral-8x7b-32768_1b41717e - ERROR - maths_9: Inference failed after 0.00s: No module named 'groq'
+2026-03-18 08:12:29,920 - maths_mixtral-8x7b-32768_1b41717e - INFO - Processing maths_10 (bin 0, 11/75)
+2026-03-18 08:12:29,922 - maths_mixtral-8x7b-32768_1b41717e - ERROR - maths_10: Inference failed after 0.00s: No module named 'groq'
+2026-03-18 08:12:29,924 - maths_mixtral-8x7b-32768_1b41717e - INFO - Processing maths_11 (bin 0, 12/75)
+2026-03-18 08:12:29,926 - maths_mixtral-8x7b-32768_1b41717e - ERROR - maths_11: Inference failed after 0.00s: No module named 'groq'
+2026-03-18 08:12:29,926 - maths_mixtral-8x7b-32768_1b41717e - INFO - Processing maths_12 (bin 0, 13/75)
+2026-03-18 08:12:29,933 - maths_mixtral-8x7b-32768_1b41717e - ERROR - maths_12: Inference failed after 0.01s: No module named 'groq'
+2026-03-18 08:12:29,934 - maths_mixtral-8x7b-32768_1b41717e - INFO - Processing maths_13 (bin 0, 14/75)
+2026-03-18 08:12:29,937 - maths_mixtral-8x7b-32768_1b41717e - ERROR - maths_13: Inference failed after 0.00s: No module named 'groq'
+2026-03-18 08:12:29,939 - maths_mixtral-8x7b-32768_1b41717e - INFO - Processing maths_14 (bin 0, 15/75)
+2026-03-18 08:12:29,941 - maths_mixtral-8x7b-32768_1b41717e - ERROR - maths_14: Inference failed after 0.00s: No module named 'groq'
+2026-03-18 08:12:29,943 - maths_mixtral-8x7b-32768_1b41717e - INFO - Processing maths_15 (bin 1, 16/75)
+2026-03-18 08:12:29,948 - maths_mixtral-8x7b-32768_1b41717e - ERROR - maths_15: Inference failed after 0.00s: No module named 'groq'
+2026-03-18 08:12:29,948 - maths_mixtral-8x7b-32768_1b41717e - INFO - Processing maths_16 (bin 1, 17/75)
+2026-03-18 08:12:29,954 - maths_mixtral-8x7b-32768_1b41717e - ERROR - maths_16: Inference failed after 0.00s: No module named 'groq'
+2026-03-18 08:12:29,955 - maths_mixtral-8x7b-32768_1b41717e - INFO - Processing maths_17 (bin 1, 18/75)
+2026-03-18 08:12:29,957 - maths_mixtral-8x7b-32768_1b41717e - ERROR - maths_17: Inference failed after 0.00s: No module named 'groq'
+2026-03-18 08:12:29,959 - maths_mixtral-8x7b-32768_1b41717e - INFO - Processing maths_18 (bin 1, 19/75)
+2026-03-18 08:12:29,962 - maths_mixtral-8x7b-32768_1b41717e - ERROR - maths_18: Inference failed after 0.00s: No module named 'groq'
+2026-03-18 08:12:29,962 - maths_mixtral-8x7b-32768_1b41717e - INFO - Processing maths_19 (bin 1, 20/75)
+2026-03-18 08:12:29,967 - maths_mixtral-8x7b-32768_1b41717e - ERROR - maths_19: Inference failed after 0.00s: No module named 'groq'
+2026-03-18 08:12:29,967 - maths_mixtral-8x7b-32768_1b41717e - INFO - Processing maths_20 (bin 1, 21/75)
+2026-03-18 08:12:29,972 - maths_mixtral-8x7b-32768_1b41717e - ERROR - maths_20: Inference failed after 0.00s: No module named 'groq'
+2026-03-18 08:12:29,974 - maths_mixtral-8x7b-32768_1b41717e - INFO - Processing maths_21 (bin 1, 22/75)
+2026-03-18 08:12:29,976 - maths_mixtral-8x7b-32768_1b41717e - ERROR - maths_21: Inference failed after 0.00s: No module named 'groq'
+2026-03-18 08:12:29,978 - maths_mixtral-8x7b-32768_1b41717e - INFO - Processing maths_22 (bin 1, 23/75)
+2026-03-18 08:12:29,981 - maths_mixtral-8x7b-32768_1b41717e - ERROR - maths_22: Inference failed after 0.00s: No module named 'groq'
+2026-03-18 08:12:29,983 - maths_mixtral-8x7b-32768_1b41717e - INFO - Processing maths_23 (bin 1, 24/75)
+2026-03-18 08:12:29,988 - maths_mixtral-8x7b-32768_1b41717e - ERROR - maths_23: Inference failed after 0.01s: No module named 'groq'
+2026-03-18 08:12:29,990 - maths_mixtral-8x7b-32768_1b41717e - INFO - Processing maths_24 (bin 1, 25/75)
+2026-03-18 08:12:29,994 - maths_mixtral-8x7b-32768_1b41717e - ERROR - maths_24: Inference failed after 0.00s: No module named 'groq'
+2026-03-18 08:12:29,994 - maths_mixtral-8x7b-32768_1b41717e - INFO - Processing maths_25 (bin 1, 26/75)
+2026-03-18 08:12:29,998 - maths_mixtral-8x7b-32768_1b41717e - ERROR - maths_25: Inference failed after 0.00s: No module named 'groq'
+2026-03-18 08:12:30,000 - maths_mixtral-8x7b-32768_1b41717e - INFO - Processing maths_26 (bin 1, 27/75)
+2026-03-18 08:12:30,002 - maths_mixtral-8x7b-32768_1b41717e - ERROR - maths_26: Inference failed after 0.00s: No module named 'groq'
+2026-03-18 08:12:30,005 - maths_mixtral-8x7b-32768_1b41717e - INFO - Processing maths_27 (bin 1, 28/75)
+2026-03-18 08:12:30,008 - maths_mixtral-8x7b-32768_1b41717e - ERROR - maths_27: Inference failed after 0.00s: No module named 'groq'
+2026-03-18 08:12:30,008 - maths_mixtral-8x7b-32768_1b41717e - INFO - Processing maths_28 (bin 1, 29/75)
+2026-03-18 08:12:30,013 - maths_mixtral-8x7b-32768_1b41717e - ERROR - maths_28: Inference failed after 0.00s: No module named 'groq'
+2026-03-18 08:12:30,014 - maths_mixtral-8x7b-32768_1b41717e - INFO - Processing maths_29 (bin 1, 30/75)
+2026-03-18 08:12:30,018 - maths_mixtral-8x7b-32768_1b41717e - ERROR - maths_29: Inference failed after 0.00s: No module named 'groq'
+2026-03-18 08:12:30,020 - maths_mixtral-8x7b-32768_1b41717e - INFO - Processing maths_30 (bin 2, 31/75)
+2026-03-18 08:12:30,022 - maths_mixtral-8x7b-32768_1b41717e - ERROR - maths_30: Inference failed after 0.00s: No module named 'groq'
+2026-03-18 08:12:30,024 - maths_mixtral-8x7b-32768_1b41717e - INFO - Processing maths_31 (bin 2, 32/75)
+2026-03-18 08:12:30,026 - maths_mixtral-8x7b-32768_1b41717e - ERROR - maths_31: Inference failed after 0.00s: No module named 'groq'
+2026-03-18 08:12:30,026 - maths_mixtral-8x7b-32768_1b41717e - INFO - Processing maths_32 (bin 2, 33/75)
+2026-03-18 08:12:30,032 - maths_mixtral-8x7b-32768_1b41717e - ERROR - maths_32: Inference failed after 0.00s: No module named 'groq'
+2026-03-18 08:12:30,034 - maths_mixtral-8x7b-32768_1b41717e - INFO - Processing maths_33 (bin 2, 34/75)
+2026-03-18 08:12:30,037 - maths_mixtral-8x7b-32768_1b41717e - ERROR - maths_33: Inference failed after 0.00s: No module named 'groq'
+2026-03-18 08:12:30,040 - maths_mixtral-8x7b-32768_1b41717e - INFO - Processing maths_34 (bin 2, 35/75)
+2026-03-18 08:12:30,042 - maths_mixtral-8x7b-32768_1b41717e - ERROR - maths_34: Inference failed after 0.00s: No module named 'groq'
+2026-03-18 08:12:30,043 - maths_mixtral-8x7b-32768_1b41717e - INFO - Processing maths_35 (bin 2, 36/75)
+2026-03-18 08:12:30,046 - maths_mixtral-8x7b-32768_1b41717e - ERROR - maths_35: Inference failed after 0.00s: No module named 'groq'
+2026-03-18 08:12:30,050 - maths_mixtral-8x7b-32768_1b41717e - INFO - Processing maths_36 (bin 2, 37/75)
+2026-03-18 08:12:30,052 - maths_mixtral-8x7b-32768_1b41717e - ERROR - maths_36: Inference failed after 0.00s: No module named 'groq'
+2026-03-18 08:12:30,052 - maths_mixtral-8x7b-32768_1b41717e - INFO - Processing maths_37 (bin 2, 38/75)
+2026-03-18 08:12:30,057 - maths_mixtral-8x7b-32768_1b41717e - ERROR - maths_37: Inference failed after 0.00s: No module named 'groq'
+2026-03-18 08:12:30,059 - maths_mixtral-8x7b-32768_1b41717e - INFO - Processing maths_38 (bin 2, 39/75)
+2026-03-18 08:12:30,063 - maths_mixtral-8x7b-32768_1b41717e - ERROR - maths_38: Inference failed after 0.00s: No module named 'groq'
+2026-03-18 08:12:30,064 - maths_mixtral-8x7b-32768_1b41717e - INFO - Processing maths_39 (bin 2, 40/75)
+2026-03-18 08:12:30,067 - maths_mixtral-8x7b-32768_1b41717e - ERROR - maths_39: Inference failed after 0.00s: No module named 'groq'
+2026-03-18 08:12:30,068 - maths_mixtral-8x7b-32768_1b41717e - INFO - Processing maths_40 (bin 2, 41/75)
+2026-03-18 08:12:30,071 - maths_mixtral-8x7b-32768_1b41717e - ERROR - maths_40: Inference failed after 0.00s: No module named 'groq'
+2026-03-18 08:12:30,071 - maths_mixtral-8x7b-32768_1b41717e - INFO - Processing maths_41 (bin 2, 42/75)
+2026-03-18 08:12:30,076 - maths_mixtral-8x7b-32768_1b41717e - ERROR - maths_41: Inference failed after 0.00s: No module named 'groq'
+2026-03-18 08:12:30,076 - maths_mixtral-8x7b-32768_1b41717e - INFO - Processing maths_42 (bin 2, 43/75)
+2026-03-18 08:12:30,081 - maths_mixtral-8x7b-32768_1b41717e - ERROR - maths_42: Inference failed after 0.00s: No module named 'groq'
+2026-03-18 08:12:30,081 - maths_mixtral-8x7b-32768_1b41717e - INFO - Processing maths_43 (bin 2, 44/75)
+2026-03-18 08:12:30,084 - maths_mixtral-8x7b-32768_1b41717e - ERROR - maths_43: Inference failed after 0.00s: No module named 'groq'
+2026-03-18 08:12:30,088 - maths_mixtral-8x7b-32768_1b41717e - INFO - Processing maths_44 (bin 2, 45/75)
+2026-03-18 08:12:30,092 - maths_mixtral-8x7b-32768_1b41717e - ERROR - maths_44: Inference failed after 0.00s: No module named 'groq'
+2026-03-18 08:12:30,092 - maths_mixtral-8x7b-32768_1b41717e - INFO - Processing maths_45 (bin 3, 46/75)
+2026-03-18 08:12:30,095 - maths_mixtral-8x7b-32768_1b41717e - ERROR - maths_45: Inference failed after 0.00s: No module named 'groq'
+2026-03-18 08:12:30,097 - maths_mixtral-8x7b-32768_1b41717e - INFO - Processing maths_46 (bin 3, 47/75)
+2026-03-18 08:12:30,102 - maths_mixtral-8x7b-32768_1b41717e - ERROR - maths_46: Inference failed after 0.00s: No module named 'groq'
+2026-03-18 08:12:30,102 - maths_mixtral-8x7b-32768_1b41717e - INFO - Processing maths_47 (bin 3, 48/75)
+2026-03-18 08:12:30,105 - maths_mixtral-8x7b-32768_1b41717e - ERROR - maths_47: Inference failed after 0.00s: No module named 'groq'
+2026-03-18 08:12:30,105 - maths_mixtral-8x7b-32768_1b41717e - INFO - Processing maths_48 (bin 3, 49/75)
+2026-03-18 08:12:30,111 - maths_mixtral-8x7b-32768_1b41717e - ERROR - maths_48: Inference failed after 0.00s: No module named 'groq'
+2026-03-18 08:12:30,113 - maths_mixtral-8x7b-32768_1b41717e - INFO - Processing maths_49 (bin 3, 50/75)
+2026-03-18 08:12:30,116 - maths_mixtral-8x7b-32768_1b41717e - ERROR - maths_49: Inference failed after 0.00s: No module named 'groq'
+2026-03-18 08:12:30,118 - maths_mixtral-8x7b-32768_1b41717e - INFO - Processing maths_50 (bin 3, 51/75)
+2026-03-18 08:12:30,122 - maths_mixtral-8x7b-32768_1b41717e - ERROR - maths_50: Inference failed after 0.00s: No module named 'groq'
+2026-03-18 08:12:30,124 - maths_mixtral-8x7b-32768_1b41717e - INFO - Processing maths_51 (bin 3, 52/75)
+2026-03-18 08:12:30,128 - maths_mixtral-8x7b-32768_1b41717e - ERROR - maths_51: Inference failed after 0.00s: No module named 'groq'
+2026-03-18 08:12:30,129 - maths_mixtral-8x7b-32768_1b41717e - INFO - Processing maths_52 (bin 3, 53/75)
+2026-03-18 08:12:30,131 - maths_mixtral-8x7b-32768_1b41717e - ERROR - maths_52: Inference failed after 0.00s: No module named 'groq'
+2026-03-18 08:12:30,131 - maths_mixtral-8x7b-32768_1b41717e - INFO - Processing maths_53 (bin 3, 54/75)
+2026-03-18 08:12:30,136 - maths_mixtral-8x7b-32768_1b41717e - ERROR - maths_53: Inference failed after 0.01s: No module named 'groq'
+2026-03-18 08:12:30,139 - maths_mixtral-8x7b-32768_1b41717e - INFO - Processing maths_54 (bin 3, 55/75)
+2026-03-18 08:12:30,141 - maths_mixtral-8x7b-32768_1b41717e - ERROR - maths_54: Inference failed after 0.00s: No module named 'groq'
+2026-03-18 08:12:30,143 - maths_mixtral-8x7b-32768_1b41717e - INFO - Processing maths_55 (bin 3, 56/75)
+2026-03-18 08:12:30,146 - maths_mixtral-8x7b-32768_1b41717e - ERROR - maths_55: Inference failed after 0.00s: No module named 'groq'
+2026-03-18 08:12:30,147 - maths_mixtral-8x7b-32768_1b41717e - INFO - Processing maths_56 (bin 3, 57/75)
+2026-03-18 08:12:30,150 - maths_mixtral-8x7b-32768_1b41717e - ERROR - maths_56: Inference failed after 0.00s: No module named 'groq'
+2026-03-18 08:12:30,153 - maths_mixtral-8x7b-32768_1b41717e - INFO - Processing maths_57 (bin 3, 58/75)
+2026-03-18 08:12:30,155 - maths_mixtral-8x7b-32768_1b41717e - ERROR - maths_57: Inference failed after 0.00s: No module named 'groq'
+2026-03-18 08:12:30,157 - maths_mixtral-8x7b-32768_1b41717e - INFO - Processing maths_58 (bin 3, 59/75)
+2026-03-18 08:12:30,158 - maths_mixtral-8x7b-32768_1b41717e - ERROR - maths_58: Inference failed after 0.00s: No module named 'groq'
+2026-03-18 08:12:30,161 - maths_mixtral-8x7b-32768_1b41717e - INFO - Processing maths_59 (bin 3, 60/75)
+2026-03-18 08:12:30,161 - maths_mixtral-8x7b-32768_1b41717e - ERROR - maths_59: Inference failed after 0.00s: No module named 'groq'
+2026-03-18 08:12:30,164 - maths_mixtral-8x7b-32768_1b41717e - INFO - Processing maths_60 (bin 4, 61/75)
+2026-03-18 08:12:30,169 - maths_mixtral-8x7b-32768_1b41717e - ERROR - maths_60: Inference failed after 0.00s: No module named 'groq'
+2026-03-18 08:12:30,171 - maths_mixtral-8x7b-32768_1b41717e - INFO - Processing maths_61 (bin 4, 62/75)
+2026-03-18 08:12:30,175 - maths_mixtral-8x7b-32768_1b41717e - ERROR - maths_61: Inference failed after 0.00s: No module named 'groq'
+2026-03-18 08:12:30,177 - maths_mixtral-8x7b-32768_1b41717e - INFO - Processing maths_62 (bin 4, 63/75)
+2026-03-18 08:12:30,181 - maths_mixtral-8x7b-32768_1b41717e - ERROR - maths_62: Inference failed after 0.00s: No module named 'groq'
+2026-03-18 08:12:30,183 - maths_mixtral-8x7b-32768_1b41717e - INFO - Processing maths_63 (bin 4, 64/75)
+2026-03-18 08:12:30,187 - maths_mixtral-8x7b-32768_1b41717e - ERROR - maths_63: Inference failed after 0.00s: No module named 'groq'
+2026-03-18 08:12:30,189 - maths_mixtral-8x7b-32768_1b41717e - INFO - Processing maths_64 (bin 4, 65/75)
+2026-03-18 08:12:30,193 - maths_mixtral-8x7b-32768_1b41717e - ERROR - maths_64: Inference failed after 0.00s: No module named 'groq'
+2026-03-18 08:12:30,195 - maths_mixtral-8x7b-32768_1b41717e - INFO - Processing maths_65 (bin 4, 66/75)
+2026-03-18 08:12:30,201 - maths_mixtral-8x7b-32768_1b41717e - ERROR - maths_65: Inference failed after 0.00s: No module named 'groq'
+2026-03-18 08:12:30,203 - maths_mixtral-8x7b-32768_1b41717e - INFO - Processing maths_66 (bin 4, 67/75)
+2026-03-18 08:12:30,205 - maths_mixtral-8x7b-32768_1b41717e - ERROR - maths_66: Inference failed after 0.00s: No module named 'groq'
+2026-03-18 08:12:30,207 - maths_mixtral-8x7b-32768_1b41717e - INFO - Processing maths_67 (bin 4, 68/75)
+2026-03-18 08:12:30,211 - maths_mixtral-8x7b-32768_1b41717e - ERROR - maths_67: Inference failed after 0.00s: No module named 'groq'
+2026-03-18 08:12:30,213 - maths_mixtral-8x7b-32768_1b41717e - INFO - Processing maths_68 (bin 4, 69/75)
+2026-03-18 08:12:30,216 - maths_mixtral-8x7b-32768_1b41717e - ERROR - maths_68: Inference failed after 0.00s: No module named 'groq'
+2026-03-18 08:12:30,218 - maths_mixtral-8x7b-32768_1b41717e - INFO - Processing maths_69 (bin 4, 70/75)
+2026-03-18 08:12:30,222 - maths_mixtral-8x7b-32768_1b41717e - ERROR - maths_69: Inference failed after 0.00s: No module named 'groq'
+2026-03-18 08:12:30,222 - maths_mixtral-8x7b-32768_1b41717e - INFO - Processing maths_70 (bin 4, 71/75)
+2026-03-18 08:12:30,224 - maths_mixtral-8x7b-32768_1b41717e - ERROR - maths_70: Inference failed after 0.00s: No module named 'groq'
+2026-03-18 08:12:30,224 - maths_mixtral-8x7b-32768_1b41717e - INFO - Processing maths_71 (bin 4, 72/75)
+2026-03-18 08:12:30,225 - maths_mixtral-8x7b-32768_1b41717e - ERROR - maths_71: Inference failed after 0.00s: No module named 'groq'
+2026-03-18 08:12:30,226 - maths_mixtral-8x7b-32768_1b41717e - INFO - Processing maths_72 (bin 4, 73/75)
+2026-03-18 08:12:30,227 - maths_mixtral-8x7b-32768_1b41717e - ERROR - maths_72: Inference failed after 0.00s: No module named 'groq'
+2026-03-18 08:12:30,229 - maths_mixtral-8x7b-32768_1b41717e - INFO - Processing maths_73 (bin 4, 74/75)
+2026-03-18 08:12:30,231 - maths_mixtral-8x7b-32768_1b41717e - ERROR - maths_73: Inference failed after 0.00s: No module named 'groq'
+2026-03-18 08:12:30,233 - maths_mixtral-8x7b-32768_1b41717e - INFO - Processing maths_74 (bin 4, 75/75)
+2026-03-18 08:12:30,237 - maths_mixtral-8x7b-32768_1b41717e - ERROR - maths_74: Inference failed after 0.00s: No module named 'groq'

@@ -1,0 +1,151 @@
+2026-03-18 01:42:45,190 - retrieval_grounded_qwen2.5:1.5b_c647e0b0 - INFO - Run ID: c647e0b0-a354-49b4-8788-d5a9e6fa4348
+2026-03-18 01:42:45,209 - retrieval_grounded_qwen2.5:1.5b_c647e0b0 - INFO - Processing retrieval_grounded_0 (bin 0, 1/75)
+2026-03-18 01:42:45,210 - retrieval_grounded_qwen2.5:1.5b_c647e0b0 - ERROR - retrieval_grounded_0: Inference failed after 0.00s: No module named 'ollama'
+2026-03-18 01:42:45,212 - retrieval_grounded_qwen2.5:1.5b_c647e0b0 - INFO - Processing retrieval_grounded_1 (bin 0, 2/75)
+2026-03-18 01:42:45,217 - retrieval_grounded_qwen2.5:1.5b_c647e0b0 - ERROR - retrieval_grounded_1: Inference failed after 0.00s: No module named 'ollama'
+2026-03-18 01:42:45,221 - retrieval_grounded_qwen2.5:1.5b_c647e0b0 - INFO - Processing retrieval_grounded_2 (bin 0, 3/75)
+2026-03-18 01:42:45,223 - retrieval_grounded_qwen2.5:1.5b_c647e0b0 - ERROR - retrieval_grounded_2: Inference failed after 0.00s: No module named 'ollama'
+2026-03-18 01:42:45,225 - retrieval_grounded_qwen2.5:1.5b_c647e0b0 - INFO - Processing retrieval_grounded_3 (bin 0, 4/75)
+2026-03-18 01:42:45,227 - retrieval_grounded_qwen2.5:1.5b_c647e0b0 - ERROR - retrieval_grounded_3: Inference failed after 0.00s: No module named 'ollama'
+2026-03-18 01:42:45,229 - retrieval_grounded_qwen2.5:1.5b_c647e0b0 - INFO - Processing retrieval_grounded_4 (bin 0, 5/75)
+2026-03-18 01:42:45,234 - retrieval_grounded_qwen2.5:1.5b_c647e0b0 - ERROR - retrieval_grounded_4: Inference failed after 0.00s: No module named 'ollama'
+2026-03-18 01:42:45,237 - retrieval_grounded_qwen2.5:1.5b_c647e0b0 - INFO - Processing retrieval_grounded_5 (bin 0, 6/75)
+2026-03-18 01:42:45,238 - retrieval_grounded_qwen2.5:1.5b_c647e0b0 - ERROR - retrieval_grounded_5: Inference failed after 0.00s: No module named 'ollama'
+2026-03-18 01:42:45,241 - retrieval_grounded_qwen2.5:1.5b_c647e0b0 - INFO - Processing retrieval_grounded_6 (bin 0, 7/75)
+2026-03-18 01:42:45,244 - retrieval_grounded_qwen2.5:1.5b_c647e0b0 - ERROR - retrieval_grounded_6: Inference failed after 0.00s: No module named 'ollama'
+2026-03-18 01:42:45,252 - retrieval_grounded_qwen2.5:1.5b_c647e0b0 - INFO - Processing retrieval_grounded_7 (bin 0, 8/75)
+2026-03-18 01:42:45,253 - retrieval_grounded_qwen2.5:1.5b_c647e0b0 - ERROR - retrieval_grounded_7: Inference failed after 0.00s: No module named 'ollama'
+2026-03-18 01:42:45,255 - retrieval_grounded_qwen2.5:1.5b_c647e0b0 - INFO - Processing retrieval_grounded_8 (bin 0, 9/75)
+2026-03-18 01:42:45,257 - retrieval_grounded_qwen2.5:1.5b_c647e0b0 - ERROR - retrieval_grounded_8: Inference failed after 0.00s: No module named 'ollama'
+2026-03-18 01:42:45,260 - retrieval_grounded_qwen2.5:1.5b_c647e0b0 - INFO - Processing retrieval_grounded_9 (bin 0, 10/75)
+2026-03-18 01:42:45,262 - retrieval_grounded_qwen2.5:1.5b_c647e0b0 - ERROR - retrieval_grounded_9: Inference failed after 0.00s: No module named 'ollama'
+2026-03-18 01:42:45,266 - retrieval_grounded_qwen2.5:1.5b_c647e0b0 - INFO - Processing retrieval_grounded_10 (bin 0, 11/75)
+2026-03-18 01:42:45,269 - retrieval_grounded_qwen2.5:1.5b_c647e0b0 - ERROR - retrieval_grounded_10: Inference failed after 0.00s: No module named 'ollama'
+2026-03-18 01:42:45,272 - retrieval_grounded_qwen2.5:1.5b_c647e0b0 - INFO - Processing retrieval_grounded_11 (bin 0, 12/75)
+2026-03-18 01:42:45,274 - retrieval_grounded_qwen2.5:1.5b_c647e0b0 - ERROR - retrieval_grounded_11: Inference failed after 0.00s: No module named 'ollama'
+2026-03-18 01:42:45,277 - retrieval_grounded_qwen2.5:1.5b_c647e0b0 - INFO - Processing retrieval_grounded_12 (bin 0, 13/75)
+2026-03-18 01:42:45,283 - retrieval_grounded_qwen2.5:1.5b_c647e0b0 - ERROR - retrieval_grounded_12: Inference failed after 0.00s: No module named 'ollama'
+2026-03-18 01:42:45,287 - retrieval_grounded_qwen2.5:1.5b_c647e0b0 - INFO - Processing retrieval_grounded_13 (bin 0, 14/75)
+2026-03-18 01:42:45,291 - retrieval_grounded_qwen2.5:1.5b_c647e0b0 - ERROR - retrieval_grounded_13: Inference failed after 0.00s: No module named 'ollama'
+2026-03-18 01:42:45,295 - retrieval_grounded_qwen2.5:1.5b_c647e0b0 - INFO - Processing retrieval_grounded_14 (bin 0, 15/75)
+2026-03-18 01:42:45,296 - retrieval_grounded_qwen2.5:1.5b_c647e0b0 - ERROR - retrieval_grounded_14: Inference failed after 0.00s: No module named 'ollama'
+2026-03-18 01:42:45,298 - retrieval_grounded_qwen2.5:1.5b_c647e0b0 - INFO - Processing retrieval_grounded_15 (bin 1, 16/75)
+2026-03-18 01:42:45,300 - retrieval_grounded_qwen2.5:1.5b_c647e0b0 - ERROR - retrieval_grounded_15: Inference failed after 0.00s: No module named 'ollama'
+2026-03-18 01:42:45,303 - retrieval_grounded_qwen2.5:1.5b_c647e0b0 - INFO - Processing retrieval_grounded_16 (bin 1, 17/75)
+2026-03-18 01:42:45,305 - retrieval_grounded_qwen2.5:1.5b_c647e0b0 - ERROR - retrieval_grounded_16: Inference failed after 0.00s: No module named 'ollama'
+2026-03-18 01:42:45,308 - retrieval_grounded_qwen2.5:1.5b_c647e0b0 - INFO - Processing retrieval_grounded_17 (bin 1, 18/75)
+2026-03-18 01:42:45,311 - retrieval_grounded_qwen2.5:1.5b_c647e0b0 - ERROR - retrieval_grounded_17: Inference failed after 0.00s: No module named 'ollama'
+2026-03-18 01:42:45,315 - retrieval_grounded_qwen2.5:1.5b_c647e0b0 - INFO - Processing retrieval_grounded_18 (bin 1, 19/75)
+2026-03-18 01:42:45,318 - retrieval_grounded_qwen2.5:1.5b_c647e0b0 - ERROR - retrieval_grounded_18: Inference failed after 0.00s: No module named 'ollama'
+2026-03-18 01:42:45,321 - retrieval_grounded_qwen2.5:1.5b_c647e0b0 - INFO - Processing retrieval_grounded_19 (bin 1, 20/75)
+2026-03-18 01:42:45,323 - retrieval_grounded_qwen2.5:1.5b_c647e0b0 - ERROR - retrieval_grounded_19: Inference failed after 0.00s: No module named 'ollama'
+2026-03-18 01:42:45,326 - retrieval_grounded_qwen2.5:1.5b_c647e0b0 - INFO - Processing retrieval_grounded_20 (bin 1, 21/75)
+2026-03-18 01:42:45,329 - retrieval_grounded_qwen2.5:1.5b_c647e0b0 - ERROR - retrieval_grounded_20: Inference failed after 0.00s: No module named 'ollama'
+2026-03-18 01:42:45,336 - retrieval_grounded_qwen2.5:1.5b_c647e0b0 - INFO - Processing retrieval_grounded_21 (bin 1, 22/75)
+2026-03-18 01:42:45,337 - retrieval_grounded_qwen2.5:1.5b_c647e0b0 - ERROR - retrieval_grounded_21: Inference failed after 0.00s: No module named 'ollama'
+2026-03-18 01:42:45,337 - retrieval_grounded_qwen2.5:1.5b_c647e0b0 - INFO - Processing retrieval_grounded_22 (bin 1, 23/75)
+2026-03-18 01:42:45,338 - retrieval_grounded_qwen2.5:1.5b_c647e0b0 - ERROR - retrieval_grounded_22: Inference failed after 0.00s: No module named 'ollama'
+2026-03-18 01:42:45,341 - retrieval_grounded_qwen2.5:1.5b_c647e0b0 - INFO - Processing retrieval_grounded_23 (bin 1, 24/75)
+2026-03-18 01:42:45,343 - retrieval_grounded_qwen2.5:1.5b_c647e0b0 - ERROR - retrieval_grounded_23: Inference failed after 0.00s: No module named 'ollama'
+2026-03-18 01:42:45,346 - retrieval_grounded_qwen2.5:1.5b_c647e0b0 - INFO - Processing retrieval_grounded_24 (bin 1, 25/75)
+2026-03-18 01:42:45,349 - retrieval_grounded_qwen2.5:1.5b_c647e0b0 - ERROR - retrieval_grounded_24: Inference failed after 0.00s: No module named 'ollama'
+2026-03-18 01:42:45,352 - retrieval_grounded_qwen2.5:1.5b_c647e0b0 - INFO - Processing retrieval_grounded_25 (bin 1, 26/75)
+2026-03-18 01:42:45,354 - retrieval_grounded_qwen2.5:1.5b_c647e0b0 - ERROR - retrieval_grounded_25: Inference failed after 0.00s: No module named 'ollama'
+2026-03-18 01:42:45,357 - retrieval_grounded_qwen2.5:1.5b_c647e0b0 - INFO - Processing retrieval_grounded_26 (bin 1, 27/75)
+2026-03-18 01:42:45,360 - retrieval_grounded_qwen2.5:1.5b_c647e0b0 - ERROR - retrieval_grounded_26: Inference failed after 0.00s: No module named 'ollama'
+2026-03-18 01:42:45,363 - retrieval_grounded_qwen2.5:1.5b_c647e0b0 - INFO - Processing retrieval_grounded_27 (bin 1, 28/75)
+2026-03-18 01:42:45,367 - retrieval_grounded_qwen2.5:1.5b_c647e0b0 - ERROR - retrieval_grounded_27: Inference failed after 0.00s: No module named 'ollama'
+2026-03-18 01:42:45,370 - retrieval_grounded_qwen2.5:1.5b_c647e0b0 - INFO - Processing retrieval_grounded_28 (bin 1, 29/75)
+2026-03-18 01:42:45,372 - retrieval_grounded_qwen2.5:1.5b_c647e0b0 - ERROR - retrieval_grounded_28: Inference failed after 0.00s: No module named 'ollama'
+2026-03-18 01:42:45,376 - retrieval_grounded_qwen2.5:1.5b_c647e0b0 - INFO - Processing retrieval_grounded_29 (bin 1, 30/75)
+2026-03-18 01:42:45,377 - retrieval_grounded_qwen2.5:1.5b_c647e0b0 - ERROR - retrieval_grounded_29: Inference failed after 0.00s: No module named 'ollama'
+2026-03-18 01:42:45,378 - retrieval_grounded_qwen2.5:1.5b_c647e0b0 - INFO - Processing retrieval_grounded_30 (bin 2, 31/75)
+2026-03-18 01:42:45,381 - retrieval_grounded_qwen2.5:1.5b_c647e0b0 - ERROR - retrieval_grounded_30: Inference failed after 0.00s: No module named 'ollama'
+2026-03-18 01:42:45,384 - retrieval_grounded_qwen2.5:1.5b_c647e0b0 - INFO - Processing retrieval_grounded_31 (bin 2, 32/75)
+2026-03-18 01:42:45,386 - retrieval_grounded_qwen2.5:1.5b_c647e0b0 - ERROR - retrieval_grounded_31: Inference failed after 0.00s: No module named 'ollama'
+2026-03-18 01:42:45,388 - retrieval_grounded_qwen2.5:1.5b_c647e0b0 - INFO - Processing retrieval_grounded_32 (bin 2, 33/75)
+2026-03-18 01:42:45,390 - retrieval_grounded_qwen2.5:1.5b_c647e0b0 - ERROR - retrieval_grounded_32: Inference failed after 0.00s: No module named 'ollama'
+2026-03-18 01:42:45,394 - retrieval_grounded_qwen2.5:1.5b_c647e0b0 - INFO - Processing retrieval_grounded_33 (bin 2, 34/75)
+2026-03-18 01:42:45,396 - retrieval_grounded_qwen2.5:1.5b_c647e0b0 - ERROR - retrieval_grounded_33: Inference failed after 0.00s: No module named 'ollama'
+2026-03-18 01:42:45,401 - retrieval_grounded_qwen2.5:1.5b_c647e0b0 - INFO - Processing retrieval_grounded_34 (bin 2, 35/75)
+2026-03-18 01:42:45,403 - retrieval_grounded_qwen2.5:1.5b_c647e0b0 - ERROR - retrieval_grounded_34: Inference failed after 0.00s: No module named 'ollama'
+2026-03-18 01:42:45,406 - retrieval_grounded_qwen2.5:1.5b_c647e0b0 - INFO - Processing retrieval_grounded_35 (bin 2, 36/75)
+2026-03-18 01:42:45,409 - retrieval_grounded_qwen2.5:1.5b_c647e0b0 - ERROR - retrieval_grounded_35: Inference failed after 0.00s: No module named 'ollama'
+2026-03-18 01:42:45,413 - retrieval_grounded_qwen2.5:1.5b_c647e0b0 - INFO - Processing retrieval_grounded_36 (bin 2, 37/75)
+2026-03-18 01:42:45,417 - retrieval_grounded_qwen2.5:1.5b_c647e0b0 - ERROR - retrieval_grounded_36: Inference failed after 0.00s: No module named 'ollama'
+2026-03-18 01:42:45,419 - retrieval_grounded_qwen2.5:1.5b_c647e0b0 - INFO - Processing retrieval_grounded_37 (bin 2, 38/75)
+2026-03-18 01:42:45,420 - retrieval_grounded_qwen2.5:1.5b_c647e0b0 - ERROR - retrieval_grounded_37: Inference failed after 0.00s: No module named 'ollama'
+2026-03-18 01:42:45,422 - retrieval_grounded_qwen2.5:1.5b_c647e0b0 - INFO - Processing retrieval_grounded_38 (bin 2, 39/75)
+2026-03-18 01:42:45,424 - retrieval_grounded_qwen2.5:1.5b_c647e0b0 - ERROR - retrieval_grounded_38: Inference failed after 0.00s: No module named 'ollama'
+2026-03-18 01:42:45,427 - retrieval_grounded_qwen2.5:1.5b_c647e0b0 - INFO - Processing retrieval_grounded_39 (bin 2, 40/75)
+2026-03-18 01:42:45,430 - retrieval_grounded_qwen2.5:1.5b_c647e0b0 - ERROR - retrieval_grounded_39: Inference failed after 0.00s: No module named 'ollama'
+2026-03-18 01:42:45,435 - retrieval_grounded_qwen2.5:1.5b_c647e0b0 - INFO - Processing retrieval_grounded_40 (bin 2, 41/75)
+2026-03-18 01:42:45,437 - retrieval_grounded_qwen2.5:1.5b_c647e0b0 - ERROR - retrieval_grounded_40: Inference failed after 0.00s: No module named 'ollama'
+2026-03-18 01:42:45,439 - retrieval_grounded_qwen2.5:1.5b_c647e0b0 - INFO - Processing retrieval_grounded_41 (bin 2, 42/75)
+2026-03-18 01:42:45,442 - retrieval_grounded_qwen2.5:1.5b_c647e0b0 - ERROR - retrieval_grounded_41: Inference failed after 0.00s: No module named 'ollama'
+2026-03-18 01:42:45,445 - retrieval_grounded_qwen2.5:1.5b_c647e0b0 - INFO - Processing retrieval_grounded_42 (bin 2, 43/75)
+2026-03-18 01:42:45,448 - retrieval_grounded_qwen2.5:1.5b_c647e0b0 - ERROR - retrieval_grounded_42: Inference failed after 0.00s: No module named 'ollama'
+2026-03-18 01:42:45,451 - retrieval_grounded_qwen2.5:1.5b_c647e0b0 - INFO - Processing retrieval_grounded_43 (bin 2, 44/75)
+2026-03-18 01:42:45,454 - retrieval_grounded_qwen2.5:1.5b_c647e0b0 - ERROR - retrieval_grounded_43: Inference failed after 0.00s: No module named 'ollama'
+2026-03-18 01:42:45,458 - retrieval_grounded_qwen2.5:1.5b_c647e0b0 - INFO - Processing retrieval_grounded_44 (bin 2, 45/75)
+2026-03-18 01:42:45,460 - retrieval_grounded_qwen2.5:1.5b_c647e0b0 - ERROR - retrieval_grounded_44: Inference failed after 0.00s: No module named 'ollama'
+2026-03-18 01:42:45,461 - retrieval_grounded_qwen2.5:1.5b_c647e0b0 - INFO - Processing retrieval_grounded_45 (bin 3, 46/75)
+2026-03-18 01:42:45,462 - retrieval_grounded_qwen2.5:1.5b_c647e0b0 - ERROR - retrieval_grounded_45: Inference failed after 0.00s: No module named 'ollama'
+2026-03-18 01:42:45,467 - retrieval_grounded_qwen2.5:1.5b_c647e0b0 - INFO - Processing retrieval_grounded_46 (bin 3, 47/75)
+2026-03-18 01:42:45,471 - retrieval_grounded_qwen2.5:1.5b_c647e0b0 - ERROR - retrieval_grounded_46: Inference failed after 0.00s: No module named 'ollama'
+2026-03-18 01:42:45,474 - retrieval_grounded_qwen2.5:1.5b_c647e0b0 - INFO - Processing retrieval_grounded_47 (bin 3, 48/75)
+2026-03-18 01:42:45,477 - retrieval_grounded_qwen2.5:1.5b_c647e0b0 - ERROR - retrieval_grounded_47: Inference failed after 0.00s: No module named 'ollama'
+2026-03-18 01:42:45,480 - retrieval_grounded_qwen2.5:1.5b_c647e0b0 - INFO - Processing retrieval_grounded_48 (bin 3, 49/75)
+2026-03-18 01:42:45,483 - retrieval_grounded_qwen2.5:1.5b_c647e0b0 - ERROR - retrieval_grounded_48: Inference failed after 0.00s: No module named 'ollama'
+2026-03-18 01:42:45,485 - retrieval_grounded_qwen2.5:1.5b_c647e0b0 - INFO - Processing retrieval_grounded_49 (bin 3, 50/75)
+2026-03-18 01:42:45,487 - retrieval_grounded_qwen2.5:1.5b_c647e0b0 - ERROR - retrieval_grounded_49: Inference failed after 0.00s: No module named 'ollama'
+2026-03-18 01:42:45,491 - retrieval_grounded_qwen2.5:1.5b_c647e0b0 - INFO - Processing retrieval_grounded_50 (bin 3, 51/75)
+2026-03-18 01:42:45,493 - retrieval_grounded_qwen2.5:1.5b_c647e0b0 - ERROR - retrieval_grounded_50: Inference failed after 0.00s: No module named 'ollama'
+2026-03-18 01:42:45,496 - retrieval_grounded_qwen2.5:1.5b_c647e0b0 - INFO - Processing retrieval_grounded_51 (bin 3, 52/75)
+2026-03-18 01:42:45,502 - retrieval_grounded_qwen2.5:1.5b_c647e0b0 - ERROR - retrieval_grounded_51: Inference failed after 0.00s: No module named 'ollama'
+2026-03-18 01:42:45,504 - retrieval_grounded_qwen2.5:1.5b_c647e0b0 - INFO - Processing retrieval_grounded_52 (bin 3, 53/75)
+2026-03-18 01:42:45,505 - retrieval_grounded_qwen2.5:1.5b_c647e0b0 - ERROR - retrieval_grounded_52: Inference failed after 0.00s: No module named 'ollama'
+2026-03-18 01:42:45,506 - retrieval_grounded_qwen2.5:1.5b_c647e0b0 - INFO - Processing retrieval_grounded_53 (bin 3, 54/75)
+2026-03-18 01:42:45,507 - retrieval_grounded_qwen2.5:1.5b_c647e0b0 - ERROR - retrieval_grounded_53: Inference failed after 0.00s: No module named 'ollama'
+2026-03-18 01:42:45,510 - retrieval_grounded_qwen2.5:1.5b_c647e0b0 - INFO - Processing retrieval_grounded_54 (bin 3, 55/75)
+2026-03-18 01:42:45,513 - retrieval_grounded_qwen2.5:1.5b_c647e0b0 - ERROR - retrieval_grounded_54: Inference failed after 0.00s: No module named 'ollama'
+2026-03-18 01:42:45,516 - retrieval_grounded_qwen2.5:1.5b_c647e0b0 - INFO - Processing retrieval_grounded_55 (bin 3, 56/75)
+2026-03-18 01:42:45,518 - retrieval_grounded_qwen2.5:1.5b_c647e0b0 - ERROR - retrieval_grounded_55: Inference failed after 0.00s: No module named 'ollama'
+2026-03-18 01:42:45,521 - retrieval_grounded_qwen2.5:1.5b_c647e0b0 - INFO - Processing retrieval_grounded_56 (bin 3, 57/75)
+2026-03-18 01:42:45,523 - retrieval_grounded_qwen2.5:1.5b_c647e0b0 - ERROR - retrieval_grounded_56: Inference failed after 0.00s: No module named 'ollama'
+2026-03-18 01:42:45,526 - retrieval_grounded_qwen2.5:1.5b_c647e0b0 - INFO - Processing retrieval_grounded_57 (bin 3, 58/75)
+2026-03-18 01:42:45,530 - retrieval_grounded_qwen2.5:1.5b_c647e0b0 - ERROR - retrieval_grounded_57: Inference failed after 0.00s: No module named 'ollama'
+2026-03-18 01:42:45,536 - retrieval_grounded_qwen2.5:1.5b_c647e0b0 - INFO - Processing retrieval_grounded_58 (bin 3, 59/75)
+2026-03-18 01:42:45,541 - retrieval_grounded_qwen2.5:1.5b_c647e0b0 - ERROR - retrieval_grounded_58: Inference failed after 0.00s: No module named 'ollama'
+2026-03-18 01:42:45,547 - retrieval_grounded_qwen2.5:1.5b_c647e0b0 - INFO - Processing retrieval_grounded_59 (bin 3, 60/75)
+2026-03-18 01:42:45,548 - retrieval_grounded_qwen2.5:1.5b_c647e0b0 - ERROR - retrieval_grounded_59: Inference failed after 0.00s: No module named 'ollama'
+2026-03-18 01:42:45,549 - retrieval_grounded_qwen2.5:1.5b_c647e0b0 - INFO - Processing retrieval_grounded_60 (bin 4, 61/75)
+2026-03-18 01:42:45,550 - retrieval_grounded_qwen2.5:1.5b_c647e0b0 - ERROR - retrieval_grounded_60: Inference failed after 0.00s: No module named 'ollama'
+2026-03-18 01:42:45,554 - retrieval_grounded_qwen2.5:1.5b_c647e0b0 - INFO - Processing retrieval_grounded_61 (bin 4, 62/75)
+2026-03-18 01:42:45,558 - retrieval_grounded_qwen2.5:1.5b_c647e0b0 - ERROR - retrieval_grounded_61: Inference failed after 0.00s: No module named 'ollama'
+2026-03-18 01:42:45,562 - retrieval_grounded_qwen2.5:1.5b_c647e0b0 - INFO - Processing retrieval_grounded_62 (bin 4, 63/75)
+2026-03-18 01:42:45,563 - retrieval_grounded_qwen2.5:1.5b_c647e0b0 - ERROR - retrieval_grounded_62: Inference failed after 0.00s: No module named 'ollama'
+2026-03-18 01:42:45,566 - retrieval_grounded_qwen2.5:1.5b_c647e0b0 - INFO - Processing retrieval_grounded_63 (bin 4, 64/75)
+2026-03-18 01:42:45,568 - retrieval_grounded_qwen2.5:1.5b_c647e0b0 - ERROR - retrieval_grounded_63: Inference failed after 0.00s: No module named 'ollama'
+2026-03-18 01:42:45,571 - retrieval_grounded_qwen2.5:1.5b_c647e0b0 - INFO - Processing retrieval_grounded_64 (bin 4, 65/75)
+2026-03-18 01:42:45,572 - retrieval_grounded_qwen2.5:1.5b_c647e0b0 - ERROR - retrieval_grounded_64: Inference failed after 0.00s: No module named 'ollama'
+2026-03-18 01:42:45,575 - retrieval_grounded_qwen2.5:1.5b_c647e0b0 - INFO - Processing retrieval_grounded_65 (bin 4, 66/75)
+2026-03-18 01:42:45,578 - retrieval_grounded_qwen2.5:1.5b_c647e0b0 - ERROR - retrieval_grounded_65: Inference failed after 0.00s: No module named 'ollama'
+2026-03-18 01:42:45,582 - retrieval_grounded_qwen2.5:1.5b_c647e0b0 - INFO - Processing retrieval_grounded_66 (bin 4, 67/75)
+2026-03-18 01:42:45,583 - retrieval_grounded_qwen2.5:1.5b_c647e0b0 - ERROR - retrieval_grounded_66: Inference failed after 0.00s: No module named 'ollama'
+2026-03-18 01:42:45,588 - retrieval_grounded_qwen2.5:1.5b_c647e0b0 - INFO - Processing retrieval_grounded_67 (bin 4, 68/75)
+2026-03-18 01:42:45,590 - retrieval_grounded_qwen2.5:1.5b_c647e0b0 - ERROR - retrieval_grounded_67: Inference failed after 0.00s: No module named 'ollama'
+2026-03-18 01:42:45,591 - retrieval_grounded_qwen2.5:1.5b_c647e0b0 - INFO - Processing retrieval_grounded_68 (bin 4, 69/75)
+2026-03-18 01:42:45,592 - retrieval_grounded_qwen2.5:1.5b_c647e0b0 - ERROR - retrieval_grounded_68: Inference failed after 0.00s: No module named 'ollama'
+2026-03-18 01:42:45,594 - retrieval_grounded_qwen2.5:1.5b_c647e0b0 - INFO - Processing retrieval_grounded_69 (bin 4, 70/75)
+2026-03-18 01:42:45,598 - retrieval_grounded_qwen2.5:1.5b_c647e0b0 - ERROR - retrieval_grounded_69: Inference failed after 0.00s: No module named 'ollama'
+2026-03-18 01:42:45,601 - retrieval_grounded_qwen2.5:1.5b_c647e0b0 - INFO - Processing retrieval_grounded_70 (bin 4, 71/75)
+2026-03-18 01:42:45,603 - retrieval_grounded_qwen2.5:1.5b_c647e0b0 - ERROR - retrieval_grounded_70: Inference failed after 0.00s: No module named 'ollama'
+2026-03-18 01:42:45,607 - retrieval_grounded_qwen2.5:1.5b_c647e0b0 - INFO - Processing retrieval_grounded_71 (bin 4, 72/75)
+2026-03-18 01:42:45,611 - retrieval_grounded_qwen2.5:1.5b_c647e0b0 - ERROR - retrieval_grounded_71: Inference failed after 0.00s: No module named 'ollama'
+2026-03-18 01:42:45,617 - retrieval_grounded_qwen2.5:1.5b_c647e0b0 - INFO - Processing retrieval_grounded_72 (bin 4, 73/75)
+2026-03-18 01:42:45,619 - retrieval_grounded_qwen2.5:1.5b_c647e0b0 - ERROR - retrieval_grounded_72: Inference failed after 0.00s: No module named 'ollama'
+2026-03-18 01:42:45,622 - retrieval_grounded_qwen2.5:1.5b_c647e0b0 - INFO - Processing retrieval_grounded_73 (bin 4, 74/75)
+2026-03-18 01:42:45,624 - retrieval_grounded_qwen2.5:1.5b_c647e0b0 - ERROR - retrieval_grounded_73: Inference failed after 0.00s: No module named 'ollama'
+2026-03-18 01:42:45,629 - retrieval_grounded_qwen2.5:1.5b_c647e0b0 - INFO - Processing retrieval_grounded_74 (bin 4, 75/75)
+2026-03-18 01:42:45,631 - retrieval_grounded_qwen2.5:1.5b_c647e0b0 - ERROR - retrieval_grounded_74: Inference failed after 0.00s: No module named 'ollama'

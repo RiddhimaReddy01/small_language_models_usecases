@@ -1,0 +1,180 @@
+{
+  "Bin 0 (Easy)": [
+    {
+      "model_name": "TinyLLaMA",
+      "params": 0.5,
+      "accuracy": 0.0,
+      "latency_ms": 5.0,
+      "cost_per_1k": 0.0,
+      "composite_score": 200.4
+    },
+    {
+      "model_name": "Qwen2.5",
+      "params": 1.5,
+      "accuracy": 0.9,
+      "latency_ms": 6863.003788391749,
+      "cost_per_1k": 0.0,
+      "composite_score": 200.54029141758647
+    },
+    {
+      "model_name": "Mixtral-8x7B",
+      "params": 45.0,
+      "accuracy": 0.0,
+      "latency_ms": 2.0,
+      "cost_per_1k": 0.27,
+      "composite_score": 1.7142857142857144
+    },
+    {
+      "model_name": "Llama-3.3-70B",
+      "params": 70.0,
+      "accuracy": 0.6833333333333333,
+      "latency_ms": 2963.619303703308,
+      "cost_per_1k": 0.4,
+      "composite_score": 0.8984797285592697
+    }
+  ],
+  "Bin 1 (Medium)": [
+    {
+      "model_name": "TinyLLaMA",
+      "params": 0.5,
+      "accuracy": 0.0,
+      "latency_ms": 5.0,
+      "cost_per_1k": 0.0,
+      "composite_score": 200.4
+    },
+    {
+      "model_name": "Qwen2.5",
+      "params": 1.5,
+      "accuracy": 0.925,
+      "latency_ms": 6344.473298390706,
+      "cost_per_1k": 0.0,
+      "composite_score": 200.55531523499366
+    },
+    {
+      "model_name": "Mixtral-8x7B",
+      "params": 45.0,
+      "accuracy": 0.0,
+      "latency_ms": 2.0,
+      "cost_per_1k": 0.27,
+      "composite_score": 1.7142857142857144
+    },
+    {
+      "model_name": "Llama-3.3-70B",
+      "params": 70.0,
+      "accuracy": 0.6833333333333333,
+      "latency_ms": 3142.333507537842,
+      "cost_per_1k": 0.4,
+      "composite_score": 0.8984413477281452
+    }
+  ],
+  "Bin 2 (Hard)": [
+    {
+      "model_name": "TinyLLaMA",
+      "params": 0.5,
+      "accuracy": 0.0,
+      "latency_ms": 5.0,
+      "cost_per_1k": 0.0,
+      "composite_score": 200.4
+    },
+    {
+      "model_name": "Qwen2.5",
+      "params": 1.5,
+      "accuracy": 0.925,
+      "latency_ms": 6734.1806054115295,
+      "cost_per_1k": 0.0,
+      "composite_score": 200.55529699233168
+    },
+    {
+      "model_name": "Mixtral-8x7B",
+      "params": 45.0,
+      "accuracy": 0.0,
+      "latency_ms": 2.0,
+      "cost_per_1k": 0.27,
+      "composite_score": 1.7142857142857144
+    },
+    {
+      "model_name": "Llama-3.3-70B",
+      "params": 70.0,
+      "accuracy": 0.6916666666666667,
+      "latency_ms": 3263.194102048874,
+      "cost_per_1k": 0.4,
+      "composite_score": 0.9034177744740174
+    }
+  ],
+  "Bin 3 (Very Hard)": [
+    {
+      "model_name": "TinyLLaMA",
+      "params": 0.5,
+      "accuracy": 0.0,
+      "latency_ms": 5.0,
+      "cost_per_1k": 0.0,
+      "composite_score": 200.4
+    },
+    {
+      "model_name": "Qwen2.5",
+      "params": 1.5,
+      "accuracy": 0.9333333333333332,
+      "latency_ms": 9242.283038298288,
+      "cost_per_1k": 0.0,
+      "composite_score": 200.5602163967487
+    },
+    {
+      "model_name": "Phi-3",
+      "params": 3.8,
+      "accuracy": 0.8777777777777778,
+      "latency_ms": 8754.31383450826,
+      "cost_per_1k": 0.0,
+      "composite_score": 200.52689512546286
+    },
+    {
+      "model_name": "Mixtral-8x7B",
+      "params": 45.0,
+      "accuracy": 0.0,
+      "latency_ms": 2.0,
+      "cost_per_1k": 0.27,
+      "composite_score": 1.7142857142857144
+    },
+    {
+      "model_name": "Llama-3.3-70B",
+      "params": 70.0,
+      "accuracy": 0.6666666666666667,
+      "latency_ms": 3366.051729520162,
+      "cost_per_1k": 0.4,
+      "composite_score": 0.8883990459822261
+    }
+  ],
+  "Bin 4 (Hardest)": [
+    {
+      "model_name": "TinyLLaMA",
+      "params": 0.5,
+      "accuracy": 0.0,
+      "latency_ms": 5.0,
+      "cost_per_1k": 0.0,
+      "composite_score": 200.4
+    },
+    {
+      "model_name": "Qwen2.5",
+      "params": 1.5,
+      "accuracy": 0.9416666666666668,
+      "latency_ms": 6258.94009868304,
+      "cost_per_1k": 0.0,
+      "composite_score": 200.56531954292075
+    },
+    {
+      "model_name": "Mixtral-8x7B",
+      "params": 45.0,
+      "accuracy": 0.0,
+      "latency_ms": 2.0,
+      "cost_per_1k": 0.27,
+      "composite_score": 1.7142857142857144
+    },
+    {
+      "model_name": "Llama-3.3-70B",
+      "params": 70.0,
+      "accuracy": 0.675,
+      "latency_ms": 3317.1251078446708,
+      "cost_per_1k": 0.4,
+      "composite_score": 0.8934078097848401
+    }
+  ]
+}

@@ -40,5 +40,43 @@
       "reason": "Computed from SDDF archive."
     }
   },
-  "pairs": []
+  "pairs": [
+    {
+      "dataset": "samples",
+      "slm_name": "hf_llama32_1b",
+      "llm_name": "gemini-2.5-flash-fresh",
+      "matched_examples": 2,
+      "tipping_point": null,
+      "tipping_sensitivity": {
+        "0.90": null,
+        "0.93": null,
+        "0.95": null,
+        "0.97": null
+      },
+      "tipping_ci": {
+        "tipping_point": null,
+        "ci_low": null,
+        "ci_high": null
+      },
+      "gate_thresholds": null,
+      "gate_metrics": null,
+      "zones": [
+        {
+          "difficulty_bin": 0,
+          "bin_center": 0.0,
+          "ratio_smooth": 1.0,
+          "zone": "A"
+        }
+      ],
+      "ratio_ci": [
+        {
+          "difficulty_bin": 0,
+          "ratio_ci_low": 0.0,
+          "ratio_ci_high": 1.0,
+          "ratio_boot_mean": 0.65
+        }
+      ],
+      "plot_path": "text_generation\\results\\runs\\hf_llama32_1b_gemini_2shot\\sddf\\reports\\samples_hf_llama32_1b_vs_gemini_2_5_flash_fresh.png"
+    }
+  ]
 }

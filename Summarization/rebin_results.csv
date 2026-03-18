@@ -1,0 +1,76 @@
+example_id,sample_id,difficulty_bin,difficulty_score,input_text,model_size
+summarization_0,sample_0,0,1.346023857183145,Summarize: The quick brown fox jumps over the lazy dog. The dog was sleeping peacefully. (Example 1),0.5B
+summarization_1,sample_1,0,0.5961797739658694,Summarize article about climate change in 2-3 sentences (Example 2),0.5B
+summarization_2,sample_2,0,0.2206517956854132,Summarize the key points of quantum mechanics (Example 3),0.5B
+summarization_3,sample_3,0,1.2965143999914648,Give a brief summary of the Industrial Revolution (Example 4),0.5B
+summarization_4,sample_4,0,1.1518686873138617,Summarize COVID-19 pandemic timeline (Example 5),0.5B
+summarization_5,sample_5,0,0.5192009471828218,Summarize: The quick brown fox jumps over the lazy dog. The dog was sleeping peacefully. (Example 6),0.5B
+summarization_6,sample_6,0,0.21490152375248367,Summarize article about climate change in 2-3 sentences (Example 7),0.5B
+summarization_7,sample_7,0,0.819047792248077,Summarize the key points of quantum mechanics (Example 8),0.5B
+summarization_8,sample_8,0,1.100644827660148,Give a brief summary of the Industrial Revolution (Example 9),0.5B
+summarization_9,sample_9,0,0.7230610422768942,Summarize COVID-19 pandemic timeline (Example 10),0.5B
+summarization_10,sample_10,0,0.7542661557915314,Summarize: The quick brown fox jumps over the lazy dog. The dog was sleeping peacefully. (Example 11),0.5B
+summarization_11,sample_11,0,0.09214568114215815,Summarize article about climate change in 2-3 sentences (Example 12),0.5B
+summarization_12,sample_12,0,0.4923400436456053,Summarize the key points of quantum mechanics (Example 13),0.5B
+summarization_13,sample_13,0,0.17381758599107905,Give a brief summary of the Industrial Revolution (Example 14),0.5B
+summarization_14,sample_14,0,1.0107433269205233,Summarize COVID-19 pandemic timeline (Example 15),0.5B
+summarization_15,sample_15,1,2.8063112276831186,Summarize: The quick brown fox jumps over the lazy dog. The dog was sleeping peacefully. (Example 1),0.5B
+summarization_16,sample_16,1,3.2799326834395917,Summarize article about climate change in 2-3 sentences (Example 2),0.5B
+summarization_17,sample_17,1,2.45162304235114,Summarize the key points of quantum mechanics (Example 3),0.5B
+summarization_18,sample_18,1,2.176227481144539,Give a brief summary of the Industrial Revolution (Example 4),0.5B
+summarization_19,sample_19,1,2.167448532920499,Summarize COVID-19 pandemic timeline (Example 5),0.5B
+summarization_20,sample_20,1,3.226942601235554,Summarize: The quick brown fox jumps over the lazy dog. The dog was sleeping peacefully. (Example 6),0.5B
+summarization_21,sample_21,1,2.7136328510604963,Summarize article about climate change in 2-3 sentences (Example 7),0.5B
+summarization_22,sample_22,1,2.307738721994714,Summarize the key points of quantum mechanics (Example 8),0.5B
+summarization_23,sample_23,1,2.532915210013275,Give a brief summary of the Industrial Revolution (Example 9),0.5B
+summarization_24,sample_24,1,3.4307870050820757,Summarize COVID-19 pandemic timeline (Example 10),0.5B
+summarization_25,sample_25,1,2.159770693428639,Summarize: The quick brown fox jumps over the lazy dog. The dog was sleeping peacefully. (Example 11),0.5B
+summarization_26,sample_26,1,3.346538648388796,Summarize article about climate change in 2-3 sentences (Example 12),0.5B
+summarization_27,sample_27,1,2.380972059497095,Summarize the key points of quantum mechanics (Example 13),0.5B
+summarization_28,sample_28,1,2.8421777189031703,Give a brief summary of the Industrial Revolution (Example 14),0.5B
+summarization_29,sample_29,1,3.137158338065027,Summarize COVID-19 pandemic timeline (Example 15),0.5B
+summarization_30,sample_30,2,4.126426932667657,Summarize: The quick brown fox jumps over the lazy dog. The dog was sleeping peacefully. (Example 1),0.5B
+summarization_31,sample_31,2,4.58412104702823,Summarize article about climate change in 2-3 sentences (Example 2),0.5B
+summarization_32,sample_32,2,4.186350997733567,Summarize the key points of quantum mechanics (Example 3),0.5B
+summarization_33,sample_33,2,4.089865751354905,Give a brief summary of the Industrial Revolution (Example 4),0.5B
+summarization_34,sample_34,2,4.403871016984504,Summarize COVID-19 pandemic timeline (Example 5),0.5B
+summarization_35,sample_35,2,5.405771127736921,Summarize: The quick brown fox jumps over the lazy dog. The dog was sleeping peacefully. (Example 6),0.5B
+summarization_36,sample_36,2,4.83216136999462,Summarize article about climate change in 2-3 sentences (Example 7),0.5B
+summarization_37,sample_37,2,5.481930225926126,Summarize the key points of quantum mechanics (Example 8),0.5B
+summarization_38,sample_38,2,4.157845368864415,Give a brief summary of the Industrial Revolution (Example 9),0.5B
+summarization_39,sample_39,2,4.425694010274231,Summarize COVID-19 pandemic timeline (Example 10),0.5B
+summarization_40,sample_40,2,5.035936335359109,Summarize: The quick brown fox jumps over the lazy dog. The dog was sleeping peacefully. (Example 11),0.5B
+summarization_41,sample_41,2,4.631696351447951,Summarize article about climate change in 2-3 sentences (Example 12),0.5B
+summarization_42,sample_42,2,4.1368769157408725,Summarize the key points of quantum mechanics (Example 13),0.5B
+summarization_43,sample_43,2,5.3937049883257915,Give a brief summary of the Industrial Revolution (Example 14),0.5B
+summarization_44,sample_44,2,5.320685240180823,Summarize COVID-19 pandemic timeline (Example 15),0.5B
+summarization_45,sample_45,3,6.321899473623666,Summarize: The quick brown fox jumps over the lazy dog. The dog was sleeping peacefully. (Example 1),0.5B
+summarization_46,sample_46,3,6.65348203578572,Summarize article about climate change in 2-3 sentences (Example 2),0.5B
+summarization_47,sample_47,3,6.608828760916042,Summarize the key points of quantum mechanics (Example 3),0.5B
+summarization_48,sample_48,3,6.888413312512617,Give a brief summary of the Industrial Revolution (Example 4),0.5B
+summarization_49,sample_49,3,6.828683814595725,Summarize COVID-19 pandemic timeline (Example 5),0.5B
+summarization_50,sample_50,3,6.6545543370816995,Summarize: The quick brown fox jumps over the lazy dog. The dog was sleeping peacefully. (Example 6),0.5B
+summarization_51,sample_51,3,6.6203055556651,Summarize article about climate change in 2-3 sentences (Example 7),0.5B
+summarization_52,sample_52,3,6.798306446950538,Summarize the key points of quantum mechanics (Example 8),0.5B
+summarization_53,sample_53,3,6.515562631606446,Give a brief summary of the Industrial Revolution (Example 9),0.5B
+summarization_54,sample_54,3,7.285078768689611,Summarize COVID-19 pandemic timeline (Example 10),0.5B
+summarization_55,sample_55,3,7.012378243265222,Summarize: The quick brown fox jumps over the lazy dog. The dog was sleeping peacefully. (Example 11),0.5B
+summarization_56,sample_56,3,6.25670635650691,Summarize article about climate change in 2-3 sentences (Example 12),0.5B
+summarization_57,sample_57,3,6.242023222573192,Summarize the key points of quantum mechanics (Example 13),0.5B
+summarization_58,sample_58,3,7.251347155331861,Give a brief summary of the Industrial Revolution (Example 14),0.5B
+summarization_59,sample_59,3,7.384695019008596,Summarize COVID-19 pandemic timeline (Example 15),0.5B
+summarization_60,sample_60,4,8.898969605566498,Summarize: The quick brown fox jumps over the lazy dog. The dog was sleeping peacefully. (Example 1),0.5B
+summarization_61,sample_61,4,9.403934315386213,Summarize article about climate change in 2-3 sentences (Example 2),0.5B
+summarization_62,sample_62,4,9.47959101328051,Summarize the key points of quantum mechanics (Example 3),0.5B
+summarization_63,sample_63,4,8.40762692560445,Give a brief summary of the Industrial Revolution (Example 4),0.5B
+summarization_64,sample_64,4,8.8623220645248,Summarize COVID-19 pandemic timeline (Example 5),0.5B
+summarization_65,sample_65,4,9.14884025008665,Summarize: The quick brown fox jumps over the lazy dog. The dog was sleeping peacefully. (Example 6),0.5B
+summarization_66,sample_66,4,9.41658364518345,Summarize article about climate change in 2-3 sentences (Example 7),0.5B
+summarization_67,sample_67,4,8.083209691438794,Summarize the key points of quantum mechanics (Example 8),0.5B
+summarization_68,sample_68,4,8.830780342787168,Give a brief summary of the Industrial Revolution (Example 9),0.5B
+summarization_69,sample_69,4,9.023086042666359,Summarize COVID-19 pandemic timeline (Example 10),0.5B
+summarization_70,sample_70,4,8.525321689523537,Summarize: The quick brown fox jumps over the lazy dog. The dog was sleeping peacefully. (Example 11),0.5B
+summarization_71,sample_71,4,8.284388823218395,Summarize article about climate change in 2-3 sentences (Example 12),0.5B
+summarization_72,sample_72,4,9.460613981023402,Summarize the key points of quantum mechanics (Example 13),0.5B
+summarization_73,sample_73,4,8.19946242297275,Give a brief summary of the Industrial Revolution (Example 14),0.5B
+summarization_74,sample_74,4,9.042809345530744,Summarize COVID-19 pandemic timeline (Example 15),0.5B

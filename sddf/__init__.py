@@ -26,7 +26,7 @@ from .reporting import generate_part_b_report
 from .routing import learn_routing_thresholds, route_example, route_example_three_way
 from .schema import REQUIRED_RESULT_COLUMNS, validate_results_schema
 from .setup_reporting import generate_part_a_report
-from .tipping import estimate_tipping_point
+from .tipping import DEFAULT_TIPPING_THRESHOLDS, estimate_tipping_point, tipping_sensitivity
 from .uncertainty import bootstrap_ratio_curve, bootstrap_tipping_point
 from .zones import assign_deployment_zone, assign_zone_capability_ops
 
@@ -44,6 +44,7 @@ __all__ = [
     "compute_n_in",
     "compute_ratio_curve",
     "compute_reasoning_proxy",
+    "DEFAULT_TIPPING_THRESHOLDS",
     "estimate_tipping_point",
     "evaluate_quality_gate",
     "generate_part_b_report",
@@ -65,5 +66,6 @@ __all__ = [
     "route_example_three_way",
     "run_sddf_postprocess",
     "smooth_ratio_curve",
+    "tipping_sensitivity",
     "validate_results_schema",
 ]

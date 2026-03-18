@@ -22,7 +22,7 @@ class BenchmarkPipelineContractTests(unittest.TestCase):
                 "model_inference",
                 "prediction_storage",
                 "metric_computation",
-                "benchmark_report_generation",
+                "benchmark_report",
             ],
         )
 

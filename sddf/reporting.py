@@ -12,7 +12,7 @@ from .matching import match_model_outputs
 from .plots import plot_ratio_curve
 from .routing import learn_routing_thresholds
 from .setup_reporting import _extract_part_a_payload
-from .tipping import estimate_tipping_point
+from .tipping import estimate_tipping_point, tipping_sensitivity
 from .uncertainty import bootstrap_ratio_curve, bootstrap_tipping_point
 from .validator import PART_B_SECTIONS, SectionStatus
 from .zones import assign_deployment_zone
@@ -147,6 +147,7 @@ def _build_pair_payloads(
         for slm_name in slm_models:
             for llm_name in llm_models:
                 matched = match_model_outputs(group, slm_name, llm_name)
+                matched = _ensure_pair_bins(matched)
                 if matched.empty:
                     continue
                 curve = compute_ratio_curve(matched)
@@ -154,6 +155,7 @@ def _build_pair_payloads(
                     continue
                 smooth = smooth_ratio_curve(curve)
                 tipping_point = estimate_tipping_point(smooth)
+                tipping_thresholds = tipping_sensitivity(smooth)
                 ratio_ci = bootstrap_ratio_curve(matched, n_boot=min(200, max(20, len(matched) * 10)))
                 tipping_ci = bootstrap_tipping_point(matched, n_boot=min(200, max(20, len(matched) * 10)))
 
@@ -185,6 +187,7 @@ def _build_pair_payloads(
                         "llm_name": llm_name,
                         "matched_examples": int(len(matched)),
                         "tipping_point": tipping_point,
+                        "tipping_sensitivity": tipping_thresholds,
                         "tipping_ci": tipping_ci,
                         "gate_thresholds": thresholds,
                         "gate_metrics": gate_metrics,
@@ -194,6 +197,29 @@ def _build_pair_payloads(
                     }
                 )
     return payloads
+
+
+def _ensure_pair_bins(matched: pd.DataFrame) -> pd.DataFrame:
+    if matched.empty or "difficulty_bin" not in matched.columns:
+        return matched
+
+    out = matched.copy()
+    if out["difficulty_bin"].notna().any():
+        return out
+
+    if "difficulty_score" not in out.columns or out["difficulty_score"].dropna().empty:
+        return out
+
+    unique_scores = out["difficulty_score"].dropna().nunique()
+    if unique_scores <= 1:
+        out["difficulty_bin"] = 0
+        return out
+
+    try:
+        out["difficulty_bin"] = pd.qcut(out["difficulty_score"], q=min(5, unique_scores), labels=False, duplicates="drop")
+    except Exception:
+        out["difficulty_bin"] = pd.cut(out["difficulty_score"], bins=min(5, unique_scores), labels=False, include_lowest=True)
+    return out
 
 
 def _render_part_b_markdown(
@@ -292,6 +318,7 @@ def _curve_body(pair_payloads: list[dict[str, Any]]) -> list[str]:
                 f"### {payload['slm_name']} vs {payload['llm_name']}",
                 "",
                 f"- Tipping point: `{payload['tipping_point']}`",
+                f"- Tipping sensitivity: `{payload.get('tipping_sensitivity', {})}`",
                 f"- Plot file: `{plot_path}`" if plot_path else "- Plot file: not generated",
                 "",
             ]
@@ -315,6 +342,7 @@ def _uncertainty_body(pair_payloads: list[dict[str, Any]]) -> list[str]:
                 "",
                 f"- Tipping median: `{ci.get('tipping_point')}`",
                 f"- 95% CI: `{ci.get('ci_low')}` to `{ci.get('ci_high')}`",
+                f"- Threshold sweep: `{payload.get('tipping_sensitivity', {})}`",
                 "",
             ]
         )
@@ -342,6 +370,7 @@ def _failure_taxonomy_body(archive_df: pd.DataFrame) -> list[str]:
         f"- Heuristic structural failures: {structural}",
         f"- Heuristic fixable failures: {fixable}",
         f"- Invalid outputs: {invalid}",
+        "- Validity note: partial or invalid runs should be excluded from strict cross-model comparison.",
         "- Note: this taxonomy is heuristic and should be reviewed against task-specific failure labels.",
     ]
 

@@ -4,40 +4,40 @@
   "sddf_root": null,
   "statuses": {
     "dominant_difficulty_dimension": {
-      "status": "unsupported",
-      "reason": "No SDDF archive found for this run."
+      "status": "partial",
+      "reason": "Inferred from historical benchmark artifacts; no SDDF archive was available for direct computation."
     },
     "difficulty_annotation_binning": {
-      "status": "unsupported",
-      "reason": "No SDDF archive found for this run."
+      "status": "partial",
+      "reason": "Inferred from historical benchmark artifacts; no SDDF archive was available for direct computation."
     },
     "matched_slm_llm_analysis": {
-      "status": "unsupported",
-      "reason": "No SDDF archive found for this run."
+      "status": "partial",
+      "reason": "Inferred from historical benchmark artifacts; no SDDF archive was available for direct computation."
     },
     "capability_curve_tipping_point": {
-      "status": "unsupported",
-      "reason": "No SDDF archive found for this run."
+      "status": "partial",
+      "reason": "Inferred from historical benchmark artifacts; no SDDF archive was available for direct computation."
     },
     "uncertainty_analysis": {
-      "status": "unsupported",
-      "reason": "No SDDF archive found for this run."
+      "status": "partial",
+      "reason": "Inferred from historical benchmark artifacts; no SDDF archive was available for direct computation."
     },
     "failure_taxonomy": {
-      "status": "unsupported",
-      "reason": "No SDDF archive found for this run."
+      "status": "partial",
+      "reason": "Inferred from historical benchmark artifacts; no SDDF archive was available for direct computation."
     },
     "quality_gate": {
-      "status": "unsupported",
-      "reason": "No SDDF archive found for this run."
+      "status": "partial",
+      "reason": "Inferred from historical benchmark artifacts; no SDDF archive was available for direct computation."
     },
     "deployment_zones": {
-      "status": "unsupported",
-      "reason": "No SDDF archive found for this run."
+      "status": "partial",
+      "reason": "Inferred from historical benchmark artifacts; no SDDF archive was available for direct computation."
     },
     "routing_policy": {
-      "status": "unsupported",
-      "reason": "No SDDF archive found for this run."
+      "status": "partial",
+      "reason": "Inferred from historical benchmark artifacts; no SDDF archive was available for direct computation."
     }
   },
   "pairs": []
