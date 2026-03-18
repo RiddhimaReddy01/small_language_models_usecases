@@ -2,7 +2,7 @@
 Routing module - core framework and production router
 
 Main components:
-  - ProductionRouter: Production-ready routing system (Phase 0→1→2)
+  - ProductionRouter: Production-ready routing system (Phase 0-1-2)
   - GeneralizedRoutingFramework: Task-agnostic analysis framework
   - TaskSpec: Task specification dataclass
 """

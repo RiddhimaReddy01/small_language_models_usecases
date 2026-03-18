@@ -24,6 +24,7 @@ from collections import defaultdict
 from dataclasses import dataclass, field
 from typing import Callable, List, Dict, Tuple, Optional
 import statistics
+import math
 
 
 @dataclass
@@ -94,11 +95,59 @@ class GeneralizedRoutingFramework:
         self.capability_threshold = capability_threshold
         self.risk_threshold = risk_threshold
 
+    def difficulty_to_bin_probabilities(self, difficulty_score: float,
+                                        num_bins: int = 5) -> Dict[int, float]:
+        """
+        Convert difficulty score to probabilistic bin assignment
+
+        Uses linear interpolation near bin boundaries for smooth probability distribution
+
+        Args:
+            difficulty_score: 0.0 to 1.0
+            num_bins: Number of bins (default 5)
+
+        Returns:
+            {bin_id: probability} - sums to 1.0
+
+        Example:
+            score = 0.249 (near boundary at 0.25)
+            → {0: 0.996, 1: 0.004, 2: 0.0, 3: 0.0, 4: 0.0}
+
+            score = 0.25 (exactly on boundary)
+            → {0: 1.0, 1: 0.0, 2: 0.0, 3: 0.0, 4: 0.0}
+        """
+        # Clamp to [0, 1]
+        difficulty_score = max(0.0, min(1.0, difficulty_score))
+
+        # Map to continuous position [0, num_bins-1]
+        bin_position = difficulty_score * (num_bins - 1)
+
+        # Hard bins
+        lower_bin = int(bin_position)
+        upper_bin = min(lower_bin + 1, num_bins - 1)
+
+        # Interpolation factor: 0.0 to 1.0
+        fraction = bin_position - lower_bin
+
+        # Distribute probability between lower and upper bin
+        bin_probs = {}
+        for bin_id in range(num_bins):
+            if bin_id == lower_bin:
+                bin_probs[bin_id] = 1.0 - fraction
+            elif bin_id == upper_bin and upper_bin != lower_bin:
+                bin_probs[bin_id] = fraction
+            else:
+                bin_probs[bin_id] = 0.0
+
+        return bin_probs
     def bin_by_difficulty(self, samples: List[Dict],
                          difficulty_metric: Callable,
                          num_bins: int = 5) -> Dict[int, List[Dict]]:
         """
-        Bin samples by difficulty metric
+        Bin samples by difficulty metric (DETERMINISTIC for grouping)
+
+        Used during Phase 0 analysis to group samples for statistics.
+        Each sample assigned to its most likely bin (argmax of probabilities).
 
         Args:
             samples: List of sample dicts with 'raw_input' and 'raw_output'
@@ -116,12 +165,16 @@ class GeneralizedRoutingFramework:
                 input_text = sample.get('raw_input', '')
                 difficulty_score = difficulty_metric(input_text)
 
-                # Clamp to [0, 1]
-                difficulty_score = max(0.0, min(1.0, difficulty_score))
+                # Get probabilistic bin assignment
+                bin_probs = self.difficulty_to_bin_probabilities(difficulty_score, num_bins)
 
-                # Map to bin
-                bin_id = int(difficulty_score * (num_bins - 1))
-                bin_id = min(bin_id, num_bins - 1)  # Ensure within range
+                # Assign to most likely bin (argmax)
+                bin_id = max(bin_probs, key=bin_probs.get)
+
+                # Store both deterministic bin and probabilistic assignment
+                sample['_bin_id'] = bin_id
+                sample['_bin_probs'] = bin_probs
+                sample['_difficulty_score'] = difficulty_score
 
                 binned[bin_id].append(sample)
             except Exception as e:
@@ -136,9 +189,10 @@ class GeneralizedRoutingFramework:
         Compute P̂_m(d) = accuracy per bin
 
         Returns:
-            {bin_id: accuracy_0_to_1}
+            ({bin_id: accuracy_0_to_1}, {bin_id: sample_count})
         """
         capabilities = {}
+        counts = {}
 
         for bin_id in sorted(samples_by_bin.keys()):
             samples = samples_by_bin[bin_id]
@@ -158,7 +212,9 @@ class GeneralizedRoutingFramework:
             accuracy = valid_count / len(samples) if samples else 0
             capabilities[bin_id] = accuracy
 
-        return capabilities
+            counts[bin_id] = len(samples)
+
+        return capabilities, counts
 
     def compute_risk_curve(self, samples_by_bin: Dict[int, List],
                           quality_metric: Optional[Callable] = None,
@@ -175,9 +231,10 @@ class GeneralizedRoutingFramework:
         - If quality_metric is None, uses 'severity' field on invalid samples
 
         Returns:
-            {bin_id: risk_0_to_1}
+            ({bin_id: risk_0_to_1}, {bin_id: sample_count})
         """
         risks = {}
+        counts = {}
 
         for bin_id in sorted(samples_by_bin.keys()):
             samples = samples_by_bin[bin_id]
@@ -214,10 +271,86 @@ class GeneralizedRoutingFramework:
 
             risks[bin_id] = risk
 
-        return risks
+            counts[bin_id] = len(samples)
+
+        return risks, counts
+
+    @staticmethod
+    def _wilson_interval(p: float, n: int, z: float = 1.96) -> Tuple[Optional[float], Optional[float]]:
+        if n == 0:
+            return None, None
+        denom = 1 + (z * z) / n
+        center = (p + (z * z) / (2 * n)) / denom
+        margin = z * math.sqrt((p * (1 - p) + (z * z) / (4 * n)) / n) / denom
+        return max(0.0, center - margin), min(1.0, center + margin)
+
+    def compute_expected_capability(self, difficulty_score: float,
+                                   capability_curve: Dict[int, float],
+                                   num_bins: int = 5) -> float:
+        """
+        Compute expected capability using probabilistic bin assignment
+
+        E[capability] = Σ_k P(bin_k | difficulty) × P(success | bin_k)
+
+        Args:
+            difficulty_score: 0.0 to 1.0
+            capability_curve: {bin_id: accuracy}
+            num_bins: Number of bins
+
+        Returns:
+            Expected capability (0.0 to 1.0)
+
+        Example:
+            difficulty = 0.249 (near bin boundary)
+            capability = {0: 0.85, 1: 0.80, ...}
+            → 0.996 × 0.85 + 0.004 × 0.80 = 0.8495
+        """
+        bin_probs = self.difficulty_to_bin_probabilities(difficulty_score, num_bins)
+
+        expected_capability = 0.0
+        for bin_id, prob_bin in bin_probs.items():
+            capability_given_bin = capability_curve.get(bin_id, 0.5)
+            expected_capability += prob_bin * capability_given_bin
+
+        return expected_capability
+
+    def compute_expected_risk(self, difficulty_score: float,
+                             risk_curve: Dict[int, float],
+                             num_bins: int = 5) -> float:
+        """
+        Compute expected risk using probabilistic bin assignment
+
+        E[risk] = Σ_k P(bin_k | difficulty) × P(failure | bin_k)
+
+        Args:
+            difficulty_score: 0.0 to 1.0
+            risk_curve: {bin_id: risk}
+            num_bins: Number of bins
+
+        Returns:
+            Expected risk (0.0 to 1.0)
+
+        Example:
+            difficulty = 0.249
+            risk = {0: 0.15, 1: 0.20, ...}
+            → 0.996 × 0.15 + 0.004 × 0.20 = 0.1504
+        """
+        bin_probs = self.difficulty_to_bin_probabilities(difficulty_score, num_bins)
+
+        expected_risk = 0.0
+        for bin_id, prob_bin in bin_probs.items():
+            risk_given_bin = risk_curve.get(bin_id, 0.5)
+            expected_risk += prob_bin * risk_given_bin
+
+        return expected_risk
 
     def detect_tipping_points(self, capability_curve: Dict[int, float],
-                             risk_curve: Dict[int, float]) -> Tuple[Optional[int], Optional[int]]:
+                             risk_curve: Dict[int, float],
+                             num_bins: int = 5,
+                             capability_counts: Optional[Dict[int, int]] = None,
+                             risk_counts: Optional[Dict[int, int]] = None,
+                             min_samples: int = 5,
+                             alpha: float = 0.05) -> Tuple[Optional[int], Optional[int]]:
         """
         Detect two tipping points
 
@@ -227,16 +360,35 @@ class GeneralizedRoutingFramework:
         Returns:
             (tau_cap, tau_risk)
         """
-        # Capability tipping point: last bin where accuracy >= threshold
+        z = 1.96 if alpha == 0.05 else 1.64
+
+        expected_capabilities = {}
+        expected_risks = {}
+        for d in range(num_bins):
+            difficulty_mid = d / max(1, (num_bins - 1))
+            expected_capabilities[d] = self.compute_expected_capability(difficulty_mid, capability_curve, num_bins)
+            expected_risks[d] = self.compute_expected_risk(difficulty_mid, risk_curve, num_bins)
+
+        # Capability tipping point: last bin where lower CI >= threshold
         tau_cap = None
-        for d in range(5):
-            if d in capability_curve and capability_curve[d] >= self.capability_threshold:
+        for d in range(num_bins):
+            cap = expected_capabilities.get(d, 0.0)
+            n = (capability_counts or {}).get(d, 0)
+            if n < min_samples:
+                continue
+            lower, _ = self._wilson_interval(cap, n, z)
+            if lower is not None and lower >= self.capability_threshold:
                 tau_cap = d
 
-        # Risk tipping point: first bin where risk > threshold
+        # Risk tipping point: first bin where lower CI of risk > threshold
         tau_risk = None
-        for d in range(5):
-            if d in risk_curve and risk_curve[d] > self.risk_threshold:
+        for d in range(num_bins):
+            risk = expected_risks.get(d, 0.0)
+            n = (risk_counts or {}).get(d, 0)
+            if n < min_samples:
+                continue
+            lower, _ = self._wilson_interval(risk, n, z)
+            if lower is not None and lower > self.risk_threshold:
                 tau_risk = d
                 break
 
@@ -266,7 +418,7 @@ class GeneralizedRoutingFramework:
 
     def analyze_task(self, task_spec: TaskSpec,
                     outputs_by_model: Dict[str, List[Dict]],
-                    llm_baseline: Optional[Dict] = None) -> Dict[str, RoutingDecision]:
+                    llm_baseline: Optional[str] = None) -> Dict[str, RoutingDecision]:
         """
         Analyze task across all models and generate routing decisions
 
@@ -280,8 +432,9 @@ class GeneralizedRoutingFramework:
         """
         decisions = {}
 
-        # Bin by difficulty for each model
+        # Bin by difficulty for each model (hard bins for reporting; soft for calc)
         binned_by_model = {}
+        taxonomy_by_model = {}
         for model_name, outputs in outputs_by_model.items():
             binned = self.bin_by_difficulty(
                 outputs,
@@ -290,13 +443,28 @@ class GeneralizedRoutingFramework:
             )
             binned_by_model[model_name] = binned
 
+            # Optional: failure taxonomy
+            try:
+                from src.routing.failure_taxonomy import FailureTaxonomy
+                taxonomy = FailureTaxonomy()
+                failure_analysis = taxonomy.analyze_failures_by_bin(binned)
+                weighted_risks = taxonomy.compute_weighted_risk_by_bin(failure_analysis)
+                taxonomy_by_model[model_name] = {
+                    "failure_analysis": failure_analysis,
+                    "weighted_risks": weighted_risks,
+                }
+            except Exception:
+                taxonomy_by_model[model_name] = None
+
         # Compute curves for each model
         capabilities = {}
         risks = {}
+        expected_caps = {}
+        expected_risks = {}
 
         for model_name, binned in binned_by_model.items():
-            cap_curve = self.compute_capability_curve(binned, task_spec.validation_fn)
-            risk_curve = self.compute_risk_curve(
+            cap_curve, cap_counts = self.compute_capability_curve(binned, task_spec.validation_fn)
+            risk_curve, risk_counts = self.compute_risk_curve(
                 binned,
                 quality_metric=task_spec.quality_metric,
                 quality_threshold=task_spec.quality_threshold
@@ -305,12 +473,32 @@ class GeneralizedRoutingFramework:
             capabilities[model_name] = cap_curve
             risks[model_name] = risk_curve
 
+            # Expected (soft) curves sampled at bin midpoints for storage
+            exp_cap = {d: self.compute_expected_capability(d / max(1, task_spec.num_bins - 1), cap_curve, task_spec.num_bins)
+                       for d in range(task_spec.num_bins)}
+            exp_risk = {d: self.compute_expected_risk(d / max(1, task_spec.num_bins - 1), risk_curve, task_spec.num_bins)
+                        for d in range(task_spec.num_bins)}
+            expected_caps[model_name] = exp_cap
+            expected_risks[model_name] = exp_risk
+
+            # Store counts for CI gating
+            binned_by_model[model_name] = {
+                "bins": binned,
+                "cap_counts": cap_counts,
+                "risk_counts": risk_counts,
+                "taxonomy": taxonomy_by_model.get(model_name),
+            }
+
         # Detect tipping points and classify
         for model_name in outputs_by_model.keys():
             cap_curve = capabilities[model_name]
             risk_curve = risks[model_name]
+            cap_counts = binned_by_model[model_name]["cap_counts"]
+            risk_counts = binned_by_model[model_name]["risk_counts"]
 
-            tau_cap, tau_risk = self.detect_tipping_points(cap_curve, risk_curve)
+            tau_cap, tau_risk = self.detect_tipping_points(
+                cap_curve, risk_curve, task_spec.num_bins, cap_counts, risk_counts
+            )
 
             # Compute capability gap vs LLM
             capability_gap = 0.0
@@ -358,7 +546,23 @@ class GeneralizedRoutingFramework:
 
             decisions[model_name] = decision
 
-        return decisions
+        # Persist learned thresholds back to outputs_by_model (sidecar)
+        for model_name in outputs_by_model.keys():
+            outputs_by_model[model_name].append({
+                "_learned_tau_cap": decisions[model_name].tau_cap,
+                "_learned_tau_risk": decisions[model_name].tau_risk
+            })
+
+        return {
+            "decisions": decisions,
+            "capability_curves": capabilities,
+            "risk_curves": risks,
+            "expected_capability": expected_caps,
+            "expected_risk": expected_risks,
+            "cap_counts": {m: binned_by_model[m]["cap_counts"] for m in outputs_by_model.keys()},
+            "risk_counts": {m: binned_by_model[m]["risk_counts"] for m in outputs_by_model.keys()},
+            "taxonomy": {m: binned_by_model[m]["taxonomy"] for m in outputs_by_model.keys()},
+        }
 
     def generate_policy(self, decisions: Dict[str, RoutingDecision]) -> str:
         """Generate human-readable routing policy"""

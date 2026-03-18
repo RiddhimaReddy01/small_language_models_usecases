@@ -32,6 +32,7 @@ from pathlib import Path
 from dataclasses import dataclass, asdict
 from typing import Dict, Optional, Tuple, List, Callable
 import statistics
+import math
 from datetime import datetime, timedelta
 
 
@@ -47,7 +48,14 @@ class AnalysisResult:
     zone: str                                  # Q1/Q2/Q3/Q4
     empirical_tau_c: float = 0.80              # Empirical capability threshold
     empirical_tau_r: float = 0.20              # Empirical risk threshold
+    num_bins: int = 5                          # Number of difficulty bins
     timestamp: str = ""                        # When analysis was done
+    failure_analysis: Optional[Dict] = None    # Failure taxonomy per bin
+    weighted_risks: Optional[Dict] = None      # Severity-weighted risks per bin
+    cap_counts: Optional[Dict] = None          # Sample counts per bin (capability)
+    risk_counts: Optional[Dict] = None         # Sample counts per bin (risk)
+    expected_capability: Optional[Dict] = None # Soft/interpolated capability curve
+    expected_risk: Optional[Dict] = None       # Soft/interpolated risk curve
 
 
 @dataclass
@@ -63,6 +71,7 @@ class RoutingDecisionRecord:
     zone: str                                  # Q1/Q2/Q3/Q4
     routed_model: str                          # Which model was selected
     expected_success_rate: float               # Estimated P(success)
+    verification_status: str = "not_applicable"
 
 
 @dataclass
@@ -90,11 +99,16 @@ class ProductionRouter:
     Phase 2 (Monitoring): Daily degradation checks
     """
 
-    def __init__(self):
+    def __init__(self, verification_fn: Optional[Callable[..., bool]] = None,
+                 alert_delta_tau: int = 1,
+                 alert_delta_risk: float = 0.1):
         """Initialize empty router"""
         self.analyses: Dict[Tuple[str, str], AnalysisResult] = {}  # {(task, model): analysis}
         self.routing_logs: List[RoutingDecisionRecord] = []         # Per-request logs
         self.monitoring_metrics: List[MonitoringMetric] = []        # Daily metrics
+        self.verification_fn = verification_fn
+        self.alert_delta_tau = alert_delta_tau
+        self.alert_delta_risk = alert_delta_risk
 
     # ========== Phase 0: Analysis ==========
 
@@ -114,11 +128,18 @@ class ProductionRouter:
                 model=item['model'],
                 capability_curve=item['capability_curve'],
                 risk_curve=item['risk_curve'],
+                expected_capability=item.get('expected_capability'),
+                expected_risk=item.get('expected_risk'),
                 tau_cap=item.get('tau_cap'),
                 tau_risk=item.get('tau_risk'),
                 zone=item['zone'],
                 empirical_tau_c=item.get('empirical_tau_c', 0.80),
                 empirical_tau_r=item.get('empirical_tau_r', 0.20),
+                num_bins=item.get('num_bins', 5),
+                failure_analysis=item.get('failure_analysis'),
+                weighted_risks=item.get('weighted_risks'),
+                cap_counts=item.get('cap_counts'),
+                risk_counts=item.get('risk_counts'),
                 timestamp=item.get('timestamp', '')
             )
             self.add_analysis_result(result)
@@ -170,11 +191,12 @@ class ProductionRouter:
             difficulty = 0.5
             print(f"WARNING: difficulty computation failed, using default 0.5")
 
-        # Step 13: Assign to bin
-        bin_id = min(int(difficulty * 4), 4)
-
-        # Step 14: Get curves for bin
+        # Step 13: Get curves and configuration
         analysis = self.get_analysis(task, preferred_model)
+        num_bins = analysis.num_bins if analysis else 5
+        
+        # Step 14: Assign to bin
+        bin_id = min(int(difficulty * (num_bins - 1)), num_bins - 1)
         if not analysis:
             # Fallback: use LLM if no SLM analysis available
             return "llama", RoutingDecisionRecord(
@@ -187,11 +209,12 @@ class ProductionRouter:
                 risk=1.0,
                 zone="FALLBACK",
                 routed_model="llama",
-                expected_success_rate=0.95
+                expected_success_rate=0.95,
+                verification_status="not_applicable"
             )
 
-        capability = analysis.capability_curve.get(bin_id, 0.0)
-        risk = analysis.risk_curve.get(bin_id, 0.5)
+        capability = self._expected_metric(difficulty, analysis.capability_curve, num_bins)
+        risk = self._expected_metric(difficulty, analysis.risk_curve, num_bins)
 
         # Step 15: Classify zone
         tau_c = analysis.empirical_tau_c
@@ -208,6 +231,18 @@ class ProductionRouter:
             capability=capability,
             risk=risk
         )
+
+        verification_status = "not_applicable"
+        if zone == "Q2" and self.verification_fn:
+            try:
+                verified = bool(self.verification_fn(task, preferred_model, input_text, difficulty, bin_id, capability, risk))
+            except Exception as exc:
+                verified = False
+                verification_status = f"error:{exc}"
+            else:
+                verification_status = "passed" if verified else "failed_escalated"
+            if not verified:
+                routed_model = "llama"
 
         # Expected success rate for this routing
         if routed_model == preferred_model:
@@ -226,11 +261,26 @@ class ProductionRouter:
             risk=risk,
             zone=zone,
             routed_model=routed_model,
-            expected_success_rate=expected_success
+            expected_success_rate=expected_success,
+            verification_status=verification_status
         )
 
         self.routing_logs.append(decision)
         return routed_model, decision
+
+    @staticmethod
+    def _expected_metric(difficulty: float, curve: Dict[int, float], num_bins: int) -> float:
+        """Interpolate capability/risk for a given difficulty."""
+        difficulty = max(0.0, min(1.0, difficulty))
+        if num_bins <= 1:
+            return curve.get(0, 0.0)
+        bin_position = difficulty * (num_bins - 1)
+        lower = int(bin_position)
+        upper = min(lower + 1, num_bins - 1)
+        fraction = bin_position - lower
+        lower_val = curve.get(lower, 0.0)
+        upper_val = curve.get(upper, 0.0)
+        return lower_val * (1 - fraction) + upper_val * fraction
 
     def _classify_zone(self, capability: float, risk: float, tau_c: float, tau_r: float) -> str:
         """Classify into Q1/Q2/Q3/Q4 based on thresholds"""
@@ -259,9 +309,7 @@ class ProductionRouter:
 
         elif zone == "Q2":
             # Zone 2: SLM + Verify + Escalate
-            # Try SLM first, escalate if verification fails
-            # For now, return SLM (verification happens later)
-            return model
+            return "SLM_with_verification"
 
         elif zone == "Q3":
             # Zone 3: Hybrid - SLM for easy, LLM for hard
@@ -284,9 +332,19 @@ class ProductionRouter:
         success: bool
     ) -> None:
         """Log an actual result for monitoring (Phase 2)"""
-        # This would be called after actual inference completes
-        # Store in time-series database in production
-        pass
+        log_entry = {
+            "timestamp": datetime.now().isoformat(),
+            "task": task,
+            "model": model,
+            "bin_id": bin_id,
+            "success": success
+        }
+        log_file = Path("routing_monitoring_logs.jsonl")
+        try:
+            with open(log_file, "a") as f:
+                f.write(json.dumps(log_entry) + "\n")
+        except Exception as e:
+            print(f"Failed to write monitoring log: {e}")
 
     def daily_monitoring_check(self) -> List[str]:
         """
@@ -311,54 +369,85 @@ class ProductionRouter:
             if not yesterday_logs:
                 continue  # No new data
 
-            # Recompute tipping points from yesterday's data
-            # (simplified - in production would use actual results DB)
-            success_rates = {}
-            for bin_id in range(5):
+            num_bins = analysis.num_bins or 5
+            cap_stats: Dict[int, Tuple[float, int]] = {}
+            risk_stats: Dict[int, Tuple[float, int]] = {}
+            for bin_id in range(num_bins):
                 bin_logs = [log for log in yesterday_logs if log.bin_id == bin_id]
                 if bin_logs:
-                    # Would read actual success from results DB
-                    avg_capability = statistics.mean([log.capability for log in bin_logs])
-                    success_rates[bin_id] = avg_capability
+                    cap_vals = [log.capability for log in bin_logs]
+                    risk_vals = [log.risk for log in bin_logs]
+                    cap_stats[bin_id] = (statistics.mean(cap_vals), len(cap_vals))
+                    risk_stats[bin_id] = (statistics.mean(risk_vals), len(risk_vals))
 
-            # Detect new tipping points
-            new_tau_cap = self._detect_tau_cap(success_rates)
-            new_tau_risk = self._detect_tau_risk(success_rates)
+            # Detect new tipping points with CIs + min samples
+            new_tau_cap = self._detect_tau_cap(cap_stats, analysis.empirical_tau_c, num_bins)
+            new_tau_risk = self._detect_tau_risk(risk_stats, analysis.empirical_tau_r, num_bins)
 
             # Compare to baseline
             old_tau_cap = analysis.tau_cap
             old_tau_risk = analysis.tau_risk
 
             if new_tau_cap is not None and old_tau_cap is not None:
-                if new_tau_cap < old_tau_cap:
+                if new_tau_cap < old_tau_cap - self.alert_delta_tau:
                     alerts.append(
                         f"ALERT: {task}/{model} capability degraded: "
                         f"tau_cap {old_tau_cap} -> {new_tau_cap}"
                     )
 
             if new_tau_risk is not None and old_tau_risk is not None:
-                if new_tau_risk < old_tau_risk:
+                if new_tau_risk < old_tau_risk - self.alert_delta_tau:
                     alerts.append(
                         f"ALERT: {task}/{model} risk escalated: "
                         f"tau_risk {old_tau_risk} -> {new_tau_risk}"
                     )
 
+            # Risk deltas vs baseline curve
+            for bin_id, (avg_risk, count) in risk_stats.items():
+                if count < 5:
+                    continue
+                base_risk = analysis.risk_curve.get(bin_id)
+                if base_risk is not None and (avg_risk - base_risk) > self.alert_delta_risk:
+                    alerts.append(
+                        f"ALERT: {task}/{model} risk increased in bin {bin_id}: "
+                        f"{base_risk:.3f} -> {avg_risk:.3f}"
+                    )
+
         return alerts
 
-    def _detect_tau_cap(self, success_rates: Dict[int, float]) -> Optional[int]:
-        """Detect capability tipping point from success rates"""
+    def _detect_tau_cap(self, cap_stats: Dict[int, Tuple[float, int]], threshold: float, num_bins: int,
+                       min_samples: int = 5) -> Optional[int]:
+        """Detect capability tipping point from success rates with CI gating"""
         tau_cap = None
-        for b in range(5):
-            if b in success_rates and success_rates[b] >= 0.80:
+        for b in range(num_bins):
+            mean, count = cap_stats.get(b, (None, 0))
+            if mean is None or count < min_samples:
+                continue
+            lower, _ = self._wilson_interval(mean, count)
+            if lower is not None and lower >= threshold:
                 tau_cap = b
         return tau_cap
 
-    def _detect_tau_risk(self, success_rates: Dict[int, float]) -> Optional[int]:
-        """Detect risk tipping point from success rates"""
-        for b in range(5):
-            if b in success_rates and (1 - success_rates[b]) > 0.20:
+    def _detect_tau_risk(self, risk_stats: Dict[int, Tuple[float, int]], threshold: float, num_bins: int,
+                        min_samples: int = 5) -> Optional[int]:
+        """Detect risk tipping point from risk rates with CI gating"""
+        for b in range(num_bins):
+            mean, count = risk_stats.get(b, (None, 0))
+            if mean is None or count < min_samples:
+                continue
+            lower, _ = self._wilson_interval(mean, count)
+            if lower is not None and lower > threshold:
                 return b
         return None
+
+    @staticmethod
+    def _wilson_interval(p: float, n: int, z: float = 1.96) -> Tuple[Optional[float], Optional[float]]:
+        if n == 0:
+            return None, None
+        denom = 1 + (z * z) / n
+        center = (p + (z * z) / (2 * n)) / denom
+        margin = z * math.sqrt((p * (1 - p) + (z * z) / (4 * n)) / n) / denom
+        return max(0.0, center - margin), min(1.0, center + margin)
 
     # ========== Utilities ==========
 
