@@ -21,7 +21,7 @@ import statistics
 import sys
 sys.path.insert(0, str(Path(__file__).parent.parent))
 
-from generalized_routing_framework import (
+from src.routing import (
     GeneralizedRoutingFramework,
     TaskSpec,
     RoutingDecision

@@ -1,14 +1,12 @@
 """
-SLM Benchmark Suite - Core Module
+SLM/LLM Hybrid Routing System
 
-Provides:
-- benchmark_inference_pipeline: Main inference engine
-- task_specific_parser: Output validation and parsing
-- prepare_benchmark_data: Dataset preparation
-- generate_reports: Report generation
-- cleanup_empty_outputs: Data cleaning utilities
-- revalidate_outputs: Output re-validation without re-inference
+Complete production-ready system for intelligent routing between Small and Large Language Models.
+
+Main modules:
+  - routing: Core routing framework and production router
+  - utils: Utility functions for analysis and thresholds
 """
 
 __version__ = "1.0.0"
-__author__ = "SLM Benchmark Team"
+__author__ = "Claude"

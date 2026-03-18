@@ -1,10 +1,50 @@
-text_generation/models/
-*.gguf
+# Python
 __pycache__/
-*.pyc
-.edge-cdp-profile/
-reports_index.html
-historical_report_readiness.json
-*/reports/
-*/*/reports/
-*/*/*/reports/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Testing
+.pytest_cache/
+.coverage
+htmlcov/
+.tox/
+
+# IDEs
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# Outputs
+*.json
+*.csv
+analysis_results.*
+plots/
+*.tmp
+
+# Archive (keep but don't track changes)
+.archive/
+
+# Virtual environments
+.venv/
+venv/
+env/
