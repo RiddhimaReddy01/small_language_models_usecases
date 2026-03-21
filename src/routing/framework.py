@@ -26,6 +26,8 @@ from typing import Callable, List, Dict, Tuple, Optional
 import statistics
 import math
 
+from src.utils.stats import wilson_interval
+
 
 @dataclass
 class TaskSpec:
@@ -275,15 +277,6 @@ class GeneralizedRoutingFramework:
 
         return risks, counts
 
-    @staticmethod
-    def _wilson_interval(p: float, n: int, z: float = 1.96) -> Tuple[Optional[float], Optional[float]]:
-        if n == 0:
-            return None, None
-        denom = 1 + (z * z) / n
-        center = (p + (z * z) / (2 * n)) / denom
-        margin = z * math.sqrt((p * (1 - p) + (z * z) / (4 * n)) / n) / denom
-        return max(0.0, center - margin), min(1.0, center + margin)
-
     def compute_expected_capability(self, difficulty_score: float,
                                    capability_curve: Dict[int, float],
                                    num_bins: int = 5) -> float:
@@ -376,19 +369,19 @@ class GeneralizedRoutingFramework:
             n = (capability_counts or {}).get(d, 0)
             if n < min_samples:
                 continue
-            lower, _ = self._wilson_interval(cap, n, z)
+            lower, _ = wilson_interval(cap, n, z)
             if lower is not None and lower >= self.capability_threshold:
                 tau_cap = d
 
-        # Risk tipping point: first bin where lower CI of risk > threshold
+        # Risk tipping point: first bin where lower CI of risk >= threshold
         tau_risk = None
         for d in range(num_bins):
             risk = expected_risks.get(d, 0.0)
             n = (risk_counts or {}).get(d, 0)
             if n < min_samples:
                 continue
-            lower, _ = self._wilson_interval(risk, n, z)
-            if lower is not None and lower > self.risk_threshold:
+            lower, _ = wilson_interval(risk, n, z)
+            if lower is not None and lower >= self.risk_threshold:
                 tau_risk = d
                 break
 
@@ -593,7 +586,7 @@ ROUTING POLICY FOR TASK: {task_name}
                 policy += f"  {model:20s} tau_cap={decision.tau_cap}  tau_risk={decision.tau_risk}  gap={decision.capability_gap:+.1%}  risk={decision.avg_risk:.1%}  -> {decision.recommended_model}\n"
 
         # Recommendation
-        q1_models = [d.model for d in by_quadrant.get("Q1", []) if d.model != "llama_llama-3.3-70b-versatile"]
+        q1_models = [m for m, d in by_quadrant.get("Q1", []) if m != "llama_llama-3.3-70b-versatile"]
 
         if q1_models:
             recommended = min(q1_models, key=lambda m: decisions[m].avg_risk)
