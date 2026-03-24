@@ -18,6 +18,15 @@ TASK_DIMENSION_MAP = {
     "code_generation": "R_hat",
 }
 
+DIFFICULTY_FEATURES = [
+    "n_in",
+    "entropy",
+    "reasoning_proxy",
+    "constraint_count",
+    "parametric_dependence",
+    "dependency_distance",
+]
+
 
 def compute_n_in(text: str, mode: str = "tokens") -> float:
     if not text:
@@ -86,6 +95,14 @@ def compute_reasoning_proxy(example: dict[str, Any], baseline_stats: dict[str, A
     return float(score)
 
 
+def compute_parametric_dependence(example: dict[str, Any]) -> float:
+    return float(example.get("parametric_dependence", 0.0) or 0.0)
+
+
+def compute_dependency_distance(example: dict[str, Any]) -> float:
+    return float(example.get("dependency_distance", 0.0) or 0.0)
+
+
 def _dimension_for_task(task: str, rule_config: dict[str, Any] | None = None) -> str:
     task_map = TASK_DIMENSION_MAP.copy()
     if rule_config and rule_config.get("task_dimension_map"):
@@ -111,6 +128,22 @@ def _score_for_dimension(
     raise ValueError(f"Unsupported difficulty dimension: {dimension}")
 
 
+def compute_all_features(
+    example: dict[str, Any],
+    text: str,
+    rule_config: dict[str, Any] | None = None,
+) -> dict[str, float]:
+    rules = rule_config or {}
+    return {
+        "n_in": compute_n_in(text, mode=rules.get("n_in_mode", "tokens")),
+        "entropy": compute_entropy(text, level=rules.get("entropy_level", "token")),
+        "reasoning_proxy": compute_reasoning_proxy(example, baseline_stats=rules.get("baseline_stats")),
+        "constraint_count": compute_constraint_count(example, rules=rules.get("constraint_rules")),
+        "parametric_dependence": compute_parametric_dependence(example),
+        "dependency_distance": compute_dependency_distance(example),
+    }
+
+
 def annotate_dominant_dimension(
     df: pd.DataFrame,
     task: str,
@@ -130,9 +163,12 @@ def annotate_dominant_dimension(
         if metadata_col and metadata is not None and not isinstance(metadata, dict):
             metadata = {"metadata": metadata}
         example = _coerce_example(row.to_dict(), metadata=metadata)
+        features = compute_all_features(example, merged_text, rule_config=rule_config)
         score = _score_for_dimension(dimension, example, merged_text, rule_config=rule_config)
         row["difficulty_dim"] = dimension
         row["difficulty_score"] = float(score)
+        for key, value in features.items():
+            row[f"difficulty_feature_{key}"] = float(value)
         return row
 
     return out.apply(annotate_row, axis=1)
