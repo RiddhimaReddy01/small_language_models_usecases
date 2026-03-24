@@ -188,6 +188,38 @@ class CompleteRoutingPipelineTest(unittest.TestCase):
             self.assertGreaterEqual(risk_curve[bin_id], 0.0)
             self.assertLessEqual(risk_curve[bin_id], 1.0)
 
+    def test_phase0_risk_curves_use_semantic_failure_when_available(self):
+        """Risk should use semantic failure severity, not only a binary quality cutoff."""
+        samples = [
+            {
+                'raw_input': 'easy',
+                'raw_output': 'wrong answer with valid format',
+                'valid': True,
+                'quality_score': 0.60,
+                'failure_type': 'wrong_label',
+                'severity': 'high',
+                '_bin_id': 0,
+            },
+            {
+                'raw_input': 'easy',
+                'raw_output': 'slightly low quality',
+                'valid': True,
+                'quality_score': 0.75,
+                '_bin_id': 0,
+            },
+        ]
+
+        risk_curve, _ = self.framework.compute_risk_curve(
+            {0: samples},
+            quality_metric=lambda sample: sample['quality_score'],
+            quality_threshold=0.80,
+        )
+
+        # If risk were binary thresholding only, this would be 1.0.
+        # We expect semantic weighting: high-severity failure (0.8) plus
+        # quality shortfall (0.0625), averaged across 2 samples.
+        self.assertAlmostEqual(risk_curve[0], 0.43125, places=5)
+
     def test_phase0_tipping_points_detection(self):
         """Phase 0, Step 7: Detect Tipping Points (tau_cap, tau_risk)"""
         def validation_fn(output: str) -> bool:

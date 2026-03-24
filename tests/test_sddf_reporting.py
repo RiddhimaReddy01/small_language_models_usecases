@@ -101,9 +101,14 @@ class SddfReportingTests(unittest.TestCase):
 
             outputs = generate_part_b_report(tmp / "run", "classification")
             report_text = Path(outputs["report_path"]).read_text(encoding="utf-8")
+            summary = json.loads(Path(outputs["summary_path"]).read_text(encoding="utf-8"))
             self.assertIn("Part B - SDDF Analysis", report_text)
             self.assertIn("Matched SLM vs LLM Analysis", report_text)
             self.assertIn("![Capability curve]", report_text)
+            self.assertIn("Semantic Risk Summary", report_text)
+            self.assertIn("semantic-weighted risk", report_text)
+            self.assertIn("semantic_risk_summary", summary)
+            self.assertEqual(len(summary["semantic_risk_summary"]), 2)
             self.assertTrue(Path(outputs["summary_path"]).exists())
             self.assertTrue(any(path.suffix == ".png" for path in (tmp / "run" / "sddf" / "reports").iterdir()))
         finally:

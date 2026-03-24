@@ -64,13 +64,13 @@ class FailureTaxonomy:
         Returns: failure_type string (e.g., "execution_error", "hallucination")
                 or None if not a failure
         """
-        if sample.get('valid', True):
-            return None  # Not a failure
-
         # Check for failure type indicators
         failure_type = sample.get('failure_type', None)
         if failure_type:
             return failure_type
+
+        if sample.get('valid', True):
+            return None  # Not a failure
 
         # Infer from sample characteristics
         raw_output = sample.get('raw_output', '')

@@ -222,51 +222,68 @@ class GeneralizedRoutingFramework:
                           quality_metric: Optional[Callable] = None,
                           quality_threshold: float = 0.80) -> Dict[int, float]:
         """
-        Compute Risk_m(d) = quality failure rate per bin
+        Compute Risk_m(d) as semantic/task-quality weighted failure risk per bin.
 
-        NEW APPROACH (recommended): Use continuous quality metrics
-        - Risk = fraction of samples where quality_score < quality_threshold
-        - Aligns with gates.py evaluation (primary_metric >= threshold)
-        - Separates structural failures (valid_output=0) from quality failures
-
-        OLD APPROACH (fallback): Severity-weighted binary failures
-        - If quality_metric is None, uses 'severity' field on invalid samples
+        Preferred behavior:
+        - Use explicit semantic/structural failure labels when present.
+        - Fall back to task-quality shortfall when a quality metric exists.
+        - Fall back again to severity-weighted invalid outputs when richer signals
+          are unavailable.
 
         Returns:
             ({bin_id: risk_0_to_1}, {bin_id: sample_count})
         """
         risks = {}
         counts = {}
+        taxonomy = None
+        try:
+            from src.routing.failure_taxonomy import FailureTaxonomy
+            taxonomy = FailureTaxonomy()
+        except Exception:
+            taxonomy = None
 
         for bin_id in sorted(samples_by_bin.keys()):
             samples = samples_by_bin[bin_id]
+            total_weight = 0.0
 
-            # NEW APPROACH: Continuous quality degradation
-            if quality_metric is not None:
-                failure_count = 0
-                for sample in samples:
+            for sample in samples:
+                sample_weight = 0.0
+                quality_score = None
+                if quality_metric is not None:
                     try:
-                        quality_score = quality_metric(sample)
-                        if quality_score < quality_threshold:
-                            failure_count += 1
-                    except:
-                        # If quality computation fails, count as failure
-                        failure_count += 1
+                        quality_score = float(quality_metric(sample))
+                    except Exception:
+                        quality_score = None
 
-                risk = failure_count / len(samples) if samples else 0
+                is_valid = bool(sample.get('valid', True))
+                has_quality_failure = (
+                    quality_score is None or quality_score < quality_threshold
+                ) if quality_metric is not None else False
+                is_failure = (not is_valid) or has_quality_failure
 
-            # OLD APPROACH: Severity-weighted binary failures (fallback)
-            else:
-                total_weight = 0
-                for sample in samples:
-                    is_valid = sample.get('valid', False)
+                explicit_failure_type = sample.get("failure_type")
+                if taxonomy is not None and ((not is_valid) or explicit_failure_type):
+                    taxonomy_sample = dict(sample)
+                    taxonomy_sample["valid"] = False
+                    failure_type = taxonomy.categorize_failure(taxonomy_sample)
+                    if failure_type:
+                        severity = taxonomy.get_failure_severity(failure_type)
+                        sample_weight = taxonomy.SEVERITY_WEIGHTS.get(severity, 0.0)
 
-                    if not is_valid:
-                        severity = sample.get('severity', None)
-                        weight = self.SEVERITY_WEIGHTS.get(severity, 0)
-                        total_weight += weight
+                if sample_weight == 0.0 and not is_valid:
+                    severity = sample.get('severity', None)
+                    sample_weight = self.SEVERITY_WEIGHTS.get(severity, 1.0 if is_failure else 0.0)
 
-                risk = total_weight / len(samples) if samples else 0
+                if sample_weight == 0.0 and has_quality_failure:
+                    if quality_score is None:
+                        sample_weight = 1.0
+                    else:
+                        shortfall = (quality_threshold - quality_score) / max(quality_threshold, 1e-9)
+                        sample_weight = max(0.0, min(1.0, shortfall))
+
+                total_weight += sample_weight
+
+            risk = total_weight / len(samples) if samples else 0
 
             risks[bin_id] = risk
 
