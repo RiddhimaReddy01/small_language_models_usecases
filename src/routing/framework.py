@@ -159,7 +159,10 @@ class GeneralizedRoutingFramework:
         Returns:
             {bin_id: [samples]}
         """
-        binned = defaultdict(list)
+        # Pre-initialize all bins so callers can rely on presence of 0..num_bins-1
+        # even if no samples fall into a particular bucket. Tests expect bins to
+        # exist, not just the ones that received assignments.
+        binned = defaultdict(list, {i: [] for i in range(num_bins)})
 
         for sample in samples:
             try:
@@ -199,9 +202,6 @@ class GeneralizedRoutingFramework:
         for bin_id in sorted(samples_by_bin.keys()):
             samples = samples_by_bin[bin_id]
 
-            if not samples:
-                continue
-
             valid_count = 0
             for sample in samples:
                 output = sample.get('raw_output', '')
@@ -240,9 +240,6 @@ class GeneralizedRoutingFramework:
 
         for bin_id in sorted(samples_by_bin.keys()):
             samples = samples_by_bin[bin_id]
-
-            if not samples:
-                continue
 
             # NEW APPROACH: Continuous quality degradation
             if quality_metric is not None:

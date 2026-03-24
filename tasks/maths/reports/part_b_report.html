@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Part B Report</title>
+  <style>
+body { font-family: Georgia, 'Times New Roman', serif; margin: 40px auto; max-width: 920px; padding: 0 20px; color: #1f2937; line-height: 1.6; }
+h1, h2, h3 { color: #0f172a; }
+code { background: #f3f4f6; padding: 2px 5px; border-radius: 4px; }
+pre { background: #111827; color: #f9fafb; padding: 16px; border-radius: 10px; overflow-x: auto; }
+a { color: #0f766e; }
+img { max-width: 100%; height: auto; border: 1px solid #e5e7eb; border-radius: 8px; }
+.card { border: 1px solid #e5e7eb; border-radius: 12px; padding: 16px 18px; margin-bottom: 14px; background: #ffffff; }
+.muted { color: #6b7280; }
+</style>
+</head>
+<body>
+<h1>Part B - SDDF Analysis</h1>
+<ul>
+<li>Benchmark: <code>maths</code></li>
+<li>Run path: <code>maths\benchmark_metrics.json</code></li>
+<li>Interpretation note: sections marked <code>partial</code> are inference-augmented summaries derived from historical benchmark artifacts rather than fresh matched reruns.</li>
+</ul>
+<h2>SDDF: Dominant Difficulty Dimension</h2>
+<ul>
+<li>Status: <code>partial</code></li>
+<li>Reason: Inferred from historical benchmark artifacts; no SDDF archive was available for direct computation.</li>
+</ul>
+<h3>Inferred dominant dimension</h3>
+<ul>
+<li>Inferred dominant difficulty dimension: <code>R_hat</code></li>
+<li>Basis: historical maths performance is dominated by reasoning depth, intermediate-state tracking, and multi-step dependency chains.</li>
+<li>Caveat: inferred from historical task structure and aggregate benchmark behavior rather than recalculated from a fresh matched rerun.</li>
+</ul>
+<h2>Difficulty Annotation + Binning</h2>
+<ul>
+<li>Status: <code>partial</code></li>
+<li>Reason: Inferred from historical benchmark artifacts; no SDDF archive was available for direct computation.</li>
+</ul>
+<h3>Inferred binning rule</h3>
+<ul>
+<li>Low difficulty bucket: single-step arithmetic or direct conversion</li>
+<li>Mid difficulty bucket: short reasoning chains with limited intermediate state</li>
+<li>High difficulty bucket: multi-step word problems with dependent calculations</li>
+<li>Caveat: bins are historical workload strata, not newly recomputed row-level bins.</li>
+</ul>
+<h2>Matched SLM vs LLM Analysis</h2>
+<ul>
+<li>Status: <code>partial</code></li>
+<li>Reason: Inferred from historical benchmark artifacts; no SDDF archive was available for direct computation.</li>
+</ul>
+<h3>Historical comparison</h3>
+<ul>
+<li>Historical top model on primary metric: <code>gemini_2_5_flash_real</code> at <code>38.3%</code> final-answer accuracy.</li>
+<li>Best spread observed in saved artifacts: <code>gemini_2_5_flash_real</code> exceeds <code>mistral_7b</code> by <code>28.3</code> points.</li>
+<li>Caveat: this comparison is aggregate and not example-matched, so it should not be treated as a strict paired test.</li>
+</ul>
+<h2>Capability Curve + Tipping Point</h2>
+<ul>
+<li>Status: <code>partial</code></li>
+<li>Reason: Inferred from historical benchmark artifacts; no SDDF archive was available for direct computation.</li>
+</ul>
+<h3>Inferred transition point</h3>
+<ul>
+<li>Historical tipping signal: historical evidence suggests a clear break once tasks require more than one straightforward reasoning step.</li>
+<li>Operational reading: simple arithmetic remains viable locally, but multi-step reasoning pushes quality toward stronger models quickly.</li>
+<li>Caveat: tipping point is inferred from prior benchmark patterns, not estimated from a fresh ratio curve on matched rows.</li>
+</ul>
+<h2>Uncertainty Analysis</h2>
+<ul>
+<li>Status: <code>partial</code></li>
+<li>Reason: Inferred from historical benchmark artifacts; no SDDF archive was available for direct computation.</li>
+</ul>
+<h3>Historical uncertainty</h3>
+<ul>
+<li>Historical sample size signal: aggregate-only artifacts were available.</li>
+<li>Uncertainty source: sample sizes vary by model and some historical runs mix datasets, so inferred thresholds are moderate-confidence only.</li>
+<li>Caveat: no bootstrap confidence interval was available without matched rerun rows.</li>
+</ul>
+<h2>Failure Taxonomy</h2>
+<ul>
+<li>Status: <code>partial</code></li>
+<li>Reason: Inferred from historical benchmark artifacts; no SDDF archive was available for direct computation.</li>
+</ul>
+<h3>Inferred failure modes</h3>
+<ul>
+<li>incorrect intermediate reasoning despite well-formed output</li>
+<li>confident wrong answers on multi-step problems</li>
+<li>low perturbation robustness on paraphrased questions</li>
+<li>Caveat: taxonomy is inferred from benchmark-level failures and task design, not exhaustively labeled per example.</li>
+</ul>
+<h2>Quality Gate</h2>
+<ul>
+<li>Status: <code>partial</code></li>
+<li>Reason: Inferred from historical benchmark artifacts; no SDDF archive was available for direct computation.</li>
+</ul>
+<h3>Suggested gate</h3>
+<ul>
+<li>accept SLM outputs only for simple arithmetic-like prompts or when a verifier agrees</li>
+<li>escalate multi-step word problems and variable-dependent reasoning tasks</li>
+<li>Caveat: gate thresholds are policy recommendations inferred from historical evidence, not learned from fresh matched supervision.</li>
+</ul>
+<h2>Deployment Zones</h2>
+<ul>
+<li>Status: <code>partial</code></li>
+<li>Reason: Inferred from historical benchmark artifacts; no SDDF archive was available for direct computation.</li>
+</ul>
+<h3>Inferred deployment stance</h3>
+<ul>
+<li>Likely SDDF stance: LLM-preferred for general mathematical reasoning, with narrow SLM carve-outs.</li>
+<li>Why: historical accuracy and robustness both deteriorate materially once reasoning depth increases.</li>
+<li>Caveat: zone assignment is a benchmark-level recommendation and should be revalidated after reruns.</li>
+</ul>
+<h2>Routing Policy</h2>
+<ul>
+<li>Status: <code>partial</code></li>
+<li>Reason: Inferred from historical benchmark artifacts; no SDDF archive was available for direct computation.</li>
+</ul>
+<h3>Suggested routing policy</h3>
+<ul>
+<li>route simple arithmetic and direct conversions to SLMs if cost matters</li>
+<li>route multi-step reasoning tasks to LLMs or verification-heavy workflows</li>
+<li>Caveat: this is a hand-authored routing rule from historical evidence, not a learned router threshold.</li>
+</ul>
+</body>
+</html>

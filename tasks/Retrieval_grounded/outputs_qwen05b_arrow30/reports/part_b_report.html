@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Part B Report</title>
+  <style>
+body { font-family: Georgia, 'Times New Roman', serif; margin: 40px auto; max-width: 920px; padding: 0 20px; color: #1f2937; line-height: 1.6; }
+h1, h2, h3 { color: #0f172a; }
+code { background: #f3f4f6; padding: 2px 5px; border-radius: 4px; }
+pre { background: #111827; color: #f9fafb; padding: 16px; border-radius: 10px; overflow-x: auto; }
+a { color: #0f766e; }
+img { max-width: 100%; height: auto; border: 1px solid #e5e7eb; border-radius: 8px; }
+.card { border: 1px solid #e5e7eb; border-radius: 12px; padding: 16px 18px; margin-bottom: 14px; background: #ffffff; }
+.muted { color: #6b7280; }
+</style>
+</head>
+<body>
+<h1>Part B - SDDF Analysis</h1>
+<ul>
+<li>Benchmark: <code>retrieval_grounded</code></li>
+<li>Run path: <code>Retrieval_grounded\outputs_qwen05b_arrow30</code></li>
+<li>Interpretation note: sections marked <code>partial</code> are inference-augmented summaries derived from historical benchmark artifacts rather than fresh matched reruns.</li>
+</ul>
+<h2>SDDF: Dominant Difficulty Dimension</h2>
+<ul>
+<li>Status: <code>partial</code></li>
+<li>Reason: Inferred from historical benchmark artifacts; no SDDF archive was available for direct computation.</li>
+</ul>
+<h3>Inferred dominant dimension</h3>
+<ul>
+<li>Inferred dominant difficulty dimension: <code>n_in</code></li>
+<li>Basis: historical retrieval-grounded QA performance is strongest when all required evidence is present in context, making context size and evidence localization the main burden.</li>
+<li>Caveat: inferred from historical task structure and aggregate benchmark behavior rather than recalculated from a fresh matched rerun.</li>
+</ul>
+<h2>Difficulty Annotation + Binning</h2>
+<ul>
+<li>Status: <code>partial</code></li>
+<li>Reason: Inferred from historical benchmark artifacts; no SDDF archive was available for direct computation.</li>
+</ul>
+<h3>Inferred binning rule</h3>
+<ul>
+<li>Low difficulty bucket: verbatim span extraction from short contexts</li>
+<li>Mid difficulty bucket: short factual answers requiring light paraphrase</li>
+<li>High difficulty bucket: paraphrastic or multi-hop reasoning across context</li>
+<li>Caveat: bins are historical workload strata, not newly recomputed row-level bins.</li>
+</ul>
+<h2>Matched SLM vs LLM Analysis</h2>
+<ul>
+<li>Status: <code>partial</code></li>
+<li>Reason: Inferred from historical benchmark artifacts; no SDDF archive was available for direct computation.</li>
+</ul>
+<h3>Historical comparison</h3>
+<ul>
+<li>Saved retrieval run: <code>Qwen/Qwen2.5-Coder-0.5B-Instruct</code> reached <code>66.67</code> EM and <code>71.26</code> F1.</li>
+<li>Caveat: this comparison is aggregate and not example-matched, so it should not be treated as a strict paired test.</li>
+</ul>
+<h2>Capability Curve + Tipping Point</h2>
+<ul>
+<li>Status: <code>partial</code></li>
+<li>Reason: Inferred from historical benchmark artifacts; no SDDF archive was available for direct computation.</li>
+</ul>
+<h3>Inferred transition point</h3>
+<ul>
+<li>Historical tipping signal: historical evidence suggests the main degradation begins once the answer is no longer a direct span and paraphrasing or composition is required.</li>
+<li>Operational reading: RAG helps most when it reduces the task to copying from context; once synthesis is needed, higher-capability models help more.</li>
+<li>Caveat: tipping point is inferred from prior benchmark patterns, not estimated from a fresh ratio curve on matched rows.</li>
+</ul>
+<h2>Uncertainty Analysis</h2>
+<ul>
+<li>Status: <code>partial</code></li>
+<li>Reason: Inferred from historical benchmark artifacts; no SDDF archive was available for direct computation.</li>
+</ul>
+<h3>Historical uncertainty</h3>
+<ul>
+<li>Historical sample size signal: <code>30</code> prediction examples per file.</li>
+<li>Uncertainty source: saved artifacts are single-model for some runs, so exact comparative uncertainty remains high.</li>
+<li>Caveat: no bootstrap confidence interval was available without matched rerun rows.</li>
+</ul>
+<h2>Failure Taxonomy</h2>
+<ul>
+<li>Status: <code>partial</code></li>
+<li>Reason: Inferred from historical benchmark artifacts; no SDDF archive was available for direct computation.</li>
+</ul>
+<h3>Inferred failure modes</h3>
+<ul>
+<li>partial answers when paraphrasing is needed</li>
+<li>unsupported answers when context does not map cleanly to output</li>
+<li>hallucinations when retrieval grounding is weak</li>
+<li>Caveat: taxonomy is inferred from benchmark-level failures and task design, not exhaustively labeled per example.</li>
+</ul>
+<h2>Quality Gate</h2>
+<ul>
+<li>Status: <code>partial</code></li>
+<li>Reason: Inferred from historical benchmark artifacts; no SDDF archive was available for direct computation.</li>
+</ul>
+<h3>Suggested gate</h3>
+<ul>
+<li>accept SLM outputs when answer spans are short and context-grounded</li>
+<li>escalate no-answer, paraphrastic, or multi-hop cases</li>
+<li>Caveat: gate thresholds are policy recommendations inferred from historical evidence, not learned from fresh matched supervision.</li>
+</ul>
+<h2>Deployment Zones</h2>
+<ul>
+<li>Status: <code>partial</code></li>
+<li>Reason: Inferred from historical benchmark artifacts; no SDDF archive was available for direct computation.</li>
+</ul>
+<h3>Inferred deployment stance</h3>
+<ul>
+<li>Likely SDDF stance: SLM-preferred for span-like RAG QA; hybrid for paraphrastic or compositional QA.</li>
+<li>Why: historical local results are strong on direct grounding but weaken as synthesis pressure increases.</li>
+<li>Caveat: zone assignment is a benchmark-level recommendation and should be revalidated after reruns.</li>
+</ul>
+<h2>Routing Policy</h2>
+<ul>
+<li>Status: <code>partial</code></li>
+<li>Reason: Inferred from historical benchmark artifacts; no SDDF archive was available for direct computation.</li>
+</ul>
+<h3>Suggested routing policy</h3>
+<ul>
+<li>route direct span or short factual answers to the SLM path</li>
+<li>route paraphrastic, uncertain, or multi-hop questions to an LLM path</li>
+<li>Caveat: this is a hand-authored routing rule from historical evidence, not a learned router threshold.</li>
+</ul>
+</body>
+</html>

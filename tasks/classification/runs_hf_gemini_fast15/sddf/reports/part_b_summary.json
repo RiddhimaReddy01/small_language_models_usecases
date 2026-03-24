@@ -1,0 +1,304 @@
+{
+  "benchmark": "classification",
+  "run_path": "C:\\Users\\riddh\\OneDrive\\Desktop\\SLM use cases\\classification\\runs_hf_gemini_fast15",
+  "sddf_root": "C:\\Users\\riddh\\OneDrive\\Desktop\\SLM use cases\\classification\\runs_hf_gemini_fast15\\sddf",
+  "statuses": {
+    "dominant_difficulty_dimension": {
+      "status": "available",
+      "reason": "Computed from SDDF archive."
+    },
+    "difficulty_annotation_binning": {
+      "status": "available",
+      "reason": "Computed from SDDF archive."
+    },
+    "matched_slm_llm_analysis": {
+      "status": "available",
+      "reason": "Computed from SDDF archive."
+    },
+    "capability_curve_tipping_point": {
+      "status": "available",
+      "reason": "Computed from SDDF archive."
+    },
+    "uncertainty_analysis": {
+      "status": "available",
+      "reason": "Computed from SDDF archive."
+    },
+    "failure_taxonomy": {
+      "status": "available",
+      "reason": "Computed from SDDF archive."
+    },
+    "quality_gate": {
+      "status": "available",
+      "reason": "Computed from SDDF archive."
+    },
+    "deployment_zones": {
+      "status": "available",
+      "reason": "Computed from SDDF archive."
+    },
+    "routing_policy": {
+      "status": "available",
+      "reason": "Computed from SDDF archive."
+    }
+  },
+  "pairs": [
+    {
+      "dataset": "AG News",
+      "slm_name": "hf_api:meta-llama/Llama-3.2-1B-Instruct",
+      "llm_name": "gemini-3.1-flash-lite-preview",
+      "matched_examples": 4,
+      "tipping_point": null,
+      "tipping_sensitivity": {
+        "0.90": null,
+        "0.93": null,
+        "0.95": null,
+        "0.97": null
+      },
+      "tipping_ci": {
+        "tipping_point": null,
+        "ci_low": null,
+        "ci_high": null
+      },
+      "gate_thresholds": {
+        "max_difficulty": 4.221928094887363,
+        "gate_precision": 1.0,
+        "gate_recall": 0.3333333333333333
+      },
+      "gate_metrics": {
+        "precision": 1.0,
+        "recall": 0.3333333333333333,
+        "f1": 0.5
+      },
+      "zones": [
+        {
+          "difficulty_bin": 0,
+          "bin_center": 4.221928094887363,
+          "ratio_smooth": 1.0,
+          "zone": "A"
+        },
+        {
+          "difficulty_bin": 1,
+          "bin_center": 4.7606479232901,
+          "ratio_smooth": 1.0,
+          "zone": "A"
+        },
+        {
+          "difficulty_bin": 2,
+          "bin_center": 4.964904158123494,
+          "ratio_smooth": 0.0,
+          "zone": "C"
+        },
+        {
+          "difficulty_bin": 4,
+          "bin_center": 5.234120167580197,
+          "ratio_smooth": 1.0,
+          "zone": "A"
+        }
+      ],
+      "ratio_ci": [
+        {
+          "difficulty_bin": 0,
+          "ratio_ci_low": 1.0,
+          "ratio_ci_high": 1.0,
+          "ratio_boot_mean": 1.0
+        },
+        {
+          "difficulty_bin": 1,
+          "ratio_ci_low": 1.0,
+          "ratio_ci_high": 1.0,
+          "ratio_boot_mean": 1.0
+        },
+        {
+          "difficulty_bin": 2,
+          "ratio_ci_low": 0.0,
+          "ratio_ci_high": 0.0,
+          "ratio_boot_mean": 0.0
+        },
+        {
+          "difficulty_bin": 4,
+          "ratio_ci_low": 1.0,
+          "ratio_ci_high": 1.0,
+          "ratio_boot_mean": 1.0
+        }
+      ],
+      "plot_path": "classification\\runs_hf_gemini_fast15\\sddf\\reports\\ag_news_hf_api_meta_llama_llama_3_2_1b_instruct_vs_gemini_3_1_flash_lite_preview.png"
+    },
+    {
+      "dataset": "Emotion",
+      "slm_name": "hf_api:meta-llama/Llama-3.2-1B-Instruct",
+      "llm_name": "gemini-3.1-flash-lite-preview",
+      "matched_examples": 6,
+      "tipping_point": 2.375,
+      "tipping_sensitivity": {
+        "0.90": 2.375,
+        "0.93": 2.375,
+        "0.95": 2.375,
+        "0.97": 2.375
+      },
+      "tipping_ci": {
+        "tipping_point": 2.5,
+        "ci_low": 2.0,
+        "ci_high": 4.501629167387822
+      },
+      "gate_thresholds": null,
+      "gate_metrics": null,
+      "zones": [
+        {
+          "difficulty_bin": 0,
+          "bin_center": 2.375,
+          "ratio_smooth": 0.0,
+          "zone": "C"
+        },
+        {
+          "difficulty_bin": 1,
+          "bin_center": 3.773557262275186,
+          "ratio_smooth": 0.0,
+          "zone": "C"
+        },
+        {
+          "difficulty_bin": 2,
+          "bin_center": 4.403856189774725,
+          "ratio_smooth": 1.0,
+          "zone": "A"
+        },
+        {
+          "difficulty_bin": 3,
+          "bin_center": 4.501629167387822,
+          "ratio_smooth": 0.0,
+          "zone": "C"
+        },
+        {
+          "difficulty_bin": 4,
+          "bin_center": 4.85216872360328,
+          "ratio_smooth": 0.0,
+          "zone": "C"
+        }
+      ],
+      "ratio_ci": [
+        {
+          "difficulty_bin": 0,
+          "ratio_ci_low": 0.0,
+          "ratio_ci_high": 0.0,
+          "ratio_boot_mean": 0.0
+        },
+        {
+          "difficulty_bin": 1,
+          "ratio_ci_low": 0.0,
+          "ratio_ci_high": 0.0,
+          "ratio_boot_mean": 0.0
+        },
+        {
+          "difficulty_bin": 2,
+          "ratio_ci_low": 1.0,
+          "ratio_ci_high": 1.0,
+          "ratio_boot_mean": 1.0
+        },
+        {
+          "difficulty_bin": 3,
+          "ratio_ci_low": 0.0,
+          "ratio_ci_high": 0.0,
+          "ratio_boot_mean": 0.0
+        },
+        {
+          "difficulty_bin": 4,
+          "ratio_ci_low": 0.0,
+          "ratio_ci_high": 0.0,
+          "ratio_boot_mean": 0.0
+        }
+      ],
+      "plot_path": "classification\\runs_hf_gemini_fast15\\sddf\\reports\\emotion_hf_api_meta_llama_llama_3_2_1b_instruct_vs_gemini_3_1_flash_lite_preview.png"
+    },
+    {
+      "dataset": "SST-2",
+      "slm_name": "hf_api:meta-llama/Llama-3.2-1B-Instruct",
+      "llm_name": "gemini-3.1-flash-lite-preview",
+      "matched_examples": 6,
+      "tipping_point": null,
+      "tipping_sensitivity": {
+        "0.90": null,
+        "0.93": null,
+        "0.95": null,
+        "0.97": null
+      },
+      "tipping_ci": {
+        "tipping_point": 3.5221970596792267,
+        "ci_low": 3.5221970596792267,
+        "ci_high": 3.5221970596792267
+      },
+      "gate_thresholds": {
+        "max_difficulty": 3.4594316186372973,
+        "gate_precision": 1.0,
+        "gate_recall": 0.25
+      },
+      "gate_metrics": {
+        "precision": 1.0,
+        "recall": 0.25,
+        "f1": 0.4
+      },
+      "zones": [
+        {
+          "difficulty_bin": 0,
+          "bin_center": 3.5221970596792267,
+          "ratio_smooth": 0.5,
+          "zone": "C"
+        },
+        {
+          "difficulty_bin": 1,
+          "bin_center": 4.1219280948873624,
+          "ratio_smooth": 1.0000000000000036,
+          "zone": "A"
+        },
+        {
+          "difficulty_bin": 2,
+          "bin_center": 4.169925001442312,
+          "ratio_smooth": 1.0000000000000078,
+          "zone": "A"
+        },
+        {
+          "difficulty_bin": 3,
+          "bin_center": 4.664497779200461,
+          "ratio_smooth": 1.0,
+          "zone": "A"
+        },
+        {
+          "difficulty_bin": 4,
+          "bin_center": 4.789015477886192,
+          "ratio_smooth": 0.0,
+          "zone": "C"
+        }
+      ],
+      "ratio_ci": [
+        {
+          "difficulty_bin": 0,
+          "ratio_ci_low": 0.0,
+          "ratio_ci_high": 1.0,
+          "ratio_boot_mean": 0.46345029239766083
+        },
+        {
+          "difficulty_bin": 1,
+          "ratio_ci_low": 1.0,
+          "ratio_ci_high": 1.0,
+          "ratio_boot_mean": 1.0
+        },
+        {
+          "difficulty_bin": 2,
+          "ratio_ci_low": 1.0,
+          "ratio_ci_high": 1.0,
+          "ratio_boot_mean": 1.0
+        },
+        {
+          "difficulty_bin": 3,
+          "ratio_ci_low": 1.0,
+          "ratio_ci_high": 1.0,
+          "ratio_boot_mean": 1.0
+        },
+        {
+          "difficulty_bin": 4,
+          "ratio_ci_low": 0.0,
+          "ratio_ci_high": 0.0,
+          "ratio_boot_mean": 0.0
+        }
+      ],
+      "plot_path": "classification\\runs_hf_gemini_fast15\\sddf\\reports\\sst_2_hf_api_meta_llama_llama_3_2_1b_instruct_vs_gemini_3_1_flash_lite_preview.png"
+    }
+  ]
+}

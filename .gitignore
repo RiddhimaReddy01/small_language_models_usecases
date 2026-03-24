@@ -19,24 +19,17 @@ wheels/
 *.egg-info/
 .installed.cfg
 *.egg
+MANIFEST
 
-<<<<<<< HEAD
-# Testing
-.pytest_cache/
-.coverage
-htmlcov/
-.tox/
-
-# IDEs
-=======
 # Virtual environments
+.venv/
+.venv
 venv/
 env/
 ENV/
-.venv
+.env
 
-# IDE
->>>>>>> 4ebe773 (chore: initial commit with pipeline cleanup and production architectural fixes)
+# IDEs
 .vscode/
 .idea/
 *.swp
@@ -44,41 +37,37 @@ ENV/
 *~
 .DS_Store
 
-<<<<<<< HEAD
-# Outputs
-*.json
-*.csv
-analysis_results.*
-plots/
-*.tmp
-
-# Archive (keep but don't track changes)
-.archive/
-
-# Virtual environments
-.venv/
-venv/
-env/
-=======
-# Testing
+# Testing & Coverage
 .pytest_cache/
 .coverage
 htmlcov/
+.tox/
 
 # Jupyter
-.ipynb_checkpoints
+.ipynb_checkpoints/
 *.ipynb
+
+# Generated outputs (large, regeneratable)
+outputs/plots/
+outputs/benchmark/
+outputs/analysis/*.json
+outputs/analysis/*.csv
+outputs/analysis/*.pdf
 
 # Data & Results (large files)
 data/
-outputs/
 *.jsonl
-
-# Temporary
-*.tmp
 *.log
-.env
+
+# Temporary files
+*.tmp
+*.bak
+.tmp_*
 
 # OS
 Thumbs.db
->>>>>>> 4ebe773 (chore: initial commit with pipeline cleanup and production architectural fixes)
+.DS_Store
+
+# Project-specific
+.edge-cdp-profile/
+.python311/

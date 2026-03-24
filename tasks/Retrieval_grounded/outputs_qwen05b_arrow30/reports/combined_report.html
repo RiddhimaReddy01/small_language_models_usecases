@@ -1,0 +1,206 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Combined Report</title>
+  <style>
+body { font-family: Georgia, 'Times New Roman', serif; margin: 40px auto; max-width: 920px; padding: 0 20px; color: #1f2937; line-height: 1.6; }
+h1, h2, h3 { color: #0f172a; }
+code { background: #f3f4f6; padding: 2px 5px; border-radius: 4px; }
+pre { background: #111827; color: #f9fafb; padding: 16px; border-radius: 10px; overflow-x: auto; }
+a { color: #0f766e; }
+img { max-width: 100%; height: auto; border: 1px solid #e5e7eb; border-radius: 8px; }
+.card { border: 1px solid #e5e7eb; border-radius: 12px; padding: 16px 18px; margin-bottom: 14px; background: #ffffff; }
+.muted { color: #6b7280; }
+</style>
+</head>
+<body>
+<h1>Part A - Benchmark Setup</h1>
+<ul>
+<li>Benchmark: <code>retrieval_grounded</code></li>
+<li>Run path: <code>Retrieval_grounded\outputs_qwen05b_arrow30</code></li>
+</ul>
+<h2>Task Definition</h2>
+<pre><code class="language-json">{
+  &quot;task&quot;: &quot;retrieval_grounded&quot;,
+  &quot;dataset&quot;: &quot;squad&quot;
+}
+</code></pre>
+<h2>Dataset and Sampling</h2>
+<pre><code class="language-json">{
+  &quot;num_questions&quot;: 30,
+  &quot;dataset_split&quot;: &quot;validation&quot;
+}
+</code></pre>
+<h2>Experimental Setup</h2>
+<pre><code class="language-json">{
+  &quot;config&quot;: {
+    &quot;dataset_name&quot;: &quot;squad&quot;,
+    &quot;dataset_split&quot;: &quot;validation&quot;,
+    &quot;num_questions&quot;: 30,
+    &quot;max_context_tokens&quot;: 300,
+    &quot;max_answer_tokens&quot;: 10,
+    &quot;models&quot;: [
+      &quot;Qwen/Qwen2.5-Coder-0.5B-Instruct&quot;
+    ],
+    &quot;temperature&quot;: 0.0,
+    &quot;top_p&quot;: 1.0,
+    &quot;max_new_tokens&quot;: 30,
+    &quot;do_sample&quot;: false,
+    &quot;device&quot;: &quot;cpu&quot;,
+    &quot;output_dir&quot;: &quot;Retrieval_grounded/outputs_qwen05b_arrow30&quot;,
+    &quot;save_per_model&quot;: true
+  },
+  &quot;environment&quot;: {
+    &quot;platform&quot;: &quot;Windows-11-10.0.26200-SP0&quot;,
+    &quot;python_version&quot;: &quot;3.12.7&quot;,
+    &quot;cuda_available&quot;: false
+  }
+}
+</code></pre>
+<h2>Metrics</h2>
+<pre><code class="language-json">{
+  &quot;Qwen/Qwen2.5-Coder-0.5B-Instruct&quot;: {
+    &quot;model&quot;: &quot;Qwen/Qwen2.5-Coder-0.5B-Instruct&quot;,
+    &quot;capability&quot;: {
+      &quot;exact_match&quot;: 66.66666666666667,
+      &quot;f1_score&quot;: 71.25763125763125,
+      &quot;context_utilization_rate&quot;: 96.66666666666667,
+      &quot;answer_length_accuracy&quot;: 86.66666666666667
+    },
+    &quot;reliability&quot;: {
+      &quot;hallucination_rate&quot;: 3.3333333333333335,
+      &quot;unsupported_answer_rate&quot;: 3.3333333333333335,
+      &quot;partial_answer_rate&quot;: 13.333333333333334
+    },
+    &quot;operational&quot;: {
+      &quot;latency_ms&quot;: 5534.117009999075,
+      &quot;latency_p50_ms&quot;: 6442.271899999469,
+      &quot;latency_p95_ms&quot;: 8078.817800007528,
+      &quot;tokens_per_sec&quot;: 4.228316813273146,
+      &quot;output_tokens_total&quot;: 702,
+      &quot;input_tokens_avg&quot;: 196.83333333333334,
+      &quot;memory_mb&quot;: 0.0,
+      &quot;wall_time_sec&quot;: 166.3784999847412,
+      &quot;questions&quot;: 30
+    }
+  }
+}
+</code></pre>
+<h2>Raw Benchmark Results</h2>
+<pre><code class="language-json">{
+  &quot;prediction_files&quot;: [
+    &quot;C:\\Users\\riddh\\OneDrive\\Desktop\\SLM use cases\\Retrieval_grounded\\outputs_qwen05b_arrow30\\predictions\\predictions_Qwen_Qwen2.5-Coder-0.5B-Instruct.json&quot;
+  ],
+  &quot;example_count_per_prediction_file&quot;: 30
+}
+</code></pre>
+<h1>Part B - SDDF Analysis</h1>
+<ul>
+<li>Benchmark: <code>retrieval_grounded</code></li>
+<li>Run path: <code>Retrieval_grounded\outputs_qwen05b_arrow30</code></li>
+<li>Interpretation note: sections marked <code>partial</code> are inference-augmented summaries derived from historical benchmark artifacts rather than fresh matched reruns.</li>
+</ul>
+<h2>SDDF: Dominant Difficulty Dimension</h2>
+<ul>
+<li>Status: <code>partial</code></li>
+<li>Reason: Inferred from historical benchmark artifacts; no SDDF archive was available for direct computation.</li>
+</ul>
+<h3>Inferred dominant dimension</h3>
+<ul>
+<li>Inferred dominant difficulty dimension: <code>n_in</code></li>
+<li>Basis: historical retrieval-grounded QA performance is strongest when all required evidence is present in context, making context size and evidence localization the main burden.</li>
+<li>Caveat: inferred from historical task structure and aggregate benchmark behavior rather than recalculated from a fresh matched rerun.</li>
+</ul>
+<h2>Difficulty Annotation + Binning</h2>
+<ul>
+<li>Status: <code>partial</code></li>
+<li>Reason: Inferred from historical benchmark artifacts; no SDDF archive was available for direct computation.</li>
+</ul>
+<h3>Inferred binning rule</h3>
+<ul>
+<li>Low difficulty bucket: verbatim span extraction from short contexts</li>
+<li>Mid difficulty bucket: short factual answers requiring light paraphrase</li>
+<li>High difficulty bucket: paraphrastic or multi-hop reasoning across context</li>
+<li>Caveat: bins are historical workload strata, not newly recomputed row-level bins.</li>
+</ul>
+<h2>Matched SLM vs LLM Analysis</h2>
+<ul>
+<li>Status: <code>partial</code></li>
+<li>Reason: Inferred from historical benchmark artifacts; no SDDF archive was available for direct computation.</li>
+</ul>
+<h3>Historical comparison</h3>
+<ul>
+<li>Saved retrieval run: <code>Qwen/Qwen2.5-Coder-0.5B-Instruct</code> reached <code>66.67</code> EM and <code>71.26</code> F1.</li>
+<li>Caveat: this comparison is aggregate and not example-matched, so it should not be treated as a strict paired test.</li>
+</ul>
+<h2>Capability Curve + Tipping Point</h2>
+<ul>
+<li>Status: <code>partial</code></li>
+<li>Reason: Inferred from historical benchmark artifacts; no SDDF archive was available for direct computation.</li>
+</ul>
+<h3>Inferred transition point</h3>
+<ul>
+<li>Historical tipping signal: historical evidence suggests the main degradation begins once the answer is no longer a direct span and paraphrasing or composition is required.</li>
+<li>Operational reading: RAG helps most when it reduces the task to copying from context; once synthesis is needed, higher-capability models help more.</li>
+<li>Caveat: tipping point is inferred from prior benchmark patterns, not estimated from a fresh ratio curve on matched rows.</li>
+</ul>
+<h2>Uncertainty Analysis</h2>
+<ul>
+<li>Status: <code>partial</code></li>
+<li>Reason: Inferred from historical benchmark artifacts; no SDDF archive was available for direct computation.</li>
+</ul>
+<h3>Historical uncertainty</h3>
+<ul>
+<li>Historical sample size signal: <code>30</code> prediction examples per file.</li>
+<li>Uncertainty source: saved artifacts are single-model for some runs, so exact comparative uncertainty remains high.</li>
+<li>Caveat: no bootstrap confidence interval was available without matched rerun rows.</li>
+</ul>
+<h2>Failure Taxonomy</h2>
+<ul>
+<li>Status: <code>partial</code></li>
+<li>Reason: Inferred from historical benchmark artifacts; no SDDF archive was available for direct computation.</li>
+</ul>
+<h3>Inferred failure modes</h3>
+<ul>
+<li>partial answers when paraphrasing is needed</li>
+<li>unsupported answers when context does not map cleanly to output</li>
+<li>hallucinations when retrieval grounding is weak</li>
+<li>Caveat: taxonomy is inferred from benchmark-level failures and task design, not exhaustively labeled per example.</li>
+</ul>
+<h2>Quality Gate</h2>
+<ul>
+<li>Status: <code>partial</code></li>
+<li>Reason: Inferred from historical benchmark artifacts; no SDDF archive was available for direct computation.</li>
+</ul>
+<h3>Suggested gate</h3>
+<ul>
+<li>accept SLM outputs when answer spans are short and context-grounded</li>
+<li>escalate no-answer, paraphrastic, or multi-hop cases</li>
+<li>Caveat: gate thresholds are policy recommendations inferred from historical evidence, not learned from fresh matched supervision.</li>
+</ul>
+<h2>Deployment Zones</h2>
+<ul>
+<li>Status: <code>partial</code></li>
+<li>Reason: Inferred from historical benchmark artifacts; no SDDF archive was available for direct computation.</li>
+</ul>
+<h3>Inferred deployment stance</h3>
+<ul>
+<li>Likely SDDF stance: SLM-preferred for span-like RAG QA; hybrid for paraphrastic or compositional QA.</li>
+<li>Why: historical local results are strong on direct grounding but weaken as synthesis pressure increases.</li>
+<li>Caveat: zone assignment is a benchmark-level recommendation and should be revalidated after reruns.</li>
+</ul>
+<h2>Routing Policy</h2>
+<ul>
+<li>Status: <code>partial</code></li>
+<li>Reason: Inferred from historical benchmark artifacts; no SDDF archive was available for direct computation.</li>
+</ul>
+<h3>Suggested routing policy</h3>
+<ul>
+<li>route direct span or short factual answers to the SLM path</li>
+<li>route paraphrastic, uncertain, or multi-hop questions to an LLM path</li>
+<li>Caveat: this is a hand-authored routing rule from historical evidence, not a learned router threshold.</li>
+</ul>
+</body>
+</html>

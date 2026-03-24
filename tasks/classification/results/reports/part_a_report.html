@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Part A Report</title>
+  <style>
+body { font-family: Georgia, 'Times New Roman', serif; margin: 40px auto; max-width: 920px; padding: 0 20px; color: #1f2937; line-height: 1.6; }
+h1, h2, h3 { color: #0f172a; }
+code { background: #f3f4f6; padding: 2px 5px; border-radius: 4px; }
+pre { background: #111827; color: #f9fafb; padding: 16px; border-radius: 10px; overflow-x: auto; }
+a { color: #0f766e; }
+img { max-width: 100%; height: auto; border: 1px solid #e5e7eb; border-radius: 8px; }
+.card { border: 1px solid #e5e7eb; border-radius: 12px; padding: 16px 18px; margin-bottom: 14px; background: #ffffff; }
+.muted { color: #6b7280; }
+</style>
+</head>
+<body>
+<h1>Part A - Benchmark Setup</h1>
+<ul>
+<li>Benchmark: <code>classification</code></li>
+<li>Run path: <code>classification\results</code></li>
+</ul>
+<h2>Task Definition</h2>
+<pre><code class="language-json">{
+  &quot;task&quot;: &quot;classification&quot;,
+  &quot;datasets&quot;: [
+    &quot;demo-upload&quot;
+  ]
+}
+</code></pre>
+<h2>Dataset and Sampling</h2>
+<pre><code class="language-json">{
+  &quot;model&quot;: &quot;phi3:mini&quot;,
+  &quot;workers&quot;: 1,
+  &quot;profile&quot;: null,
+  &quot;input_file&quot;: &quot;examples\\upload_example.csv&quot;,
+  &quot;dataset_name&quot;: &quot;demo-upload&quot;,
+  &quot;test_mode&quot;: true,
+  &quot;seed&quot;: 42
+}
+</code></pre>
+<h2>Experimental Setup</h2>
+<pre><code class="language-json">{
+  &quot;model&quot;: &quot;phi3:mini&quot;,
+  &quot;workers&quot;: 1
+}
+</code></pre>
+<h2>Metrics</h2>
+<pre><code class="language-json">{
+  &quot;capability&quot;: {
+    &quot;demo-upload&quot;: {
+      &quot;accuracy&quot;: 1.0,
+      &quot;macro_f1&quot;: 1.0,
+      &quot;weighted_f1&quot;: 1.0,
+      &quot;precision&quot;: 1.0,
+      &quot;recall&quot;: 1.0,
+      &quot;validity_rate&quot;: 1.0
+    }
+  },
+  &quot;operational&quot;: [
+    {
+      &quot;dataset&quot;: &quot;demo-upload&quot;,
+      &quot;total_samples&quot;: 2,
+      &quot;total_time&quot;: 2.3781471252441406,
+      &quot;throughput&quot;: 0.8409908616543983,
+      &quot;latency_mean&quot;: 1.1863574981689453,
+      &quot;latency_p95&quot;: 1.3456708431243896,
+      &quot;cpu_util_avg&quot;: 66.25,
+      &quot;mem_usage_delta_mb&quot;: -340.64453125,
+      &quot;parse_failure_rate&quot;: 0.0
+    }
+  ]
+}
+</code></pre>
+<h2>Raw Benchmark Results</h2>
+<pre><code class="language-json">{
+  &quot;raw_result_file_count&quot;: 15,
+  &quot;latest_row_count&quot;: 2,
+  &quot;columns&quot;: [
+    &quot;text&quot;,
+    &quot;true_label&quot;,
+    &quot;prediction&quot;,
+    &quot;latency&quot;,
+    &quot;is_valid&quot;,
+    &quot;dataset&quot;,
+    &quot;status&quot;
+  ]
+}
+</code></pre>
+</body>
+</html>

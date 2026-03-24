@@ -35,6 +35,8 @@ import statistics
 import math
 from datetime import datetime, timedelta
 
+from src.utils.stats import wilson_interval
+
 
 @dataclass
 class AnalysisResult:
@@ -423,7 +425,7 @@ class ProductionRouter:
             mean, count = cap_stats.get(b, (None, 0))
             if mean is None or count < min_samples:
                 continue
-            lower, _ = self._wilson_interval(mean, count)
+            lower, _ = wilson_interval(mean, count)
             if lower is not None and lower >= threshold:
                 tau_cap = b
         return tau_cap
@@ -435,19 +437,10 @@ class ProductionRouter:
             mean, count = risk_stats.get(b, (None, 0))
             if mean is None or count < min_samples:
                 continue
-            lower, _ = self._wilson_interval(mean, count)
+            lower, _ = wilson_interval(mean, count)
             if lower is not None and lower > threshold:
                 return b
         return None
-
-    @staticmethod
-    def _wilson_interval(p: float, n: int, z: float = 1.96) -> Tuple[Optional[float], Optional[float]]:
-        if n == 0:
-            return None, None
-        denom = 1 + (z * z) / n
-        center = (p + (z * z) / (2 * n)) / denom
-        margin = z * math.sqrt((p * (1 - p) + (z * z) / (4 * n)) / n) / denom
-        return max(0.0, center - margin), min(1.0, center + margin)
 
     # ========== Utilities ==========
 

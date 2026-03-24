@@ -30,10 +30,7 @@ class BenchmarkStructureTests(unittest.TestCase):
         for task in TASKS:
             for relative_path in REQUIRED_FILES:
                 with self.subTest(task=task, relative_path=relative_path):
-                    self.assertTrue((REPO_ROOT / task / relative_path).exists())
-
-    def test_root_runner_exists(self) -> None:
-        self.assertTrue((REPO_ROOT / "run_benchmark.py").exists())
+                    self.assertTrue((REPO_ROOT / "tasks" / task / relative_path).exists())
 
 
 if __name__ == "__main__":

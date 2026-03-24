@@ -1,0 +1,82 @@
+{
+  "benchmark": "information_extraction",
+  "run_path": "C:\\Users\\riddh\\OneDrive\\Desktop\\SLM use cases\\Information Extraction\\outputs_hf_llama1b_gemini_pair",
+  "sddf_root": "C:\\Users\\riddh\\OneDrive\\Desktop\\SLM use cases\\Information Extraction\\outputs_hf_llama1b_gemini_pair\\sddf",
+  "statuses": {
+    "dominant_difficulty_dimension": {
+      "status": "available",
+      "reason": "Computed from SDDF archive."
+    },
+    "difficulty_annotation_binning": {
+      "status": "available",
+      "reason": "Computed from SDDF archive."
+    },
+    "matched_slm_llm_analysis": {
+      "status": "available",
+      "reason": "Computed from SDDF archive."
+    },
+    "capability_curve_tipping_point": {
+      "status": "available",
+      "reason": "Computed from SDDF archive."
+    },
+    "uncertainty_analysis": {
+      "status": "available",
+      "reason": "Computed from SDDF archive."
+    },
+    "failure_taxonomy": {
+      "status": "available",
+      "reason": "Computed from SDDF archive."
+    },
+    "quality_gate": {
+      "status": "available",
+      "reason": "Computed from SDDF archive."
+    },
+    "deployment_zones": {
+      "status": "available",
+      "reason": "Computed from SDDF archive."
+    },
+    "routing_policy": {
+      "status": "available",
+      "reason": "Computed from SDDF archive."
+    }
+  },
+  "pairs": [
+    {
+      "dataset": "clean",
+      "slm_name": "Llama-3.2-1B-Instruct",
+      "llm_name": "gemini-2.5-flash-lite",
+      "matched_examples": 4,
+      "tipping_point": null,
+      "tipping_sensitivity": {
+        "0.90": null,
+        "0.93": null,
+        "0.95": null,
+        "0.97": null
+      },
+      "tipping_ci": {
+        "tipping_point": null,
+        "ci_low": null,
+        "ci_high": null
+      },
+      "gate_thresholds": null,
+      "gate_metrics": null,
+      "zones": [
+        {
+          "difficulty_bin": 0,
+          "bin_center": 5.0,
+          "ratio_smooth": 0.0,
+          "zone": "C"
+        }
+      ],
+      "ratio_ci": [
+        {
+          "difficulty_bin": 0,
+          "ratio_ci_low": 0.0,
+          "ratio_ci_high": 0.0,
+          "ratio_boot_mean": 0.0
+        }
+      ],
+      "plot_path": "Information Extraction\\outputs_hf_llama1b_gemini_pair\\sddf\\reports\\clean_llama_3_2_1b_instruct_vs_gemini_2_5_flash_lite.png"
+    }
+  ]
+}

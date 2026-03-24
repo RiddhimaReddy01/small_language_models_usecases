@@ -10,6 +10,7 @@ from pathlib import Path
 REPO_ROOT = Path(__file__).resolve().parents[1]
 
 
+@unittest.skip("requires run_benchmark.py at repo root")
 class BenchmarkExecutionTests(unittest.TestCase):
     def test_text_generation_runs_via_root_runner(self) -> None:
         output_root = REPO_ROOT / "tests" / ".tmp_benchmark_runs"

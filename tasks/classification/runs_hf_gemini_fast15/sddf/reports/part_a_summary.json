@@ -1,0 +1,99 @@
+{
+  "task_definition": {
+    "task": "classification",
+    "datasets": [
+      "SST-2",
+      "Emotion",
+      "AG News"
+    ]
+  },
+  "dataset_and_sampling": {
+    "model": "hf_api:meta-llama/Llama-3.2-1B-Instruct",
+    "workers": 1,
+    "profile": "fast15",
+    "input_file": null,
+    "dataset_name": null,
+    "test_mode": false,
+    "seed": 42
+  },
+  "experimental_setup": {
+    "model": "hf_api:meta-llama/Llama-3.2-1B-Instruct",
+    "workers": 1
+  },
+  "metrics": {
+    "capability": {
+      "SST-2": {
+        "accuracy": 0.6666666666666666,
+        "macro_f1": 0.625,
+        "weighted_f1": 0.625,
+        "precision": 0.8,
+        "recall": 0.6666666666666666,
+        "validity_rate": 1.0
+      },
+      "Emotion": {
+        "accuracy": 0.16666666666666666,
+        "macro_f1": 0.05714285714285715,
+        "weighted_f1": 0.06666666666666667,
+        "precision": 0.03571428571428571,
+        "recall": 0.14285714285714285,
+        "validity_rate": 0.8333333333333334
+      },
+      "AG News": {
+        "accuracy": 0.75,
+        "macro_f1": 0.6666666666666666,
+        "weighted_f1": 0.6666666666666666,
+        "precision": 0.625,
+        "recall": 0.75,
+        "validity_rate": 1.0
+      }
+    },
+    "operational": [
+      {
+        "dataset": "SST-2",
+        "total_samples": 6,
+        "total_time": 4.513972043991089,
+        "throughput": 1.329206282521639,
+        "latency_mean": 0.7505270640055338,
+        "latency_p95": 1.026934027671814,
+        "cpu_util_avg": 28.4,
+        "mem_usage_delta_mb": 54.74609375,
+        "parse_failure_rate": 0.0
+      },
+      {
+        "dataset": "Emotion",
+        "total_samples": 6,
+        "total_time": 4.388450860977173,
+        "throughput": 1.3672250618898316,
+        "latency_mean": 0.7284363905588785,
+        "latency_p95": 0.8024417161941528,
+        "cpu_util_avg": 36.35,
+        "mem_usage_delta_mb": 69.1640625,
+        "parse_failure_rate": 0.16666666666666666
+      },
+      {
+        "dataset": "AG News",
+        "total_samples": 4,
+        "total_time": 2.6536805629730225,
+        "throughput": 1.5073404296704962,
+        "latency_mean": 0.6623392105102539,
+        "latency_p95": 0.706290888786316,
+        "cpu_util_avg": 28.75,
+        "mem_usage_delta_mb": -27.6640625,
+        "parse_failure_rate": 0.0
+      }
+    ]
+  },
+  "raw_benchmark_results": {
+    "raw_result_file_count": 2,
+    "latest_row_count": 16,
+    "columns": [
+      "text",
+      "true_label",
+      "prediction",
+      "latency",
+      "is_valid",
+      "dataset",
+      "status"
+    ]
+  }
+}

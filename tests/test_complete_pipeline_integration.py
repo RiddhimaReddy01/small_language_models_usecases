@@ -152,7 +152,7 @@ class CompleteRoutingPipelineTest(unittest.TestCase):
             difficulty_metric
         )
 
-        capability_curve = self.framework.compute_capability_curve(
+        capability_curve, cap_counts = self.framework.compute_capability_curve(
             binned,
             validation_fn
         )
@@ -176,7 +176,7 @@ class CompleteRoutingPipelineTest(unittest.TestCase):
             difficulty_metric
         )
 
-        risk_curve = self.framework.compute_risk_curve(
+        risk_curve, risk_counts = self.framework.compute_risk_curve(
             binned,
             quality_metric=quality_metric,
             quality_threshold=0.80
@@ -205,8 +205,8 @@ class CompleteRoutingPipelineTest(unittest.TestCase):
             difficulty_metric
         )
 
-        capability_curve = self.framework.compute_capability_curve(binned, validation_fn)
-        risk_curve = self.framework.compute_risk_curve(
+        capability_curve, cap_counts = self.framework.compute_capability_curve(binned, validation_fn)
+        risk_curve, risk_counts = self.framework.compute_risk_curve(
             binned,
             quality_metric=quality_metric,
             quality_threshold=0.80
@@ -244,8 +244,8 @@ class CompleteRoutingPipelineTest(unittest.TestCase):
 
         for model_name, outputs in self.test_data.items():
             binned = self.framework.bin_by_difficulty(outputs, difficulty_metric)
-            cap_curve = self.framework.compute_capability_curve(binned, validation_fn)
-            risk_curve = self.framework.compute_risk_curve(
+            cap_curve, _ = self.framework.compute_capability_curve(binned, validation_fn)
+            risk_curve, _ = self.framework.compute_risk_curve(
                 binned,
                 quality_metric=quality_metric,
                 quality_threshold=0.80
@@ -285,11 +285,12 @@ class CompleteRoutingPipelineTest(unittest.TestCase):
             num_bins=5
         )
 
-        decisions = self.framework.analyze_task(
+        result = self.framework.analyze_task(
             task_spec,
             self.test_data,
             llm_baseline='llama'
         )
+        decisions = result['decisions']
 
         # Should have decisions for both models
         self.assertIn('qwen', decisions)
@@ -392,11 +393,12 @@ class CompleteRoutingPipelineTest(unittest.TestCase):
         )
 
         # Run analysis
-        decisions = self.framework.analyze_task(
+        result = self.framework.analyze_task(
             task_spec,
             self.test_data,
             llm_baseline='llama'
         )
+        decisions = result['decisions']
 
         # Verify results
         self.assertGreater(len(decisions), 0)

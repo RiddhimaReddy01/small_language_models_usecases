@@ -1,0 +1,8 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(cd /c/Users/riddh/OneDrive/Desktop/\"SLM use cases\")",
+      "Bash(grep -n \"task_types\\\\|TASKS\\\\|tasks =\" risk_sensitivity/*.py)"
+    ]
+  }
+}

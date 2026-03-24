@@ -1,4 +1,0 @@
-2026-03-18 11:49:04,207 - classification_llama_llama-3.3-70b-versatile_b857593a - INFO - Run ID: b857593a-e908-4ea5-9069-4c8aea4bd226
-2026-03-18 11:49:04,221 - classification_llama_llama-3.3-70b-versatile_b857593a - INFO - Processing classification_0 (bin 0, 1/75)
-2026-03-18 11:50:20,431 - classification_llama_llama-3.3-70b-versatile_b857593a - ERROR - classification_0: Inference failed after 76.21s: Error code: 429 - {'error': {'message': 'Rate limit reached for model `llama-3.3-70b-versatile` in organization `org_01km0dygdpf9xt0qqpqqjqz85y` service tier `on_demand` on tokens per day (TPD): Limit 100000, Used 99995, Requested 56. Please try again in 44.064s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}
-2026-03-18 11:50:20,435 - classification_llama_llama-3.3-70b-versatile_b857593a - INFO - Processing classification_1 (bin 0, 2/75)
