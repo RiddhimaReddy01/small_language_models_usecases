@@ -2,7 +2,7 @@
 """
 Generalized Two-Tipping-Point Routing Framework
 
-Applies the quadrant-based routing decision matrix to ANY task, not just the 8 we studied.
+Applies the size-first routing decision matrix to ANY task, not just the 8 we studied.
 
 Key concept: The framework is task-agnostic. Provide:
 1. Task specification (name, validation logic)
@@ -14,7 +14,7 @@ And it will:
 1. Compute capability curves P̂_m(d)
 2. Compute risk curves Risk_m(d)
 3. Detect two tipping points (τ_cap, τ_risk)
-4. Classify into quadrant (Q1/Q2/Q3/Q4)
+4. Apply risk-first, then capability-first routing
 5. Generate routing policy
 """
 
@@ -387,12 +387,10 @@ class GeneralizedRoutingFramework:
     def classify_quadrant(self, tau_cap: Optional[int], tau_risk: Optional[int],
                          capability_gap: float, avg_risk: float) -> str:
         """
-        Classify into Q1/Q2/Q3/Q4 based on tipping points and gaps
+        Map the two-threshold outcome into legacy internal labels.
 
-        Q1: τ_cap=4, τ_risk=None → Safe + Capable
-        Q2: τ_cap=4, τ_risk<4 → Capable + Risky
-        Q3: τ_cap<4, τ_risk>τ_cap → Incapable + Safe
-        Q4: τ_cap<4, τ_risk≤τ_cap → Incapable + Risky
+        The canonical presentation is risk-first, then capability.
+        Q1/Q2/Q3/Q4 remain as compatibility labels for existing callers/tests.
         """
         if tau_cap is not None and tau_cap < 4:
             if tau_risk is not None and tau_risk <= tau_cap:
@@ -505,7 +503,7 @@ class GeneralizedRoutingFramework:
             valid_risks = [r for r in risk_curve.values() if r is not None]
             avg_risk = statistics.mean(valid_risks) if valid_risks else 0
 
-            # Classify quadrant
+            # Preserve legacy quadrant labels for compatibility with existing callers.
             quadrant = self.classify_quadrant(tau_cap, tau_risk, capability_gap, avg_risk)
 
             # Determine routing
@@ -567,7 +565,7 @@ ROUTING POLICY FOR TASK: {task_name}
 
 """
 
-        # Group by quadrant
+        # Group by the legacy compatibility labels.
         by_quadrant = defaultdict(list)
         for model, decision in decisions.items():
             by_quadrant[decision.quadrant].append((model, decision))
@@ -587,7 +585,7 @@ ROUTING POLICY FOR TASK: {task_name}
 
         if q1_models:
             recommended = min(q1_models, key=lambda m: decisions[m].avg_risk)
-            policy += f"\nRECOMMENDATION: Deploy {recommended} (Q1 - safe SLM)\n"
+            policy += f"\nRECOMMENDATION: Deploy {recommended} (risk/capability gates pass)\n"
         else:
             policy += f"\nRECOMMENDATION: Use Llama-70B (no safe SLM found)\n"
 

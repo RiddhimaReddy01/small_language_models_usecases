@@ -175,23 +175,23 @@
 - apply validators or constrained decoding before accepting multi-constraint generations
 - Caveat: gate thresholds are policy recommendations inferred from historical evidence, not learned from fresh matched supervision.
 
-## Deployment Zones
+## Size-First Decision Matrix
 
 - Status: `partial`
 - Reason: Inferred from historical benchmark artifacts; no SDDF archive was available for direct computation.
 
-### Inferred deployment stance
+### Inferred size-first decision matrix
 
-- Likely SDDF stance: Hybrid or SLM-with-mitigation depending on constraint burden.
+- Likely matrix outcome: Hybrid or SLM-with-mitigation depending on constraint burden.
 - Why: local SLMs are competitive on free-form generation, but constraint-heavy prompts benefit from a gate or escalation.
-- Caveat: zone assignment is a benchmark-level recommendation and should be revalidated after reruns.
+- Caveat: this decision matrix is benchmark-level and should be revalidated after reruns.
 
-## Routing Policy
+## Two-Stage Routing Policy
 
 - Status: `partial`
 - Reason: Inferred from historical benchmark artifacts; no SDDF archive was available for direct computation.
 
-### Suggested routing policy
+### Two-Stage Routing Policy
 
 - send simple prompts to the SLM path
 - use constrained decoding for moderate constraint bundles

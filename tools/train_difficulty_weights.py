@@ -6,7 +6,7 @@ import argparse
 import json
 from pathlib import Path
 
-from framework.sddf.difficulty_weights import DifficultyWeightLearner
+from sddf.difficulty_weights import DifficultyWeightLearner
 
 
 def load_curve(path: Path) -> dict[int, float]:

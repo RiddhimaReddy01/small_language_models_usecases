@@ -330,23 +330,23 @@
 - escalate multi-step word problems and variable-dependent reasoning tasks
 - Caveat: gate thresholds are policy recommendations inferred from historical evidence, not learned from fresh matched supervision.
 
-## Deployment Zones
+## Size-First Decision Matrix
 
 - Status: `partial`
 - Reason: Inferred from historical benchmark artifacts; no SDDF archive was available for direct computation.
 
-### Inferred deployment stance
+### Inferred size-first decision matrix
 
-- Likely SDDF stance: LLM-preferred for general mathematical reasoning, with narrow SLM carve-outs.
+- Likely matrix outcome: LLM-preferred for general mathematical reasoning, with narrow SLM carve-outs.
 - Why: historical accuracy and robustness both deteriorate materially once reasoning depth increases.
-- Caveat: zone assignment is a benchmark-level recommendation and should be revalidated after reruns.
+- Caveat: this decision matrix is benchmark-level and should be revalidated after reruns.
 
-## Routing Policy
+## Two-Stage Routing Policy
 
 - Status: `partial`
 - Reason: Inferred from historical benchmark artifacts; no SDDF archive was available for direct computation.
 
-### Suggested routing policy
+### Two-Stage Routing Policy
 
 - route simple arithmetic and direct conversions to SLMs if cost matters
 - route multi-step reasoning tasks to LLMs or verification-heavy workflows

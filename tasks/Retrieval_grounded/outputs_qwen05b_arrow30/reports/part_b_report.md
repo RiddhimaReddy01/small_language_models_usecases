@@ -82,23 +82,23 @@
 - escalate no-answer, paraphrastic, or multi-hop cases
 - Caveat: gate thresholds are policy recommendations inferred from historical evidence, not learned from fresh matched supervision.
 
-## Deployment Zones
+## Size-First Decision Matrix
 
 - Status: `partial`
 - Reason: Inferred from historical benchmark artifacts; no SDDF archive was available for direct computation.
 
-### Inferred deployment stance
+### Inferred size-first decision matrix
 
-- Likely SDDF stance: SLM-preferred for span-like RAG QA; hybrid for paraphrastic or compositional QA.
+- Likely matrix outcome: SLM-preferred for span-like RAG QA; hybrid for paraphrastic or compositional QA.
 - Why: historical local results are strong on direct grounding but weaken as synthesis pressure increases.
-- Caveat: zone assignment is a benchmark-level recommendation and should be revalidated after reruns.
+- Caveat: this decision matrix is benchmark-level and should be revalidated after reruns.
 
-## Routing Policy
+## Two-Stage Routing Policy
 
 - Status: `partial`
 - Reason: Inferred from historical benchmark artifacts; no SDDF archive was available for direct computation.
 
-### Suggested routing policy
+### Two-Stage Routing Policy
 
 - route direct span or short factual answers to the SLM path
 - route paraphrastic, uncertain, or multi-hop questions to an LLM path

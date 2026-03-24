@@ -47,7 +47,7 @@ class AnalysisResult:
     risk_curve: Dict[int, float]               # Risk_m(b) for each bin
     tau_cap: Optional[int]                     # Tipping point: capability
     tau_risk: Optional[int]                    # Tipping point: risk
-    zone: str                                  # Q1/Q2/Q3/Q4
+    zone: str                                  # Legacy compatibility label for the two-threshold outcome
     empirical_tau_c: float = 0.80              # Empirical capability threshold
     empirical_tau_r: float = 0.20              # Empirical risk threshold
     num_bins: int = 5                          # Number of difficulty bins
@@ -70,7 +70,7 @@ class RoutingDecisionRecord:
     bin_id: int
     capability: float                          # C_m(bin)
     risk: float                                # Risk_m(bin)
-    zone: str                                  # Q1/Q2/Q3/Q4
+    zone: str                                  # Legacy compatibility label for the two-threshold outcome
     routed_model: str                          # Which model was selected
     expected_success_rate: float               # Estimated P(success)
     verification_status: str = "not_applicable"
@@ -107,7 +107,7 @@ class ProductionRouter:
         """Initialize empty router
 
         Args:
-            verification_fn: Optional verification function for Q2 zone verification/escalation.
+            verification_fn: Optional verification function for the high-capability/high-risk compatibility case.
                             Signature: (task, preferred_model, input_text, difficulty, bin_id, capability, risk) -> bool
                             Returns True if output quality is sufficient, False if escalation needed.
             alert_delta_tau: Alert threshold for tipping point shift (default: 1 bin)
@@ -180,8 +180,8 @@ class ProductionRouter:
         1. Compute difficulty from input
         2. Assign to bin
         3. Get curves for bin
-        4. Classify zone
-        5. Apply zone policy
+        4. Evaluate the risk gate, then the capability gate
+        5. Apply the size-first routing policy
         6. Return selected model
 
         Args:
@@ -226,13 +226,13 @@ class ProductionRouter:
         capability = self._expected_metric(difficulty, analysis.capability_curve, num_bins)
         risk = self._expected_metric(difficulty, analysis.risk_curve, num_bins)
 
-        # Step 15: Classify zone
+        # Step 15: Classify the legacy compatibility label from the risk/capability gates.
         tau_c = analysis.empirical_tau_c
         tau_r = analysis.empirical_tau_r
 
         zone = self._classify_zone(capability, risk, tau_c, tau_r)
 
-        # Step 16: Apply zone policy
+        # Step 16: Apply the size-first routing policy.
         routed_model = self._apply_zone_policy(
             zone=zone,
             model=preferred_model,
@@ -242,9 +242,8 @@ class ProductionRouter:
             risk=risk
         )
 
-        # Q2 Zone Verification/Escalation Strategy
-        # Zone Q2: SLM is high capability but high risk
-        # Strategy: Try SLM, verify output quality, escalate to LLM if verification fails
+        # High-capability/high-risk compatibility case:
+        # try the SLM, verify output quality, and escalate to the LLM if verification fails.
         verification_status = "not_applicable"
         if zone == "Q2":
             if self.verification_fn is not None:
@@ -262,7 +261,7 @@ class ProductionRouter:
                     routed_model = "llama"
             else:
                 # No verification provided: proceed with SLM (from _apply_zone_policy)
-                # In production, you should provide verification_fn for Q2 routing
+                # In production, you should provide verification_fn for this risk-flagged case.
                 verification_status = "no_verification_fn_provided"
 
         # Expected success rate for this routing
@@ -304,7 +303,7 @@ class ProductionRouter:
         return lower_val * (1 - fraction) + upper_val * fraction
 
     def _classify_zone(self, capability: float, risk: float, tau_c: float, tau_r: float) -> str:
-        """Classify into Q1/Q2/Q3/Q4 based on thresholds"""
+        """Classify into legacy compatibility labels based on the two thresholds."""
         if capability >= tau_c and risk <= tau_r:
             return "Q1"  # High Cap, Low Risk -> SLM
         elif capability >= tau_c and risk > tau_r:
@@ -323,14 +322,13 @@ class ProductionRouter:
         capability: float,
         risk: float
     ) -> str:
-        """Apply zone-specific routing policy and return actual model name (never a placeholder)
+        """Apply the size-first routing policy and return an actual model name.
 
-        Zone Policies:
-          Q1: High capability, low risk → Pure SLM (always safe)
-          Q2: High capability, high risk → SLM with optional verification/escalation
-               (Escalation to LLM handled in route() method)
-          Q3: Low capability, low risk → Hybrid (SLM for easy, LLM for hard)
-          Q4: Low capability, high risk → Pure LLM (SLM too weak)
+        The router still accepts legacy compatibility labels internally:
+          Q1: risk/capability gates pass
+          Q2: capability passes, risk fails
+          Q3: risk passes, capability fails
+          Q4: both gates fail
         """
         if zone == "Q1":
             # Zone 1: Pure SLM - model is safe on all difficulties

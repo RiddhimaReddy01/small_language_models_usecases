@@ -100,23 +100,23 @@ img { max-width: 100%; height: auto; border: 1px solid #e5e7eb; border-radius: 8
 <li>escalate no-answer, paraphrastic, or multi-hop cases</li>
 <li>Caveat: gate thresholds are policy recommendations inferred from historical evidence, not learned from fresh matched supervision.</li>
 </ul>
-<h2>Deployment Zones</h2>
+<h2>Size-First Decision Matrix</h2>
 <ul>
 <li>Status: <code>partial</code></li>
 <li>Reason: Inferred from historical benchmark artifacts; no SDDF archive was available for direct computation.</li>
 </ul>
-<h3>Inferred deployment stance</h3>
+<h3>Inferred size-first decision matrix</h3>
 <ul>
-<li>Likely SDDF stance: SLM-preferred for span-like RAG QA; hybrid for paraphrastic or compositional QA.</li>
+<li>Likely matrix outcome: SLM-preferred for span-like RAG QA; hybrid for paraphrastic or compositional QA.</li>
 <li>Why: historical local results are strong on direct grounding but weaken as synthesis pressure increases.</li>
-<li>Caveat: zone assignment is a benchmark-level recommendation and should be revalidated after reruns.</li>
+<li>Caveat: this decision matrix is benchmark-level and should be revalidated after reruns.</li>
 </ul>
 <h2>Routing Policy</h2>
 <ul>
 <li>Status: <code>partial</code></li>
 <li>Reason: Inferred from historical benchmark artifacts; no SDDF archive was available for direct computation.</li>
 </ul>
-<h3>Suggested routing policy</h3>
+<h3>Two-Stage Routing Policy</h3>
 <ul>
 <li>route direct span or short factual answers to the SLM path</li>
 <li>route paraphrastic, uncertain, or multi-hop questions to an LLM path</li>

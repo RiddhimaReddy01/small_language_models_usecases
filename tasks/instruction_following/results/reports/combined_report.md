@@ -680,25 +680,25 @@
 - Evaluated F1: `1.0`
 
 
-## Deployment Zones
+## Size-First Decision Matrix
 
 - Status: `available`
 - Reason: Computed from SDDF archive.
 
 ### hf_api:meta-llama/Llama-3.2-1B-Instruct vs gemini-2.5-flash [BASELINE]
 
-- Bin `0` at difficulty `0.000` -> Zone `A`
+- Bin `0` at difficulty `0.000` contributes to the tau-based threshold evidence.
 
 
-## Routing Policy
+## Two-Stage Routing Policy
 
 - Status: `available`
 - Reason: Computed from SDDF archive.
 
 ### hf_api:meta-llama/Llama-3.2-1B-Instruct vs gemini-2.5-flash [BASELINE]
 
-- Suggested `SLM` threshold: difficulty <= `0.0`
-- Suggested `SLM_WITH_GATE` threshold: difficulty <= `0.0`
-- Suggested `LLM` threshold: difficulty > `0.0`
+- Route to `SLM` while both `tau_risk` and `tau_cap` are satisfied: difficulty <= `0.0`
+- Legacy gated threshold retained for traceability: difficulty <= `0.0`
+- Escalate to `LLM` once either `tau_risk` or `tau_cap` fails: difficulty > `0.0`
 
 

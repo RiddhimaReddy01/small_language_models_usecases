@@ -178,23 +178,23 @@ img { max-width: 100%; height: auto; border: 1px solid #e5e7eb; border-radius: 8
 <li>apply validators or constrained decoding before accepting multi-constraint generations</li>
 <li>Caveat: gate thresholds are policy recommendations inferred from historical evidence, not learned from fresh matched supervision.</li>
 </ul>
-<h2>Deployment Zones</h2>
+<h2>Size-First Decision Matrix</h2>
 <ul>
 <li>Status: <code>partial</code></li>
 <li>Reason: Inferred from historical benchmark artifacts; no SDDF archive was available for direct computation.</li>
 </ul>
-<h3>Inferred deployment stance</h3>
+<h3>Inferred size-first decision matrix</h3>
 <ul>
-<li>Likely SDDF stance: Hybrid or SLM-with-mitigation depending on constraint burden.</li>
+<li>Likely matrix outcome: Hybrid or SLM-with-mitigation depending on constraint burden.</li>
 <li>Why: local SLMs are competitive on free-form generation, but constraint-heavy prompts benefit from a gate or escalation.</li>
-<li>Caveat: zone assignment is a benchmark-level recommendation and should be revalidated after reruns.</li>
+<li>Caveat: this decision matrix is benchmark-level and should be revalidated after reruns.</li>
 </ul>
 <h2>Routing Policy</h2>
 <ul>
 <li>Status: <code>partial</code></li>
 <li>Reason: Inferred from historical benchmark artifacts; no SDDF archive was available for direct computation.</li>
 </ul>
-<h3>Suggested routing policy</h3>
+<h3>Two-Stage Routing Policy</h3>
 <ul>
 <li>send simple prompts to the SLM path</li>
 <li>use constrained decoding for moderate constraint bundles</li>

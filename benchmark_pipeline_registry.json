@@ -1,0 +1,99 @@
+{
+  "canonical_stage_order": [
+    "dataset_sampling",
+    "model_inference",
+    "prediction_storage",
+    "metric_computation",
+    "benchmark_report"
+  ],
+  "benchmarks": [
+    {
+      "name": "classification",
+      "root": "tasks/classification",
+      "stages": [
+        {"stage": "dataset_sampling", "path": "tasks/classification/scripts/dataset_sampling.py", "symbol": "dataset_sampling_stage"},
+        {"stage": "model_inference", "path": "tasks/classification/scripts/model_inference.py", "symbol": "model_inference_stage"},
+        {"stage": "prediction_storage", "path": "tasks/classification/scripts/prediction_storage.py", "symbol": "prediction_storage_stage"},
+        {"stage": "metric_computation", "path": "tasks/classification/scripts/metric_computation.py", "symbol": "metric_computation_stage"},
+        {"stage": "benchmark_report", "path": "tasks/classification/scripts/benchmark_report.py", "symbol": "benchmark_report_stage"}
+      ]
+    },
+    {
+      "name": "text_generation",
+      "root": "tasks/text_generation",
+      "stages": [
+        {"stage": "dataset_sampling", "path": "tasks/text_generation/scripts/dataset_sampling.py", "symbol": "dataset_sampling_stage"},
+        {"stage": "model_inference", "path": "tasks/text_generation/scripts/model_inference.py", "symbol": "model_inference_stage"},
+        {"stage": "prediction_storage", "path": "tasks/text_generation/scripts/prediction_storage.py", "symbol": "prediction_storage_stage"},
+        {"stage": "metric_computation", "path": "tasks/text_generation/scripts/metric_computation.py", "symbol": "metric_computation_stage"},
+        {"stage": "benchmark_report", "path": "tasks/text_generation/scripts/benchmark_report.py", "symbol": "benchmark_report_stage"}
+      ]
+    },
+    {
+      "name": "information_extraction",
+      "root": "tasks/Information Extraction",
+      "stages": [
+        {"stage": "dataset_sampling", "path": "tasks/Information Extraction/scripts/dataset_sampling.py", "symbol": "dataset_sampling_stage"},
+        {"stage": "model_inference", "path": "tasks/Information Extraction/scripts/model_inference.py", "symbol": "model_inference_stage"},
+        {"stage": "prediction_storage", "path": "tasks/Information Extraction/scripts/prediction_storage.py", "symbol": "prediction_storage_stage"},
+        {"stage": "metric_computation", "path": "tasks/Information Extraction/scripts/metric_computation.py", "symbol": "metric_computation_stage"},
+        {"stage": "benchmark_report", "path": "tasks/Information Extraction/scripts/benchmark_report.py", "symbol": "benchmark_report_stage"}
+      ]
+    },
+    {
+      "name": "summarization",
+      "root": "tasks/Summarization",
+      "stages": [
+        {"stage": "dataset_sampling", "path": "tasks/Summarization/scripts/dataset_sampling.py", "symbol": "dataset_sampling_stage"},
+        {"stage": "model_inference", "path": "tasks/Summarization/scripts/model_inference.py", "symbol": "model_inference_stage"},
+        {"stage": "prediction_storage", "path": "tasks/Summarization/scripts/prediction_storage.py", "symbol": "prediction_storage_stage"},
+        {"stage": "metric_computation", "path": "tasks/Summarization/scripts/metric_computation.py", "symbol": "metric_computation_stage"},
+        {"stage": "benchmark_report", "path": "tasks/Summarization/scripts/benchmark_report.py", "symbol": "benchmark_report_stage"}
+      ]
+    },
+    {
+      "name": "code_generation",
+      "root": "tasks/code_generation",
+      "stages": [
+        {"stage": "dataset_sampling", "path": "tasks/code_generation/scripts/dataset_sampling.py", "symbol": "dataset_sampling_stage"},
+        {"stage": "model_inference", "path": "tasks/code_generation/scripts/model_inference.py", "symbol": "model_inference_stage"},
+        {"stage": "prediction_storage", "path": "tasks/code_generation/scripts/prediction_storage.py", "symbol": "prediction_storage_stage"},
+        {"stage": "metric_computation", "path": "tasks/code_generation/scripts/metric_computation.py", "symbol": "metric_computation_stage"},
+        {"stage": "benchmark_report", "path": "tasks/code_generation/scripts/benchmark_report.py", "symbol": "benchmark_report_stage"}
+      ]
+    },
+    {
+      "name": "instruction_following",
+      "root": "tasks/instruction_following",
+      "stages": [
+        {"stage": "dataset_sampling", "path": "tasks/instruction_following/scripts/dataset_sampling.py", "symbol": "dataset_sampling_stage"},
+        {"stage": "model_inference", "path": "tasks/instruction_following/scripts/model_inference.py", "symbol": "model_inference_stage"},
+        {"stage": "prediction_storage", "path": "tasks/instruction_following/scripts/prediction_storage.py", "symbol": "prediction_storage_stage"},
+        {"stage": "metric_computation", "path": "tasks/instruction_following/scripts/metric_computation.py", "symbol": "metric_computation_stage"},
+        {"stage": "benchmark_report", "path": "tasks/instruction_following/scripts/benchmark_report.py", "symbol": "benchmark_report_stage"}
+      ]
+    },
+    {
+      "name": "maths",
+      "root": "tasks/maths",
+      "stages": [
+        {"stage": "dataset_sampling", "path": "tasks/maths/scripts/dataset_sampling.py", "symbol": "dataset_sampling_stage"},
+        {"stage": "model_inference", "path": "tasks/maths/scripts/model_inference.py", "symbol": "model_inference_stage"},
+        {"stage": "prediction_storage", "path": "tasks/maths/scripts/prediction_storage.py", "symbol": "prediction_storage_stage"},
+        {"stage": "metric_computation", "path": "tasks/maths/scripts/metric_computation.py", "symbol": "metric_computation_stage"},
+        {"stage": "benchmark_report", "path": "tasks/maths/scripts/benchmark_report.py", "symbol": "benchmark_report_stage"}
+      ]
+    },
+    {
+      "name": "retrieval_grounded",
+      "root": "tasks/Retrieval_grounded",
+      "stages": [
+        {"stage": "dataset_sampling", "path": "tasks/Retrieval_grounded/scripts/dataset_sampling.py", "symbol": "dataset_sampling_stage"},
+        {"stage": "model_inference", "path": "tasks/Retrieval_grounded/scripts/model_inference.py", "symbol": "model_inference_stage"},
+        {"stage": "prediction_storage", "path": "tasks/Retrieval_grounded/scripts/prediction_storage.py", "symbol": "prediction_storage_stage"},
+        {"stage": "metric_computation", "path": "tasks/Retrieval_grounded/scripts/metric_computation.py", "symbol": "metric_computation_stage"},
+        {"stage": "benchmark_report", "path": "tasks/Retrieval_grounded/scripts/benchmark_report.py", "symbol": "benchmark_report_stage"}
+      ]
+    }
+  ]
+}

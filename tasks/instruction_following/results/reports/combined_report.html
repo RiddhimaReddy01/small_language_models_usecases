@@ -680,23 +680,23 @@ img { max-width: 100%; height: auto; border: 1px solid #e5e7eb; border-radius: 8
 <li>require validators or escalation for exact count and simultaneous-constraint prompts</li>
 <li>Caveat: gate thresholds are policy recommendations inferred from historical evidence, not learned from fresh matched supervision.</li>
 </ul>
-<h2>Deployment Zones</h2>
+<h2>Size-First Decision Matrix</h2>
 <ul>
 <li>Status: <code>available</code></li>
 <li>Reason: Computed from SDDF archive.</li>
 </ul>
-<h3>Inferred deployment stance</h3>
+<h3>Inferred size-first decision matrix</h3>
 <ul>
-<li>Likely SDDF stance: SLM-with-mitigation for simple instructions; hybrid for strict compliance workloads.</li>
+<li>Likely matrix outcome: SLM-with-mitigation for simple instructions; hybrid for strict compliance workloads.</li>
 <li>Why: historical evidence shows the issue is controllability, not base fluency.</li>
-<li>Caveat: zone assignment is a benchmark-level recommendation and should be revalidated after reruns.</li>
+<li>Caveat: this decision matrix is benchmark-level and should be revalidated after reruns.</li>
 </ul>
 <h2>Routing Policy</h2>
 <ul>
 <li>Status: <code>available</code></li>
 <li>Reason: Computed from SDDF archive.</li>
 </ul>
-<h3>Suggested routing policy</h3>
+<h3>Two-Stage Routing Policy</h3>
 <ul>
 <li>route simple or lightly constrained instructions to SLMs</li>
 <li>apply validation or escalation for count-sensitive or multi-constraint prompts</li>

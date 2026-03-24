@@ -261,45 +261,45 @@
 - Evaluated F1: `0.4`
 
 
-## Deployment Zones
+## Size-First Decision Matrix
 
 - Status: `available`
 - Reason: Computed from SDDF archive.
 
 ### hf_api:meta-llama/Llama-3.2-1B-Instruct vs gemini-3.1-flash-lite-preview
 
-- Bin `0` at difficulty `4.222` -> Zone `A`
-- Bin `1` at difficulty `4.761` -> Zone `A`
-- Bin `2` at difficulty `4.965` -> Zone `C`
-- Bin `4` at difficulty `5.234` -> Zone `A`
+- Bin `0` at difficulty `4.222` contributes to the tau-based threshold evidence.
+- Bin `1` at difficulty `4.761` contributes to the tau-based threshold evidence.
+- Bin `2` at difficulty `4.965` contributes to the tau-based threshold evidence.
+- Bin `4` at difficulty `5.234` contributes to the tau-based threshold evidence.
 
 ### hf_api:meta-llama/Llama-3.2-1B-Instruct vs gemini-3.1-flash-lite-preview
 
-- Bin `0` at difficulty `2.375` -> Zone `C`
-- Bin `1` at difficulty `3.774` -> Zone `C`
-- Bin `2` at difficulty `4.404` -> Zone `A`
-- Bin `3` at difficulty `4.502` -> Zone `C`
-- Bin `4` at difficulty `4.852` -> Zone `C`
+- Bin `0` at difficulty `2.375` contributes to the tau-based threshold evidence.
+- Bin `1` at difficulty `3.774` contributes to the tau-based threshold evidence.
+- Bin `2` at difficulty `4.404` contributes to the tau-based threshold evidence.
+- Bin `3` at difficulty `4.502` contributes to the tau-based threshold evidence.
+- Bin `4` at difficulty `4.852` contributes to the tau-based threshold evidence.
 
 ### hf_api:meta-llama/Llama-3.2-1B-Instruct vs gemini-3.1-flash-lite-preview
 
-- Bin `0` at difficulty `3.522` -> Zone `C`
-- Bin `1` at difficulty `4.122` -> Zone `A`
-- Bin `2` at difficulty `4.170` -> Zone `A`
-- Bin `3` at difficulty `4.664` -> Zone `A`
-- Bin `4` at difficulty `4.789` -> Zone `C`
+- Bin `0` at difficulty `3.522` contributes to the tau-based threshold evidence.
+- Bin `1` at difficulty `4.122` contributes to the tau-based threshold evidence.
+- Bin `2` at difficulty `4.170` contributes to the tau-based threshold evidence.
+- Bin `3` at difficulty `4.664` contributes to the tau-based threshold evidence.
+- Bin `4` at difficulty `4.789` contributes to the tau-based threshold evidence.
 
 
-## Routing Policy
+## Two-Stage Routing Policy
 
 - Status: `available`
 - Reason: Computed from SDDF archive.
 
 ### hf_api:meta-llama/Llama-3.2-1B-Instruct vs gemini-3.1-flash-lite-preview
 
-- Suggested `SLM` threshold: difficulty <= `4.221928094887363`
-- Suggested `SLM_WITH_GATE` threshold: difficulty <= `4.221928094887363`
-- Suggested `LLM` threshold: difficulty > `4.221928094887363`
+- Route to `SLM` while both `tau_risk` and `tau_cap` are satisfied: difficulty <= `4.221928094887363`
+- Legacy gated threshold retained for traceability: difficulty <= `4.221928094887363`
+- Escalate to `LLM` once either `tau_risk` or `tau_cap` fails: difficulty > `4.221928094887363`
 
 ### hf_api:meta-llama/Llama-3.2-1B-Instruct vs gemini-3.1-flash-lite-preview
 
@@ -307,8 +307,8 @@
 
 ### hf_api:meta-llama/Llama-3.2-1B-Instruct vs gemini-3.1-flash-lite-preview
 
-- Suggested `SLM` threshold: difficulty <= `3.4594316186372973`
-- Suggested `SLM_WITH_GATE` threshold: difficulty <= `3.4594316186372973`
-- Suggested `LLM` threshold: difficulty > `3.4594316186372973`
+- Route to `SLM` while both `tau_risk` and `tau_cap` are satisfied: difficulty <= `3.4594316186372973`
+- Legacy gated threshold retained for traceability: difficulty <= `3.4594316186372973`
+- Escalate to `LLM` once either `tau_risk` or `tau_cap` fails: difficulty > `3.4594316186372973`
 
 

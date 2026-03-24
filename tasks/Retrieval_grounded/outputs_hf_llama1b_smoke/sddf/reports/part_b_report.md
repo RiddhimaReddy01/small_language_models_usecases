@@ -78,17 +78,17 @@
 
 
 
-## Deployment Zones
+## Size-First Decision Matrix
 
 - Status: `available`
 - Reason: Computed from SDDF archive.
 
 ### hf_api:meta-llama/Llama-3.2-1B-Instruct vs gemini/gemini-3.1-flash-lite-preview
 
-- Bin `0` at difficulty `31.000` -> Zone `C`
+- Bin `0` at difficulty `31.000` contributes to the tau-based threshold evidence.
 
 
-## Routing Policy
+## Two-Stage Routing Policy
 
 - Status: `available`
 - Reason: Computed from SDDF archive.

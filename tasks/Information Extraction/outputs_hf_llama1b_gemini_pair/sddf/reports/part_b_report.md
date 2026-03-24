@@ -78,17 +78,17 @@
 
 
 
-## Deployment Zones
+## Size-First Decision Matrix
 
 - Status: `available`
 - Reason: Computed from SDDF archive.
 
 ### Llama-3.2-1B-Instruct vs gemini-2.5-flash-lite
 
-- Bin `0` at difficulty `5.000` -> Zone `C`
+- Bin `0` at difficulty `5.000` contributes to the tau-based threshold evidence.
 
 
-## Routing Policy
+## Two-Stage Routing Policy
 
 - Status: `available`
 - Reason: Computed from SDDF archive.

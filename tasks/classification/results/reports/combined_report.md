@@ -170,23 +170,23 @@
 - escalate examples containing ambiguity markers, sarcasm cues, or low-confidence normalization
 - Caveat: gate thresholds are policy recommendations inferred from historical evidence, not learned from fresh matched supervision.
 
-## Deployment Zones
+## Size-First Decision Matrix
 
 - Status: `partial`
 - Reason: Inferred from historical benchmark artifacts; no SDDF archive was available for direct computation.
 
-### Inferred deployment stance
+### Inferred size-first decision matrix
 
-- Likely SDDF stance: SLM-preferred for routine classification, with escalation on ambiguity-heavy slices.
+- Likely matrix outcome: SLM-preferred for routine classification, with escalation on ambiguity-heavy slices.
 - Why: historical results show strong low-cost performance on easy labels, but notable degradation on ambiguity-heavy subsets.
-- Caveat: zone assignment is a benchmark-level recommendation and should be revalidated after reruns.
+- Caveat: this decision matrix is benchmark-level and should be revalidated after reruns.
 
-## Routing Policy
+## Two-Stage Routing Policy
 
 - Status: `partial`
 - Reason: Inferred from historical benchmark artifacts; no SDDF archive was available for direct computation.
 
-### Suggested routing policy
+### Two-Stage Routing Policy
 
 - route clear single-label examples to the SLM path
 - route ambiguous or pragmatic examples to an LLM or human review path
