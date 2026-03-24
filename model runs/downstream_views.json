@@ -1,0 +1,357 @@
+{
+  "canonical_ladder": {
+    "slm_0": "0.5B tiny model",
+    "slm_1": "Qwen 2B-class model",
+    "slm_2": "Phi 3B-class model",
+    "baseline": "Groq-hosted LLM"
+  },
+  "tasks": [
+    {
+      "task": "classification",
+      "candidate_order": [
+        "SLM-0",
+        "SLM-1",
+        "SLM-2",
+        "BASELINE"
+      ],
+      "decision_input_status": "partial",
+      "capability_snapshot": {
+        "source_model": "phi3:mini",
+        "sst2_accuracy": 1.0,
+        "emotion_accuracy": 0.6666666666666666,
+        "ag_news_accuracy": 0.75,
+        "sst2_macro_f1": 1.0,
+        "emotion_macro_f1": 0.5555555555555555,
+        "ag_news_macro_f1": 0.6666666666666666
+      },
+      "operational_snapshot": {
+        "sst2_latency_mean_sec": 5.519957423210144,
+        "emotion_latency_mean_sec": 1.3300199111302693,
+        "ag_news_latency_mean_sec": 2.4949329495429993,
+        "sst2_throughput_qps": 0.18109509428481302,
+        "emotion_throughput_qps": 0.751009509948991,
+        "ag_news_throughput_qps": 0.4005692465290872,
+        "parse_failure_rate": 0.0
+      },
+      "tiers": {
+        "SLM-0": {
+          "canonical_model": "0.5B tiny model",
+          "nearest_archived_evidence": null
+        },
+        "SLM-1": {
+          "canonical_model": "Qwen 2B-class model",
+          "nearest_archived_evidence": "qwen2.5:1.5b"
+        },
+        "SLM-2": {
+          "canonical_model": "Phi 3B-class model",
+          "nearest_archived_evidence": "phi3:mini"
+        },
+        "BASELINE": {
+          "canonical_model": "Groq-hosted LLM",
+          "nearest_checked_out_numeric_snapshot": null
+        }
+      }
+    },
+    {
+      "task": "maths",
+      "candidate_order": [
+        "SLM-0",
+        "SLM-1",
+        "SLM-2",
+        "BASELINE"
+      ],
+      "decision_input_status": "partial",
+      "capability_snapshot": {
+        "slm_2_final_answer_accuracy_percent": 19.2,
+        "slm_2_pass_at_3_percent": 47.3,
+        "slm_2_majority_vote_accuracy_percent": 9.7,
+        "baseline_final_answer_accuracy_percent": 38.3,
+        "baseline_pass_at_3_percent": 76.5,
+        "baseline_majority_vote_accuracy_percent": 32.8
+      },
+      "operational_snapshot": {
+        "slm_2_latency_seconds": 28.41,
+        "slm_2_throughput_queries_per_minute": 2.11,
+        "baseline_latency_seconds": 1.08,
+        "baseline_throughput_queries_per_minute": 55.78
+      },
+      "tiers": {
+        "SLM-0": {
+          "canonical_model": "0.5B tiny model",
+          "nearest_archived_evidence": null
+        },
+        "SLM-1": {
+          "canonical_model": "Qwen 2B-class model",
+          "nearest_archived_evidence": null
+        },
+        "SLM-2": {
+          "canonical_model": "Phi 3B-class model",
+          "nearest_archived_evidence": "phi3_mini"
+        },
+        "BASELINE": {
+          "canonical_model": "Groq-hosted LLM",
+          "nearest_checked_out_numeric_snapshot": "removed_baseline_snapshot"
+        }
+      }
+    },
+    {
+      "task": "text_generation",
+      "candidate_order": [
+        "SLM-0",
+        "SLM-1",
+        "SLM-2",
+        "BASELINE"
+      ],
+      "decision_input_status": "evidence-backed",
+      "capability_snapshot": {
+        "aggregate_numeric_scores_available": false,
+        "example_count_per_run": 15
+      },
+      "operational_snapshot": {
+        "temperature": 0.7,
+        "workers": 1,
+        "context_window": 4096,
+        "qwen_model_file_bytes": 2104932768,
+        "phi_model_file_bytes": 2393232672
+      },
+      "tiers": {
+        "SLM-0": {
+          "canonical_model": "0.5B tiny model",
+          "nearest_archived_evidence": null
+        },
+        "SLM-1": {
+          "canonical_model": "Qwen 2B-class model",
+          "nearest_archived_evidence": "qwen-2.5-3b"
+        },
+        "SLM-2": {
+          "canonical_model": "Phi 3B-class model",
+          "nearest_archived_evidence": "phi-3.5-mini"
+        },
+        "BASELINE": {
+          "canonical_model": "Groq-hosted LLM",
+          "nearest_checked_out_numeric_snapshot": "removed_baseline_snapshot"
+        }
+      }
+    },
+    {
+      "task": "summarization",
+      "candidate_order": [
+        "SLM-0",
+        "SLM-1",
+        "SLM-2",
+        "BASELINE"
+      ],
+      "decision_input_status": "partial",
+      "capability_snapshot": {
+        "slm_2_rouge_1_f1": 0.2814546658504941,
+        "slm_2_rouge_2_f1": 0.105616434012495,
+        "slm_2_rouge_l_f1": 0.1809574319824138,
+        "baseline_rouge_1_f1": 0.277437172344596,
+        "baseline_rouge_2_f1": 0.0693594910501613,
+        "baseline_rouge_l_f1": 0.17346688549202588
+      },
+      "operational_snapshot": {
+        "slm_2_latency_seconds": 0.762503620015923,
+        "slm_2_tokens_per_second": 22.404651871445676,
+        "baseline_latency_seconds": 0.5831917400006205,
+        "baseline_tokens_per_second": 24.83738387471012
+      },
+      "tiers": {
+        "SLM-0": {
+          "canonical_model": "0.5B tiny model",
+          "nearest_archived_evidence": null
+        },
+        "SLM-1": {
+          "canonical_model": "Qwen 2B-class model",
+          "nearest_archived_evidence": null
+        },
+        "SLM-2": {
+          "canonical_model": "Phi 3B-class model",
+          "nearest_archived_evidence": "meta-llama/Llama-3.2-1B-Instruct"
+        },
+        "BASELINE": {
+          "canonical_model": "Groq-hosted LLM",
+          "nearest_checked_out_numeric_snapshot": "removed_baseline_snapshot"
+        }
+      }
+    },
+    {
+      "task": "information_extraction",
+      "candidate_order": [
+        "SLM-0",
+        "SLM-1",
+        "SLM-2",
+        "BASELINE"
+      ],
+      "decision_input_status": "evidence-backed",
+      "capability_snapshot": {
+        "slm_0_macro_f1": 0.16666666666666666,
+        "slm_0_micro_f1": 0.2222222222222222,
+        "slm_0_exact_match": 0.0,
+        "slm_1_macro_f1": 0.025,
+        "slm_1_micro_f1": 0.04166666666666667,
+        "slm_1_exact_match": 0.0,
+        "baseline_macro_f1": 0.1875,
+        "baseline_micro_f1": 0.3,
+        "baseline_exact_match": 0.0
+      },
+      "operational_snapshot": {
+        "slm_0_avg_latency_doc_sec": 14.590003874999638,
+        "slm_0_throughput_docs_per_min": 4.1124046651427975,
+        "slm_0_invalid_output_rate": 0.5,
+        "slm_1_avg_latency_doc_sec": 17.453455470000335,
+        "slm_1_throughput_docs_per_min": 3.4377146750756773,
+        "slm_1_invalid_output_rate": 0.8,
+        "baseline_avg_latency_doc_sec": 0.8567075999990266,
+        "baseline_throughput_docs_per_min": 70.03556405950896,
+        "baseline_invalid_output_rate": 0.75
+      },
+      "tiers": {
+        "SLM-0": {
+          "canonical_model": "0.5B tiny model",
+          "nearest_archived_evidence": "Qwen2.5-0.5B-Instruct"
+        },
+        "SLM-1": {
+          "canonical_model": "Qwen 2B-class model",
+          "nearest_archived_evidence": "Qwen2.5-1.5B-Instruct"
+        },
+        "SLM-2": {
+          "canonical_model": "Phi 3B-class model",
+          "nearest_archived_evidence": null
+        },
+        "BASELINE": {
+          "canonical_model": "Groq-hosted LLM",
+          "nearest_checked_out_numeric_snapshot": "removed_baseline_snapshot"
+        }
+      }
+    },
+    {
+      "task": "retrieval_grounded",
+      "candidate_order": [
+        "SLM-0",
+        "SLM-1",
+        "SLM-2",
+        "BASELINE"
+      ],
+      "decision_input_status": "partial",
+      "capability_snapshot": {
+        "slm_0_exact_match": 66.66666666666667,
+        "slm_0_f1_score": 71.25763125763125,
+        "slm_0_context_utilization_rate": 96.66666666666667,
+        "baseline_exact_match": 63.333333333333336,
+        "baseline_f1_score": 77.77777777777777,
+        "baseline_context_utilization_rate": 83.33333333333333
+      },
+      "operational_snapshot": {
+        "slm_0_latency_ms": 5534.117009999075,
+        "slm_0_latency_p95_ms": 8078.817800007528,
+        "slm_0_tokens_per_sec": 4.228316813273146,
+        "baseline_latency_ms": 828.5257333341482,
+        "baseline_latency_p95_ms": 1055.8537000033539,
+        "baseline_tokens_per_sec": 6.39690450973897
+      },
+      "tiers": {
+        "SLM-0": {
+          "canonical_model": "0.5B tiny model",
+          "nearest_archived_evidence": "Qwen/Qwen2.5-Coder-0.5B-Instruct"
+        },
+        "SLM-1": {
+          "canonical_model": "Qwen 2B-class model",
+          "nearest_archived_evidence": null
+        },
+        "SLM-2": {
+          "canonical_model": "Phi 3B-class model",
+          "nearest_archived_evidence": null
+        },
+        "BASELINE": {
+          "canonical_model": "Groq-hosted LLM",
+          "nearest_checked_out_numeric_snapshot": "removed_baseline_snapshot"
+        }
+      }
+    },
+    {
+      "task": "instruction_following",
+      "candidate_order": [
+        "SLM-0",
+        "SLM-1",
+        "SLM-2",
+        "BASELINE"
+      ],
+      "decision_input_status": "evidence-backed",
+      "capability_snapshot": {
+        "slm_0_pass_rate": 0.4,
+        "slm_0_constraint_satisfaction_rate": 0.4,
+        "slm_0_format_compliance": 0.0,
+        "mid_tier_pass_rate": 0.4,
+        "mid_tier_format_compliance": 1.0,
+        "baseline_pass_rate": 1.0
+      },
+      "operational_snapshot": {
+        "slm_0_avg_latency_sec": 17.886353504657745,
+        "slm_0_avg_tokens_per_second": 4.785771452952056,
+        "mid_tier_avg_latency_sec": 42.829115462303164,
+        "mid_tier_avg_tokens_per_second": 2.334860267847858,
+        "baseline_avg_latency_sec": 0.9784044485825759
+      },
+      "tiers": {
+        "SLM-0": {
+          "canonical_model": "0.5B tiny model",
+          "nearest_archived_evidence": "Qwen/Qwen2.5-Coder-0.5B"
+        },
+        "SLM-1": {
+          "canonical_model": "Qwen 2B-class model",
+          "nearest_archived_evidence": "deepseek-ai/deepseek-coder-1.3b-base"
+        },
+        "SLM-2": {
+          "canonical_model": "Phi 3B-class model",
+          "nearest_archived_evidence": null
+        },
+        "BASELINE": {
+          "canonical_model": "Groq-hosted LLM",
+          "nearest_checked_out_numeric_snapshot": "removed_baseline_snapshot"
+        }
+      }
+    },
+    {
+      "task": "code_generation",
+      "candidate_order": [
+        "SLM-0",
+        "SLM-1",
+        "SLM-2",
+        "BASELINE"
+      ],
+      "decision_input_status": "evidence-backed",
+      "capability_snapshot": {
+        "slm_0_pass_at_1": 0.5,
+        "slm_1_pass_at_1": 1.0,
+        "baseline_pass_at_1": 0.15
+      },
+      "operational_snapshot": {
+        "slm_0_avg_latency_seconds": 7.40375320000021,
+        "slm_0_tokens_per_second": 7.697694005755999,
+        "slm_1_avg_latency_seconds": 91.05289990000028,
+        "slm_1_tokens_per_second": 0.5993408589730409,
+        "baseline_avg_latency_seconds": 0.6653601153845486,
+        "baseline_tokens_per_second": 110.14107250385257
+      },
+      "tiers": {
+        "SLM-0": {
+          "canonical_model": "0.5B tiny model",
+          "nearest_archived_evidence": "Qwen/Qwen2.5-Coder-0.5B-Instruct"
+        },
+        "SLM-1": {
+          "canonical_model": "Qwen 2B-class model",
+          "nearest_archived_evidence": "Qwen/Qwen2.5-Coder-1.5B-Instruct"
+        },
+        "SLM-2": {
+          "canonical_model": "Phi 3B-class model",
+          "nearest_archived_evidence": "phi3:mini"
+        },
+        "BASELINE": {
+          "canonical_model": "Groq-hosted LLM",
+          "nearest_checked_out_numeric_snapshot": "removed_baseline_snapshot"
+        }
+      }
+    }
+  ]
+}
