@@ -104,7 +104,15 @@ class ProductionRouter:
     def __init__(self, verification_fn: Optional[Callable[..., bool]] = None,
                  alert_delta_tau: int = 1,
                  alert_delta_risk: float = 0.1):
-        """Initialize empty router"""
+        """Initialize empty router
+
+        Args:
+            verification_fn: Optional verification function for Q2 zone verification/escalation.
+                            Signature: (task, preferred_model, input_text, difficulty, bin_id, capability, risk) -> bool
+                            Returns True if output quality is sufficient, False if escalation needed.
+            alert_delta_tau: Alert threshold for tipping point shift (default: 1 bin)
+            alert_delta_risk: Alert threshold for risk curve shift (default: 0.10)
+        """
         self.analyses: Dict[Tuple[str, str], AnalysisResult] = {}  # {(task, model): analysis}
         self.routing_logs: List[RoutingDecisionRecord] = []         # Per-request logs
         self.monitoring_metrics: List[MonitoringMetric] = []        # Daily metrics
@@ -234,17 +242,28 @@ class ProductionRouter:
             risk=risk
         )
 
+        # Q2 Zone Verification/Escalation Strategy
+        # Zone Q2: SLM is high capability but high risk
+        # Strategy: Try SLM, verify output quality, escalate to LLM if verification fails
         verification_status = "not_applicable"
-        if zone == "Q2" and self.verification_fn:
-            try:
-                verified = bool(self.verification_fn(task, preferred_model, input_text, difficulty, bin_id, capability, risk))
-            except Exception as exc:
-                verified = False
-                verification_status = f"error:{exc}"
+        if zone == "Q2":
+            if self.verification_fn is not None:
+                # Verification provided: perform verification/escalation
+                try:
+                    verified = bool(self.verification_fn(task, preferred_model, input_text, difficulty, bin_id, capability, risk))
+                except Exception as exc:
+                    verified = False
+                    verification_status = f"error:{exc}"
+                else:
+                    verification_status = "passed" if verified else "failed_escalated"
+
+                # Escalate to LLM if verification failed
+                if not verified:
+                    routed_model = "llama"
             else:
-                verification_status = "passed" if verified else "failed_escalated"
-            if not verified:
-                routed_model = "llama"
+                # No verification provided: proceed with SLM (from _apply_zone_policy)
+                # In production, you should provide verification_fn for Q2 routing
+                verification_status = "no_verification_fn_provided"
 
         # Expected success rate for this routing
         if routed_model == preferred_model:
@@ -304,14 +323,23 @@ class ProductionRouter:
         capability: float,
         risk: float
     ) -> str:
-        """Apply zone-specific routing policy"""
+        """Apply zone-specific routing policy and return actual model name (never a placeholder)
+
+        Zone Policies:
+          Q1: High capability, low risk → Pure SLM (always safe)
+          Q2: High capability, high risk → SLM with optional verification/escalation
+               (Escalation to LLM handled in route() method)
+          Q3: Low capability, low risk → Hybrid (SLM for easy, LLM for hard)
+          Q4: Low capability, high risk → Pure LLM (SLM too weak)
+        """
         if zone == "Q1":
             # Zone 1: Pure SLM - model is safe on all difficulties
             return model
 
         elif zone == "Q2":
-            # Zone 2: SLM + Verify + Escalate
-            return "SLM_with_verification"
+            # Zone 2: SLM with optional verification/escalation
+            # Return SLM model; verification logic in route() will escalate to LLM if needed
+            return model
 
         elif zone == "Q3":
             # Zone 3: Hybrid - SLM for easy, LLM for hard
