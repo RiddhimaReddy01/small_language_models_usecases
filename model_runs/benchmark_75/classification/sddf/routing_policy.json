@@ -1,78 +1,89 @@
 {
   "task": "classification",
-  "matched_query_count": 72,
+  "matched_query_count": 75,
+  "baseline_query_count": 75,
+  "common_query_count_across_all_models": 75,
   "models_used": [
     "tinyllama:1.1b",
     "qwen2.5:1.5b",
     "phi3:mini",
     "groq:llama-3.3-70b-versatile"
   ],
+  "model_matched_query_counts": {
+    "tinyllama:1.1b": 75,
+    "qwen2.5:1.5b": 75,
+    "phi3:mini": 75,
+    "groq:llama-3.3-70b-versatile": 75
+  },
   "thresholds": {
     "tinyllama_1.1b": {
       "display_name": "tinyllama:1.1b",
-      "matched_query_count": 72,
+      "matched_query_count": 75,
       "tau_cap_bin": null,
       "tau_cap_difficulty": null,
       "tau_risk_bin": null,
       "tau_risk_difficulty": null,
       "capability_curve": {
         "0": 1.0,
-        "1": 1.0,
+        "1": 0.8666666666666667,
         "2": 1.0,
         "3": 0.9333333333333333,
-        "4": 0.9166666666666666
+        "4": 0.8666666666666667
       },
       "risk_curve": {
         "0": 0.0,
-        "1": 0.0,
+        "1": 0.13333333333333333,
         "2": 0.0,
         "3": 0.06666666666666667,
-        "4": 0.08333333333333333
+        "4": 0.13333333333333333
       },
       "expected_capability_curve": {
         "0": 1.0,
-        "1": 1.0,
+        "1": 0.8666666666666667,
         "2": 1.0,
         "3": 0.9333333333333333,
-        "4": 0.9166666666666666
+        "4": 0.8666666666666667
       },
       "expected_risk_curve": {
         "0": 0.0,
-        "1": 0.0,
+        "1": 0.13333333333333333,
         "2": 0.0,
         "3": 0.06666666666666667,
-        "4": 0.08333333333333333
+        "4": 0.13333333333333333
       },
       "counts_by_bin": {
         "0": 15,
         "1": 15,
         "2": 15,
         "3": 15,
-        "4": 12
+        "4": 15
       },
       "semantic_failure_counts": {
+        "wrong_label": {
+          "1": 2,
+          "4": 2
+        },
         "timeout_runtime": {
           "3": 1
-        },
-        "wrong_label": {
-          "4": 1
         }
       },
       "semantic_failures_by_bin": {
+        "1": {
+          "wrong_label": 2
+        },
         "3": {
           "timeout_runtime": 1
         },
         "4": {
-          "wrong_label": 1
+          "wrong_label": 2
         },
         "0": {},
-        "1": {},
         "2": {}
       }
     },
     "qwen2.5_1.5b": {
       "display_name": "qwen2.5:1.5b",
-      "matched_query_count": 72,
+      "matched_query_count": 75,
       "tau_cap_bin": null,
       "tau_cap_difficulty": null,
       "tau_risk_bin": null,
@@ -82,40 +93,41 @@
         "1": 0.8666666666666667,
         "2": 1.0,
         "3": 0.9333333333333333,
-        "4": 1.0
+        "4": 0.9333333333333333
       },
       "risk_curve": {
         "0": 0.0,
         "1": 0.13333333333333333,
         "2": 0.0,
         "3": 0.06666666666666667,
-        "4": 0.0
+        "4": 0.06666666666666667
       },
       "expected_capability_curve": {
         "0": 1.0,
         "1": 0.8666666666666667,
         "2": 1.0,
         "3": 0.9333333333333333,
-        "4": 1.0
+        "4": 0.9333333333333333
       },
       "expected_risk_curve": {
         "0": 0.0,
         "1": 0.13333333333333333,
         "2": 0.0,
         "3": 0.06666666666666667,
-        "4": 0.0
+        "4": 0.06666666666666667
       },
       "counts_by_bin": {
         "0": 15,
         "1": 15,
         "2": 15,
         "3": 15,
-        "4": 12
+        "4": 15
       },
       "semantic_failure_counts": {
         "wrong_label": {
           "1": 2,
-          "3": 1
+          "3": 1,
+          "4": 1
         }
       },
       "semantic_failures_by_bin": {
@@ -125,14 +137,16 @@
         "3": {
           "wrong_label": 1
         },
+        "4": {
+          "wrong_label": 1
+        },
         "0": {},
-        "2": {},
-        "4": {}
+        "2": {}
       }
     },
     "phi3_mini": {
       "display_name": "phi3:mini",
-      "matched_query_count": 72,
+      "matched_query_count": 75,
       "tau_cap_bin": null,
       "tau_cap_difficulty": null,
       "tau_risk_bin": null,
@@ -170,7 +184,7 @@
         "1": 15,
         "2": 15,
         "3": 15,
-        "4": 12
+        "4": 15
       },
       "semantic_failure_counts": {},
       "semantic_failures_by_bin": {
@@ -183,7 +197,7 @@
     },
     "llama_llama-3.3-70b-versatile": {
       "display_name": "groq:llama-3.3-70b-versatile",
-      "matched_query_count": 72,
+      "matched_query_count": 75,
       "tau_cap_bin": null,
       "tau_cap_difficulty": null,
       "tau_risk_bin": null,
@@ -221,7 +235,7 @@
         "1": 15,
         "2": 15,
         "3": 15,
-        "4": 12
+        "4": 15
       },
       "semantic_failure_counts": {
         "wrong_label": {
@@ -242,8 +256,8 @@
   "decision_matrix": {
     "tinyllama_1.1b": {
       "display_name": "tinyllama:1.1b",
-      "avg_expected_capability": 0.97,
-      "avg_expected_risk": 0.03,
+      "avg_expected_capability": 0.9333333333333332,
+      "avg_expected_risk": 0.06666666666666668,
       "empirical_quadrant": "Q1: high capability, low risk",
       "confidence_quadrant": "Q1: high capability, low risk",
       "empirical_routing_policy": {
@@ -263,8 +277,8 @@
     },
     "qwen2.5_1.5b": {
       "display_name": "qwen2.5:1.5b",
-      "avg_expected_capability": 0.96,
-      "avg_expected_risk": 0.04,
+      "avg_expected_capability": 0.9466666666666667,
+      "avg_expected_risk": 0.05333333333333333,
       "empirical_quadrant": "Q1: high capability, low risk",
       "confidence_quadrant": "Q1: high capability, low risk",
       "empirical_routing_policy": {

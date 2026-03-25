@@ -1,18 +1,20 @@
 from __future__ import annotations
 
 import json
+import os
 from dataclasses import dataclass
 from pathlib import Path
 from statistics import mean
 from typing import Any
+
+ROOT = Path(__file__).resolve().parents[1]
+os.environ.setdefault("MPLCONFIGDIR", str(ROOT / ".matplotlib-cache"))
 
 import matplotlib
 
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 
-
-ROOT = Path(__file__).resolve().parents[1]
 BENCHMARK_ROOT = ROOT / "model_runs" / "benchmark_75"
 OUTPUT_ROOT = BENCHMARK_ROOT / "business_analytics"
 MODELS = [
@@ -70,8 +72,23 @@ def _read_jsonl(path: Path) -> list[dict[str, Any]]:
     return rows
 
 
+def _dedupe_rows(rows: list[dict[str, Any]]) -> list[dict[str, Any]]:
+    by_sample: dict[str, dict[str, Any]] = {}
+    for row in rows:
+        sample_id = str(row.get("sample_id"))
+        existing = by_sample.get(sample_id)
+        if existing is None:
+            by_sample[sample_id] = row
+            continue
+        existing_timestamp = str(existing.get("timestamp") or "")
+        row_timestamp = str(row.get("timestamp") or "")
+        if row_timestamp >= existing_timestamp:
+            by_sample[sample_id] = row
+    return list(by_sample.values())
+
+
 def _avg_latency(task_dir: Path, model_key: str) -> float:
-    rows = _read_jsonl(task_dir / model_key / "outputs.jsonl")
+    rows = _dedupe_rows(_read_jsonl(task_dir / model_key / "outputs.jsonl"))
     latencies = [float(row.get("latency_sec") or 0.0) for row in rows if row.get("latency_sec") is not None]
     return mean(latencies) if latencies else 0.0
 

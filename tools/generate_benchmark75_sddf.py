@@ -1,11 +1,15 @@
 from __future__ import annotations
 
 import json
+import os
 import re
 import csv
 from collections import defaultdict
 from pathlib import Path
 from typing import Any
+
+ROOT = Path(__file__).resolve().parents[1]
+os.environ.setdefault("MPLCONFIGDIR", str(ROOT / ".matplotlib-cache"))
 
 import matplotlib
 
@@ -14,8 +18,6 @@ import matplotlib.pyplot as plt
 
 from src.routing.framework import GeneralizedRoutingFramework
 
-
-ROOT = Path(__file__).resolve().parents[1]
 BENCHMARK_ROOT = ROOT / "model_runs" / "benchmark_75"
 CANONICAL_MODELS = [
     "tinyllama_1.1b",
@@ -23,6 +25,7 @@ CANONICAL_MODELS = [
     "phi3_mini",
     "llama_llama-3.3-70b-versatile",
 ]
+BASELINE_MODEL = "llama_llama-3.3-70b-versatile"
 DISPLAY_NAMES = {
     "tinyllama_1.1b": "tinyllama:1.1b",
     "qwen2.5_1.5b": "qwen2.5:1.5b",
@@ -113,7 +116,14 @@ def _dedupe_rows(rows: list[dict[str, Any]]) -> list[dict[str, Any]]:
     by_sample: dict[str, dict[str, Any]] = {}
     for row in rows:
         sample_id = str(row["sample_id"])
-        by_sample.setdefault(sample_id, row)
+        existing = by_sample.get(sample_id)
+        if existing is None:
+            by_sample[sample_id] = row
+            continue
+        existing_timestamp = str(existing.get("timestamp") or "")
+        row_timestamp = str(row.get("timestamp") or "")
+        if row_timestamp >= existing_timestamp:
+            by_sample[sample_id] = row
     return list(by_sample.values())
 
 
@@ -520,6 +530,8 @@ def main() -> None:
     task_summaries: dict[str, Any] = {}
 
     for task_dir in sorted(p for p in BENCHMARK_ROOT.iterdir() if p.is_dir()):
+        if task_dir.name not in TASK_DIRS:
+            continue
         reference_lookup = _build_reference_lookup(task_dir.name)
         available = {}
         for model_key in CANONICAL_MODELS:
@@ -527,23 +539,16 @@ def main() -> None:
             if outputs_path.exists():
                 available[model_key] = _dedupe_rows(_load_jsonl(outputs_path))
 
-        if len(available) < 2:
+        if len(available) < 2 or BASELINE_MODEL not in available:
             continue
 
-        common_ids = None
+        baseline_ids = {str(row["sample_id"]) for row in available[BASELINE_MODEL]}
+        all_model_common_ids = baseline_ids.copy()
+        per_model_common_ids: dict[str, set[str]] = {}
         for model_key, rows in available.items():
-            ids = {str(row["sample_id"]) for row in rows}
-            common_ids = ids if common_ids is None else common_ids & ids
-        common_ids = common_ids or set()
-        observed_bins = sorted(
-            {
-                int(row["bin"])
-                for rows in available.values()
-                for row in rows
-                if str(row["sample_id"]) in common_ids
-            }
-        )
-        num_bins = (max(observed_bins) + 1) if observed_bins else 5
+            model_ids = {str(row["sample_id"]) for row in rows}
+            per_model_common_ids[model_key] = model_ids & baseline_ids
+            all_model_common_ids &= model_ids
 
         task_rows: dict[str, list[dict[str, Any]]] = {}
         capability_curves: dict[str, dict[int, float]] = {}
@@ -554,7 +559,14 @@ def main() -> None:
         decision_metrics: dict[str, dict[str, Any]] = {}
 
         for model_key, rows in available.items():
-            filtered = [row for row in rows if str(row["sample_id"]) in common_ids]
+            model_common_ids = per_model_common_ids[model_key]
+            observed_bins = sorted(
+                int(row["bin"])
+                for row in rows
+                if str(row["sample_id"]) in model_common_ids
+            )
+            num_bins = (max(observed_bins) + 1) if observed_bins else 5
+            filtered = [row for row in rows if str(row["sample_id"]) in model_common_ids]
             filtered.sort(key=lambda row: (int(row["bin"]), str(row["sample_id"])))
             task_rows[model_key] = filtered
             capability, risk, counts, failure_counts, failures_by_bin = _curve_for_rows(filtered, reference_lookup)
@@ -682,8 +694,13 @@ def main() -> None:
 
         summary = {
             "task": task_dir.name,
-            "matched_query_count": len(common_ids),
+            "matched_query_count": len(baseline_ids),
+            "baseline_query_count": len(baseline_ids),
+            "common_query_count_across_all_models": len(all_model_common_ids),
             "models_used": [DISPLAY_NAMES[key] for key in task_rows],
+            "model_matched_query_counts": {
+                DISPLAY_NAMES[key]: len(per_model_common_ids[key]) for key in task_rows
+            },
             "thresholds": thresholds,
             "decision_matrix": decision_metrics,
         }

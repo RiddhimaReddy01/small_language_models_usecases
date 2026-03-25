@@ -34,6 +34,7 @@ npm install
 Notes:
 
 - `requirements.txt` installs the shared SDDF and test dependencies.
+- `requirements.txt` explicitly pins `Pillow` because the report-generation path depends on binary image support through `matplotlib`.
 - `npm install` is only needed for the Node-based report generation path.
 - Some task folders have their own task-specific dependencies. Install those only when re-running that task.
 
@@ -60,6 +61,22 @@ python -m pytest tests
 ```
 
 This covers the SDDF core, ingest flow, reporting, benchmark contracts, and routing integration tests.
+
+## Golden Path
+
+When benchmark artifacts already exist under `model_runs/benchmark_75/`, the single supported refresh command is:
+
+```powershell
+powershell -ExecutionPolicy Bypass -File .\tools\refresh_benchmark75_reports.ps1
+```
+
+This command:
+
+1. Runs `pytest tests`
+2. Regenerates task-level SDDF thresholds, capability curves, risk curves, and decision matrices
+3. Regenerates the cross-task business analytics tables and Pareto charts
+
+Use this after refreshing raw `outputs.jsonl` files or after changing the SDDF/reporting code.
 
 ## Reproduce From Existing Benchmark Artifacts
 
@@ -123,6 +140,22 @@ ollama pull tinyllama:1.1b
 
 Once benchmark artifacts exist, regenerate downstream summaries from the repository root.
 
+Generate the full downstream report package with the golden-path script:
+
+```powershell
+powershell -ExecutionPolicy Bypass -File .\tools\refresh_benchmark75_reports.ps1
+```
+
+If you need to run the stages individually:
+
+Generate the SDDF curves, thresholds, and decision matrices:
+
+```powershell
+$env:PYTHONPATH='.'
+python .\tools\generate_benchmark75_sddf.py
+Remove-Item Env:PYTHONPATH
+```
+
 Generate the business analytics dashboard:
 
 ```powershell
@@ -168,6 +201,12 @@ When adding a new model run, use this order:
 4. Refresh task-level SDDF thresholds and routing outputs.
 5. Regenerate cross-task dashboards or business summaries.
 6. Re-run `python -m pytest tests` before publishing results.
+
+For the tracked `benchmark_75` repository artifacts, steps 4-6 are covered by:
+
+```powershell
+powershell -ExecutionPolicy Bypass -File .\tools\refresh_benchmark75_reports.ps1
+```
 
 ## Canonical References
 

@@ -71,5 +71,6 @@ Thumbs.db
 # Project-specific
 .edge-cdp-profile/
 .python311/
+.matplotlib-cache/
 .claude/
 .claude/worktrees/sweet-liskov

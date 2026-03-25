@@ -17,8 +17,8 @@ This dashboard uses SDDF capability/risk plus explicit proxy economics to estima
 
 | Model | Cap | Risk | Latency (s) | Throughput (q/s) | Direct Cost | EV | Pareto | Empirical Strategy | Certified Strategy |
 | --- | ---: | ---: | ---: | ---: | ---: | ---: | --- | --- | --- |
-| tinyllama:1.1b | 0.970 | 0.030 | 45.147 | 0.022 | $0.0090 | $0.0290 | dominated | 1.0 | 0.0 |
-| qwen2.5:1.5b | 0.960 | 0.040 | 3.287 | 0.304 | $0.0007 | $0.0390 | frontier | 1.0 | 0.0 |
+| tinyllama:1.1b | 0.933 | 0.067 | 47.745 | 0.021 | $0.0095 | $0.0190 | dominated | 1.0 | 0.0 |
+| qwen2.5:1.5b | 0.947 | 0.053 | 3.287 | 0.304 | $0.0007 | $0.0357 | frontier | 1.0 | 0.0 |
 | phi3:mini | 1.000 | 0.000 | 9.475 | 0.106 | $0.0019 | $0.0472 | frontier | 1.0 | 0.0 |
 | groq:llama-3.3-70b-versatile | 0.987 | 0.013 | 3.227 | 0.310 | $0.0035 | $0.0428 | frontier | 1.0 | 0.0 |
 
@@ -29,9 +29,9 @@ This dashboard uses SDDF capability/risk plus explicit proxy economics to estima
 
 | Model | Cap | Risk | Latency (s) | Throughput (q/s) | Direct Cost | EV | Pareto | Empirical Strategy | Certified Strategy |
 | --- | ---: | ---: | ---: | ---: | ---: | ---: | --- | --- | --- |
-| tinyllama:1.1b | 0.000 | 1.000 | 41.495 | 0.024 | $0.0083 | $-0.2124 | dominated | 0.0 | 0.0 |
-| qwen2.5:1.5b | 0.903 | 0.097 | 10.288 | 0.097 | $0.0021 | $0.0227 | frontier | 1.0 | 0.0 |
-| phi3:mini | 0.000 | 1.000 | 16.142 | 0.062 | $0.0032 | $-0.2048 | dominated | 0.0 | 0.0 |
+| tinyllama:1.1b | 0.027 | 0.973 | 48.206 | 0.021 | $0.0096 | $-0.2078 | dominated | 0.0 | 0.0 |
+| qwen2.5:1.5b | 0.907 | 0.093 | 10.288 | 0.097 | $0.0021 | $0.0236 | frontier | 1.0 | 0.0 |
+| phi3:mini | 0.013 | 0.987 | 17.120 | 0.058 | $0.0034 | $-0.2018 | dominated | 0.0 | 0.0 |
 | groq:llama-3.3-70b-versatile | 0.000 | 1.000 | 3.517 | 0.284 | $0.0035 | $-0.2039 | frontier | 0.0 | 0.0 |
 
 ## information_extraction
@@ -65,10 +65,10 @@ This dashboard uses SDDF capability/risk plus explicit proxy economics to estima
 
 | Model | Cap | Risk | Latency (s) | Throughput (q/s) | Direct Cost | EV | Pareto | Empirical Strategy | Certified Strategy |
 | --- | ---: | ---: | ---: | ---: | ---: | ---: | --- | --- | --- |
-| tinyllama:1.1b | 0.121 | 0.879 | 45.503 | 0.022 | $0.0091 | $-0.1833 | dominated | 0.0 | 0.0 |
-| qwen2.5:1.5b | 0.750 | 0.250 | 6.768 | 0.148 | $0.0014 | $-0.0145 | frontier | 1.0 | 0.0 |
-| phi3:mini | 0.687 | 0.313 | 25.154 | 0.040 | $0.0050 | $-0.0357 | dominated | 0.8450704225352113 | 0.0 |
-| groq:llama-3.3-70b-versatile | 0.942 | 0.058 | 3.314 | 0.302 | $0.0035 | $0.0316 | frontier | 1.0 | 0.0 |
+| tinyllama:1.1b | 0.067 | 0.933 | 47.921 | 0.021 | $0.0096 | $-0.1977 | dominated | 0.0 | 0.0 |
+| qwen2.5:1.5b | 0.747 | 0.253 | 6.768 | 0.148 | $0.0014 | $-0.0154 | frontier | 1.0 | 0.0 |
+| phi3:mini | 0.693 | 0.307 | 25.154 | 0.040 | $0.0050 | $-0.0342 | dominated | 0.8 | 0.0 |
+| groq:llama-3.3-70b-versatile | 0.947 | 0.053 | 3.314 | 0.302 | $0.0035 | $0.0328 | frontier | 1.0 | 0.0 |
 
 ## retrieval_grounded
 
@@ -77,7 +77,7 @@ This dashboard uses SDDF capability/risk plus explicit proxy economics to estima
 
 | Model | Cap | Risk | Latency (s) | Throughput (q/s) | Direct Cost | EV | Pareto | Empirical Strategy | Certified Strategy |
 | --- | ---: | ---: | ---: | ---: | ---: | ---: | --- | --- | --- |
-| tinyllama:1.1b | 0.773 | 0.227 | 12.717 | 0.079 | $0.0025 | $-0.0105 | dominated | 1.0 | 0.0 |
+| tinyllama:1.1b | 0.787 | 0.213 | 11.134 | 0.090 | $0.0022 | $-0.0067 | dominated | 0.8 | 0.0 |
 | qwen2.5:1.5b | 1.000 | 0.000 | 4.780 | 0.209 | $0.0010 | $0.0486 | frontier | 1.0 | 0.0 |
 | phi3:mini | 0.880 | 0.120 | 8.897 | 0.112 | $0.0018 | $0.0173 | dominated | 1.0 | 0.0 |
 | groq:llama-3.3-70b-versatile | 1.000 | 0.000 | 3.230 | 0.310 | $0.0035 | $0.0462 | frontier | 1.0 | 0.0 |
@@ -89,20 +89,20 @@ This dashboard uses SDDF capability/risk plus explicit proxy economics to estima
 
 | Model | Cap | Risk | Latency (s) | Throughput (q/s) | Direct Cost | EV | Pareto | Empirical Strategy | Certified Strategy |
 | --- | ---: | ---: | ---: | ---: | ---: | ---: | --- | --- | --- |
-| tinyllama:1.1b | 0.987 | 0.013 | 12.618 | 0.079 | $0.0025 | $0.0429 | frontier | 1.0 | 0.0 |
+| tinyllama:1.1b | 1.000 | 0.000 | 11.090 | 0.090 | $0.0022 | $0.0467 | frontier | 1.0 | 0.0 |
 | qwen2.5:1.5b | 0.773 | 0.227 | 13.741 | 0.073 | $0.0027 | $-0.0108 | dominated | 1.0 | 0.0 |
 | phi3:mini | 0.987 | 0.013 | 14.236 | 0.070 | $0.0028 | $0.0424 | dominated | 1.0 | 0.0 |
 | groq:llama-3.3-70b-versatile | 1.000 | 0.000 | 3.375 | 0.296 | $0.0035 | $0.0462 | frontier | 1.0 | 0.0 |
 
 ## text_generation
 
-- Pareto frontier: qwen2.5:1.5b, phi3:mini, groq:llama-3.3-70b-versatile
+- Pareto frontier: qwen2.5:1.5b, groq:llama-3.3-70b-versatile
 - Chart: `model_runs\benchmark_75\business_analytics\text_generation_pareto.png`
 
 | Model | Cap | Risk | Latency (s) | Throughput (q/s) | Direct Cost | EV | Pareto | Empirical Strategy | Certified Strategy |
 | --- | ---: | ---: | ---: | ---: | ---: | ---: | --- | --- | --- |
-| tinyllama:1.1b | 0.650 | 0.350 | 41.695 | 0.024 | $0.0083 | $-0.0500 | dominated | 0.9574468085106383 | 0.0 |
-| qwen2.5:1.5b | 0.033 | 0.967 | 9.169 | 0.109 | $0.0018 | $-0.1944 | frontier | 0.0 | 0.0 |
-| phi3:mini | 0.133 | 0.867 | 17.044 | 0.059 | $0.0034 | $-0.1718 | frontier | 0.0 | 0.0 |
-| groq:llama-3.3-70b-versatile | 1.000 | 0.000 | 14.081 | 0.071 | $0.0035 | $0.0451 | frontier | 0.9574468085106383 | 0.0 |
+| tinyllama:1.1b | 0.987 | 0.013 | 48.123 | 0.021 | $0.0096 | $0.0322 | dominated | 1.0 | 0.0 |
+| qwen2.5:1.5b | 0.053 | 0.947 | 9.169 | 0.109 | $0.0018 | $-0.1894 | frontier | 0.0 | 0.0 |
+| phi3:mini | 0.493 | 0.507 | 27.549 | 0.036 | $0.0055 | $-0.0849 | dominated | 1.0 | 0.0 |
+| groq:llama-3.3-70b-versatile | 0.987 | 0.013 | 14.081 | 0.071 | $0.0035 | $0.0418 | frontier | 1.0 | 0.0 |
 

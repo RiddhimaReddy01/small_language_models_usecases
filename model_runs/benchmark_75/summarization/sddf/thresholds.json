@@ -1,12 +1,20 @@
 {
   "task": "summarization",
   "matched_query_count": 75,
+  "baseline_query_count": 75,
+  "common_query_count_across_all_models": 75,
   "models_used": [
     "tinyllama:1.1b",
     "qwen2.5:1.5b",
     "phi3:mini",
     "groq:llama-3.3-70b-versatile"
   ],
+  "model_matched_query_counts": {
+    "tinyllama:1.1b": 75,
+    "qwen2.5:1.5b": 75,
+    "phi3:mini": 75,
+    "groq:llama-3.3-70b-versatile": 75
+  },
   "thresholds": {
     "tinyllama_1.1b": {
       "display_name": "tinyllama:1.1b",
@@ -16,28 +24,28 @@
       "tau_risk_bin": null,
       "tau_risk_difficulty": null,
       "capability_curve": {
-        "0": 0.9333333333333333,
+        "0": 1.0,
         "1": 1.0,
         "2": 1.0,
         "3": 1.0,
         "4": 1.0
       },
       "risk_curve": {
-        "0": 0.06666666666666667,
+        "0": 0.0,
         "1": 0.0,
         "2": 0.0,
         "3": 0.0,
         "4": 0.0
       },
       "expected_capability_curve": {
-        "0": 0.9333333333333333,
+        "0": 1.0,
         "1": 1.0,
         "2": 1.0,
         "3": 1.0,
         "4": 1.0
       },
       "expected_risk_curve": {
-        "0": 0.06666666666666667,
+        "0": 0.0,
         "1": 0.0,
         "2": 0.0,
         "3": 0.0,
@@ -50,15 +58,9 @@
         "3": 15,
         "4": 15
       },
-      "semantic_failure_counts": {
-        "low_relevance": {
-          "0": 1
-        }
-      },
+      "semantic_failure_counts": {},
       "semantic_failures_by_bin": {
-        "0": {
-          "low_relevance": 1
-        },
+        "0": {},
         "1": {},
         "2": {},
         "3": {},
@@ -246,8 +248,8 @@
   "decision_matrix": {
     "tinyllama_1.1b": {
       "display_name": "tinyllama:1.1b",
-      "avg_expected_capability": 0.9866666666666667,
-      "avg_expected_risk": 0.013333333333333332,
+      "avg_expected_capability": 1.0,
+      "avg_expected_risk": 0.0,
       "empirical_quadrant": "Q1: high capability, low risk",
       "confidence_quadrant": "Q1: high capability, low risk",
       "empirical_routing_policy": {
@@ -267,7 +269,7 @@
     },
     "qwen2.5_1.5b": {
       "display_name": "qwen2.5:1.5b",
-      "avg_expected_capability": 0.7733333333333333,
+      "avg_expected_capability": 0.7733333333333332,
       "avg_expected_risk": 0.22666666666666666,
       "empirical_quadrant": "Q4: low capability, high risk",
       "confidence_quadrant": "Q4: low capability, high risk",

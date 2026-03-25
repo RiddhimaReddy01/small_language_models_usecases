@@ -1,12 +1,20 @@
 {
   "task": "instruction_following",
   "matched_query_count": 75,
+  "baseline_query_count": 75,
+  "common_query_count_across_all_models": 75,
   "models_used": [
     "tinyllama:1.1b",
     "qwen2.5:1.5b",
     "phi3:mini",
     "groq:llama-3.3-70b-versatile"
   ],
+  "model_matched_query_counts": {
+    "tinyllama:1.1b": 75,
+    "qwen2.5:1.5b": 75,
+    "phi3:mini": 75,
+    "groq:llama-3.3-70b-versatile": 75
+  },
   "thresholds": {
     "tinyllama_1.1b": {
       "display_name": "tinyllama:1.1b",
@@ -297,7 +305,7 @@
     },
     "qwen2.5_1.5b": {
       "display_name": "qwen2.5:1.5b",
-      "avg_expected_capability": 0.8533333333333333,
+      "avg_expected_capability": 0.8533333333333335,
       "avg_expected_risk": 0.14666666666666667,
       "empirical_quadrant": "Q1: high capability, low risk",
       "confidence_quadrant": "Q1: high capability, low risk",
@@ -319,7 +327,7 @@
     "phi3_mini": {
       "display_name": "phi3:mini",
       "avg_expected_capability": 0.6666666666666666,
-      "avg_expected_risk": 0.3333333333333333,
+      "avg_expected_risk": 0.33333333333333337,
       "empirical_quadrant": "Q4: low capability, high risk",
       "confidence_quadrant": "Q4: low capability, high risk",
       "empirical_routing_policy": {
