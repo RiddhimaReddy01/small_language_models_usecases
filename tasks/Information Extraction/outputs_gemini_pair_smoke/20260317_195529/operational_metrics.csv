@@ -1,2 +1,0 @@
-Model,Avg Latency / Doc (s),Throughput (docs/min),Peak GPU Memory (MB),Avg Input Tokens,Avg Output Tokens
-gemini-2.5-flash-lite,0.6694906999910017,89.62036365972885,,494.75,64.5

@@ -1,2 +1,0 @@
-Model,Avg Latency / Doc (s),Throughput (docs/min),Peak GPU Memory (MB),Avg Input Tokens,Avg Output Tokens
-Llama-3.2-1B-Instruct,0.8845369000046048,67.83210513850541,,137.75,2.75

@@ -1,3 +1,0 @@
-| Model | Exact Match (%) | F1 Score (%) | Context Utilization (%) | Answer Length Accuracy (%) |
-| --- | --- | --- | --- | --- |
-| deepseek-ai/deepseek-coder-1.3b-instruct | 36.67 | 48.05 | 46.67 | 50.00 |

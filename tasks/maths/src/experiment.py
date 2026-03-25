@@ -156,7 +156,11 @@ def summarize_records(records, dataset_name: str):
 
 
 def run_once(dataset_cfg, model_cfg, protocol_cfg, runner_cfg, seed: int, dry_run: bool):
-    dataset_seed = seed + sum(ord(ch) for ch in f"{dataset_cfg['name']}:{model_cfg['id']}")
+    # Allow apples-to-apples comparisons by pinning the sampled query set across models.
+    if protocol_cfg.get("shared_query_set", False):
+        dataset_seed = seed + sum(ord(ch) for ch in dataset_cfg["name"])
+    else:
+        dataset_seed = seed + sum(ord(ch) for ch in f"{dataset_cfg['name']}:{model_cfg['id']}")
     samples = load_dataset_config(dataset_cfg["path"], dataset_cfg["sample_size"], seed=dataset_seed)
     runner = make_runner(model_cfg, dry_run=dry_run)
     timeout_seconds = int(runner_cfg.get("timeout_seconds", 60))
