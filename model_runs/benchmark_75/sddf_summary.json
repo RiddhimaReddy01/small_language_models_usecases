@@ -1,0 +1,2819 @@
+{
+  "classification": {
+    "task": "classification",
+    "matched_query_count": 72,
+    "models_used": [
+      "tinyllama:1.1b",
+      "qwen2.5:1.5b",
+      "phi3:mini",
+      "groq:llama-3.3-70b-versatile"
+    ],
+    "thresholds": {
+      "tinyllama_1.1b": {
+        "display_name": "tinyllama:1.1b",
+        "matched_query_count": 72,
+        "tau_cap_bin": null,
+        "tau_cap_difficulty": null,
+        "tau_risk_bin": null,
+        "tau_risk_difficulty": null,
+        "capability_curve": {
+          "0": 1.0,
+          "1": 1.0,
+          "2": 1.0,
+          "3": 0.9333333333333333,
+          "4": 0.9166666666666666
+        },
+        "risk_curve": {
+          "0": 0.0,
+          "1": 0.0,
+          "2": 0.0,
+          "3": 0.06666666666666667,
+          "4": 0.08333333333333333
+        },
+        "expected_capability_curve": {
+          "0": 1.0,
+          "1": 1.0,
+          "2": 1.0,
+          "3": 0.9333333333333333,
+          "4": 0.9166666666666666
+        },
+        "expected_risk_curve": {
+          "0": 0.0,
+          "1": 0.0,
+          "2": 0.0,
+          "3": 0.06666666666666667,
+          "4": 0.08333333333333333
+        },
+        "counts_by_bin": {
+          "0": 15,
+          "1": 15,
+          "2": 15,
+          "3": 15,
+          "4": 12
+        },
+        "semantic_failure_counts": {
+          "timeout_runtime": {
+            "3": 1
+          },
+          "wrong_label": {
+            "4": 1
+          }
+        },
+        "semantic_failures_by_bin": {
+          "3": {
+            "timeout_runtime": 1
+          },
+          "4": {
+            "wrong_label": 1
+          },
+          "0": {},
+          "1": {},
+          "2": {}
+        }
+      },
+      "qwen2.5_1.5b": {
+        "display_name": "qwen2.5:1.5b",
+        "matched_query_count": 72,
+        "tau_cap_bin": null,
+        "tau_cap_difficulty": null,
+        "tau_risk_bin": null,
+        "tau_risk_difficulty": null,
+        "capability_curve": {
+          "0": 1.0,
+          "1": 0.8666666666666667,
+          "2": 1.0,
+          "3": 0.9333333333333333,
+          "4": 1.0
+        },
+        "risk_curve": {
+          "0": 0.0,
+          "1": 0.13333333333333333,
+          "2": 0.0,
+          "3": 0.06666666666666667,
+          "4": 0.0
+        },
+        "expected_capability_curve": {
+          "0": 1.0,
+          "1": 0.8666666666666667,
+          "2": 1.0,
+          "3": 0.9333333333333333,
+          "4": 1.0
+        },
+        "expected_risk_curve": {
+          "0": 0.0,
+          "1": 0.13333333333333333,
+          "2": 0.0,
+          "3": 0.06666666666666667,
+          "4": 0.0
+        },
+        "counts_by_bin": {
+          "0": 15,
+          "1": 15,
+          "2": 15,
+          "3": 15,
+          "4": 12
+        },
+        "semantic_failure_counts": {
+          "wrong_label": {
+            "1": 2,
+            "3": 1
+          }
+        },
+        "semantic_failures_by_bin": {
+          "1": {
+            "wrong_label": 2
+          },
+          "3": {
+            "wrong_label": 1
+          },
+          "0": {},
+          "2": {},
+          "4": {}
+        }
+      },
+      "phi3_mini": {
+        "display_name": "phi3:mini",
+        "matched_query_count": 72,
+        "tau_cap_bin": null,
+        "tau_cap_difficulty": null,
+        "tau_risk_bin": null,
+        "tau_risk_difficulty": null,
+        "capability_curve": {
+          "0": 1.0,
+          "1": 1.0,
+          "2": 1.0,
+          "3": 1.0,
+          "4": 1.0
+        },
+        "risk_curve": {
+          "0": 0.0,
+          "1": 0.0,
+          "2": 0.0,
+          "3": 0.0,
+          "4": 0.0
+        },
+        "expected_capability_curve": {
+          "0": 1.0,
+          "1": 1.0,
+          "2": 1.0,
+          "3": 1.0,
+          "4": 1.0
+        },
+        "expected_risk_curve": {
+          "0": 0.0,
+          "1": 0.0,
+          "2": 0.0,
+          "3": 0.0,
+          "4": 0.0
+        },
+        "counts_by_bin": {
+          "0": 15,
+          "1": 15,
+          "2": 15,
+          "3": 15,
+          "4": 12
+        },
+        "semantic_failure_counts": {},
+        "semantic_failures_by_bin": {
+          "0": {},
+          "1": {},
+          "2": {},
+          "3": {},
+          "4": {}
+        }
+      },
+      "llama_llama-3.3-70b-versatile": {
+        "display_name": "groq:llama-3.3-70b-versatile",
+        "matched_query_count": 72,
+        "tau_cap_bin": null,
+        "tau_cap_difficulty": null,
+        "tau_risk_bin": null,
+        "tau_risk_difficulty": null,
+        "capability_curve": {
+          "0": 1.0,
+          "1": 0.9333333333333333,
+          "2": 1.0,
+          "3": 1.0,
+          "4": 1.0
+        },
+        "risk_curve": {
+          "0": 0.0,
+          "1": 0.06666666666666667,
+          "2": 0.0,
+          "3": 0.0,
+          "4": 0.0
+        },
+        "expected_capability_curve": {
+          "0": 1.0,
+          "1": 0.9333333333333333,
+          "2": 1.0,
+          "3": 1.0,
+          "4": 1.0
+        },
+        "expected_risk_curve": {
+          "0": 0.0,
+          "1": 0.06666666666666667,
+          "2": 0.0,
+          "3": 0.0,
+          "4": 0.0
+        },
+        "counts_by_bin": {
+          "0": 15,
+          "1": 15,
+          "2": 15,
+          "3": 15,
+          "4": 12
+        },
+        "semantic_failure_counts": {
+          "wrong_label": {
+            "1": 1
+          }
+        },
+        "semantic_failures_by_bin": {
+          "1": {
+            "wrong_label": 1
+          },
+          "0": {},
+          "2": {},
+          "3": {},
+          "4": {}
+        }
+      }
+    },
+    "decision_matrix": {
+      "tinyllama_1.1b": {
+        "display_name": "tinyllama:1.1b",
+        "avg_expected_capability": 0.97,
+        "avg_expected_risk": 0.03,
+        "empirical_quadrant": "Q1: high capability, low risk",
+        "confidence_quadrant": "Q1: high capability, low risk",
+        "empirical_routing_policy": {
+          "limit_bin": 4,
+          "limit_difficulty": 1.0,
+          "sparse_bins": [],
+          "route_rule": "Empirically route to SLM when difficulty_bin <= 4; otherwise route to BASELINE."
+        },
+        "confidence_certified_routing_policy": {
+          "risk_gate_pass": true,
+          "capability_gate_pass": false,
+          "limit_bin": null,
+          "limit_difficulty": null,
+          "sparse_bins": [],
+          "route_rule": "Route all queries to BASELINE; SLM never clears the capability gate with Wilson confidence."
+        }
+      },
+      "qwen2.5_1.5b": {
+        "display_name": "qwen2.5:1.5b",
+        "avg_expected_capability": 0.96,
+        "avg_expected_risk": 0.04,
+        "empirical_quadrant": "Q1: high capability, low risk",
+        "confidence_quadrant": "Q1: high capability, low risk",
+        "empirical_routing_policy": {
+          "limit_bin": 4,
+          "limit_difficulty": 1.0,
+          "sparse_bins": [],
+          "route_rule": "Empirically route to SLM when difficulty_bin <= 4; otherwise route to BASELINE."
+        },
+        "confidence_certified_routing_policy": {
+          "risk_gate_pass": true,
+          "capability_gate_pass": false,
+          "limit_bin": null,
+          "limit_difficulty": null,
+          "sparse_bins": [],
+          "route_rule": "Route all queries to BASELINE; SLM never clears the capability gate with Wilson confidence."
+        }
+      },
+      "phi3_mini": {
+        "display_name": "phi3:mini",
+        "avg_expected_capability": 1.0,
+        "avg_expected_risk": 0.0,
+        "empirical_quadrant": "Q1: high capability, low risk",
+        "confidence_quadrant": "Q1: high capability, low risk",
+        "empirical_routing_policy": {
+          "limit_bin": 4,
+          "limit_difficulty": 1.0,
+          "sparse_bins": [],
+          "route_rule": "Empirically route to SLM when difficulty_bin <= 4; otherwise route to BASELINE."
+        },
+        "confidence_certified_routing_policy": {
+          "risk_gate_pass": true,
+          "capability_gate_pass": false,
+          "limit_bin": null,
+          "limit_difficulty": null,
+          "sparse_bins": [],
+          "route_rule": "Route all queries to BASELINE; SLM never clears the capability gate with Wilson confidence."
+        }
+      },
+      "llama_llama-3.3-70b-versatile": {
+        "display_name": "groq:llama-3.3-70b-versatile",
+        "avg_expected_capability": 0.9866666666666667,
+        "avg_expected_risk": 0.013333333333333332,
+        "empirical_quadrant": "Q1: high capability, low risk",
+        "confidence_quadrant": "Q1: high capability, low risk",
+        "empirical_routing_policy": {
+          "limit_bin": 4,
+          "limit_difficulty": 1.0,
+          "sparse_bins": [],
+          "route_rule": "Empirically route to SLM when difficulty_bin <= 4; otherwise route to BASELINE."
+        },
+        "confidence_certified_routing_policy": {
+          "risk_gate_pass": true,
+          "capability_gate_pass": false,
+          "limit_bin": null,
+          "limit_difficulty": null,
+          "sparse_bins": [],
+          "route_rule": "Route all queries to BASELINE; SLM never clears the capability gate with Wilson confidence."
+        }
+      }
+    }
+  },
+  "code_generation": {
+    "task": "code_generation",
+    "matched_query_count": 72,
+    "models_used": [
+      "tinyllama:1.1b",
+      "qwen2.5:1.5b",
+      "phi3:mini",
+      "groq:llama-3.3-70b-versatile"
+    ],
+    "thresholds": {
+      "tinyllama_1.1b": {
+        "display_name": "tinyllama:1.1b",
+        "matched_query_count": 72,
+        "tau_cap_bin": null,
+        "tau_cap_difficulty": null,
+        "tau_risk_bin": 0,
+        "tau_risk_difficulty": 0.0,
+        "capability_curve": {
+          "0": 0.0,
+          "1": 0.0,
+          "2": 0.0,
+          "3": 0.0,
+          "4": 0.0
+        },
+        "risk_curve": {
+          "0": 1.0,
+          "1": 1.0,
+          "2": 1.0,
+          "3": 1.0,
+          "4": 1.0
+        },
+        "expected_capability_curve": {
+          "0": 0.0,
+          "1": 0.0,
+          "2": 0.0,
+          "3": 0.0,
+          "4": 0.0
+        },
+        "expected_risk_curve": {
+          "0": 1.0,
+          "1": 1.0,
+          "2": 1.0,
+          "3": 1.0,
+          "4": 1.0
+        },
+        "counts_by_bin": {
+          "0": 15,
+          "1": 15,
+          "2": 15,
+          "3": 15,
+          "4": 12
+        },
+        "semantic_failure_counts": {
+          "logic_error": {
+            "0": 12,
+            "1": 12,
+            "2": 12,
+            "3": 11,
+            "4": 10
+          },
+          "format_error": {
+            "0": 3,
+            "1": 3,
+            "2": 3,
+            "3": 3,
+            "4": 2
+          },
+          "timeout_runtime": {
+            "3": 1
+          }
+        },
+        "semantic_failures_by_bin": {
+          "0": {
+            "logic_error": 12,
+            "format_error": 3
+          },
+          "1": {
+            "logic_error": 12,
+            "format_error": 3
+          },
+          "2": {
+            "logic_error": 12,
+            "format_error": 3
+          },
+          "3": {
+            "logic_error": 11,
+            "format_error": 3,
+            "timeout_runtime": 1
+          },
+          "4": {
+            "logic_error": 10,
+            "format_error": 2
+          }
+        }
+      },
+      "qwen2.5_1.5b": {
+        "display_name": "qwen2.5:1.5b",
+        "matched_query_count": 72,
+        "tau_cap_bin": null,
+        "tau_cap_difficulty": null,
+        "tau_risk_bin": null,
+        "tau_risk_difficulty": null,
+        "capability_curve": {
+          "0": 0.8,
+          "1": 1.0,
+          "2": 1.0,
+          "3": 0.8,
+          "4": 0.9166666666666666
+        },
+        "risk_curve": {
+          "0": 0.2,
+          "1": 0.0,
+          "2": 0.0,
+          "3": 0.2,
+          "4": 0.08333333333333333
+        },
+        "expected_capability_curve": {
+          "0": 0.8,
+          "1": 1.0,
+          "2": 1.0,
+          "3": 0.8,
+          "4": 0.9166666666666666
+        },
+        "expected_risk_curve": {
+          "0": 0.2,
+          "1": 0.0,
+          "2": 0.0,
+          "3": 0.2,
+          "4": 0.08333333333333333
+        },
+        "counts_by_bin": {
+          "0": 15,
+          "1": 15,
+          "2": 15,
+          "3": 15,
+          "4": 12
+        },
+        "semantic_failure_counts": {
+          "logic_error": {
+            "0": 2,
+            "3": 2,
+            "4": 1
+          },
+          "format_error": {
+            "0": 1,
+            "3": 1
+          }
+        },
+        "semantic_failures_by_bin": {
+          "0": {
+            "logic_error": 2,
+            "format_error": 1
+          },
+          "3": {
+            "logic_error": 2,
+            "format_error": 1
+          },
+          "4": {
+            "logic_error": 1
+          },
+          "1": {},
+          "2": {}
+        }
+      },
+      "phi3_mini": {
+        "display_name": "phi3:mini",
+        "matched_query_count": 72,
+        "tau_cap_bin": null,
+        "tau_cap_difficulty": null,
+        "tau_risk_bin": 0,
+        "tau_risk_difficulty": 0.0,
+        "capability_curve": {
+          "0": 0.0,
+          "1": 0.0,
+          "2": 0.0,
+          "3": 0.0,
+          "4": 0.0
+        },
+        "risk_curve": {
+          "0": 1.0,
+          "1": 1.0,
+          "2": 1.0,
+          "3": 1.0,
+          "4": 1.0
+        },
+        "expected_capability_curve": {
+          "0": 0.0,
+          "1": 0.0,
+          "2": 0.0,
+          "3": 0.0,
+          "4": 0.0
+        },
+        "expected_risk_curve": {
+          "0": 1.0,
+          "1": 1.0,
+          "2": 1.0,
+          "3": 1.0,
+          "4": 1.0
+        },
+        "counts_by_bin": {
+          "0": 15,
+          "1": 15,
+          "2": 15,
+          "3": 15,
+          "4": 12
+        },
+        "semantic_failure_counts": {
+          "logic_error": {
+            "0": 12,
+            "1": 12,
+            "2": 12,
+            "3": 12,
+            "4": 10
+          },
+          "format_error": {
+            "0": 3,
+            "1": 3,
+            "2": 3,
+            "3": 3,
+            "4": 2
+          }
+        },
+        "semantic_failures_by_bin": {
+          "0": {
+            "logic_error": 12,
+            "format_error": 3
+          },
+          "1": {
+            "logic_error": 12,
+            "format_error": 3
+          },
+          "2": {
+            "logic_error": 12,
+            "format_error": 3
+          },
+          "3": {
+            "logic_error": 12,
+            "format_error": 3
+          },
+          "4": {
+            "logic_error": 10,
+            "format_error": 2
+          }
+        }
+      },
+      "llama_llama-3.3-70b-versatile": {
+        "display_name": "groq:llama-3.3-70b-versatile",
+        "matched_query_count": 72,
+        "tau_cap_bin": null,
+        "tau_cap_difficulty": null,
+        "tau_risk_bin": 0,
+        "tau_risk_difficulty": 0.0,
+        "capability_curve": {
+          "0": 0.0,
+          "1": 0.0,
+          "2": 0.0,
+          "3": 0.0,
+          "4": 0.0
+        },
+        "risk_curve": {
+          "0": 1.0,
+          "1": 1.0,
+          "2": 1.0,
+          "3": 1.0,
+          "4": 1.0
+        },
+        "expected_capability_curve": {
+          "0": 0.0,
+          "1": 0.0,
+          "2": 0.0,
+          "3": 0.0,
+          "4": 0.0
+        },
+        "expected_risk_curve": {
+          "0": 1.0,
+          "1": 1.0,
+          "2": 1.0,
+          "3": 1.0,
+          "4": 1.0
+        },
+        "counts_by_bin": {
+          "0": 15,
+          "1": 15,
+          "2": 15,
+          "3": 15,
+          "4": 12
+        },
+        "semantic_failure_counts": {
+          "logic_error": {
+            "0": 12,
+            "1": 12,
+            "2": 12,
+            "3": 12,
+            "4": 10
+          },
+          "format_error": {
+            "0": 3,
+            "1": 3,
+            "2": 3,
+            "3": 3,
+            "4": 2
+          }
+        },
+        "semantic_failures_by_bin": {
+          "0": {
+            "logic_error": 12,
+            "format_error": 3
+          },
+          "1": {
+            "logic_error": 12,
+            "format_error": 3
+          },
+          "2": {
+            "logic_error": 12,
+            "format_error": 3
+          },
+          "3": {
+            "logic_error": 12,
+            "format_error": 3
+          },
+          "4": {
+            "logic_error": 10,
+            "format_error": 2
+          }
+        }
+      }
+    },
+    "decision_matrix": {
+      "tinyllama_1.1b": {
+        "display_name": "tinyllama:1.1b",
+        "avg_expected_capability": 0.0,
+        "avg_expected_risk": 1.0,
+        "empirical_quadrant": "Q4: low capability, high risk",
+        "confidence_quadrant": "Q4: low capability, high risk",
+        "empirical_routing_policy": {
+          "limit_bin": null,
+          "limit_difficulty": null,
+          "sparse_bins": [],
+          "route_rule": "Empirical evidence does not show a deployable SLM region; route to BASELINE."
+        },
+        "confidence_certified_routing_policy": {
+          "risk_gate_pass": false,
+          "capability_gate_pass": false,
+          "limit_bin": null,
+          "limit_difficulty": null,
+          "sparse_bins": [],
+          "route_rule": "Route all queries to BASELINE; SLM never clears the capability gate with Wilson confidence."
+        }
+      },
+      "qwen2.5_1.5b": {
+        "display_name": "qwen2.5:1.5b",
+        "avg_expected_capability": 0.9033333333333333,
+        "avg_expected_risk": 0.09666666666666666,
+        "empirical_quadrant": "Q1: high capability, low risk",
+        "confidence_quadrant": "Q1: high capability, low risk",
+        "empirical_routing_policy": {
+          "limit_bin": 4,
+          "limit_difficulty": 1.0,
+          "sparse_bins": [],
+          "route_rule": "Empirically route to SLM when difficulty_bin <= 4; otherwise route to BASELINE."
+        },
+        "confidence_certified_routing_policy": {
+          "risk_gate_pass": true,
+          "capability_gate_pass": false,
+          "limit_bin": null,
+          "limit_difficulty": null,
+          "sparse_bins": [],
+          "route_rule": "Route all queries to BASELINE; SLM never clears the capability gate with Wilson confidence."
+        }
+      },
+      "phi3_mini": {
+        "display_name": "phi3:mini",
+        "avg_expected_capability": 0.0,
+        "avg_expected_risk": 1.0,
+        "empirical_quadrant": "Q4: low capability, high risk",
+        "confidence_quadrant": "Q4: low capability, high risk",
+        "empirical_routing_policy": {
+          "limit_bin": null,
+          "limit_difficulty": null,
+          "sparse_bins": [],
+          "route_rule": "Empirical evidence does not show a deployable SLM region; route to BASELINE."
+        },
+        "confidence_certified_routing_policy": {
+          "risk_gate_pass": false,
+          "capability_gate_pass": false,
+          "limit_bin": null,
+          "limit_difficulty": null,
+          "sparse_bins": [],
+          "route_rule": "Route all queries to BASELINE; SLM never clears the capability gate with Wilson confidence."
+        }
+      },
+      "llama_llama-3.3-70b-versatile": {
+        "display_name": "groq:llama-3.3-70b-versatile",
+        "avg_expected_capability": 0.0,
+        "avg_expected_risk": 1.0,
+        "empirical_quadrant": "Q4: low capability, high risk",
+        "confidence_quadrant": "Q4: low capability, high risk",
+        "empirical_routing_policy": {
+          "limit_bin": null,
+          "limit_difficulty": null,
+          "sparse_bins": [],
+          "route_rule": "Empirical evidence does not show a deployable SLM region; route to BASELINE."
+        },
+        "confidence_certified_routing_policy": {
+          "risk_gate_pass": false,
+          "capability_gate_pass": false,
+          "limit_bin": null,
+          "limit_difficulty": null,
+          "sparse_bins": [],
+          "route_rule": "Route all queries to BASELINE; SLM never clears the capability gate with Wilson confidence."
+        }
+      }
+    }
+  },
+  "information_extraction": {
+    "task": "information_extraction",
+    "matched_query_count": 75,
+    "models_used": [
+      "tinyllama:1.1b",
+      "qwen2.5:1.5b",
+      "phi3:mini",
+      "groq:llama-3.3-70b-versatile"
+    ],
+    "thresholds": {
+      "tinyllama_1.1b": {
+        "display_name": "tinyllama:1.1b",
+        "matched_query_count": 75,
+        "tau_cap_bin": null,
+        "tau_cap_difficulty": null,
+        "tau_risk_bin": null,
+        "tau_risk_difficulty": null,
+        "capability_curve": {
+          "0": 0.8666666666666667,
+          "1": 0.9333333333333333,
+          "2": 0.8666666666666667,
+          "3": 0.7333333333333333,
+          "4": 0.9333333333333333
+        },
+        "risk_curve": {
+          "0": 0.13333333333333333,
+          "1": 0.06666666666666667,
+          "2": 0.13333333333333333,
+          "3": 0.26666666666666666,
+          "4": 0.06666666666666667
+        },
+        "expected_capability_curve": {
+          "0": 0.8666666666666667,
+          "1": 0.9333333333333333,
+          "2": 0.8666666666666667,
+          "3": 0.7333333333333333,
+          "4": 0.9333333333333333
+        },
+        "expected_risk_curve": {
+          "0": 0.13333333333333333,
+          "1": 0.06666666666666667,
+          "2": 0.13333333333333333,
+          "3": 0.26666666666666666,
+          "4": 0.06666666666666667
+        },
+        "counts_by_bin": {
+          "0": 15,
+          "1": 15,
+          "2": 15,
+          "3": 15,
+          "4": 15
+        },
+        "semantic_failure_counts": {
+          "missing_field": {
+            "0": 2,
+            "1": 1,
+            "2": 2,
+            "3": 4,
+            "4": 1
+          }
+        },
+        "semantic_failures_by_bin": {
+          "0": {
+            "missing_field": 2
+          },
+          "1": {
+            "missing_field": 1
+          },
+          "2": {
+            "missing_field": 2
+          },
+          "3": {
+            "missing_field": 4
+          },
+          "4": {
+            "missing_field": 1
+          }
+        }
+      },
+      "qwen2.5_1.5b": {
+        "display_name": "qwen2.5:1.5b",
+        "matched_query_count": 75,
+        "tau_cap_bin": null,
+        "tau_cap_difficulty": null,
+        "tau_risk_bin": null,
+        "tau_risk_difficulty": null,
+        "capability_curve": {
+          "0": 1.0,
+          "1": 1.0,
+          "2": 0.8666666666666667,
+          "3": 1.0,
+          "4": 1.0
+        },
+        "risk_curve": {
+          "0": 0.0,
+          "1": 0.0,
+          "2": 0.13333333333333333,
+          "3": 0.0,
+          "4": 0.0
+        },
+        "expected_capability_curve": {
+          "0": 1.0,
+          "1": 1.0,
+          "2": 0.8666666666666667,
+          "3": 1.0,
+          "4": 1.0
+        },
+        "expected_risk_curve": {
+          "0": 0.0,
+          "1": 0.0,
+          "2": 0.13333333333333333,
+          "3": 0.0,
+          "4": 0.0
+        },
+        "counts_by_bin": {
+          "0": 15,
+          "1": 15,
+          "2": 15,
+          "3": 15,
+          "4": 15
+        },
+        "semantic_failure_counts": {
+          "missing_field": {
+            "2": 2
+          }
+        },
+        "semantic_failures_by_bin": {
+          "2": {
+            "missing_field": 2
+          },
+          "0": {},
+          "1": {},
+          "3": {},
+          "4": {}
+        }
+      },
+      "phi3_mini": {
+        "display_name": "phi3:mini",
+        "matched_query_count": 75,
+        "tau_cap_bin": null,
+        "tau_cap_difficulty": null,
+        "tau_risk_bin": null,
+        "tau_risk_difficulty": null,
+        "capability_curve": {
+          "0": 0.9333333333333333,
+          "1": 0.9333333333333333,
+          "2": 1.0,
+          "3": 0.8666666666666667,
+          "4": 1.0
+        },
+        "risk_curve": {
+          "0": 0.06666666666666667,
+          "1": 0.06666666666666667,
+          "2": 0.0,
+          "3": 0.13333333333333333,
+          "4": 0.0
+        },
+        "expected_capability_curve": {
+          "0": 0.9333333333333333,
+          "1": 0.9333333333333333,
+          "2": 1.0,
+          "3": 0.8666666666666667,
+          "4": 1.0
+        },
+        "expected_risk_curve": {
+          "0": 0.06666666666666667,
+          "1": 0.06666666666666667,
+          "2": 0.0,
+          "3": 0.13333333333333333,
+          "4": 0.0
+        },
+        "counts_by_bin": {
+          "0": 15,
+          "1": 15,
+          "2": 15,
+          "3": 15,
+          "4": 15
+        },
+        "semantic_failure_counts": {
+          "missing_field": {
+            "0": 1,
+            "1": 1,
+            "3": 2
+          }
+        },
+        "semantic_failures_by_bin": {
+          "0": {
+            "missing_field": 1
+          },
+          "1": {
+            "missing_field": 1
+          },
+          "3": {
+            "missing_field": 2
+          },
+          "2": {},
+          "4": {}
+        }
+      },
+      "llama_llama-3.3-70b-versatile": {
+        "display_name": "groq:llama-3.3-70b-versatile",
+        "matched_query_count": 75,
+        "tau_cap_bin": null,
+        "tau_cap_difficulty": null,
+        "tau_risk_bin": null,
+        "tau_risk_difficulty": null,
+        "capability_curve": {
+          "0": 1.0,
+          "1": 1.0,
+          "2": 1.0,
+          "3": 1.0,
+          "4": 1.0
+        },
+        "risk_curve": {
+          "0": 0.0,
+          "1": 0.0,
+          "2": 0.0,
+          "3": 0.0,
+          "4": 0.0
+        },
+        "expected_capability_curve": {
+          "0": 1.0,
+          "1": 1.0,
+          "2": 1.0,
+          "3": 1.0,
+          "4": 1.0
+        },
+        "expected_risk_curve": {
+          "0": 0.0,
+          "1": 0.0,
+          "2": 0.0,
+          "3": 0.0,
+          "4": 0.0
+        },
+        "counts_by_bin": {
+          "0": 15,
+          "1": 15,
+          "2": 15,
+          "3": 15,
+          "4": 15
+        },
+        "semantic_failure_counts": {},
+        "semantic_failures_by_bin": {
+          "0": {},
+          "1": {},
+          "2": {},
+          "3": {},
+          "4": {}
+        }
+      }
+    },
+    "decision_matrix": {
+      "tinyllama_1.1b": {
+        "display_name": "tinyllama:1.1b",
+        "avg_expected_capability": 0.8666666666666666,
+        "avg_expected_risk": 0.13333333333333333,
+        "empirical_quadrant": "Q1: high capability, low risk",
+        "confidence_quadrant": "Q1: high capability, low risk",
+        "empirical_routing_policy": {
+          "limit_bin": 4,
+          "limit_difficulty": 1.0,
+          "sparse_bins": [],
+          "route_rule": "Empirically route to SLM when difficulty_bin <= 4; otherwise route to BASELINE."
+        },
+        "confidence_certified_routing_policy": {
+          "risk_gate_pass": true,
+          "capability_gate_pass": false,
+          "limit_bin": null,
+          "limit_difficulty": null,
+          "sparse_bins": [],
+          "route_rule": "Route all queries to BASELINE; SLM never clears the capability gate with Wilson confidence."
+        }
+      },
+      "qwen2.5_1.5b": {
+        "display_name": "qwen2.5:1.5b",
+        "avg_expected_capability": 0.9733333333333334,
+        "avg_expected_risk": 0.026666666666666665,
+        "empirical_quadrant": "Q1: high capability, low risk",
+        "confidence_quadrant": "Q1: high capability, low risk",
+        "empirical_routing_policy": {
+          "limit_bin": 4,
+          "limit_difficulty": 1.0,
+          "sparse_bins": [],
+          "route_rule": "Empirically route to SLM when difficulty_bin <= 4; otherwise route to BASELINE."
+        },
+        "confidence_certified_routing_policy": {
+          "risk_gate_pass": true,
+          "capability_gate_pass": false,
+          "limit_bin": null,
+          "limit_difficulty": null,
+          "sparse_bins": [],
+          "route_rule": "Route all queries to BASELINE; SLM never clears the capability gate with Wilson confidence."
+        }
+      },
+      "phi3_mini": {
+        "display_name": "phi3:mini",
+        "avg_expected_capability": 0.9466666666666667,
+        "avg_expected_risk": 0.05333333333333333,
+        "empirical_quadrant": "Q1: high capability, low risk",
+        "confidence_quadrant": "Q1: high capability, low risk",
+        "empirical_routing_policy": {
+          "limit_bin": 4,
+          "limit_difficulty": 1.0,
+          "sparse_bins": [],
+          "route_rule": "Empirically route to SLM when difficulty_bin <= 4; otherwise route to BASELINE."
+        },
+        "confidence_certified_routing_policy": {
+          "risk_gate_pass": true,
+          "capability_gate_pass": false,
+          "limit_bin": null,
+          "limit_difficulty": null,
+          "sparse_bins": [],
+          "route_rule": "Route all queries to BASELINE; SLM never clears the capability gate with Wilson confidence."
+        }
+      },
+      "llama_llama-3.3-70b-versatile": {
+        "display_name": "groq:llama-3.3-70b-versatile",
+        "avg_expected_capability": 1.0,
+        "avg_expected_risk": 0.0,
+        "empirical_quadrant": "Q1: high capability, low risk",
+        "confidence_quadrant": "Q1: high capability, low risk",
+        "empirical_routing_policy": {
+          "limit_bin": 4,
+          "limit_difficulty": 1.0,
+          "sparse_bins": [],
+          "route_rule": "Empirically route to SLM when difficulty_bin <= 4; otherwise route to BASELINE."
+        },
+        "confidence_certified_routing_policy": {
+          "risk_gate_pass": true,
+          "capability_gate_pass": false,
+          "limit_bin": null,
+          "limit_difficulty": null,
+          "sparse_bins": [],
+          "route_rule": "Route all queries to BASELINE; SLM never clears the capability gate with Wilson confidence."
+        }
+      }
+    }
+  },
+  "instruction_following": {
+    "task": "instruction_following",
+    "matched_query_count": 75,
+    "models_used": [
+      "tinyllama:1.1b",
+      "qwen2.5:1.5b",
+      "phi3:mini",
+      "groq:llama-3.3-70b-versatile"
+    ],
+    "thresholds": {
+      "tinyllama_1.1b": {
+        "display_name": "tinyllama:1.1b",
+        "matched_query_count": 75,
+        "tau_cap_bin": null,
+        "tau_cap_difficulty": null,
+        "tau_risk_bin": null,
+        "tau_risk_difficulty": null,
+        "capability_curve": {
+          "0": 0.8,
+          "1": 0.7333333333333333,
+          "2": 0.7333333333333333,
+          "3": 0.7333333333333333,
+          "4": 0.8
+        },
+        "risk_curve": {
+          "0": 0.2,
+          "1": 0.26666666666666666,
+          "2": 0.26666666666666666,
+          "3": 0.26666666666666666,
+          "4": 0.2
+        },
+        "expected_capability_curve": {
+          "0": 0.8,
+          "1": 0.7333333333333333,
+          "2": 0.7333333333333333,
+          "3": 0.7333333333333333,
+          "4": 0.8
+        },
+        "expected_risk_curve": {
+          "0": 0.2,
+          "1": 0.26666666666666666,
+          "2": 0.26666666666666666,
+          "3": 0.26666666666666666,
+          "4": 0.2
+        },
+        "counts_by_bin": {
+          "0": 15,
+          "1": 15,
+          "2": 15,
+          "3": 15,
+          "4": 15
+        },
+        "semantic_failure_counts": {
+          "constraint_violation": {
+            "0": 2,
+            "1": 4,
+            "2": 3,
+            "3": 4,
+            "4": 3
+          },
+          "empty_output": {
+            "0": 1,
+            "2": 1
+          }
+        },
+        "semantic_failures_by_bin": {
+          "0": {
+            "constraint_violation": 2,
+            "empty_output": 1
+          },
+          "1": {
+            "constraint_violation": 4
+          },
+          "2": {
+            "constraint_violation": 3,
+            "empty_output": 1
+          },
+          "3": {
+            "constraint_violation": 4
+          },
+          "4": {
+            "constraint_violation": 3
+          }
+        }
+      },
+      "qwen2.5_1.5b": {
+        "display_name": "qwen2.5:1.5b",
+        "matched_query_count": 75,
+        "tau_cap_bin": null,
+        "tau_cap_difficulty": null,
+        "tau_risk_bin": null,
+        "tau_risk_difficulty": null,
+        "capability_curve": {
+          "0": 0.8,
+          "1": 0.8666666666666667,
+          "2": 0.9333333333333333,
+          "3": 0.8,
+          "4": 0.8666666666666667
+        },
+        "risk_curve": {
+          "0": 0.2,
+          "1": 0.13333333333333333,
+          "2": 0.06666666666666667,
+          "3": 0.2,
+          "4": 0.13333333333333333
+        },
+        "expected_capability_curve": {
+          "0": 0.8,
+          "1": 0.8666666666666667,
+          "2": 0.9333333333333333,
+          "3": 0.8,
+          "4": 0.8666666666666667
+        },
+        "expected_risk_curve": {
+          "0": 0.2,
+          "1": 0.13333333333333333,
+          "2": 0.06666666666666667,
+          "3": 0.2,
+          "4": 0.13333333333333333
+        },
+        "counts_by_bin": {
+          "0": 15,
+          "1": 15,
+          "2": 15,
+          "3": 15,
+          "4": 15
+        },
+        "semantic_failure_counts": {
+          "constraint_violation": {
+            "0": 3,
+            "1": 2,
+            "2": 1,
+            "3": 3,
+            "4": 2
+          }
+        },
+        "semantic_failures_by_bin": {
+          "0": {
+            "constraint_violation": 3
+          },
+          "1": {
+            "constraint_violation": 2
+          },
+          "2": {
+            "constraint_violation": 1
+          },
+          "3": {
+            "constraint_violation": 3
+          },
+          "4": {
+            "constraint_violation": 2
+          }
+        }
+      },
+      "phi3_mini": {
+        "display_name": "phi3:mini",
+        "matched_query_count": 75,
+        "tau_cap_bin": null,
+        "tau_cap_difficulty": null,
+        "tau_risk_bin": null,
+        "tau_risk_difficulty": null,
+        "capability_curve": {
+          "0": 0.6666666666666666,
+          "1": 0.7333333333333333,
+          "2": 0.6666666666666666,
+          "3": 0.6,
+          "4": 0.6666666666666666
+        },
+        "risk_curve": {
+          "0": 0.3333333333333333,
+          "1": 0.26666666666666666,
+          "2": 0.3333333333333333,
+          "3": 0.4,
+          "4": 0.3333333333333333
+        },
+        "expected_capability_curve": {
+          "0": 0.6666666666666666,
+          "1": 0.7333333333333333,
+          "2": 0.6666666666666666,
+          "3": 0.6,
+          "4": 0.6666666666666666
+        },
+        "expected_risk_curve": {
+          "0": 0.3333333333333333,
+          "1": 0.26666666666666666,
+          "2": 0.3333333333333333,
+          "3": 0.4,
+          "4": 0.3333333333333333
+        },
+        "counts_by_bin": {
+          "0": 15,
+          "1": 15,
+          "2": 15,
+          "3": 15,
+          "4": 15
+        },
+        "semantic_failure_counts": {
+          "constraint_violation": {
+            "0": 5,
+            "1": 4,
+            "2": 5,
+            "3": 6,
+            "4": 5
+          }
+        },
+        "semantic_failures_by_bin": {
+          "0": {
+            "constraint_violation": 5
+          },
+          "1": {
+            "constraint_violation": 4
+          },
+          "2": {
+            "constraint_violation": 5
+          },
+          "3": {
+            "constraint_violation": 6
+          },
+          "4": {
+            "constraint_violation": 5
+          }
+        }
+      },
+      "llama_llama-3.3-70b-versatile": {
+        "display_name": "groq:llama-3.3-70b-versatile",
+        "matched_query_count": 75,
+        "tau_cap_bin": null,
+        "tau_cap_difficulty": null,
+        "tau_risk_bin": null,
+        "tau_risk_difficulty": null,
+        "capability_curve": {
+          "0": 1.0,
+          "1": 1.0,
+          "2": 1.0,
+          "3": 1.0,
+          "4": 1.0
+        },
+        "risk_curve": {
+          "0": 0.0,
+          "1": 0.0,
+          "2": 0.0,
+          "3": 0.0,
+          "4": 0.0
+        },
+        "expected_capability_curve": {
+          "0": 1.0,
+          "1": 1.0,
+          "2": 1.0,
+          "3": 1.0,
+          "4": 1.0
+        },
+        "expected_risk_curve": {
+          "0": 0.0,
+          "1": 0.0,
+          "2": 0.0,
+          "3": 0.0,
+          "4": 0.0
+        },
+        "counts_by_bin": {
+          "0": 15,
+          "1": 15,
+          "2": 15,
+          "3": 15,
+          "4": 15
+        },
+        "semantic_failure_counts": {},
+        "semantic_failures_by_bin": {
+          "0": {},
+          "1": {},
+          "2": {},
+          "3": {},
+          "4": {}
+        }
+      }
+    },
+    "decision_matrix": {
+      "tinyllama_1.1b": {
+        "display_name": "tinyllama:1.1b",
+        "avg_expected_capability": 0.76,
+        "avg_expected_risk": 0.24,
+        "empirical_quadrant": "Q4: low capability, high risk",
+        "confidence_quadrant": "Q4: low capability, high risk",
+        "empirical_routing_policy": {
+          "limit_bin": 4,
+          "limit_difficulty": 1.0,
+          "sparse_bins": [],
+          "route_rule": "Empirically route to SLM when difficulty_bin <= 4; otherwise route to BASELINE."
+        },
+        "confidence_certified_routing_policy": {
+          "risk_gate_pass": true,
+          "capability_gate_pass": false,
+          "limit_bin": null,
+          "limit_difficulty": null,
+          "sparse_bins": [],
+          "route_rule": "Route all queries to BASELINE; SLM never clears the capability gate with Wilson confidence."
+        }
+      },
+      "qwen2.5_1.5b": {
+        "display_name": "qwen2.5:1.5b",
+        "avg_expected_capability": 0.8533333333333333,
+        "avg_expected_risk": 0.14666666666666667,
+        "empirical_quadrant": "Q1: high capability, low risk",
+        "confidence_quadrant": "Q1: high capability, low risk",
+        "empirical_routing_policy": {
+          "limit_bin": 4,
+          "limit_difficulty": 1.0,
+          "sparse_bins": [],
+          "route_rule": "Empirically route to SLM when difficulty_bin <= 4; otherwise route to BASELINE."
+        },
+        "confidence_certified_routing_policy": {
+          "risk_gate_pass": true,
+          "capability_gate_pass": false,
+          "limit_bin": null,
+          "limit_difficulty": null,
+          "sparse_bins": [],
+          "route_rule": "Route all queries to BASELINE; SLM never clears the capability gate with Wilson confidence."
+        }
+      },
+      "phi3_mini": {
+        "display_name": "phi3:mini",
+        "avg_expected_capability": 0.6666666666666666,
+        "avg_expected_risk": 0.3333333333333333,
+        "empirical_quadrant": "Q4: low capability, high risk",
+        "confidence_quadrant": "Q4: low capability, high risk",
+        "empirical_routing_policy": {
+          "limit_bin": null,
+          "limit_difficulty": null,
+          "sparse_bins": [],
+          "route_rule": "Empirical evidence does not show a deployable SLM region; route to BASELINE."
+        },
+        "confidence_certified_routing_policy": {
+          "risk_gate_pass": true,
+          "capability_gate_pass": false,
+          "limit_bin": null,
+          "limit_difficulty": null,
+          "sparse_bins": [],
+          "route_rule": "Route all queries to BASELINE; SLM never clears the capability gate with Wilson confidence."
+        }
+      },
+      "llama_llama-3.3-70b-versatile": {
+        "display_name": "groq:llama-3.3-70b-versatile",
+        "avg_expected_capability": 1.0,
+        "avg_expected_risk": 0.0,
+        "empirical_quadrant": "Q1: high capability, low risk",
+        "confidence_quadrant": "Q1: high capability, low risk",
+        "empirical_routing_policy": {
+          "limit_bin": 4,
+          "limit_difficulty": 1.0,
+          "sparse_bins": [],
+          "route_rule": "Empirically route to SLM when difficulty_bin <= 4; otherwise route to BASELINE."
+        },
+        "confidence_certified_routing_policy": {
+          "risk_gate_pass": true,
+          "capability_gate_pass": false,
+          "limit_bin": null,
+          "limit_difficulty": null,
+          "sparse_bins": [],
+          "route_rule": "Route all queries to BASELINE; SLM never clears the capability gate with Wilson confidence."
+        }
+      }
+    }
+  },
+  "maths": {
+    "task": "maths",
+    "matched_query_count": 71,
+    "models_used": [
+      "tinyllama:1.1b",
+      "qwen2.5:1.5b",
+      "phi3:mini",
+      "groq:llama-3.3-70b-versatile"
+    ],
+    "thresholds": {
+      "tinyllama_1.1b": {
+        "display_name": "tinyllama:1.1b",
+        "matched_query_count": 71,
+        "tau_cap_bin": null,
+        "tau_cap_difficulty": null,
+        "tau_risk_bin": 0,
+        "tau_risk_difficulty": 0.0,
+        "capability_curve": {
+          "0": 0.0,
+          "1": 0.2,
+          "2": 0.06666666666666667,
+          "3": 0.06666666666666667,
+          "4": 0.2727272727272727
+        },
+        "risk_curve": {
+          "0": 1.0,
+          "1": 0.8,
+          "2": 0.9333333333333333,
+          "3": 0.9333333333333333,
+          "4": 0.7272727272727273
+        },
+        "expected_capability_curve": {
+          "0": 0.0,
+          "1": 0.2,
+          "2": 0.06666666666666667,
+          "3": 0.06666666666666667,
+          "4": 0.2727272727272727
+        },
+        "expected_risk_curve": {
+          "0": 1.0,
+          "1": 0.8,
+          "2": 0.9333333333333333,
+          "3": 0.9333333333333333,
+          "4": 0.7272727272727273
+        },
+        "counts_by_bin": {
+          "0": 15,
+          "1": 15,
+          "2": 15,
+          "3": 15,
+          "4": 11
+        },
+        "semantic_failure_counts": {
+          "arithmetic_error": {
+            "0": 15,
+            "1": 12,
+            "2": 14,
+            "3": 13,
+            "4": 8
+          },
+          "timeout_runtime": {
+            "3": 1
+          }
+        },
+        "semantic_failures_by_bin": {
+          "0": {
+            "arithmetic_error": 15
+          },
+          "1": {
+            "arithmetic_error": 12
+          },
+          "2": {
+            "arithmetic_error": 14
+          },
+          "3": {
+            "arithmetic_error": 13,
+            "timeout_runtime": 1
+          },
+          "4": {
+            "arithmetic_error": 8
+          }
+        }
+      },
+      "qwen2.5_1.5b": {
+        "display_name": "qwen2.5:1.5b",
+        "matched_query_count": 71,
+        "tau_cap_bin": null,
+        "tau_cap_difficulty": null,
+        "tau_risk_bin": null,
+        "tau_risk_difficulty": null,
+        "capability_curve": {
+          "0": 0.6666666666666666,
+          "1": 0.7333333333333333,
+          "2": 0.8,
+          "3": 0.7333333333333333,
+          "4": 0.8181818181818182
+        },
+        "risk_curve": {
+          "0": 0.3333333333333333,
+          "1": 0.26666666666666666,
+          "2": 0.2,
+          "3": 0.26666666666666666,
+          "4": 0.18181818181818182
+        },
+        "expected_capability_curve": {
+          "0": 0.6666666666666666,
+          "1": 0.7333333333333333,
+          "2": 0.8,
+          "3": 0.7333333333333333,
+          "4": 0.8181818181818182
+        },
+        "expected_risk_curve": {
+          "0": 0.3333333333333333,
+          "1": 0.26666666666666666,
+          "2": 0.2,
+          "3": 0.26666666666666666,
+          "4": 0.18181818181818182
+        },
+        "counts_by_bin": {
+          "0": 15,
+          "1": 15,
+          "2": 15,
+          "3": 15,
+          "4": 11
+        },
+        "semantic_failure_counts": {
+          "arithmetic_error": {
+            "0": 5,
+            "1": 4,
+            "2": 3,
+            "3": 4,
+            "4": 2
+          }
+        },
+        "semantic_failures_by_bin": {
+          "0": {
+            "arithmetic_error": 5
+          },
+          "1": {
+            "arithmetic_error": 4
+          },
+          "2": {
+            "arithmetic_error": 3
+          },
+          "3": {
+            "arithmetic_error": 4
+          },
+          "4": {
+            "arithmetic_error": 2
+          }
+        }
+      },
+      "phi3_mini": {
+        "display_name": "phi3:mini",
+        "matched_query_count": 71,
+        "tau_cap_bin": null,
+        "tau_cap_difficulty": null,
+        "tau_risk_bin": 1,
+        "tau_risk_difficulty": 0.25,
+        "capability_curve": {
+          "0": 0.6,
+          "1": 0.5333333333333333,
+          "2": 0.8,
+          "3": 0.8666666666666667,
+          "4": 0.6363636363636364
+        },
+        "risk_curve": {
+          "0": 0.4,
+          "1": 0.4666666666666667,
+          "2": 0.2,
+          "3": 0.13333333333333333,
+          "4": 0.36363636363636365
+        },
+        "expected_capability_curve": {
+          "0": 0.6,
+          "1": 0.5333333333333333,
+          "2": 0.8,
+          "3": 0.8666666666666667,
+          "4": 0.6363636363636364
+        },
+        "expected_risk_curve": {
+          "0": 0.4,
+          "1": 0.4666666666666667,
+          "2": 0.2,
+          "3": 0.13333333333333333,
+          "4": 0.36363636363636365
+        },
+        "counts_by_bin": {
+          "0": 15,
+          "1": 15,
+          "2": 15,
+          "3": 15,
+          "4": 11
+        },
+        "semantic_failure_counts": {
+          "arithmetic_error": {
+            "0": 6,
+            "1": 7,
+            "2": 3,
+            "3": 2,
+            "4": 4
+          }
+        },
+        "semantic_failures_by_bin": {
+          "0": {
+            "arithmetic_error": 6
+          },
+          "1": {
+            "arithmetic_error": 7
+          },
+          "2": {
+            "arithmetic_error": 3
+          },
+          "3": {
+            "arithmetic_error": 2
+          },
+          "4": {
+            "arithmetic_error": 4
+          }
+        }
+      },
+      "llama_llama-3.3-70b-versatile": {
+        "display_name": "groq:llama-3.3-70b-versatile",
+        "matched_query_count": 71,
+        "tau_cap_bin": null,
+        "tau_cap_difficulty": null,
+        "tau_risk_bin": null,
+        "tau_risk_difficulty": null,
+        "capability_curve": {
+          "0": 0.9333333333333333,
+          "1": 0.9333333333333333,
+          "2": 0.9333333333333333,
+          "3": 1.0,
+          "4": 0.9090909090909091
+        },
+        "risk_curve": {
+          "0": 0.06666666666666667,
+          "1": 0.06666666666666667,
+          "2": 0.06666666666666667,
+          "3": 0.0,
+          "4": 0.09090909090909091
+        },
+        "expected_capability_curve": {
+          "0": 0.9333333333333333,
+          "1": 0.9333333333333333,
+          "2": 0.9333333333333333,
+          "3": 1.0,
+          "4": 0.9090909090909091
+        },
+        "expected_risk_curve": {
+          "0": 0.06666666666666667,
+          "1": 0.06666666666666667,
+          "2": 0.06666666666666667,
+          "3": 0.0,
+          "4": 0.09090909090909091
+        },
+        "counts_by_bin": {
+          "0": 15,
+          "1": 15,
+          "2": 15,
+          "3": 15,
+          "4": 11
+        },
+        "semantic_failure_counts": {
+          "arithmetic_error": {
+            "0": 1,
+            "1": 1,
+            "2": 1,
+            "4": 1
+          }
+        },
+        "semantic_failures_by_bin": {
+          "0": {
+            "arithmetic_error": 1
+          },
+          "1": {
+            "arithmetic_error": 1
+          },
+          "2": {
+            "arithmetic_error": 1
+          },
+          "4": {
+            "arithmetic_error": 1
+          },
+          "3": {}
+        }
+      }
+    },
+    "decision_matrix": {
+      "tinyllama_1.1b": {
+        "display_name": "tinyllama:1.1b",
+        "avg_expected_capability": 0.12121212121212122,
+        "avg_expected_risk": 0.8787878787878789,
+        "empirical_quadrant": "Q4: low capability, high risk",
+        "confidence_quadrant": "Q4: low capability, high risk",
+        "empirical_routing_policy": {
+          "limit_bin": null,
+          "limit_difficulty": null,
+          "sparse_bins": [],
+          "route_rule": "Empirical evidence does not show a deployable SLM region; route to BASELINE."
+        },
+        "confidence_certified_routing_policy": {
+          "risk_gate_pass": false,
+          "capability_gate_pass": false,
+          "limit_bin": null,
+          "limit_difficulty": null,
+          "sparse_bins": [],
+          "route_rule": "Route all queries to BASELINE; SLM never clears the capability gate with Wilson confidence."
+        }
+      },
+      "qwen2.5_1.5b": {
+        "display_name": "qwen2.5:1.5b",
+        "avg_expected_capability": 0.7503030303030302,
+        "avg_expected_risk": 0.2496969696969697,
+        "empirical_quadrant": "Q4: low capability, high risk",
+        "confidence_quadrant": "Q4: low capability, high risk",
+        "empirical_routing_policy": {
+          "limit_bin": 4,
+          "limit_difficulty": 1.0,
+          "sparse_bins": [],
+          "route_rule": "Empirically route to SLM when difficulty_bin <= 4; otherwise route to BASELINE."
+        },
+        "confidence_certified_routing_policy": {
+          "risk_gate_pass": true,
+          "capability_gate_pass": false,
+          "limit_bin": null,
+          "limit_difficulty": null,
+          "sparse_bins": [],
+          "route_rule": "Route all queries to BASELINE; SLM never clears the capability gate with Wilson confidence."
+        }
+      },
+      "phi3_mini": {
+        "display_name": "phi3:mini",
+        "avg_expected_capability": 0.6872727272727273,
+        "avg_expected_risk": 0.31272727272727274,
+        "empirical_quadrant": "Q4: low capability, high risk",
+        "confidence_quadrant": "Q4: low capability, high risk",
+        "empirical_routing_policy": {
+          "limit_bin": 3,
+          "limit_difficulty": 0.75,
+          "sparse_bins": [],
+          "route_rule": "Empirically route to SLM when difficulty_bin <= 3; otherwise route to BASELINE."
+        },
+        "confidence_certified_routing_policy": {
+          "risk_gate_pass": false,
+          "capability_gate_pass": false,
+          "limit_bin": null,
+          "limit_difficulty": null,
+          "sparse_bins": [],
+          "route_rule": "Route all queries to BASELINE; SLM never clears the capability gate with Wilson confidence."
+        }
+      },
+      "llama_llama-3.3-70b-versatile": {
+        "display_name": "groq:llama-3.3-70b-versatile",
+        "avg_expected_capability": 0.9418181818181818,
+        "avg_expected_risk": 0.05818181818181818,
+        "empirical_quadrant": "Q1: high capability, low risk",
+        "confidence_quadrant": "Q1: high capability, low risk",
+        "empirical_routing_policy": {
+          "limit_bin": 4,
+          "limit_difficulty": 1.0,
+          "sparse_bins": [],
+          "route_rule": "Empirically route to SLM when difficulty_bin <= 4; otherwise route to BASELINE."
+        },
+        "confidence_certified_routing_policy": {
+          "risk_gate_pass": true,
+          "capability_gate_pass": false,
+          "limit_bin": null,
+          "limit_difficulty": null,
+          "sparse_bins": [],
+          "route_rule": "Route all queries to BASELINE; SLM never clears the capability gate with Wilson confidence."
+        }
+      }
+    }
+  },
+  "retrieval_grounded": {
+    "task": "retrieval_grounded",
+    "matched_query_count": 75,
+    "models_used": [
+      "tinyllama:1.1b",
+      "qwen2.5:1.5b",
+      "phi3:mini",
+      "groq:llama-3.3-70b-versatile"
+    ],
+    "thresholds": {
+      "tinyllama_1.1b": {
+        "display_name": "tinyllama:1.1b",
+        "matched_query_count": 75,
+        "tau_cap_bin": null,
+        "tau_cap_difficulty": null,
+        "tau_risk_bin": null,
+        "tau_risk_difficulty": null,
+        "capability_curve": {
+          "0": 0.7333333333333333,
+          "1": 0.7333333333333333,
+          "2": 0.6666666666666666,
+          "3": 0.8,
+          "4": 0.9333333333333333
+        },
+        "risk_curve": {
+          "0": 0.26666666666666666,
+          "1": 0.26666666666666666,
+          "2": 0.3333333333333333,
+          "3": 0.2,
+          "4": 0.06666666666666667
+        },
+        "expected_capability_curve": {
+          "0": 0.7333333333333333,
+          "1": 0.7333333333333333,
+          "2": 0.6666666666666666,
+          "3": 0.8,
+          "4": 0.9333333333333333
+        },
+        "expected_risk_curve": {
+          "0": 0.26666666666666666,
+          "1": 0.26666666666666666,
+          "2": 0.3333333333333333,
+          "3": 0.2,
+          "4": 0.06666666666666667
+        },
+        "counts_by_bin": {
+          "0": 15,
+          "1": 15,
+          "2": 15,
+          "3": 15,
+          "4": 15
+        },
+        "semantic_failure_counts": {
+          "no_answer": {
+            "0": 4,
+            "1": 4,
+            "2": 5,
+            "3": 3,
+            "4": 1
+          }
+        },
+        "semantic_failures_by_bin": {
+          "0": {
+            "no_answer": 4
+          },
+          "1": {
+            "no_answer": 4
+          },
+          "2": {
+            "no_answer": 5
+          },
+          "3": {
+            "no_answer": 3
+          },
+          "4": {
+            "no_answer": 1
+          }
+        }
+      },
+      "qwen2.5_1.5b": {
+        "display_name": "qwen2.5:1.5b",
+        "matched_query_count": 75,
+        "tau_cap_bin": null,
+        "tau_cap_difficulty": null,
+        "tau_risk_bin": null,
+        "tau_risk_difficulty": null,
+        "capability_curve": {
+          "0": 1.0,
+          "1": 1.0,
+          "2": 1.0,
+          "3": 1.0,
+          "4": 1.0
+        },
+        "risk_curve": {
+          "0": 0.0,
+          "1": 0.0,
+          "2": 0.0,
+          "3": 0.0,
+          "4": 0.0
+        },
+        "expected_capability_curve": {
+          "0": 1.0,
+          "1": 1.0,
+          "2": 1.0,
+          "3": 1.0,
+          "4": 1.0
+        },
+        "expected_risk_curve": {
+          "0": 0.0,
+          "1": 0.0,
+          "2": 0.0,
+          "3": 0.0,
+          "4": 0.0
+        },
+        "counts_by_bin": {
+          "0": 15,
+          "1": 15,
+          "2": 15,
+          "3": 15,
+          "4": 15
+        },
+        "semantic_failure_counts": {},
+        "semantic_failures_by_bin": {
+          "0": {},
+          "1": {},
+          "2": {},
+          "3": {},
+          "4": {}
+        }
+      },
+      "phi3_mini": {
+        "display_name": "phi3:mini",
+        "matched_query_count": 75,
+        "tau_cap_bin": null,
+        "tau_cap_difficulty": null,
+        "tau_risk_bin": null,
+        "tau_risk_difficulty": null,
+        "capability_curve": {
+          "0": 0.9333333333333333,
+          "1": 0.7333333333333333,
+          "2": 0.9333333333333333,
+          "3": 1.0,
+          "4": 0.8
+        },
+        "risk_curve": {
+          "0": 0.06666666666666667,
+          "1": 0.26666666666666666,
+          "2": 0.06666666666666667,
+          "3": 0.0,
+          "4": 0.2
+        },
+        "expected_capability_curve": {
+          "0": 0.9333333333333333,
+          "1": 0.7333333333333333,
+          "2": 0.9333333333333333,
+          "3": 1.0,
+          "4": 0.8
+        },
+        "expected_risk_curve": {
+          "0": 0.06666666666666667,
+          "1": 0.26666666666666666,
+          "2": 0.06666666666666667,
+          "3": 0.0,
+          "4": 0.2
+        },
+        "counts_by_bin": {
+          "0": 15,
+          "1": 15,
+          "2": 15,
+          "3": 15,
+          "4": 15
+        },
+        "semantic_failure_counts": {
+          "no_answer": {
+            "0": 1,
+            "1": 4,
+            "2": 1,
+            "4": 3
+          }
+        },
+        "semantic_failures_by_bin": {
+          "0": {
+            "no_answer": 1
+          },
+          "1": {
+            "no_answer": 4
+          },
+          "2": {
+            "no_answer": 1
+          },
+          "4": {
+            "no_answer": 3
+          },
+          "3": {}
+        }
+      },
+      "llama_llama-3.3-70b-versatile": {
+        "display_name": "groq:llama-3.3-70b-versatile",
+        "matched_query_count": 75,
+        "tau_cap_bin": null,
+        "tau_cap_difficulty": null,
+        "tau_risk_bin": null,
+        "tau_risk_difficulty": null,
+        "capability_curve": {
+          "0": 1.0,
+          "1": 1.0,
+          "2": 1.0,
+          "3": 1.0,
+          "4": 1.0
+        },
+        "risk_curve": {
+          "0": 0.0,
+          "1": 0.0,
+          "2": 0.0,
+          "3": 0.0,
+          "4": 0.0
+        },
+        "expected_capability_curve": {
+          "0": 1.0,
+          "1": 1.0,
+          "2": 1.0,
+          "3": 1.0,
+          "4": 1.0
+        },
+        "expected_risk_curve": {
+          "0": 0.0,
+          "1": 0.0,
+          "2": 0.0,
+          "3": 0.0,
+          "4": 0.0
+        },
+        "counts_by_bin": {
+          "0": 15,
+          "1": 15,
+          "2": 15,
+          "3": 15,
+          "4": 15
+        },
+        "semantic_failure_counts": {},
+        "semantic_failures_by_bin": {
+          "0": {},
+          "1": {},
+          "2": {},
+          "3": {},
+          "4": {}
+        }
+      }
+    },
+    "decision_matrix": {
+      "tinyllama_1.1b": {
+        "display_name": "tinyllama:1.1b",
+        "avg_expected_capability": 0.7733333333333333,
+        "avg_expected_risk": 0.22666666666666666,
+        "empirical_quadrant": "Q4: low capability, high risk",
+        "confidence_quadrant": "Q4: low capability, high risk",
+        "empirical_routing_policy": {
+          "limit_bin": 4,
+          "limit_difficulty": 1.0,
+          "sparse_bins": [],
+          "route_rule": "Empirically route to SLM when difficulty_bin <= 4; otherwise route to BASELINE."
+        },
+        "confidence_certified_routing_policy": {
+          "risk_gate_pass": true,
+          "capability_gate_pass": false,
+          "limit_bin": null,
+          "limit_difficulty": null,
+          "sparse_bins": [],
+          "route_rule": "Route all queries to BASELINE; SLM never clears the capability gate with Wilson confidence."
+        }
+      },
+      "qwen2.5_1.5b": {
+        "display_name": "qwen2.5:1.5b",
+        "avg_expected_capability": 1.0,
+        "avg_expected_risk": 0.0,
+        "empirical_quadrant": "Q1: high capability, low risk",
+        "confidence_quadrant": "Q1: high capability, low risk",
+        "empirical_routing_policy": {
+          "limit_bin": 4,
+          "limit_difficulty": 1.0,
+          "sparse_bins": [],
+          "route_rule": "Empirically route to SLM when difficulty_bin <= 4; otherwise route to BASELINE."
+        },
+        "confidence_certified_routing_policy": {
+          "risk_gate_pass": true,
+          "capability_gate_pass": false,
+          "limit_bin": null,
+          "limit_difficulty": null,
+          "sparse_bins": [],
+          "route_rule": "Route all queries to BASELINE; SLM never clears the capability gate with Wilson confidence."
+        }
+      },
+      "phi3_mini": {
+        "display_name": "phi3:mini",
+        "avg_expected_capability": 0.8800000000000001,
+        "avg_expected_risk": 0.12,
+        "empirical_quadrant": "Q1: high capability, low risk",
+        "confidence_quadrant": "Q1: high capability, low risk",
+        "empirical_routing_policy": {
+          "limit_bin": 4,
+          "limit_difficulty": 1.0,
+          "sparse_bins": [],
+          "route_rule": "Empirically route to SLM when difficulty_bin <= 4; otherwise route to BASELINE."
+        },
+        "confidence_certified_routing_policy": {
+          "risk_gate_pass": true,
+          "capability_gate_pass": false,
+          "limit_bin": null,
+          "limit_difficulty": null,
+          "sparse_bins": [],
+          "route_rule": "Route all queries to BASELINE; SLM never clears the capability gate with Wilson confidence."
+        }
+      },
+      "llama_llama-3.3-70b-versatile": {
+        "display_name": "groq:llama-3.3-70b-versatile",
+        "avg_expected_capability": 1.0,
+        "avg_expected_risk": 0.0,
+        "empirical_quadrant": "Q1: high capability, low risk",
+        "confidence_quadrant": "Q1: high capability, low risk",
+        "empirical_routing_policy": {
+          "limit_bin": 4,
+          "limit_difficulty": 1.0,
+          "sparse_bins": [],
+          "route_rule": "Empirically route to SLM when difficulty_bin <= 4; otherwise route to BASELINE."
+        },
+        "confidence_certified_routing_policy": {
+          "risk_gate_pass": true,
+          "capability_gate_pass": false,
+          "limit_bin": null,
+          "limit_difficulty": null,
+          "sparse_bins": [],
+          "route_rule": "Route all queries to BASELINE; SLM never clears the capability gate with Wilson confidence."
+        }
+      }
+    }
+  },
+  "summarization": {
+    "task": "summarization",
+    "matched_query_count": 75,
+    "models_used": [
+      "tinyllama:1.1b",
+      "qwen2.5:1.5b",
+      "phi3:mini",
+      "groq:llama-3.3-70b-versatile"
+    ],
+    "thresholds": {
+      "tinyllama_1.1b": {
+        "display_name": "tinyllama:1.1b",
+        "matched_query_count": 75,
+        "tau_cap_bin": null,
+        "tau_cap_difficulty": null,
+        "tau_risk_bin": null,
+        "tau_risk_difficulty": null,
+        "capability_curve": {
+          "0": 0.9333333333333333,
+          "1": 1.0,
+          "2": 1.0,
+          "3": 1.0,
+          "4": 1.0
+        },
+        "risk_curve": {
+          "0": 0.06666666666666667,
+          "1": 0.0,
+          "2": 0.0,
+          "3": 0.0,
+          "4": 0.0
+        },
+        "expected_capability_curve": {
+          "0": 0.9333333333333333,
+          "1": 1.0,
+          "2": 1.0,
+          "3": 1.0,
+          "4": 1.0
+        },
+        "expected_risk_curve": {
+          "0": 0.06666666666666667,
+          "1": 0.0,
+          "2": 0.0,
+          "3": 0.0,
+          "4": 0.0
+        },
+        "counts_by_bin": {
+          "0": 15,
+          "1": 15,
+          "2": 15,
+          "3": 15,
+          "4": 15
+        },
+        "semantic_failure_counts": {
+          "low_relevance": {
+            "0": 1
+          }
+        },
+        "semantic_failures_by_bin": {
+          "0": {
+            "low_relevance": 1
+          },
+          "1": {},
+          "2": {},
+          "3": {},
+          "4": {}
+        }
+      },
+      "qwen2.5_1.5b": {
+        "display_name": "qwen2.5:1.5b",
+        "matched_query_count": 75,
+        "tau_cap_bin": null,
+        "tau_cap_difficulty": null,
+        "tau_risk_bin": null,
+        "tau_risk_difficulty": null,
+        "capability_curve": {
+          "0": 0.7333333333333333,
+          "1": 0.8,
+          "2": 0.7333333333333333,
+          "3": 0.8,
+          "4": 0.8
+        },
+        "risk_curve": {
+          "0": 0.26666666666666666,
+          "1": 0.2,
+          "2": 0.26666666666666666,
+          "3": 0.2,
+          "4": 0.2
+        },
+        "expected_capability_curve": {
+          "0": 0.7333333333333333,
+          "1": 0.8,
+          "2": 0.7333333333333333,
+          "3": 0.8,
+          "4": 0.8
+        },
+        "expected_risk_curve": {
+          "0": 0.26666666666666666,
+          "1": 0.2,
+          "2": 0.26666666666666666,
+          "3": 0.2,
+          "4": 0.2
+        },
+        "counts_by_bin": {
+          "0": 15,
+          "1": 15,
+          "2": 15,
+          "3": 15,
+          "4": 15
+        },
+        "semantic_failure_counts": {
+          "low_relevance": {
+            "0": 4,
+            "1": 3,
+            "2": 4,
+            "3": 3,
+            "4": 3
+          }
+        },
+        "semantic_failures_by_bin": {
+          "0": {
+            "low_relevance": 4
+          },
+          "1": {
+            "low_relevance": 3
+          },
+          "2": {
+            "low_relevance": 4
+          },
+          "3": {
+            "low_relevance": 3
+          },
+          "4": {
+            "low_relevance": 3
+          }
+        }
+      },
+      "phi3_mini": {
+        "display_name": "phi3:mini",
+        "matched_query_count": 75,
+        "tau_cap_bin": null,
+        "tau_cap_difficulty": null,
+        "tau_risk_bin": null,
+        "tau_risk_difficulty": null,
+        "capability_curve": {
+          "0": 1.0,
+          "1": 0.9333333333333333,
+          "2": 1.0,
+          "3": 1.0,
+          "4": 1.0
+        },
+        "risk_curve": {
+          "0": 0.0,
+          "1": 0.06666666666666667,
+          "2": 0.0,
+          "3": 0.0,
+          "4": 0.0
+        },
+        "expected_capability_curve": {
+          "0": 1.0,
+          "1": 0.9333333333333333,
+          "2": 1.0,
+          "3": 1.0,
+          "4": 1.0
+        },
+        "expected_risk_curve": {
+          "0": 0.0,
+          "1": 0.06666666666666667,
+          "2": 0.0,
+          "3": 0.0,
+          "4": 0.0
+        },
+        "counts_by_bin": {
+          "0": 15,
+          "1": 15,
+          "2": 15,
+          "3": 15,
+          "4": 15
+        },
+        "semantic_failure_counts": {
+          "low_relevance": {
+            "1": 1
+          }
+        },
+        "semantic_failures_by_bin": {
+          "1": {
+            "low_relevance": 1
+          },
+          "0": {},
+          "2": {},
+          "3": {},
+          "4": {}
+        }
+      },
+      "llama_llama-3.3-70b-versatile": {
+        "display_name": "groq:llama-3.3-70b-versatile",
+        "matched_query_count": 75,
+        "tau_cap_bin": null,
+        "tau_cap_difficulty": null,
+        "tau_risk_bin": null,
+        "tau_risk_difficulty": null,
+        "capability_curve": {
+          "0": 1.0,
+          "1": 1.0,
+          "2": 1.0,
+          "3": 1.0,
+          "4": 1.0
+        },
+        "risk_curve": {
+          "0": 0.0,
+          "1": 0.0,
+          "2": 0.0,
+          "3": 0.0,
+          "4": 0.0
+        },
+        "expected_capability_curve": {
+          "0": 1.0,
+          "1": 1.0,
+          "2": 1.0,
+          "3": 1.0,
+          "4": 1.0
+        },
+        "expected_risk_curve": {
+          "0": 0.0,
+          "1": 0.0,
+          "2": 0.0,
+          "3": 0.0,
+          "4": 0.0
+        },
+        "counts_by_bin": {
+          "0": 15,
+          "1": 15,
+          "2": 15,
+          "3": 15,
+          "4": 15
+        },
+        "semantic_failure_counts": {},
+        "semantic_failures_by_bin": {
+          "0": {},
+          "1": {},
+          "2": {},
+          "3": {},
+          "4": {}
+        }
+      }
+    },
+    "decision_matrix": {
+      "tinyllama_1.1b": {
+        "display_name": "tinyllama:1.1b",
+        "avg_expected_capability": 0.9866666666666667,
+        "avg_expected_risk": 0.013333333333333332,
+        "empirical_quadrant": "Q1: high capability, low risk",
+        "confidence_quadrant": "Q1: high capability, low risk",
+        "empirical_routing_policy": {
+          "limit_bin": 4,
+          "limit_difficulty": 1.0,
+          "sparse_bins": [],
+          "route_rule": "Empirically route to SLM when difficulty_bin <= 4; otherwise route to BASELINE."
+        },
+        "confidence_certified_routing_policy": {
+          "risk_gate_pass": true,
+          "capability_gate_pass": false,
+          "limit_bin": null,
+          "limit_difficulty": null,
+          "sparse_bins": [],
+          "route_rule": "Route all queries to BASELINE; SLM never clears the capability gate with Wilson confidence."
+        }
+      },
+      "qwen2.5_1.5b": {
+        "display_name": "qwen2.5:1.5b",
+        "avg_expected_capability": 0.7733333333333333,
+        "avg_expected_risk": 0.22666666666666666,
+        "empirical_quadrant": "Q4: low capability, high risk",
+        "confidence_quadrant": "Q4: low capability, high risk",
+        "empirical_routing_policy": {
+          "limit_bin": 4,
+          "limit_difficulty": 1.0,
+          "sparse_bins": [],
+          "route_rule": "Empirically route to SLM when difficulty_bin <= 4; otherwise route to BASELINE."
+        },
+        "confidence_certified_routing_policy": {
+          "risk_gate_pass": true,
+          "capability_gate_pass": false,
+          "limit_bin": null,
+          "limit_difficulty": null,
+          "sparse_bins": [],
+          "route_rule": "Route all queries to BASELINE; SLM never clears the capability gate with Wilson confidence."
+        }
+      },
+      "phi3_mini": {
+        "display_name": "phi3:mini",
+        "avg_expected_capability": 0.9866666666666667,
+        "avg_expected_risk": 0.013333333333333332,
+        "empirical_quadrant": "Q1: high capability, low risk",
+        "confidence_quadrant": "Q1: high capability, low risk",
+        "empirical_routing_policy": {
+          "limit_bin": 4,
+          "limit_difficulty": 1.0,
+          "sparse_bins": [],
+          "route_rule": "Empirically route to SLM when difficulty_bin <= 4; otherwise route to BASELINE."
+        },
+        "confidence_certified_routing_policy": {
+          "risk_gate_pass": true,
+          "capability_gate_pass": false,
+          "limit_bin": null,
+          "limit_difficulty": null,
+          "sparse_bins": [],
+          "route_rule": "Route all queries to BASELINE; SLM never clears the capability gate with Wilson confidence."
+        }
+      },
+      "llama_llama-3.3-70b-versatile": {
+        "display_name": "groq:llama-3.3-70b-versatile",
+        "avg_expected_capability": 1.0,
+        "avg_expected_risk": 0.0,
+        "empirical_quadrant": "Q1: high capability, low risk",
+        "confidence_quadrant": "Q1: high capability, low risk",
+        "empirical_routing_policy": {
+          "limit_bin": 4,
+          "limit_difficulty": 1.0,
+          "sparse_bins": [],
+          "route_rule": "Empirically route to SLM when difficulty_bin <= 4; otherwise route to BASELINE."
+        },
+        "confidence_certified_routing_policy": {
+          "risk_gate_pass": true,
+          "capability_gate_pass": false,
+          "limit_bin": null,
+          "limit_difficulty": null,
+          "sparse_bins": [],
+          "route_rule": "Route all queries to BASELINE; SLM never clears the capability gate with Wilson confidence."
+        }
+      }
+    }
+  },
+  "text_generation": {
+    "task": "text_generation",
+    "matched_query_count": 47,
+    "models_used": [
+      "tinyllama:1.1b",
+      "qwen2.5:1.5b",
+      "phi3:mini",
+      "groq:llama-3.3-70b-versatile"
+    ],
+    "thresholds": {
+      "tinyllama_1.1b": {
+        "display_name": "tinyllama:1.1b",
+        "matched_query_count": 47,
+        "tau_cap_bin": null,
+        "tau_cap_difficulty": null,
+        "tau_risk_bin": 0,
+        "tau_risk_difficulty": 0.0,
+        "capability_curve": {
+          "0": 0.13333333333333333,
+          "1": 0.4666666666666667,
+          "2": 1.0,
+          "3": 1.0
+        },
+        "risk_curve": {
+          "0": 0.8666666666666667,
+          "1": 0.5333333333333333,
+          "2": 0.0,
+          "3": 0.0
+        },
+        "expected_capability_curve": {
+          "0": 0.13333333333333333,
+          "1": 0.4666666666666667,
+          "2": 1.0,
+          "3": 1.0
+        },
+        "expected_risk_curve": {
+          "0": 0.8666666666666667,
+          "1": 0.5333333333333333,
+          "2": 0.0,
+          "3": 0.0
+        },
+        "counts_by_bin": {
+          "0": 15,
+          "1": 15,
+          "2": 15,
+          "3": 2
+        },
+        "semantic_failure_counts": {
+          "incomplete_output": {
+            "0": 13,
+            "1": 8
+          }
+        },
+        "semantic_failures_by_bin": {
+          "0": {
+            "incomplete_output": 13
+          },
+          "1": {
+            "incomplete_output": 8
+          },
+          "2": {},
+          "3": {}
+        }
+      },
+      "qwen2.5_1.5b": {
+        "display_name": "qwen2.5:1.5b",
+        "matched_query_count": 47,
+        "tau_cap_bin": null,
+        "tau_cap_difficulty": null,
+        "tau_risk_bin": 0,
+        "tau_risk_difficulty": 0.0,
+        "capability_curve": {
+          "0": 0.06666666666666667,
+          "1": 0.0,
+          "2": 0.06666666666666667,
+          "3": 0.0
+        },
+        "risk_curve": {
+          "0": 0.9333333333333333,
+          "1": 1.0,
+          "2": 0.9333333333333333,
+          "3": 1.0
+        },
+        "expected_capability_curve": {
+          "0": 0.06666666666666667,
+          "1": 0.0,
+          "2": 0.06666666666666667,
+          "3": 0.0
+        },
+        "expected_risk_curve": {
+          "0": 0.9333333333333333,
+          "1": 1.0,
+          "2": 0.9333333333333333,
+          "3": 1.0
+        },
+        "counts_by_bin": {
+          "0": 15,
+          "1": 15,
+          "2": 15,
+          "3": 2
+        },
+        "semantic_failure_counts": {
+          "incomplete_output": {
+            "0": 14,
+            "1": 15,
+            "2": 14,
+            "3": 2
+          }
+        },
+        "semantic_failures_by_bin": {
+          "0": {
+            "incomplete_output": 14
+          },
+          "1": {
+            "incomplete_output": 15
+          },
+          "2": {
+            "incomplete_output": 14
+          },
+          "3": {
+            "incomplete_output": 2
+          }
+        }
+      },
+      "phi3_mini": {
+        "display_name": "phi3:mini",
+        "matched_query_count": 47,
+        "tau_cap_bin": null,
+        "tau_cap_difficulty": null,
+        "tau_risk_bin": 0,
+        "tau_risk_difficulty": 0.0,
+        "capability_curve": {
+          "0": 0.13333333333333333,
+          "1": 0.13333333333333333,
+          "2": 0.26666666666666666,
+          "3": 0.0
+        },
+        "risk_curve": {
+          "0": 0.8666666666666667,
+          "1": 0.8666666666666667,
+          "2": 0.7333333333333333,
+          "3": 1.0
+        },
+        "expected_capability_curve": {
+          "0": 0.13333333333333333,
+          "1": 0.13333333333333333,
+          "2": 0.26666666666666666,
+          "3": 0.0
+        },
+        "expected_risk_curve": {
+          "0": 0.8666666666666667,
+          "1": 0.8666666666666667,
+          "2": 0.7333333333333333,
+          "3": 1.0
+        },
+        "counts_by_bin": {
+          "0": 15,
+          "1": 15,
+          "2": 15,
+          "3": 2
+        },
+        "semantic_failure_counts": {
+          "incomplete_output": {
+            "0": 13,
+            "1": 13,
+            "2": 11,
+            "3": 2
+          }
+        },
+        "semantic_failures_by_bin": {
+          "0": {
+            "incomplete_output": 13
+          },
+          "1": {
+            "incomplete_output": 13
+          },
+          "2": {
+            "incomplete_output": 11
+          },
+          "3": {
+            "incomplete_output": 2
+          }
+        }
+      },
+      "llama_llama-3.3-70b-versatile": {
+        "display_name": "groq:llama-3.3-70b-versatile",
+        "matched_query_count": 47,
+        "tau_cap_bin": null,
+        "tau_cap_difficulty": null,
+        "tau_risk_bin": null,
+        "tau_risk_difficulty": null,
+        "capability_curve": {
+          "0": 1.0,
+          "1": 1.0,
+          "2": 1.0,
+          "3": 1.0
+        },
+        "risk_curve": {
+          "0": 0.0,
+          "1": 0.0,
+          "2": 0.0,
+          "3": 0.0
+        },
+        "expected_capability_curve": {
+          "0": 1.0,
+          "1": 1.0,
+          "2": 1.0,
+          "3": 1.0
+        },
+        "expected_risk_curve": {
+          "0": 0.0,
+          "1": 0.0,
+          "2": 0.0,
+          "3": 0.0
+        },
+        "counts_by_bin": {
+          "0": 15,
+          "1": 15,
+          "2": 15,
+          "3": 2
+        },
+        "semantic_failure_counts": {},
+        "semantic_failures_by_bin": {
+          "0": {},
+          "1": {},
+          "2": {},
+          "3": {}
+        }
+      }
+    },
+    "decision_matrix": {
+      "tinyllama_1.1b": {
+        "display_name": "tinyllama:1.1b",
+        "avg_expected_capability": 0.65,
+        "avg_expected_risk": 0.35,
+        "empirical_quadrant": "Q4: low capability, high risk",
+        "confidence_quadrant": "Q4: low capability, high risk",
+        "empirical_routing_policy": {
+          "limit_bin": 2,
+          "limit_difficulty": 0.6666666666666666,
+          "sparse_bins": [
+            3
+          ],
+          "route_rule": "Empirically route to SLM when difficulty_bin <= 2; otherwise route to BASELINE."
+        },
+        "confidence_certified_routing_policy": {
+          "risk_gate_pass": false,
+          "capability_gate_pass": false,
+          "limit_bin": null,
+          "limit_difficulty": null,
+          "sparse_bins": [
+            3
+          ],
+          "route_rule": "Route all queries to BASELINE; SLM never clears the capability gate with Wilson confidence."
+        }
+      },
+      "qwen2.5_1.5b": {
+        "display_name": "qwen2.5:1.5b",
+        "avg_expected_capability": 0.03333333333333333,
+        "avg_expected_risk": 0.9666666666666667,
+        "empirical_quadrant": "Q4: low capability, high risk",
+        "confidence_quadrant": "Q4: low capability, high risk",
+        "empirical_routing_policy": {
+          "limit_bin": null,
+          "limit_difficulty": null,
+          "sparse_bins": [
+            3
+          ],
+          "route_rule": "Empirical evidence does not show a deployable SLM region; route to BASELINE."
+        },
+        "confidence_certified_routing_policy": {
+          "risk_gate_pass": false,
+          "capability_gate_pass": false,
+          "limit_bin": null,
+          "limit_difficulty": null,
+          "sparse_bins": [
+            3
+          ],
+          "route_rule": "Route all queries to BASELINE; SLM never clears the capability gate with Wilson confidence."
+        }
+      },
+      "phi3_mini": {
+        "display_name": "phi3:mini",
+        "avg_expected_capability": 0.13333333333333333,
+        "avg_expected_risk": 0.8666666666666667,
+        "empirical_quadrant": "Q4: low capability, high risk",
+        "confidence_quadrant": "Q4: low capability, high risk",
+        "empirical_routing_policy": {
+          "limit_bin": null,
+          "limit_difficulty": null,
+          "sparse_bins": [
+            3
+          ],
+          "route_rule": "Empirical evidence does not show a deployable SLM region; route to BASELINE."
+        },
+        "confidence_certified_routing_policy": {
+          "risk_gate_pass": false,
+          "capability_gate_pass": false,
+          "limit_bin": null,
+          "limit_difficulty": null,
+          "sparse_bins": [
+            3
+          ],
+          "route_rule": "Route all queries to BASELINE; SLM never clears the capability gate with Wilson confidence."
+        }
+      },
+      "llama_llama-3.3-70b-versatile": {
+        "display_name": "groq:llama-3.3-70b-versatile",
+        "avg_expected_capability": 1.0,
+        "avg_expected_risk": 0.0,
+        "empirical_quadrant": "Q1: high capability, low risk",
+        "confidence_quadrant": "Q1: high capability, low risk",
+        "empirical_routing_policy": {
+          "limit_bin": 2,
+          "limit_difficulty": 0.6666666666666666,
+          "sparse_bins": [
+            3
+          ],
+          "route_rule": "Empirically route to SLM when difficulty_bin <= 2; otherwise route to BASELINE."
+        },
+        "confidence_certified_routing_policy": {
+          "risk_gate_pass": true,
+          "capability_gate_pass": false,
+          "limit_bin": null,
+          "limit_difficulty": null,
+          "sparse_bins": [
+            3
+          ],
+          "route_rule": "Route all queries to BASELINE; SLM never clears the capability gate with Wilson confidence."
+        }
+      }
+    }
+  }
+}
