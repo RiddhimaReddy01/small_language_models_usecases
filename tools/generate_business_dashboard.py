@@ -15,7 +15,8 @@ import matplotlib
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 
-BENCHMARK_ROOT = ROOT / "model_runs" / "benchmark_75"
+LEGACY_BENCHMARK_ROOT = ROOT / "model_runs" / "benchmark_75"
+BENCHMARK_ROOT = LEGACY_BENCHMARK_ROOT if LEGACY_BENCHMARK_ROOT.exists() else ROOT / "model_runs"
 OUTPUT_ROOT = BENCHMARK_ROOT / "business_analytics"
 MODELS = [
     "tinyllama_1.1b",
@@ -30,6 +31,16 @@ DISPLAY_NAMES = {
     "llama_llama-3.3-70b-versatile": "groq:llama-3.3-70b-versatile",
 }
 BASELINE_KEY = "llama_llama-3.3-70b-versatile"
+SUPPORTED_TASKS = {
+    "classification",
+    "maths",
+    "information_extraction",
+    "instruction_following",
+    "retrieval_grounded",
+    "summarization",
+    "code_generation",
+    "text_generation",
+}
 
 # Explicit, editable proxy assumptions for economic analysis.
 SUCCESS_VALUE_USD = 0.0500
@@ -53,9 +64,7 @@ class ModelEconomics:
     cost_per_safe_query_usd: float | None
     expected_value_usd: float
     expected_loss_usd: float
-    empirical_limit_bin: int | None
     certified_limit_bin: int | None
-    empirical_quadrant: str
     confidence_quadrant: str
 
 
@@ -194,6 +203,8 @@ def _blended_strategy(
 
     return {
         "route_share_to_slm": route_share,
+        "route_share_to_baseline": 1.0 - route_share,
+        "abstention_share_estimate": 0.0,
         "blended_capability": blended_capability,
         "blended_risk": blended_risk,
         "blended_latency_sec": blended_latency_sec,
@@ -203,6 +214,7 @@ def _blended_strategy(
         "savings_vs_all_baseline_usd": baseline.direct_cost_usd - blended_direct_cost_usd,
         "expected_value_delta_vs_all_baseline_usd": blended_expected_value_usd - baseline.expected_value_usd,
         "break_even_failure_loss_usd": break_even_failure_loss_usd,
+        "interpretation_note": "Blended economics uses certified limit bin. Abstention lane is reported but not priced separately here.",
     }
 
 
@@ -284,6 +296,8 @@ def main() -> None:
     ]
 
     for task_dir in sorted(p for p in BENCHMARK_ROOT.iterdir() if p.is_dir()):
+        if task_dir.name not in SUPPORTED_TASKS:
+            continue
         routing_path = task_dir / "sddf" / "routing_policy.json"
         if not routing_path.exists():
             continue
@@ -314,33 +328,60 @@ def main() -> None:
                     cost_per_safe_query_usd=None if risk >= 1 else direct_cost_usd / max(1e-9, (1.0 - risk)),
                     expected_value_usd=_expected_value(capability, risk, latency_sec, direct_cost_usd),
                     expected_loss_usd=_expected_loss(risk, latency_sec, direct_cost_usd),
-                    empirical_limit_bin=decision[model_key]["empirical_routing_policy"]["limit_bin"],
-                    certified_limit_bin=decision[model_key]["confidence_certified_routing_policy"]["limit_bin"],
-                    empirical_quadrant=decision[model_key]["empirical_quadrant"],
-                    confidence_quadrant=decision[model_key]["confidence_quadrant"],
+                    certified_limit_bin=decision[model_key]["confidence_certified_routing_policy"].get("limit_bin"),
+                    confidence_quadrant=decision[model_key].get("tau_quadrant", decision[model_key].get("confidence_quadrant", "NA")),
                 )
             )
 
-        baseline = next(model for model in task_models if model.model_key == BASELINE_KEY)
+        if not task_models:
+            dashboard["tasks"][task_dir.name] = {
+                "status": "no_models_in_decision_matrix",
+                "frontier_models": [],
+                "models": [],
+            }
+            continue
+
+        baseline = next((model for model in task_models if model.model_key == BASELINE_KEY), None)
         model_payloads: list[dict[str, Any]] = []
         frontier_models: list[str] = []
         for model in task_models:
             dominated = _is_dominated(model, task_models)
             if not dominated:
                 frontier_models.append(model.display_name)
-            empirical_strategy = _blended_strategy(
-                model,
-                baseline,
-                thresholds[model.model_key],
-                thresholds[baseline.model_key],
-                model.empirical_limit_bin,
-            )
-            certified_strategy = _blended_strategy(
-                model,
-                baseline,
-                thresholds[model.model_key],
-                thresholds[baseline.model_key],
-                model.certified_limit_bin,
+            policy = decision[model.model_key].get("confidence_certified_routing_policy", {})
+            certified_strategy: dict[str, Any]
+            if baseline is None:
+                certified_strategy = {
+                    "route_share_to_slm": None,
+                    "route_share_to_baseline": None,
+                    "abstention_share_estimate": None,
+                    "blended_capability": None,
+                    "blended_risk": None,
+                    "blended_latency_sec": None,
+                    "blended_direct_cost_usd": None,
+                    "blended_expected_value_usd": None,
+                    "blended_expected_loss_usd": None,
+                    "savings_vs_all_baseline_usd": None,
+                    "expected_value_delta_vs_all_baseline_usd": None,
+                    "break_even_failure_loss_usd": None,
+                    "interpretation_note": "Baseline missing in decision matrix for this task.",
+                }
+            else:
+                certified_strategy = _blended_strategy(
+                    model,
+                    baseline,
+                    thresholds[model.model_key],
+                    thresholds[baseline.model_key],
+                    model.certified_limit_bin,
+                )
+            certified_strategy.update(
+                {
+                    "limit_bin": policy.get("limit_bin"),
+                    "limit_difficulty": policy.get("limit_difficulty"),
+                    "abstention_band_half_width": policy.get("abstention_band_half_width", 0.0),
+                    "risk_gate_pass": policy.get("risk_gate_pass"),
+                    "capability_gate_pass": policy.get("capability_gate_pass"),
+                }
             )
             model_payloads.append(
                 {
@@ -354,15 +395,15 @@ def main() -> None:
                     "cost_per_safe_query_usd": model.cost_per_safe_query_usd,
                     "expected_value_usd": model.expected_value_usd,
                     "expected_loss_usd": model.expected_loss_usd,
-                    "empirical_quadrant": model.empirical_quadrant,
                     "confidence_quadrant": model.confidence_quadrant,
+                    "certified_limit_bin": model.certified_limit_bin,
                     "pareto_status": "frontier" if not dominated else "dominated",
-                    "empirical_strategy": empirical_strategy,
                     "confidence_certified_strategy": certified_strategy,
                 }
             )
 
         dashboard["tasks"][task_dir.name] = {
+            "status": "ok" if baseline is not None else "baseline_missing",
             "frontier_models": frontier_models,
             "models": model_payloads,
         }
@@ -373,15 +414,16 @@ def main() -> None:
                 f"## {task_dir.name}",
                 "",
                 f"- Pareto frontier: {', '.join(frontier_models)}",
+                f"- Task status: {dashboard['tasks'][task_dir.name]['status']}",
                 f"- Chart: `{(OUTPUT_ROOT / f'{task_dir.name}_pareto.png').relative_to(ROOT)}`",
                 "",
-                "| Model | Cap | Risk | Latency (s) | Throughput (q/s) | Direct Cost | EV | Pareto | Empirical Strategy | Certified Strategy |",
-                "| --- | ---: | ---: | ---: | ---: | ---: | ---: | --- | --- | --- |",
+                "| Model | Cap | Risk | Latency (s) | Throughput (q/s) | Direct Cost | EV | Pareto | Limit Bin | Delta | Route Share SLM |",
+                "| --- | ---: | ---: | ---: | ---: | ---: | ---: | --- | ---: | ---: | ---: |",
             ]
         )
         for payload in model_payloads:
             lines.append(
-                "| {model} | {cap} | {risk} | {lat} | {thr} | {cost} | {ev} | {pareto} | {emp} | {cert} |".format(
+                "| {model} | {cap} | {risk} | {lat} | {thr} | {cost} | {ev} | {pareto} | {limit_bin} | {delta} | {cert} |".format(
                     model=payload["model"],
                     cap=_format_float(payload["capability"]),
                     risk=_format_float(payload["risk"]),
@@ -390,8 +432,9 @@ def main() -> None:
                     cost=_format_money(payload["direct_cost_usd"]),
                     ev=_format_money(payload["expected_value_usd"]),
                     pareto=payload["pareto_status"],
-                    emp=payload["empirical_strategy"]["route_share_to_slm"] if "route_share_to_slm" in payload["empirical_strategy"] else "NA",
-                    cert=payload["confidence_certified_strategy"]["route_share_to_slm"] if "route_share_to_slm" in payload["confidence_certified_strategy"] else "NA",
+                    limit_bin=payload.get("certified_limit_bin") if payload.get("certified_limit_bin") is not None else "NA",
+                    delta=_format_float(payload["confidence_certified_strategy"].get("abstention_band_half_width")),
+                    cert=_format_float(payload["confidence_certified_strategy"].get("route_share_to_slm")),
                 )
             )
         lines.append("")

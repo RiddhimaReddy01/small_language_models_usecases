@@ -1,0 +1,36 @@
+{
+  "tasks": {
+    "classification": {
+      "metrics_path": "C:\\Users\\riddh\\OneDrive\\Desktop\\SLM use cases\\model_runs\\classification\\benchmarking\\comprehensive_metrics.json",
+      "model_count": 4
+    },
+    "code_generation": {
+      "metrics_path": "C:\\Users\\riddh\\OneDrive\\Desktop\\SLM use cases\\model_runs\\code_generation\\benchmarking\\comprehensive_metrics.json",
+      "model_count": 4
+    },
+    "information_extraction": {
+      "metrics_path": "C:\\Users\\riddh\\OneDrive\\Desktop\\SLM use cases\\model_runs\\information_extraction\\benchmarking\\comprehensive_metrics.json",
+      "model_count": 4
+    },
+    "instruction_following": {
+      "metrics_path": "C:\\Users\\riddh\\OneDrive\\Desktop\\SLM use cases\\model_runs\\instruction_following\\benchmarking\\comprehensive_metrics.json",
+      "model_count": 4
+    },
+    "maths": {
+      "metrics_path": "C:\\Users\\riddh\\OneDrive\\Desktop\\SLM use cases\\model_runs\\maths\\benchmarking\\comprehensive_metrics.json",
+      "model_count": 4
+    },
+    "retrieval_grounded": {
+      "metrics_path": "C:\\Users\\riddh\\OneDrive\\Desktop\\SLM use cases\\model_runs\\retrieval_grounded\\benchmarking\\comprehensive_metrics.json",
+      "model_count": 4
+    },
+    "summarization": {
+      "metrics_path": "C:\\Users\\riddh\\OneDrive\\Desktop\\SLM use cases\\model_runs\\summarization\\benchmarking\\comprehensive_metrics.json",
+      "model_count": 4
+    },
+    "text_generation": {
+      "metrics_path": "C:\\Users\\riddh\\OneDrive\\Desktop\\SLM use cases\\model_runs\\text_generation\\benchmarking\\comprehensive_metrics.json",
+      "model_count": 4
+    }
+  }
+}

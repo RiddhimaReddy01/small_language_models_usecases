@@ -1,2 +1,0 @@
-"""Classification evaluation package."""
-

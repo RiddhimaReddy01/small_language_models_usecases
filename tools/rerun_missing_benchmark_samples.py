@@ -2,7 +2,6 @@ from __future__ import annotations
 
 import argparse
 import ast
-import csv
 import json
 import re
 import time
@@ -14,13 +13,9 @@ from typing import Any
 
 
 ROOT = Path(__file__).resolve().parents[1]
-BENCHMARK_ROOT = ROOT / "model_runs" / "benchmark_75"
+LEGACY_BENCHMARK_ROOT = ROOT / "model_runs" / "benchmark_75"
+BENCHMARK_ROOT = LEGACY_BENCHMARK_ROOT if LEGACY_BENCHMARK_ROOT.exists() else ROOT / "model_runs"
 SUPPORTED_TASKS = ("classification", "code_generation", "maths", "text_generation")
-TASK_REBIN = {
-    "code_generation": ROOT / "tasks" / "code_generation" / "rebin_results.csv",
-    "maths": ROOT / "tasks" / "maths" / "rebin_results.csv",
-    "text_generation": ROOT / "tasks" / "text_generation" / "rebin_results.csv",
-}
 OLLAMA_URL = "http://127.0.0.1:11434/api/generate"
 MODEL_NAMES = {
     "tinyllama_1.1b": "tinyllama:1.1b",
@@ -86,7 +81,7 @@ def parse_args() -> argparse.Namespace:
     return parser.parse_args()
 
 
-def load_expected_rows(task: str) -> list[dict[str, Any]]:
+def load_expected_rows(task: str, task_root: Path) -> list[dict[str, Any]]:
     if task == "classification":
         prompts = PROMPT_BANK["classification"]
         rows: list[dict[str, Any]] = []
@@ -101,17 +96,26 @@ def load_expected_rows(task: str) -> list[dict[str, Any]]:
             )
         return rows
 
-    rows: list[dict[str, Any]] = []
-    with TASK_REBIN[task].open("r", encoding="utf-8", newline="") as handle:
-        reader = csv.DictReader(handle)
-        for row in reader:
-            rows.append(
-                {
-                    "sample_id": row["example_id"],
-                    "bin": int(row["difficulty_bin"]),
-                    "prompt": row["input_text"],
-                }
-            )
+    baseline_candidates = [
+        task_root / "llama_llama-3.3-70b-versatile" / "outputs.jsonl",
+        task_root / "qwen2.5_1.5b" / "outputs.jsonl",
+        task_root / "phi3_mini" / "outputs.jsonl",
+        task_root / "tinyllama_1.1b" / "outputs.jsonl",
+    ]
+    source = next((p for p in baseline_candidates if p.exists()), None)
+    if source is None:
+        raise FileNotFoundError(f"Could not find a baseline outputs.jsonl for task '{task}' under {task_root}")
+
+    rows = []
+    for row in dedupe_rows(load_jsonl(source)):
+        rows.append(
+            {
+                "sample_id": str(row["sample_id"]),
+                "bin": int(row.get("bin", 0) or 0),
+                "prompt": str(row.get("prompt", "")),
+            }
+        )
+    rows.sort(key=lambda item: int(str(item["sample_id"]).rsplit("_", 1)[1]))
     return rows
 
 
@@ -227,10 +231,11 @@ def ollama_generate(model_name: str, prompt: str, ollama_url: str, temperature: 
 
 def main() -> int:
     args = parse_args()
-    output_path = BENCHMARK_ROOT / args.task / args.model_folder / "outputs.jsonl"
+    task_root = BENCHMARK_ROOT / args.task
+    output_path = task_root / args.model_folder / "outputs.jsonl"
     existing_rows = dedupe_rows(load_jsonl(output_path))
     existing_ids = {str(row["sample_id"]) for row in existing_rows}
-    expected_rows = load_expected_rows(args.task)
+    expected_rows = load_expected_rows(args.task, task_root)
     expected_lookup = {row["sample_id"]: row for row in expected_rows}
 
     if args.sample_id:

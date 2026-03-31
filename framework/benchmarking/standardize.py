@@ -1,12 +1,23 @@
 from __future__ import annotations
 
 import json
+import platform
 import shutil
 from datetime import UTC, datetime
 from pathlib import Path
 from typing import Any
 
-from src.utils.hardware_logger import log_hardware
+try:
+    from src.utils.hardware_logger import log_hardware  # type: ignore
+except Exception:  # pragma: no cover - compatibility fallback
+    def log_hardware(path: Path) -> None:
+        payload = {
+            "platform": platform.platform(),
+            "machine": platform.machine(),
+            "processor": platform.processor(),
+            "python_version": platform.python_version(),
+        }
+        path.write_text(json.dumps(payload, indent=2), encoding="utf-8")
 
 
 STANDARD_OUTPUTS = [

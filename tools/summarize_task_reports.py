@@ -4,56 +4,51 @@ import json
 from pathlib import Path
 
 
-def load_json(path: Path) -> dict:
-    return json.loads(path.read_text()) if path.exists() else {}
+ROOT = Path(__file__).resolve().parents[1]
+LEGACY_ROOT = ROOT / "model_runs" / "benchmark_75"
+MODEL_RUNS_ROOT = LEGACY_ROOT if LEGACY_ROOT.exists() else ROOT / "model_runs"
+EXCLUDED = {"business_analytics", "benchmarking", "difficulty_weights"}
+
+
+def _load_json(path: Path) -> dict:
+    return json.loads(path.read_text(encoding="utf-8")) if path.exists() else {}
 
 
 def summarize_task(task_dir: Path) -> dict:
+    thresholds_path = task_dir / "sddf" / "thresholds.json"
+    routing_path = task_dir / "sddf" / "routing_policy.json"
     summary = {
         "task": task_dir.name,
-        "capability_metrics": [],
-        "operational_metrics": [],
-        "risk_notes": {},
-        "errors": [],
+        "thresholds_path": str(thresholds_path) if thresholds_path.exists() else None,
+        "routing_policy_path": str(routing_path) if routing_path.exists() else None,
+        "models": [],
     }
-    part_a = task_dir / "results" / "reports" / "part_a_summary.json"
-    part_b = task_dir / "results" / "reports" / "part_b_summary.json"
-    try:
-        if part_a.exists():
-            data = load_json(part_a)
-            if isinstance(data, list):
-                data = next(
-                    (entry for entry in data if isinstance(entry, dict) and "metrics" in entry),
-                    data[0] if data else {},
-                )
-            capability = data.get("metrics", {}).get("capability", {}) if isinstance(data, dict) else {}
-            for dataset, stats in capability.items():
-                summary["capability_metrics"].append({"dataset": dataset, "values": stats})
-            summary["operational_metrics"] = data.get("metrics", {}).get("operational", [])
-        else:
-            summary["capability_metrics"].append({"dataset": "missing", "values": None})
-        if part_b.exists():
-            summary["risk_notes"] = load_json(part_b).get("statuses", {})
-        else:
-            summary["risk_notes"] = {"missing": "No SDDF reports generated"}
-    except Exception as exc:
-        summary["errors"].append(str(exc))
+    if not thresholds_path.exists():
+        summary["error"] = "missing thresholds.json"
+        return summary
 
+    payload = _load_json(thresholds_path)
+    decision = payload.get("decision_matrix", {})
+    for model_key, item in sorted(decision.items()):
+        summary["models"].append(
+            {
+                "model_key": model_key,
+                "display_name": item.get("display_name", model_key),
+                "avg_expected_capability": item.get("avg_expected_capability"),
+                "avg_expected_risk": item.get("avg_expected_risk"),
+                "tau_quadrant": item.get("tau_quadrant", item.get("confidence_quadrant")),
+            }
+        )
     return summary
 
 
 def main() -> int:
-    root = Path("tasks")
-    if not root.exists():
-        print("No tasks directory found.")
-        return 1
-
-    report = []
-    for task_dir in sorted(root.iterdir()):
-        if not task_dir.is_dir():
-            continue
-        report.append(summarize_task(task_dir))
-
+    task_dirs = [
+        d
+        for d in sorted(MODEL_RUNS_ROOT.iterdir())
+        if d.is_dir() and d.name not in EXCLUDED
+    ]
+    report = [summarize_task(task_dir) for task_dir in task_dirs]
     print(json.dumps(report, indent=2))
     return 0
 

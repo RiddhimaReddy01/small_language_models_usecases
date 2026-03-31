@@ -1,1 +1,0 @@
-"""Summarization benchmark package."""

@@ -1,0 +1,1062 @@
+{
+  "task": "information_extraction",
+  "wilson_confidence_level": 0.9,
+  "wilson_z": 1.6448536269514715,
+  "policy_capability_threshold": 0.8,
+  "policy_risk_threshold": 0.2,
+  "min_samples_per_bin": 5,
+  "min_ground_truth_coverage": 0.95,
+  "threshold_method": "level_ci_tau",
+  "report_split": "test",
+  "weights_source_split": "none",
+  "learn_family_weights": false,
+  "task_family": "extraction",
+  "abstain_max_delta": 0.35,
+  "abstain_grid_step": 0.01,
+  "ground_truth_coverage_by_model": {
+    "tinyllama_1.1b": {
+      "matched_ground_truth_count": 34,
+      "total_evaluated_count": 34,
+      "ground_truth_coverage": 1.0
+    },
+    "qwen2.5_1.5b": {
+      "matched_ground_truth_count": 34,
+      "total_evaluated_count": 34,
+      "ground_truth_coverage": 1.0
+    },
+    "phi3_mini": {
+      "matched_ground_truth_count": 34,
+      "total_evaluated_count": 34,
+      "ground_truth_coverage": 1.0
+    },
+    "llama_llama-3.3-70b-versatile": {
+      "matched_ground_truth_count": 34,
+      "total_evaluated_count": 34,
+      "ground_truth_coverage": 1.0
+    }
+  },
+  "difficulty_score_source": "normalized_difficulty_bin",
+  "matched_query_count": 250,
+  "baseline_query_count": 250,
+  "common_query_count_across_all_models": 250,
+  "models_used": [
+    "tinyllama:1.1b",
+    "qwen2.5:1.5b",
+    "phi3:mini",
+    "groq:llama-3.3-70b-versatile"
+  ],
+  "model_matched_query_counts": {
+    "tinyllama:1.1b": 250,
+    "qwen2.5:1.5b": 250,
+    "phi3:mini": 250,
+    "groq:llama-3.3-70b-versatile": 250
+  },
+  "thresholds": {
+    "tinyllama_1.1b": {
+      "display_name": "tinyllama:1.1b",
+      "matched_query_count": 34,
+      "calibration_row_count": 216,
+      "wilson_confidence_level": 0.9,
+      "tau_cap_bin": 0,
+      "tau_cap_difficulty": 0.0,
+      "tau_risk_bin": null,
+      "tau_risk_difficulty": null,
+      "capability_curve": {
+        "0": 1.0,
+        "1": 0.8461538461538461,
+        "2": 0.8461538461538461,
+        "3": 0.625,
+        "4": 0.625
+      },
+      "capability_curve_raw": {
+        "0": 1.0,
+        "1": 0.8,
+        "2": 0.875,
+        "3": 0.5555555555555556,
+        "4": 0.7142857142857143
+      },
+      "risk_curve": {
+        "0": 0.0,
+        "1": 0.0,
+        "2": 0.0,
+        "3": 0.0,
+        "4": 0.0
+      },
+      "risk_curve_raw": {
+        "0": 0.0,
+        "1": 0.0,
+        "2": 0.0,
+        "3": 0.0,
+        "4": 0.0
+      },
+      "expected_capability_curve": {
+        "0": 1.0,
+        "1": 0.8461538461538461,
+        "2": 0.8461538461538461,
+        "3": 0.625,
+        "4": 0.625
+      },
+      "expected_risk_curve": {
+        "0": 0.0,
+        "1": 0.0,
+        "2": 0.0,
+        "3": 0.0,
+        "4": 0.0
+      },
+      "expected_capability_curve_smooth": {
+        "0.000": 0.9846153846153847,
+        "0.025": 0.976923076923077,
+        "0.050": 0.9692307692307693,
+        "0.075": 0.953846153846154,
+        "0.100": 0.9384615384615385,
+        "0.125": 0.923076923076923,
+        "0.150": 0.9076923076923077,
+        "0.175": 0.8923076923076924,
+        "0.200": 0.876923076923077,
+        "0.225": 0.8646153846153846,
+        "0.250": 0.8553846153846154,
+        "0.275": 0.8492307692307692,
+        "0.300": 0.8461538461538461,
+        "0.325": 0.8461538461538461,
+        "0.350": 0.8461538461538461,
+        "0.375": 0.8461538461538464,
+        "0.400": 0.8461538461538461,
+        "0.425": 0.8461538461538461,
+        "0.450": 0.8461538461538461,
+        "0.475": 0.8417307692307693,
+        "0.500": 0.8328846153846154,
+        "0.525": 0.8196153846153846,
+        "0.550": 0.801923076923077,
+        "0.575": 0.7798076923076923,
+        "0.600": 0.7576923076923077,
+        "0.625": 0.735576923076923,
+        "0.650": 0.7134615384615385,
+        "0.675": 0.6913461538461539,
+        "0.700": 0.6692307692307693,
+        "0.725": 0.6515384615384615,
+        "0.750": 0.6382692307692308,
+        "0.775": 0.629423076923077,
+        "0.800": 0.625,
+        "0.825": 0.625,
+        "0.850": 0.625,
+        "0.875": 0.625,
+        "0.900": 0.625,
+        "0.925": 0.625,
+        "0.950": 0.625,
+        "0.975": 0.625,
+        "1.000": 0.625
+      },
+      "expected_risk_curve_smooth": {
+        "0.000": 0.0,
+        "0.025": 0.0,
+        "0.050": 0.0,
+        "0.075": 0.0,
+        "0.100": 0.0,
+        "0.125": 0.0,
+        "0.150": 0.0,
+        "0.175": 0.0,
+        "0.200": 0.0,
+        "0.225": 0.0,
+        "0.250": 0.0,
+        "0.275": 0.0,
+        "0.300": 0.0,
+        "0.325": 0.0,
+        "0.350": 0.0,
+        "0.375": 0.0,
+        "0.400": 0.0,
+        "0.425": 0.0,
+        "0.450": 0.0,
+        "0.475": 0.0,
+        "0.500": 0.0,
+        "0.525": 0.0,
+        "0.550": 0.0,
+        "0.575": 0.0,
+        "0.600": 0.0,
+        "0.625": 0.0,
+        "0.650": 0.0,
+        "0.675": 0.0,
+        "0.700": 0.0,
+        "0.725": 0.0,
+        "0.750": 0.0,
+        "0.775": 0.0,
+        "0.800": 0.0,
+        "0.825": 0.0,
+        "0.850": 0.0,
+        "0.875": 0.0,
+        "0.900": 0.0,
+        "0.925": 0.0,
+        "0.950": 0.0,
+        "0.975": 0.0,
+        "1.000": 0.0
+      },
+      "counts_by_bin": {
+        "0": 5,
+        "1": 5,
+        "2": 8,
+        "3": 9,
+        "4": 7
+      },
+      "semantic_failure_counts": {
+        "missing_field": {
+          "1": 1,
+          "2": 1,
+          "3": 4,
+          "4": 2
+        }
+      },
+      "semantic_failures_by_bin": {
+        "1": {
+          "missing_field": 1
+        },
+        "2": {
+          "missing_field": 1
+        },
+        "3": {
+          "missing_field": 4
+        },
+        "4": {
+          "missing_field": 2
+        },
+        "0": {}
+      },
+      "difficulty_score_source": "normalized_difficulty_bin",
+      "difficulty_weights_used": {},
+      "difficulty_family": "extraction",
+      "report_split": "test",
+      "calibration_split": "train+val",
+      "calibration_fallback_to_report": false,
+      "weights_source_split": "none",
+      "threshold_method": "level_ci_tau",
+      "abstention_calibration": {
+        "delta": 0.0,
+        "selected_coverage": 0.20833333333333334,
+        "selected_capability": 0.9111111111111111,
+        "selected_risk": 0.0,
+        "selected_abstention_rate": 0.0
+      },
+      "margin_confidence_calibration": {
+        "buckets": [
+          {
+            "max_margin": 0.0,
+            "failure_rate": 0.0
+          },
+          {
+            "max_margin": 0.25,
+            "failure_rate": 0.0
+          },
+          {
+            "max_margin": 0.5,
+            "failure_rate": 0.0
+          },
+          {
+            "max_margin": 0.75,
+            "failure_rate": 0.0
+          },
+          {
+            "max_margin": 1.0,
+            "failure_rate": 0.0
+          }
+        ],
+        "global_failure_rate": 0.0
+      },
+      "matched_ground_truth_count": 34,
+      "total_evaluated_count": 34,
+      "ground_truth_coverage": 1.0
+    },
+    "qwen2.5_1.5b": {
+      "display_name": "qwen2.5:1.5b",
+      "matched_query_count": 34,
+      "calibration_row_count": 216,
+      "wilson_confidence_level": 0.9,
+      "tau_cap_bin": 2,
+      "tau_cap_difficulty": 0.5,
+      "tau_risk_bin": null,
+      "tau_risk_difficulty": null,
+      "capability_curve": {
+        "0": 1.0,
+        "1": 1.0,
+        "2": 1.0,
+        "3": 0.8888888888888888,
+        "4": 0.8571428571428571
+      },
+      "capability_curve_raw": {
+        "0": 1.0,
+        "1": 1.0,
+        "2": 1.0,
+        "3": 0.8888888888888888,
+        "4": 0.8571428571428571
+      },
+      "risk_curve": {
+        "0": 0.0,
+        "1": 0.0,
+        "2": 0.0,
+        "3": 0.0,
+        "4": 0.0
+      },
+      "risk_curve_raw": {
+        "0": 0.0,
+        "1": 0.0,
+        "2": 0.0,
+        "3": 0.0,
+        "4": 0.0
+      },
+      "expected_capability_curve": {
+        "0": 1.0,
+        "1": 1.0,
+        "2": 1.0,
+        "3": 0.8888888888888888,
+        "4": 0.8571428571428571
+      },
+      "expected_risk_curve": {
+        "0": 0.0,
+        "1": 0.0,
+        "2": 0.0,
+        "3": 0.0,
+        "4": 0.0
+      },
+      "expected_capability_curve_smooth": {
+        "0.000": 1.0,
+        "0.025": 1.0,
+        "0.050": 1.0,
+        "0.075": 1.0,
+        "0.100": 1.0,
+        "0.125": 1.0,
+        "0.150": 1.0,
+        "0.175": 1.0,
+        "0.200": 1.0,
+        "0.225": 1.0,
+        "0.250": 1.0,
+        "0.275": 1.0,
+        "0.300": 1.0,
+        "0.325": 1.0,
+        "0.350": 1.0,
+        "0.375": 1.0,
+        "0.400": 1.0,
+        "0.425": 1.0,
+        "0.450": 1.0,
+        "0.475": 0.9977777777777778,
+        "0.500": 0.9933333333333334,
+        "0.525": 0.9866666666666667,
+        "0.550": 0.9777777777777779,
+        "0.575": 0.9666666666666668,
+        "0.600": 0.9555555555555555,
+        "0.625": 0.9444444444444444,
+        "0.650": 0.9333333333333332,
+        "0.675": 0.9222222222222222,
+        "0.700": 0.9111111111111111,
+        "0.725": 0.9015873015873016,
+        "0.750": 0.8936507936507937,
+        "0.775": 0.8873015873015874,
+        "0.800": 0.8825396825396826,
+        "0.825": 0.8793650793650795,
+        "0.850": 0.8761904761904763,
+        "0.875": 0.8730158730158729,
+        "0.900": 0.8698412698412697,
+        "0.925": 0.8666666666666668,
+        "0.950": 0.8634920634920634,
+        "0.975": 0.8619047619047618,
+        "1.000": 0.8603174603174604
+      },
+      "expected_risk_curve_smooth": {
+        "0.000": 0.0,
+        "0.025": 0.0,
+        "0.050": 0.0,
+        "0.075": 0.0,
+        "0.100": 0.0,
+        "0.125": 0.0,
+        "0.150": 0.0,
+        "0.175": 0.0,
+        "0.200": 0.0,
+        "0.225": 0.0,
+        "0.250": 0.0,
+        "0.275": 0.0,
+        "0.300": 0.0,
+        "0.325": 0.0,
+        "0.350": 0.0,
+        "0.375": 0.0,
+        "0.400": 0.0,
+        "0.425": 0.0,
+        "0.450": 0.0,
+        "0.475": 0.0,
+        "0.500": 0.0,
+        "0.525": 0.0,
+        "0.550": 0.0,
+        "0.575": 0.0,
+        "0.600": 0.0,
+        "0.625": 0.0,
+        "0.650": 0.0,
+        "0.675": 0.0,
+        "0.700": 0.0,
+        "0.725": 0.0,
+        "0.750": 0.0,
+        "0.775": 0.0,
+        "0.800": 0.0,
+        "0.825": 0.0,
+        "0.850": 0.0,
+        "0.875": 0.0,
+        "0.900": 0.0,
+        "0.925": 0.0,
+        "0.950": 0.0,
+        "0.975": 0.0,
+        "1.000": 0.0
+      },
+      "counts_by_bin": {
+        "0": 5,
+        "1": 5,
+        "2": 8,
+        "3": 9,
+        "4": 7
+      },
+      "semantic_failure_counts": {
+        "missing_field": {
+          "3": 1,
+          "4": 1
+        }
+      },
+      "semantic_failures_by_bin": {
+        "3": {
+          "missing_field": 1
+        },
+        "4": {
+          "missing_field": 1
+        },
+        "0": {},
+        "1": {},
+        "2": {}
+      },
+      "difficulty_score_source": "normalized_difficulty_bin",
+      "difficulty_weights_used": {},
+      "difficulty_family": "extraction",
+      "report_split": "test",
+      "calibration_split": "train+val",
+      "calibration_fallback_to_report": false,
+      "weights_source_split": "none",
+      "threshold_method": "level_ci_tau",
+      "abstention_calibration": {
+        "delta": 0.0,
+        "selected_coverage": 0.6111111111111112,
+        "selected_capability": 0.9696969696969697,
+        "selected_risk": 0.0,
+        "selected_abstention_rate": 0.0
+      },
+      "margin_confidence_calibration": {
+        "buckets": [
+          {
+            "max_margin": 0.25,
+            "failure_rate": 0.0
+          },
+          {
+            "max_margin": 0.25,
+            "failure_rate": 0.0
+          },
+          {
+            "max_margin": 0.5,
+            "failure_rate": 0.0
+          },
+          {
+            "max_margin": 0.5,
+            "failure_rate": 0.0
+          },
+          {
+            "max_margin": 0.5,
+            "failure_rate": 0.0
+          }
+        ],
+        "global_failure_rate": 0.0
+      },
+      "matched_ground_truth_count": 34,
+      "total_evaluated_count": 34,
+      "ground_truth_coverage": 1.0
+    },
+    "phi3_mini": {
+      "display_name": "phi3:mini",
+      "matched_query_count": 34,
+      "calibration_row_count": 216,
+      "wilson_confidence_level": 0.9,
+      "tau_cap_bin": 2,
+      "tau_cap_difficulty": 0.5,
+      "tau_risk_bin": null,
+      "tau_risk_difficulty": null,
+      "capability_curve": {
+        "0": 1.0,
+        "1": 1.0,
+        "2": 0.75,
+        "3": 0.625,
+        "4": 0.625
+      },
+      "capability_curve_raw": {
+        "0": 1.0,
+        "1": 1.0,
+        "2": 0.75,
+        "3": 0.5555555555555556,
+        "4": 0.7142857142857143
+      },
+      "risk_curve": {
+        "0": 0.0,
+        "1": 0.0,
+        "2": 0.0,
+        "3": 0.0,
+        "4": 0.0
+      },
+      "risk_curve_raw": {
+        "0": 0.0,
+        "1": 0.0,
+        "2": 0.0,
+        "3": 0.0,
+        "4": 0.0
+      },
+      "expected_capability_curve": {
+        "0": 1.0,
+        "1": 1.0,
+        "2": 0.75,
+        "3": 0.625,
+        "4": 0.625
+      },
+      "expected_risk_curve": {
+        "0": 0.0,
+        "1": 0.0,
+        "2": 0.0,
+        "3": 0.0,
+        "4": 0.0
+      },
+      "expected_capability_curve_smooth": {
+        "0.000": 1.0,
+        "0.025": 1.0,
+        "0.050": 1.0,
+        "0.075": 1.0,
+        "0.100": 1.0,
+        "0.125": 1.0,
+        "0.150": 1.0,
+        "0.175": 1.0,
+        "0.200": 1.0,
+        "0.225": 0.9949999999999999,
+        "0.250": 0.985,
+        "0.275": 0.97,
+        "0.300": 0.95,
+        "0.325": 0.925,
+        "0.350": 0.9,
+        "0.375": 0.875,
+        "0.400": 0.85,
+        "0.425": 0.825,
+        "0.450": 0.7999999999999999,
+        "0.475": 0.7775000000000001,
+        "0.500": 0.7575000000000001,
+        "0.525": 0.74,
+        "0.550": 0.725,
+        "0.575": 0.7125,
+        "0.600": 0.7,
+        "0.625": 0.6875000000000001,
+        "0.650": 0.675,
+        "0.675": 0.6625,
+        "0.700": 0.65,
+        "0.725": 0.64,
+        "0.750": 0.6325000000000001,
+        "0.775": 0.6275000000000001,
+        "0.800": 0.625,
+        "0.825": 0.625,
+        "0.850": 0.625,
+        "0.875": 0.625,
+        "0.900": 0.625,
+        "0.925": 0.625,
+        "0.950": 0.625,
+        "0.975": 0.625,
+        "1.000": 0.625
+      },
+      "expected_risk_curve_smooth": {
+        "0.000": 0.0,
+        "0.025": 0.0,
+        "0.050": 0.0,
+        "0.075": 0.0,
+        "0.100": 0.0,
+        "0.125": 0.0,
+        "0.150": 0.0,
+        "0.175": 0.0,
+        "0.200": 0.0,
+        "0.225": 0.0,
+        "0.250": 0.0,
+        "0.275": 0.0,
+        "0.300": 0.0,
+        "0.325": 0.0,
+        "0.350": 0.0,
+        "0.375": 0.0,
+        "0.400": 0.0,
+        "0.425": 0.0,
+        "0.450": 0.0,
+        "0.475": 0.0,
+        "0.500": 0.0,
+        "0.525": 0.0,
+        "0.550": 0.0,
+        "0.575": 0.0,
+        "0.600": 0.0,
+        "0.625": 0.0,
+        "0.650": 0.0,
+        "0.675": 0.0,
+        "0.700": 0.0,
+        "0.725": 0.0,
+        "0.750": 0.0,
+        "0.775": 0.0,
+        "0.800": 0.0,
+        "0.825": 0.0,
+        "0.850": 0.0,
+        "0.875": 0.0,
+        "0.900": 0.0,
+        "0.925": 0.0,
+        "0.950": 0.0,
+        "0.975": 0.0,
+        "1.000": 0.0
+      },
+      "counts_by_bin": {
+        "0": 5,
+        "1": 5,
+        "2": 8,
+        "3": 9,
+        "4": 7
+      },
+      "semantic_failure_counts": {
+        "missing_field": {
+          "2": 2,
+          "3": 4,
+          "4": 2
+        }
+      },
+      "semantic_failures_by_bin": {
+        "2": {
+          "missing_field": 2
+        },
+        "3": {
+          "missing_field": 4
+        },
+        "4": {
+          "missing_field": 2
+        },
+        "0": {},
+        "1": {}
+      },
+      "difficulty_score_source": "normalized_difficulty_bin",
+      "difficulty_weights_used": {},
+      "difficulty_family": "extraction",
+      "report_split": "test",
+      "calibration_split": "train+val",
+      "calibration_fallback_to_report": false,
+      "weights_source_split": "none",
+      "threshold_method": "level_ci_tau",
+      "abstention_calibration": {
+        "delta": 0.0,
+        "selected_coverage": 0.6111111111111112,
+        "selected_capability": 0.9242424242424242,
+        "selected_risk": 0.0,
+        "selected_abstention_rate": 0.0
+      },
+      "margin_confidence_calibration": {
+        "buckets": [
+          {
+            "max_margin": 0.25,
+            "failure_rate": 0.0
+          },
+          {
+            "max_margin": 0.25,
+            "failure_rate": 0.0
+          },
+          {
+            "max_margin": 0.5,
+            "failure_rate": 0.0
+          },
+          {
+            "max_margin": 0.5,
+            "failure_rate": 0.0
+          },
+          {
+            "max_margin": 0.5,
+            "failure_rate": 0.0
+          }
+        ],
+        "global_failure_rate": 0.0
+      },
+      "matched_ground_truth_count": 34,
+      "total_evaluated_count": 34,
+      "ground_truth_coverage": 1.0
+    },
+    "llama_llama-3.3-70b-versatile": {
+      "display_name": "groq:llama-3.3-70b-versatile",
+      "matched_query_count": 34,
+      "calibration_row_count": 216,
+      "wilson_confidence_level": 0.9,
+      "tau_cap_bin": 4,
+      "tau_cap_difficulty": 1.0,
+      "tau_risk_bin": null,
+      "tau_risk_difficulty": null,
+      "capability_curve": {
+        "0": 1.0,
+        "1": 1.0,
+        "2": 1.0,
+        "3": 1.0,
+        "4": 1.0
+      },
+      "capability_curve_raw": {
+        "0": 1.0,
+        "1": 1.0,
+        "2": 1.0,
+        "3": 1.0,
+        "4": 1.0
+      },
+      "risk_curve": {
+        "0": 0.0,
+        "1": 0.0,
+        "2": 0.0,
+        "3": 0.0,
+        "4": 0.0
+      },
+      "risk_curve_raw": {
+        "0": 0.0,
+        "1": 0.0,
+        "2": 0.0,
+        "3": 0.0,
+        "4": 0.0
+      },
+      "expected_capability_curve": {
+        "0": 1.0,
+        "1": 1.0,
+        "2": 1.0,
+        "3": 1.0,
+        "4": 1.0
+      },
+      "expected_risk_curve": {
+        "0": 0.0,
+        "1": 0.0,
+        "2": 0.0,
+        "3": 0.0,
+        "4": 0.0
+      },
+      "expected_capability_curve_smooth": {
+        "0.000": 1.0,
+        "0.025": 1.0,
+        "0.050": 1.0,
+        "0.075": 1.0,
+        "0.100": 1.0,
+        "0.125": 1.0,
+        "0.150": 1.0,
+        "0.175": 1.0,
+        "0.200": 1.0,
+        "0.225": 1.0,
+        "0.250": 1.0,
+        "0.275": 1.0,
+        "0.300": 1.0,
+        "0.325": 1.0,
+        "0.350": 1.0,
+        "0.375": 1.0,
+        "0.400": 1.0,
+        "0.425": 1.0,
+        "0.450": 1.0,
+        "0.475": 1.0,
+        "0.500": 1.0,
+        "0.525": 1.0,
+        "0.550": 1.0,
+        "0.575": 1.0,
+        "0.600": 1.0,
+        "0.625": 1.0,
+        "0.650": 1.0,
+        "0.675": 1.0,
+        "0.700": 1.0,
+        "0.725": 1.0,
+        "0.750": 1.0,
+        "0.775": 1.0,
+        "0.800": 1.0,
+        "0.825": 1.0,
+        "0.850": 1.0,
+        "0.875": 1.0,
+        "0.900": 1.0,
+        "0.925": 1.0,
+        "0.950": 1.0,
+        "0.975": 1.0,
+        "1.000": 1.0
+      },
+      "expected_risk_curve_smooth": {
+        "0.000": 0.0,
+        "0.025": 0.0,
+        "0.050": 0.0,
+        "0.075": 0.0,
+        "0.100": 0.0,
+        "0.125": 0.0,
+        "0.150": 0.0,
+        "0.175": 0.0,
+        "0.200": 0.0,
+        "0.225": 0.0,
+        "0.250": 0.0,
+        "0.275": 0.0,
+        "0.300": 0.0,
+        "0.325": 0.0,
+        "0.350": 0.0,
+        "0.375": 0.0,
+        "0.400": 0.0,
+        "0.425": 0.0,
+        "0.450": 0.0,
+        "0.475": 0.0,
+        "0.500": 0.0,
+        "0.525": 0.0,
+        "0.550": 0.0,
+        "0.575": 0.0,
+        "0.600": 0.0,
+        "0.625": 0.0,
+        "0.650": 0.0,
+        "0.675": 0.0,
+        "0.700": 0.0,
+        "0.725": 0.0,
+        "0.750": 0.0,
+        "0.775": 0.0,
+        "0.800": 0.0,
+        "0.825": 0.0,
+        "0.850": 0.0,
+        "0.875": 0.0,
+        "0.900": 0.0,
+        "0.925": 0.0,
+        "0.950": 0.0,
+        "0.975": 0.0,
+        "1.000": 0.0
+      },
+      "counts_by_bin": {
+        "0": 5,
+        "1": 5,
+        "2": 8,
+        "3": 9,
+        "4": 7
+      },
+      "semantic_failure_counts": {},
+      "semantic_failures_by_bin": {
+        "0": {},
+        "1": {},
+        "2": {},
+        "3": {},
+        "4": {}
+      },
+      "difficulty_score_source": "normalized_difficulty_bin",
+      "difficulty_weights_used": {},
+      "difficulty_family": "extraction",
+      "report_split": "test",
+      "calibration_split": "train+val",
+      "calibration_fallback_to_report": false,
+      "weights_source_split": "none",
+      "threshold_method": "level_ci_tau",
+      "abstention_calibration": {
+        "delta": 0.0,
+        "selected_coverage": 1.0,
+        "selected_capability": 0.9814814814814815,
+        "selected_risk": 0.0,
+        "selected_abstention_rate": 0.0
+      },
+      "margin_confidence_calibration": {
+        "buckets": [
+          {
+            "max_margin": 0.0,
+            "failure_rate": 0.0
+          },
+          {
+            "max_margin": 0.5,
+            "failure_rate": 0.0
+          },
+          {
+            "max_margin": 0.75,
+            "failure_rate": 0.0
+          },
+          {
+            "max_margin": 1.0,
+            "failure_rate": 0.0
+          },
+          {
+            "max_margin": 1.0,
+            "failure_rate": 0.0
+          }
+        ],
+        "global_failure_rate": 0.0
+      },
+      "matched_ground_truth_count": 34,
+      "total_evaluated_count": 34,
+      "ground_truth_coverage": 1.0
+    }
+  },
+  "decision_matrix": {
+    "tinyllama_1.1b": {
+      "display_name": "tinyllama:1.1b",
+      "avg_expected_capability": 0.7647058823529411,
+      "avg_expected_risk": 0.0,
+      "tau_cap_bin": 0,
+      "tau_risk_bin": null,
+      "tau_cap_difficulty": 0.0,
+      "tau_risk_difficulty": null,
+      "risk_safety_score": 1.0,
+      "tau_quadrant": "Narrow SLM Safe",
+      "confidence_certified_routing_policy": {
+        "risk_gate_pass": true,
+        "capability_gate_pass": true,
+        "limit_bin": 0,
+        "limit_difficulty": 0.0,
+        "sparse_bins": [],
+        "route_rule": "Route to SLM when difficulty_bin <= 0; otherwise route to BASELINE.",
+        "abstention_band_half_width": 0.0,
+        "route_rule_with_abstention": "SLM if score <= limit-delta; HYBRID_ABSTAIN if limit-delta < score < limit+delta; BASELINE otherwise.",
+        "margin_confidence_calibration": {
+          "buckets": [
+            {
+              "max_margin": 0.0,
+              "failure_rate": 0.0
+            },
+            {
+              "max_margin": 0.25,
+              "failure_rate": 0.0
+            },
+            {
+              "max_margin": 0.5,
+              "failure_rate": 0.0
+            },
+            {
+              "max_margin": 0.75,
+              "failure_rate": 0.0
+            },
+            {
+              "max_margin": 1.0,
+              "failure_rate": 0.0
+            }
+          ],
+          "global_failure_rate": 0.0
+        }
+      }
+    },
+    "qwen2.5_1.5b": {
+      "display_name": "qwen2.5:1.5b",
+      "avg_expected_capability": 0.9411764705882353,
+      "avg_expected_risk": 0.0,
+      "tau_cap_bin": 2,
+      "tau_risk_bin": null,
+      "tau_cap_difficulty": 0.5,
+      "tau_risk_difficulty": null,
+      "risk_safety_score": 1.0,
+      "tau_quadrant": "Broad SLM Safe",
+      "confidence_certified_routing_policy": {
+        "risk_gate_pass": true,
+        "capability_gate_pass": true,
+        "limit_bin": 2,
+        "limit_difficulty": 0.5,
+        "sparse_bins": [],
+        "route_rule": "Route to SLM when difficulty_bin <= 2; otherwise route to BASELINE.",
+        "abstention_band_half_width": 0.0,
+        "route_rule_with_abstention": "SLM if score <= limit-delta; HYBRID_ABSTAIN if limit-delta < score < limit+delta; BASELINE otherwise.",
+        "margin_confidence_calibration": {
+          "buckets": [
+            {
+              "max_margin": 0.25,
+              "failure_rate": 0.0
+            },
+            {
+              "max_margin": 0.25,
+              "failure_rate": 0.0
+            },
+            {
+              "max_margin": 0.5,
+              "failure_rate": 0.0
+            },
+            {
+              "max_margin": 0.5,
+              "failure_rate": 0.0
+            },
+            {
+              "max_margin": 0.5,
+              "failure_rate": 0.0
+            }
+          ],
+          "global_failure_rate": 0.0
+        }
+      }
+    },
+    "phi3_mini": {
+      "display_name": "phi3:mini",
+      "avg_expected_capability": 0.7647058823529411,
+      "avg_expected_risk": 0.0,
+      "tau_cap_bin": 2,
+      "tau_risk_bin": null,
+      "tau_cap_difficulty": 0.5,
+      "tau_risk_difficulty": null,
+      "risk_safety_score": 1.0,
+      "tau_quadrant": "Broad SLM Safe",
+      "confidence_certified_routing_policy": {
+        "risk_gate_pass": true,
+        "capability_gate_pass": true,
+        "limit_bin": 2,
+        "limit_difficulty": 0.5,
+        "sparse_bins": [],
+        "route_rule": "Route to SLM when difficulty_bin <= 2; otherwise route to BASELINE.",
+        "abstention_band_half_width": 0.0,
+        "route_rule_with_abstention": "SLM if score <= limit-delta; HYBRID_ABSTAIN if limit-delta < score < limit+delta; BASELINE otherwise.",
+        "margin_confidence_calibration": {
+          "buckets": [
+            {
+              "max_margin": 0.25,
+              "failure_rate": 0.0
+            },
+            {
+              "max_margin": 0.25,
+              "failure_rate": 0.0
+            },
+            {
+              "max_margin": 0.5,
+              "failure_rate": 0.0
+            },
+            {
+              "max_margin": 0.5,
+              "failure_rate": 0.0
+            },
+            {
+              "max_margin": 0.5,
+              "failure_rate": 0.0
+            }
+          ],
+          "global_failure_rate": 0.0
+        }
+      }
+    },
+    "llama_llama-3.3-70b-versatile": {
+      "display_name": "groq:llama-3.3-70b-versatile",
+      "avg_expected_capability": 1.0,
+      "avg_expected_risk": 0.0,
+      "tau_cap_bin": 4,
+      "tau_risk_bin": null,
+      "tau_cap_difficulty": 1.0,
+      "tau_risk_difficulty": null,
+      "risk_safety_score": 1.0,
+      "tau_quadrant": "Broad SLM Safe",
+      "confidence_certified_routing_policy": {
+        "risk_gate_pass": true,
+        "capability_gate_pass": true,
+        "limit_bin": 4,
+        "limit_difficulty": 1.0,
+        "sparse_bins": [],
+        "route_rule": "Route to SLM when difficulty_bin <= 4; otherwise route to BASELINE.",
+        "abstention_band_half_width": 0.0,
+        "route_rule_with_abstention": "SLM if score <= limit-delta; HYBRID_ABSTAIN if limit-delta < score < limit+delta; BASELINE otherwise.",
+        "margin_confidence_calibration": {
+          "buckets": [
+            {
+              "max_margin": 0.0,
+              "failure_rate": 0.0
+            },
+            {
+              "max_margin": 0.5,
+              "failure_rate": 0.0
+            },
+            {
+              "max_margin": 0.75,
+              "failure_rate": 0.0
+            },
+            {
+              "max_margin": 1.0,
+              "failure_rate": 0.0
+            },
+            {
+              "max_margin": 1.0,
+              "failure_rate": 0.0
+            }
+          ],
+          "global_failure_rate": 0.0
+        }
+      }
+    }
+  }
+}

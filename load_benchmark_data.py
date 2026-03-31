@@ -1,16 +1,28 @@
 #!/usr/bin/env python3
 """
-Load benchmark queries from the 75-query benchmark suite.
+Load benchmark queries from the tracked benchmark suite.
 
 This script shows how to access the complete benchmark data:
-- Location: .claude/worktrees/quizzical-chatelet/benchmark_output/
+- Preferred location: model_runs/
+- Backward-compatible location: model_runs/benchmark_75/
 - Each task has 75 queries for each SLM (phi3:mini, qwen2.5:1.5b, tinyllama:1.1b)
 - Groq Llama baseline is the reference (already completed)
 """
 
 import json
-import os
 from pathlib import Path
+
+
+ROOT = Path(__file__).parent
+LEGACY_BENCHMARK_PATH = ROOT / "model_runs" / "benchmark_75"
+FLAT_BENCHMARK_PATH = ROOT / "model_runs"
+EXCLUDED_TASK_DIRS = {"business_analytics"}
+
+
+def _benchmark_path() -> Path:
+    if LEGACY_BENCHMARK_PATH.exists():
+        return LEGACY_BENCHMARK_PATH
+    return FLAT_BENCHMARK_PATH
 
 def load_benchmark_outputs(task, model):
     """
@@ -23,7 +35,7 @@ def load_benchmark_outputs(task, model):
     Returns:
         List of output dictionaries from outputs.jsonl
     """
-    benchmark_path = Path(__file__).parent / "model_runs/benchmark_75"
+    benchmark_path = _benchmark_path()
     outputs_file = benchmark_path / task / model / "outputs.jsonl"
 
     if not outputs_file.exists():
@@ -39,13 +51,22 @@ def load_benchmark_outputs(task, model):
 
 def get_available_tasks():
     """List all available tasks in the benchmark."""
-    benchmark_path = Path(__file__).parent / "model_runs/benchmark_75"
-    return sorted([d.name for d in benchmark_path.iterdir() if d.is_dir()])
+    benchmark_path = _benchmark_path()
+    return sorted(
+        d.name
+        for d in benchmark_path.iterdir()
+        if d.is_dir() and d.name not in EXCLUDED_TASK_DIRS
+    )
 
 
 def get_available_models():
     """List all available models in the benchmark."""
-    return ['llama_llama-3.3-70b-versatile', 'phi3_mini', 'qwen2.5_1.5b', 'tinyllama_1.1b']
+    return [
+        "llama_llama-3.3-70b-versatile",
+        "phi3_mini",
+        "qwen2.5_1.5b",
+        "tinyllama_1.1b",
+    ]
 
 
 if __name__ == "__main__":
