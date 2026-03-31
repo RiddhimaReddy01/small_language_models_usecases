@@ -148,15 +148,15 @@ class GeneralizedRoutingFramework:
         risk_counts: dict[int, int] | None = None,
         min_samples: int = 5,
     ) -> tuple[int | None, int | None]:
-        # Primary thresholding is level+CI (research-safe), not momentum.
+        # Fallback bin-walk used to retain tau_cap/tau_risk for reporting.
+        # limit_difficulty is set by find_threshold_from_smooth_curve which runs after this.
         tau_cap: int | None = None
-        tau_risk: int | None = None  # None means no risk breach observed.
+        tau_risk: int | None = None
         risk_breach_bin: int | None = None
 
-        # Walk bins in order; tau_cap only advances while consecutive bins pass.
-        # Once a sufficiently-populated bin fails Wilson CI, we stop â€" later bins
-        # passing cannot extend the safe region because the routing rule is
-        # "route SLM for difficulty <= tau_cap", which would include the failed bin.
+        # Walk bins 0→K; tau_cap advances only while consecutive bins pass Wilson CI.
+        # Stops at first populated failing bin — later passing bins cannot extend the
+        # safe region because the routing rule is "score <= tau_cap" (includes all lower bins).
         for d in range(num_bins):
             n = int((capability_counts or {}).get(d, 0))
             if n < min_samples:
@@ -186,6 +186,59 @@ class GeneralizedRoutingFramework:
             tau_risk = risk_breach_bin - 1
 
         return tau_cap, tau_risk
+
+    def find_threshold_from_smooth_curve(
+        self,
+        capability_curve: dict[int, float],
+        risk_curve: dict[int, float],
+        num_bins: int = 5,
+        capability_counts: dict[int, int] | None = None,
+        risk_counts: dict[int, int] | None = None,
+        min_samples: int = 5,
+        grid_points: int = 200,
+    ) -> tuple[float | None, int | None]:
+        """Find tau* = highest d where E[cap|d] >= theta_cap AND E[risk|d] <= theta_risk,
+        then walk down from bin(tau*) until Wilson CI validates both gates.
+
+        Returns (limit_difficulty, validated_bin). Both None if no safe region found.
+        """
+        if not capability_curve or not risk_curve:
+            return None, None
+
+        # Step 1: scan smooth curve from high difficulty down to find crossing point.
+        # tau* = highest d where both expected constraints are simultaneously satisfied.
+        tau_star: float | None = None
+        for i in range(grid_points - 1, -1, -1):
+            d = i / max(1, grid_points - 1)
+            e_cap = self.compute_expected_capability(d, capability_curve, num_bins)
+            e_risk = self.compute_expected_risk(d, risk_curve, num_bins)
+            if e_cap >= self.capability_threshold and e_risk <= self.risk_threshold:
+                tau_star = d
+                break
+
+        if tau_star is None:
+            return None, None
+
+        # Step 2: map tau* to its bin and walk down until Wilson CI validates.
+        # This guards against over-certifying regions backed by too few samples.
+        start_bin = min(num_bins - 1, int(round(tau_star * (num_bins - 1))))
+        for b in range(start_bin, -1, -1):
+            n = int((capability_counts or {}).get(b, 0))
+            if n < min_samples:
+                continue  # skip sparse bins, try next lower
+            lower_cap, _ = _wilson_interval(float(capability_curve.get(b, 0.0)), n, z=self.wilson_z)
+            n_r = int((risk_counts or {}).get(b, n))
+            _, upper_risk = _wilson_interval(float(risk_curve.get(b, 0.0)), n_r, z=self.wilson_z)
+            cap_ok = lower_cap is not None and lower_cap >= self.capability_threshold
+            risk_ok = upper_risk is None or upper_risk <= self.risk_threshold
+            if cap_ok and risk_ok:
+                # Use bin midpoint as limit_difficulty (matches _build_routing_policy convention).
+                limit_difficulty = b / max(1, num_bins - 1)
+                return limit_difficulty, b
+
+        return None, None
+
+
 def _load_jsonl(path: Path) -> list[dict[str, Any]]:
     rows: list[dict[str, Any]] = []
     for line in path.read_text(encoding="utf-8").splitlines():
@@ -219,7 +272,7 @@ def _strip_example(prompt: str) -> str:
     return re.sub(r"\s*\(Example \d+\)\s*$", "", (prompt or "").strip())
 
 
-def _build_reference_lookup(task: str, rows: list[dict[str, Any]] | None = None) -> dict[str, dict[str, Any]]:
+def _build_reference_lookup(task: str) -> dict[str, dict[str, Any]]:
     refs: dict[str, dict[str, Any]] = {}
 
     # Preferred: explicit dataset ground truth keyed by sample_id.
@@ -255,13 +308,10 @@ def _build_reference_lookup(task: str, rows: list[dict[str, Any]] | None = None)
                     if sample_id and isinstance(reference, dict) and reference:
                         refs[sample_id] = reference
 
-    # No fallback to prompt-template labels for paper-grade evaluation.
-    _ = rows
     return refs
 
 
-def _resolve_reference(task: str, row: dict[str, Any], reference_lookup: dict[str, dict[str, Any]]) -> dict[str, Any]:
-    _ = task
+def _resolve_reference(row: dict[str, Any], reference_lookup: dict[str, dict[str, Any]]) -> dict[str, Any]:
     sample_id = str(row["sample_id"])
     reference = reference_lookup.get(sample_id)
     if reference:
@@ -449,7 +499,7 @@ def _textgen_eval(reference: dict[str, Any], output: str, row: dict[str, Any]) -
 
 def _evaluate_row(row: dict[str, Any], reference_lookup: dict[str, dict[str, Any]]) -> tuple[float, float, str | None]:
     task = row["task"]
-    reference = _resolve_reference(task, row, reference_lookup)
+    reference = _resolve_reference(row, reference_lookup)
     output = row.get("raw_output", "")
     parsed = row.get("parsed_output") or {}
     if not reference:
@@ -1180,7 +1230,7 @@ def main() -> None:
             continue
         task_available_rows[task_dir.name] = available
         all_rows_for_task = [row for rows in available.values() for row in rows]
-        reference_lookup_by_task[task_dir.name] = _build_reference_lookup(task_dir.name, rows=all_rows_for_task)
+        reference_lookup_by_task[task_dir.name] = _build_reference_lookup(task_dir.name)
 
     # Difficulty scoring mode:
     # 1) explicit provided scalar weights, or
@@ -1221,6 +1271,8 @@ def main() -> None:
         expected_risk_curves_level: dict[str, dict[int, float]] = {}
         expected_capability_curves_smooth: dict[str, dict[float, float]] = {}
         expected_risk_curves_smooth: dict[str, dict[float, float]] = {}
+        isotonic_capability_by_model: dict[str, dict[int, float]] = {}
+        isotonic_risk_by_model: dict[str, dict[int, float]] = {}
         thresholds: dict[str, Any] = {}
         decision_metrics: dict[str, dict[str, Any]] = {}
         difficulty_scores_by_model: dict[str, dict[str, float]] = {}
@@ -1321,7 +1373,7 @@ def main() -> None:
             num_bins_by_model[model_key] = num_bins
 
             task_rows[model_key] = report_rows
-            gt_matched = sum(1 for row in report_rows if _resolve_reference(task_dir.name, row, reference_lookup))
+            gt_matched = sum(1 for row in report_rows if _resolve_reference(row, reference_lookup))
             gt_total = len(report_rows)
             ground_truth_coverage = (gt_matched / gt_total) if gt_total else 0.0
             ground_truth_coverage_by_model[model_key] = {
@@ -1346,6 +1398,8 @@ def main() -> None:
             expected_capability, expected_risk = _expected_curve(router, capability, risk, observed_bins)
             capability_curves_level[model_key] = capability_raw   # scatter dots: raw
             risk_curves_level[model_key] = risk_raw               # scatter dots: raw
+            isotonic_capability_by_model[model_key] = capability  # for per-example E[cap|d]
+            isotonic_risk_by_model[model_key] = risk               # for per-example E[risk|d]
             capability_counts_by_model[model_key] = dict(counts)
             risk_counts_by_model[model_key] = dict(counts)
             expected_capability_curves_level[model_key] = expected_capability
@@ -1387,6 +1441,23 @@ def main() -> None:
                 num_bins=num_bins,
                 min_samples=min_samples,
             )
+            # Override limit_difficulty using smooth E[cap|d]/E[risk|d] curve threshold.
+            # Finds the highest d where both expected constraints are met, then validates
+            # with Wilson CI. This is more precise than the hard bin walk in detect_tipping_points.
+            smooth_limit_difficulty, smooth_limit_bin = router.find_threshold_from_smooth_curve(
+                capability_cal,
+                risk_cal,
+                num_bins=num_bins,
+                capability_counts=counts_cal,
+                risk_counts=counts_cal,
+                min_samples=min_samples,
+            )
+            if smooth_limit_difficulty is not None:
+                confidence_routing_policy["limit_difficulty"] = smooth_limit_difficulty
+                confidence_routing_policy["limit_bin"] = smooth_limit_bin
+                confidence_routing_policy["threshold_source"] = "smooth_curve_wilson_guard"
+            else:
+                confidence_routing_policy["threshold_source"] = "smooth_curve_wilson_guard_no_safe_region"
             limit_difficulty = confidence_routing_policy.get("limit_difficulty")
             abstention = _calibrate_abstention_delta(
                 calib_rows,
@@ -1440,7 +1511,7 @@ def main() -> None:
                 "calibration_split": ("train+val" if (train_rows_raw or val_rows_raw) else report_split),
                 "calibration_fallback_to_report": bool(not calib_has_support),
                 "weights_source_split": weights_source_split,
-                "threshold_method": "level_ci_tau",
+                "threshold_method": "smooth_curve_wilson_guard",
                 "abstention_calibration": abstention,
                 "margin_confidence_calibration": margin_calibrator,
                 **ground_truth_coverage_by_model[model_key],
@@ -1485,21 +1556,40 @@ def main() -> None:
                 limit_difficulty = policy.get("limit_difficulty")
                 delta = float(policy.get("abstention_band_half_width", 0.0) or 0.0)
                 margin_calibrator = policy.get("margin_confidence_calibration", {})
+                cap_curve = isotonic_capability_by_model.get(model_key, {})
+                risk_curve = isotonic_risk_by_model.get(model_key, {})
+                n_bins = num_bins_by_model.get(model_key, 5)
                 for row in rows:
-                    capability, semantic_risk, failure_type = _evaluate_row(row, reference_lookup)
+                    # --- PROSPECTIVE: decide routing from difficulty alone, before knowing outcome ---
                     score = float(
                         difficulty_scores_by_model.get(model_key, {}).get(
                             str(row["sample_id"]),
-                            int(row["bin"]) / max(1, (num_bins_by_model.get(model_key, 5) - 1)),
+                            int(row["bin"]) / max(1, (n_bins - 1)),
                         )
                     )
-                    route_state = _route_state(score, limit_difficulty, delta)
+                    predicted_route_state = _route_state(score, limit_difficulty, delta)
+                    e_cap = router.compute_expected_capability(score, cap_curve, n_bins) if cap_curve else 0.5
+                    e_risk = router.compute_expected_risk(score, risk_curve, n_bins) if risk_curve else 0.5
                     if limit_difficulty is None:
                         uncertainty = 1.0
                         confidence = 0.0
                     else:
                         uncertainty = abs(score - float(limit_difficulty))
                         confidence = _calibrated_confidence_from_margin(uncertainty, margin_calibrator)
+
+                    # --- RETROSPECTIVE: evaluate actual outcome after model has run ---
+                    actual_capability, actual_semantic_risk, failure_type = _evaluate_row(row, reference_lookup)
+
+                    # routing_correct: was the SLM routing decision vindicated?
+                    #   SLM routed   → True if SLM actually succeeded, False if it failed
+                    #   HYBRID zone  → True if SLM was acceptable (quality gate would pass),
+                    #                  False if SLM failed (quality gate would have escalated)
+                    #   BASELINE     → None (SLM not attempted; escalation is always safe)
+                    if predicted_route_state == "BASELINE":
+                        routing_correct: bool | None = None
+                    else:
+                        routing_correct = actual_capability >= router.capability_threshold
+
                     payload = {
                         "example_id": row["sample_id"],
                         "task": row["task"],
@@ -1507,17 +1597,28 @@ def main() -> None:
                         "model_family": "LLM" if model_key.startswith("llama_") else "SLM",
                         "difficulty_bin": int(row["bin"]),
                         "difficulty_score": score,
-                        "primary_metric": capability,
+                        # prospective fields (computed before model run)
+                        "predicted_route_state": predicted_route_state,
+                        "expected_capability": round(e_cap, 4),
+                        "expected_risk": round(e_risk, 4),
+                        "routing_uncertainty": uncertainty,
+                        "routing_confidence": confidence,
+                        # retrospective fields (computed from actual model output)
+                        "actual_capability": actual_capability,
+                        "actual_semantic_risk": actual_semantic_risk,
+                        "failure_type": failure_type,
+                        # comparison
+                        "routing_correct": routing_correct,
+                        # raw output fields
                         "valid_output": 1 if row.get("valid", False) else 0,
                         "latency_sec": float(row.get("latency_sec", 0.0) or 0.0),
                         "prediction": row.get("raw_output", ""),
-                        "failure_type": failure_type,
-                        "semantic_risk": semantic_risk,
-                        "route_state": route_state,
-                        "routing_uncertainty": uncertainty,
-                        "routing_confidence": confidence,
                         "input_text": row.get("prompt", ""),
-                        "reference": _resolve_reference(row["task"], row, reference_lookup),
+                        "reference": _resolve_reference(row, reference_lookup),
+                        # keep legacy aliases so downstream scripts don't break
+                        "primary_metric": actual_capability,
+                        "semantic_risk": actual_semantic_risk,
+                        "route_state": predicted_route_state,
                     }
                     handle.write(json.dumps(payload) + "\n")
 
@@ -1559,7 +1660,7 @@ def main() -> None:
             "policy_risk_threshold": router.risk_threshold,
             "min_samples_per_bin": min_samples,
             "min_ground_truth_coverage": min_ground_truth_coverage,
-            "threshold_method": "level_ci_tau",
+            "threshold_method": "smooth_curve_wilson_guard",
             "report_split": report_split,
             "weights_source_split": weights_source_split,
             "learn_family_weights": bool(args.learn_family_weights),
