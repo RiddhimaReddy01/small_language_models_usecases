@@ -1,0 +1,126 @@
+{
+  "best": {
+    "alpha": 2.0,
+    "beta": 0.75,
+    "gamma": 0.5,
+    "avg_utility_w": 2.4008357213224487,
+    "feasible_pairs": 27,
+    "total_pairs": 32,
+    "feas_rate": 0.84375,
+    "hard_fail": 5,
+    "score": 1.1508357213224487
+  },
+  "top10": [
+    {
+      "alpha": 2.0,
+      "beta": 0.75,
+      "gamma": 0.5,
+      "avg_utility_w": 2.4008357213224487,
+      "feasible_pairs": 27,
+      "total_pairs": 32,
+      "feas_rate": 0.84375,
+      "hard_fail": 5,
+      "score": 1.1508357213224487
+    },
+    {
+      "alpha": 2.0,
+      "beta": 0.75,
+      "gamma": 1.0,
+      "avg_utility_w": 2.3731313890336625,
+      "feasible_pairs": 27,
+      "total_pairs": 32,
+      "feas_rate": 0.84375,
+      "hard_fail": 5,
+      "score": 1.1231313890336625
+    },
+    {
+      "alpha": 2.0,
+      "beta": 0.75,
+      "gamma": 1.5,
+      "avg_utility_w": 2.346275814286547,
+      "feasible_pairs": 27,
+      "total_pairs": 32,
+      "feas_rate": 0.84375,
+      "hard_fail": 5,
+      "score": 1.096275814286547
+    },
+    {
+      "alpha": 2.0,
+      "beta": 0.75,
+      "gamma": 2.0,
+      "avg_utility_w": 2.319984862403512,
+      "feasible_pairs": 27,
+      "total_pairs": 32,
+      "feas_rate": 0.84375,
+      "hard_fail": 5,
+      "score": 1.069984862403512
+    },
+    {
+      "alpha": 2.0,
+      "beta": 0.75,
+      "gamma": 2.5,
+      "avg_utility_w": 2.2938626299458225,
+      "feasible_pairs": 27,
+      "total_pairs": 32,
+      "feas_rate": 0.84375,
+      "hard_fail": 5,
+      "score": 1.0438626299458225
+    },
+    {
+      "alpha": 2.0,
+      "beta": 0.5,
+      "gamma": 0.5,
+      "avg_utility_w": 2.178623957420291,
+      "feasible_pairs": 27,
+      "total_pairs": 32,
+      "feas_rate": 0.84375,
+      "hard_fail": 5,
+      "score": 0.928623957420291
+    },
+    {
+      "alpha": 2.0,
+      "beta": 0.5,
+      "gamma": 1.0,
+      "avg_utility_w": 2.150919625131505,
+      "feasible_pairs": 27,
+      "total_pairs": 32,
+      "feas_rate": 0.84375,
+      "hard_fail": 5,
+      "score": 0.9009196251315048
+    },
+    {
+      "alpha": 2.0,
+      "beta": 0.5,
+      "gamma": 1.5,
+      "avg_utility_w": 2.1233823174191917,
+      "feasible_pairs": 27,
+      "total_pairs": 32,
+      "feas_rate": 0.84375,
+      "hard_fail": 5,
+      "score": 0.8733823174191917
+    },
+    {
+      "alpha": 2.0,
+      "beta": 0.5,
+      "gamma": 2.0,
+      "avg_utility_w": 2.0967789838692,
+      "feasible_pairs": 27,
+      "total_pairs": 32,
+      "feas_rate": 0.84375,
+      "hard_fail": 5,
+      "score": 0.8467789838691999
+    },
+    {
+      "alpha": 2.0,
+      "beta": 0.5,
+      "gamma": 2.5,
+      "avg_utility_w": 2.0705065989635947,
+      "feasible_pairs": 27,
+      "total_pairs": 32,
+      "feas_rate": 0.84375,
+      "hard_fail": 5,
+      "score": 0.8205065989635947
+    }
+  ],
+  "searched": 80
+}

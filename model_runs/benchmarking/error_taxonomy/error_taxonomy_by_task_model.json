@@ -1,0 +1,640 @@
+{
+  "failure_harm_map": {
+    "arithmetic_error": [
+      0.9,
+      0.8
+    ],
+    "wrong_label": [
+      0.8,
+      0.8
+    ],
+    "logic_error": [
+      0.95,
+      0.85
+    ],
+    "answer_mismatch": [
+      0.85,
+      0.8
+    ],
+    "low_relevance": [
+      0.6,
+      0.7
+    ],
+    "constraint_violation": [
+      0.7,
+      0.7
+    ],
+    "quality_failure": [
+      0.5,
+      0.6
+    ],
+    "format_error": [
+      0.4,
+      0.4
+    ],
+    "missing_field": [
+      0.45,
+      0.45
+    ],
+    "incomplete_output": [
+      0.4,
+      0.35
+    ],
+    "no_answer": [
+      0.2,
+      0.2
+    ],
+    "empty_output": [
+      0.1,
+      0.1
+    ],
+    "timeout_runtime": [
+      0.1,
+      0.1
+    ],
+    "missing_ground_truth": [
+      0.3,
+      0.3
+    ]
+  },
+  "rows": [
+    {
+      "task": "classification",
+      "model_name": "groq:llama-3.3-70b-versatile",
+      "n_rows": 20,
+      "n_failures": 0,
+      "failure_rate": 0.0,
+      "avg_semantic_risk": 0.0,
+      "avg_failure_harm": 0.0,
+      "failure_counts": {},
+      "top_failures": []
+    },
+    {
+      "task": "classification",
+      "model_name": "phi3:mini",
+      "n_rows": 20,
+      "n_failures": 0,
+      "failure_rate": 0.0,
+      "avg_semantic_risk": 0.0,
+      "avg_failure_harm": 0.0,
+      "failure_counts": {},
+      "top_failures": []
+    },
+    {
+      "task": "classification",
+      "model_name": "qwen2.5:1.5b",
+      "n_rows": 20,
+      "n_failures": 3,
+      "failure_rate": 0.15,
+      "avg_semantic_risk": 0.09600000000000002,
+      "avg_failure_harm": 0.6400000000000001,
+      "failure_counts": {
+        "wrong_label": 3
+      },
+      "top_failures": [
+        {
+          "failure_type": "wrong_label",
+          "count": 3,
+          "rate_over_all_rows": 0.15
+        }
+      ]
+    },
+    {
+      "task": "classification",
+      "model_name": "tinyllama:1.1b",
+      "n_rows": 20,
+      "n_failures": 2,
+      "failure_rate": 0.1,
+      "avg_semantic_risk": 0.06400000000000002,
+      "avg_failure_harm": 0.6400000000000001,
+      "failure_counts": {
+        "wrong_label": 2
+      },
+      "top_failures": [
+        {
+          "failure_type": "wrong_label",
+          "count": 2,
+          "rate_over_all_rows": 0.1
+        }
+      ]
+    },
+    {
+      "task": "code_generation",
+      "model_name": "groq:llama-3.3-70b-versatile",
+      "n_rows": 20,
+      "n_failures": 0,
+      "failure_rate": 0.0,
+      "avg_semantic_risk": 0.0,
+      "avg_failure_harm": 0.0,
+      "failure_counts": {},
+      "top_failures": []
+    },
+    {
+      "task": "code_generation",
+      "model_name": "phi3:mini",
+      "n_rows": 20,
+      "n_failures": 5,
+      "failure_rate": 0.25,
+      "avg_semantic_risk": 0.137125,
+      "avg_failure_harm": 0.5485,
+      "failure_counts": {
+        "format_error": 2,
+        "logic_error": 3
+      },
+      "top_failures": [
+        {
+          "failure_type": "logic_error",
+          "count": 3,
+          "rate_over_all_rows": 0.15
+        },
+        {
+          "failure_type": "format_error",
+          "count": 2,
+          "rate_over_all_rows": 0.1
+        }
+      ]
+    },
+    {
+      "task": "code_generation",
+      "model_name": "qwen2.5:1.5b",
+      "n_rows": 20,
+      "n_failures": 4,
+      "failure_rate": 0.2,
+      "avg_semantic_risk": 0.1615,
+      "avg_failure_harm": 0.8075,
+      "failure_counts": {
+        "logic_error": 4
+      },
+      "top_failures": [
+        {
+          "failure_type": "logic_error",
+          "count": 4,
+          "rate_over_all_rows": 0.2
+        }
+      ]
+    },
+    {
+      "task": "code_generation",
+      "model_name": "tinyllama:1.1b",
+      "n_rows": 20,
+      "n_failures": 4,
+      "failure_rate": 0.2,
+      "avg_semantic_risk": 0.1615,
+      "avg_failure_harm": 0.8075,
+      "failure_counts": {
+        "logic_error": 4
+      },
+      "top_failures": [
+        {
+          "failure_type": "logic_error",
+          "count": 4,
+          "rate_over_all_rows": 0.2
+        }
+      ]
+    },
+    {
+      "task": "information_extraction",
+      "model_name": "groq:llama-3.3-70b-versatile",
+      "n_rows": 20,
+      "n_failures": 0,
+      "failure_rate": 0.0,
+      "avg_semantic_risk": 0.0,
+      "avg_failure_harm": 0.0,
+      "failure_counts": {},
+      "top_failures": []
+    },
+    {
+      "task": "information_extraction",
+      "model_name": "phi3:mini",
+      "n_rows": 20,
+      "n_failures": 1,
+      "failure_rate": 0.05,
+      "avg_semantic_risk": 0.010125,
+      "avg_failure_harm": 0.2025,
+      "failure_counts": {
+        "missing_field": 1
+      },
+      "top_failures": [
+        {
+          "failure_type": "missing_field",
+          "count": 1,
+          "rate_over_all_rows": 0.05
+        }
+      ]
+    },
+    {
+      "task": "information_extraction",
+      "model_name": "qwen2.5:1.5b",
+      "n_rows": 20,
+      "n_failures": 1,
+      "failure_rate": 0.05,
+      "avg_semantic_risk": 0.010125,
+      "avg_failure_harm": 0.2025,
+      "failure_counts": {
+        "missing_field": 1
+      },
+      "top_failures": [
+        {
+          "failure_type": "missing_field",
+          "count": 1,
+          "rate_over_all_rows": 0.05
+        }
+      ]
+    },
+    {
+      "task": "information_extraction",
+      "model_name": "tinyllama:1.1b",
+      "n_rows": 20,
+      "n_failures": 2,
+      "failure_rate": 0.1,
+      "avg_semantic_risk": 0.02025,
+      "avg_failure_harm": 0.2025,
+      "failure_counts": {
+        "missing_field": 2
+      },
+      "top_failures": [
+        {
+          "failure_type": "missing_field",
+          "count": 2,
+          "rate_over_all_rows": 0.1
+        }
+      ]
+    },
+    {
+      "task": "instruction_following",
+      "model_name": "groq:llama-3.3-70b-versatile",
+      "n_rows": 20,
+      "n_failures": 1,
+      "failure_rate": 0.05,
+      "avg_semantic_risk": 0.024499999999999997,
+      "avg_failure_harm": 0.48999999999999994,
+      "failure_counts": {
+        "constraint_violation": 1
+      },
+      "top_failures": [
+        {
+          "failure_type": "constraint_violation",
+          "count": 1,
+          "rate_over_all_rows": 0.05
+        }
+      ]
+    },
+    {
+      "task": "instruction_following",
+      "model_name": "phi3:mini",
+      "n_rows": 20,
+      "n_failures": 7,
+      "failure_rate": 0.35,
+      "avg_semantic_risk": 0.17149999999999996,
+      "avg_failure_harm": 0.4899999999999999,
+      "failure_counts": {
+        "constraint_violation": 7
+      },
+      "top_failures": [
+        {
+          "failure_type": "constraint_violation",
+          "count": 7,
+          "rate_over_all_rows": 0.35
+        }
+      ]
+    },
+    {
+      "task": "instruction_following",
+      "model_name": "qwen2.5:1.5b",
+      "n_rows": 20,
+      "n_failures": 5,
+      "failure_rate": 0.25,
+      "avg_semantic_risk": 0.12249999999999998,
+      "avg_failure_harm": 0.48999999999999994,
+      "failure_counts": {
+        "constraint_violation": 5
+      },
+      "top_failures": [
+        {
+          "failure_type": "constraint_violation",
+          "count": 5,
+          "rate_over_all_rows": 0.25
+        }
+      ]
+    },
+    {
+      "task": "instruction_following",
+      "model_name": "tinyllama:1.1b",
+      "n_rows": 20,
+      "n_failures": 10,
+      "failure_rate": 0.5,
+      "avg_semantic_risk": 0.24499999999999997,
+      "avg_failure_harm": 0.48999999999999994,
+      "failure_counts": {
+        "constraint_violation": 10
+      },
+      "top_failures": [
+        {
+          "failure_type": "constraint_violation",
+          "count": 10,
+          "rate_over_all_rows": 0.5
+        }
+      ]
+    },
+    {
+      "task": "maths",
+      "model_name": "groq:llama-3.3-70b-versatile",
+      "n_rows": 20,
+      "n_failures": 2,
+      "failure_rate": 0.1,
+      "avg_semantic_risk": 0.07200000000000001,
+      "avg_failure_harm": 0.7200000000000001,
+      "failure_counts": {
+        "arithmetic_error": 2
+      },
+      "top_failures": [
+        {
+          "failure_type": "arithmetic_error",
+          "count": 2,
+          "rate_over_all_rows": 0.1
+        }
+      ]
+    },
+    {
+      "task": "maths",
+      "model_name": "phi3:mini",
+      "n_rows": 20,
+      "n_failures": 6,
+      "failure_rate": 0.3,
+      "avg_semantic_risk": 0.21600000000000003,
+      "avg_failure_harm": 0.7200000000000001,
+      "failure_counts": {
+        "arithmetic_error": 6
+      },
+      "top_failures": [
+        {
+          "failure_type": "arithmetic_error",
+          "count": 6,
+          "rate_over_all_rows": 0.3
+        }
+      ]
+    },
+    {
+      "task": "maths",
+      "model_name": "qwen2.5:1.5b",
+      "n_rows": 20,
+      "n_failures": 12,
+      "failure_rate": 0.6,
+      "avg_semantic_risk": 0.43199999999999994,
+      "avg_failure_harm": 0.7200000000000001,
+      "failure_counts": {
+        "arithmetic_error": 12
+      },
+      "top_failures": [
+        {
+          "failure_type": "arithmetic_error",
+          "count": 12,
+          "rate_over_all_rows": 0.6
+        }
+      ]
+    },
+    {
+      "task": "maths",
+      "model_name": "tinyllama:1.1b",
+      "n_rows": 20,
+      "n_failures": 18,
+      "failure_rate": 0.9,
+      "avg_semantic_risk": 0.6480000000000001,
+      "avg_failure_harm": 0.7200000000000001,
+      "failure_counts": {
+        "arithmetic_error": 18
+      },
+      "top_failures": [
+        {
+          "failure_type": "arithmetic_error",
+          "count": 18,
+          "rate_over_all_rows": 0.9
+        }
+      ]
+    },
+    {
+      "task": "retrieval_grounded",
+      "model_name": "groq:llama-3.3-70b-versatile",
+      "n_rows": 20,
+      "n_failures": 0,
+      "failure_rate": 0.0,
+      "avg_semantic_risk": 0.0,
+      "avg_failure_harm": 0.0,
+      "failure_counts": {},
+      "top_failures": []
+    },
+    {
+      "task": "retrieval_grounded",
+      "model_name": "phi3:mini",
+      "n_rows": 20,
+      "n_failures": 3,
+      "failure_rate": 0.15,
+      "avg_semantic_risk": 0.07,
+      "avg_failure_harm": 0.46666666666666673,
+      "failure_counts": {
+        "answer_mismatch": 2,
+        "no_answer": 1
+      },
+      "top_failures": [
+        {
+          "failure_type": "answer_mismatch",
+          "count": 2,
+          "rate_over_all_rows": 0.1
+        },
+        {
+          "failure_type": "no_answer",
+          "count": 1,
+          "rate_over_all_rows": 0.05
+        }
+      ]
+    },
+    {
+      "task": "retrieval_grounded",
+      "model_name": "qwen2.5:1.5b",
+      "n_rows": 20,
+      "n_failures": 0,
+      "failure_rate": 0.0,
+      "avg_semantic_risk": 0.0,
+      "avg_failure_harm": 0.0,
+      "failure_counts": {},
+      "top_failures": []
+    },
+    {
+      "task": "retrieval_grounded",
+      "model_name": "tinyllama:1.1b",
+      "n_rows": 20,
+      "n_failures": 4,
+      "failure_rate": 0.2,
+      "avg_semantic_risk": 0.10400000000000001,
+      "avg_failure_harm": 0.52,
+      "failure_counts": {
+        "answer_mismatch": 3,
+        "no_answer": 1
+      },
+      "top_failures": [
+        {
+          "failure_type": "answer_mismatch",
+          "count": 3,
+          "rate_over_all_rows": 0.15
+        },
+        {
+          "failure_type": "no_answer",
+          "count": 1,
+          "rate_over_all_rows": 0.05
+        }
+      ]
+    },
+    {
+      "task": "summarization",
+      "model_name": "groq:llama-3.3-70b-versatile",
+      "n_rows": 20,
+      "n_failures": 1,
+      "failure_rate": 0.05,
+      "avg_semantic_risk": 0.020999999999999998,
+      "avg_failure_harm": 0.42,
+      "failure_counts": {
+        "low_relevance": 1
+      },
+      "top_failures": [
+        {
+          "failure_type": "low_relevance",
+          "count": 1,
+          "rate_over_all_rows": 0.05
+        }
+      ]
+    },
+    {
+      "task": "summarization",
+      "model_name": "phi3:mini",
+      "n_rows": 20,
+      "n_failures": 2,
+      "failure_rate": 0.1,
+      "avg_semantic_risk": 0.041999999999999996,
+      "avg_failure_harm": 0.42,
+      "failure_counts": {
+        "low_relevance": 2
+      },
+      "top_failures": [
+        {
+          "failure_type": "low_relevance",
+          "count": 2,
+          "rate_over_all_rows": 0.1
+        }
+      ]
+    },
+    {
+      "task": "summarization",
+      "model_name": "qwen2.5:1.5b",
+      "n_rows": 20,
+      "n_failures": 7,
+      "failure_rate": 0.35,
+      "avg_semantic_risk": 0.147,
+      "avg_failure_harm": 0.42,
+      "failure_counts": {
+        "low_relevance": 7
+      },
+      "top_failures": [
+        {
+          "failure_type": "low_relevance",
+          "count": 7,
+          "rate_over_all_rows": 0.35
+        }
+      ]
+    },
+    {
+      "task": "summarization",
+      "model_name": "tinyllama:1.1b",
+      "n_rows": 20,
+      "n_failures": 5,
+      "failure_rate": 0.25,
+      "avg_semantic_risk": 0.10500000000000001,
+      "avg_failure_harm": 0.41999999999999993,
+      "failure_counts": {
+        "low_relevance": 5
+      },
+      "top_failures": [
+        {
+          "failure_type": "low_relevance",
+          "count": 5,
+          "rate_over_all_rows": 0.25
+        }
+      ]
+    },
+    {
+      "task": "text_generation",
+      "model_name": "groq:llama-3.3-70b-versatile",
+      "n_rows": 19,
+      "n_failures": 1,
+      "failure_rate": 0.05263157894736842,
+      "avg_semantic_risk": 0.022105263157894735,
+      "avg_failure_harm": 0.42,
+      "failure_counts": {
+        "low_relevance": 1
+      },
+      "top_failures": [
+        {
+          "failure_type": "low_relevance",
+          "count": 1,
+          "rate_over_all_rows": 0.05263157894736842
+        }
+      ]
+    },
+    {
+      "task": "text_generation",
+      "model_name": "phi3:mini",
+      "n_rows": 19,
+      "n_failures": 5,
+      "failure_rate": 0.2631578947368421,
+      "avg_semantic_risk": 0.1105263157894737,
+      "avg_failure_harm": 0.41999999999999993,
+      "failure_counts": {
+        "low_relevance": 5
+      },
+      "top_failures": [
+        {
+          "failure_type": "low_relevance",
+          "count": 5,
+          "rate_over_all_rows": 0.2631578947368421
+        }
+      ]
+    },
+    {
+      "task": "text_generation",
+      "model_name": "qwen2.5:1.5b",
+      "n_rows": 19,
+      "n_failures": 10,
+      "failure_rate": 0.5263157894736842,
+      "avg_semantic_risk": 0.2210526315789474,
+      "avg_failure_harm": 0.41999999999999993,
+      "failure_counts": {
+        "low_relevance": 10
+      },
+      "top_failures": [
+        {
+          "failure_type": "low_relevance",
+          "count": 10,
+          "rate_over_all_rows": 0.5263157894736842
+        }
+      ]
+    },
+    {
+      "task": "text_generation",
+      "model_name": "tinyllama:1.1b",
+      "n_rows": 19,
+      "n_failures": 4,
+      "failure_rate": 0.21052631578947367,
+      "avg_semantic_risk": 0.08842105263157894,
+      "avg_failure_harm": 0.42,
+      "failure_counts": {
+        "low_relevance": 4
+      },
+      "top_failures": [
+        {
+          "failure_type": "low_relevance",
+          "count": 4,
+          "rate_over_all_rows": 0.21052631578947367
+        }
+      ]
+    }
+  ]
+}

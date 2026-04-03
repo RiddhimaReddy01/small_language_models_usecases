@@ -3,11 +3,11 @@
 import argparse
 import bisect
 import json
-import os
 import re
 import math
 import hashlib
 import sys
+import numpy as np
 from statistics import NormalDist
 from collections import defaultdict
 from pathlib import Path
@@ -16,12 +16,6 @@ from typing import Any
 ROOT = Path(__file__).resolve().parents[1]
 if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
-os.environ.setdefault("MPLCONFIGDIR", str(ROOT / ".matplotlib-cache"))
-
-import matplotlib
-
-matplotlib.use("Agg")
-import matplotlib.pyplot as plt
 from sddf.difficulty import DIFFICULTY_FEATURES, compute_all_features
 from sddf.difficulty_weights import DifficultyWeightLearner
 
@@ -60,17 +54,6 @@ SUPPORTED_TASKS = {
     "text_generation",
 }
 
-TASK_FAMILY_MAP = {
-    "classification": "classification",
-    "maths": "reasoning",
-    "code_generation": "code",
-    "summarization": "summarization",
-    "information_extraction": "extraction",
-    "retrieval_grounded": "retrieval",
-    "instruction_following": "instruction",
-    "text_generation": "generation",
-}
-
 DEFAULT_WILSON_CONFIDENCE_LEVEL = 0.90
 DEFAULT_WILSON_Z = 1.6448536269514722
 DEFAULT_CAPABILITY_THRESHOLD = 0.80
@@ -84,14 +67,24 @@ def _z_from_confidence(level: float) -> float:
     return NormalDist().inv_cdf(0.5 + bounded / 2.0)
 
 
-def _wilson_interval(p: float, n: int, z: float = DEFAULT_WILSON_Z) -> tuple[float | None, float | None]:
+def _beta_credible_interval(
+    successes: int,
+    n: int,
+    level: float = DEFAULT_WILSON_CONFIDENCE_LEVEL,
+) -> tuple[float | None, float | None]:
+    """Approximate Beta-Binomial credible interval with Beta(1,1) prior."""
     if n <= 0:
         return None, None
-    p = max(0.0, min(1.0, float(p)))
-    denom = 1 + z * z / n
-    center = (p + z * z / (2 * n)) / denom
-    margin = (z / denom) * math.sqrt((p * (1 - p) / n) + (z * z / (4 * n * n)))
-    return max(0.0, center - margin), min(1.0, center + margin)
+    s = max(0, min(int(successes), int(n)))
+    a = float(s + 1)
+    b = float(n - s + 1)
+    mean = a / (a + b)
+    var = (a * b) / (((a + b) ** 2) * (a + b + 1.0))
+    z = _z_from_confidence(level)
+    sd = math.sqrt(max(0.0, var))
+    lo = max(0.0, mean - z * sd)
+    hi = min(1.0, mean + z * sd)
+    return lo, hi
 
 
 class GeneralizedRoutingFramework:
@@ -109,134 +102,40 @@ class GeneralizedRoutingFramework:
         self.wilson_z = wilson_z
         self.wilson_confidence_level = wilson_confidence_level
 
-    def difficulty_to_bin_probabilities(self, difficulty_score: float, num_bins: int = 5) -> dict[int, float]:
-        score = max(0.0, min(1.0, float(difficulty_score)))
-        position = score * max(1, num_bins - 1)
-        lower = int(position)
-        upper = min(lower + 1, num_bins - 1)
-        frac = position - lower
-        probs = {idx: 0.0 for idx in range(num_bins)}
-        probs[lower] = 1.0 - frac
-        if upper != lower:
-            probs[upper] = frac
-        return probs
-
-    def compute_expected_capability(
+    def find_threshold(
         self,
-        difficulty_score: float,
-        capability_curve: dict[int, float],
-        num_bins: int = 5,
-    ) -> float:
-        probs = self.difficulty_to_bin_probabilities(difficulty_score, num_bins)
-        return sum(prob * float(capability_curve.get(bin_id, 0.5)) for bin_id, prob in probs.items())
-
-    def compute_expected_risk(
-        self,
-        difficulty_score: float,
-        risk_curve: dict[int, float],
-        num_bins: int = 5,
-    ) -> float:
-        probs = self.difficulty_to_bin_probabilities(difficulty_score, num_bins)
-        return sum(prob * float(risk_curve.get(bin_id, 0.5)) for bin_id, prob in probs.items())
-
-    def detect_tipping_points(
-        self,
-        capability_curve: dict[int, float],
-        risk_curve: dict[int, float],
-        num_bins: int = 5,
-        capability_counts: dict[int, int] | None = None,
-        risk_counts: dict[int, int] | None = None,
-        min_samples: int = 5,
-    ) -> tuple[int | None, int | None]:
-        # Fallback bin-walk used to retain tau_cap/tau_risk for reporting.
-        # limit_difficulty is set by find_threshold_from_smooth_curve which runs after this.
-        tau_cap: int | None = None
-        tau_risk: int | None = None
-        risk_breach_bin: int | None = None
-
-        # Walk bins 0→K; tau_cap advances only while consecutive bins pass Wilson CI.
-        # Stops at first populated failing bin — later passing bins cannot extend the
-        # safe region because the routing rule is "score <= tau_cap" (includes all lower bins).
-        for d in range(num_bins):
-            n = int((capability_counts or {}).get(d, 0))
-            if n < min_samples:
-                break  # sparse bin: cannot certify this range; stop consecutive run
-            lower, _ = _wilson_interval(float(capability_curve.get(d, 0.0)), n, z=self.wilson_z)
-            if lower is not None and lower >= self.capability_threshold:
-                tau_cap = d
-            else:
-                break  # first failing bin ends the consecutive safe run
-
-        # Conservative risk certification: breach if Wilson upper bound exceeds threshold.
-        for d in range(num_bins):
-            n = int((risk_counts or {}).get(d, 0))
-            if n < min_samples:
-                continue
-            _lower, upper = _wilson_interval(float(risk_curve.get(d, 0.0)), n, z=self.wilson_z)
-            if upper is not None and upper > self.risk_threshold:
-                risk_breach_bin = d
-                break
-
-        if risk_breach_bin is None:
-            tau_risk = None
-        elif risk_breach_bin == 0:
-            # Immediate breach: no safe SLM region.
-            tau_risk = -1
-        else:
-            tau_risk = risk_breach_bin - 1
-
-        return tau_cap, tau_risk
-
-    def find_threshold_from_smooth_curve(
-        self,
-        capability_curve: dict[int, float],
-        risk_curve: dict[int, float],
-        num_bins: int = 5,
-        capability_counts: dict[int, int] | None = None,
-        risk_counts: dict[int, int] | None = None,
-        min_samples: int = 5,
+        cap_xs: list[float],
+        cap_iso: list[float],
+        cap_raw: list[float],
+        risk_xs: list[float],
+        risk_iso: list[float],
+        risk_raw: list[float],
+        min_k: int = 5,
         grid_points: int = 200,
-    ) -> tuple[float | None, int | None]:
-        """Find tau* = highest d where E[cap|d] >= theta_cap AND E[risk|d] <= theta_risk,
-        then walk down from bin(tau*) until Wilson CI validates both gates.
+    ) -> float | None:
+        """Find τ* = highest d where k-nearest Wilson CI lower bound on cap(d) ≥ θ_cap
+        AND k-nearest Wilson CI upper bound on risk(d) ≤ θ_risk.
 
-        Returns (limit_difficulty, validated_bin). Both None if no safe region found.
+        Fully continuous — no bins. Uses the k nearest training queries at each d
+        to estimate a local proportion and Wilson CI bound.
         """
-        if not capability_curve or not risk_curve:
-            return None, None
-
-        # Step 1: scan smooth curve from high difficulty down to find crossing point.
-        # tau* = highest d where both expected constraints are simultaneously satisfied.
-        tau_star: float | None = None
+        if len(cap_xs) < min_k or len(risk_xs) < min_k:
+            return None
+        d_min = min(cap_xs[0], risk_xs[0])
+        d_max = max(cap_xs[-1], risk_xs[-1])
+        if d_max <= d_min:
+            return None
         for i in range(grid_points - 1, -1, -1):
-            d = i / max(1, grid_points - 1)
-            e_cap = self.compute_expected_capability(d, capability_curve, num_bins)
-            e_risk = self.compute_expected_risk(d, risk_curve, num_bins)
-            if e_cap >= self.capability_threshold and e_risk <= self.risk_threshold:
-                tau_star = d
-                break
-
-        if tau_star is None:
-            return None, None
-
-        # Step 2: map tau* to its bin and walk down until Wilson CI validates.
-        # This guards against over-certifying regions backed by too few samples.
-        start_bin = min(num_bins - 1, int(round(tau_star * (num_bins - 1))))
-        for b in range(start_bin, -1, -1):
-            n = int((capability_counts or {}).get(b, 0))
-            if n < min_samples:
-                continue  # skip sparse bins, try next lower
-            lower_cap, _ = _wilson_interval(float(capability_curve.get(b, 0.0)), n, z=self.wilson_z)
-            n_r = int((risk_counts or {}).get(b, n))
-            _, upper_risk = _wilson_interval(float(risk_curve.get(b, 0.0)), n_r, z=self.wilson_z)
-            cap_ok = lower_cap is not None and lower_cap >= self.capability_threshold
-            risk_ok = upper_risk is None or upper_risk <= self.risk_threshold
-            if cap_ok and risk_ok:
-                # Use bin midpoint as limit_difficulty (matches _build_routing_policy convention).
-                limit_difficulty = b / max(1, num_bins - 1)
-                return limit_difficulty, b
-
-        return None, None
+            d = d_min + (d_max - d_min) * i / max(1, grid_points - 1)
+            _, lower_cap = _local_beta_at(
+                d, cap_xs, cap_raw, min_k, self.wilson_confidence_level, upper=False
+            )
+            _, upper_risk = _local_beta_at(
+                d, risk_xs, risk_raw, min_k, self.wilson_confidence_level, upper=True
+            )
+            if lower_cap >= self.capability_threshold and upper_risk <= self.risk_threshold:
+                return d
+        return None
 
 
 def _load_jsonl(path: Path) -> list[dict[str, Any]]:
@@ -526,363 +425,193 @@ def _evaluate_row(row: dict[str, Any], reference_lookup: dict[str, dict[str, Any
     else:
         capability = 1.0 if row.get("valid", False) else 0.0
         failure = None if capability else row.get("failure_category") or "quality_failure"
-    # Risk is independent of capability: it measures HOW the model fails, not IF.
-    # High-risk = assertive wrong answer the user may not notice and act on.
-    # Low-risk  = silent failure (empty, refusal, truncation) — user knows to escalate.
-    # A model with high capability can still have high risk if its failure mode is
-    # confidently wrong rather than safely abstaining.
-    HIGH_RISK_FAILURES = {
-        "arithmetic_error",     # wrong number presented as correct
-        "wrong_label",          # wrong class stated confidently
-        "logic_error",          # plausible but incorrect code
-        "answer_mismatch",      # wrong factual answer
-        "low_relevance",        # off-topic response presented as answer
-        "constraint_violation", # constraint broken without flagging it
-    }
-    LOW_RISK_FAILURES = {
-        "empty_output",
-        "incomplete_output",
-        "missing_ground_truth",
-        "missing_field",
-        "no_answer",
-        "format_error",
-        "quality_failure",
-        "timeout_runtime",   # execution timed out — silent, not a wrong answer
+    # Research-style harm model:
+    # risk = P(error) * severity * undetectability
+    # Here P(error) is binary at row-level: 1 when failed, 0 when correct.
+    # severity/undetectability are calibrated per failure mode.
+    failure_harm: dict[str, tuple[float, float]] = {
+        # (severity, undetectability)
+        "arithmetic_error": (0.9, 0.8),
+        "wrong_label": (0.8, 0.8),
+        "logic_error": (0.95, 0.85),
+        "answer_mismatch": (0.85, 0.8),
+        "low_relevance": (0.6, 0.7),
+        "constraint_violation": (0.7, 0.7),
+        "quality_failure": (0.5, 0.6),
+        "format_error": (0.4, 0.4),
+        "missing_field": (0.45, 0.45),
+        "incomplete_output": (0.4, 0.35),
+        "no_answer": (0.2, 0.2),
+        "empty_output": (0.1, 0.1),
+        "timeout_runtime": (0.1, 0.1),
+        "missing_ground_truth": (0.3, 0.3),
     }
     if failure is None:
-        semantic_risk = 0.0   # no failure
-    elif failure in HIGH_RISK_FAILURES:
-        semantic_risk = 1.0   # dangerous failure
+        semantic_risk = 0.0
     else:
-        semantic_risk = 0.0   # safe/silent failure — not a deployment risk
+        sev, und = failure_harm.get(failure, (0.6, 0.6))
+        semantic_risk = max(0.0, min(1.0, float(sev) * float(und)))
     return capability, semantic_risk, failure
 
 
-def _curve_for_rows(rows: list[dict[str, Any]], reference_lookup: dict[str, dict[str, Any]]) -> tuple[dict[int, float], dict[int, float], dict[int, int], dict[str, dict[int, int]], dict[str, dict[str, int]]]:
-    per_bin_capability: dict[int, list[float]] = defaultdict(list)
-    per_bin_risk: dict[int, list[float]] = defaultdict(list)
-    per_bin_failures: dict[int, dict[str, int]] = defaultdict(lambda: defaultdict(int))
-    for row in rows:
-        bin_id = int(row["bin"])
-        capability, risk, failure = _evaluate_row(row, reference_lookup)
-        per_bin_capability[bin_id].append(capability)
-        per_bin_risk[bin_id].append(risk)
-        if failure:
-            per_bin_failures[bin_id][failure] += 1
-
-    capability: dict[int, float] = {}
-    risk: dict[int, float] = {}
-    counts: dict[int, int] = {}
-    failure_counts: dict[str, dict[int, int]] = defaultdict(dict)
-    for bin_id in sorted(per_bin_capability):
-        vals = per_bin_capability[bin_id]
-        risks = per_bin_risk[bin_id]
-        counts[bin_id] = len(vals)
-        capability[bin_id] = sum(vals) / len(vals) if vals else 0.0
-        risk[bin_id] = sum(risks) / len(risks) if risks else 0.0
-        for failure_type, count in per_bin_failures[bin_id].items():
-            failure_counts[failure_type][bin_id] = count
-    return capability, risk, counts, dict(failure_counts), {str(k): dict(v) for k, v in per_bin_failures.items()}
+def _pav_list(values: list[float], decreasing: bool) -> list[float]:
+    """Weighted Pool Adjacent Violators isotonic regression on a flat list."""
+    if not values:
+        return []
+    pool: list[list] = []  # [pooled_value, pooled_weight, [indices]]
+    for i, v in enumerate(values):
+        pool.append([v, 1.0, [i]])
+        while len(pool) >= 2:
+            a, b = pool[-2], pool[-1]
+            violates = (b[0] > a[0]) if decreasing else (b[0] < a[0])
+            if not violates:
+                break
+            merged_w = a[1] + b[1]
+            merged_v = (a[0] * a[1] + b[0] * b[1]) / merged_w
+            pool.pop()
+            pool.pop()
+            pool.append([merged_v, merged_w, a[2] + b[2]])
+    result = [0.0] * len(values)
+    for pooled_v, _, idxs in pool:
+        for i in idxs:
+            result[i] = pooled_v
+    return result
 
 
-def _plot_task_curve_panels(
-    smooth_curves: dict[str, dict[float, float]],
-    empirical_curves: dict[str, dict[int, float]],
-    counts_by_model: dict[str, dict[int, int]] | None,
-    title: str,
-    ylabel: str,
-    output_path: Path,
-    threshold_line: float | None = None,
-    threshold_label: str | None = None,
-    tau_difficulty: dict[str, float | None] | None = None,
-    wilson_z: float = DEFAULT_WILSON_Z,
-) -> None:
-    models = [m for m in CANONICAL_MODELS if m in smooth_curves or m in empirical_curves]
-    if not models:
-        return
-    n = len(models)
-    cols = 2
-    rows = (n + cols - 1) // cols
-    fig, axes = plt.subplots(rows, cols, figsize=(12, 4.2 * rows), squeeze=False)
-    axes_flat = [ax for row_axes in axes for ax in row_axes]
+def _fit_continuous_curves(
+    rows: list[dict[str, Any]],
+    scores: dict[str, float],
+    reference_lookup: dict[str, dict[str, Any]],
+) -> tuple[
+    tuple[list[float], list[float], list[float]],
+    tuple[list[float], list[float], list[float]],
+    dict[str, int],
+]:
+    """Fit monotone capability and risk curves directly on continuous difficulty scores.
 
-    for idx, model_key in enumerate(models):
-        ax = axes_flat[idx]
-        smooth = smooth_curves.get(model_key, {})
-        empirical = empirical_curves.get(model_key, {})
-        counts = {} if not counts_by_model else counts_by_model.get(model_key, {})
+    No bins. Each query contributes one (score, outcome) point. Isotonic regression
+    enforces monotonicity across the sorted scores.
 
-        if smooth:
-            xs = sorted(float(x) for x in smooth.keys())
-            ys = [float(smooth[x]) if x in smooth else float(smooth.get(f"{x:.3f}", 0.0)) for x in xs]
-            ax.plot(xs, ys, linewidth=2.0, color="tab:blue", label="smoothed")
-        if empirical:
-            bins = sorted(int(b) for b in empirical.keys())
-            denom = max(1, max(bins))
-            ex = [b / denom for b in bins]
-            ey = [float(empirical[b]) for b in bins]
-            ax.scatter(ex, ey, color="tab:orange", s=35, label="empirical bins", zorder=4)
-            lo_err = []
-            hi_err = []
-            for b, y in zip(bins, ey):
-                n = int(counts.get(b, 0))
-                lo, hi = _wilson_interval(y, n, z=wilson_z)
-                if lo is None or hi is None:
-                    lo_err.append(0.0)
-                    hi_err.append(0.0)
-                else:
-                    lo_err.append(max(0.0, y - lo))
-                    hi_err.append(max(0.0, hi - y))
-            if any((a > 0.0 or b > 0.0) for a, b in zip(lo_err, hi_err)):
-                ax.errorbar(
-                    ex,
-                    ey,
-                    yerr=[lo_err, hi_err],
-                    fmt="none",
-                    ecolor="tab:orange",
-                    elinewidth=1.1,
-                    capsize=3,
-                    alpha=0.8,
-                    zorder=3,
-                    label="Wilson CI",
-                )
-
-        if threshold_line is not None:
-            ax.axhline(threshold_line, color="black", linestyle="--", linewidth=1.0, label=threshold_label or "threshold")
-
-        tau = None if not tau_difficulty else tau_difficulty.get(model_key)
-        if tau is not None:
-            ax.axvline(float(tau), color="crimson", linestyle="--", linewidth=1.2, label=f"tau={tau:.2f}")
-
-        ax.set_xlim(0.0, 1.0)
-        ax.set_xticks([0.0, 0.25, 0.5, 0.75, 1.0])
-        ax.grid(True, alpha=0.25)
-        ax.set_title(DISPLAY_NAMES.get(model_key, model_key), fontsize=10)
-        ax.set_xlabel("Difficulty score")
-        ax.set_ylabel(ylabel)
-        ax.legend(fontsize=8, loc="best")
-
-    for ax in axes_flat[n:]:
-        ax.axis("off")
-
-    fig.suptitle(title, fontsize=13)
-    output_path.parent.mkdir(parents=True, exist_ok=True)
-    fig.tight_layout(rect=[0, 0.02, 1, 0.96])
-    fig.savefig(output_path, dpi=170)
-    plt.close(fig)
-
-
-def _avg_curve(curve: dict[int, float], counts: dict[int, int] | None = None) -> float:
-    if not curve:
-        return 0.0
-    if counts:
-        total = sum(counts.get(b, 0) for b in curve)
-        if total > 0:
-            return sum(float(v) * counts.get(b, 0) for b, v in curve.items()) / total
-    return sum(curve.values()) / len(curve)
-
-
-def _isotonic_decreasing(curve: dict[int, float], counts: dict[int, int]) -> dict[int, float]:
-    """Pool Adjacent Violators — enforce monotone decreasing capability curve.
-
-    Capability should decrease as bin index (difficulty) increases.
-    Adjacent bins that violate this are merged into a weighted average.
-    The raw empirical values are preserved separately for the scatter plot;
-    this function only produces the isotonic-regularised version used for
-    the smooth line and reported metrics.
+    Returns:
+        cap_curve: (xs, cap_iso, cap_raw) — decreasing isotonic + raw outcomes
+        risk_curve: (xs, risk_iso, risk_raw) — increasing isotonic + raw outcomes
+        failure_counts: {failure_type: count}
     """
-    bins = sorted(curve.keys())
-    if len(bins) <= 1:
-        return dict(curve)
-    vals = [float(curve[b]) for b in bins]
-    wts = [max(1, int(counts.get(b, 1))) for b in bins]
-    # Stack of [pooled_value, pooled_weight, [original_bins]]
-    pool: list[list] = []
-    for v, w, b in zip(vals, wts, bins):
-        pool.append([v, w, [b]])
-        # Merge while last entry is GREATER than second-to-last (violates decreasing).
-        while len(pool) >= 2 and pool[-1][0] > pool[-2][0]:
-            last = pool.pop()
-            prev = pool.pop()
-            merged_w = prev[1] + last[1]
-            merged_v = (prev[0] * prev[1] + last[0] * last[1]) / merged_w
-            pool.append([merged_v, merged_w, prev[2] + last[2]])
-    result: dict[int, float] = {}
-    for pooled_v, _, pooled_bins in pool:
-        for b in pooled_bins:
-            result[b] = pooled_v
-    return result
+    triples: list[tuple[float, float, float]] = []
+    failure_counts: dict[str, int] = defaultdict(int)
+    for row in rows:
+        sid = str(row["sample_id"])
+        d = float(scores.get(sid, 0.5))
+        cap, risk, failure = _evaluate_row(row, reference_lookup)
+        triples.append((d, float(cap), float(risk)))
+        if failure:
+            failure_counts[failure] += 1
+    if not triples:
+        return ([], [], []), ([], [], []), dict(failure_counts)
+    triples.sort(key=lambda t: t[0])
+    xs      = [t[0] for t in triples]
+    cap_raw = [t[1] for t in triples]
+    risk_raw = [t[2] for t in triples]
+    cap_iso  = _pav_list(cap_raw,  decreasing=True)
+    risk_iso = _pav_list(risk_raw, decreasing=False)
+    return (xs, cap_iso, cap_raw), (xs, risk_iso, risk_raw), dict(failure_counts)
 
 
-def _isotonic_increasing(curve: dict[int, float], counts: dict[int, int]) -> dict[int, float]:
-    """Pool Adjacent Violators — enforce monotone increasing risk curve."""
-    bins = sorted(curve.keys())
-    if len(bins) <= 1:
-        return dict(curve)
-    vals = [float(curve[b]) for b in bins]
-    wts = [max(1, int(counts.get(b, 1))) for b in bins]
-    pool: list[list] = []
-    for v, w, b in zip(vals, wts, bins):
-        pool.append([v, w, [b]])
-        # Merge while last entry is LESS than second-to-last (violates increasing).
-        while len(pool) >= 2 and pool[-1][0] < pool[-2][0]:
-            last = pool.pop()
-            prev = pool.pop()
-            merged_w = prev[1] + last[1]
-            merged_v = (prev[0] * prev[1] + last[0] * last[1]) / merged_w
-            pool.append([merged_v, merged_w, prev[2] + last[2]])
-    result: dict[int, float] = {}
-    for pooled_v, _, pooled_bins in pool:
-        for b in pooled_bins:
-            result[b] = pooled_v
-    return result
+def _evaluate_curve(xs: list[float], ys: list[float], d: float) -> float:
+    """Evaluate a continuous curve at d via linear interpolation."""
+    if not xs:
+        return 0.5
+    d = float(d)
+    if d <= xs[0]:
+        return ys[0]
+    if d >= xs[-1]:
+        return ys[-1]
+    idx = bisect.bisect_left(xs, d)
+    x0, x1 = xs[idx - 1], xs[idx]
+    y0, y1 = ys[idx - 1], ys[idx]
+    if x1 == x0:
+        return y0
+    return y0 + (y1 - y0) * (d - x0) / (x1 - x0)
+
+
+def _local_beta_at(
+    d: float,
+    xs: list[float],
+    ys_raw: list[float],
+    min_k: int,
+    ci_level: float,
+    upper: bool = False,
+) -> tuple[float, float]:
+    """Local proportion and Beta-Binomial CI bound at d using k nearest points.
+
+    Returns (point_estimate, lower_bound) for capability (upper=False)
+         or (point_estimate, upper_bound) for risk (upper=True).
+    """
+    if not xs:
+        return (0.5, 1.0) if upper else (0.5, 0.0)
+    k = max(1, int(min_k))
+    indexed = sorted(range(len(xs)), key=lambda i: abs(xs[i] - d))
+    neighbors = indexed[:k]
+    n = len(neighbors)
+    successes = int(round(sum(ys_raw[i] for i in neighbors)))
+    p = float(successes) / float(max(1, n))
+    lo, hi = _beta_credible_interval(successes, n, level=ci_level)
+    if upper:
+        return p, (hi if hi is not None else 1.0)
+    return p, (lo if lo is not None else 0.0)
 
 
 def _build_routing_policy(
-    tau_cap: int | None,
-    tau_risk: int | None,
-    counts: dict[int, int],
-    num_bins: int,
-    min_samples: int,
+    limit_difficulty: float | None,
+    d_safe: float | None = None,
+    d_unsafe: float | None = None,
 ) -> dict[str, Any]:
-    risk_gate_pass = tau_risk != -1
-    capability_gate_pass = tau_cap is not None
-
-    if tau_cap is None or tau_risk == -1:
+    if limit_difficulty is None and d_safe is None:
         return {
-            "risk_gate_pass": risk_gate_pass,
-            "capability_gate_pass": capability_gate_pass,
             "limit_bin": None,
             "limit_difficulty": None,
-            "sparse_bins": [bin_id for bin_id, count in sorted(counts.items()) if count < min_samples],
-            "route_rule": "Route all queries to BASELINE; SLM fails level+CI safety gate.",
+            "d_safe": None,
+            "d_unsafe": None,
+            "route_rule": "Route all queries to BASELINE; no certified SLM region.",
         }
-
-    limit_bin = tau_cap if tau_risk is None else min(tau_cap, tau_risk)
+    if d_safe is not None and d_unsafe is not None and float(d_unsafe) > float(d_safe):
+        return {
+            "limit_bin": None,
+            "limit_difficulty": float(limit_difficulty) if limit_difficulty is not None else None,
+            "d_safe": float(d_safe),
+            "d_unsafe": float(d_unsafe),
+            "route_rule": (
+                f"SLM if score <= {float(d_safe):.4f}; "
+                f"HYBRID_ABSTAIN if {float(d_safe):.4f} < score < {float(d_unsafe):.4f}; "
+                f"BASELINE otherwise."
+            ),
+        }
+    if d_safe is not None:
+        return {
+            "limit_bin": None,
+            "limit_difficulty": float(limit_difficulty) if limit_difficulty is not None else float(d_safe),
+            "d_safe": float(d_safe),
+            "d_unsafe": None,
+            "route_rule": (
+                f"SLM if score <= {float(d_safe):.4f}; BASELINE otherwise "
+                "(no certified hybrid uncertainty band)."
+            ),
+        }
     return {
-        "risk_gate_pass": risk_gate_pass,
-        "capability_gate_pass": capability_gate_pass,
-        "limit_bin": limit_bin,
-        "limit_difficulty": limit_bin / max(1, (num_bins - 1)),
-        "sparse_bins": [bin_id for bin_id, count in sorted(counts.items()) if count < min_samples],
+        "limit_bin": None,  # no discrete bins; kept for downstream compatibility
+        "limit_difficulty": float(limit_difficulty),
+        "d_safe": None,
+        "d_unsafe": None,
         "route_rule": (
-            f"Route to SLM when difficulty_bin <= {limit_bin}; otherwise route to BASELINE."
+            f"SLM if score <= {limit_difficulty:.4f}; "
+            "HYBRID_ABSTAIN within delta band; BASELINE otherwise."
         ),
     }
-
-
-def _plot_decision_matrix_tau(
-    metrics: dict[str, dict[str, Any]],
-    title: str,
-    output_path: Path,
-) -> None:
-    plt.figure(figsize=(8, 6))
-    risk_threshold = 0.2  # matches router.risk_threshold
-    y_divider = 1.0 - risk_threshold  # 0.8
-
-    plt.axvline(0.5, color="darkgreen", linestyle="--", linewidth=1.3, alpha=0.7)
-    plt.axhline(y_divider, color="darkred", linestyle="--", linewidth=1.3, alpha=0.7)
-    plt.xlim(-0.02, 1.02)
-    plt.ylim(-0.02, 1.02)
-    plt.xlabel("Certified capability reach (tau_cap_difficulty)")
-    plt.ylabel("Risk safety (1 \u2212 avg_expected_risk)")
-    plt.title(title)
-    plt.grid(True, alpha=0.3)
-
-    # Label positions: centred inside each quadrant region
-    # x divider at 0.5, y divider at 0.8
-    quadrant_labels = [
-        (0.75, 0.90, "Broad SLM Safe"),
-        (0.75, 0.40, "Capable but risk-limited"),
-        (0.25, 0.90, "Narrow SLM Safe"),
-        (0.25, 0.40, "Baseline-first"),
-    ]
-    for x, y, label in quadrant_labels:
-        plt.text(x, y, label, fontsize=10, alpha=0.7, ha="center", va="center")
-
-    for model_key, record in metrics.items():
-        x = float(record.get("tau_cap_difficulty") or 0.0)
-        y = 1.0 - float(record.get("avg_expected_risk") or 0.0)
-        color = "tab:green" if record["confidence_certified_routing_policy"].get("limit_bin") is not None else "tab:orange"
-        marker = "o"
-        plt.scatter([x], [y], s=140, color=color, marker=marker, edgecolor="black", linewidth=0.8)
-        plt.annotate(
-            f"{DISPLAY_NAMES[model_key]} | limit={record['confidence_certified_routing_policy'].get('limit_bin')}",
-            (x, y),
-            textcoords="offset points",
-            xytext=(6, 6),
-            fontsize=9,
-        )
-
-    output_path.parent.mkdir(parents=True, exist_ok=True)
-    plt.tight_layout()
-    plt.savefig(output_path, dpi=160)
-    plt.close()
-
-
-def _expected_curve(
-    router: GeneralizedRoutingFramework,
-    capability: dict[int, float],
-    risk: dict[int, float],
-    observed_bins: list[int],
-) -> tuple[dict[int, float], dict[int, float]]:
-    expected_capability: dict[int, float] = {}
-    expected_risk: dict[int, float] = {}
-    if not observed_bins:
-        return expected_capability, expected_risk
-    num_bins = max(observed_bins) + 1
-    for d in observed_bins:
-        difficulty_mid = d / max(1, (num_bins - 1))
-        expected_capability[d] = router.compute_expected_capability(difficulty_mid, capability, num_bins)
-        expected_risk[d] = router.compute_expected_risk(difficulty_mid, risk, num_bins)
-    return expected_capability, expected_risk
-
-
-def _moving_average(values: list[float], window: int) -> list[float]:
-    if not values:
-        return []
-    w = max(1, int(window))
-    if w == 1:
-        return list(values)
-    radius = w // 2
-    out: list[float] = []
-    for idx in range(len(values)):
-        lo = max(0, idx - radius)
-        hi = min(len(values), idx + radius + 1)
-        chunk = values[lo:hi]
-        out.append(sum(chunk) / len(chunk))
-    return out
-
-
-def _expected_curve_smooth(
-    router: GeneralizedRoutingFramework,
-    capability: dict[int, float],
-    risk: dict[int, float],
-    num_bins: int,
-    grid_points: int = 41,
-    smooth_window: int = 5,
-) -> tuple[dict[float, float], dict[float, float]]:
-    if num_bins <= 0:
-        return {}, {}
-    points = max(5, int(grid_points))
-    xs = [idx / (points - 1) for idx in range(points)]
-    cap_vals = [router.compute_expected_capability(x, capability, num_bins) for x in xs]
-    risk_vals = [router.compute_expected_risk(x, risk, num_bins) for x in xs]
-    cap_smoothed = _moving_average(cap_vals, smooth_window)
-    risk_smoothed = _moving_average(risk_vals, smooth_window)
-    return (
-        {float(x): float(y) for x, y in zip(xs, cap_smoothed)},
-        {float(x): float(y) for x, y in zip(xs, risk_smoothed)},
-    )
 
 
 def _write_json(path: Path, payload: dict[str, Any]) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
     path.write_text(json.dumps(payload, indent=2), encoding="utf-8")
-
-
-def _task_family(task: str) -> str:
-    return TASK_FAMILY_MAP.get(task, "general")
 
 
 def _stable_split_for_sample(sample_id: str) -> str:
@@ -911,13 +640,239 @@ def _extract_feature_vector(row: dict[str, Any]) -> dict[str, float]:
     return {dim: float(val) for dim, val in compute_all_features(row, prompt).items()}
 
 
+def _fit_query_family_gmm(
+    task_to_rows: dict[str, dict[str, list[dict[str, Any]]]],
+    max_clusters: int = 0,
+    bic_relax_frac: float = 0.02,
+    min_family_fraction: float = 0.05,
+    n_iter: int = 100,
+) -> dict[str, Any]:
+    """Fit a diagonal GMM over train-query feature vectors (task labels unused)."""
+    dims = list(DIFFICULTY_FEATURES)
+    vectors: list[list[float]] = []
+    for _task, model_rows in task_to_rows.items():
+        for _model_key, rows in model_rows.items():
+            for row in rows:
+                if _split_name_for_row(row) != "train":
+                    continue
+                features = _extract_feature_vector(row)
+                vectors.append([float(features.get(dim, 0.0)) for dim in dims])
+    if not vectors:
+        return {
+            "dims": dims,
+            "mins": {dim: 0.0 for dim in dims},
+            "maxs": {dim: 1.0 for dim in dims},
+            "weights": [1.0],
+            "means": [[0.5 for _ in dims]],
+            "vars_diag": [[1.0 for _ in dims]],
+            "k": 1,
+            "bic": 0.0,
+            "source_split": "train",
+        }
+
+    x = np.array(vectors, dtype=float)
+    n, d = x.shape
+    mins = np.min(x, axis=0)
+    maxs = np.max(x, axis=0)
+    span = np.where(maxs > mins, maxs - mins, 1.0)
+    xn = np.clip((x - mins) / span, 0.0, 1.0)
+
+    def _init_means(data: np.ndarray, k: int) -> np.ndarray:
+        order = np.argsort(np.sum(data, axis=1))
+        if k == 1:
+            return data[[int(order[len(order) // 2])]].copy()
+        idxs = [order[int(round(i * (len(order) - 1) / (k - 1)))] for i in range(k)]
+        return data[idxs].copy()
+
+    def _fit_diag(data: np.ndarray, k: int, iters: int) -> tuple[np.ndarray, np.ndarray, np.ndarray, np.ndarray, float]:
+        reg = 1e-6
+        means = _init_means(data, k)
+        vars_diag = np.tile(np.var(data, axis=0) + 1e-2, (k, 1))
+        mix = np.full(k, 1.0 / k, dtype=float)
+        prev_ll: float | None = None
+        resp = np.full((len(data), k), 1.0 / k, dtype=float)
+
+        for _ in range(max(5, int(iters))):
+            log_prob = np.empty((len(data), k), dtype=float)
+            for c in range(k):
+                diff = data - means[c]
+                log_det = float(np.sum(np.log(vars_diag[c] + reg)))
+                maha = np.sum((diff * diff) / (vars_diag[c] + reg), axis=1)
+                log_gauss = -0.5 * (d * math.log(2.0 * math.pi) + log_det + maha)
+                log_prob[:, c] = math.log(max(mix[c], reg)) + log_gauss
+            row_max = np.max(log_prob, axis=1, keepdims=True)
+            stable = log_prob - row_max
+            row_logsumexp = row_max + np.log(np.sum(np.exp(stable), axis=1, keepdims=True) + reg)
+            resp = np.exp(log_prob - row_logsumexp)
+            ll = float(np.sum(row_logsumexp))
+
+            nk = np.sum(resp, axis=0) + reg
+            mix = nk / float(len(data))
+            means = (resp.T @ data) / nk[:, None]
+            for c in range(k):
+                diff = data - means[c]
+                vars_diag[c] = np.sum(resp[:, c][:, None] * (diff * diff), axis=0) / nk[c]
+            vars_diag = np.maximum(vars_diag, reg)
+
+            if prev_ll is not None and abs(ll - prev_ll) <= 1e-6:
+                break
+            prev_ll = ll
+
+        ll_val = float(prev_ll if prev_ll is not None else -1e12)
+        return mix, means, vars_diag, resp, ll_val
+
+    candidates: list[dict[str, Any]] = []
+    # If not explicitly provided, learn over an adaptive search range.
+    if int(max_clusters) <= 0:
+        max_clusters = max(2, min(12, int(round(math.sqrt(max(1, n))))))
+    k_max = max(1, min(int(max_clusters), n))
+    for k in range(1, k_max + 1):
+        mix, means, vars_diag, _resp, ll_val = _fit_diag(xn, k, n_iter)
+        n_params = (k - 1) + (k * d) + (k * d)
+        bic = -2.0 * ll_val + float(n_params) * math.log(max(1, n))
+        candidates.append(
+            {
+                "dims": dims,
+                "mins": {dim: float(mins[i]) for i, dim in enumerate(dims)},
+                "maxs": {dim: float(maxs[i]) for i, dim in enumerate(dims)},
+                "weights": [float(v) for v in mix.tolist()],
+                "means": [[float(v) for v in row] for row in means.tolist()],
+                "vars_diag": [[float(v) for v in row] for row in vars_diag.tolist()],
+                "k": int(k),
+                "k_max_considered": int(k_max),
+                "n_train_queries": int(n),
+                "bic": float(bic),
+                "source_split": "train",
+            }
+        )
+    if not candidates:
+        return {
+            "dims": dims,
+            "mins": {dim: 0.0 for dim in dims},
+            "maxs": {dim: 1.0 for dim in dims},
+            "weights": [1.0],
+            "means": [[0.5 for _ in dims]],
+            "vars_diag": [[1.0 for _ in dims]],
+            "k": 1,
+            "k_max_considered": 1,
+            "n_train_queries": 0,
+            "bic": 0.0,
+            "source_split": "train",
+        }
+
+    best_bic = min(float(c["bic"]) for c in candidates)
+    tol = max(1e-9, abs(best_bic) * max(0.0, float(bic_relax_frac)))
+    eligible = [c for c in candidates if float(c["bic"]) <= (best_bic + tol)]
+    selected = sorted(eligible, key=lambda c: (int(c["k"]), float(c["bic"])))[0]
+
+    # Merge tiny families to nearest larger centroid.
+    k_sel = int(selected["k"])
+    mix = np.array(selected["weights"], dtype=float)
+    means = np.array(selected["means"], dtype=float)
+    vars_diag = np.array(selected["vars_diag"], dtype=float)
+    reg = 1e-6
+
+    log_prob = np.empty((n, k_sel), dtype=float)
+    for c in range(k_sel):
+        diff = xn - means[c]
+        log_det = float(np.sum(np.log(vars_diag[c] + reg)))
+        maha = np.sum((diff * diff) / (vars_diag[c] + reg), axis=1)
+        log_gauss = -0.5 * (d * math.log(2.0 * math.pi) + log_det + maha)
+        log_prob[:, c] = math.log(max(reg, mix[c])) + log_gauss
+    labels = np.argmax(log_prob, axis=1)
+    counts = np.bincount(labels, minlength=k_sel).astype(float)
+    min_count = max(1.0, float(min_family_fraction) * float(n))
+    large = [i for i, c in enumerate(counts.tolist()) if c >= min_count]
+    if not large:
+        large = [int(np.argmax(counts))]
+    label_map = {i: i for i in large}
+    for i in range(k_sel):
+        if i in large:
+            continue
+        # nearest large component by centroid distance
+        nearest = min(large, key=lambda j: float(np.sum((means[i] - means[j]) ** 2)))
+        label_map[i] = nearest
+    remapped = np.array([label_map[int(l)] for l in labels], dtype=int)
+    uniq = sorted(set(remapped.tolist()))
+    remap2 = {old: idx for idx, old in enumerate(uniq)}
+    final_labels = np.array([remap2[int(v)] for v in remapped], dtype=int)
+    k_final = len(uniq)
+
+    # Recompute mixture params from reassigned labels.
+    means_final = np.zeros((k_final, d), dtype=float)
+    vars_final = np.zeros((k_final, d), dtype=float)
+    weights_final = np.zeros(k_final, dtype=float)
+    for c in range(k_final):
+        pts = xn[final_labels == c]
+        if len(pts) == 0:
+            means_final[c] = np.mean(xn, axis=0)
+            vars_final[c] = np.var(xn, axis=0) + 1e-3
+            weights_final[c] = 1.0 / k_final
+            continue
+        means_final[c] = np.mean(pts, axis=0)
+        vars_final[c] = np.var(pts, axis=0) + 1e-6
+        weights_final[c] = float(len(pts)) / float(n)
+
+    return {
+        "dims": dims,
+        "mins": selected["mins"],
+        "maxs": selected["maxs"],
+        "weights": [float(v) for v in weights_final.tolist()],
+        "means": [[float(v) for v in row] for row in means_final.tolist()],
+        "vars_diag": [[float(v) for v in row] for row in vars_final.tolist()],
+        "k": int(k_final),
+        "k_selected_before_merge": int(selected["k"]),
+        "k_max_considered": int(k_max),
+        "n_train_queries": int(n),
+        "bic": float(selected["bic"]),
+        "bic_best": float(best_bic),
+        "bic_tolerance": float(tol),
+        "bic_relax_frac": float(bic_relax_frac),
+        "min_family_fraction": float(min_family_fraction),
+        "source_split": "train",
+    }
+
+def _predict_query_family(features: dict[str, float], gmm_model: dict[str, Any]) -> str:
+    dims = list(gmm_model.get("dims") or DIFFICULTY_FEATURES)
+    mins = gmm_model.get("mins", {})
+    maxs = gmm_model.get("maxs", {})
+    mix = [float(v) for v in (gmm_model.get("weights") or [1.0])]
+    means = gmm_model.get("means") or [[0.5 for _ in dims]]
+    vars_diag = gmm_model.get("vars_diag") or [[1.0 for _ in dims]]
+    reg = 1e-6
+
+    x = []
+    for dim in dims:
+        lo = float(mins.get(dim, 0.0))
+        hi = float(maxs.get(dim, 1.0))
+        val = float(features.get(dim, 0.0))
+        if hi <= lo:
+            x.append(0.0)
+        else:
+            x.append(max(0.0, min(1.0, (val - lo) / (hi - lo))))
+    xv = np.array(x, dtype=float)
+    d = len(dims)
+    logps: list[float] = []
+    for c in range(len(means)):
+        mu = np.array(means[c], dtype=float)
+        var = np.maximum(np.array(vars_diag[c], dtype=float), reg)
+        diff = xv - mu
+        log_det = float(np.sum(np.log(var)))
+        maha = float(np.sum((diff * diff) / var))
+        log_gauss = -0.5 * (d * math.log(2.0 * math.pi) + log_det + maha)
+        logps.append(math.log(max(reg, mix[c] if c < len(mix) else reg)) + log_gauss)
+    idx = int(np.argmax(np.array(logps, dtype=float)))
+    return f"cluster_{idx}"
+
+
 def _learn_family_difficulty_models(
     task_to_rows: dict[str, dict[str, list[dict[str, Any]]]],
     reference_lookup_by_task: dict[str, dict[str, dict[str, Any]]],
+    query_family_gmm: dict[str, Any],
 ) -> dict[str, dict[str, Any]]:
+    """Learn difficulty weights per latent query-family using train semantic failure."""
     pooled: dict[str, list[dict[str, Any]]] = defaultdict(list)
     for task, model_rows in task_to_rows.items():
-        family = _task_family(task)
         refs = reference_lookup_by_task.get(task, {})
         for model_key, rows in model_rows.items():
             if model_key == BASELINE_MODEL:
@@ -927,6 +882,7 @@ def _learn_family_difficulty_models(
                     continue
                 _cap, semantic_risk, _failure = _evaluate_row(row, refs)
                 features = _extract_feature_vector(row)
+                family = _predict_query_family(features, query_family_gmm)
                 features["target"] = float(semantic_risk)
                 pooled[family].append(features)
 
@@ -1037,6 +993,86 @@ def _calibrate_abstention_delta(
     }
 
 
+def _select_operational_tau(
+    rows: list[dict[str, Any]],
+    reference_lookup: dict[str, dict[str, Any]],
+    difficulty_scores: dict[str, float],
+    cap_threshold: float,
+    risk_threshold: float,
+    utility_alpha: float = 1.0,
+    utility_beta: float = 0.25,
+    utility_gamma: float = 1.0,
+) -> dict[str, Any]:
+    """Choose tau by constrained utility on validation rows."""
+    if not rows:
+        return {
+            "tau": None,
+            "coverage": 0.0,
+            "selected_capability": 0.0,
+            "selected_risk": 1.0,
+            "utility": -1e9,
+            "feasible": False,
+            "candidates": [],
+        }
+    points: list[tuple[float, float, float]] = []
+    for row in rows:
+        sid = str(row["sample_id"])
+        score = float(difficulty_scores.get(sid, 0.5))
+        cap, risk, _ = _evaluate_row(row, reference_lookup)
+        points.append((score, float(cap), float(risk)))
+    points.sort(key=lambda t: t[0])
+    if not points:
+        return {
+            "tau": None,
+            "coverage": 0.0,
+            "selected_capability": 0.0,
+            "selected_risk": 1.0,
+            "utility": -1e9,
+            "feasible": False,
+            "candidates": [],
+        }
+
+    candidates = sorted(set(score for score, _c, _r in points))
+    total = float(len(points))
+    best: dict[str, Any] | None = None
+    candidate_rows: list[dict[str, Any]] = []
+    for tau in candidates:
+        selected = [(c, r) for s, c, r in points if s <= tau]
+        if not selected:
+            continue
+        cov = len(selected) / total
+        cap = sum(c for c, _ in selected) / len(selected)
+        risk = sum(r for _, r in selected) / len(selected)
+        feasible = cap >= cap_threshold and risk <= risk_threshold
+        utility = float(utility_alpha) * cov + float(utility_beta) * cap - float(utility_gamma) * risk
+        item = {
+            "tau": float(tau),
+            "coverage": float(cov),
+            "selected_capability": float(cap),
+            "selected_risk": float(risk),
+            "utility": float(utility),
+            "feasible": bool(feasible),
+        }
+        candidate_rows.append(item)
+        if not feasible:
+            continue
+        if best is None or item["utility"] > best["utility"]:
+            best = item
+    if best is not None:
+        best_out = dict(best)
+        best_out["candidates"] = [dict(c) for c in candidate_rows]
+        return best_out
+    return {
+        "tau": None,
+        "coverage": 0.0,
+        "selected_capability": 0.0,
+        "selected_risk": 1.0,
+        "utility": -1e9,
+        "feasible": False,
+        "candidates": [dict(c) for c in candidate_rows],
+    }
+
+
 def _build_margin_calibrator(
     rows: list[dict[str, Any]],
     reference_lookup: dict[str, dict[str, Any]],
@@ -1072,6 +1108,105 @@ def _build_margin_calibrator(
     return {"buckets": buckets, "global_failure_rate": float(global_rate)}
 
 
+def _estimate_certified_band(
+    rows: list[dict[str, Any]],
+    reference_lookup: dict[str, dict[str, Any]],
+    difficulty_scores: dict[str, float],
+    cap_threshold: float,
+    risk_threshold: float,
+    min_k: int,
+    ci_level: float,
+) -> dict[str, Any]:
+    """Estimate certified safe and unsafe boundaries on validation.
+
+    d_safe:  highest difficulty where cap lower bound >= threshold and risk upper bound <= threshold.
+    d_unsafe: first difficulty above d_safe where certification fails.
+    """
+    triples: list[tuple[float, float, float]] = []
+    for row in rows:
+        sid = str(row["sample_id"])
+        d = float(difficulty_scores.get(sid, 0.5))
+        cap, risk, _ = _evaluate_row(row, reference_lookup)
+        triples.append((d, float(cap), float(risk)))
+    if len(triples) < max(2, int(min_k)):
+        return {
+            "d_safe": None,
+            "d_unsafe": None,
+            "certified_points": [],
+            "certified_safe_fraction": 0.0,
+        }
+    triples.sort(key=lambda t: t[0])
+    xs = [t[0] for t in triples]
+    cap_raw = [t[1] for t in triples]
+    risk_raw = [t[2] for t in triples]
+    candidates = sorted(set(xs))
+    cert_rows: list[dict[str, Any]] = []
+    for d in candidates:
+        _, cap_lo = _local_beta_at(d, xs, cap_raw, min_k, ci_level, upper=False)
+        _, risk_hi = _local_beta_at(d, xs, risk_raw, min_k, ci_level, upper=True)
+        safe = bool(cap_lo >= cap_threshold and risk_hi <= risk_threshold)
+        cert_rows.append(
+            {
+                "d": float(d),
+                "capability_lower_ci": float(cap_lo),
+                "risk_upper_ci": float(risk_hi),
+                "certified_safe": safe,
+            }
+        )
+    safe_ds = [r["d"] for r in cert_rows if r["certified_safe"]]
+    if not safe_ds:
+        return {
+            "d_safe": None,
+            "d_unsafe": candidates[0] if candidates else None,
+            "certified_points": cert_rows,
+            "certified_safe_fraction": 0.0,
+        }
+    d_safe = max(float(d) for d in safe_ds)
+    d_unsafe: float | None = None
+    for row in cert_rows:
+        d = float(row["d"])
+        if d > d_safe and not bool(row["certified_safe"]):
+            d_unsafe = d
+            break
+    if d_unsafe is None:
+        # If we never observed failure after safe region, keep hybrid empty by default.
+        d_unsafe = d_safe
+    return {
+        "d_safe": float(d_safe),
+        "d_unsafe": float(d_unsafe),
+        "certified_points": cert_rows,
+        "certified_safe_fraction": float(len(safe_ds) / max(1, len(cert_rows))),
+    }
+
+
+def _tau_uncertainty_band(
+    rows: list[dict[str, Any]],
+    difficulty_scores: dict[str, float],
+    tau: float | None,
+    min_k: int,
+) -> tuple[float | None, float | None]:
+    """Fallback hybrid band around tau using local difficulty density."""
+    if tau is None or not rows:
+        return None, None
+    t = float(tau)
+    dists: list[float] = []
+    for row in rows:
+        sid = str(row.get("sample_id"))
+        d = float(difficulty_scores.get(sid, 0.5))
+        dists.append(abs(d - t))
+    if not dists:
+        return None, None
+    dists.sort()
+    k = max(3, min(int(min_k), len(dists)))
+    width = float(dists[k - 1])
+    width = max(0.01, min(0.20, width))
+    lo = max(0.0, t - width)
+    hi = min(1.0, t + width)
+    if hi <= lo:
+        return None, None
+    return float(lo), float(hi)
+
+
 def _calibrated_confidence_from_margin(margin: float, calibrator: dict[str, Any]) -> float:
     buckets = calibrator.get("buckets") or []
     if not buckets:
@@ -1083,7 +1218,21 @@ def _calibrated_confidence_from_margin(margin: float, calibrator: dict[str, Any]
     return max(0.0, 1.0 - float(buckets[-1].get("failure_rate", 1.0)))
 
 
-def _route_state(score: float, limit: float | None, delta: float) -> str:
+def _route_state(
+    score: float,
+    limit: float | None,
+    delta: float,
+    d_safe: float | None = None,
+    d_unsafe: float | None = None,
+) -> str:
+    if d_safe is not None and d_unsafe is not None and float(d_unsafe) > float(d_safe):
+        if score <= float(d_safe):
+            return "SLM"
+        if score < float(d_unsafe):
+            return "HYBRID_ABSTAIN"
+        return "BASELINE"
+    if d_safe is not None:
+        return "SLM" if score <= float(d_safe) else "BASELINE"
     if limit is None:
         return "BASELINE"
     if score <= (limit - delta):
@@ -1099,7 +1248,46 @@ def _parse_args() -> argparse.Namespace:
     parser.add_argument("--risk-threshold", type=float, default=DEFAULT_RISK_THRESHOLD)
     parser.add_argument("--ci-level", type=float, default=DEFAULT_WILSON_CONFIDENCE_LEVEL)
     parser.add_argument("--min-samples", type=int, default=DEFAULT_MIN_SAMPLES)
+    parser.add_argument(
+        "--val-count-per-task",
+        type=int,
+        default=0,
+        help="If >0, force exactly this many sample_ids per task into val split (shared across models).",
+    )
+    parser.add_argument(
+        "--train-min-count",
+        type=int,
+        default=30,
+        help="Minimum train sample_ids per task when val-count override is enabled.",
+    )
     parser.add_argument("--min-ground-truth-coverage", type=float, default=DEFAULT_MIN_GROUND_TRUTH_COVERAGE)
+    parser.add_argument(
+        "--max-families",
+        type=int,
+        default=0,
+        help="Max latent query families for GMM search. 0=auto via sqrt(n_train), capped at 12.",
+    )
+    parser.add_argument(
+        "--bic-relax-frac",
+        type=float,
+        default=0.02,
+        help="Pick the smallest K whose BIC is within this fraction of the best |BIC|.",
+    )
+    parser.add_argument(
+        "--min-family-fraction",
+        type=float,
+        default=0.05,
+        help="Minimum train-share per family; smaller families are merged to nearest centroid.",
+    )
+    parser.add_argument("--utility-alpha", type=float, default=1.0, help="Utility weight for SLM coverage.")
+    parser.add_argument("--utility-beta", type=float, default=0.25, help="Utility weight for capability quality.")
+    parser.add_argument("--utility-gamma", type=float, default=1.0, help="Utility penalty weight for risk.")
+    parser.add_argument(
+        "--task-utility-coeffs",
+        type=Path,
+        default=None,
+        help="Optional JSON mapping task -> {alpha,beta,gamma}. Overrides global utility coefficients per task.",
+    )
     parser.add_argument("--report-split", type=str, default="test", help="Split being evaluated (default: test).")
     parser.add_argument(
         "--weights-source-split",
@@ -1112,11 +1300,6 @@ def _parse_args() -> argparse.Namespace:
         type=Path,
         default=None,
         help="Optional JSON with feature weights. Enables weighted difficulty scoring for canonical rows.",
-    )
-    parser.add_argument(
-        "--learn-family-weights",
-        action="store_true",
-        help="Learn task-family-specific difficulty weights from train split semantic failures.",
     )
     parser.add_argument(
         "--abstain-max-delta",
@@ -1147,6 +1330,31 @@ def _load_difficulty_weights(path: Path | None) -> dict[str, float] | None:
         except (TypeError, ValueError):
             weights[feature] = 0.0
     return weights
+
+
+def _load_task_utility_coeffs(path: Path | None) -> dict[str, dict[str, float]]:
+    if path is None:
+        return {}
+    if not path.exists():
+        raise FileNotFoundError(f"Task utility coeffs file not found: {path}")
+    payload = json.loads(path.read_text(encoding="utf-8"))
+    out: dict[str, dict[str, float]] = {}
+    if not isinstance(payload, dict):
+        return out
+    raw_tasks = payload.get("tasks", payload)
+    if not isinstance(raw_tasks, dict):
+        return out
+    for task, cfg in raw_tasks.items():
+        if not isinstance(cfg, dict):
+            continue
+        try:
+            a = float(cfg.get("alpha", cfg.get("utility_alpha", 1.0)))
+            b = float(cfg.get("beta", cfg.get("utility_beta", 0.25)))
+            g = float(cfg.get("gamma", cfg.get("utility_gamma", 1.0)))
+        except (TypeError, ValueError):
+            continue
+        out[str(task)] = {"alpha": a, "beta": b, "gamma": g}
+    return out
 
 
 def _validate_split_contract(
@@ -1196,6 +1404,34 @@ def _weighted_difficulty_scores(rows: list[dict[str, Any]], weights: dict[str, f
     return {sample_id: (value - lo) / (hi - lo) for sample_id, value in raw_scores.items()}
 
 
+def _build_task_split_override(
+    sample_ids: set[str],
+    val_count: int,
+    train_min_count: int,
+) -> dict[str, str]:
+    ids = sorted(sample_ids, key=lambda sid: hashlib.sha1(str(sid).encode("utf-8")).hexdigest())
+    n = len(ids)
+    if n == 0:
+        return {}
+    max_val = max(0, n - 2)
+    val_n = min(max(0, int(val_count)), max_val)
+    remaining = n - val_n
+    if remaining <= 1:
+        train_n = max(1, remaining)
+    else:
+        train_n = max(int(train_min_count), int(round(remaining * 0.6)))
+        train_n = min(train_n, remaining - 1)
+        train_n = max(1, train_n)
+    split_map: dict[str, str] = {}
+    for sid in ids[:val_n]:
+        split_map[sid] = "val"
+    for sid in ids[val_n:val_n + train_n]:
+        split_map[sid] = "train"
+    for sid in ids[val_n + train_n:]:
+        split_map[sid] = "test"
+    return split_map
+
+
 def main() -> None:
     args = _parse_args()
     min_samples = max(1, int(args.min_samples))
@@ -1203,6 +1439,7 @@ def main() -> None:
     wilson_z = _z_from_confidence(ci_level)
     min_ground_truth_coverage = max(0.0, min(1.0, float(args.min_ground_truth_coverage)))
     difficulty_weights = _load_difficulty_weights(args.difficulty_weights)
+    task_utility_coeffs = _load_task_utility_coeffs(args.task_utility_coeffs)
     report_split, weights_source_split = _validate_split_contract(
         difficulty_weights,
         args.weights_source_split,
@@ -1229,30 +1466,68 @@ def main() -> None:
         if len(available) < 2 or BASELINE_MODEL not in available:
             continue
         task_available_rows[task_dir.name] = available
-        all_rows_for_task = [row for rows in available.values() for row in rows]
         reference_lookup_by_task[task_dir.name] = _build_reference_lookup(task_dir.name)
 
-    # Difficulty scoring mode:
-    # 1) explicit provided scalar weights, or
-    # 2) learned task-family weights from train split.
-    family_weight_models: dict[str, dict[str, Any]] = {}
-    if args.learn_family_weights:
-        family_weight_models = _learn_family_difficulty_models(task_available_rows, reference_lookup_by_task)
-        weights_out = BENCHMARK_ROOT / "difficulty_weights" / "family_weights_learned.json"
-        _write_json(
-            weights_out,
-            {
-                "source_split": "train",
-                "families": family_weight_models,
-                "features": list(DIFFICULTY_FEATURES),
-            },
-        )
+    # Optional deterministic split override to increase validation sample size.
+    if int(args.val_count_per_task) > 0:
+        for task_name, available_rows in task_available_rows.items():
+            shared_ids: set[str] | None = None
+            for _model_key, rows in available_rows.items():
+                ids = {str(r.get("sample_id", "")) for r in rows if str(r.get("sample_id", "")).strip()}
+                shared_ids = ids if shared_ids is None else (shared_ids & ids)
+            shared_ids = shared_ids or set()
+            split_override = _build_task_split_override(
+                shared_ids,
+                val_count=int(args.val_count_per_task),
+                train_min_count=int(args.train_min_count),
+            )
+            for _model_key, rows in available_rows.items():
+                for row in rows:
+                    sid = str(row.get("sample_id", ""))
+                    if sid in split_override:
+                        row["split"] = split_override[sid]
+
+    # Use existing tasks as families and learn one weight model per task-family.
+    task_family_weight_models: dict[str, dict[str, Any]] = {}
+    for task_name, model_rows in task_available_rows.items():
+        refs = reference_lookup_by_task.get(task_name, {})
+        samples: list[dict[str, Any]] = []
+        for model_key, rows in model_rows.items():
+            if model_key == BASELINE_MODEL:
+                continue
+            for row in rows:
+                if _split_name_for_row(row) != "train":
+                    continue
+                sid = str(row.get("sample_id", ""))
+                if sid not in refs:
+                    continue
+                _cap, semantic_risk, _failure = _evaluate_row(row, refs)
+                sample = _extract_feature_vector(row)
+                sample["target"] = float(semantic_risk)
+                samples.append(sample)
+        if samples:
+            task_family_weight_models[task_name] = DifficultyWeightLearner().fit(samples)
+
+    weights_out = BENCHMARK_ROOT / "difficulty_weights" / "family_weights_learned.json"
+    _write_json(
+        weights_out,
+        {
+            "source_split": "train",
+            "model_type": "task_family_difficulty_weights",
+            "families": task_family_weight_models,
+            "features": list(DIFFICULTY_FEATURES),
+        },
+    )
 
     for task_dir in task_dirs:
         if task_dir.name not in task_available_rows:
             continue
         available = task_available_rows[task_dir.name]
         reference_lookup = reference_lookup_by_task.get(task_dir.name, {})
+        utility_cfg = task_utility_coeffs.get(task_dir.name, {})
+        task_utility_alpha = float(utility_cfg.get("alpha", args.utility_alpha))
+        task_utility_beta = float(utility_cfg.get("beta", args.utility_beta))
+        task_utility_gamma = float(utility_cfg.get("gamma", args.utility_gamma))
 
         baseline_ids = {str(row["sample_id"]) for row in available[BASELINE_MODEL]}
         all_model_common_ids = baseline_ids.copy()
@@ -1263,30 +1538,12 @@ def main() -> None:
             all_model_common_ids &= model_ids
 
         task_rows: dict[str, list[dict[str, Any]]] = {}
-        capability_curves_level: dict[str, dict[int, float]] = {}
-        risk_curves_level: dict[str, dict[int, float]] = {}
-        capability_counts_by_model: dict[str, dict[int, int]] = {}
-        risk_counts_by_model: dict[str, dict[int, int]] = {}
-        expected_capability_curves_level: dict[str, dict[int, float]] = {}
-        expected_risk_curves_level: dict[str, dict[int, float]] = {}
-        expected_capability_curves_smooth: dict[str, dict[float, float]] = {}
-        expected_risk_curves_smooth: dict[str, dict[float, float]] = {}
-        isotonic_capability_by_model: dict[str, dict[int, float]] = {}
-        isotonic_risk_by_model: dict[str, dict[int, float]] = {}
+        cap_curves_by_model: dict[str, tuple[list[float], list[float], list[float]]] = {}
+        risk_curves_by_model: dict[str, tuple[list[float], list[float], list[float]]] = {}
         thresholds: dict[str, Any] = {}
         decision_metrics: dict[str, dict[str, Any]] = {}
         difficulty_scores_by_model: dict[str, dict[str, float]] = {}
-        num_bins_by_model: dict[str, int] = {}
-        tau_cap_by_model: dict[str, int | None] = {}
-        tau_risk_by_model: dict[str, int | None] = {}
-        tau_cap_difficulty_by_model: dict[str, float | None] = {}
-        tau_risk_difficulty_by_model: dict[str, float | None] = {}
         ground_truth_coverage_by_model: dict[str, dict[str, float]] = {}
-
-        task_family = _task_family(task_dir.name)
-        family_model = family_weight_models.get(task_family) if args.learn_family_weights else None
-        num_difficulty_bins = 5
-
 
         for model_key, rows in available.items():
             model_common_ids = per_model_common_ids[model_key]
@@ -1299,78 +1556,34 @@ def main() -> None:
                 continue
 
             # Split-aware partitioning with deterministic fallback.
-            report_rows_raw = [row for row in filtered_all if _split_name_for_row(row) == report_split]
-            if not report_rows_raw:
-                report_rows_raw = list(filtered_all)
-            val_rows_raw = [row for row in filtered_all if _split_name_for_row(row) == "val"]
+            report_rows = [row for row in filtered_all if _split_name_for_row(row) == report_split]
+            if not report_rows:
+                report_rows = list(filtered_all)
+            val_rows_raw   = [row for row in filtered_all if _split_name_for_row(row) == "val"]
             train_rows_raw = [row for row in filtered_all if _split_name_for_row(row) == "train"]
-            calib_rows_raw = train_rows_raw + val_rows_raw if (train_rows_raw or val_rows_raw) else list(report_rows_raw)
 
-            # Difficulty score for unseen-task routing.
+            # Difficulty score: learned task-family weights -> explicit weights -> uniform fallback.
+            family_model = task_family_weight_models.get(task_dir.name)
             if family_model:
                 difficulty_scores_by_model[model_key] = {
                     str(row["sample_id"]): _score_with_family_model(row, family_model) for row in filtered_all
                 }
-                difficulty_source = "learned_family_weighted_features"
+                difficulty_source = "learned_task_family_weighted_features"
                 weights_used = family_model.get("weights", {})
+                dominant_family = task_dir.name
             elif difficulty_weights:
                 difficulty_scores_by_model[model_key] = _weighted_difficulty_scores(filtered_all, difficulty_weights)
                 difficulty_source = "weighted_features"
                 weights_used = difficulty_weights
+                dominant_family = "external_weights"
             else:
-                raw_max_bin = max([0] + [int(row.get("bin", 0) or 0) for row in filtered_all])
-                denom = max(1, raw_max_bin)
-                difficulty_scores_by_model[model_key] = {
-                    str(row["sample_id"]): int(row["bin"]) / denom for row in filtered_all
-                }
-                difficulty_source = "normalized_difficulty_bin"
-                weights_used = {}
+                uniform_w = {dim: 1.0 / len(DIFFICULTY_FEATURES) for dim in DIFFICULTY_FEATURES}
+                difficulty_scores_by_model[model_key] = _weighted_difficulty_scores(filtered_all, uniform_w)
+                difficulty_source = "uniform_feature_weights_fallback"
+                weights_used = uniform_w
+                dominant_family = "uniform"
 
-            # Leakage-safe binning from the same difficulty score used for runtime routing:
-            # fit bins on calibration split scores (train+val), apply to report split.
-            calib_ids = [
-                str(row["sample_id"])
-                for row in calib_rows_raw
-                if str(row["sample_id"]) in difficulty_scores_by_model[model_key]
-            ]
-            calib_ids_sorted = sorted(
-                calib_ids,
-                key=lambda sid: (float(difficulty_scores_by_model[model_key].get(sid, 0.5)), sid),
-            )
-            n_calib = len(calib_ids_sorted)
-            calib_bin_by_id: dict[str, int] = (
-                {
-                    sid: min(num_difficulty_bins - 1, int(rank * num_difficulty_bins / n_calib))
-                    for rank, sid in enumerate(calib_ids_sorted)
-                }
-                if n_calib >= num_difficulty_bins
-                else {sid: 0 for sid in calib_ids_sorted}
-            )
-            calib_scores_sorted = [float(difficulty_scores_by_model[model_key].get(sid, 0.5)) for sid in calib_ids_sorted]
-
-            def _score_to_bin(score: float) -> int:
-                rank = bisect.bisect_left(calib_scores_sorted, float(score))
-                return min(num_difficulty_bins - 1, int(rank * num_difficulty_bins / max(1, n_calib)))
-
-            def _assign_bins(raw_rows: list[dict[str, Any]]) -> list[dict[str, Any]]:
-                projected: list[dict[str, Any]] = []
-                for raw in raw_rows:
-                    row = dict(raw)
-                    sid = str(row["sample_id"])
-                    score = float(difficulty_scores_by_model[model_key].get(sid, 0.5))
-                    row["bin"] = calib_bin_by_id.get(sid, _score_to_bin(score))
-                    projected.append(row)
-                projected.sort(key=lambda r: (int(r["bin"]), str(r["sample_id"])))
-                return projected
-
-            report_rows = _assign_bins(report_rows_raw)
-            calib_rows = _assign_bins(calib_rows_raw)
-
-            observed_bins = sorted({int(row["bin"]) for row in report_rows})
-            observed_bins_cal = sorted({int(row["bin"]) for row in calib_rows})
-            max_bin = max([0] + observed_bins + observed_bins_cal)
-            num_bins = max_bin + 1
-            num_bins_by_model[model_key] = num_bins
+            scores_map = difficulty_scores_by_model[model_key]
 
             task_rows[model_key] = report_rows
             gt_matched = sum(1 for row in report_rows if _resolve_reference(row, reference_lookup))
@@ -1388,160 +1601,180 @@ def main() -> None:
                     "Provide independent ground-truth files under data/ground_truth/<task>.jsonl or .json."
                 )
 
-            capability_raw, risk_raw, counts, failure_counts, failures_by_bin = _curve_for_rows(report_rows, reference_lookup)
-            # Apply isotonic regression to enforce monotone curves.
-            # capability must decrease with difficulty; risk must increase.
-            # Raw empirical values are kept for the scatter-plot dots;
-            # isotonic values are used for the smooth line and reported metrics.
-            capability = _isotonic_decreasing(capability_raw, counts)
-            risk = _isotonic_increasing(risk_raw, counts)
-            expected_capability, expected_risk = _expected_curve(router, capability, risk, observed_bins)
-            capability_curves_level[model_key] = capability_raw   # scatter dots: raw
-            risk_curves_level[model_key] = risk_raw               # scatter dots: raw
-            isotonic_capability_by_model[model_key] = capability  # for per-example E[cap|d]
-            isotonic_risk_by_model[model_key] = risk               # for per-example E[risk|d]
-            capability_counts_by_model[model_key] = dict(counts)
-            risk_counts_by_model[model_key] = dict(counts)
-            expected_capability_curves_level[model_key] = expected_capability
-            expected_risk_curves_level[model_key] = expected_risk
-            smooth_cap, smooth_risk = _expected_curve_smooth(
-                router, capability, risk, num_bins=num_bins, grid_points=41, smooth_window=5
+            # TASK+MODEL local fit on train rows.
+            curve_source = train_rows_raw if train_rows_raw else report_rows
+            cap_curve, risk_curve, failure_counts = _fit_continuous_curves(
+                curve_source, scores_map, reference_lookup
             )
-            expected_capability_curves_smooth[model_key] = smooth_cap
-            expected_risk_curves_smooth[model_key] = smooth_risk
+            cap_xs, cap_iso, cap_raw_vals = cap_curve
+            risk_xs, risk_iso, risk_raw_vals = risk_curve
 
-            # Calibrate thresholds on validation split (fallback to report split when val absent).
-            capability_cal_raw, risk_cal_raw, counts_cal, _fc_cal, _fb_cal = _curve_for_rows(calib_rows, reference_lookup)
-            calib_has_support = any(int(n) >= min_samples for n in counts_cal.values())
-            if not calib_has_support:
-                capability_cal_raw, risk_cal_raw, counts_cal = capability_raw, risk_raw, counts
-            capability_cal = _isotonic_decreasing(capability_cal_raw, counts_cal)
-            risk_cal = _isotonic_increasing(risk_cal_raw, counts_cal)
-            tau_cap, tau_risk = router.detect_tipping_points(
-                capability_cal,
-                risk_cal,
-                num_bins=num_bins,
-                capability_counts=counts_cal,
-                risk_counts=counts_cal,
-                min_samples=min_samples,
-            )
-
-            tau_cap_by_model[model_key] = tau_cap
-            tau_risk_by_model[model_key] = tau_risk
-            tau_cap_difficulty_by_model[model_key] = None if tau_cap is None else (tau_cap / max(1, (num_bins - 1)))
-            if tau_risk is None or tau_risk < 0:
-                tau_risk_difficulty_by_model[model_key] = None
+            # VAL: fit val curves independently, check calibration against train, find τ*.
+            val_calibration_check: dict[str, Any] = {}
+            if val_rows_raw and len(val_rows_raw) >= min_samples:
+                val_cap_curve, val_risk_curve, _ = _fit_continuous_curves(
+                    val_rows_raw, scores_map, reference_lookup
+                )
+                val_xs, val_cap_iso, val_cap_raw = val_cap_curve
+                _,      val_risk_iso, val_risk_raw = val_risk_curve
+                val_has_support = len(val_xs) >= min_samples
+                if val_has_support and cap_xs:
+                    # Sample ~10 evenly-spaced val scores and compare train vs val predictions.
+                    check_xs = val_xs[::max(1, len(val_xs) // 10)]
+                    for x in check_xs:
+                        val_calibration_check[f"{x:.3f}"] = {
+                            "train_capability": round(_evaluate_curve(cap_xs,  cap_iso,  x), 4),
+                            "val_capability":   round(_evaluate_curve(val_xs,  val_cap_iso, x), 4),
+                            "capability_error": round(abs(_evaluate_curve(cap_xs, cap_iso, x) - _evaluate_curve(val_xs, val_cap_iso, x)), 4),
+                            "train_risk":  round(_evaluate_curve(risk_xs, risk_iso, x), 4),
+                            "val_risk":    round(_evaluate_curve(val_xs,  val_risk_iso, x), 4),
+                            "risk_error":  round(abs(_evaluate_curve(risk_xs, risk_iso, x) - _evaluate_curve(val_xs, val_risk_iso, x)), 4),
+                        }
             else:
-                tau_risk_difficulty_by_model[model_key] = tau_risk / max(1, (num_bins - 1))
+                val_has_support = False
+                val_xs, val_cap_iso, val_cap_raw   = cap_xs,  cap_iso,  cap_raw_vals
+                val_risk_iso, val_risk_raw           = risk_iso, risk_raw_vals
+
+            # Plot and downstream expectations use validation curves when available.
+            if val_has_support:
+                plot_cap_xs, plot_cap_iso, plot_cap_raw = val_xs, val_cap_iso, val_cap_raw
+                plot_risk_xs, plot_risk_iso, plot_risk_raw = val_xs, val_risk_iso, val_risk_raw
+                curve_source_level = "val"
+            else:
+                plot_cap_xs, plot_cap_iso, plot_cap_raw = cap_xs, cap_iso, cap_raw_vals
+                plot_risk_xs, plot_risk_iso, plot_risk_raw = risk_xs, risk_iso, risk_raw_vals
+                curve_source_level = "train_fallback"
+
+            cap_curves_by_model[model_key] = (plot_cap_xs, plot_cap_iso, plot_cap_raw)
+            risk_curves_by_model[model_key] = (plot_risk_xs, plot_risk_iso, plot_risk_raw)
+
+            threshold_split_used = "val" if val_has_support else "train_fallback"
+            threshold_rows = val_rows_raw if val_has_support else (train_rows_raw or report_rows)
+            tau_choice = _select_operational_tau(
+                threshold_rows,
+                reference_lookup,
+                scores_map,
+                cap_threshold=router.capability_threshold,
+                risk_threshold=router.risk_threshold,
+                utility_alpha=task_utility_alpha,
+                utility_beta=task_utility_beta,
+                utility_gamma=task_utility_gamma,
+            )
+            limit_difficulty = tau_choice.get("tau")
+            certified_band = _estimate_certified_band(
+                threshold_rows,
+                reference_lookup,
+                scores_map,
+                cap_threshold=router.capability_threshold,
+                risk_threshold=router.risk_threshold,
+                min_k=min_samples,
+                ci_level=router.wilson_confidence_level,
+            )
+            d_safe = certified_band.get("d_safe")
+            d_unsafe = certified_band.get("d_unsafe")
+            band_source = "certified"
+            if (
+                (d_safe is None)
+                or (d_unsafe is None)
+                or not (float(d_unsafe) > float(d_safe))
+            ):
+                fb_safe, fb_unsafe = _tau_uncertainty_band(
+                    threshold_rows,
+                    scores_map,
+                    limit_difficulty,
+                    min_k=min_samples,
+                )
+                if fb_safe is not None and fb_unsafe is not None and float(fb_unsafe) > float(fb_safe):
+                    d_safe, d_unsafe = fb_safe, fb_unsafe
+                    band_source = "tau_uncertainty_fallback"
 
             confidence_routing_policy = _build_routing_policy(
-                tau_cap,
-                tau_risk,
-                counts_cal,
-                num_bins=num_bins,
-                min_samples=min_samples,
-            )
-            # Override limit_difficulty using smooth E[cap|d]/E[risk|d] curve threshold.
-            # Finds the highest d where both expected constraints are met, then validates
-            # with Wilson CI. This is more precise than the hard bin walk in detect_tipping_points.
-            smooth_limit_difficulty, smooth_limit_bin = router.find_threshold_from_smooth_curve(
-                capability_cal,
-                risk_cal,
-                num_bins=num_bins,
-                capability_counts=counts_cal,
-                risk_counts=counts_cal,
-                min_samples=min_samples,
-            )
-            if smooth_limit_difficulty is not None:
-                confidence_routing_policy["limit_difficulty"] = smooth_limit_difficulty
-                confidence_routing_policy["limit_bin"] = smooth_limit_bin
-                confidence_routing_policy["threshold_source"] = "smooth_curve_wilson_guard"
-            else:
-                confidence_routing_policy["threshold_source"] = "smooth_curve_wilson_guard_no_safe_region"
-            limit_difficulty = confidence_routing_policy.get("limit_difficulty")
-            abstention = _calibrate_abstention_delta(
-                calib_rows,
-                reference_lookup,
-                difficulty_scores_by_model[model_key],
                 limit_difficulty,
-                router.risk_threshold,
-                router.capability_threshold,
+                d_safe=d_safe,
+                d_unsafe=d_unsafe,
+            )
+            confidence_routing_policy["threshold_source"] = (
+                "continuous_knn_beta" if limit_difficulty is not None
+                else "continuous_knn_beta_no_safe_region"
+            )
+            abstention = _calibrate_abstention_delta(
+                threshold_rows, reference_lookup, scores_map, limit_difficulty,
+                router.risk_threshold, router.capability_threshold,
                 max_delta=float(args.abstain_max_delta),
                 grid_step=float(args.abstain_grid_step),
             )
-            confidence_routing_policy["abstention_band_half_width"] = float(abstention["delta"])
-            confidence_routing_policy["route_rule_with_abstention"] = (
-                "SLM if score <= limit-delta; HYBRID_ABSTAIN if limit-delta < score < limit+delta; "
-                "BASELINE otherwise."
-                if limit_difficulty is not None
-                else "Route all queries to BASELINE; no certified SLM region."
-            )
+            policy_half_width = float(abstention["delta"])
+            if d_safe is not None and d_unsafe is not None and float(d_unsafe) > float(d_safe):
+                policy_half_width = float(float(d_unsafe) - float(d_safe)) / 2.0
+            confidence_routing_policy["abstention_band_half_width"] = policy_half_width
+            confidence_routing_policy["route_rule_with_abstention"] = str(confidence_routing_policy.get("route_rule") or "")
             margin_calibrator = _build_margin_calibrator(
-                calib_rows,
-                reference_lookup,
-                difficulty_scores_by_model[model_key],
-                limit_difficulty,
+                threshold_rows, reference_lookup, scores_map, limit_difficulty,
             )
             confidence_routing_policy["margin_confidence_calibration"] = margin_calibrator
+            confidence_routing_policy["certified_band"] = certified_band
+            confidence_routing_policy["hybrid_band_source"] = band_source
+
+            avg_cap  = sum(plot_cap_iso)  / len(plot_cap_iso)  if plot_cap_iso  else 0.0
+            avg_risk = sum(plot_risk_iso) / len(plot_risk_iso) if plot_risk_iso else 0.0
 
             thresholds[model_key] = {
                 "display_name": DISPLAY_NAMES[model_key],
                 "matched_query_count": len(report_rows),
-                "calibration_row_count": len(calib_rows),
+                "train_curve_row_count": len(curve_source),
+                "val_threshold_row_count": len(val_rows_raw),
                 "wilson_confidence_level": router.wilson_confidence_level,
-                "tau_cap_bin": tau_cap,
-                "tau_cap_difficulty": tau_cap_difficulty_by_model[model_key],
-                "tau_risk_bin": tau_risk,
-                "tau_risk_difficulty": tau_risk_difficulty_by_model[model_key],
-                "capability_curve": capability,          # isotonic-regularised
-                "capability_curve_raw": capability_raw,  # raw empirical
-                "risk_curve": risk,                      # isotonic-regularised
-                "risk_curve_raw": risk_raw,              # raw empirical
-                "expected_capability_curve": expected_capability,
-                "expected_risk_curve": expected_risk,
-                "expected_capability_curve_smooth": {f"{k:.3f}": v for k, v in smooth_cap.items()},
-                "expected_risk_curve_smooth": {f"{k:.3f}": v for k, v in smooth_risk.items()},
-                "counts_by_bin": counts,
+                "tau_star_difficulty": limit_difficulty,
+                "capability_curve": {f"{x:.4f}": round(y, 4) for x, y in zip(plot_cap_xs, plot_cap_iso)},
+                "capability_curve_raw": {f"{x:.4f}": round(y, 4) for x, y in zip(plot_cap_xs, plot_cap_raw)},
+                "risk_curve": {f"{x:.4f}": round(y, 4) for x, y in zip(plot_risk_xs, plot_risk_iso)},
+                "risk_curve_raw": {f"{x:.4f}": round(y, 4) for x, y in zip(plot_risk_xs, plot_risk_raw)},
+                "train_capability_curve": {f"{x:.4f}": round(y, 4) for x, y in zip(cap_xs, cap_iso)},
+                "train_risk_curve": {f"{x:.4f}": round(y, 4) for x, y in zip(risk_xs, risk_iso)},
+                "val_capability_curve": {f"{x:.4f}": round(y, 4) for x, y in zip(val_xs, val_cap_iso)},
+                "val_risk_curve": {f"{x:.4f}": round(y, 4) for x, y in zip(val_xs, val_risk_iso)},
                 "semantic_failure_counts": failure_counts,
-                "semantic_failures_by_bin": failures_by_bin,
                 "difficulty_score_source": difficulty_source,
                 "difficulty_weights_used": weights_used,
-                "difficulty_family": task_family,
+                "difficulty_family": dominant_family,
+                "curve_fit_level": f"task_model_local_{curve_source_level}",
                 "report_split": report_split,
-                "calibration_split": ("train+val" if (train_rows_raw or val_rows_raw) else report_split),
-                "calibration_fallback_to_report": bool(not calib_has_support),
+                "curve_source_split": "train" if train_rows_raw else "report_fallback",
+                "threshold_split": threshold_split_used,
+                "val_calibration_check": val_calibration_check,
                 "weights_source_split": weights_source_split,
-                "threshold_method": "smooth_curve_wilson_guard",
+                "threshold_method": "continuous_isotonic_knn_beta",
                 "abstention_calibration": abstention,
-                "margin_confidence_calibration": margin_calibrator,
+                "tau_utility_selection": tau_choice,
+                "task_utility_coefficients": {
+                    "alpha": task_utility_alpha,
+                    "beta": task_utility_beta,
+                    "gamma": task_utility_gamma,
+                },
+                "d_safe": d_safe,
+                "d_unsafe": d_unsafe,
+                "hybrid_band_source": band_source,
+                "hybrid_band_width": (
+                    float(d_unsafe) - float(d_safe)
+                    if d_safe is not None and d_unsafe is not None and float(d_unsafe) > float(d_safe)
+                    else 0.0
+                ),
                 **ground_truth_coverage_by_model[model_key],
             }
 
-            avg_expected_capability = _avg_curve(expected_capability, counts)
-            avg_expected_risk = _avg_curve(expected_risk, counts)
             decision_metrics[model_key] = {
                 "display_name": DISPLAY_NAMES[model_key],
-                "avg_expected_capability": avg_expected_capability,
-                "avg_expected_risk": avg_expected_risk,
-                "tau_cap_bin": tau_cap,
-                "tau_risk_bin": tau_risk,
-                "tau_cap_difficulty": tau_cap_difficulty_by_model[model_key],
-                "tau_risk_difficulty": tau_risk_difficulty_by_model[model_key],
-                "risk_safety_score": (
-                    0.0
-                    if tau_risk == -1
-                    else (1.0 if tau_risk is None else (1.0 - float(tau_risk_difficulty_by_model[model_key] or 0.0)))
-                ),
+                "avg_capability": avg_cap,
+                "avg_risk": avg_risk,
+                "avg_expected_risk": avg_risk,          # kept for plot compatibility
+                "tau_star_difficulty": limit_difficulty,
+                "tau_cap_difficulty": limit_difficulty,  # kept for plot compatibility
+                "risk_safety_score": 1.0 - float(limit_difficulty or 1.0),
                 "tau_quadrant": (
-                    # X-axis: certified capability reach (tau_cap_difficulty >= 0.5 = "broad").
-                    # Y-axis: avg_expected_risk <= risk_threshold = "safe".
-                    # Uses same axes as the decision-matrix plot so the label matches the
-                    # dot's visual quadrant.
-                    # limit_bin=None means no bin certified -> always Baseline-first.
-                    "Baseline-first"                if confidence_routing_policy["limit_bin"] is None
-                    else "Broad SLM Safe"           if float(tau_cap_difficulty_by_model[model_key] or 0.0) >= 0.5 and avg_expected_risk <= router.risk_threshold
-                    else "Capable but risk-limited" if float(tau_cap_difficulty_by_model[model_key] or 0.0) >= 0.5
-                    else "Narrow SLM Safe"          if avg_expected_risk <= router.risk_threshold
+                    "Baseline-first"           if limit_difficulty is None
+                    else "Broad SLM Safe"      if limit_difficulty >= 0.5 and avg_risk <= router.risk_threshold
+                    else "Capable but risk-limited" if limit_difficulty >= 0.5
+                    else "Narrow SLM Safe"     if avg_risk <= router.risk_threshold
                     else "Baseline-first"
                 ),
                 "confidence_certified_routing_policy": confidence_routing_policy,
@@ -1555,21 +1788,35 @@ def main() -> None:
                 policy = decision_metrics.get(model_key, {}).get("confidence_certified_routing_policy", {})
                 limit_difficulty = policy.get("limit_difficulty")
                 delta = float(policy.get("abstention_band_half_width", 0.0) or 0.0)
+                d_safe = policy.get("d_safe")
+                d_unsafe = policy.get("d_unsafe")
                 margin_calibrator = policy.get("margin_confidence_calibration", {})
-                cap_curve = isotonic_capability_by_model.get(model_key, {})
-                risk_curve = isotonic_risk_by_model.get(model_key, {})
-                n_bins = num_bins_by_model.get(model_key, 5)
+                c_curve = cap_curves_by_model.get(model_key, ([], [], []))
+                r_curve = risk_curves_by_model.get(model_key, ([], [], []))
+                c_xs, c_iso, c_raw = c_curve
+                r_xs, r_iso, r_raw = r_curve
                 for row in rows:
-                    # --- PROSPECTIVE: decide routing from difficulty alone, before knowing outcome ---
-                    score = float(
-                        difficulty_scores_by_model.get(model_key, {}).get(
-                            str(row["sample_id"]),
-                            int(row["bin"]) / max(1, (n_bins - 1)),
-                        )
+                    # --- PROSPECTIVE: routing decision from difficulty score alone ---
+                    score = float(difficulty_scores_by_model.get(model_key, {}).get(str(row["sample_id"]), 0.5))
+                    row_features = _extract_feature_vector(row)
+                    query_family = task_dir.name
+                    predicted_route_state = _route_state(
+                        score,
+                        limit_difficulty,
+                        delta,
+                        d_safe=d_safe,
+                        d_unsafe=d_unsafe,
                     )
-                    predicted_route_state = _route_state(score, limit_difficulty, delta)
-                    e_cap = router.compute_expected_capability(score, cap_curve, n_bins) if cap_curve else 0.5
-                    e_risk = router.compute_expected_risk(score, risk_curve, n_bins) if risk_curve else 0.5
+                    # Evaluate continuous curves at this score.
+                    e_cap  = _evaluate_curve(c_xs, c_iso, score) if c_xs else 0.5
+                    e_risk = _evaluate_curve(r_xs, r_iso, score) if r_xs else 0.5
+                    # Local Wilson CI at this score using k nearest training points.
+                    _, e_cap_lower  = _local_beta_at(
+                        score, c_xs, c_raw, min_samples, router.wilson_confidence_level, upper=False
+                    )
+                    _, e_risk_upper = _local_beta_at(
+                        score, r_xs, r_raw, min_samples, router.wilson_confidence_level, upper=True
+                    )
                     if limit_difficulty is None:
                         uncertainty = 1.0
                         confidence = 0.0
@@ -1577,14 +1824,8 @@ def main() -> None:
                         uncertainty = abs(score - float(limit_difficulty))
                         confidence = _calibrated_confidence_from_margin(uncertainty, margin_calibrator)
 
-                    # --- RETROSPECTIVE: evaluate actual outcome after model has run ---
+                    # --- RETROSPECTIVE: actual outcome after model has run ---
                     actual_capability, actual_semantic_risk, failure_type = _evaluate_row(row, reference_lookup)
-
-                    # routing_correct: was the SLM routing decision vindicated?
-                    #   SLM routed   → True if SLM actually succeeded, False if it failed
-                    #   HYBRID zone  → True if SLM was acceptable (quality gate would pass),
-                    #                  False if SLM failed (quality gate would have escalated)
-                    #   BASELINE     → None (SLM not attempted; escalation is always safe)
                     if predicted_route_state == "BASELINE":
                         routing_correct: bool | None = None
                     else:
@@ -1595,62 +1836,34 @@ def main() -> None:
                         "task": row["task"],
                         "model_name": DISPLAY_NAMES[model_key],
                         "model_family": "LLM" if model_key.startswith("llama_") else "SLM",
-                        "difficulty_bin": int(row["bin"]),
-                        "difficulty_score": score,
-                        # prospective fields (computed before model run)
+                        "difficulty_score": round(score, 4),
+                        "query_family": query_family,
+                        "difficulty_features": {k: round(float(v), 6) for k, v in row_features.items()},
+                        # prospective fields
                         "predicted_route_state": predicted_route_state,
                         "expected_capability": round(e_cap, 4),
+                        "expected_capability_lower_ci": round(e_cap_lower, 4),
                         "expected_risk": round(e_risk, 4),
-                        "routing_uncertainty": uncertainty,
-                        "routing_confidence": confidence,
-                        # retrospective fields (computed from actual model output)
+                        "expected_risk_upper_ci": round(e_risk_upper, 4),
+                        "routing_uncertainty": round(uncertainty, 4),
+                        "routing_confidence": round(confidence, 4),
+                        # retrospective fields
                         "actual_capability": actual_capability,
                         "actual_semantic_risk": actual_semantic_risk,
                         "failure_type": failure_type,
-                        # comparison
                         "routing_correct": routing_correct,
-                        # raw output fields
+                        # raw output
                         "valid_output": 1 if row.get("valid", False) else 0,
                         "latency_sec": float(row.get("latency_sec", 0.0) or 0.0),
                         "prediction": row.get("raw_output", ""),
                         "input_text": row.get("prompt", ""),
                         "reference": _resolve_reference(row, reference_lookup),
-                        # keep legacy aliases so downstream scripts don't break
+                        # legacy aliases
                         "primary_metric": actual_capability,
                         "semantic_risk": actual_semantic_risk,
                         "route_state": predicted_route_state,
                     }
                     handle.write(json.dumps(payload) + "\n")
-
-        _plot_task_curve_panels(
-            expected_capability_curves_smooth,
-            capability_curves_level,
-            capability_counts_by_model,
-            f"{task_dir.name} Capability (smoothed + empirical)",
-            "Capability",
-            sddf_dir / "capability_curve.png",
-            threshold_line=router.capability_threshold,
-            threshold_label=f"cap threshold ({router.capability_threshold:.2f})",
-            tau_difficulty=tau_cap_difficulty_by_model,
-            wilson_z=router.wilson_z,
-        )
-        _plot_task_curve_panels(
-            expected_risk_curves_smooth,
-            risk_curves_level,
-            risk_counts_by_model,
-            f"{task_dir.name} Risk (smoothed + empirical)",
-            "Risk",
-            sddf_dir / "risk_curve.png",
-            threshold_line=router.risk_threshold,
-            threshold_label=f"risk threshold ({router.risk_threshold:.2f})",
-            tau_difficulty=tau_risk_difficulty_by_model,
-            wilson_z=router.wilson_z,
-        )
-        _plot_decision_matrix_tau(
-            decision_metrics,
-            f"{task_dir.name} Tau-Based Decision Matrix",
-            sddf_dir / "decision_matrix.png",
-        )
 
         summary = {
             "task": task_dir.name,
@@ -1658,21 +1871,21 @@ def main() -> None:
             "wilson_z": router.wilson_z,
             "policy_capability_threshold": router.capability_threshold,
             "policy_risk_threshold": router.risk_threshold,
-            "min_samples_per_bin": min_samples,
+            "min_samples": min_samples,
             "min_ground_truth_coverage": min_ground_truth_coverage,
-            "threshold_method": "smooth_curve_wilson_guard",
+            "threshold_method": "continuous_isotonic_knn_beta",
             "report_split": report_split,
             "weights_source_split": weights_source_split,
-            "learn_family_weights": bool(args.learn_family_weights),
-            "task_family": task_family,
+            "query_family_model": "task_as_family",
             "abstain_max_delta": float(args.abstain_max_delta),
             "abstain_grid_step": float(args.abstain_grid_step),
+            "task_utility_coefficients": {
+                "alpha": task_utility_alpha,
+                "beta": task_utility_beta,
+                "gamma": task_utility_gamma,
+            },
             "ground_truth_coverage_by_model": ground_truth_coverage_by_model,
-            "difficulty_score_source": (
-                "learned_family_weighted_features"
-                if args.learn_family_weights
-                else ("weighted_features" if difficulty_weights else "normalized_difficulty_bin")
-            ),
+            "difficulty_score_source": "learned_task_family_weighted_features",
             "matched_query_count": len(baseline_ids),
             "baseline_query_count": len(baseline_ids),
             "common_query_count_across_all_models": len(all_model_common_ids),

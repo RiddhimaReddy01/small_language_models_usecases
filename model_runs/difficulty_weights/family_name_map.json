@@ -1,0 +1,104 @@
+{
+  "source": "query_family_gmm_centroids",
+  "families": {
+    "cluster_0": {
+      "family_name": "Mid-Entropy/Low-Length (General)",
+      "centroid": {
+        "n_in": 0.0418,
+        "entropy": 0.2484,
+        "reasoning_proxy": 0.0405,
+        "constraint_count": 0.0,
+        "parametric_dependence": 0.0415,
+        "dependency_distance": 0.0
+      }
+    },
+    "cluster_1": {
+      "family_name": "Mid-Entropy/Low-Length (General)",
+      "centroid": {
+        "n_in": 0.0799,
+        "entropy": 0.3805,
+        "reasoning_proxy": 0.082,
+        "constraint_count": 0.0,
+        "parametric_dependence": 0.1275,
+        "dependency_distance": 0.0
+      }
+    },
+    "cluster_2": {
+      "family_name": "Mid-Entropy/Low-Length (General)",
+      "centroid": {
+        "n_in": 0.0986,
+        "entropy": 0.4225,
+        "reasoning_proxy": 0.0691,
+        "constraint_count": 0.0,
+        "parametric_dependence": 0.1418,
+        "dependency_distance": 0.0036
+      }
+    },
+    "cluster_3": {
+      "family_name": "High-Entropy/Low-Length (General)",
+      "centroid": {
+        "n_in": 0.1489,
+        "entropy": 0.5169,
+        "reasoning_proxy": 0.1148,
+        "constraint_count": 0.0,
+        "parametric_dependence": 0.1062,
+        "dependency_distance": 0.0163
+      }
+    },
+    "cluster_4": {
+      "family_name": "High-Entropy/Low-Length (General)",
+      "centroid": {
+        "n_in": 0.1705,
+        "entropy": 0.5216,
+        "reasoning_proxy": 0.1001,
+        "constraint_count": 0.0,
+        "parametric_dependence": 0.2378,
+        "dependency_distance": 0.0787
+      }
+    },
+    "cluster_5": {
+      "family_name": "High-Entropy/Low-Length (General)",
+      "centroid": {
+        "n_in": 0.1174,
+        "entropy": 0.462,
+        "reasoning_proxy": 0.0849,
+        "constraint_count": 0.0,
+        "parametric_dependence": 0.2146,
+        "dependency_distance": 0.0083
+      }
+    },
+    "cluster_6": {
+      "family_name": "Mid-Entropy/Low-Length (Constraint-Heavy)",
+      "centroid": {
+        "n_in": 0.1326,
+        "entropy": 0.4481,
+        "reasoning_proxy": 0.0621,
+        "constraint_count": 0.3831,
+        "parametric_dependence": 0.159,
+        "dependency_distance": 0.0236
+      }
+    },
+    "cluster_7": {
+      "family_name": "High-Entropy/Mid-Length (Reasoning-Heavy, Knowledge-Heavy, Long-Dependency)",
+      "centroid": {
+        "n_in": 0.2816,
+        "entropy": 0.637,
+        "reasoning_proxy": 0.2444,
+        "constraint_count": 0.0,
+        "parametric_dependence": 0.3876,
+        "dependency_distance": 0.1538
+      }
+    },
+    "cluster_8": {
+      "family_name": "High-Entropy/High-Length (Reasoning-Heavy, Knowledge-Heavy, Long-Dependency)",
+      "centroid": {
+        "n_in": 0.6332,
+        "entropy": 0.8432,
+        "reasoning_proxy": 0.4796,
+        "constraint_count": 0.0767,
+        "parametric_dependence": 0.6041,
+        "dependency_distance": 0.1543
+      }
+    }
+  }
+}

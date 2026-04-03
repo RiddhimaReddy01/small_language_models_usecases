@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import math
+import re
 from collections import Counter
 from typing import Any
 
@@ -26,6 +27,30 @@ DIFFICULTY_FEATURES = [
     "parametric_dependence",
     "dependency_distance",
 ]
+
+_SPACY_NLP = None
+_SPACY_LOAD_FAILED = False
+
+
+def _get_spacy_nlp():
+    global _SPACY_NLP, _SPACY_LOAD_FAILED
+    if _SPACY_NLP is not None:
+        return _SPACY_NLP
+    if _SPACY_LOAD_FAILED:
+        return None
+    try:
+        import spacy  # type: ignore
+
+        for model_name in ("en_core_web_sm", "en_core_web_md"):
+            try:
+                _SPACY_NLP = spacy.load(model_name, disable=["ner", "textcat", "lemmatizer"])
+                return _SPACY_NLP
+            except Exception:
+                continue
+    except Exception:
+        pass
+    _SPACY_LOAD_FAILED = True
+    return None
 
 
 def compute_n_in(text: str, mode: str = "tokens") -> float:
@@ -77,30 +102,177 @@ def compute_constraint_count(example: dict[str, Any] | str, rules: dict[str, Any
         count += len(rules.get("content_rules", []) or [])
         count += len(rules.get("length_rules", []) or [])
         count += len(rules.get("ordering_rules", []) or [])
+    if count == 0:
+        text = str(example.get("prompt", example.get("question", example.get("text", ""))))
+        count += int(_estimate_constraint_count_from_text(text))
     return float(count)
 
 
-def compute_reasoning_proxy(example: dict[str, Any], baseline_stats: dict[str, Any] | None = None) -> float:
-    # R_hat is a baseline-estimated reasoning proxy derived from observable signals.
-    # It is not ground-truth reasoning complexity.
-    score = 0.0
-    question = str(example.get("question", example.get("prompt", example.get("text", ""))))
-    score += len(question.split()) * 0.05
-    score += float(example.get("num_steps", 0) or 0) * 1.0
-    score += float(example.get("num_entities", 0) or 0) * 0.5
-    score += float(example.get("has_composition", 0) or 0) * 1.0
+def _estimate_constraint_count_from_text(text: str) -> int:
+    if not text:
+        return 0
+    t = " " + text.lower() + " "
+    patterns = [
+        r"\bmust\b",
+        r"\bshould\b",
+        r"\brequired\b",
+        r"\bexactly\b",
+        r"\bat least\b",
+        r"\bat most\b",
+        r"\bno more than\b",
+        r"\bno less than\b",
+        r"\binclude\b",
+        r"\bdo not\b|\bdon't\b|\bwithout\b",
+        r"\bonly\b",
+        r"\bformat\b|\bjson\b|\bxml\b|\bmarkdown\b|\bcsv\b",
+        r"\bbullet\b|\btable\b|\blist\b",
+        r"\bword(s)?\b|\bcharacter(s)?\b|\blength\b",
+        r"\bcite\b|\bsource\b",
+    ]
+    hits = 0
+    for pat in patterns:
+        if re.search(pat, t):
+            hits += 1
+    return hits
 
+
+def compute_reasoning_proxy(example: dict[str, Any], baseline_stats: dict[str, Any] | None = None) -> float:
+    # R(x) = |S_x|, where S_x is supporting facts / reasoning hops.
+    # Preferred fields (if present): supporting_facts, reasoning_chain, num_hops.
+    supporting = example.get("supporting_facts")
+    if isinstance(supporting, list):
+        return float(len(supporting))
+    reasoning_chain = example.get("reasoning_chain")
+    if isinstance(reasoning_chain, list):
+        return float(len(reasoning_chain))
+    for key in ("num_hops", "reasoning_hops", "num_steps"):
+        value = example.get(key)
+        if value is not None:
+            try:
+                return float(max(0.0, float(value)))
+            except (TypeError, ValueError):
+                pass
+    # Query-only fallback: estimate required reasoning hops from compositional cues.
+    text = str(example.get("question", example.get("prompt", example.get("text", "")))).strip().lower()
+    if text:
+        cues = [
+            "because", "therefore", "hence", "if", "then", "after", "before",
+            "compare", "prove", "derive", "compute", "calculate", "reason",
+            "first", "second", "third", "multi-step", "step by step",
+        ]
+        cue_count = sum(1 for cue in cues if cue in text)
+        clause_count = max(1, len(re.split(r"[;,:]|\band\b|\bor\b|\bwhile\b|\bwhich\b|\bthat\b", text)))
+        hop_estimate = max(0.0, (0.6 * cue_count) + (0.25 * (clause_count - 1)))
+        if hop_estimate > 0:
+            return float(hop_estimate)
+
+    # Backward-compatible fallback if no explicit hop annotation is available.
     if baseline_stats:
-        score += float(baseline_stats.get("step_weight_bonus", 0.0) or 0.0)
-    return float(score)
+        return float(max(0.0, baseline_stats.get("default_reasoning_hops", 0.0) or 0.0))
+    return 0.0
 
 
 def compute_parametric_dependence(example: dict[str, Any]) -> float:
-    return float(example.get("parametric_dependence", 0.0) or 0.0)
+    # PD(x) = max(0, yhat_RAG(x) - yhat_param_only(x))
+    rag = example.get("yhat_rag", example.get("rag_score"))
+    param_only = example.get("yhat_param_only", example.get("param_only_score"))
+    if rag is not None and param_only is not None:
+        try:
+            return float(max(0.0, float(rag) - float(param_only)))
+        except (TypeError, ValueError):
+            pass
+    base = float(max(0.0, float(example.get("parametric_dependence", 0.0) or 0.0)))
+    if base > 0.0:
+        return base
+    # Query-only fallback proxy for knowledge dependence.
+    text = str(example.get("question", example.get("prompt", example.get("text", "")))).strip().lower()
+    if not text:
+        return 0.0
+    cues = [
+        "who", "when", "where", "which country", "capital", "president", "prime minister",
+        "year", "date", "historical", "according to", "latest", "current", "fact", "evidence",
+    ]
+    score = sum(1.0 for cue in cues if cue in text)
+    # Named entities and years raise likely parametric knowledge dependence.
+    entity_like = re.findall(r"\b([A-Z][a-z]+(?:\s+[A-Z][a-z]+)*)\b", str(example.get("prompt", example.get("question", example.get("text", "")))))
+    years = re.findall(r"\b(19|20)\d{2}\b", text)
+    score += min(2.0, float(len(entity_like)) / 3.0)
+    score += min(1.5, float(len(years)) / 2.0)
+    # Scale to [0,1] range.
+    return float(min(1.0, score / 6.0))
 
 
 def compute_dependency_distance(example: dict[str, Any]) -> float:
-    return float(example.get("dependency_distance", 0.0) or 0.0)
+    # MDD(x) = (1/|A_x|) * sum_{(h,d) in A_x} |pos(h) - pos(d)|
+    arcs = example.get("dependency_arcs", example.get("dependency_edges"))
+    if not isinstance(arcs, list) or not arcs:
+        # Real parser pass (if available).
+        text = str(example.get("question", example.get("prompt", example.get("text", "")))).strip()
+        if text:
+            nlp = _get_spacy_nlp()
+            if nlp is not None:
+                try:
+                    doc = nlp(text)
+                    parse_distances: list[float] = []
+                    for tok in doc:
+                        if tok.i == tok.head.i:
+                            continue
+                        parse_distances.append(abs(float(tok.i - tok.head.i)))
+                    if parse_distances:
+                        return float(sum(parse_distances) / len(parse_distances))
+                except Exception:
+                    pass
+            # Fallback proxy when parser model is unavailable.
+            toks = text.split()
+            if len(toks) < 2:
+                return 0.0
+            clause_breaks = [
+                i for i, tok in enumerate(toks)
+                if tok.lower().strip(",;:.") in {"that", "which", "while", "because", "although", "if", "when"}
+            ]
+            if not clause_breaks:
+                return float(max(1.0, len(toks) / 8.0))
+            spans = []
+            for i in clause_breaks:
+                left = i
+                right = len(toks) - i - 1
+                spans.append(float(max(left, right)))
+            return float(sum(spans) / len(spans))
+        fallback = float(example.get("dependency_distance", 0.0) or 0.0)
+        if fallback > 0.0:
+            return fallback
+        return 0.0
+    distances: list[float] = []
+    for arc in arcs:
+        if not isinstance(arc, dict):
+            continue
+        head = arc.get("head", arc.get("h"))
+        dep = arc.get("dep", arc.get("d"))
+        try:
+            distances.append(abs(float(head) - float(dep)))
+        except (TypeError, ValueError):
+            continue
+    if not distances:
+        fallback = float(example.get("dependency_distance", 0.0) or 0.0)
+        if fallback > 0.0:
+            return fallback
+        # Query-only fallback proxy: approximate long-range dependency via clause span.
+        text = str(example.get("question", example.get("prompt", example.get("text", "")))).strip()
+        if not text:
+            return 0.0
+        toks = text.split()
+        if len(toks) < 2:
+            return 0.0
+        clause_breaks = [i for i, tok in enumerate(toks) if tok.lower().strip(",;:.") in {"that", "which", "while", "because", "although", "if", "when"}]
+        if not clause_breaks:
+            return float(max(1.0, len(toks) / 8.0))
+        spans = []
+        for i in clause_breaks:
+            left = i
+            right = len(toks) - i - 1
+            spans.append(float(max(left, right)))
+        return float(sum(spans) / len(spans))
+    return float(sum(distances) / len(distances))
 
 
 def _dimension_for_task(task: str, rule_config: dict[str, Any] | None = None) -> str:

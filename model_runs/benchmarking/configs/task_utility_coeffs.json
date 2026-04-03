@@ -1,0 +1,106 @@
+{
+  "source": "validation_tau_candidate_grid_search",
+  "grid": {
+    "alpha": [
+      0.5,
+      1.0,
+      1.5,
+      2.0
+    ],
+    "beta": [
+      0.0,
+      0.25,
+      0.5,
+      0.75
+    ],
+    "gamma": [
+      0.5,
+      1.0,
+      1.5,
+      2.0,
+      2.5
+    ]
+  },
+  "tasks": {
+    "classification": {
+      "alpha": 2.0,
+      "beta": 0.75,
+      "gamma": 0.5,
+      "avg_weighted_utility": 2.66685,
+      "feasible_pairs": 4,
+      "total_pairs": 4,
+      "hard_fail_pairs": 0,
+      "score": 2.66685
+    },
+    "code_generation": {
+      "alpha": 2.0,
+      "beta": 0.75,
+      "gamma": 0.5,
+      "avg_weighted_utility": 1.8577020833333333,
+      "feasible_pairs": 2,
+      "total_pairs": 4,
+      "hard_fail_pairs": 2,
+      "score": 1.3577020833333333
+    },
+    "information_extraction": {
+      "alpha": 2.0,
+      "beta": 0.75,
+      "gamma": 0.5,
+      "avg_weighted_utility": 2.584280265534682,
+      "feasible_pairs": 4,
+      "total_pairs": 4,
+      "hard_fail_pairs": 0,
+      "score": 2.584280265534682
+    },
+    "instruction_following": {
+      "alpha": 2.0,
+      "beta": 0.75,
+      "gamma": 0.5,
+      "avg_weighted_utility": 2.106659015401007,
+      "feasible_pairs": 4,
+      "total_pairs": 4,
+      "hard_fail_pairs": 0,
+      "score": 2.106659015401007
+    },
+    "maths": {
+      "alpha": 2.0,
+      "beta": 0.75,
+      "gamma": 0.5,
+      "avg_weighted_utility": 2.08755,
+      "feasible_pairs": 2,
+      "total_pairs": 4,
+      "hard_fail_pairs": 2,
+      "score": 1.5875499999999998
+    },
+    "retrieval_grounded": {
+      "alpha": 2.0,
+      "beta": 0.75,
+      "gamma": 0.5,
+      "avg_weighted_utility": 2.4999318493150686,
+      "feasible_pairs": 4,
+      "total_pairs": 4,
+      "hard_fail_pairs": 0,
+      "score": 2.4999318493150686
+    },
+    "summarization": {
+      "alpha": 2.0,
+      "beta": 0.75,
+      "gamma": 0.5,
+      "avg_weighted_utility": 2.4063999999999997,
+      "feasible_pairs": 4,
+      "total_pairs": 4,
+      "hard_fail_pairs": 0,
+      "score": 2.4063999999999997
+    },
+    "text_generation": {
+      "alpha": 2.0,
+      "beta": 0.75,
+      "gamma": 0.5,
+      "avg_weighted_utility": 2.652921348314607,
+      "feasible_pairs": 3,
+      "total_pairs": 4,
+      "hard_fail_pairs": 1,
+      "score": 2.402921348314607
+    }
+  }
+}

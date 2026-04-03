@@ -1,55 +1,43 @@
-# SLM Use Cases - Streamlined Pipeline
+# SLM Use Cases
 
-This repository now runs from a simplified benchmark layout:
+Reproducible SDDF routing pipeline with strict `train/val/test` separation, frozen-policy test evaluation, and separate deployment tradeoff reporting.
 
-- `data/01_processed/benchmark_output/` -> processed model outputs (`outputs.jsonl`, manifests, metadata)
-- `model_runs/` -> tracked benchmark + SDDF artifacts by task
-- `sddf/` -> shared SDDF math (difficulty, ingest, reporting, routing helpers)
-- `tools/` -> end-to-end generation scripts
+## Core Paths
 
-## Current End-to-End Flow
+- `data/` -> benchmarks and ground truth
+- `tools/` -> generation/evaluation scripts
+- `sddf/` -> shared difficulty/routing utilities
+- `model_runs/` -> generated artifacts
 
-1. Ingest normalized benchmark outputs from:
-   - `data/01_processed/benchmark_output/<task>/<model>/outputs.jsonl`
-2. Run separate benchmarking track (comprehensive capability + operational metrics):
-   - `tools/generate_comprehensive_benchmark_metrics.py`
-3. Compute SDDF capability/risk by difficulty bin and routing thresholds:
-   - `tools/generate_benchmark75_sddf.py`
-4. Generate business dashboard and Pareto plots:
-   - `tools/generate_business_dashboard.py`
-5. Optional code-generation report plots:
-   - `tools/plot_code_generation_sddf.py`
-6. One-command orchestrator:
-   - `tools/run_sddf_pipeline.py`
-
-## Quick Run
+## One-Command Reproducibility
 
 ```powershell
-.\.venv\Scripts\python.exe tools\run_sddf_pipeline.py --ci-level 0.90 --cap-threshold 0.80 --risk-threshold 0.20
+.\.venv\Scripts\python.exe tools\run_reproducibility_bundle.py
 ```
 
-Optional weighted difficulty scoring:
+This runs:
 
-```powershell
-.\.venv\Scripts\python.exe tools\run_sddf_pipeline.py --difficulty-weights difficulty_weights.json
-```
+1. validation generation and validation report
+2. per-task utility tuning
+3. frozen test generation and test report
+4. separate error-taxonomy report
+5. separate deployment tradeoff report
 
-## Output Locations
+## Canonical Outputs
 
-- Task-level SDDF outputs:
-  - `model_runs/<task>/benchmarking/comprehensive_metrics.json`
+- Task-level:
   - `model_runs/<task>/sddf/thresholds.json`
   - `model_runs/<task>/sddf/routing_policy.json`
   - `model_runs/<task>/sddf/canonical_rows.jsonl`
-  - `model_runs/<task>/sddf/*.png`
-- Global summary:
-  - `model_runs/benchmarking/comprehensive_metrics_summary.json`
+- Global:
   - `model_runs/sddf_summary.json`
-- Business dashboard:
-  - `model_runs/business_analytics/dashboard.json`
-  - `model_runs/business_analytics/dashboard.md`
+  - `model_runs/benchmarking/configs/task_utility_coeffs.json`
+  - `model_runs/benchmarking/phase_reports/val_phase_report.json|csv|md`
+  - `model_runs/benchmarking/phase_reports/test_phase_report.json|csv|md`
+  - `model_runs/benchmarking/error_taxonomy/error_taxonomy_by_task_model.json|csv|md`
+  - `model_runs/benchmarking/deployment/deployment_tradeoffs.json|csv|md`
 
 ## Notes
 
-- Scripts auto-detect legacy layout (`model_runs/benchmark_75`) if present.
-- Ground-truth/reference checks are loaded from `data/ground_truth/<task>.jsonl|json`.
+- No graph artifacts are produced in the SDDF reproducibility flow.
+- Ground truth is loaded from `data/ground_truth/<task>.jsonl|json`.
