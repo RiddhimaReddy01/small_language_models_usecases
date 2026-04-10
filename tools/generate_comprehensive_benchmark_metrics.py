@@ -116,6 +116,20 @@ def _write_json(path: Path, payload: dict[str, Any]) -> None:
     path.write_text(json.dumps(payload, indent=2), encoding="utf-8")
 
 
+def _load_model_rows(task_dir: Path, model_key: str) -> list[dict[str, Any]]:
+    model_dir = task_dir / model_key
+    rows: list[dict[str, Any]] = []
+    for split_name in ("train", "val", "test"):
+        p = model_dir / f"outputs_{split_name}.jsonl"
+        if p.exists():
+            rows.extend(_load_jsonl(p))
+    if not rows:
+        legacy = model_dir / "outputs.jsonl"
+        if legacy.exists():
+            rows = _load_jsonl(legacy)
+    return _dedupe_rows(rows)
+
+
 def main() -> None:
     global_summary: dict[str, Any] = {"tasks": {}}
 
@@ -130,10 +144,9 @@ def main() -> None:
         }
 
         for model_key in CANONICAL_MODELS:
-            outputs_path = task_dir / model_key / "outputs.jsonl"
-            if not outputs_path.exists():
+            rows = _load_model_rows(task_dir, model_key)
+            if not rows:
                 continue
-            rows = _dedupe_rows(_load_jsonl(outputs_path))
             metrics = _aggregate_model_metrics(rows, reference_lookup)
             metrics["capability"]["primary_metric_score_name"] = TASK_PRIMARY_METRIC.get(task, "task_primary_metric")
             metrics["model_key"] = model_key

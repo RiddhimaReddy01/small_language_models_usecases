@@ -19,12 +19,15 @@ LEGACY_BENCHMARK_ROOT = ROOT / "model_runs" / "benchmark_75"
 BENCHMARK_ROOT = LEGACY_BENCHMARK_ROOT if LEGACY_BENCHMARK_ROOT.exists() else ROOT / "model_runs"
 OUTPUT_ROOT = BENCHMARK_ROOT / "business_analytics"
 MODELS = [
-    "tinyllama_1.1b",
-    "qwen2.5_1.5b",
-    "phi3_mini",
+    "qwen2.5_0.5b",
+    "qwen2.5_3b",
+    "qwen2.5_7b",
     "llama_llama-3.3-70b-versatile",
 ]
 DISPLAY_NAMES = {
+    "qwen2.5_0.5b": "qwen2.5:0.5b",
+    "qwen2.5_3b": "qwen2.5:3b",
+    "qwen2.5_7b": "qwen2.5:7b",
     "tinyllama_1.1b": "tinyllama:1.1b",
     "qwen2.5_1.5b": "qwen2.5:1.5b",
     "phi3_mini": "phi3:mini",
@@ -97,7 +100,17 @@ def _dedupe_rows(rows: list[dict[str, Any]]) -> list[dict[str, Any]]:
 
 
 def _avg_latency(task_dir: Path, model_key: str) -> float:
-    rows = _dedupe_rows(_read_jsonl(task_dir / model_key / "outputs.jsonl"))
+    model_dir = task_dir / model_key
+    rows: list[dict[str, Any]] = []
+    for split_name in ("train", "val", "test"):
+        p = model_dir / f"outputs_{split_name}.jsonl"
+        if p.exists():
+            rows.extend(_read_jsonl(p))
+    if not rows:
+        legacy = model_dir / "outputs.jsonl"
+        if legacy.exists():
+            rows = _read_jsonl(legacy)
+    rows = _dedupe_rows(rows)
     latencies = [float(row.get("latency_sec") or 0.0) for row in rows if row.get("latency_sec") is not None]
     return mean(latencies) if latencies else 0.0
 
@@ -230,6 +243,16 @@ def _format_float(value: float | None) -> str:
     return f"{value:.3f}"
 
 
+def _decision_metric(decision_row: dict[str, Any], *keys: str, default: float = 0.0) -> float:
+    for key in keys:
+        if key in decision_row:
+            try:
+                return float(decision_row.get(key))
+            except (TypeError, ValueError):
+                continue
+    return float(default)
+
+
 def _plot_task_pareto(task: str, models: list[ModelEconomics], output_path: Path) -> None:
     plt.figure(figsize=(8, 6))
     plt.xlabel("Direct Cost per Query (USD)")
@@ -312,8 +335,9 @@ def main() -> None:
             latency_sec = _avg_latency(task_dir, model_key)
             throughput_qps = 0.0 if latency_sec <= 0 else 1.0 / latency_sec
             direct_cost_usd = _direct_cost_usd(model_key, latency_sec)
-            capability = float(decision[model_key]["avg_expected_capability"])
-            risk = float(decision[model_key]["avg_expected_risk"])
+            decision_row = decision[model_key]
+            capability = _decision_metric(decision_row, "avg_expected_capability", "avg_capability", default=0.0)
+            risk = _decision_metric(decision_row, "avg_expected_risk", "avg_risk", default=1.0)
             task_models.append(
                 ModelEconomics(
                     task=task_dir.name,

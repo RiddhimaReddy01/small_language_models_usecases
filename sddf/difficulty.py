@@ -26,10 +26,167 @@ DIFFICULTY_FEATURES = [
     "constraint_count",
     "parametric_dependence",
     "dependency_distance",
+    # Pairwise interaction features — make the routing boundary non-linear in
+    # original feature space without changing the simplex learner architecture.
+    # Each captures a theoretically motivated AND-like combination:
+    "reasoning_x_constraint",   # high reasoning load AND many constraints → compounded failure
+    "length_x_entropy",         # long AND lexically varied → harder retrieval/summarization
+    "knowledge_x_reasoning",    # factual knowledge gap AND multi-hop → parametric multi-hop failure
+    # Task-specific decomposition features (zero for non-matching tasks).
+    "classification_ambiguity",
+    "classification_negation_density",
+    "classification_domain_shift",
+    "math_numeric_density",
+    "math_symbol_density",
+    "math_precision_cues",
+    "instruction_format_strictness",
+    "instruction_prohibition_count",
+    "instruction_step_count",
+    "instruction_conflict_cues",
 ]
 
 _SPACY_NLP = None
 _SPACY_LOAD_FAILED = False
+
+
+def _clamp01(value: float) -> float:
+    return float(max(0.0, min(1.0, value)))
+
+
+def _tokenize(text: str) -> list[str]:
+    if not text:
+        return []
+    return re.findall(r"[A-Za-z0-9_]+", text)
+
+
+def _count_any(text_lower: str, cues: list[str]) -> int:
+    return sum(1 for cue in cues if cue in text_lower)
+
+
+def _count_regex(text: str, pattern: str) -> int:
+    return len(re.findall(pattern, text, flags=re.IGNORECASE))
+
+
+def _classification_feature_block(text: str) -> dict[str, float]:
+    toks = _tokenize(text)
+    n = max(1, len(toks))
+    text_lower = text.lower()
+
+    contrast = _count_regex(text_lower, r"\b(but|however|although|though|yet|whereas|despite)\b")
+    hedges = _count_regex(text_lower, r"\b(maybe|perhaps|possibly|seems|appears|likely|unclear|ambiguous)\b")
+    or_count = _count_regex(text_lower, r"\bor\b")
+    ambiguity = _clamp01((contrast + hedges + max(0, or_count - 1)) / 8.0)
+
+    neg = _count_regex(text_lower, r"\b(no|not|never|none|without|can't|cannot|won't|isn't|don't|didn't)\b")
+    negation_density = _clamp01(neg / max(1.0, n / 6.0))
+
+    years = _count_regex(text, r"\b(19|20)\d{2}\b")
+    acronyms = _count_regex(text, r"\b[A-Z]{2,}\b")
+    capitals = _count_regex(text, r"\b[A-Z][a-z]{2,}\b")
+    domain_shift = _clamp01((years + 0.7 * acronyms + 0.15 * capitals) / 10.0)
+
+    return {
+        "classification_ambiguity": ambiguity,
+        "classification_negation_density": negation_density,
+        "classification_domain_shift": domain_shift,
+    }
+
+
+def _math_feature_block(text: str) -> dict[str, float]:
+    toks = _tokenize(text)
+    n = max(1, len(toks))
+    text_lower = text.lower()
+
+    numeric_tokens = _count_regex(text, r"\b\d+(\.\d+)?\b")
+    numeric_density = _clamp01(numeric_tokens / max(1.0, n / 3.0))
+
+    symbol_hits = _count_regex(text, r"[\=\+\-\*/\^%<>]|≤|≥|≠|√|∑|∫")
+    symbol_density = _clamp01(symbol_hits / max(1.0, n / 4.0))
+
+    precision_cues = _count_any(
+        text_lower,
+        [
+            "exact",
+            "exactly",
+            "decimal",
+            "nearest",
+            "round",
+            "significant figure",
+            "precision",
+            "simplify",
+            "fraction",
+            "integer",
+        ],
+    )
+    precision = _clamp01(precision_cues / 4.0)
+
+    return {
+        "math_numeric_density": numeric_density,
+        "math_symbol_density": symbol_density,
+        "math_precision_cues": precision,
+    }
+
+
+def _instruction_feature_block(text: str) -> dict[str, float]:
+    toks = _tokenize(text)
+    n = max(1, len(toks))
+    text_lower = text.lower()
+
+    format_cues = _count_any(
+        text_lower,
+        [
+            "json",
+            "yaml",
+            "xml",
+            "markdown",
+            "csv",
+            "table",
+            "bullet",
+            "schema",
+            "exact format",
+            "output format",
+            "valid json",
+        ],
+    )
+    format_strictness = _clamp01(format_cues / 4.0)
+
+    prohibitions = _count_regex(text_lower, r"\b(do not|don't|never|without|avoid|must not|cannot)\b")
+    prohibition_count = _clamp01(prohibitions / 3.0)
+
+    step_cues = _count_regex(text_lower, r"\b(first|second|third|step|then|after that|finally|in order)\b")
+    instruction_steps = _clamp01(step_cues / max(2.0, n / 12.0))
+
+    conflict_cues = _count_regex(text_lower, r"\b(but|however|except|unless|instead|only if|otherwise)\b")
+    conflicts = _clamp01(conflict_cues / 3.0)
+
+    return {
+        "instruction_format_strictness": format_strictness,
+        "instruction_prohibition_count": prohibition_count,
+        "instruction_step_count": instruction_steps,
+        "instruction_conflict_cues": conflicts,
+    }
+
+
+def _task_specific_features(task: str, text: str) -> dict[str, float]:
+    out = {
+        "classification_ambiguity": 0.0,
+        "classification_negation_density": 0.0,
+        "classification_domain_shift": 0.0,
+        "math_numeric_density": 0.0,
+        "math_symbol_density": 0.0,
+        "math_precision_cues": 0.0,
+        "instruction_format_strictness": 0.0,
+        "instruction_prohibition_count": 0.0,
+        "instruction_step_count": 0.0,
+        "instruction_conflict_cues": 0.0,
+    }
+    if task == "classification":
+        out.update(_classification_feature_block(text))
+    elif task == "maths":
+        out.update(_math_feature_block(text))
+    elif task == "instruction_following":
+        out.update(_instruction_feature_block(text))
+    return out
 
 
 def _get_spacy_nlp():
@@ -43,7 +200,9 @@ def _get_spacy_nlp():
 
         for model_name in ("en_core_web_sm", "en_core_web_md"):
             try:
-                _SPACY_NLP = spacy.load(model_name, disable=["ner", "textcat", "lemmatizer"])
+                # Keep parser (dependency_distance) and ner (parametric_dependence).
+                # Only disable components not needed for either feature.
+                _SPACY_NLP = spacy.load(model_name, disable=["textcat", "lemmatizer"])
                 return _SPACY_NLP
             except Exception:
                 continue
@@ -131,8 +290,8 @@ def _estimate_constraint_count_from_text(text: str) -> int:
     ]
     hits = 0
     for pat in patterns:
-        if re.search(pat, t):
-            hits += 1
+        # Count occurrences, not just presence — "must X, must Y, must Z" → 3.
+        hits += len(re.findall(pat, t))
     return hits
 
 
@@ -185,18 +344,35 @@ def compute_parametric_dependence(example: dict[str, Any]) -> float:
     if base > 0.0:
         return base
     # Query-only fallback proxy for knowledge dependence.
-    text = str(example.get("question", example.get("prompt", example.get("text", "")))).strip().lower()
-    if not text:
+    raw_text = str(example.get("prompt", example.get("question", example.get("text", "")))).strip()
+    text_lower = raw_text.lower()
+    if not text_lower:
         return 0.0
     cues = [
         "who", "when", "where", "which country", "capital", "president", "prime minister",
         "year", "date", "historical", "according to", "latest", "current", "fact", "evidence",
     ]
-    score = sum(1.0 for cue in cues if cue in text)
-    # Named entities and years raise likely parametric knowledge dependence.
-    entity_like = re.findall(r"\b([A-Z][a-z]+(?:\s+[A-Z][a-z]+)*)\b", str(example.get("prompt", example.get("question", example.get("text", "")))))
-    years = re.findall(r"\b(19|20)\d{2}\b", text)
-    score += min(2.0, float(len(entity_like)) / 3.0)
+    score = sum(1.0 for cue in cues if cue in text_lower)
+    # Named entity count: prefer spacy NER (precise); fall back to mid-sentence
+    # capitalized sequences only — excluding the first word of each sentence to
+    # avoid counting sentence-initial capitals as named entities.
+    nlp = _get_spacy_nlp()
+    if nlp is not None:
+        try:
+            doc = nlp(raw_text)
+            entity_count = len(doc.ents)
+        except Exception:
+            entity_count = 0
+    else:
+        entity_count = 0
+        for sent in re.split(r"(?<=[.!?])\s+", raw_text):
+            words = sent.split()
+            # Skip index 0 (sentence-initial word always capitalized in English).
+            for word in words[1:]:
+                if re.match(r"^[A-Z][a-z]{1,}", word):
+                    entity_count += 1
+    years = re.findall(r"\b(19|20)\d{2}\b", text_lower)
+    score += min(2.0, float(entity_count) / 3.0)
     score += min(1.5, float(len(years)) / 2.0)
     # Scale to [0,1] range.
     return float(min(1.0, score / 6.0))
@@ -306,14 +482,39 @@ def compute_all_features(
     rule_config: dict[str, Any] | None = None,
 ) -> dict[str, float]:
     rules = rule_config or {}
-    return {
-        "n_in": compute_n_in(text, mode=rules.get("n_in_mode", "tokens")),
-        "entropy": compute_entropy(text, level=rules.get("entropy_level", "token")),
-        "reasoning_proxy": compute_reasoning_proxy(example, baseline_stats=rules.get("baseline_stats")),
-        "constraint_count": compute_constraint_count(example, rules=rules.get("constraint_rules")),
-        "parametric_dependence": compute_parametric_dependence(example),
-        "dependency_distance": compute_dependency_distance(example),
+
+    # For retrieval_grounded tasks the difficulty depends on the context document
+    # (length, entropy), not just the query. If a context field is present, use the
+    # combined query+context length and the context entropy as the primary signals.
+    task = str(example.get("task", "")).strip().lower()
+    context = str(example.get("context", example.get("passage", example.get("document", ""))) or "")
+    if task == "retrieval_grounded" and context:
+        feature_text = text + " " + context
+    else:
+        feature_text = text
+
+    n_in         = compute_n_in(feature_text, mode=rules.get("n_in_mode", "tokens"))
+    entropy      = compute_entropy(feature_text, level=rules.get("entropy_level", "token"))
+    reasoning    = compute_reasoning_proxy(example, baseline_stats=rules.get("baseline_stats"))
+    constraints  = compute_constraint_count(example, rules=rules.get("constraint_rules"))
+    parametric   = compute_parametric_dependence(example)
+    dep_dist     = compute_dependency_distance(example)
+    task_specific = _task_specific_features(task, feature_text)
+
+    base = {
+        "n_in":                   n_in,
+        "entropy":                entropy,
+        "reasoning_proxy":        reasoning,
+        "constraint_count":       constraints,
+        "parametric_dependence":  parametric,
+        "dependency_distance":    dep_dist,
+        # Interaction features — non-zero only when BOTH component features are elevated.
+        "reasoning_x_constraint": reasoning * constraints,
+        "length_x_entropy":       n_in * entropy,
+        "knowledge_x_reasoning":  parametric * reasoning,
     }
+    base.update(task_specific)
+    return base
 
 
 def annotate_dominant_dimension(

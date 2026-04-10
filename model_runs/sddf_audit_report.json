@@ -1,0 +1,378 @@
+{
+  "classification": {
+    "cap_threshold": 0.75,
+    "risk_threshold": 0.2,
+    "routing_signal": {
+      "qwen2.5_0.5b": {
+        "n_common": 120,
+        "n_signal": 34,
+        "signal_rate": 0.2833333333333333
+      },
+      "qwen2.5_3b": {
+        "n_common": 120,
+        "n_signal": 12,
+        "signal_rate": 0.1
+      },
+      "qwen2.5_7b": {
+        "n_common": 120,
+        "n_signal": 22,
+        "signal_rate": 0.18333333333333332
+      }
+    },
+    "models": {
+      "qwen2.5_0.5b": {
+        "n_rows": 120,
+        "overall_cap": 0.425,
+        "overall_risk": 0.322,
+        "weight_source": "learned",
+        "tau_star": 0.3561,
+        "routing_signal_rate": 0.283
+      },
+      "qwen2.5_3b": {
+        "n_rows": 120,
+        "overall_cap": 0.642,
+        "overall_risk": 0.201,
+        "weight_source": "learned",
+        "tau_star": 0.5846,
+        "routing_signal_rate": 0.1
+      },
+      "qwen2.5_7b": {
+        "n_rows": 120,
+        "overall_cap": 0.525,
+        "overall_risk": 0.266,
+        "weight_source": "learned",
+        "tau_star": 0.5714,
+        "routing_signal_rate": 0.183
+      }
+    }
+  },
+  "maths": {
+    "cap_threshold": 0.65,
+    "risk_threshold": 0.35,
+    "routing_signal": {
+      "qwen2.5_0.5b": {
+        "n_common": 163,
+        "n_signal": 71,
+        "signal_rate": 0.43558282208588955
+      },
+      "qwen2.5_3b": {
+        "n_common": 163,
+        "n_signal": 25,
+        "signal_rate": 0.15337423312883436
+      },
+      "qwen2.5_7b": {
+        "n_common": 163,
+        "n_signal": 85,
+        "signal_rate": 0.5214723926380368
+      }
+    },
+    "models": {
+      "qwen2.5_0.5b": {
+        "n_rows": 163,
+        "overall_cap": 0.337,
+        "overall_risk": 0.567,
+        "weight_source": "learned",
+        "tau_star": 0.4427,
+        "routing_signal_rate": 0.436
+      },
+      "qwen2.5_3b": {
+        "n_rows": 163,
+        "overall_cap": 0.632,
+        "overall_risk": 0.315,
+        "weight_source": "learned",
+        "tau_star": 0.9058,
+        "routing_signal_rate": 0.153
+      },
+      "qwen2.5_7b": {
+        "n_rows": 163,
+        "overall_cap": 0.264,
+        "overall_risk": 0.629,
+        "weight_source": "learned",
+        "tau_star": 0.3382,
+        "routing_signal_rate": 0.521
+      }
+    }
+  },
+  "code_generation": {
+    "cap_threshold": 0.55,
+    "risk_threshold": 0.4,
+    "routing_signal": {
+      "qwen2.5_0.5b": {
+        "n_common": 132,
+        "n_signal": 8,
+        "signal_rate": 0.06060606060606061
+      },
+      "qwen2.5_3b": {
+        "n_common": 132,
+        "n_signal": 6,
+        "signal_rate": 0.045454545454545456
+      },
+      "qwen2.5_7b": {
+        "n_common": 132,
+        "n_signal": 6,
+        "signal_rate": 0.045454545454545456
+      }
+    },
+    "models": {
+      "qwen2.5_0.5b": {
+        "n_rows": 132,
+        "overall_cap": 0.561,
+        "overall_risk": 0.397,
+        "weight_source": "learned",
+        "tau_star": 1.0,
+        "routing_signal_rate": 0.061
+      },
+      "qwen2.5_3b": {
+        "n_rows": 132,
+        "overall_cap": 0.561,
+        "overall_risk": 0.397,
+        "weight_source": "learned",
+        "tau_star": 1.0,
+        "routing_signal_rate": 0.045
+      },
+      "qwen2.5_7b": {
+        "n_rows": 132,
+        "overall_cap": 0.568,
+        "overall_risk": 0.39,
+        "weight_source": "learned",
+        "tau_star": 1.0,
+        "routing_signal_rate": 0.045
+      }
+    }
+  },
+  "instruction_following": {
+    "cap_threshold": 0.7,
+    "risk_threshold": 0.3,
+    "routing_signal": {
+      "qwen2.5_0.5b": {
+        "n_common": 134,
+        "n_signal": 49,
+        "signal_rate": 0.3656716417910448
+      },
+      "qwen2.5_3b": {
+        "n_common": 134,
+        "n_signal": 20,
+        "signal_rate": 0.14925373134328357
+      },
+      "qwen2.5_7b": {
+        "n_common": 134,
+        "n_signal": 19,
+        "signal_rate": 0.1417910447761194
+      }
+    },
+    "models": {
+      "qwen2.5_0.5b": {
+        "n_rows": 134,
+        "overall_cap": 0.433,
+        "overall_risk": 0.298,
+        "weight_source": "learned",
+        "tau_star": 0.8657,
+        "routing_signal_rate": 0.366
+      },
+      "qwen2.5_3b": {
+        "n_rows": 134,
+        "overall_cap": 0.664,
+        "overall_risk": 0.176,
+        "weight_source": "learned",
+        "tau_star": 0.4286,
+        "routing_signal_rate": 0.149
+      },
+      "qwen2.5_7b": {
+        "n_rows": 134,
+        "overall_cap": 0.649,
+        "overall_risk": 0.184,
+        "weight_source": "learned",
+        "tau_star": 0.905,
+        "routing_signal_rate": 0.142
+      }
+    }
+  },
+  "information_extraction": {
+    "cap_threshold": 0.75,
+    "risk_threshold": 0.25,
+    "routing_signal": {
+      "qwen2.5_0.5b": {
+        "n_common": 76,
+        "n_signal": 13,
+        "signal_rate": 0.17105263157894737
+      },
+      "qwen2.5_3b": {
+        "n_common": 76,
+        "n_signal": 6,
+        "signal_rate": 0.07894736842105263
+      },
+      "qwen2.5_7b": {
+        "n_common": 76,
+        "n_signal": 4,
+        "signal_rate": 0.05263157894736842
+      }
+    },
+    "models": {
+      "qwen2.5_0.5b": {
+        "n_rows": 76,
+        "overall_cap": 0.618,
+        "overall_risk": 0.229,
+        "weight_source": "learned",
+        "tau_star": 0.6364,
+        "routing_signal_rate": 0.171
+      },
+      "qwen2.5_3b": {
+        "n_rows": 76,
+        "overall_cap": 0.697,
+        "overall_risk": 0.182,
+        "weight_source": "learned",
+        "tau_star": 1.0,
+        "routing_signal_rate": 0.079
+      },
+      "qwen2.5_7b": {
+        "n_rows": 76,
+        "overall_cap": 0.724,
+        "overall_risk": 0.166,
+        "weight_source": "learned",
+        "tau_star": 1.0,
+        "routing_signal_rate": 0.053
+      }
+    }
+  },
+  "retrieval_grounded": {
+    "cap_threshold": 0.7,
+    "risk_threshold": 0.3,
+    "routing_signal": {
+      "qwen2.5_0.5b": {
+        "n_common": 169,
+        "n_signal": 39,
+        "signal_rate": 0.23076923076923078
+      },
+      "qwen2.5_3b": {
+        "n_common": 169,
+        "n_signal": 22,
+        "signal_rate": 0.1301775147928994
+      },
+      "qwen2.5_7b": {
+        "n_common": 169,
+        "n_signal": 14,
+        "signal_rate": 0.08284023668639054
+      }
+    },
+    "models": {
+      "qwen2.5_0.5b": {
+        "n_rows": 169,
+        "overall_cap": 0.544,
+        "overall_risk": 0.31,
+        "weight_source": "learned",
+        "tau_star": 0.8,
+        "routing_signal_rate": 0.231
+      },
+      "qwen2.5_3b": {
+        "n_rows": 169,
+        "overall_cap": 0.645,
+        "overall_risk": 0.241,
+        "weight_source": "learned",
+        "tau_star": 0.7958,
+        "routing_signal_rate": 0.13
+      },
+      "qwen2.5_7b": {
+        "n_rows": 169,
+        "overall_cap": 0.669,
+        "overall_risk": 0.225,
+        "weight_source": "learned",
+        "tau_star": 1.0,
+        "routing_signal_rate": 0.083
+      }
+    }
+  },
+  "summarization": {
+    "cap_threshold": 0.65,
+    "risk_threshold": 0.35,
+    "routing_signal": {
+      "qwen2.5_0.5b": {
+        "n_common": 124,
+        "n_signal": 14,
+        "signal_rate": 0.11290322580645161
+      },
+      "qwen2.5_3b": {
+        "n_common": 124,
+        "n_signal": 17,
+        "signal_rate": 0.13709677419354838
+      },
+      "qwen2.5_7b": {
+        "n_common": 124,
+        "n_signal": 17,
+        "signal_rate": 0.13709677419354838
+      }
+    },
+    "models": {
+      "qwen2.5_0.5b": {
+        "n_rows": 124,
+        "overall_cap": 0.726,
+        "overall_risk": 0.068,
+        "weight_source": "learned",
+        "tau_star": 0.8508,
+        "routing_signal_rate": 0.113
+      },
+      "qwen2.5_3b": {
+        "n_rows": 124,
+        "overall_cap": 0.702,
+        "overall_risk": 0.074,
+        "weight_source": "learned",
+        "tau_star": 1.0,
+        "routing_signal_rate": 0.137
+      },
+      "qwen2.5_7b": {
+        "n_rows": 124,
+        "overall_cap": 0.718,
+        "overall_risk": 0.07,
+        "weight_source": "learned",
+        "tau_star": 0.9602,
+        "routing_signal_rate": 0.137
+      }
+    }
+  },
+  "text_generation": {
+    "cap_threshold": 0.7,
+    "risk_threshold": 0.3,
+    "routing_signal": {
+      "qwen2.5_0.5b": {
+        "n_common": 77,
+        "n_signal": 40,
+        "signal_rate": 0.5194805194805194
+      },
+      "qwen2.5_3b": {
+        "n_common": 77,
+        "n_signal": 41,
+        "signal_rate": 0.5324675324675324
+      },
+      "qwen2.5_7b": {
+        "n_common": 77,
+        "n_signal": 24,
+        "signal_rate": 0.3116883116883117
+      }
+    },
+    "models": {
+      "qwen2.5_0.5b": {
+        "n_rows": 77,
+        "overall_cap": 0.481,
+        "overall_risk": 0.094,
+        "weight_source": "learned",
+        "tau_star": 1.0,
+        "routing_signal_rate": 0.519
+      },
+      "qwen2.5_3b": {
+        "n_rows": 77,
+        "overall_cap": 0.468,
+        "overall_risk": 0.096,
+        "weight_source": "learned",
+        "tau_star": 1.0,
+        "routing_signal_rate": 0.532
+      },
+      "qwen2.5_7b": {
+        "n_rows": 77,
+        "overall_cap": 0.688,
+        "overall_risk": 0.056,
+        "weight_source": "learned",
+        "tau_star": 1.0,
+        "routing_signal_rate": 0.312
+      }
+    }
+  }
+}

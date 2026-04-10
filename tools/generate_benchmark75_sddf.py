@@ -8,6 +8,7 @@ import math
 import hashlib
 import sys
 import numpy as np
+from concurrent.futures import ProcessPoolExecutor, as_completed
 from statistics import NormalDist
 from collections import defaultdict
 from pathlib import Path
@@ -31,17 +32,17 @@ def _benchmark_root() -> Path:
 
 BENCHMARK_ROOT = _benchmark_root()
 CANONICAL_MODELS = [
-    "tinyllama_1.1b",
-    "qwen2.5_1.5b",
-    "phi3_mini",
+    "qwen2.5_0.5b",
+    "qwen2.5_3b",
+    "qwen2.5_7b",
     "llama_llama-3.3-70b-versatile",
 ]
 BASELINE_MODEL = "llama_llama-3.3-70b-versatile"
 DISPLAY_NAMES = {
-    "tinyllama_1.1b": "tinyllama:1.1b",
-    "qwen2.5_1.5b": "qwen2.5:1.5b",
-    "phi3_mini": "phi3:mini",
-    "llama_llama-3.3-70b-versatile": "groq:llama-3.3-70b-versatile",
+    "qwen2.5_0.5b":                    "qwen2.5:0.5b",
+    "qwen2.5_3b":                      "qwen2.5:3b",
+    "qwen2.5_7b":                      "qwen2.5:7b",
+    "llama_llama-3.3-70b-versatile":   "groq:llama-3.3-70b-versatile",
 }
 SUPPORTED_TASKS = {
     "classification",
@@ -54,8 +55,8 @@ SUPPORTED_TASKS = {
     "text_generation",
 }
 
-DEFAULT_WILSON_CONFIDENCE_LEVEL = 0.90
-DEFAULT_WILSON_Z = 1.6448536269514722
+DEFAULT_WILSON_CONFIDENCE_LEVEL = 0.95
+DEFAULT_WILSON_Z = 1.959963985
 DEFAULT_CAPABILITY_THRESHOLD = 0.80
 DEFAULT_RISK_THRESHOLD = 0.20
 DEFAULT_MIN_SAMPLES = 5
@@ -72,19 +73,23 @@ def _beta_credible_interval(
     n: int,
     level: float = DEFAULT_WILSON_CONFIDENCE_LEVEL,
 ) -> tuple[float | None, float | None]:
-    """Approximate Beta-Binomial credible interval with Beta(1,1) prior."""
+    """Wilson score confidence interval — reliable at small n and extreme proportions.
+
+    Replaces the earlier Gaussian-Beta approximation, which breaks when success
+    rate is near 0 or 1 (skewed Beta) — exactly the region that matters for τ*
+    certification on small val/test sets.
+    """
     if n <= 0:
         return None, None
     s = max(0, min(int(successes), int(n)))
-    a = float(s + 1)
-    b = float(n - s + 1)
-    mean = a / (a + b)
-    var = (a * b) / (((a + b) ** 2) * (a + b + 1.0))
     z = _z_from_confidence(level)
-    sd = math.sqrt(max(0.0, var))
-    lo = max(0.0, mean - z * sd)
-    hi = min(1.0, mean + z * sd)
-    return lo, hi
+    p_hat = float(s) / float(n)
+    z2 = z * z
+    n_f = float(n)
+    denom = 1.0 + z2 / n_f
+    center = (p_hat + z2 / (2.0 * n_f)) / denom
+    margin = z * math.sqrt(max(0.0, p_hat * (1.0 - p_hat) / n_f + z2 / (4.0 * n_f * n_f))) / denom
+    return max(0.0, center - margin), min(1.0, center + margin)
 
 
 class GeneralizedRoutingFramework:
@@ -401,55 +406,177 @@ def _evaluate_row(row: dict[str, Any], reference_lookup: dict[str, dict[str, Any
     reference = _resolve_reference(row, reference_lookup)
     output = row.get("raw_output", "")
     parsed = row.get("parsed_output") or {}
-    if not reference:
-        return 0.0, 1.0, "missing_ground_truth"
-    if not output.strip():
-        failure = row.get("failure_category") or "empty_output"
-        return 0.0, 1.0, failure
-    if task == "classification":
-        capability, failure = _classification_eval(reference, output)
-    elif task == "maths":
-        capability, failure = _maths_eval(reference, output, parsed)
-    elif task == "information_extraction":
-        capability, failure = _ie_eval(reference, output)
-    elif task == "instruction_following":
-        capability, failure = _instruction_eval(reference, output)
-    elif task == "retrieval_grounded":
-        capability, failure = _retrieval_eval(reference, output)
-    elif task == "summarization":
-        capability, failure = _summary_eval(reference, output)
-    elif task == "code_generation":
-        capability, failure = _code_eval(reference, output, parsed)
-    elif task == "text_generation":
-        capability, failure = _textgen_eval(reference, output, row)
+
+    # ── Fast path: use pre-computed score/correct from evaluate_outputs.py ──────
+    # evaluate_outputs.py uses task-specific evaluators (ROUGE-1 for summarization,
+    # constraint checker for instruction_following, concept coverage for text_generation)
+    # that correctly handle the actual reference data format.  The internal evaluators
+    # below were written for a different reference schema and return wrong results for
+    # at least three tasks (summarization checks "contains" but ref has "summary";
+    # text_generation checks "contains" but ref has "required_concepts";
+    # instruction_following checks "sequence" but ref has "instruction_ids"/"kwargs").
+    # Using the pre-computed field avoids re-evaluation from a broken code path.
+    if "score" in row and row.get("status") not in ("invalid",):
+        capability = float(bool(row.get("correct", False)))
+        failure: str | None = None if capability else (row.get("failure_category") or "quality_failure")
+        # Risk still uses the task-specific severity×undetectability table below.
+        # Skip to risk calculation by falling through after setting capability/failure.
+        # (Jump forward — avoid the full evaluator block.)
+        _use_precomputed = True
     else:
-        capability = 1.0 if row.get("valid", False) else 0.0
-        failure = None if capability else row.get("failure_category") or "quality_failure"
-    # Research-style harm model:
-    # risk = P(error) * severity * undetectability
-    # Here P(error) is binary at row-level: 1 when failed, 0 when correct.
-    # severity/undetectability are calibrated per failure mode.
-    failure_harm: dict[str, tuple[float, float]] = {
-        # (severity, undetectability)
-        "arithmetic_error": (0.9, 0.8),
-        "wrong_label": (0.8, 0.8),
-        "logic_error": (0.95, 0.85),
-        "answer_mismatch": (0.85, 0.8),
-        "low_relevance": (0.6, 0.7),
-        "constraint_violation": (0.7, 0.7),
-        "quality_failure": (0.5, 0.6),
-        "format_error": (0.4, 0.4),
-        "missing_field": (0.45, 0.45),
-        "incomplete_output": (0.4, 0.35),
-        "no_answer": (0.2, 0.2),
-        "empty_output": (0.1, 0.1),
-        "timeout_runtime": (0.1, 0.1),
-        "missing_ground_truth": (0.3, 0.3),
+        _use_precomputed = False
+
+    if not _use_precomputed:
+        if not reference:
+            return 0.0, 1.0, "missing_ground_truth"
+        if not output.strip():
+            failure = row.get("failure_category") or "empty_output"
+            return 0.0, 1.0, failure
+    if not _use_precomputed:
+        if task == "classification":
+            capability, failure = _classification_eval(reference, output)
+        elif task == "maths":
+            capability, failure = _maths_eval(reference, output, parsed)
+        elif task == "information_extraction":
+            capability, failure = _ie_eval(reference, output)
+        elif task == "instruction_following":
+            capability, failure = _instruction_eval(reference, output)
+        elif task == "retrieval_grounded":
+            capability, failure = _retrieval_eval(reference, output)
+        elif task == "summarization":
+            capability, failure = _summary_eval(reference, output)
+        elif task == "code_generation":
+            capability, failure = _code_eval(reference, output, parsed)
+        elif task == "text_generation":
+            capability, failure = _textgen_eval(reference, output, row)
+        else:
+            capability = 1.0 if row.get("valid", False) else 0.0
+            failure = None if capability else row.get("failure_category") or "quality_failure"
+    # Task-based risk model.
+    #
+    # WHY TASK-BASED:
+    # Risk = P(error causes harm). A wrong maths answer in an automated pipeline
+    # is high severity AND hard to detect. A low-relevance summary is low severity
+    # AND easy for a human to spot. Pooling these into one global table conflates
+    # very different deployment stakes.
+    #
+    # FORMULA per row:
+    #   risk = severity(task, failure) * undetectability(task, failure)
+    #
+    # WHERE:
+    #   severity       = how bad is this error in deployment for this task
+    #   undetectability = how likely is this error to go unnoticed
+    #
+    # Both are in [0,1]. risk ∈ [0,1].
+    # At the curve level: risk(d) = mean(risk_i) for k nearest samples at d.
+    # This gives P(harmful error | difficulty = d) — the probability that a
+    # randomly drawn query at difficulty d produces a harmful undetected failure.
+    #
+    # TASK-SPECIFIC TABLES:
+    # (severity, undetectability) per failure mode per task.
+    # Tasks with automated downstream use (maths, code) get higher severity.
+    # Tasks with human review (summarization, text_generation) get lower undetectability.
+
+    TASK_FAILURE_HARM: dict[str, dict[str, tuple[float, float]]] = {
+        "classification": {
+            # Wrong label fed into downstream pipeline — moderate severity, easy to audit
+            "wrong_label":          (0.80, 0.70),
+            "format_error":         (0.30, 0.30),
+            "empty_output":         (0.10, 0.10),
+            "missing_ground_truth": (0.30, 0.30),
+            "quality_failure":      (0.50, 0.50),
+        },
+        "maths": {
+            # Arithmetic errors in automated systems are catastrophic and silent
+            "arithmetic_error":     (0.95, 0.90),
+            "answer_mismatch":      (0.90, 0.85),
+            "logic_error":          (0.90, 0.85),
+            "format_error":         (0.40, 0.40),
+            "empty_output":         (0.10, 0.10),
+            "missing_ground_truth": (0.30, 0.30),
+            "quality_failure":      (0.60, 0.60),
+        },
+        "code_generation": {
+            # Buggy code silently fails at runtime — very high undetectability
+            "logic_error":          (0.95, 0.95),
+            "format_error":         (0.50, 0.40),
+            "incomplete_output":    (0.60, 0.50),
+            "empty_output":         (0.10, 0.10),
+            "missing_ground_truth": (0.30, 0.30),
+            "quality_failure":      (0.70, 0.70),
+        },
+        "instruction_following": {
+            # Constraint violations may go unnoticed in long outputs
+            "constraint_violation": (0.70, 0.75),
+            "format_error":         (0.40, 0.45),
+            "incomplete_output":    (0.50, 0.50),
+            "empty_output":         (0.10, 0.10),
+            "missing_ground_truth": (0.30, 0.30),
+            "quality_failure":      (0.50, 0.55),
+        },
+        "information_extraction": {
+            # Missing or wrong entity — downstream NLP pipeline breaks
+            "missing_field":        (0.80, 0.75),
+            "answer_mismatch":      (0.80, 0.75),
+            "no_answer":            (0.40, 0.30),
+            "format_error":         (0.40, 0.40),
+            "empty_output":         (0.10, 0.10),
+            "missing_ground_truth": (0.30, 0.30),
+            "quality_failure":      (0.55, 0.55),
+        },
+        "retrieval_grounded": {
+            # Wrong factual answer — user acts on bad info
+            "answer_mismatch":      (0.85, 0.80),
+            "no_answer":            (0.35, 0.25),
+            "low_relevance":        (0.55, 0.60),
+            "format_error":         (0.30, 0.30),
+            "empty_output":         (0.10, 0.10),
+            "missing_ground_truth": (0.30, 0.30),
+            "quality_failure":      (0.55, 0.55),
+        },
+        "summarization": {
+            # Human reads summary — errors are visible, lower undetectability
+            "low_relevance":        (0.55, 0.45),
+            "incomplete_output":    (0.40, 0.35),
+            "quality_failure":      (0.45, 0.40),
+            "format_error":         (0.25, 0.25),
+            "empty_output":         (0.10, 0.10),
+            "missing_ground_truth": (0.25, 0.25),
+        },
+        "text_generation": {
+            # Creative output — human reviews it, low stakes
+            "low_relevance":        (0.45, 0.40),
+            "quality_failure":      (0.40, 0.35),
+            "incomplete_output":    (0.35, 0.30),
+            "format_error":         (0.20, 0.20),
+            "empty_output":         (0.10, 0.10),
+            "missing_ground_truth": (0.20, 0.20),
+        },
     }
+
+    # Default fallback for unknown tasks or unmapped failure modes
+    DEFAULT_HARM: dict[str, tuple[float, float]] = {
+        "arithmetic_error":     (0.90, 0.80),
+        "wrong_label":          (0.80, 0.80),
+        "logic_error":          (0.90, 0.85),
+        "answer_mismatch":      (0.85, 0.80),
+        "low_relevance":        (0.60, 0.70),
+        "constraint_violation": (0.70, 0.70),
+        "quality_failure":      (0.50, 0.60),
+        "format_error":         (0.40, 0.40),
+        "missing_field":        (0.45, 0.45),
+        "incomplete_output":    (0.40, 0.35),
+        "no_answer":            (0.20, 0.20),
+        "empty_output":         (0.10, 0.10),
+        "timeout_runtime":      (0.10, 0.10),
+        "missing_ground_truth": (0.30, 0.30),
+    }
+
     if failure is None:
         semantic_risk = 0.0
     else:
-        sev, und = failure_harm.get(failure, (0.6, 0.6))
+        task_harm = TASK_FAILURE_HARM.get(task, DEFAULT_HARM)
+        sev, und = task_harm.get(failure, DEFAULT_HARM.get(failure, (0.60, 0.60)))
         semantic_risk = max(0.0, min(1.0, float(sev) * float(und)))
     return capability, semantic_risk, failure
 
@@ -478,6 +605,30 @@ def _pav_list(values: list[float], decreasing: bool) -> list[float]:
     return result
 
 
+def _kernel_smooth(xs: list[float], ys: list[float]) -> list[float]:
+    """Gaussian kernel smoother with Silverman bandwidth.
+
+    Replaces PAV isotonic regression for curve display. Unlike PAV:
+    - Does not force monotonicity — U-shaped or plateau failure patterns are
+      preserved rather than flattened.
+    - The τ* selection pathway (_local_beta_at) operates on raw binary outcomes
+      independently, so this only affects stored/displayed curves.
+    """
+    n = len(xs)
+    if n < 3:
+        return list(ys)
+    xs_arr = np.array(xs, dtype=float)
+    ys_arr = np.array(ys, dtype=float)
+    std_x = float(np.std(xs_arr)) or 1.0
+    bw = max(1e-6, 1.06 * std_x * (n ** -0.2))   # Silverman's rule
+    result = np.empty(n, dtype=float)
+    for i in range(n):
+        w = np.exp(-0.5 * ((xs_arr - xs_arr[i]) / bw) ** 2)
+        total_w = float(w.sum())
+        result[i] = float((w * ys_arr).sum() / total_w) if total_w > 1e-9 else float(ys_arr.mean())
+    return result.tolist()
+
+
 def _fit_continuous_curves(
     rows: list[dict[str, Any]],
     scores: dict[str, float],
@@ -486,35 +637,102 @@ def _fit_continuous_curves(
     tuple[list[float], list[float], list[float]],
     tuple[list[float], list[float], list[float]],
     dict[str, int],
+    dict[str, dict[str, tuple[list[float], list[float], list[float]]]],
+    dict[str, dict[str, tuple[list[float], list[float], list[float]]]],
 ]:
-    """Fit monotone capability and risk curves directly on continuous difficulty scores.
+    """Fit smoothed capability and risk curves on continuous difficulty scores.
 
-    No bins. Each query contributes one (score, outcome) point. Isotonic regression
-    enforces monotonicity across the sorted scores.
+    No bins. Each query contributes one (score, outcome) point. Gaussian kernel
+    smoothing (Silverman bandwidth) is used instead of isotonic regression —
+    this does not enforce monotonicity, allowing non-monotone failure patterns
+    (e.g. U-shaped, plateau) to be visible in stored curves.
+
+    The τ* decision pathway uses _local_beta_at (k-NN CI on raw outcomes)
+    independently and is unaffected by this smoothing choice.
 
     Returns:
-        cap_curve: (xs, cap_iso, cap_raw) — decreasing isotonic + raw outcomes
-        risk_curve: (xs, risk_iso, risk_raw) — increasing isotonic + raw outcomes
+        cap_curve:  (xs, cap_smooth, cap_raw)
+        risk_curve: (xs, risk_smooth, risk_raw)
         failure_counts: {failure_type: count}
+        failure_risk_curves: {
+            failure_type: {
+                "risk_contribution": (xs, smooth, raw),
+                "occurrence": (xs, smooth, raw),
+            }
+        }
+        risk_category_curves: {
+            risk_category: {
+                "risk_contribution": (xs, smooth, raw),
+                "occurrence": (xs, smooth, raw),
+            }
+        }
     """
-    triples: list[tuple[float, float, float]] = []
+    triples: list[tuple[float, float, float, str | None]] = []
     failure_counts: dict[str, int] = defaultdict(int)
     for row in rows:
         sid = str(row["sample_id"])
         d = float(scores.get(sid, 0.5))
         cap, risk, failure = _evaluate_row(row, reference_lookup)
-        triples.append((d, float(cap), float(risk)))
+        triples.append((d, float(cap), float(risk), failure))
         if failure:
             failure_counts[failure] += 1
     if not triples:
-        return ([], [], []), ([], [], []), dict(failure_counts)
+        return ([], [], []), ([], [], []), dict(failure_counts), {}, {}
     triples.sort(key=lambda t: t[0])
-    xs      = [t[0] for t in triples]
-    cap_raw = [t[1] for t in triples]
+    xs       = [t[0] for t in triples]
+    cap_raw  = [t[1] for t in triples]
     risk_raw = [t[2] for t in triples]
-    cap_iso  = _pav_list(cap_raw,  decreasing=True)
-    risk_iso = _pav_list(risk_raw, decreasing=False)
-    return (xs, cap_iso, cap_raw), (xs, risk_iso, risk_raw), dict(failure_counts)
+    cap_smooth  = _kernel_smooth(xs, cap_raw)
+    risk_smooth = _kernel_smooth(xs, risk_raw)
+    failure_risk_curves: dict[str, dict[str, tuple[list[float], list[float], list[float]]]] = {}
+    for failure_type in sorted(failure_counts):
+        occurrence_raw = [1.0 if t[3] == failure_type else 0.0 for t in triples]
+        contribution_raw = [t[2] if t[3] == failure_type else 0.0 for t in triples]
+        failure_risk_curves[failure_type] = {
+            "occurrence": (xs, _kernel_smooth(xs, occurrence_raw), occurrence_raw),
+            "risk_contribution": (xs, _kernel_smooth(xs, contribution_raw), contribution_raw),
+        }
+
+    def _risk_category(risk_value: float) -> str:
+        # Coarse bins for reporting. This is model/task-agnostic and based on semantic risk score.
+        if risk_value < 0.15:
+            return "low"
+        if risk_value < 0.35:
+            return "medium"
+        if risk_value < 0.60:
+            return "high"
+        return "critical"
+
+    categories = ("low", "medium", "high", "critical")
+    risk_category_curves: dict[str, dict[str, tuple[list[float], list[float], list[float]]]] = {}
+    for category in categories:
+        occurrence_raw = [1.0 if _risk_category(t[2]) == category else 0.0 for t in triples]
+        contribution_raw = [t[2] if _risk_category(t[2]) == category else 0.0 for t in triples]
+        risk_category_curves[category] = {
+            "occurrence": (xs, _kernel_smooth(xs, occurrence_raw), occurrence_raw),
+            "risk_contribution": (xs, _kernel_smooth(xs, contribution_raw), contribution_raw),
+        }
+    return (xs, cap_smooth, cap_raw), (xs, risk_smooth, risk_raw), dict(failure_counts), failure_risk_curves, risk_category_curves
+
+
+def _curve_to_dict(xs: list[float], ys: list[float]) -> dict[str, float]:
+    return {f"{x:.4f}": round(y, 4) for x, y in zip(xs, ys)}
+
+
+def _serialize_failure_risk_curves(
+    curves: dict[str, dict[str, tuple[list[float], list[float], list[float]]]]
+) -> dict[str, dict[str, dict[str, float]]]:
+    payload: dict[str, dict[str, dict[str, float]]] = {}
+    for failure_type, family_curves in curves.items():
+        occ_xs, occ_smooth, occ_raw = family_curves.get("occurrence", ([], [], []))
+        rc_xs, rc_smooth, rc_raw = family_curves.get("risk_contribution", ([], [], []))
+        payload[failure_type] = {
+            "occurrence_curve": _curve_to_dict(occ_xs, occ_smooth),
+            "occurrence_curve_raw": _curve_to_dict(occ_xs, occ_raw),
+            "risk_contribution_curve": _curve_to_dict(rc_xs, rc_smooth),
+            "risk_contribution_curve_raw": _curve_to_dict(rc_xs, rc_raw),
+        }
+    return payload
 
 
 def _evaluate_curve(xs: list[float], ys: list[float], d: float) -> float:
@@ -559,6 +777,67 @@ def _local_beta_at(
     if upper:
         return p, (hi if hi is not None else 1.0)
     return p, (lo if lo is not None else 0.0)
+
+
+def _bootstrap_tau_ci(
+    rows: list[dict[str, Any]],
+    reference_lookup: dict[str, dict[str, Any]],
+    difficulty_scores: dict[str, float],
+    cap_threshold: float,
+    risk_threshold: float,
+    utility_alpha: float,
+    utility_beta: float,
+    utility_gamma: float,
+    B: int = 200,
+    conservative_percentile: float = 10.0,
+    seed: int = 42,
+) -> dict[str, Any]:
+    """Bootstrap CI on τ* — addresses double-dipping and point-estimate fragility.
+
+    Single-shot τ* selection on n_val rows is an optimistic estimate: the best τ*
+    over all candidate values will overfit to this particular val sample. Bootstrapping
+    gives a distribution of τ* values and lets us use the conservative lower percentile
+    as the actual operating threshold.
+
+    Returns:
+        tau_median:  50th-percentile τ* across B bootstrap samples
+        tau_p10:     10th-percentile (conservative, used as operating threshold)
+        tau_p90:     90th-percentile
+        tau_ci_width: p90 - p10 (measure of τ* stability)
+        n_feasible:  fraction of bootstrap samples that found a feasible τ*
+    """
+    if not rows:
+        return {"tau_median": None, "tau_p10": None, "tau_p90": None, "tau_ci_width": None, "n_feasible": 0.0}
+    rng = np.random.default_rng(seed)
+    n = len(rows)
+    taus: list[float] = []
+    for _ in range(max(1, int(B))):
+        boot_idx = rng.integers(0, n, size=n)
+        boot_rows = [rows[int(i)] for i in boot_idx]
+        result = _select_operational_tau(
+            boot_rows, reference_lookup, difficulty_scores,
+            cap_threshold=cap_threshold, risk_threshold=risk_threshold,
+            utility_alpha=utility_alpha, utility_beta=utility_beta, utility_gamma=utility_gamma,
+        )
+        tau = result.get("tau")
+        if tau is not None:
+            taus.append(float(tau))
+    if not taus:
+        return {"tau_median": None, "tau_p10": None, "tau_p90": None, "tau_ci_width": None, "n_feasible": 0.0}
+    taus_arr = np.array(taus, dtype=float)
+    conservative_p = float(max(1.0, min(50.0, conservative_percentile)))
+    p10 = float(np.percentile(taus_arr, conservative_p))
+    p50 = float(np.percentile(taus_arr, 50))
+    p90 = float(np.percentile(taus_arr, 90))
+    return {
+        "tau_median": round(p50, 6),
+        "tau_p10":    round(p10, 6),   # conservative operating threshold
+        "tau_p90":    round(p90, 6),
+        "tau_ci_width": round(p90 - p10, 6),
+        "n_feasible": round(len(taus) / float(B), 4),
+        "bootstrap_draws": int(B),
+        "conservative_percentile": round(conservative_p, 3),
+    }
 
 
 def _build_routing_policy(
@@ -617,9 +896,11 @@ def _write_json(path: Path, payload: dict[str, Any]) -> None:
 def _stable_split_for_sample(sample_id: str) -> str:
     digest = hashlib.sha1(str(sample_id).encode("utf-8")).hexdigest()
     bucket = int(digest[:8], 16) % 100
-    if bucket < 70:
+    if bucket < 30:
         return "train"
-    if bucket < 85:
+    # Keep split contract aligned with inference runner:
+    # train = 0-29, val = 30-69, test = 70-99.
+    if bucket < 70:
         return "val"
     return "test"
 
@@ -895,19 +1176,22 @@ def _learn_family_difficulty_models(
 
 def _score_with_family_model(
     row: dict[str, Any],
-    family_model: dict[str, Any] | None,
+    slm_model: dict[str, Any] | None,
 ) -> float:
-    if not family_model:
+    """Score a row using a per-SLM learned weight model."""
+    if not slm_model:
         return 0.0
-    weights = family_model.get("weights", {})
-    norm_stats = family_model.get("norm_stats", {})
+    weights = slm_model.get("weights", {})
+    norm_stats = slm_model.get("norm_stats", {})
     features = _extract_feature_vector(row)
     score = 0.0
     for dim in DIFFICULTY_FEATURES:
         val = float(features.get(dim, 0.0))
-        bounds = norm_stats.get(dim, {"min": 0.0, "max": 1.0})
-        lo = float(bounds.get("min", 0.0))
-        hi = float(bounds.get("max", 1.0))
+        # Norm stats now use percentile keys (p05/p95); fall back to min/max for
+        # backwards compatibility with old artifacts.
+        bounds = norm_stats.get(dim, {})
+        lo = float(bounds.get("p05", bounds.get("min", 0.0)))
+        hi = float(bounds.get("p95", bounds.get("max", 1.0)))
         if hi <= lo:
             norm_val = 0.0
         else:
@@ -1034,7 +1318,23 @@ def _select_operational_tau(
 
     candidates = sorted(set(score for score, _c, _r in points))
     total = float(len(points))
+
+    # Global baselines for relative utility normalization.
+    # always_slm: route everything to SLM (coverage=1, cap/risk = population average).
+    # always_baseline: route everything to baseline (coverage=0, no SLM risk).
+    pop_cap = sum(c for _, c, _ in points) / total
+    pop_risk = sum(r for _, _, r in points) / total
+    always_slm_utility_raw = float(utility_alpha) * 1.0 + float(utility_beta) * pop_cap - float(utility_gamma) * pop_risk
+    always_baseline_utility_raw = float(utility_alpha) * 0.0 + float(utility_beta) * 0.0 - float(utility_gamma) * 0.0
+
+    # Normalize utility to [0,1] relative to the [always_baseline, always_slm] range
+    # so that coverage, capability, and risk contribute at the same effective scale.
+    # U_rel = (U_raw - U_baseline) / max(eps, U_slm - U_baseline)
+    u_range = max(1e-9, always_slm_utility_raw - always_baseline_utility_raw)
+
     best: dict[str, Any] | None = None
+    best_feasible_utility: float = -1e9
+    # τ* stability: collect all feasible taus within 5% of maximum utility.
     candidate_rows: list[dict[str, Any]] = []
     for tau in candidates:
         selected = [(c, r) for s, c, r in points if s <= tau]
@@ -1043,23 +1343,38 @@ def _select_operational_tau(
         cov = len(selected) / total
         cap = sum(c for c, _ in selected) / len(selected)
         risk = sum(r for _, r in selected) / len(selected)
-        feasible = cap >= cap_threshold and risk <= risk_threshold
-        utility = float(utility_alpha) * cov + float(utility_beta) * cap - float(utility_gamma) * risk
+        meets_gates = cap >= cap_threshold and risk <= risk_threshold
+        # Avoid degenerate "routing" policies that are effectively always-SLM.
+        coverage_ok = cov <= 0.80
+        feasible = meets_gates and coverage_ok
+        raw_u = float(utility_alpha) * cov + float(utility_beta) * cap - float(utility_gamma) * risk
+        utility = (raw_u - always_baseline_utility_raw) / u_range  # relative, [0,1]-ish
         item = {
             "tau": float(tau),
             "coverage": float(cov),
             "selected_capability": float(cap),
             "selected_risk": float(risk),
             "utility": float(utility),
+            "utility_raw": float(raw_u),
+            "meets_gates": bool(meets_gates),
+            "coverage_ok": bool(coverage_ok),
             "feasible": bool(feasible),
         }
         candidate_rows.append(item)
         if not feasible:
             continue
-        if best is None or item["utility"] > best["utility"]:
+        if utility > best_feasible_utility:
+            best_feasible_utility = utility
             best = item
+
+    # τ* stability range: all feasible taus with utility within 5% of max.
+    stability_threshold = best_feasible_utility - 0.05
+    stable_taus = [c["tau"] for c in candidate_rows if c["feasible"] and c["utility"] >= stability_threshold]
+    tau_stability_range = [float(min(stable_taus)), float(max(stable_taus))] if stable_taus else None
+
     if best is not None:
         best_out = dict(best)
+        best_out["tau_stability_range"] = tau_stability_range
         best_out["candidates"] = [dict(c) for c in candidate_rows]
         return best_out
     return {
@@ -1068,6 +1383,8 @@ def _select_operational_tau(
         "selected_capability": 0.0,
         "selected_risk": 1.0,
         "utility": -1e9,
+        "utility_raw": -1e9,
+        "tau_stability_range": None,
         "feasible": False,
         "candidates": [dict(c) for c in candidate_rows],
     }
@@ -1313,6 +1630,28 @@ def _parse_args() -> argparse.Namespace:
         default=0.01,
         help="Grid step for validation calibration of abstention half-band width.",
     )
+    parser.add_argument(
+        "--tau-bootstrap-draws",
+        type=int,
+        default=200,
+        help="Bootstrap draws for tau stability CI (default: 200).",
+    )
+    parser.add_argument(
+        "--tau-conservative-percentile",
+        type=float,
+        default=10.0,
+        help="Conservative percentile used for operating tau from bootstrap (default: 10).",
+    )
+    parser.add_argument(
+        "--task-thresholds",
+        type=Path,
+        default=None,
+        help=(
+            "JSON file with per-task cap/risk thresholds. "
+            "Keys are task names, values are {cap, risk}. "
+            "Overrides --cap-threshold and --risk-threshold for matching tasks."
+        ),
+    )
     return parser.parse_args()
 
 
@@ -1432,6 +1771,15 @@ def _build_task_split_override(
     return split_map
 
 
+def _fit_weight_model(
+    task_name: str,
+    model_key: str,
+    samples: list[dict[str, Any]],
+) -> dict[str, Any]:
+    """Module-level worker — must be top-level for ProcessPoolExecutor pickling."""
+    return DifficultyWeightLearner().fit(samples)
+
+
 def main() -> None:
     args = _parse_args()
     min_samples = max(1, int(args.min_samples))
@@ -1445,12 +1793,30 @@ def main() -> None:
         args.weights_source_split,
         args.report_split,
     )
-    router = GeneralizedRoutingFramework(
-        capability_threshold=float(args.cap_threshold),
-        risk_threshold=float(args.risk_threshold),
-        wilson_z=wilson_z,
-        wilson_confidence_level=ci_level,
-    )
+    # Load per-task cap/risk thresholds (overrides global defaults per task)
+    task_threshold_map: dict[str, dict[str, float]] = {}
+    if args.task_thresholds and Path(args.task_thresholds).exists():
+        raw_tt = json.loads(Path(args.task_thresholds).read_text(encoding="utf-8"))
+        for tname, tcfg in raw_tt.items():
+            if tname.startswith("_"):
+                continue
+            if isinstance(tcfg, dict):
+                task_threshold_map[tname] = {
+                    "cap":  float(tcfg.get("cap",  args.cap_threshold)),
+                    "risk": float(tcfg.get("risk", args.risk_threshold)),
+                }
+
+    def _router_for(task_name: str) -> GeneralizedRoutingFramework:
+        tcfg = task_threshold_map.get(task_name, {})
+        return GeneralizedRoutingFramework(
+            capability_threshold=tcfg.get("cap",  float(args.cap_threshold)),
+            risk_threshold=      tcfg.get("risk", float(args.risk_threshold)),
+            wilson_z=wilson_z,
+            wilson_confidence_level=ci_level,
+        )
+
+    # Default router (used when no per-task override exists)
+    router = _router_for("")
     task_summaries: dict[str, Any] = {}
 
     # First pass: collect task/model rows and references once.
@@ -1460,9 +1826,20 @@ def main() -> None:
     for task_dir in task_dirs:
         available = {}
         for model_key in CANONICAL_MODELS:
-            outputs_path = task_dir / model_key / "outputs.jsonl"
-            if outputs_path.exists():
-                available[model_key] = _dedupe_rows(_load_jsonl(outputs_path))
+            model_dir = task_dir / model_key
+            rows: list[dict[str, Any]] = []
+            # Load split-specific files first (new pipeline)
+            for split_name in ("train", "val", "test"):
+                p = model_dir / f"outputs_{split_name}.jsonl"
+                if p.exists():
+                    rows.extend(_load_jsonl(p))
+            # Fall back to legacy single file
+            if not rows:
+                legacy = model_dir / "outputs.jsonl"
+                if legacy.exists():
+                    rows = _load_jsonl(legacy)
+            if rows:
+                available[model_key] = _dedupe_rows(rows)
         if len(available) < 2 or BASELINE_MODEL not in available:
             continue
         task_available_rows[task_dir.name] = available
@@ -1488,32 +1865,72 @@ def main() -> None:
                         row["split"] = split_override[sid]
 
     # Use existing tasks as families and learn one weight model per task-family.
-    task_family_weight_models: dict[str, dict[str, Any]] = {}
+    # Training target = max(0, baseline_cap - slm_cap): 1 when SLM fails but baseline
+    # succeeds (route to baseline), 0 when SLM matches baseline (SLM is fine).
+    # This is the true routing signal — not the hand-crafted sev×und product.
+
+    # Build (task, model_key, samples) tuples — one fit job per SLM per task.
+    fit_jobs: list[tuple[str, str, list[dict[str, Any]]]] = []
     for task_name, model_rows in task_available_rows.items():
         refs = reference_lookup_by_task.get(task_name, {})
-        samples: list[dict[str, Any]] = []
+        baseline_cap_by_sid: dict[str, float] = {}
+        if BASELINE_MODEL in model_rows:
+            for row in model_rows[BASELINE_MODEL]:
+                if _split_name_for_row(row) != "train":
+                    continue
+                sid = str(row.get("sample_id", ""))
+                if sid not in refs:
+                    continue
+                cap, _risk, _failure = _evaluate_row(row, refs)
+                baseline_cap_by_sid[sid] = float(cap)
+
         for model_key, rows in model_rows.items():
             if model_key == BASELINE_MODEL:
                 continue
+            samples: list[dict[str, Any]] = []
             for row in rows:
                 if _split_name_for_row(row) != "train":
                     continue
                 sid = str(row.get("sample_id", ""))
                 if sid not in refs:
                     continue
-                _cap, semantic_risk, _failure = _evaluate_row(row, refs)
+                slm_cap, _risk, _failure = _evaluate_row(row, refs)
+                baseline_cap = baseline_cap_by_sid.get(sid, 1.0)
+                # Binary routing signal: 1 = "should route to LLM" (SLM failed, LLM succeeded)
+                #                        0 = "SLM is fine" (SLM succeeded, or both failed)
+                # Continuous difference conflated partial failures with complete failures.
+                # Binary signal is the correct decision-theoretic target for a routing classifier.
+                routing_target = 1.0 if (float(slm_cap) < 0.5 and float(baseline_cap) >= 0.5) else 0.0
                 sample = _extract_feature_vector(row)
-                sample["target"] = float(semantic_risk)
+                sample["target"] = routing_target
                 samples.append(sample)
-        if samples:
-            task_family_weight_models[task_name] = DifficultyWeightLearner().fit(samples)
+            if samples:
+                fit_jobs.append((task_name, model_key, samples))
+
+    # Fit all jobs concurrently across CPU cores.
+    task_family_weight_models: dict[str, dict[str, Any]] = {}
+    n_workers = min(len(fit_jobs), 8)
+    print(f"[SDDF] Fitting {len(fit_jobs)} weight models with {n_workers} workers...")
+    with ProcessPoolExecutor(max_workers=n_workers) as pool:
+        futures = {
+            pool.submit(_fit_weight_model, task_name, model_key, samples): (task_name, model_key)
+            for task_name, model_key, samples in fit_jobs
+        }
+        for fut in as_completed(futures):
+            task_name, model_key = futures[fut]
+            try:
+                result = fut.result()
+                task_family_weight_models.setdefault(task_name, {})[model_key] = result
+                print(f"[SDDF]   fit done: {task_name}/{model_key}")
+            except Exception as exc:
+                print(f"[SDDF]   fit FAILED {task_name}/{model_key}: {exc}")
 
     weights_out = BENCHMARK_ROOT / "difficulty_weights" / "family_weights_learned.json"
     _write_json(
         weights_out,
         {
             "source_split": "train",
-            "model_type": "task_family_difficulty_weights",
+            "model_type": "task_per_slm_difficulty_weights",
             "families": task_family_weight_models,
             "features": list(DIFFICULTY_FEATURES),
         },
@@ -1528,6 +1945,8 @@ def main() -> None:
         task_utility_alpha = float(utility_cfg.get("alpha", args.utility_alpha))
         task_utility_beta = float(utility_cfg.get("beta", args.utility_beta))
         task_utility_gamma = float(utility_cfg.get("gamma", args.utility_gamma))
+        # Per-task router with task-specific cap/risk thresholds
+        router = _router_for(task_dir.name)
 
         baseline_ids = {str(row["sample_id"]) for row in available[BASELINE_MODEL]}
         all_model_common_ids = baseline_ids.copy()
@@ -1558,19 +1977,26 @@ def main() -> None:
             # Split-aware partitioning with deterministic fallback.
             report_rows = [row for row in filtered_all if _split_name_for_row(row) == report_split]
             if not report_rows:
-                report_rows = list(filtered_all)
+                raise RuntimeError(
+                    f"No rows found for report_split='{report_split}' "
+                    f"(task={task_dir.name}, model={model_key}). "
+                    "Refusing to fall back to mixed splits because that would "
+                    "invalidate phase-specific train/val/test claims."
+                )
             val_rows_raw   = [row for row in filtered_all if _split_name_for_row(row) == "val"]
             train_rows_raw = [row for row in filtered_all if _split_name_for_row(row) == "train"]
 
-            # Difficulty score: learned task-family weights -> explicit weights -> uniform fallback.
-            family_model = task_family_weight_models.get(task_dir.name)
-            if family_model:
+            # Difficulty score: per-SLM learned weights -> explicit weights -> uniform fallback.
+            # task_family_weight_models[task][model_key] = slm-specific learned model.
+            task_slm_models = task_family_weight_models.get(task_dir.name, {})
+            slm_model = task_slm_models.get(model_key)
+            if slm_model:
                 difficulty_scores_by_model[model_key] = {
-                    str(row["sample_id"]): _score_with_family_model(row, family_model) for row in filtered_all
+                    str(row["sample_id"]): _score_with_family_model(row, slm_model) for row in filtered_all
                 }
-                difficulty_source = "learned_task_family_weighted_features"
-                weights_used = family_model.get("weights", {})
-                dominant_family = task_dir.name
+                difficulty_source = "learned_per_slm_weighted_features"
+                weights_used = slm_model.get("weights", {})
+                dominant_family = f"{task_dir.name}/{model_key}"
             elif difficulty_weights:
                 difficulty_scores_by_model[model_key] = _weighted_difficulty_scores(filtered_all, difficulty_weights)
                 difficulty_source = "weighted_features"
@@ -1602,8 +2028,22 @@ def main() -> None:
                 )
 
             # TASK+MODEL local fit on train rows.
-            curve_source = train_rows_raw if train_rows_raw else report_rows
-            cap_curve, risk_curve, failure_counts = _fit_continuous_curves(
+            if not train_rows_raw:
+                raise RuntimeError(
+                    f"No train rows for task={task_dir.name}, model={model_key}. "
+                    "Refusing to fall back to test rows for curve fitting — "
+                    "that would leak evaluation data into the model. "
+                    "Check that --report-split is 'test' and that the split thresholds "
+                    "in _stable_split_for_sample assign at least some rows to 'train'."
+                )
+            curve_source = train_rows_raw
+            (
+                cap_curve,
+                risk_curve,
+                failure_counts,
+                train_failure_risk_curves,
+                train_risk_category_curves,
+            ) = _fit_continuous_curves(
                 curve_source, scores_map, reference_lookup
             )
             cap_xs, cap_iso, cap_raw_vals = cap_curve
@@ -1612,7 +2052,13 @@ def main() -> None:
             # VAL: fit val curves independently, check calibration against train, find τ*.
             val_calibration_check: dict[str, Any] = {}
             if val_rows_raw and len(val_rows_raw) >= min_samples:
-                val_cap_curve, val_risk_curve, _ = _fit_continuous_curves(
+                (
+                    val_cap_curve,
+                    val_risk_curve,
+                    _,
+                    val_failure_risk_curves,
+                    val_risk_category_curves,
+                ) = _fit_continuous_curves(
                     val_rows_raw, scores_map, reference_lookup
                 )
                 val_xs, val_cap_iso, val_cap_raw = val_cap_curve
@@ -1634,22 +2080,40 @@ def main() -> None:
                 val_has_support = False
                 val_xs, val_cap_iso, val_cap_raw   = cap_xs,  cap_iso,  cap_raw_vals
                 val_risk_iso, val_risk_raw           = risk_iso, risk_raw_vals
+                val_failure_risk_curves = train_failure_risk_curves
+                val_risk_category_curves = train_risk_category_curves
 
             # Plot and downstream expectations use validation curves when available.
             if val_has_support:
                 plot_cap_xs, plot_cap_iso, plot_cap_raw = val_xs, val_cap_iso, val_cap_raw
                 plot_risk_xs, plot_risk_iso, plot_risk_raw = val_xs, val_risk_iso, val_risk_raw
+                plot_failure_risk_curves = val_failure_risk_curves
+                plot_risk_category_curves = val_risk_category_curves
                 curve_source_level = "val"
             else:
                 plot_cap_xs, plot_cap_iso, plot_cap_raw = cap_xs, cap_iso, cap_raw_vals
                 plot_risk_xs, plot_risk_iso, plot_risk_raw = risk_xs, risk_iso, risk_raw_vals
+                plot_failure_risk_curves = train_failure_risk_curves
+                plot_risk_category_curves = train_risk_category_curves
                 curve_source_level = "train_fallback"
 
             cap_curves_by_model[model_key] = (plot_cap_xs, plot_cap_iso, plot_cap_raw)
             risk_curves_by_model[model_key] = (plot_risk_xs, plot_risk_iso, plot_risk_raw)
 
+            # τ* SELECTION: use val rows to scan for feasible threshold, but evaluate
+            # the LOCAL PROBABILITY ESTIMATE using TRAIN curve points (cap_xs, cap_raw_vals).
+            # This separates (1) where the threshold lives (val) from (2) the probability
+            # model used to certify it (train), preventing double-dipping.
+            # Fallback: if no val rows, use train rows for both (reported as train_fallback).
             threshold_split_used = "val" if val_has_support else "train_fallback"
-            threshold_rows = val_rows_raw if val_has_support else (train_rows_raw or report_rows)
+            threshold_rows = val_rows_raw if val_has_support else train_rows_raw
+            # Curve rows for local k-NN estimation always come from TRAIN — never val.
+            # This is the key anti-double-dipping fix: val rows select the threshold,
+            # train rows supply the probability model evaluated at that threshold.
+            curve_rows_for_tau = train_rows_raw if train_rows_raw else threshold_rows
+            # k proportional to curve-source size: ~10% of rows, bounded [min_samples, 30].
+            # This keeps CI estimation tied to the data that certifies the operating region.
+            adaptive_min_k = max(min_samples, min(30, len(curve_rows_for_tau) // 10))
             tau_choice = _select_operational_tau(
                 threshold_rows,
                 reference_lookup,
@@ -1660,14 +2124,33 @@ def main() -> None:
                 utility_beta=task_utility_beta,
                 utility_gamma=task_utility_gamma,
             )
-            limit_difficulty = tau_choice.get("tau")
-            certified_band = _estimate_certified_band(
+            # Bootstrap τ* CI on val rows — addresses point-estimate variance.
+            # Combined with train-curve evaluation above, this provides both
+            # bias correction (train/val separation) and variance correction (bootstrap).
+            # Use the 10th-percentile (conservative) as the actual operating threshold.
+            tau_bootstrap = _bootstrap_tau_ci(
                 threshold_rows,
                 reference_lookup,
                 scores_map,
                 cap_threshold=router.capability_threshold,
                 risk_threshold=router.risk_threshold,
-                min_k=min_samples,
+                utility_alpha=task_utility_alpha,
+                utility_beta=task_utility_beta,
+                utility_gamma=task_utility_gamma,
+                B=max(50, int(args.tau_bootstrap_draws)),
+                conservative_percentile=float(args.tau_conservative_percentile),
+            )
+            # If bootstrap gives a valid conservative estimate, prefer it over point τ*.
+            tau_point = tau_choice.get("tau")
+            tau_conservative = tau_bootstrap.get("tau_p10")
+            limit_difficulty = tau_conservative if tau_conservative is not None else tau_point
+            certified_band = _estimate_certified_band(
+                curve_rows_for_tau,
+                reference_lookup,
+                scores_map,
+                cap_threshold=router.capability_threshold,
+                risk_threshold=router.risk_threshold,
+                min_k=adaptive_min_k,
                 ci_level=router.wilson_confidence_level,
             )
             d_safe = certified_band.get("d_safe")
@@ -1725,14 +2208,20 @@ def main() -> None:
                 "val_threshold_row_count": len(val_rows_raw),
                 "wilson_confidence_level": router.wilson_confidence_level,
                 "tau_star_difficulty": limit_difficulty,
-                "capability_curve": {f"{x:.4f}": round(y, 4) for x, y in zip(plot_cap_xs, plot_cap_iso)},
-                "capability_curve_raw": {f"{x:.4f}": round(y, 4) for x, y in zip(plot_cap_xs, plot_cap_raw)},
-                "risk_curve": {f"{x:.4f}": round(y, 4) for x, y in zip(plot_risk_xs, plot_risk_iso)},
-                "risk_curve_raw": {f"{x:.4f}": round(y, 4) for x, y in zip(plot_risk_xs, plot_risk_raw)},
-                "train_capability_curve": {f"{x:.4f}": round(y, 4) for x, y in zip(cap_xs, cap_iso)},
-                "train_risk_curve": {f"{x:.4f}": round(y, 4) for x, y in zip(risk_xs, risk_iso)},
-                "val_capability_curve": {f"{x:.4f}": round(y, 4) for x, y in zip(val_xs, val_cap_iso)},
-                "val_risk_curve": {f"{x:.4f}": round(y, 4) for x, y in zip(val_xs, val_risk_iso)},
+                "capability_curve": _curve_to_dict(plot_cap_xs, plot_cap_iso),
+                "capability_curve_raw": _curve_to_dict(plot_cap_xs, plot_cap_raw),
+                "risk_curve": _curve_to_dict(plot_risk_xs, plot_risk_iso),
+                "risk_curve_raw": _curve_to_dict(plot_risk_xs, plot_risk_raw),
+                "train_capability_curve": _curve_to_dict(cap_xs, cap_iso),
+                "train_risk_curve": _curve_to_dict(risk_xs, risk_iso),
+                "val_capability_curve": _curve_to_dict(val_xs, val_cap_iso),
+                "val_risk_curve": _curve_to_dict(val_xs, val_risk_iso),
+                "risk_curves_by_failure_type": _serialize_failure_risk_curves(plot_failure_risk_curves),
+                "train_risk_curves_by_failure_type": _serialize_failure_risk_curves(train_failure_risk_curves),
+                "val_risk_curves_by_failure_type": _serialize_failure_risk_curves(val_failure_risk_curves),
+                "risk_curves_by_category": _serialize_failure_risk_curves(plot_risk_category_curves),
+                "train_risk_curves_by_category": _serialize_failure_risk_curves(train_risk_category_curves),
+                "val_risk_curves_by_category": _serialize_failure_risk_curves(val_risk_category_curves),
                 "semantic_failure_counts": failure_counts,
                 "difficulty_score_source": difficulty_source,
                 "difficulty_weights_used": weights_used,
@@ -1743,9 +2232,12 @@ def main() -> None:
                 "threshold_split": threshold_split_used,
                 "val_calibration_check": val_calibration_check,
                 "weights_source_split": weights_source_split,
-                "threshold_method": "continuous_isotonic_knn_beta",
+                "threshold_method": "continuous_kernel_knn_beta_bootstrap",
                 "abstention_calibration": abstention,
                 "tau_utility_selection": tau_choice,
+                "tau_bootstrap_ci": tau_bootstrap,
+                "tau_bootstrap_draws": int(max(50, int(args.tau_bootstrap_draws))),
+                "tau_conservative_percentile": float(args.tau_conservative_percentile),
                 "task_utility_coefficients": {
                     "alpha": task_utility_alpha,
                     "beta": task_utility_beta,
@@ -1831,6 +2323,26 @@ def main() -> None:
                     else:
                         routing_correct = actual_capability >= router.capability_threshold
 
+                    # HYBRID_ABSTAIN operational policy:
+                    # Queries in the uncertainty band [d_safe, d_unsafe] are routed
+                    # to BASELINE by default (same as BASELINE state) but flagged with
+                    # route_confidence_level="uncertain" for downstream handling
+                    # (e.g., human review, ensemble, reranking).
+                    # "high"      → score ≤ d_safe    → SLM certified safe
+                    # "uncertain" → d_safe < score < d_unsafe → HYBRID_ABSTAIN → BASELINE + flag
+                    # "none"      → score ≥ d_unsafe or no cert → BASELINE
+                    if d_safe is not None and score <= float(d_safe):
+                        route_confidence_level = "high"
+                    elif d_safe is not None and d_unsafe is not None and score < float(d_unsafe):
+                        route_confidence_level = "uncertain"
+                    else:
+                        route_confidence_level = "none"
+                    abstain_fallback = (
+                        "BASELINE"
+                        if predicted_route_state in ("BASELINE", "HYBRID_ABSTAIN")
+                        else "SLM"
+                    )
+
                     payload = {
                         "example_id": row["sample_id"],
                         "task": row["task"],
@@ -1841,6 +2353,8 @@ def main() -> None:
                         "difficulty_features": {k: round(float(v), 6) for k, v in row_features.items()},
                         # prospective fields
                         "predicted_route_state": predicted_route_state,
+                        "route_confidence_level": route_confidence_level,
+                        "abstain_fallback": abstain_fallback,
                         "expected_capability": round(e_cap, 4),
                         "expected_capability_lower_ci": round(e_cap_lower, 4),
                         "expected_risk": round(e_risk, 4),
@@ -1879,6 +2393,8 @@ def main() -> None:
             "query_family_model": "task_as_family",
             "abstain_max_delta": float(args.abstain_max_delta),
             "abstain_grid_step": float(args.abstain_grid_step),
+            "tau_bootstrap_draws": int(max(50, int(args.tau_bootstrap_draws))),
+            "tau_conservative_percentile": float(args.tau_conservative_percentile),
             "task_utility_coefficients": {
                 "alpha": task_utility_alpha,
                 "beta": task_utility_beta,

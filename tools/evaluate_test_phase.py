@@ -13,11 +13,19 @@ import numpy as np
 ROOT = Path(__file__).resolve().parents[1]
 MODEL_RUNS = ROOT / "model_runs"
 BENCHMARKING_OUT = MODEL_RUNS / "benchmarking" / "phase_reports"
+HASH_POLICY = "sha1(sample_id)%100: train<30, val<70, test>=70"
 
 
 def _safe_float(value: Any, default: float = 0.0) -> float:
     try:
         return float(value)
+    except (TypeError, ValueError):
+        return default
+
+
+def _safe_int(value: Any, default: int = 0) -> int:
+    try:
+        return int(value)
     except (TypeError, ValueError):
         return default
 
@@ -53,7 +61,7 @@ def _calc_prf(y_true: list[int], y_pred: list[int]) -> dict[str, float]:
     }
 
 
-def _ece_binary(pred: list[float], obs: list[float], bins: int = 10) -> float:
+def _ece_binary(pred: list[float], obs: list[float], bins: int = 5) -> float:
     if not pred:
         return 0.0
     p = np.asarray(pred, dtype=float)
@@ -139,7 +147,11 @@ def _evaluate_rows(
         act_risk = _safe_float(row.get("actual_semantic_risk"), 1.0)
         exp_cap = _safe_float(row.get("expected_capability"), 0.5)
         exp_risk = _safe_float(row.get("expected_risk"), 0.5)
-        safe_true = 1.0 if (act_cap >= cap_threshold and act_risk <= risk_threshold) else 0.0
+        # safe_true = did the SLM actually succeed on this query?
+        # Using raw capability (binary 0/1 from the task evaluator) rather than
+        # the cap_threshold+risk_threshold gate — that gate was used to select τ*,
+        # so gating evaluation with it makes the metric tautological.
+        safe_true = act_cap  # 0.0 (failure) or 1.0 (success)
         safe_pred = 1.0 if route == "SLM" else 0.0
         eval_rows.append(
             {
@@ -181,9 +193,9 @@ def _evaluate_rows(
     obs_cap = [r["actual_capability"] for r in eval_rows]
     exp_risk = [r["expected_risk"] for r in eval_rows]
     obs_risk = [r["actual_risk"] for r in eval_rows]
-    cap_ece = _ece_binary(exp_cap, obs_cap, bins=10)
+    cap_ece = _ece_binary(exp_cap, obs_cap, bins=5)
     cap_brier = _brier(exp_cap, obs_cap)
-    risk_ece = _ece_binary(exp_risk, obs_risk, bins=10)
+    risk_ece = _ece_binary(exp_risk, obs_risk, bins=5)
     risk_brier = _brier(exp_risk, obs_risk)
 
     # Bootstrap uncertainty for the operational metrics.
@@ -208,16 +220,34 @@ def _evaluate_rows(
     def _metric_cov(boot: list[dict[str, float]]) -> float:
         return float(sum(x["is_slm"] for x in boot) / max(1, len(boot)))
 
+    def _metric_acc(boot: list[dict[str, float]]) -> float:
+        yt = [int(x["safe_true"]) for x in boot]
+        yp = [int(x["safe_pred"]) for x in boot]
+        return _calc_prf(yt, yp)["accuracy"]
+
+    def _metric_selected_cap(boot: list[dict[str, float]]) -> float:
+        picked = [x["actual_capability"] for x in boot if x["is_slm"] > 0.5]
+        return float(np.mean(picked)) if picked else 0.0
+
     def _metric_risk(boot: list[dict[str, float]]) -> float:
         picked = [x["actual_risk"] for x in boot if x["is_slm"] > 0.5]
         return float(np.mean(picked)) if picked else 1.0
+
+    def _metric_utility(boot: list[dict[str, float]]) -> float:
+        cov = float(sum(x["is_slm"] for x in boot) / max(1, len(boot)))
+        cap = _metric_selected_cap(boot)
+        risk = _metric_risk(boot)
+        return float(utility_alpha * cov + utility_beta * cap - utility_gamma * risk)
 
     samples = list(eval_rows)
     p_lo, p_hi = _bootstrap_ci(samples, _metric_precision)
     r_lo, r_hi = _bootstrap_ci(samples, _metric_recall)
     f_lo, f_hi = _bootstrap_ci(samples, _metric_f1)
     c_lo, c_hi = _bootstrap_ci(samples, _metric_cov)
+    a_lo, a_hi = _bootstrap_ci(samples, _metric_acc)
+    sc_lo, sc_hi = _bootstrap_ci(samples, _metric_selected_cap)
     sr_lo, sr_hi = _bootstrap_ci(samples, _metric_risk)
+    u_lo, u_hi = _bootstrap_ci(samples, _metric_utility)
 
     return {
         "n_rows": int(len(eval_rows)),
@@ -249,10 +279,51 @@ def _evaluate_rows(
             "precision": [float(p_lo), float(p_hi)],
             "recall": [float(r_lo), float(r_hi)],
             "f1": [float(f_lo), float(f_hi)],
+            "accuracy": [float(a_lo), float(a_hi)],
             "coverage_slm": [float(c_lo), float(c_hi)],
+            "selected_capability": [float(sc_lo), float(sc_hi)],
             "selected_risk": [float(sr_lo), float(sr_hi)],
+            "utility": [float(u_lo), float(u_hi)],
         },
     }
+
+
+def _holm_correct(p_values: list[float]) -> list[float]:
+    """Holm-Bonferroni step-down correction. Returns adjusted p-values (same order)."""
+    m = len(p_values)
+    if m == 0:
+        return []
+    order = sorted(range(m), key=lambda i: p_values[i])
+    adjusted = [0.0] * m
+    running_max = 0.0
+    for rank, idx in enumerate(order):
+        corrected = p_values[idx] * (m - rank)
+        running_max = max(running_max, corrected)
+        adjusted[idx] = min(1.0, running_max)
+    return adjusted
+
+
+def _apply_holm_correction(rows: list[dict[str, Any]]) -> None:
+    """Collect all McNemar p-values across rows, apply Holm correction in-place."""
+    keys = [
+        ("significance", "policy_vs_always_slm_mcnemar", "p_value"),
+        ("significance", "policy_vs_always_baseline_mcnemar", "p_value"),
+    ]
+    # Extract raw p-values per comparison family.
+    for outer_key, inner_key, p_key in keys:
+        raw: list[float] = []
+        locations: list[tuple[int, str, str, str]] = []
+        for i, row in enumerate(rows):
+            sig = row.get(outer_key, {})
+            test = sig.get(inner_key, {}) if isinstance(sig, dict) else {}
+            if isinstance(test, dict) and p_key in test:
+                raw.append(float(test[p_key]))
+                locations.append((i, outer_key, inner_key, p_key))
+        if not raw:
+            continue
+        adjusted = _holm_correct(raw)
+        for (i, ok, ik, pk), adj_p in zip(locations, adjusted):
+            rows[i][ok][ik]["p_value_holm_adjusted"] = float(adj_p)
 
 
 def _collect_task_model_rows(task_dir: Path) -> tuple[dict[str, Any], list[dict[str, Any]]]:
@@ -273,6 +344,12 @@ def main() -> None:
         type=str,
         default="test_phase_report",
         help="Output filename stem under model_runs/benchmarking (e.g., val_phase_report or test_phase_report).",
+    )
+    parser.add_argument(
+        "--strict-leakage",
+        action=argparse.BooleanOptionalAction,
+        default=True,
+        help="Fail when frozen-policy leakage guards are violated (default: true).",
     )
     args = parser.parse_args()
 
@@ -312,6 +389,25 @@ def main() -> None:
                 continue
             threshold_split = str(model_payload.get("threshold_split") or "")
             tau_star = model_payload.get("tau_star_difficulty")
+            train_curve_row_count = _safe_int(model_payload.get("train_curve_row_count"), 0)
+            val_threshold_row_count = _safe_int(model_payload.get("val_threshold_row_count"), 0)
+            matched_query_count = _safe_int(model_payload.get("matched_query_count"), len(model_rows))
+            split_contract_ok = bool(train_curve_row_count > 0 and matched_query_count > 0)
+            frozen_policy_check = bool(threshold_split == "val")
+            leakage_violations: list[str] = []
+            if report_split in {"test", "evaluation", "eval"} and not frozen_policy_check:
+                leakage_violations.append("threshold_split_must_be_val_for_test")
+            if report_split in {"test", "val"} and val_threshold_row_count <= 0:
+                leakage_violations.append("missing_val_threshold_rows")
+            if train_curve_row_count <= 0:
+                leakage_violations.append("missing_train_curve_rows")
+            if matched_query_count <= 0:
+                leakage_violations.append("missing_report_rows")
+            if args.strict_leakage and leakage_violations:
+                raise RuntimeError(
+                    f"Leakage guard failed for task={task}, model={display_name}: "
+                    + ", ".join(leakage_violations)
+                )
             pass_gate = bool(
                 metrics["selected_risk"] <= risk_threshold
                 and metrics["selected_capability"] >= cap_threshold
@@ -323,9 +419,15 @@ def main() -> None:
                 "report_split": report_split,
                 "threshold_split": threshold_split,
                 "tau_star_difficulty": tau_star,
+                "hash_split_policy": HASH_POLICY,
+                "train_curve_row_count": train_curve_row_count,
+                "val_threshold_row_count": val_threshold_row_count,
+                "report_row_count": matched_query_count,
+                "split_contract_ok": split_contract_ok,
+                "leakage_violations": leakage_violations,
                 "capability_threshold": cap_threshold,
                 "risk_threshold": risk_threshold,
-                "frozen_policy_check": bool(threshold_split == "val"),
+                "frozen_policy_check": frozen_policy_check,
                 "pass_operating_gate": pass_gate,
                 **metrics,
             }
@@ -333,6 +435,11 @@ def main() -> None:
             task_entry["models"][model_key] = item
 
         by_task_model[task] = task_entry
+
+    # Holm-Bonferroni correction across all task×model McNemar comparisons.
+    # Without correction, 24 uncorrected tests (8 tasks × 3 SLMs) expect ~1.2
+    # false positives at α=0.05 by chance alone.
+    _apply_holm_correction(out_rows)
 
     BENCHMARKING_OUT.mkdir(parents=True, exist_ok=True)
     stem = str(args.output_stem or "test_phase_report").strip()
@@ -346,16 +453,29 @@ def main() -> None:
 
     flat_rows = out_rows
     split_names = sorted({str(item.get("report_split") or "").strip() for item in flat_rows if isinstance(item, dict)})
+    if args.strict_leakage:
+        non_empty_splits = [s for s in split_names if s]
+        if len(non_empty_splits) > 1:
+            raise RuntimeError(
+                "Leakage guard failed: mixed report splits found in one phase report: "
+                + ", ".join(non_empty_splits)
+            )
     phase_label = ", ".join([s for s in split_names if s]) if split_names else "unknown"
 
     if flat_rows:
         headers = [
             "task",
             "display_name",
+            "hash_split_policy",
             "report_split",
             "threshold_split",
             "tau_star_difficulty",
+            "split_contract_ok",
             "frozen_policy_check",
+            "train_curve_row_count",
+            "val_threshold_row_count",
+            "report_row_count",
+            "leakage_violations",
             "pass_operating_gate",
             "n_rows",
             "coverage_slm",
@@ -364,19 +484,35 @@ def main() -> None:
             "selected_risk",
             "utility",
             "precision",
+            "precision_ci90_lo",
+            "precision_ci90_hi",
             "recall",
+            "recall_ci90_lo",
+            "recall_ci90_hi",
             "f1",
+            "f1_ci90_lo",
+            "f1_ci90_hi",
             "accuracy",
+            "accuracy_ci90_lo",
+            "accuracy_ci90_hi",
             "capability_ece",
             "capability_brier",
             "risk_ece",
             "risk_brier",
+            "selected_capability_ci90_lo",
+            "selected_capability_ci90_hi",
+            "selected_risk_ci90_lo",
+            "selected_risk_ci90_hi",
+            "utility_ci90_lo",
+            "utility_ci90_hi",
             "always_slm_accuracy",
             "always_baseline_accuracy",
             "delta_accuracy_vs_always_slm",
             "delta_accuracy_vs_always_baseline",
             "mcnemar_p_policy_vs_always_slm",
+            "mcnemar_p_policy_vs_always_slm_holm",
             "mcnemar_p_policy_vs_always_baseline",
+            "mcnemar_p_policy_vs_always_baseline_holm",
             "utility_always_slm",
             "utility_always_baseline",
             "delta_utility_vs_always_slm",
@@ -390,10 +526,16 @@ def main() -> None:
                     {
                         "task": row["task"],
                         "display_name": row["display_name"],
+                        "hash_split_policy": row["hash_split_policy"],
                         "report_split": row["report_split"],
                         "threshold_split": row["threshold_split"],
                         "tau_star_difficulty": row["tau_star_difficulty"],
+                        "split_contract_ok": row["split_contract_ok"],
                         "frozen_policy_check": row["frozen_policy_check"],
+                        "train_curve_row_count": row["train_curve_row_count"],
+                        "val_threshold_row_count": row["val_threshold_row_count"],
+                        "report_row_count": row["report_row_count"],
+                        "leakage_violations": ";".join(row["leakage_violations"]),
                         "pass_operating_gate": row["pass_operating_gate"],
                         "n_rows": row["n_rows"],
                         "coverage_slm": row["coverage_slm"],
@@ -402,13 +544,27 @@ def main() -> None:
                         "selected_risk": row["selected_risk"],
                         "utility": row["utility"],
                         "precision": row["routing_quality"]["precision"],
+                        "precision_ci90_lo": row["bootstrap_ci_90"]["precision"][0],
+                        "precision_ci90_hi": row["bootstrap_ci_90"]["precision"][1],
                         "recall": row["routing_quality"]["recall"],
+                        "recall_ci90_lo": row["bootstrap_ci_90"]["recall"][0],
+                        "recall_ci90_hi": row["bootstrap_ci_90"]["recall"][1],
                         "f1": row["routing_quality"]["f1"],
+                        "f1_ci90_lo": row["bootstrap_ci_90"]["f1"][0],
+                        "f1_ci90_hi": row["bootstrap_ci_90"]["f1"][1],
                         "accuracy": row["routing_quality"]["accuracy"],
+                        "accuracy_ci90_lo": row["bootstrap_ci_90"]["accuracy"][0],
+                        "accuracy_ci90_hi": row["bootstrap_ci_90"]["accuracy"][1],
                         "capability_ece": row["calibration"]["capability_ece"],
                         "capability_brier": row["calibration"]["capability_brier"],
                         "risk_ece": row["calibration"]["risk_ece"],
                         "risk_brier": row["calibration"]["risk_brier"],
+                        "selected_capability_ci90_lo": row["bootstrap_ci_90"]["selected_capability"][0],
+                        "selected_capability_ci90_hi": row["bootstrap_ci_90"]["selected_capability"][1],
+                        "selected_risk_ci90_lo": row["bootstrap_ci_90"]["selected_risk"][0],
+                        "selected_risk_ci90_hi": row["bootstrap_ci_90"]["selected_risk"][1],
+                        "utility_ci90_lo": row["bootstrap_ci_90"]["utility"][0],
+                        "utility_ci90_hi": row["bootstrap_ci_90"]["utility"][1],
                         "always_slm_accuracy": row["baseline_quality"]["always_slm"]["accuracy"],
                         "always_baseline_accuracy": row["baseline_quality"]["always_baseline"]["accuracy"],
                         "delta_accuracy_vs_always_slm": (
@@ -418,7 +574,9 @@ def main() -> None:
                             row["routing_quality"]["accuracy"] - row["baseline_quality"]["always_baseline"]["accuracy"]
                         ),
                         "mcnemar_p_policy_vs_always_slm": row["significance"]["policy_vs_always_slm_mcnemar"]["p_value"],
+                        "mcnemar_p_policy_vs_always_slm_holm": row["significance"]["policy_vs_always_slm_mcnemar"].get("p_value_holm_adjusted"),
                         "mcnemar_p_policy_vs_always_baseline": row["significance"]["policy_vs_always_baseline_mcnemar"]["p_value"],
+                        "mcnemar_p_policy_vs_always_baseline_holm": row["significance"]["policy_vs_always_baseline_mcnemar"].get("p_value_holm_adjusted"),
                         "utility_always_slm": row["baseline_utility"]["always_slm"],
                         "utility_always_baseline": row["baseline_utility"]["always_baseline"],
                         "delta_utility_vs_always_slm": row["utility"] - row["baseline_utility"]["always_slm"],
@@ -429,18 +587,43 @@ def main() -> None:
         lines = [
             f"# {phase_label.title()} Phase Report (Frozen Policy)",
             "",
-            "| Task | Model | N | Frozen Policy | Pass Gate | Coverage(SLM) | Capability(SLM) | Risk(SLM) | F1 | Acc | dAcc vs Always-SLM | p(McNemar) | dUtility vs Always-SLM |",
-            "|---|---|---:|:---:|:---:|---:|---:|---:|---:|---:|---:|---:|---:|",
+            "## Leakage Proof",
+            "",
+            f"- Hash split policy: `{HASH_POLICY}`",
+            f"- Strict leakage mode: `{'on' if args.strict_leakage else 'off'}`",
+            "",
+            "| Task | Model | report_split | threshold_split | train_rows | val_rows | report_rows | Frozen Policy | Split Contract OK | Leakage Violations |",
+            "|---|---|---|---|---:|---:|---:|:---:|:---:|---|",
         ]
         for row in flat_rows:
             lines.append(
+                f"| {row['task']} | {row['display_name']} | {row['report_split']} | {row['threshold_split']} | "
+                f"{row['train_curve_row_count']} | {row['val_threshold_row_count']} | {row['report_row_count']} | "
+                f"{'yes' if row['frozen_policy_check'] else 'no'} | {'yes' if row['split_contract_ok'] else 'no'} | "
+                f"{';'.join(row['leakage_violations']) if row['leakage_violations'] else 'none'} |"
+            )
+        lines.extend(
+            [
+                "",
+                "## Primary Statistical Results",
+                "",
+                "| Task | Model | N | Pass Gate | Precision [90% CI] | Recall [90% CI] | F1 [90% CI] | Acc [90% CI] | p(McNemar vs Always-SLM) | p_holm | dUtility vs Always-SLM |",
+                "|---|---|---:|:---:|---|---|---|---|---:|---:|---:|",
+            ]
+        )
+        for row in flat_rows:
+            p_raw = row["significance"]["policy_vs_always_slm_mcnemar"]["p_value"]
+            p_adj = row["significance"]["policy_vs_always_slm_mcnemar"].get("p_value_holm_adjusted")
+            p_adj_txt = f"{p_adj:.4f}" if p_adj is not None else "NA"
+            lines.append(
                 f"| {row['task']} | {row['display_name']} | {row['n_rows']} | "
-                f"{'yes' if row['frozen_policy_check'] else 'no'} | "
                 f"{'yes' if row['pass_operating_gate'] else 'no'} | "
-                f"{row['coverage_slm']:.3f} | {row['selected_capability']:.3f} | {row['selected_risk']:.3f} | "
-                f"{row['routing_quality']['f1']:.3f} | {row['routing_quality']['accuracy']:.3f} | "
-                f"{(row['routing_quality']['accuracy'] - row['baseline_quality']['always_slm']['accuracy']):.3f} | "
-                f"{row['significance']['policy_vs_always_slm_mcnemar']['p_value']:.4f} | "
+                f"{row['routing_quality']['precision']:.3f} [{row['bootstrap_ci_90']['precision'][0]:.3f}, {row['bootstrap_ci_90']['precision'][1]:.3f}] | "
+                f"{row['routing_quality']['recall']:.3f} [{row['bootstrap_ci_90']['recall'][0]:.3f}, {row['bootstrap_ci_90']['recall'][1]:.3f}] | "
+                f"{row['routing_quality']['f1']:.3f} [{row['bootstrap_ci_90']['f1'][0]:.3f}, {row['bootstrap_ci_90']['f1'][1]:.3f}] | "
+                f"{row['routing_quality']['accuracy']:.3f} [{row['bootstrap_ci_90']['accuracy'][0]:.3f}, {row['bootstrap_ci_90']['accuracy'][1]:.3f}] | "
+                f"{p_raw:.4f} | "
+                f"{p_adj_txt} | "
                 f"{(row['utility'] - row['baseline_utility']['always_slm']):.3f} |"
             )
         md_path.write_text("\n".join(lines) + "\n", encoding="utf-8")

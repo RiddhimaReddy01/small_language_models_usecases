@@ -22,12 +22,17 @@ def main() -> int:
     parser.add_argument("--ci-level", type=float, default=0.90)
     parser.add_argument("--min-samples", type=int, default=5)
     parser.add_argument("--min-ground-truth-coverage", type=float, default=0.95)
+    parser.add_argument("--utility-alpha", type=float, default=1.0)
+    parser.add_argument("--utility-beta", type=float, default=0.25)
+    parser.add_argument("--utility-gamma", type=float, default=1.0)
     parser.add_argument("--report-split", type=str, default="test")
     parser.add_argument("--weights-source-split", type=str, default=None)
     parser.add_argument("--difficulty-weights", type=Path, default=None)
     parser.add_argument("--learn-family-weights", action="store_true")
     parser.add_argument("--abstain-max-delta", type=float, default=0.35)
     parser.add_argument("--abstain-grid-step", type=float, default=0.01)
+    parser.add_argument("--tau-bootstrap-draws", type=int, default=200)
+    parser.add_argument("--tau-conservative-percentile", type=float, default=10.0)
     parser.add_argument("--skip-benchmarking", action="store_true")
     parser.add_argument("--skip-dashboard", action="store_true")
     parser.add_argument("--skip-summary", action="store_true")
@@ -47,12 +52,22 @@ def main() -> int:
         str(args.min_samples),
         "--min-ground-truth-coverage",
         str(args.min_ground_truth_coverage),
+        "--utility-alpha",
+        str(args.utility_alpha),
+        "--utility-beta",
+        str(args.utility_beta),
+        "--utility-gamma",
+        str(args.utility_gamma),
         "--report-split",
         str(args.report_split),
         "--abstain-max-delta",
         str(args.abstain_max_delta),
         "--abstain-grid-step",
         str(args.abstain_grid_step),
+        "--tau-bootstrap-draws",
+        str(args.tau_bootstrap_draws),
+        "--tau-conservative-percentile",
+        str(args.tau_conservative_percentile),
     ]
     if args.learn_family_weights:
         sddf_cmd.append("--learn-family-weights")

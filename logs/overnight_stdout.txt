@@ -1,0 +1,422 @@
+03:47:15  INFO     Log file: C:\Users\riddh\OneDrive\Desktop\SLM use cases\logs\inference_20260407_034715.log
+03:47:15  INFO     ============================================================
+03:47:15  INFO     OVERNIGHT INFERENCE PLAN
+03:47:15  INFO     ============================================================
+03:47:15  INFO     Tasks  : ['classification', 'maths', 'code_generation', 'instruction_following', 'information_extraction', 'retrieval_grounded', 'summarization', 'text_generation']
+03:47:15  INFO     Ollama : ['qwen2.5:0.5b', 'qwen2.5:3b', 'qwen2.5:7b']
+03:47:15  INFO     Groq   : []
+03:47:15  INFO       qwen2.5:0.5b                              remaining=525
+03:47:15  INFO       qwen2.5:3b                                remaining=600
+03:47:15  INFO       qwen2.5:7b                                remaining=600
+03:47:15  INFO     ------------------------------------------------------------
+03:47:15  INFO     PROGRESS SUMMARY  (runnable = rows with prompt)
+03:47:15  INFO     ------------------------------------------------------------
+03:47:15  INFO       qwen2.5_0.5b                              classification             [####################]  75/75
+03:47:15  INFO       qwen2.5_0.5b                              maths                      [....................]   0/75
+03:47:15  INFO       qwen2.5_0.5b                              code_generation            [....................]   0/75
+03:47:15  INFO       qwen2.5_0.5b                              instruction_following      [....................]   0/75
+03:47:15  INFO       qwen2.5_0.5b                              information_extraction     [....................]   0/75
+03:47:15  INFO       qwen2.5_0.5b                              retrieval_grounded         [....................]   0/75
+03:47:15  INFO       qwen2.5_0.5b                              summarization              [....................]   0/75
+03:47:15  INFO       qwen2.5_0.5b                              text_generation            [....................]   0/75
+03:47:15  INFO       qwen2.5_3b                                classification             [....................]   0/75
+03:47:15  INFO       qwen2.5_3b                                maths                      [....................]   0/75
+03:47:15  INFO       qwen2.5_3b                                code_generation            [....................]   0/75
+03:47:15  INFO       qwen2.5_3b                                instruction_following      [....................]   0/75
+03:47:15  INFO       qwen2.5_3b                                information_extraction     [....................]   0/75
+03:47:15  INFO       qwen2.5_3b                                retrieval_grounded         [....................]   0/75
+03:47:15  INFO       qwen2.5_3b                                summarization              [....................]   0/75
+03:47:15  INFO       qwen2.5_3b                                text_generation            [....................]   0/75
+03:47:15  INFO       qwen2.5_7b                                classification             [....................]   0/75
+03:47:15  INFO       qwen2.5_7b                                maths                      [....................]   0/75
+03:47:15  INFO       qwen2.5_7b                                code_generation            [....................]   0/75
+03:47:15  INFO       qwen2.5_7b                                instruction_following      [....................]   0/75
+03:47:15  INFO       qwen2.5_7b                                information_extraction     [....................]   0/75
+03:47:15  INFO       qwen2.5_7b                                retrieval_grounded         [....................]   0/75
+03:47:15  INFO       qwen2.5_7b                                summarization              [....................]   0/75
+03:47:15  INFO       qwen2.5_7b                                text_generation            [....................]   0/75
+03:47:15  INFO       llama_llama-3.3-70b-versatile             classification             [####################] 250/75
+03:47:15  INFO       llama_llama-3.3-70b-versatile             maths                      [####################] 250/75
+03:47:15  INFO       llama_llama-3.3-70b-versatile             code_generation            [####################] 250/75
+03:47:15  INFO       llama_llama-3.3-70b-versatile             instruction_following      [####################] 250/75
+03:47:15  INFO       llama_llama-3.3-70b-versatile             information_extraction     [####################] 250/75
+03:47:15  INFO       llama_llama-3.3-70b-versatile             retrieval_grounded         [####################] 250/75
+03:47:15  INFO       llama_llama-3.3-70b-versatile             summarization              [####################] 250/75
+03:47:15  INFO       llama_llama-3.3-70b-versatile             text_generation            [####################] 250/75
+03:47:15  INFO     ------------------------------------------------------------
+03:47:15  INFO     ============================================================
+03:47:15  INFO     OLLAMA MODEL: qwen2.5:0.5b (0.5B)
+03:47:15  INFO     ============================================================
+03:47:15  INFO     Model qwen2.5:0.5b already available
+03:47:15  WARNING  [qwen2.5_0.5b][classification] Skipping 175 rows with no prompt (incomplete ground truth)
+03:47:15  INFO     [qwen2.5_0.5b][classification] Already complete (75/75), skipping
+03:47:15  WARNING  [qwen2.5_0.5b][maths] Skipping 175 rows with no prompt (incomplete ground truth)
+03:47:15  INFO     [qwen2.5_0.5b][maths] Starting — 75 remaining / 75 total (skipped 175 no-prompt rows)
+03:47:57  INFO     [qwen2.5_0.5b][maths] 10/75 (13%) | last=5.2s | status=success
+03:48:45  INFO     [qwen2.5_0.5b][maths] 20/75 (27%) | last=5.1s | status=success
+03:49:31  INFO     [qwen2.5_0.5b][maths] 30/75 (40%) | last=7.1s | status=success
+03:50:45  INFO     [qwen2.5_0.5b][maths] 40/75 (53%) | last=11.7s | status=success
+03:52:23  INFO     [qwen2.5_0.5b][maths] 50/75 (67%) | last=12.9s | status=success
+03:53:56  INFO     [qwen2.5_0.5b][maths] 60/75 (80%) | last=14.7s | status=success
+03:54:53  INFO     [qwen2.5_0.5b][maths] 70/75 (93%) | last=5.9s | status=success
+03:55:22  INFO     [qwen2.5_0.5b][maths] 75/75 (100%) | last=7.6s | status=success
+03:55:22  WARNING  [qwen2.5_0.5b][code_generation] Skipping 175 rows with no prompt (incomplete ground truth)
+03:55:22  INFO     [qwen2.5_0.5b][code_generation] Starting — 75 remaining / 75 total (skipped 175 no-prompt rows)
+03:56:20  INFO     [qwen2.5_0.5b][code_generation] 10/75 (13%) | last=6.8s | status=success
+03:57:23  INFO     [qwen2.5_0.5b][code_generation] 20/75 (27%) | last=6.9s | status=success
+03:58:26  INFO     [qwen2.5_0.5b][code_generation] 30/75 (40%) | last=6.5s | status=success
+03:59:25  INFO     [qwen2.5_0.5b][code_generation] 40/75 (53%) | last=6.5s | status=success
+04:00:26  INFO     [qwen2.5_0.5b][code_generation] 50/75 (67%) | last=6.5s | status=success
+04:01:32  INFO     [qwen2.5_0.5b][code_generation] 60/75 (80%) | last=6.3s | status=success
+04:02:33  INFO     [qwen2.5_0.5b][code_generation] 70/75 (93%) | last=6.7s | status=success
+04:03:05  INFO     [qwen2.5_0.5b][code_generation] 75/75 (100%) | last=3.9s | status=success
+04:03:05  WARNING  [qwen2.5_0.5b][instruction_following] Skipping 175 rows with no prompt (incomplete ground truth)
+04:03:05  INFO     [qwen2.5_0.5b][instruction_following] Starting — 75 remaining / 75 total (skipped 175 no-prompt rows)
+04:03:16  INFO     [qwen2.5_0.5b][instruction_following] 10/75 (13%) | last=1.7s | status=success
+04:03:27  INFO     [qwen2.5_0.5b][instruction_following] 20/75 (27%) | last=2.0s | status=success
+04:03:38  INFO     [qwen2.5_0.5b][instruction_following] 30/75 (40%) | last=1.9s | status=success
+04:03:49  INFO     [qwen2.5_0.5b][instruction_following] 40/75 (53%) | last=1.7s | status=success
+04:04:00  INFO     [qwen2.5_0.5b][instruction_following] 50/75 (67%) | last=1.9s | status=success
+04:04:11  INFO     [qwen2.5_0.5b][instruction_following] 60/75 (80%) | last=1.8s | status=success
+04:04:22  INFO     [qwen2.5_0.5b][instruction_following] 70/75 (93%) | last=1.7s | status=success
+04:04:27  INFO     [qwen2.5_0.5b][instruction_following] 75/75 (100%) | last=1.9s | status=success
+04:04:27  WARNING  [qwen2.5_0.5b][information_extraction] Skipping 175 rows with no prompt (incomplete ground truth)
+04:04:27  INFO     [qwen2.5_0.5b][information_extraction] Starting — 75 remaining / 75 total (skipped 175 no-prompt rows)
+04:04:37  INFO     [qwen2.5_0.5b][information_extraction] 10/75 (13%) | last=0.8s | status=success
+04:04:47  INFO     [qwen2.5_0.5b][information_extraction] 20/75 (27%) | last=1.1s | status=success
+04:04:57  INFO     [qwen2.5_0.5b][information_extraction] 30/75 (40%) | last=0.9s | status=success
+04:05:07  INFO     [qwen2.5_0.5b][information_extraction] 40/75 (53%) | last=0.9s | status=success
+04:05:17  INFO     [qwen2.5_0.5b][information_extraction] 50/75 (67%) | last=1.1s | status=success
+04:05:27  INFO     [qwen2.5_0.5b][information_extraction] 60/75 (80%) | last=0.9s | status=success
+04:05:37  INFO     [qwen2.5_0.5b][information_extraction] 70/75 (93%) | last=0.9s | status=success
+04:05:42  INFO     [qwen2.5_0.5b][information_extraction] 75/75 (100%) | last=0.9s | status=success
+04:05:42  WARNING  [qwen2.5_0.5b][retrieval_grounded] Skipping 175 rows with no prompt (incomplete ground truth)
+04:05:42  INFO     [qwen2.5_0.5b][retrieval_grounded] Starting — 75 remaining / 75 total (skipped 175 no-prompt rows)
+04:05:52  INFO     [qwen2.5_0.5b][retrieval_grounded] 10/75 (13%) | last=1.4s | status=success
+04:06:02  INFO     [qwen2.5_0.5b][retrieval_grounded] 20/75 (27%) | last=1.1s | status=success
+04:06:13  INFO     [qwen2.5_0.5b][retrieval_grounded] 30/75 (40%) | last=1.2s | status=success
+04:06:23  INFO     [qwen2.5_0.5b][retrieval_grounded] 40/75 (53%) | last=1.2s | status=success
+04:06:33  INFO     [qwen2.5_0.5b][retrieval_grounded] 50/75 (67%) | last=1.1s | status=success
+04:06:43  INFO     [qwen2.5_0.5b][retrieval_grounded] 60/75 (80%) | last=1.1s | status=success
+04:06:54  INFO     [qwen2.5_0.5b][retrieval_grounded] 70/75 (93%) | last=1.2s | status=success
+04:06:58  INFO     [qwen2.5_0.5b][retrieval_grounded] 75/75 (100%) | last=1.0s | status=success
+04:06:58  WARNING  [qwen2.5_0.5b][summarization] Skipping 175 rows with no prompt (incomplete ground truth)
+04:06:58  INFO     [qwen2.5_0.5b][summarization] Starting — 75 remaining / 75 total (skipped 175 no-prompt rows)
+04:07:31  INFO     [qwen2.5_0.5b][summarization] 10/75 (13%) | last=0.9s | status=success
+04:08:06  INFO     [qwen2.5_0.5b][summarization] 20/75 (27%) | last=1.8s | status=success
+04:08:37  INFO     [qwen2.5_0.5b][summarization] 30/75 (40%) | last=1.1s | status=success
+04:09:09  INFO     [qwen2.5_0.5b][summarization] 40/75 (53%) | last=0.9s | status=success
+04:09:44  INFO     [qwen2.5_0.5b][summarization] 50/75 (67%) | last=1.9s | status=success
+04:10:14  INFO     [qwen2.5_0.5b][summarization] 60/75 (80%) | last=0.9s | status=success
+04:10:46  INFO     [qwen2.5_0.5b][summarization] 70/75 (93%) | last=0.9s | status=success
+04:11:02  INFO     [qwen2.5_0.5b][summarization] 75/75 (100%) | last=0.9s | status=success
+04:11:02  WARNING  [qwen2.5_0.5b][text_generation] Skipping 175 rows with no prompt (incomplete ground truth)
+04:11:02  INFO     [qwen2.5_0.5b][text_generation] Starting — 75 remaining / 75 total (skipped 175 no-prompt rows)
+04:12:04  INFO     [qwen2.5_0.5b][text_generation] 10/75 (13%) | last=4.6s | status=success
+04:13:06  INFO     [qwen2.5_0.5b][text_generation] 20/75 (27%) | last=5.4s | status=success
+04:14:09  INFO     [qwen2.5_0.5b][text_generation] 30/75 (40%) | last=8.1s | status=success
+04:15:08  INFO     [qwen2.5_0.5b][text_generation] 40/75 (53%) | last=7.0s | status=success
+04:16:09  INFO     [qwen2.5_0.5b][text_generation] 50/75 (67%) | last=5.2s | status=success
+04:17:06  INFO     [qwen2.5_0.5b][text_generation] 60/75 (80%) | last=7.9s | status=success
+04:18:07  INFO     [qwen2.5_0.5b][text_generation] 70/75 (93%) | last=6.8s | status=success
+04:18:36  INFO     [qwen2.5_0.5b][text_generation] 75/75 (100%) | last=8.0s | status=success
+04:18:36  INFO     [qwen2.5_0.5b] All tasks complete
+04:18:36  INFO     ============================================================
+04:18:36  INFO     OLLAMA MODEL: qwen2.5:3b (3B)
+04:18:36  INFO     ============================================================
+04:18:36  INFO     Model qwen2.5:3b already available
+04:18:37  INFO     [qwen2.5_3b][classification] Starting — 400 remaining / 400 total (skipped 0 no-prompt rows)
+04:18:53  INFO     [qwen2.5_3b][classification] 10/400 (2%) | last=0.8s | status=success
+04:19:05  INFO     [qwen2.5_3b][classification] 20/400 (5%) | last=0.8s | status=success
+04:19:18  INFO     [qwen2.5_3b][classification] 30/400 (8%) | last=1.2s | status=success
+04:19:32  INFO     [qwen2.5_3b][classification] 40/400 (10%) | last=1.6s | status=success
+04:19:42  INFO     [qwen2.5_3b][classification] 50/400 (12%) | last=0.7s | status=success
+04:19:53  INFO     [qwen2.5_3b][classification] 60/400 (15%) | last=0.9s | status=success
+04:20:05  INFO     [qwen2.5_3b][classification] 70/400 (18%) | last=1.0s | status=success
+04:20:16  INFO     [qwen2.5_3b][classification] 80/400 (20%) | last=2.2s | status=success
+04:20:27  INFO     [qwen2.5_3b][classification] 90/400 (22%) | last=1.8s | status=success
+04:20:48  INFO     [qwen2.5_3b][classification] 100/400 (25%) | last=1.3s | status=success
+04:21:02  INFO     [qwen2.5_3b][classification] 110/400 (28%) | last=1.1s | status=success
+04:21:16  INFO     [qwen2.5_3b][classification] 120/400 (30%) | last=1.0s | status=success
+04:21:28  INFO     [qwen2.5_3b][classification] 130/400 (32%) | last=2.4s | status=success
+04:21:39  INFO     [qwen2.5_3b][classification] 140/400 (35%) | last=0.7s | status=success
+04:21:52  INFO     [qwen2.5_3b][classification] 150/400 (38%) | last=0.8s | status=success
+04:22:05  INFO     [qwen2.5_3b][classification] 160/400 (40%) | last=2.1s | status=success
+04:22:18  INFO     [qwen2.5_3b][classification] 170/400 (42%) | last=1.1s | status=success
+04:22:28  INFO     [qwen2.5_3b][classification] 180/400 (45%) | last=0.9s | status=success
+04:22:42  INFO     [qwen2.5_3b][classification] 190/400 (48%) | last=1.6s | status=success
+04:22:55  INFO     [qwen2.5_3b][classification] 200/400 (50%) | last=1.6s | status=success
+04:23:07  INFO     [qwen2.5_3b][classification] 210/400 (52%) | last=1.7s | status=success
+04:23:20  INFO     [qwen2.5_3b][classification] 220/400 (55%) | last=1.0s | status=success
+04:23:36  INFO     [qwen2.5_3b][classification] 230/400 (58%) | last=1.2s | status=success
+04:23:48  INFO     [qwen2.5_3b][classification] 240/400 (60%) | last=1.9s | status=success
+04:24:03  INFO     [qwen2.5_3b][classification] 250/400 (62%) | last=2.0s | status=success
+04:24:14  INFO     [qwen2.5_3b][classification] 260/400 (65%) | last=0.8s | status=success
+04:24:26  INFO     [qwen2.5_3b][classification] 270/400 (68%) | last=0.9s | status=success
+04:24:38  INFO     [qwen2.5_3b][classification] 280/400 (70%) | last=1.1s | status=success
+04:24:49  INFO     [qwen2.5_3b][classification] 290/400 (72%) | last=1.0s | status=success
+04:25:00  INFO     [qwen2.5_3b][classification] 300/400 (75%) | last=1.7s | status=success
+04:25:16  INFO     [qwen2.5_3b][classification] 310/400 (78%) | last=0.7s | status=success
+04:25:28  INFO     [qwen2.5_3b][classification] 320/400 (80%) | last=1.1s | status=success
+04:25:41  INFO     [qwen2.5_3b][classification] 330/400 (82%) | last=1.4s | status=success
+04:25:56  INFO     [qwen2.5_3b][classification] 340/400 (85%) | last=1.7s | status=success
+04:26:10  INFO     [qwen2.5_3b][classification] 350/400 (88%) | last=1.5s | status=success
+04:26:25  INFO     [qwen2.5_3b][classification] 360/400 (90%) | last=1.1s | status=success
+04:26:36  INFO     [qwen2.5_3b][classification] 370/400 (92%) | last=1.6s | status=success
+04:26:50  INFO     [qwen2.5_3b][classification] 380/400 (95%) | last=0.9s | status=success
+04:26:59  INFO     [qwen2.5_3b][classification] 390/400 (98%) | last=0.6s | status=success
+04:27:11  INFO     [qwen2.5_3b][classification] 400/400 (100%) | last=1.6s | status=success
+04:27:11  INFO     [qwen2.5_3b][maths] Starting — 500 remaining / 500 total (skipped 0 no-prompt rows)
+04:30:47  INFO     [qwen2.5_3b][maths] 10/500 (2%) | last=8.4s | status=success
+04:34:52  INFO     [qwen2.5_3b][maths] 20/500 (4%) | last=7.7s | status=success
+04:39:41  INFO     [qwen2.5_3b][maths] 30/500 (6%) | last=14.0s | status=success
+04:45:31  INFO     [qwen2.5_3b][maths] 40/500 (8%) | last=12.0s | status=success
+04:50:18  INFO     [qwen2.5_3b][maths] 50/500 (10%) | last=33.2s | status=success
+04:54:16  INFO     [qwen2.5_3b][maths] 60/500 (12%) | last=21.6s | status=success
+04:57:22  INFO     [qwen2.5_3b][maths] 70/500 (14%) | last=10.7s | status=success
+05:01:33  INFO     [qwen2.5_3b][maths] 80/500 (16%) | last=34.5s | status=success
+05:05:08  INFO     [qwen2.5_3b][maths] 90/500 (18%) | last=6.7s | status=success
+05:09:15  INFO     [qwen2.5_3b][maths] 100/500 (20%) | last=32.7s | status=success
+05:13:21  INFO     [qwen2.5_3b][maths] 110/500 (22%) | last=29.9s | status=success
+05:17:11  INFO     [qwen2.5_3b][maths] 120/500 (24%) | last=29.9s | status=success
+05:21:18  INFO     [qwen2.5_3b][maths] 130/500 (26%) | last=30.2s | status=success
+05:25:24  INFO     [qwen2.5_3b][maths] 140/500 (28%) | last=27.7s | status=success
+05:30:00  INFO     [qwen2.5_3b][maths] 150/500 (30%) | last=34.1s | status=success
+05:34:07  INFO     [qwen2.5_3b][maths] 160/500 (32%) | last=19.4s | status=success
+05:38:06  INFO     [qwen2.5_3b][maths] 170/500 (34%) | last=28.6s | status=success
+05:42:26  INFO     [qwen2.5_3b][maths] 180/500 (36%) | last=18.2s | status=success
+05:46:26  INFO     [qwen2.5_3b][maths] 190/500 (38%) | last=31.2s | status=success
+05:49:22  INFO     [qwen2.5_3b][maths] 200/500 (40%) | last=12.8s | status=success
+05:53:35  INFO     [qwen2.5_3b][maths] 210/500 (42%) | last=35.5s | status=success
+05:57:54  INFO     [qwen2.5_3b][maths] 220/500 (44%) | last=22.7s | status=success
+06:01:56  INFO     [qwen2.5_3b][maths] 230/500 (46%) | last=18.1s | status=success
+06:05:39  INFO     [qwen2.5_3b][maths] 240/500 (48%) | last=8.4s | status=success
+06:08:49  INFO     [qwen2.5_3b][maths] 250/500 (50%) | last=11.4s | status=success
+06:13:49  INFO     [qwen2.5_3b][maths] 260/500 (52%) | last=37.4s | status=success
+06:17:48  INFO     [qwen2.5_3b][maths] 270/500 (54%) | last=21.9s | status=success
+06:22:44  INFO     [qwen2.5_3b][maths] 280/500 (56%) | last=25.9s | status=success
+06:26:45  INFO     [qwen2.5_3b][maths] 290/500 (58%) | last=35.3s | status=success
+06:30:46  INFO     [qwen2.5_3b][maths] 300/500 (60%) | last=28.2s | status=success
+06:35:16  INFO     [qwen2.5_3b][maths] 310/500 (62%) | last=7.8s | status=success
+06:38:24  INFO     [qwen2.5_3b][maths] 320/500 (64%) | last=19.0s | status=success
+06:42:06  INFO     [qwen2.5_3b][maths] 330/500 (66%) | last=19.8s | status=success
+06:45:28  INFO     [qwen2.5_3b][maths] 340/500 (68%) | last=16.1s | status=success
+06:49:33  INFO     [qwen2.5_3b][maths] 350/500 (70%) | last=15.5s | status=success
+06:53:11  INFO     [qwen2.5_3b][maths] 360/500 (72%) | last=16.0s | status=success
+06:56:57  INFO     [qwen2.5_3b][maths] 370/500 (74%) | last=31.3s | status=success
+07:00:01  INFO     [qwen2.5_3b][maths] 380/500 (76%) | last=25.8s | status=success
+07:03:43  INFO     [qwen2.5_3b][maths] 390/500 (78%) | last=30.0s | status=success
+07:07:17  INFO     [qwen2.5_3b][maths] 400/500 (80%) | last=18.1s | status=success
+07:11:05  INFO     [qwen2.5_3b][maths] 410/500 (82%) | last=24.9s | status=success
+07:14:58  INFO     [qwen2.5_3b][maths] 420/500 (84%) | last=18.7s | status=success
+07:19:01  INFO     [qwen2.5_3b][maths] 430/500 (86%) | last=17.4s | status=success
+07:23:56  INFO     [qwen2.5_3b][maths] 440/500 (88%) | last=32.2s | status=success
+07:30:23  INFO     [qwen2.5_3b][maths] 450/500 (90%) | last=45.3s | status=success
+07:37:12  INFO     [qwen2.5_3b][maths] 460/500 (92%) | last=15.1s | status=success
+07:43:03  INFO     [qwen2.5_3b][maths] 470/500 (94%) | last=32.3s | status=success
+07:49:24  INFO     [qwen2.5_3b][maths] 480/500 (96%) | last=41.7s | status=success
+07:55:00  INFO     [qwen2.5_3b][maths] 490/500 (98%) | last=36.2s | status=success
+08:00:58  INFO     [qwen2.5_3b][maths] 500/500 (100%) | last=21.3s | status=success
+08:00:58  INFO     [qwen2.5_3b][code_generation] Starting — 421 remaining / 421 total (skipped 0 no-prompt rows)
+08:05:22  INFO     [qwen2.5_3b][code_generation] 10/421 (2%) | last=7.1s | status=success
+08:10:22  INFO     [qwen2.5_3b][code_generation] 20/421 (5%) | last=13.0s | status=success
+08:14:46  INFO     [qwen2.5_3b][code_generation] 30/421 (7%) | last=14.4s | status=success
+08:19:07  INFO     [qwen2.5_3b][code_generation] 40/421 (10%) | last=33.6s | status=success
+08:24:24  INFO     [qwen2.5_3b][code_generation] 50/421 (12%) | last=54.3s | status=success
+08:29:41  INFO     [qwen2.5_3b][code_generation] 60/421 (14%) | last=34.4s | status=success
+08:35:08  INFO     [qwen2.5_3b][code_generation] 70/421 (17%) | last=17.7s | status=success
+08:37:37  INFO     [qwen2.5_3b][code_generation] 80/421 (19%) | last=14.8s | status=success
+08:40:43  INFO     [qwen2.5_3b][code_generation] 90/421 (21%) | last=24.7s | status=success
+08:43:21  INFO     [qwen2.5_3b][code_generation] 100/421 (24%) | last=6.5s | status=success
+08:47:04  INFO     [qwen2.5_3b][code_generation] 110/421 (26%) | last=18.9s | status=success
+08:50:47  INFO     [qwen2.5_3b][code_generation] 120/421 (29%) | last=11.1s | status=success
+08:53:50  INFO     [qwen2.5_3b][code_generation] 130/421 (31%) | last=28.5s | status=success
+08:56:32  INFO     [qwen2.5_3b][code_generation] 140/421 (33%) | last=7.6s | status=success
+08:59:15  INFO     [qwen2.5_3b][code_generation] 150/421 (36%) | last=8.4s | status=success
+09:02:34  INFO     [qwen2.5_3b][code_generation] 160/421 (38%) | last=21.5s | status=success
+09:05:21  INFO     [qwen2.5_3b][code_generation] 170/421 (40%) | last=13.6s | status=success
+09:08:21  INFO     [qwen2.5_3b][code_generation] 180/421 (43%) | last=20.3s | status=success
+09:12:02  INFO     [qwen2.5_3b][code_generation] 190/421 (45%) | last=42.8s | status=success
+09:16:04  INFO     [qwen2.5_3b][code_generation] 200/421 (48%) | last=10.5s | status=success
+09:20:15  INFO     [qwen2.5_3b][code_generation] 210/421 (50%) | last=9.6s | status=success
+09:23:34  INFO     [qwen2.5_3b][code_generation] 220/421 (52%) | last=8.9s | status=success
+09:27:31  INFO     [qwen2.5_3b][code_generation] 230/421 (55%) | last=14.9s | status=success
+09:31:00  INFO     [qwen2.5_3b][code_generation] 240/421 (57%) | last=18.1s | status=success
+09:34:28  INFO     [qwen2.5_3b][code_generation] 250/421 (59%) | last=9.7s | status=success
+09:38:05  INFO     [qwen2.5_3b][code_generation] 260/421 (62%) | last=35.2s | status=success
+09:41:46  INFO     [qwen2.5_3b][code_generation] 270/421 (64%) | last=30.9s | status=success
+09:44:56  INFO     [qwen2.5_3b][code_generation] 280/421 (67%) | last=47.5s | status=success
+09:48:55  INFO     [qwen2.5_3b][code_generation] 290/421 (69%) | last=20.3s | status=success
+09:52:58  INFO     [qwen2.5_3b][code_generation] 300/421 (71%) | last=29.7s | status=success
+09:57:41  INFO     [qwen2.5_3b][code_generation] 310/421 (74%) | last=31.1s | status=success
+10:00:40  INFO     [qwen2.5_3b][code_generation] 320/421 (76%) | last=27.3s | status=success
+10:04:17  INFO     [qwen2.5_3b][code_generation] 330/421 (78%) | last=21.5s | status=success
+10:08:15  INFO     [qwen2.5_3b][code_generation] 340/421 (81%) | last=23.9s | status=success
+10:11:02  INFO     [qwen2.5_3b][code_generation] 350/421 (83%) | last=17.9s | status=success
+10:13:26  INFO     [qwen2.5_3b][code_generation] 360/421 (86%) | last=15.1s | status=success
+10:15:48  INFO     [qwen2.5_3b][code_generation] 370/421 (88%) | last=14.1s | status=success
+10:18:20  INFO     [qwen2.5_3b][code_generation] 380/421 (90%) | last=13.2s | status=success
+10:20:39  INFO     [qwen2.5_3b][code_generation] 390/421 (93%) | last=8.6s | status=success
+10:22:52  INFO     [qwen2.5_3b][code_generation] 400/421 (95%) | last=6.7s | status=success
+10:25:03  INFO     [qwen2.5_3b][code_generation] 410/421 (97%) | last=16.5s | status=success
+10:27:42  INFO     [qwen2.5_3b][code_generation] 420/421 (100%) | last=11.1s | status=success
+10:28:02  INFO     [qwen2.5_3b][code_generation] 421/421 (100%) | last=19.3s | status=success
+10:28:02  INFO     [qwen2.5_3b][instruction_following] Starting — 500 remaining / 500 total (skipped 0 no-prompt rows)
+10:32:08  INFO     [qwen2.5_3b][instruction_following] 10/500 (2%) | last=26.5s | status=success
+10:35:25  INFO     [qwen2.5_3b][instruction_following] 20/500 (4%) | last=29.9s | status=success
+10:38:14  INFO     [qwen2.5_3b][instruction_following] 30/500 (6%) | last=26.0s | status=success
+10:41:33  INFO     [qwen2.5_3b][instruction_following] 40/500 (8%) | last=10.3s | status=success
+10:45:10  INFO     [qwen2.5_3b][instruction_following] 50/500 (10%) | last=10.6s | status=success
+10:48:18  INFO     [qwen2.5_3b][instruction_following] 60/500 (12%) | last=16.9s | status=success
+10:52:13  INFO     [qwen2.5_3b][instruction_following] 70/500 (14%) | last=14.3s | status=success
+10:55:32  INFO     [qwen2.5_3b][instruction_following] 80/500 (16%) | last=31.8s | status=success
+10:58:51  INFO     [qwen2.5_3b][instruction_following] 90/500 (18%) | last=19.2s | status=success
+11:02:38  INFO     [qwen2.5_3b][instruction_following] 100/500 (20%) | last=10.6s | status=success
+11:05:15  INFO     [qwen2.5_3b][instruction_following] 110/500 (22%) | last=6.1s | status=success
+11:08:39  INFO     [qwen2.5_3b][instruction_following] 120/500 (24%) | last=10.4s | status=success
+11:12:24  INFO     [qwen2.5_3b][instruction_following] 130/500 (26%) | last=28.2s | status=success
+11:16:04  INFO     [qwen2.5_3b][instruction_following] 140/500 (28%) | last=11.0s | status=success
+11:19:43  INFO     [qwen2.5_3b][instruction_following] 150/500 (30%) | last=29.5s | status=success
+11:23:17  INFO     [qwen2.5_3b][instruction_following] 160/500 (32%) | last=31.3s | status=success
+11:26:48  INFO     [qwen2.5_3b][instruction_following] 170/500 (34%) | last=13.2s | status=success
+11:29:40  INFO     [qwen2.5_3b][instruction_following] 180/500 (36%) | last=15.5s | status=success
+11:33:19  INFO     [qwen2.5_3b][instruction_following] 190/500 (38%) | last=15.2s | status=success
+11:37:22  INFO     [qwen2.5_3b][instruction_following] 200/500 (40%) | last=19.5s | status=success
+11:40:29  INFO     [qwen2.5_3b][instruction_following] 210/500 (42%) | last=6.7s | status=success
+11:44:14  INFO     [qwen2.5_3b][instruction_following] 220/500 (44%) | last=27.6s | status=success
+11:47:55  INFO     [qwen2.5_3b][instruction_following] 230/500 (46%) | last=27.5s | status=success
+11:52:01  INFO     [qwen2.5_3b][instruction_following] 240/500 (48%) | last=28.6s | status=success
+11:55:22  INFO     [qwen2.5_3b][instruction_following] 250/500 (50%) | last=17.7s | status=success
+11:57:07  INFO     [qwen2.5_3b][instruction_following] 260/500 (52%) | last=8.7s | status=success
+11:59:23  INFO     [qwen2.5_3b][instruction_following] 270/500 (54%) | last=7.5s | status=success
+12:02:58  INFO     [qwen2.5_3b][instruction_following] 280/500 (56%) | last=28.9s | status=success
+12:05:03  INFO     [qwen2.5_3b][instruction_following] 290/500 (58%) | last=4.1s | status=success
+12:07:30  INFO     [qwen2.5_3b][instruction_following] 300/500 (60%) | last=6.1s | status=success
+12:09:57  INFO     [qwen2.5_3b][instruction_following] 310/500 (62%) | last=26.9s | status=success
+12:12:42  INFO     [qwen2.5_3b][instruction_following] 320/500 (64%) | last=5.6s | status=success
+12:15:32  INFO     [qwen2.5_3b][instruction_following] 330/500 (66%) | last=9.7s | status=success
+12:18:52  INFO     [qwen2.5_3b][instruction_following] 340/500 (68%) | last=23.9s | status=success
+12:24:33  INFO     [qwen2.5_3b][instruction_following] 350/500 (70%) | last=43.1s | status=success
+12:31:55  INFO     [qwen2.5_3b][instruction_following] 360/500 (72%) | last=10.7s | status=success
+12:37:21  INFO     [qwen2.5_3b][instruction_following] 370/500 (74%) | last=13.8s | status=success
+12:44:02  INFO     [qwen2.5_3b][instruction_following] 380/500 (76%) | last=70.7s | status=success
+12:50:08  INFO     [qwen2.5_3b][instruction_following] 390/500 (78%) | last=72.2s | status=success
+12:55:58  INFO     [qwen2.5_3b][instruction_following] 400/500 (80%) | last=11.4s | status=success
+13:00:10  INFO     [qwen2.5_3b][instruction_following] 410/500 (82%) | last=34.1s | status=success
+13:07:12  INFO     [qwen2.5_3b][instruction_following] 420/500 (84%) | last=81.5s | status=success
+13:11:24  INFO     [qwen2.5_3b][instruction_following] 430/500 (86%) | last=56.1s | status=success
+13:17:46  INFO     [qwen2.5_3b][instruction_following] 440/500 (88%) | last=20.1s | status=success
+13:25:18  INFO     [qwen2.5_3b][instruction_following] 450/500 (90%) | last=73.1s | status=success
+13:31:31  INFO     [qwen2.5_3b][instruction_following] 460/500 (92%) | last=76.2s | status=success
+13:42:32  INFO     [qwen2.5_3b][instruction_following] 470/500 (94%) | last=94.0s | status=success
+13:46:59  INFO     [qwen2.5_3b][instruction_following] 480/500 (96%) | last=19.2s | status=success
+13:49:31  INFO     [qwen2.5_3b][instruction_following] 490/500 (98%) | last=16.2s | status=success
+13:51:57  INFO     [qwen2.5_3b][instruction_following] 500/500 (100%) | last=18.0s | status=success
+13:51:57  INFO     [qwen2.5_3b][information_extraction] Starting — 250 remaining / 250 total (skipped 0 no-prompt rows)
+13:52:46  INFO     [qwen2.5_3b][information_extraction] 10/250 (4%) | last=5.1s | status=success
+13:53:39  INFO     [qwen2.5_3b][information_extraction] 20/250 (8%) | last=4.3s | status=success
+13:54:24  INFO     [qwen2.5_3b][information_extraction] 30/250 (12%) | last=2.3s | status=success
+13:55:14  INFO     [qwen2.5_3b][information_extraction] 40/250 (16%) | last=5.3s | status=success
+13:56:04  INFO     [qwen2.5_3b][information_extraction] 50/250 (20%) | last=6.0s | status=success
+13:56:52  INFO     [qwen2.5_3b][information_extraction] 60/250 (24%) | last=3.8s | status=success
+13:57:42  INFO     [qwen2.5_3b][information_extraction] 70/250 (28%) | last=6.8s | status=success
+13:58:29  INFO     [qwen2.5_3b][information_extraction] 80/250 (32%) | last=4.5s | status=success
+13:59:25  INFO     [qwen2.5_3b][information_extraction] 90/250 (36%) | last=6.6s | status=success
+14:00:13  INFO     [qwen2.5_3b][information_extraction] 100/250 (40%) | last=5.0s | status=success
+14:01:19  INFO     [qwen2.5_3b][information_extraction] 110/250 (44%) | last=5.5s | status=success
+14:05:08  INFO     [qwen2.5_3b][information_extraction] 120/250 (48%) | last=8.2s | status=success
+14:35:08  INFO     [qwen2.5_3b][information_extraction] 130/250 (52%) | last=7.7s | status=success
+14:36:56  INFO     [qwen2.5_3b][information_extraction] 140/250 (56%) | last=7.9s | status=success
+14:38:30  INFO     [qwen2.5_3b][information_extraction] 150/250 (60%) | last=9.4s | status=success
+14:39:52  INFO     [qwen2.5_3b][information_extraction] 160/250 (64%) | last=8.4s | status=success
+14:41:13  INFO     [qwen2.5_3b][information_extraction] 170/250 (68%) | last=8.4s | status=success
+14:44:16  INFO     [qwen2.5_3b][information_extraction] 180/250 (72%) | last=10.6s | status=success
+14:45:44  INFO     [qwen2.5_3b][information_extraction] 190/250 (76%) | last=10.1s | status=success
+14:47:22  INFO     [qwen2.5_3b][information_extraction] 200/250 (80%) | last=10.9s | status=success
+14:48:43  INFO     [qwen2.5_3b][information_extraction] 210/250 (84%) | last=8.9s | status=success
+14:50:14  INFO     [qwen2.5_3b][information_extraction] 220/250 (88%) | last=14.9s | status=success
+14:51:51  INFO     [qwen2.5_3b][information_extraction] 230/250 (92%) | last=9.5s | status=success
+14:53:17  INFO     [qwen2.5_3b][information_extraction] 240/250 (96%) | last=6.1s | status=success
+14:54:52  INFO     [qwen2.5_3b][information_extraction] 250/250 (100%) | last=7.4s | status=success
+14:54:52  INFO     [qwen2.5_3b][retrieval_grounded] Starting — 500 remaining / 500 total (skipped 0 no-prompt rows)
+14:56:59  INFO     [qwen2.5_3b][retrieval_grounded] 10/500 (2%) | last=13.9s | status=success
+14:58:56  INFO     [qwen2.5_3b][retrieval_grounded] 20/500 (4%) | last=9.4s | status=success
+15:01:48  INFO     [qwen2.5_3b][retrieval_grounded] 30/500 (6%) | last=6.6s | status=success
+15:04:05  INFO     [qwen2.5_3b][retrieval_grounded] 40/500 (8%) | last=12.4s | status=success
+15:06:17  INFO     [qwen2.5_3b][retrieval_grounded] 50/500 (10%) | last=7.3s | status=success
+15:11:49  INFO     [qwen2.5_3b][retrieval_grounded] 60/500 (12%) | last=18.6s | status=success
+15:15:17  INFO     [qwen2.5_3b][retrieval_grounded] 70/500 (14%) | last=19.8s | status=success
+15:17:37  INFO     [qwen2.5_3b][retrieval_grounded] 80/500 (16%) | last=11.4s | status=success
+15:25:08  INFO     [qwen2.5_3b][retrieval_grounded] 90/500 (18%) | last=167.8s | status=success
+15:27:53  INFO     [qwen2.5_3b][retrieval_grounded] 100/500 (20%) | last=11.5s | status=success
+15:30:13  INFO     [qwen2.5_3b][retrieval_grounded] 110/500 (22%) | last=5.0s | status=success
+15:31:57  INFO     [qwen2.5_3b][retrieval_grounded] 120/500 (24%) | last=6.0s | status=success
+15:33:20  INFO     [qwen2.5_3b][retrieval_grounded] 130/500 (26%) | last=6.8s | status=success
+15:34:36  INFO     [qwen2.5_3b][retrieval_grounded] 140/500 (28%) | last=10.2s | status=success
+15:35:52  INFO     [qwen2.5_3b][retrieval_grounded] 150/500 (30%) | last=6.0s | status=success
+15:37:16  INFO     [qwen2.5_3b][retrieval_grounded] 160/500 (32%) | last=6.0s | status=success
+15:38:31  INFO     [qwen2.5_3b][retrieval_grounded] 170/500 (34%) | last=4.5s | status=success
+15:39:40  INFO     [qwen2.5_3b][retrieval_grounded] 180/500 (36%) | last=6.4s | status=success
+15:40:56  INFO     [qwen2.5_3b][retrieval_grounded] 190/500 (38%) | last=8.9s | status=success
+15:42:10  INFO     [qwen2.5_3b][retrieval_grounded] 200/500 (40%) | last=8.0s | status=success
+15:43:47  INFO     [qwen2.5_3b][retrieval_grounded] 210/500 (42%) | last=12.4s | status=success
+15:44:51  INFO     [qwen2.5_3b][retrieval_grounded] 220/500 (44%) | last=7.5s | status=success
+15:46:05  INFO     [qwen2.5_3b][retrieval_grounded] 230/500 (46%) | last=9.6s | status=success
+15:47:05  INFO     [qwen2.5_3b][retrieval_grounded] 240/500 (48%) | last=3.9s | status=success
+15:48:48  INFO     [qwen2.5_3b][retrieval_grounded] 250/500 (50%) | last=19.6s | status=success
+15:49:58  INFO     [qwen2.5_3b][retrieval_grounded] 260/500 (52%) | last=12.6s | status=success
+15:51:23  INFO     [qwen2.5_3b][retrieval_grounded] 270/500 (54%) | last=8.7s | status=success
+15:52:26  INFO     [qwen2.5_3b][retrieval_grounded] 280/500 (56%) | last=5.2s | status=success
+15:53:20  INFO     [qwen2.5_3b][retrieval_grounded] 290/500 (58%) | last=6.5s | status=success
+15:54:25  INFO     [qwen2.5_3b][retrieval_grounded] 300/500 (60%) | last=5.6s | status=success
+15:55:28  INFO     [qwen2.5_3b][retrieval_grounded] 310/500 (62%) | last=5.3s | status=success
+15:56:39  INFO     [qwen2.5_3b][retrieval_grounded] 320/500 (64%) | last=7.7s | status=success
+15:57:38  INFO     [qwen2.5_3b][retrieval_grounded] 330/500 (66%) | last=5.8s | status=success
+16:22:51  INFO     [qwen2.5_3b][retrieval_grounded] 340/500 (68%) | last=7.9s | status=success
+16:23:59  INFO     [qwen2.5_3b][retrieval_grounded] 350/500 (70%) | last=3.1s | status=success
+16:28:45  INFO     [qwen2.5_3b][retrieval_grounded] 360/500 (72%) | last=16.8s | status=success
+16:31:15  INFO     [qwen2.5_3b][retrieval_grounded] 370/500 (74%) | last=15.6s | status=success
+16:32:58  INFO     [qwen2.5_3b][retrieval_grounded] 380/500 (76%) | last=9.2s | status=success
+16:35:39  INFO     [qwen2.5_3b][retrieval_grounded] 390/500 (78%) | last=6.2s | status=success
+16:38:18  INFO     [qwen2.5_3b][retrieval_grounded] 400/500 (80%) | last=7.5s | status=success
+16:40:44  INFO     [qwen2.5_3b][retrieval_grounded] 410/500 (82%) | last=52.8s | status=success
+16:43:28  INFO     [qwen2.5_3b][retrieval_grounded] 420/500 (84%) | last=24.1s | status=success
+16:46:03  INFO     [qwen2.5_3b][retrieval_grounded] 430/500 (86%) | last=6.0s | status=success
+16:48:16  INFO     [qwen2.5_3b][retrieval_grounded] 440/500 (88%) | last=6.0s | status=success
+16:50:18  INFO     [qwen2.5_3b][retrieval_grounded] 450/500 (90%) | last=6.4s | status=success
+16:52:50  INFO     [qwen2.5_3b][retrieval_grounded] 460/500 (92%) | last=9.8s | status=success
+16:54:53  INFO     [qwen2.5_3b][retrieval_grounded] 470/500 (94%) | last=11.9s | status=success
+16:56:40  INFO     [qwen2.5_3b][retrieval_grounded] 480/500 (96%) | last=7.0s | status=success
+16:58:26  INFO     [qwen2.5_3b][retrieval_grounded] 490/500 (98%) | last=11.7s | status=success
+17:00:36  INFO     [qwen2.5_3b][retrieval_grounded] 500/500 (100%) | last=17.0s | status=success
+17:00:36  INFO     [qwen2.5_3b][summarization] Starting — 400 remaining / 400 total (skipped 0 no-prompt rows)
+17:03:47  INFO     [qwen2.5_3b][summarization] 10/400 (2%) | last=11.3s | status=success
+17:06:20  INFO     [qwen2.5_3b][summarization] 20/400 (5%) | last=13.7s | status=success
+17:08:57  INFO     [qwen2.5_3b][summarization] 30/400 (8%) | last=7.4s | status=success
+17:11:45  INFO     [qwen2.5_3b][summarization] 40/400 (10%) | last=22.4s | status=success
+17:14:23  INFO     [qwen2.5_3b][summarization] 50/400 (12%) | last=15.7s | status=success
+17:17:14  INFO     [qwen2.5_3b][summarization] 60/400 (15%) | last=10.8s | status=success
+17:19:39  INFO     [qwen2.5_3b][summarization] 70/400 (18%) | last=16.5s | status=success
+17:22:31  INFO     [qwen2.5_3b][summarization] 80/400 (20%) | last=20.6s | status=success
+17:24:57  INFO     [qwen2.5_3b][summarization] 90/400 (22%) | last=14.4s | status=success
+17:27:26  INFO     [qwen2.5_3b][summarization] 100/400 (25%) | last=15.3s | status=success
+17:30:40  INFO     [qwen2.5_3b][summarization] 110/400 (28%) | last=25.5s | status=success
+17:33:41  INFO     [qwen2.5_3b][summarization] 120/400 (30%) | last=21.1s | status=success
+17:36:37  INFO     [qwen2.5_3b][summarization] 130/400 (32%) | last=15.5s | status=success
+17:39:42  INFO     [qwen2.5_3b][summarization] 140/400 (35%) | last=7.4s | status=success
+17:42:55  INFO     [qwen2.5_3b][summarization] 150/400 (38%) | last=24.2s | status=success
+17:46:06  INFO     [qwen2.5_3b][summarization] 160/400 (40%) | last=16.4s | status=success
+17:48:57  INFO     [qwen2.5_3b][summarization] 170/400 (42%) | last=11.9s | status=success
+17:52:17  INFO     [qwen2.5_3b][summarization] 180/400 (45%) | last=25.2s | status=success
+17:55:35  INFO     [qwen2.5_3b][summarization] 190/400 (48%) | last=22.7s | status=success
+17:58:33  INFO     [qwen2.5_3b][summarization] 200/400 (50%) | last=20.0s | status=success
+18:01:34  INFO     [qwen2.5_3b][summarization] 210/400 (52%) | last=13.5s | status=success
+18:04:31  INFO     [qwen2.5_3b][summarization] 220/400 (55%) | last=18.3s | status=success
+18:07:21  INFO     [qwen2.5_3b][summarization] 230/400 (58%) | last=21.7s | status=success
+18:10:06  INFO     [qwen2.5_3b][summarization] 240/400 (60%) | last=14.4s | status=success
+18:13:19  INFO     [qwen2.5_3b][summarization] 250/400 (62%) | last=23.1s | status=success
+18:16:39  INFO     [qwen2.5_3b][summarization] 260/400 (65%) | last=29.7s | status=success
+18:19:49  INFO     [qwen2.5_3b][summarization] 270/400 (68%) | last=16.3s | status=success
+18:22:57  INFO     [qwen2.5_3b][summarization] 280/400 (70%) | last=11.7s | status=success
+18:25:57  INFO     [qwen2.5_3b][summarization] 290/400 (72%) | last=18.3s | status=success
+18:28:53  INFO     [qwen2.5_3b][summarization] 300/400 (75%) | last=17.0s | status=success

@@ -2,7 +2,9 @@
 
 ## 1) Data Ingestion
 
-- Inputs: `model_runs/<task>/<model>/outputs.jsonl`
+- Inputs:
+  - Preferred: `model_runs/<task>/<model>/outputs_train.jsonl|outputs_val.jsonl|outputs_test.jsonl`
+  - Legacy fallback: `model_runs/<task>/<model>/outputs.jsonl`
 - Ground truth: `data/ground_truth/<task>.jsonl|json`
 - Rows are deduped by `sample_id` and aligned across models.
 
