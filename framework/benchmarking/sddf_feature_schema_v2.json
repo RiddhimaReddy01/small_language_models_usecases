@@ -1,0 +1,101 @@
+{
+  "classification": [
+    "token_count",
+    "type_token_ratio",
+    "avg_word_length",
+    "sentence_count",
+    "flesch_kincaid_grade",
+    "gunning_fog",
+    "stopword_ratio",
+    "dep_tree_depth_mean",
+    "entity_density",
+    "negation_count",
+    "sentiment_lexicon_score"
+  ],
+  "code_generation": [
+    "token_count",
+    "type_token_ratio",
+    "avg_word_length",
+    "code_symbol_density",
+    "digit_ratio",
+    "algorithm_keyword_density",
+    "constraint_keyword_density",
+    "modal_verb_ratio",
+    "flesch_kincaid_grade",
+    "gunning_fog",
+    "embedding_query_context_cosine"
+  ],
+  "information_extraction": [
+    "token_count",
+    "avg_sentence_length",
+    "entity_count",
+    "entity_type_count",
+    "entity_density",
+    "noun_ratio",
+    "relation_keyword_density",
+    "slot_marker_density",
+    "bm25_query_context_max",
+    "embedding_query_context_cosine"
+  ],
+  "instruction_following": [
+    "token_count",
+    "sentence_count",
+    "avg_sentence_length",
+    "imperative_root_ratio",
+    "modal_verb_ratio",
+    "format_keyword_density",
+    "constraint_keyword_density",
+    "list_marker_density",
+    "step_marker_density",
+    "flesch_kincaid_grade",
+    "embedding_query_context_cosine"
+  ],
+  "maths": [
+    "token_count",
+    "avg_sentence_length",
+    "digit_ratio",
+    "math_symbol_density",
+    "equation_marker_density",
+    "quantity_mention_density",
+    "constraint_keyword_density",
+    "flesch_kincaid_grade",
+    "gunning_fog",
+    "embedding_query_context_cosine"
+  ],
+  "retrieval_grounded": [
+    "context_token_count",
+    "query_token_count",
+    "context_query_overlap_ratio",
+    "bm25_query_context_max",
+    "bm25_query_context_mean",
+    "embedding_query_context_cosine",
+    "entity_density",
+    "flesch_kincaid_grade",
+    "question_mark_density",
+    "citation_marker_density"
+  ],
+  "summarization": [
+    "source_token_count",
+    "query_token_count",
+    "compression_ratio_proxy",
+    "summary_instruction_density",
+    "entity_density",
+    "discourse_marker_density",
+    "flesch_kincaid_grade",
+    "gunning_fog",
+    "bm25_query_context_max",
+    "embedding_query_context_cosine"
+  ],
+  "text_generation": [
+    "token_count",
+    "type_token_ratio",
+    "avg_word_length",
+    "creativity_keyword_density",
+    "constraint_keyword_density",
+    "topic_keyword_density",
+    "entity_density",
+    "flesch_kincaid_grade",
+    "gunning_fog",
+    "embedding_query_context_cosine"
+  ]
+}
