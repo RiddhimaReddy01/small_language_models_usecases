@@ -38,10 +38,10 @@ C_MIN, C_MAX = 0.0, 1.0
 R_MIN, R_MAX = 0.0, 1.0
 CAPABILITY_MARGIN = 0.05
 RISK_MARGIN = 0.05
-FALLBACK_LAMBDA = 0.2  # Regularization penalty on tau in fallback objective
-                       # Balance: lambda=0 (pure violation minimization, drifts to tau=1)
-                       #          lambda=0.2 (moderate selectivity)
-                       #          lambda=1.0 (aggressive selectivity)
+FALLBACK_LAMBDA_BASE = 0.5   # Coefficient for std(violations) term (data-dependent)
+FALLBACK_LAMBDA_ALPHA = 0.5  # Coefficient for absolute threshold penalty (stronger)
+                              # Objective: V(τ) + λ_base*std(V) + α*τ
+                              # Note: α is primary driver when violations saturate (std~0)
 
 
 def _read_jsonl(path: Path) -> list[dict[str, Any]]:
@@ -163,11 +163,15 @@ def compute_continuous_validation(val_path: Path, task: str, model: str) -> dict
         tau_star = max(feasible_set)
         tau_source = "strict_feasible_max"
     else:
-        # Fallback: minimize combined violation + regularized threshold
-        # Objective: violation + lambda * tau
-        # Interpretation: prefer smaller tau (more selective routing) when constraints can't be met
-        best_objective = float('inf')
-        tau_star = None
+        # Fallback: minimize combined violation + normalized + absolute threshold penalties
+        # Objective: V(τ) + λ_base*std(V) + α*τ
+        # Interpretation:
+        #   - λ_base*std(V): penalty scales with violation variance (data-dependent)
+        #   - α*τ: absolute penalty on threshold size (encourages selectivity)
+
+        # First pass: compute all violations to get std
+        violations_list = []
+        tau_violation_map = {}
 
         for tau in capability_curve.keys():
             cap_tau = capability_curve[tau]
@@ -177,14 +181,30 @@ def compute_continuous_validation(val_path: Path, task: str, model: str) -> dict
             risk_violation = max(0.0, risk_tau - r_dyn)
             violation = cap_violation + risk_violation
 
-            # Objective includes violation + penalty on threshold size
-            objective = violation + FALLBACK_LAMBDA * tau
+            violations_list.append(violation)
+            tau_violation_map[tau] = violation
+
+        # Compute standard deviation of violations
+        violations_array = np.array(violations_list)
+        violation_std = float(np.std(violations_array)) if len(violations_list) > 1 else 0.0
+
+        # Second pass: select tau with two-term regularization
+        best_objective = float('inf')
+        tau_star = None
+
+        for tau in capability_curve.keys():
+            violation = tau_violation_map[tau]
+
+            # Two-term penalty:
+            # 1. Scaled to violation variance: λ_base * std(V)
+            # 2. Absolute threshold cost: α * τ
+            objective = violation + FALLBACK_LAMBDA_BASE * violation_std + FALLBACK_LAMBDA_ALPHA * tau
 
             if objective < best_objective:
                 best_objective = objective
                 tau_star = tau
 
-        tau_source = "fallback_min_violation_regularized"
+        tau_source = "fallback_min_violation_robust"
 
     # =========================================================================
     # STEP 6: Compute derived metrics
