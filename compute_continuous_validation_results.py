@@ -38,6 +38,10 @@ C_MIN, C_MAX = 0.0, 1.0
 R_MIN, R_MAX = 0.0, 1.0
 CAPABILITY_MARGIN = 0.05
 RISK_MARGIN = 0.05
+FALLBACK_LAMBDA = 0.2  # Regularization penalty on tau in fallback objective
+                       # Balance: lambda=0 (pure violation minimization, drifts to tau=1)
+                       #          lambda=0.2 (moderate selectivity)
+                       #          lambda=1.0 (aggressive selectivity)
 
 
 def _read_jsonl(path: Path) -> list[dict[str, Any]]:
@@ -159,8 +163,10 @@ def compute_continuous_validation(val_path: Path, task: str, model: str) -> dict
         tau_star = max(feasible_set)
         tau_source = "strict_feasible_max"
     else:
-        # Fallback: minimize combined violation
-        best_violation = float('inf')
+        # Fallback: minimize combined violation + regularized threshold
+        # Objective: violation + lambda * tau
+        # Interpretation: prefer smaller tau (more selective routing) when constraints can't be met
+        best_objective = float('inf')
         tau_star = None
 
         for tau in capability_curve.keys():
@@ -171,11 +177,14 @@ def compute_continuous_validation(val_path: Path, task: str, model: str) -> dict
             risk_violation = max(0.0, risk_tau - r_dyn)
             violation = cap_violation + risk_violation
 
-            if violation < best_violation:
-                best_violation = violation
+            # Objective includes violation + penalty on threshold size
+            objective = violation + FALLBACK_LAMBDA * tau
+
+            if objective < best_objective:
+                best_objective = objective
                 tau_star = tau
 
-        tau_source = "fallback_min_violation"
+        tau_source = "fallback_min_violation_regularized"
 
     # =========================================================================
     # STEP 6: Compute derived metrics
@@ -281,7 +290,7 @@ def main() -> None:
 
     if all_results:
         strict_count = sum(1 for r in all_results if r.get("tau_source") == "strict_feasible_max")
-        fallback_count = sum(1 for r in all_results if r.get("tau_source") == "fallback_min_violation")
+        fallback_count = sum(1 for r in all_results if "fallback" in r.get("tau_source", ""))
 
         mean_tau = np.mean([r["tau_star"] for r in all_results if r["tau_star"] is not None])
         mean_coverage = np.mean([r["coverage"] for r in all_results])
@@ -320,7 +329,7 @@ def main() -> None:
             continue
 
         strict = sum(1 for r in task_results if r.get("tau_source") == "strict_feasible_max")
-        fallback = sum(1 for r in task_results if r.get("tau_source") == "fallback_min_violation")
+        fallback = sum(1 for r in task_results if "fallback" in r.get("tau_source", ""))
         mean_tau = np.mean([r["tau_star"] for r in task_results if r["tau_star"] is not None])
         mean_cov = np.mean([r["coverage"] for r in task_results])
         mean_cap = np.mean([r["selected_capability"] for r in task_results])
