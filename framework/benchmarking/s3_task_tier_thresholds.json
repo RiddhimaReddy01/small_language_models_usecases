@@ -1,0 +1,19 @@
+{
+  "*": {
+    "tau1": 3.2,
+    "tau2": 4.0
+  },
+  "code_generation": {
+    "tau1": 2.4,
+    "tau2": 3.2
+  },
+  "maths": {
+    "tau1": 2.5,
+    "tau2": 3.3
+  },
+  "retrieval_grounded": {
+    "tau1": 2.6,
+    "tau2": 3.4
+  }
+}
+

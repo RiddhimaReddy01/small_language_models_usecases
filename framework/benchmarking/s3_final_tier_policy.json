@@ -1,0 +1,11 @@
+{
+  "classification": "hybrid",
+  "code_generation": "hybrid",
+  "information_extraction": "hybrid",
+  "instruction_following": "hybrid",
+  "maths": "hybrid",
+  "retrieval_grounded": "hybrid",
+  "summarization": "llm_only",
+  "text_generation": "llm_only"
+}
+

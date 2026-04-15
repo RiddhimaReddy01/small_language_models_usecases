@@ -1,0 +1,64 @@
+{
+  "classification": {
+    "prompt": "Classify customer support messages into billing, technical, account, or spam.",
+    "expected_format": "json",
+    "data_classification": "internal",
+    "target_p99_ms": 800,
+    "qps": 120.0
+  },
+  "code_generation": {
+    "prompt": "Generate production-safe Python code from specification with testable output and edge-case handling.",
+    "expected_format": "markdown code block",
+    "business_critical": true,
+    "data_classification": "confidential",
+    "target_p99_ms": 1800,
+    "qps": 12.0
+  },
+  "information_extraction": {
+    "prompt": "Extract fields from contracts and invoices into strict schema with source snippets.",
+    "expected_format": "json schema",
+    "data_classification": "confidential",
+    "contains_pii": true,
+    "target_p99_ms": 1200,
+    "qps": 30.0
+  },
+  "instruction_following": {
+    "prompt": "Follow enterprise policy instructions exactly and return output in constrained format.",
+    "expected_format": "yaml",
+    "data_classification": "internal",
+    "target_p99_ms": 1000,
+    "qps": 25.0
+  },
+  "maths": {
+    "prompt": "Solve multi-step quantitative reasoning problems with equations and exact numeric output.",
+    "expected_format": "json",
+    "business_critical": true,
+    "data_classification": "internal",
+    "target_p99_ms": 1500,
+    "qps": 15.0
+  },
+  "retrieval_grounded": {
+    "prompt": "Answer questions using provided sources only, with citations and no unsupported claims.",
+    "expected_format": "json with citations",
+    "business_critical": true,
+    "data_classification": "confidential",
+    "contains_pii": false,
+    "target_p99_ms": 1400,
+    "qps": 40.0
+  },
+  "summarization": {
+    "prompt": "Summarize long reports into concise executive bullet points while preserving factual details.",
+    "expected_format": "bulleted markdown",
+    "data_classification": "internal",
+    "target_p99_ms": 1200,
+    "qps": 35.0
+  },
+  "text_generation": {
+    "prompt": "Generate policy-compliant customer-facing responses with clear tone and action steps.",
+    "expected_format": "plain text",
+    "data_classification": "internal",
+    "target_p99_ms": 900,
+    "qps": 60.0
+  }
+}
+

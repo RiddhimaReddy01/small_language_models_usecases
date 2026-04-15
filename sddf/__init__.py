@@ -9,6 +9,24 @@ from .difficulty import (
     make_difficulty_bins,
 )
 from .difficulty_weights import DifficultyWeightLearner
+from .s3_config_builder import (
+    DEFAULT_S3_WEIGHTS,
+    build_s3_task_config,
+    build_task_scores,
+    normalize_weights,
+)
+from .s3_feature_scoring import (
+    S3ScoringInput,
+    score_data_sensitivity,
+    score_latency_tolerance,
+    score_output_structure,
+    score_s3_dimensions,
+    score_stakes,
+    score_task_complexity,
+    score_volume_load,
+)
+from .s3_policy_update import recommend_s3_score_overrides, recommend_task_tier_thresholds
+from .s3_runtime_policy import enforce_runtime_policy
 
 __all__ = [
     "annotate_dominant_dimension",
@@ -20,4 +38,19 @@ __all__ = [
     "compute_parametric_dependence",
     "compute_dependency_distance",
     "DifficultyWeightLearner",
+    "S3ScoringInput",
+    "score_task_complexity",
+    "score_output_structure",
+    "score_stakes",
+    "score_data_sensitivity",
+    "score_latency_tolerance",
+    "score_volume_load",
+    "score_s3_dimensions",
+    "DEFAULT_S3_WEIGHTS",
+    "normalize_weights",
+    "build_task_scores",
+    "build_s3_task_config",
+    "enforce_runtime_policy",
+    "recommend_task_tier_thresholds",
+    "recommend_s3_score_overrides",
 ]

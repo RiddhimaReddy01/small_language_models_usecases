@@ -40,6 +40,58 @@ def _default_scores_for_task(task_scores: dict[str, Any], task: str) -> dict[str
     raise ValueError(f"Missing S3 scores for task '{task}' and no '*' default provided")
 
 
+def _thresholds_for_task(
+    task_thresholds: dict[str, Any],
+    task: str,
+    default_tau1: float,
+    default_tau2: float,
+) -> tuple[float, float]:
+    if not task_thresholds:
+        return float(default_tau1), float(default_tau2)
+    block = task_thresholds.get(task, task_thresholds.get("*", {}))
+    if not isinstance(block, dict):
+        return float(default_tau1), float(default_tau2)
+    tau1 = float(block.get("tau1", default_tau1))
+    tau2 = float(block.get("tau2", default_tau2))
+    if tau2 < tau1:
+        raise ValueError(f"Invalid task thresholds for '{task}': tau2 ({tau2}) < tau1 ({tau1})")
+    return tau1, tau2
+
+
+_TIER_RANK: dict[str, int] = {
+    "pure_slm": 0,
+    "hybrid": 1,
+    "llm_only": 2,
+    "disqualified": 3,
+}
+
+
+def _apply_final_tier_policy(task: str, decision: dict[str, Any], policy: dict[str, Any]) -> dict[str, Any]:
+    if not policy:
+        return decision
+    requested = policy.get(task, policy.get("*", None))
+    if requested is None:
+        return decision
+    requested_tier = str(requested).strip()
+    if requested_tier not in _TIER_RANK:
+        raise ValueError(f"Invalid policy tier for task '{task}': {requested_tier!r}")
+
+    current_final = str(decision.get("final_tier", decision.get("tier", "pure_slm")))
+    if current_final not in _TIER_RANK:
+        current_final = "pure_slm"
+    applied = requested_tier if _TIER_RANK[requested_tier] >= _TIER_RANK[current_final] else current_final
+
+    out = dict(decision)
+    out["policy_tier_requested"] = requested_tier
+    out["policy_tier_applied"] = applied
+    if applied != current_final:
+        out["final_tier"] = applied
+        out["tier"] = applied
+        reason = str(out.get("gate_reason", "Gate pass"))
+        out["gate_reason"] = f"{reason} | Policy Tier Override: {current_final} -> {applied}"
+    return out
+
+
 def main() -> int:
     parser = argparse.ArgumentParser(description="Bridge S3 top-down tiering with SDDF tau limits.")
     parser.add_argument(
@@ -69,6 +121,16 @@ def main() -> int:
     )
     parser.add_argument("--tau1", type=float, default=3.2)
     parser.add_argument("--tau2", type=float, default=4.0)
+    parser.add_argument(
+        "--task-tier-thresholds",
+        default="",
+        help="Optional JSON mapping task-> {tau1,tau2}. Supports '*' default.",
+    )
+    parser.add_argument(
+        "--final-tier-policy",
+        default="",
+        help="Optional JSON mapping task->final_tier. Stricter-only override; supports '*' default.",
+    )
     args = parser.parse_args()
 
     s3_cfg = _load_json(Path(args.s3_config).resolve())
@@ -78,6 +140,14 @@ def main() -> int:
     overrides: dict[str, Any] = {}
     if str(args.tau_overrides).strip():
         overrides = _load_json(Path(args.tau_overrides).resolve())
+
+    task_tier_thresholds: dict[str, Any] = {}
+    if str(args.task_tier_thresholds).strip():
+        task_tier_thresholds = _load_json(Path(args.task_tier_thresholds).resolve())
+
+    final_tier_policy: dict[str, Any] = {}
+    if str(args.final_tier_policy).strip():
+        final_tier_policy = _load_json(Path(args.final_tier_policy).resolve())
 
     val_report_map: dict[tuple[str, str, int], dict[str, Any]] = {}
     val_report_path = Path(args.val_report_path).resolve()
@@ -103,15 +173,22 @@ def main() -> int:
         tau_risk_src = vr.get("tau_risk", None)
         tau_cap = float(tau_cap_src) if tau_cap_src is not None else float(ov.get("tau_cap", tau))
         tau_risk = float(tau_risk_src) if tau_risk_src is not None else float(ov.get("tau_risk", tau))
+        tau1_used, tau2_used = _thresholds_for_task(
+            task_thresholds=task_tier_thresholds,
+            task=task,
+            default_tau1=float(args.tau1),
+            default_tau2=float(args.tau2),
+        )
 
         decision = decide_s3_and_route(
             scores=scores,  # type: ignore[arg-type]
             weights=weights,  # type: ignore[arg-type]
             tau_risk=tau_risk,
             tau_cap=tau_cap,
-            tau1=float(args.tau1),
-            tau2=float(args.tau2),
+            tau1=tau1_used,
+            tau2=tau2_used,
         )
+        decision = _apply_final_tier_policy(task=task, decision=decision, policy=final_tier_policy)
         results.append(
             {
                 "task": task,
@@ -122,6 +199,7 @@ def main() -> int:
                 "tau_cap": tau_cap,
                 "tau_risk": tau_risk,
                 "artifact_tau": tau,
+                "tier_thresholds_used": {"tau1": tau1_used, "tau2": tau2_used},
                 "decision": decision,
             }
         )

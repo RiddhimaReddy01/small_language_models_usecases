@@ -100,19 +100,25 @@ def decide_s3_and_route(
         return {
             "disqualified": True,
             "gate_reason": gate.reason,
+            "gate_min_tier": "disqualified",
+            "formula_tier": "disqualified",
+            "final_tier": "disqualified",
             "tier": "disqualified",
             "s3_score": 5.0,
             "tau_route": -1.0,
         }
 
     s3 = compute_s3_score(scores, weights)
-    tier = tier_from_s3(s3, gate, tau1=tau1, tau2=tau2)
+    formula_tier = tier_from_s3(s3, GateResult(disqualified=False, min_tier=None, reason=gate.reason), tau1=tau1, tau2=tau2)
+    final_tier = tier_from_s3(s3, gate, tau1=tau1, tau2=tau2)
     tau_route = route_limit_from_sddf(tau_risk=tau_risk, tau_cap=tau_cap)
     return {
         "disqualified": False,
         "gate_reason": gate.reason,
-        "tier": tier,
+        "gate_min_tier": str(gate.min_tier) if gate.min_tier is not None else "none",
+        "formula_tier": formula_tier,
+        "final_tier": final_tier,
+        "tier": final_tier,
         "s3_score": s3,
         "tau_route": tau_route,
     }
-
