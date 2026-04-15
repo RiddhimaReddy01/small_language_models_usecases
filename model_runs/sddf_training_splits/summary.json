@@ -1,0 +1,472 @@
+{
+  "seed": "sddf-train-v1",
+  "train_ratio": 0.6,
+  "val_ratio": 0.2,
+  "test_ratio": 0.2,
+  "tasks": {
+    "classification": {
+      "common_query_count": 245,
+      "split_sizes": {
+        "train": 150,
+        "val": 53,
+        "test": 42
+      },
+      "models": {
+        "llama_llama-3.3-70b-versatile": {
+          "rows_after_intersection": 245,
+          "split_sizes": {
+            "train": 150,
+            "val": 53,
+            "test": 42
+          },
+          "train_label_counts": {
+            "fail_0": 98,
+            "fail_1": 52
+          }
+        },
+        "qwen2.5_0.5b": {
+          "rows_after_intersection": 245,
+          "split_sizes": {
+            "train": 150,
+            "val": 53,
+            "test": 42
+          },
+          "train_label_counts": {
+            "fail_0": 58,
+            "fail_1": 92
+          }
+        },
+        "qwen2.5_3b": {
+          "rows_after_intersection": 245,
+          "split_sizes": {
+            "train": 150,
+            "val": 53,
+            "test": 42
+          },
+          "train_label_counts": {
+            "fail_0": 89,
+            "fail_1": 61
+          }
+        },
+        "qwen2.5_7b": {
+          "rows_after_intersection": 245,
+          "split_sizes": {
+            "train": 150,
+            "val": 53,
+            "test": 42
+          },
+          "train_label_counts": {
+            "fail_0": 79,
+            "fail_1": 71
+          }
+        }
+      }
+    },
+    "code_generation": {
+      "common_query_count": 250,
+      "split_sizes": {
+        "train": 147,
+        "val": 49,
+        "test": 54
+      },
+      "models": {
+        "llama_llama-3.3-70b-versatile": {
+          "rows_after_intersection": 250,
+          "split_sizes": {
+            "train": 147,
+            "val": 49,
+            "test": 54
+          },
+          "train_label_counts": {
+            "fail_0": 76,
+            "fail_1": 71
+          }
+        },
+        "qwen2.5_0.5b": {
+          "rows_after_intersection": 250,
+          "split_sizes": {
+            "train": 147,
+            "val": 49,
+            "test": 54
+          },
+          "train_label_counts": {
+            "fail_0": 28,
+            "fail_1": 119
+          }
+        },
+        "qwen2.5_3b": {
+          "rows_after_intersection": 250,
+          "split_sizes": {
+            "train": 147,
+            "val": 49,
+            "test": 54
+          },
+          "train_label_counts": {
+            "fail_0": 71,
+            "fail_1": 76
+          }
+        },
+        "qwen2.5_7b": {
+          "rows_after_intersection": 250,
+          "split_sizes": {
+            "train": 147,
+            "val": 49,
+            "test": 54
+          },
+          "train_label_counts": {
+            "fail_0": 78,
+            "fail_1": 69
+          }
+        }
+      }
+    },
+    "information_extraction": {
+      "common_query_count": 158,
+      "split_sizes": {
+        "train": 87,
+        "val": 36,
+        "test": 35
+      },
+      "models": {
+        "llama_llama-3.3-70b-versatile": {
+          "rows_after_intersection": 158,
+          "split_sizes": {
+            "train": 87,
+            "val": 36,
+            "test": 35
+          },
+          "train_label_counts": {
+            "fail_0": 69,
+            "fail_1": 18
+          }
+        },
+        "qwen2.5_0.5b": {
+          "rows_after_intersection": 158,
+          "split_sizes": {
+            "train": 87,
+            "val": 36,
+            "test": 35
+          },
+          "train_label_counts": {
+            "fail_0": 63,
+            "fail_1": 24
+          }
+        },
+        "qwen2.5_3b": {
+          "rows_after_intersection": 158,
+          "split_sizes": {
+            "train": 87,
+            "val": 36,
+            "test": 35
+          },
+          "train_label_counts": {
+            "fail_0": 59,
+            "fail_1": 28
+          }
+        },
+        "qwen2.5_7b": {
+          "rows_after_intersection": 158,
+          "split_sizes": {
+            "train": 87,
+            "val": 36,
+            "test": 35
+          },
+          "train_label_counts": {
+            "fail_0": 67,
+            "fail_1": 20
+          }
+        }
+      }
+    },
+    "instruction_following": {
+      "common_query_count": 250,
+      "split_sizes": {
+        "train": 146,
+        "val": 50,
+        "test": 54
+      },
+      "models": {
+        "llama_llama-3.3-70b-versatile": {
+          "rows_after_intersection": 250,
+          "split_sizes": {
+            "train": 146,
+            "val": 50,
+            "test": 54
+          },
+          "train_label_counts": {
+            "fail_0": 129,
+            "fail_1": 17
+          }
+        },
+        "qwen2.5_0.5b": {
+          "rows_after_intersection": 250,
+          "split_sizes": {
+            "train": 146,
+            "val": 50,
+            "test": 54
+          },
+          "train_label_counts": {
+            "fail_0": 88,
+            "fail_1": 58
+          }
+        },
+        "qwen2.5_3b": {
+          "rows_after_intersection": 250,
+          "split_sizes": {
+            "train": 146,
+            "val": 50,
+            "test": 54
+          },
+          "train_label_counts": {
+            "fail_0": 117,
+            "fail_1": 29
+          }
+        },
+        "qwen2.5_7b": {
+          "rows_after_intersection": 250,
+          "split_sizes": {
+            "train": 146,
+            "val": 50,
+            "test": 54
+          },
+          "train_label_counts": {
+            "fail_0": 112,
+            "fail_1": 34
+          }
+        }
+      }
+    },
+    "maths": {
+      "common_query_count": 250,
+      "split_sizes": {
+        "train": 152,
+        "val": 44,
+        "test": 54
+      },
+      "models": {
+        "llama_llama-3.3-70b-versatile": {
+          "rows_after_intersection": 250,
+          "split_sizes": {
+            "train": 152,
+            "val": 44,
+            "test": 54
+          },
+          "train_label_counts": {
+            "fail_0": 102,
+            "fail_1": 50
+          }
+        },
+        "qwen2.5_0.5b": {
+          "rows_after_intersection": 250,
+          "split_sizes": {
+            "train": 152,
+            "val": 44,
+            "test": 54
+          },
+          "train_label_counts": {
+            "fail_0": 27,
+            "fail_1": 125
+          }
+        },
+        "qwen2.5_3b": {
+          "rows_after_intersection": 250,
+          "split_sizes": {
+            "train": 152,
+            "val": 44,
+            "test": 54
+          },
+          "train_label_counts": {
+            "fail_0": 86,
+            "fail_1": 66
+          }
+        },
+        "qwen2.5_7b": {
+          "rows_after_intersection": 250,
+          "split_sizes": {
+            "train": 152,
+            "val": 44,
+            "test": 54
+          },
+          "train_label_counts": {
+            "fail_0": 51,
+            "fail_1": 101
+          }
+        }
+      }
+    },
+    "retrieval_grounded": {
+      "common_query_count": 250,
+      "split_sizes": {
+        "train": 145,
+        "val": 42,
+        "test": 63
+      },
+      "models": {
+        "llama_llama-3.3-70b-versatile": {
+          "rows_after_intersection": 250,
+          "split_sizes": {
+            "train": 145,
+            "val": 42,
+            "test": 63
+          },
+          "train_label_counts": {
+            "fail_0": 98,
+            "fail_1": 47
+          }
+        },
+        "qwen2.5_0.5b": {
+          "rows_after_intersection": 250,
+          "split_sizes": {
+            "train": 145,
+            "val": 42,
+            "test": 63
+          },
+          "train_label_counts": {
+            "fail_0": 65,
+            "fail_1": 80
+          }
+        },
+        "qwen2.5_3b": {
+          "rows_after_intersection": 250,
+          "split_sizes": {
+            "train": 145,
+            "val": 42,
+            "test": 63
+          },
+          "train_label_counts": {
+            "fail_0": 87,
+            "fail_1": 58
+          }
+        },
+        "qwen2.5_7b": {
+          "rows_after_intersection": 250,
+          "split_sizes": {
+            "train": 145,
+            "val": 42,
+            "test": 63
+          },
+          "train_label_counts": {
+            "fail_0": 81,
+            "fail_1": 64
+          }
+        }
+      }
+    },
+    "summarization": {
+      "common_query_count": 250,
+      "split_sizes": {
+        "train": 150,
+        "val": 44,
+        "test": 56
+      },
+      "models": {
+        "llama_llama-3.3-70b-versatile": {
+          "rows_after_intersection": 250,
+          "split_sizes": {
+            "train": 150,
+            "val": 44,
+            "test": 56
+          },
+          "train_label_counts": {
+            "fail_0": 108,
+            "fail_1": 42
+          }
+        },
+        "qwen2.5_0.5b": {
+          "rows_after_intersection": 250,
+          "split_sizes": {
+            "train": 150,
+            "val": 44,
+            "test": 56
+          },
+          "train_label_counts": {
+            "fail_0": 101,
+            "fail_1": 49
+          }
+        },
+        "qwen2.5_3b": {
+          "rows_after_intersection": 250,
+          "split_sizes": {
+            "train": 150,
+            "val": 44,
+            "test": 56
+          },
+          "train_label_counts": {
+            "fail_0": 105,
+            "fail_1": 45
+          }
+        },
+        "qwen2.5_7b": {
+          "rows_after_intersection": 250,
+          "split_sizes": {
+            "train": 150,
+            "val": 44,
+            "test": 56
+          },
+          "train_label_counts": {
+            "fail_0": 108,
+            "fail_1": 42
+          }
+        }
+      }
+    },
+    "text_generation": {
+      "common_query_count": 183,
+      "split_sizes": {
+        "train": 120,
+        "val": 39,
+        "test": 24
+      },
+      "models": {
+        "llama_llama-3.3-70b-versatile": {
+          "rows_after_intersection": 183,
+          "split_sizes": {
+            "train": 120,
+            "val": 39,
+            "test": 24
+          },
+          "train_label_counts": {
+            "fail_0": 120,
+            "fail_1": 0
+          }
+        },
+        "qwen2.5_0.5b": {
+          "rows_after_intersection": 183,
+          "split_sizes": {
+            "train": 120,
+            "val": 39,
+            "test": 24
+          },
+          "train_label_counts": {
+            "fail_0": 91,
+            "fail_1": 29
+          }
+        },
+        "qwen2.5_3b": {
+          "rows_after_intersection": 183,
+          "split_sizes": {
+            "train": 120,
+            "val": 39,
+            "test": 24
+          },
+          "train_label_counts": {
+            "fail_0": 105,
+            "fail_1": 15
+          }
+        },
+        "qwen2.5_7b": {
+          "rows_after_intersection": 183,
+          "split_sizes": {
+            "train": 120,
+            "val": 39,
+            "test": 24
+          },
+          "train_label_counts": {
+            "fail_0": 118,
+            "fail_1": 2
+          }
+        }
+      }
+    }
+  }
+}

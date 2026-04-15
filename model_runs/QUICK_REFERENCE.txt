@@ -1,0 +1,62 @@
+================================================================================
+QUICK REFERENCE: Model Comparison Per Task (30+ Sample Minimum)
+================================================================================
+
+Task                  | Samples | Recommended Models        | Success Rates
+                      |         |                           |
+MATHS (BEST)          | 135     | All 4 models              | llama 72.6% > qwen3b 66.7% >> qwen7b 20.7% >> qwen0.5b 0%
+CODE_GENERATION       | 50      | All 4 models              | qwen3b 40% ≈ llama 38% ≈ qwen7b 36% >> qwen0.5b 0%
+CLASSIFICATION        | 120     | llama + qwen3b + qwen7b   | llama 59.2% > qwen3b 55% > qwen7b 47.5%
+TEXT_GENERATION       | 95      | llama + qwen0.5b + qwen7b | llama 100% ≈ qwen7b 97.9% > qwen0.5b 89.5%
+INFORMATION_EXTR.     | 69      | llama + qwen0.5b + qwen7b | llama 75.4% > qwen7b 69.6% > qwen0.5b 60.9%
+RETRIEVAL_GROUNDED    | 146     | llama + qwen0.5b + qwen7b | llama 66.4% > qwen7b 58.9% ≈ qwen0.5b 55.5%
+INSTRUCTION_FOLL.     | 117     | llama vs qwen0.5b only    | llama 85.5% > qwen0.5b 49.6%
+SUMMARIZATION         | 110     | llama vs qwen0.5b only    | llama 70.9% > qwen0.5b 29.1%
+
+
+================================================================================
+SUMMARY
+================================================================================
+
+Total Tasks: 8
+
+Tier 1 (All 4 models):      2 tasks (Maths, Code_generation)
+Tier 2 (3 models):          4 tasks (Classification, Text_gen, Info_extr, Retrieval)
+Tier 3 (2 models):          2 tasks (Instruction_following, Summarization)
+
+Common Samples Available:
+  - 135 samples (Maths)
+  - 120 samples (Classification)
+  - 146 samples (Retrieval_grounded)
+  - 110 samples (Summarization)
+  - 95 samples (Text_generation)
+  - 69 samples (Information_extraction)
+  - 50 samples (Code_generation)
+
+WARNING FLAGS:
+  - qwen2.5_0.5b: 0% success on Maths & Code_generation (UNRELIABLE)
+  - qwen2.5_3b: Missing from 6 out of 8 tasks
+  - Use weights ONLY for specified model subsets per task
+
+
+================================================================================
+WHAT THIS MEANS FOR DEPLOYMENT
+================================================================================
+
+SAFE TO DEPLOY:
+  ✓ Maths with all models
+  ✓ Code_generation with all models  
+  ✓ Classification without qwen0.5b
+  ✓ Text_generation, Information_extraction, Retrieval without qwen3b
+  ✓ Instruction_following & Summarization llama vs qwen0.5b only
+
+NOT SAFE TO DEPLOY:
+  ✗ qwen0.5b on Maths or Code_generation (0% success → invalid model)
+  ✗ qwen3b on most tasks (too few common samples)
+  ✗ Mixed model routing (use per-model subsets, not across all)
+
+BEST APPROACH:
+  1. Per-task routing: Select appropriate model subset per task
+  2. Per-model routing: Route each model to LLM if not in recommended subset
+  3. Fallback: Route qwen0.5b to LLM always (too weak for all tasks)
+

@@ -1,0 +1,38 @@
+{
+  "train": [
+    "information_extraction:0",
+    "information_extraction:1",
+    "information_extraction:10",
+    "information_extraction:11",
+    "information_extraction:12",
+    "information_extraction:13",
+    "information_extraction:14",
+    "information_extraction:15",
+    "information_extraction:16",
+    "information_extraction:17",
+    "information_extraction:18",
+    "information_extraction:19",
+    "information_extraction:2",
+    "information_extraction:20",
+    "information_extraction:21",
+    "information_extraction:23",
+    "information_extraction:24",
+    "information_extraction:25",
+    "information_extraction:26",
+    "information_extraction:27",
+    "information_extraction:28",
+    "information_extraction:29",
+    "information_extraction:3",
+    "information_extraction:30",
+    "information_extraction:31",
+    "information_extraction:33",
+    "information_extraction:35"
+  ],
+  "val": [
+    "information_extraction:34"
+  ],
+  "test": [
+    "information_extraction:22",
+    "information_extraction:32"
+  ]
+}

@@ -1,0 +1,1517 @@
+{
+  "runs": [
+    {
+      "task": "classification",
+      "model": "qwen2.5_0.5b",
+      "seed": 42,
+      "tau": 0.49999999999999994,
+      "artifact_path": "C:\\Users\\riddh\\OneDrive\\Desktop\\SLM use cases\\model_runs\\sddf_training_splits_slm_only\\sddf_pipeline_artifacts_v3\\classification\\qwen2.5_0.5b__seed42.json",
+      "test_metrics": {
+        "n": 42.0,
+        "positive_rate": 0.6190476190476191,
+        "avg_pred_fail_prob": 0.49341134630189404,
+        "f1": 0.7441860465116279,
+        "accuracy": 0.7380952380952381,
+        "roc_auc": 0.721153846153846,
+        "pr_auc": 0.8745551019910587,
+        "brier": 0.1982849113834976,
+        "ece_10bin": 0.2550726393063638
+      }
+    },
+    {
+      "task": "classification",
+      "model": "qwen2.5_0.5b",
+      "seed": 43,
+      "tau": 0.49999999999999994,
+      "artifact_path": "C:\\Users\\riddh\\OneDrive\\Desktop\\SLM use cases\\model_runs\\sddf_training_splits_slm_only\\sddf_pipeline_artifacts_v3\\classification\\qwen2.5_0.5b__seed43.json",
+      "test_metrics": {
+        "n": 42.0,
+        "positive_rate": 0.6190476190476191,
+        "avg_pred_fail_prob": 0.49341134630189404,
+        "f1": 0.7441860465116279,
+        "accuracy": 0.7380952380952381,
+        "roc_auc": 0.721153846153846,
+        "pr_auc": 0.8745551019910587,
+        "brier": 0.1982849113834976,
+        "ece_10bin": 0.2550726393063638
+      }
+    },
+    {
+      "task": "classification",
+      "model": "qwen2.5_0.5b",
+      "seed": 44,
+      "tau": 0.49999999999999994,
+      "artifact_path": "C:\\Users\\riddh\\OneDrive\\Desktop\\SLM use cases\\model_runs\\sddf_training_splits_slm_only\\sddf_pipeline_artifacts_v3\\classification\\qwen2.5_0.5b__seed44.json",
+      "test_metrics": {
+        "n": 42.0,
+        "positive_rate": 0.6190476190476191,
+        "avg_pred_fail_prob": 0.49341134630189404,
+        "f1": 0.7441860465116279,
+        "accuracy": 0.7380952380952381,
+        "roc_auc": 0.721153846153846,
+        "pr_auc": 0.8745551019910587,
+        "brier": 0.1982849113834976,
+        "ece_10bin": 0.2550726393063638
+      }
+    },
+    {
+      "task": "classification",
+      "model": "qwen2.5_0.5b",
+      "seed": 45,
+      "tau": 0.49999999999999994,
+      "artifact_path": "C:\\Users\\riddh\\OneDrive\\Desktop\\SLM use cases\\model_runs\\sddf_training_splits_slm_only\\sddf_pipeline_artifacts_v3\\classification\\qwen2.5_0.5b__seed45.json",
+      "test_metrics": {
+        "n": 42.0,
+        "positive_rate": 0.6190476190476191,
+        "avg_pred_fail_prob": 0.49341134630189404,
+        "f1": 0.7441860465116279,
+        "accuracy": 0.7380952380952381,
+        "roc_auc": 0.721153846153846,
+        "pr_auc": 0.8745551019910587,
+        "brier": 0.1982849113834976,
+        "ece_10bin": 0.2550726393063638
+      }
+    },
+    {
+      "task": "classification",
+      "model": "qwen2.5_0.5b",
+      "seed": 46,
+      "tau": 0.49999999999999994,
+      "artifact_path": "C:\\Users\\riddh\\OneDrive\\Desktop\\SLM use cases\\model_runs\\sddf_training_splits_slm_only\\sddf_pipeline_artifacts_v3\\classification\\qwen2.5_0.5b__seed46.json",
+      "test_metrics": {
+        "n": 42.0,
+        "positive_rate": 0.6190476190476191,
+        "avg_pred_fail_prob": 0.49341134630189404,
+        "f1": 0.7441860465116279,
+        "accuracy": 0.7380952380952381,
+        "roc_auc": 0.721153846153846,
+        "pr_auc": 0.8745551019910587,
+        "brier": 0.1982849113834976,
+        "ece_10bin": 0.2550726393063638
+      }
+    },
+    {
+      "task": "classification",
+      "model": "qwen2.5_3b",
+      "seed": 42,
+      "tau": 0.39999999999999997,
+      "artifact_path": "C:\\Users\\riddh\\OneDrive\\Desktop\\SLM use cases\\model_runs\\sddf_training_splits_slm_only\\sddf_pipeline_artifacts_v3\\classification\\qwen2.5_3b__seed42.json",
+      "test_metrics": {
+        "n": 42.0,
+        "positive_rate": 0.38095238095238093,
+        "avg_pred_fail_prob": 0.4574074960241818,
+        "f1": 0.7777777777777778,
+        "accuracy": 0.8095238095238095,
+        "roc_auc": 0.9543269230769231,
+        "pr_auc": 0.9525240384615384,
+        "brier": 0.10612353339271503,
+        "ece_10bin": 0.22126085630299983
+      }
+    },
+    {
+      "task": "classification",
+      "model": "qwen2.5_3b",
+      "seed": 43,
+      "tau": 0.39999999999999997,
+      "artifact_path": "C:\\Users\\riddh\\OneDrive\\Desktop\\SLM use cases\\model_runs\\sddf_training_splits_slm_only\\sddf_pipeline_artifacts_v3\\classification\\qwen2.5_3b__seed43.json",
+      "test_metrics": {
+        "n": 42.0,
+        "positive_rate": 0.38095238095238093,
+        "avg_pred_fail_prob": 0.4574074960241818,
+        "f1": 0.7777777777777778,
+        "accuracy": 0.8095238095238095,
+        "roc_auc": 0.9543269230769231,
+        "pr_auc": 0.9525240384615384,
+        "brier": 0.10612353339271503,
+        "ece_10bin": 0.22126085630299983
+      }
+    },
+    {
+      "task": "classification",
+      "model": "qwen2.5_3b",
+      "seed": 44,
+      "tau": 0.39999999999999997,
+      "artifact_path": "C:\\Users\\riddh\\OneDrive\\Desktop\\SLM use cases\\model_runs\\sddf_training_splits_slm_only\\sddf_pipeline_artifacts_v3\\classification\\qwen2.5_3b__seed44.json",
+      "test_metrics": {
+        "n": 42.0,
+        "positive_rate": 0.38095238095238093,
+        "avg_pred_fail_prob": 0.4574074960241818,
+        "f1": 0.7777777777777778,
+        "accuracy": 0.8095238095238095,
+        "roc_auc": 0.9543269230769231,
+        "pr_auc": 0.9525240384615384,
+        "brier": 0.10612353339271503,
+        "ece_10bin": 0.22126085630299983
+      }
+    },
+    {
+      "task": "classification",
+      "model": "qwen2.5_3b",
+      "seed": 45,
+      "tau": 0.39999999999999997,
+      "artifact_path": "C:\\Users\\riddh\\OneDrive\\Desktop\\SLM use cases\\model_runs\\sddf_training_splits_slm_only\\sddf_pipeline_artifacts_v3\\classification\\qwen2.5_3b__seed45.json",
+      "test_metrics": {
+        "n": 42.0,
+        "positive_rate": 0.38095238095238093,
+        "avg_pred_fail_prob": 0.4574074960241818,
+        "f1": 0.7777777777777778,
+        "accuracy": 0.8095238095238095,
+        "roc_auc": 0.9543269230769231,
+        "pr_auc": 0.9525240384615384,
+        "brier": 0.10612353339271503,
+        "ece_10bin": 0.22126085630299983
+      }
+    },
+    {
+      "task": "classification",
+      "model": "qwen2.5_3b",
+      "seed": 46,
+      "tau": 0.39999999999999997,
+      "artifact_path": "C:\\Users\\riddh\\OneDrive\\Desktop\\SLM use cases\\model_runs\\sddf_training_splits_slm_only\\sddf_pipeline_artifacts_v3\\classification\\qwen2.5_3b__seed46.json",
+      "test_metrics": {
+        "n": 42.0,
+        "positive_rate": 0.38095238095238093,
+        "avg_pred_fail_prob": 0.4574074960241818,
+        "f1": 0.7777777777777778,
+        "accuracy": 0.8095238095238095,
+        "roc_auc": 0.9543269230769231,
+        "pr_auc": 0.9525240384615384,
+        "brier": 0.10612353339271503,
+        "ece_10bin": 0.22126085630299983
+      }
+    },
+    {
+      "task": "classification",
+      "model": "qwen2.5_7b",
+      "seed": 42,
+      "tau": 0.2,
+      "artifact_path": "C:\\Users\\riddh\\OneDrive\\Desktop\\SLM use cases\\model_runs\\sddf_training_splits_slm_only\\sddf_pipeline_artifacts_v3\\classification\\qwen2.5_7b__seed42.json",
+      "test_metrics": {
+        "n": 42.0,
+        "positive_rate": 0.6190476190476191,
+        "avg_pred_fail_prob": 0.5028095499865246,
+        "f1": 0.7575757575757576,
+        "accuracy": 0.6190476190476191,
+        "roc_auc": 0.7139423076923077,
+        "pr_auc": 0.828279290358059,
+        "brier": 0.21925137691107335,
+        "ece_10bin": 0.19109347323511067
+      }
+    },
+    {
+      "task": "classification",
+      "model": "qwen2.5_7b",
+      "seed": 43,
+      "tau": 0.2,
+      "artifact_path": "C:\\Users\\riddh\\OneDrive\\Desktop\\SLM use cases\\model_runs\\sddf_training_splits_slm_only\\sddf_pipeline_artifacts_v3\\classification\\qwen2.5_7b__seed43.json",
+      "test_metrics": {
+        "n": 42.0,
+        "positive_rate": 0.6190476190476191,
+        "avg_pred_fail_prob": 0.5028095499865246,
+        "f1": 0.7575757575757576,
+        "accuracy": 0.6190476190476191,
+        "roc_auc": 0.7139423076923077,
+        "pr_auc": 0.828279290358059,
+        "brier": 0.21925137691107335,
+        "ece_10bin": 0.19109347323511067
+      }
+    },
+    {
+      "task": "classification",
+      "model": "qwen2.5_7b",
+      "seed": 44,
+      "tau": 0.2,
+      "artifact_path": "C:\\Users\\riddh\\OneDrive\\Desktop\\SLM use cases\\model_runs\\sddf_training_splits_slm_only\\sddf_pipeline_artifacts_v3\\classification\\qwen2.5_7b__seed44.json",
+      "test_metrics": {
+        "n": 42.0,
+        "positive_rate": 0.6190476190476191,
+        "avg_pred_fail_prob": 0.5028095499865246,
+        "f1": 0.7575757575757576,
+        "accuracy": 0.6190476190476191,
+        "roc_auc": 0.7139423076923077,
+        "pr_auc": 0.828279290358059,
+        "brier": 0.21925137691107335,
+        "ece_10bin": 0.19109347323511067
+      }
+    },
+    {
+      "task": "classification",
+      "model": "qwen2.5_7b",
+      "seed": 45,
+      "tau": 0.2,
+      "artifact_path": "C:\\Users\\riddh\\OneDrive\\Desktop\\SLM use cases\\model_runs\\sddf_training_splits_slm_only\\sddf_pipeline_artifacts_v3\\classification\\qwen2.5_7b__seed45.json",
+      "test_metrics": {
+        "n": 42.0,
+        "positive_rate": 0.6190476190476191,
+        "avg_pred_fail_prob": 0.5028095499865246,
+        "f1": 0.7575757575757576,
+        "accuracy": 0.6190476190476191,
+        "roc_auc": 0.7139423076923077,
+        "pr_auc": 0.828279290358059,
+        "brier": 0.21925137691107335,
+        "ece_10bin": 0.19109347323511067
+      }
+    },
+    {
+      "task": "classification",
+      "model": "qwen2.5_7b",
+      "seed": 46,
+      "tau": 0.2,
+      "artifact_path": "C:\\Users\\riddh\\OneDrive\\Desktop\\SLM use cases\\model_runs\\sddf_training_splits_slm_only\\sddf_pipeline_artifacts_v3\\classification\\qwen2.5_7b__seed46.json",
+      "test_metrics": {
+        "n": 42.0,
+        "positive_rate": 0.6190476190476191,
+        "avg_pred_fail_prob": 0.5028095499865246,
+        "f1": 0.7575757575757576,
+        "accuracy": 0.6190476190476191,
+        "roc_auc": 0.7139423076923077,
+        "pr_auc": 0.828279290358059,
+        "brier": 0.21925137691107335,
+        "ece_10bin": 0.19109347323511067
+      }
+    },
+    {
+      "task": "code_generation",
+      "model": "qwen2.5_0.5b",
+      "seed": 42,
+      "tau": 0.05,
+      "artifact_path": "C:\\Users\\riddh\\OneDrive\\Desktop\\SLM use cases\\model_runs\\sddf_training_splits_slm_only\\sddf_pipeline_artifacts_v3\\code_generation\\qwen2.5_0.5b__seed42.json",
+      "test_metrics": {
+        "n": 54.0,
+        "positive_rate": 0.7777777777777778,
+        "avg_pred_fail_prob": 0.6301289906848054,
+        "f1": 0.875,
+        "accuracy": 0.7777777777777778,
+        "roc_auc": 0.6626984126984127,
+        "pr_auc": 0.8510455480116991,
+        "brier": 0.2118058171343223,
+        "ece_10bin": 0.22522396995643165
+      }
+    },
+    {
+      "task": "code_generation",
+      "model": "qwen2.5_0.5b",
+      "seed": 43,
+      "tau": 0.05,
+      "artifact_path": "C:\\Users\\riddh\\OneDrive\\Desktop\\SLM use cases\\model_runs\\sddf_training_splits_slm_only\\sddf_pipeline_artifacts_v3\\code_generation\\qwen2.5_0.5b__seed43.json",
+      "test_metrics": {
+        "n": 54.0,
+        "positive_rate": 0.7777777777777778,
+        "avg_pred_fail_prob": 0.6301289906848054,
+        "f1": 0.875,
+        "accuracy": 0.7777777777777778,
+        "roc_auc": 0.6626984126984127,
+        "pr_auc": 0.8510455480116991,
+        "brier": 0.2118058171343223,
+        "ece_10bin": 0.22522396995643165
+      }
+    },
+    {
+      "task": "code_generation",
+      "model": "qwen2.5_0.5b",
+      "seed": 44,
+      "tau": 0.05,
+      "artifact_path": "C:\\Users\\riddh\\OneDrive\\Desktop\\SLM use cases\\model_runs\\sddf_training_splits_slm_only\\sddf_pipeline_artifacts_v3\\code_generation\\qwen2.5_0.5b__seed44.json",
+      "test_metrics": {
+        "n": 54.0,
+        "positive_rate": 0.7777777777777778,
+        "avg_pred_fail_prob": 0.6301289906848054,
+        "f1": 0.875,
+        "accuracy": 0.7777777777777778,
+        "roc_auc": 0.6626984126984127,
+        "pr_auc": 0.8510455480116991,
+        "brier": 0.2118058171343223,
+        "ece_10bin": 0.22522396995643165
+      }
+    },
+    {
+      "task": "code_generation",
+      "model": "qwen2.5_0.5b",
+      "seed": 45,
+      "tau": 0.05,
+      "artifact_path": "C:\\Users\\riddh\\OneDrive\\Desktop\\SLM use cases\\model_runs\\sddf_training_splits_slm_only\\sddf_pipeline_artifacts_v3\\code_generation\\qwen2.5_0.5b__seed45.json",
+      "test_metrics": {
+        "n": 54.0,
+        "positive_rate": 0.7777777777777778,
+        "avg_pred_fail_prob": 0.6301289906848054,
+        "f1": 0.875,
+        "accuracy": 0.7777777777777778,
+        "roc_auc": 0.6626984126984127,
+        "pr_auc": 0.8510455480116991,
+        "brier": 0.2118058171343223,
+        "ece_10bin": 0.22522396995643165
+      }
+    },
+    {
+      "task": "code_generation",
+      "model": "qwen2.5_0.5b",
+      "seed": 46,
+      "tau": 0.05,
+      "artifact_path": "C:\\Users\\riddh\\OneDrive\\Desktop\\SLM use cases\\model_runs\\sddf_training_splits_slm_only\\sddf_pipeline_artifacts_v3\\code_generation\\qwen2.5_0.5b__seed46.json",
+      "test_metrics": {
+        "n": 54.0,
+        "positive_rate": 0.7777777777777778,
+        "avg_pred_fail_prob": 0.6301289906848054,
+        "f1": 0.875,
+        "accuracy": 0.7777777777777778,
+        "roc_auc": 0.6626984126984127,
+        "pr_auc": 0.8510455480116991,
+        "brier": 0.2118058171343223,
+        "ece_10bin": 0.22522396995643165
+      }
+    },
+    {
+      "task": "code_generation",
+      "model": "qwen2.5_3b",
+      "seed": 42,
+      "tau": 0.1,
+      "artifact_path": "C:\\Users\\riddh\\OneDrive\\Desktop\\SLM use cases\\model_runs\\sddf_training_splits_slm_only\\sddf_pipeline_artifacts_v3\\code_generation\\qwen2.5_3b__seed42.json",
+      "test_metrics": {
+        "n": 54.0,
+        "positive_rate": 0.4444444444444444,
+        "avg_pred_fail_prob": 0.3885209270013768,
+        "f1": 0.6575342465753424,
+        "accuracy": 0.5370370370370371,
+        "roc_auc": 0.6486111111111111,
+        "pr_auc": 0.5523002105655586,
+        "brier": 0.2596563445978521,
+        "ece_10bin": 0.18958377180698818
+      }
+    },
+    {
+      "task": "code_generation",
+      "model": "qwen2.5_3b",
+      "seed": 43,
+      "tau": 0.1,
+      "artifact_path": "C:\\Users\\riddh\\OneDrive\\Desktop\\SLM use cases\\model_runs\\sddf_training_splits_slm_only\\sddf_pipeline_artifacts_v3\\code_generation\\qwen2.5_3b__seed43.json",
+      "test_metrics": {
+        "n": 54.0,
+        "positive_rate": 0.4444444444444444,
+        "avg_pred_fail_prob": 0.3885209270013768,
+        "f1": 0.6575342465753424,
+        "accuracy": 0.5370370370370371,
+        "roc_auc": 0.6486111111111111,
+        "pr_auc": 0.5523002105655586,
+        "brier": 0.2596563445978521,
+        "ece_10bin": 0.18958377180698818
+      }
+    },
+    {
+      "task": "code_generation",
+      "model": "qwen2.5_3b",
+      "seed": 44,
+      "tau": 0.1,
+      "artifact_path": "C:\\Users\\riddh\\OneDrive\\Desktop\\SLM use cases\\model_runs\\sddf_training_splits_slm_only\\sddf_pipeline_artifacts_v3\\code_generation\\qwen2.5_3b__seed44.json",
+      "test_metrics": {
+        "n": 54.0,
+        "positive_rate": 0.4444444444444444,
+        "avg_pred_fail_prob": 0.3885209270013768,
+        "f1": 0.6575342465753424,
+        "accuracy": 0.5370370370370371,
+        "roc_auc": 0.6486111111111111,
+        "pr_auc": 0.5523002105655586,
+        "brier": 0.2596563445978521,
+        "ece_10bin": 0.18958377180698818
+      }
+    },
+    {
+      "task": "code_generation",
+      "model": "qwen2.5_3b",
+      "seed": 45,
+      "tau": 0.1,
+      "artifact_path": "C:\\Users\\riddh\\OneDrive\\Desktop\\SLM use cases\\model_runs\\sddf_training_splits_slm_only\\sddf_pipeline_artifacts_v3\\code_generation\\qwen2.5_3b__seed45.json",
+      "test_metrics": {
+        "n": 54.0,
+        "positive_rate": 0.4444444444444444,
+        "avg_pred_fail_prob": 0.3885209270013768,
+        "f1": 0.6575342465753424,
+        "accuracy": 0.5370370370370371,
+        "roc_auc": 0.6486111111111111,
+        "pr_auc": 0.5523002105655586,
+        "brier": 0.2596563445978521,
+        "ece_10bin": 0.18958377180698818
+      }
+    },
+    {
+      "task": "code_generation",
+      "model": "qwen2.5_3b",
+      "seed": 46,
+      "tau": 0.1,
+      "artifact_path": "C:\\Users\\riddh\\OneDrive\\Desktop\\SLM use cases\\model_runs\\sddf_training_splits_slm_only\\sddf_pipeline_artifacts_v3\\code_generation\\qwen2.5_3b__seed46.json",
+      "test_metrics": {
+        "n": 54.0,
+        "positive_rate": 0.4444444444444444,
+        "avg_pred_fail_prob": 0.3885209270013768,
+        "f1": 0.6575342465753424,
+        "accuracy": 0.5370370370370371,
+        "roc_auc": 0.6486111111111111,
+        "pr_auc": 0.5523002105655586,
+        "brier": 0.2596563445978521,
+        "ece_10bin": 0.18958377180698818
+      }
+    },
+    {
+      "task": "code_generation",
+      "model": "qwen2.5_7b",
+      "seed": 42,
+      "tau": 0.44999999999999996,
+      "artifact_path": "C:\\Users\\riddh\\OneDrive\\Desktop\\SLM use cases\\model_runs\\sddf_training_splits_slm_only\\sddf_pipeline_artifacts_v3\\code_generation\\qwen2.5_7b__seed42.json",
+      "test_metrics": {
+        "n": 54.0,
+        "positive_rate": 0.42592592592592593,
+        "avg_pred_fail_prob": 0.38206513681515236,
+        "f1": 0.6086956521739131,
+        "accuracy": 0.6666666666666666,
+        "roc_auc": 0.6185133239831697,
+        "pr_auc": 0.5173009885537067,
+        "brier": 0.25701333271584537,
+        "ece_10bin": 0.18514506067673817
+      }
+    },
+    {
+      "task": "code_generation",
+      "model": "qwen2.5_7b",
+      "seed": 43,
+      "tau": 0.44999999999999996,
+      "artifact_path": "C:\\Users\\riddh\\OneDrive\\Desktop\\SLM use cases\\model_runs\\sddf_training_splits_slm_only\\sddf_pipeline_artifacts_v3\\code_generation\\qwen2.5_7b__seed43.json",
+      "test_metrics": {
+        "n": 54.0,
+        "positive_rate": 0.42592592592592593,
+        "avg_pred_fail_prob": 0.38206513681515236,
+        "f1": 0.6086956521739131,
+        "accuracy": 0.6666666666666666,
+        "roc_auc": 0.6185133239831697,
+        "pr_auc": 0.5173009885537067,
+        "brier": 0.25701333271584537,
+        "ece_10bin": 0.18514506067673817
+      }
+    },
+    {
+      "task": "code_generation",
+      "model": "qwen2.5_7b",
+      "seed": 44,
+      "tau": 0.44999999999999996,
+      "artifact_path": "C:\\Users\\riddh\\OneDrive\\Desktop\\SLM use cases\\model_runs\\sddf_training_splits_slm_only\\sddf_pipeline_artifacts_v3\\code_generation\\qwen2.5_7b__seed44.json",
+      "test_metrics": {
+        "n": 54.0,
+        "positive_rate": 0.42592592592592593,
+        "avg_pred_fail_prob": 0.38206513681515236,
+        "f1": 0.6086956521739131,
+        "accuracy": 0.6666666666666666,
+        "roc_auc": 0.6185133239831697,
+        "pr_auc": 0.5173009885537067,
+        "brier": 0.25701333271584537,
+        "ece_10bin": 0.18514506067673817
+      }
+    },
+    {
+      "task": "code_generation",
+      "model": "qwen2.5_7b",
+      "seed": 45,
+      "tau": 0.44999999999999996,
+      "artifact_path": "C:\\Users\\riddh\\OneDrive\\Desktop\\SLM use cases\\model_runs\\sddf_training_splits_slm_only\\sddf_pipeline_artifacts_v3\\code_generation\\qwen2.5_7b__seed45.json",
+      "test_metrics": {
+        "n": 54.0,
+        "positive_rate": 0.42592592592592593,
+        "avg_pred_fail_prob": 0.38206513681515236,
+        "f1": 0.6086956521739131,
+        "accuracy": 0.6666666666666666,
+        "roc_auc": 0.6185133239831697,
+        "pr_auc": 0.5173009885537067,
+        "brier": 0.25701333271584537,
+        "ece_10bin": 0.18514506067673817
+      }
+    },
+    {
+      "task": "code_generation",
+      "model": "qwen2.5_7b",
+      "seed": 46,
+      "tau": 0.44999999999999996,
+      "artifact_path": "C:\\Users\\riddh\\OneDrive\\Desktop\\SLM use cases\\model_runs\\sddf_training_splits_slm_only\\sddf_pipeline_artifacts_v3\\code_generation\\qwen2.5_7b__seed46.json",
+      "test_metrics": {
+        "n": 54.0,
+        "positive_rate": 0.42592592592592593,
+        "avg_pred_fail_prob": 0.38206513681515236,
+        "f1": 0.6086956521739131,
+        "accuracy": 0.6666666666666666,
+        "roc_auc": 0.6185133239831697,
+        "pr_auc": 0.5173009885537067,
+        "brier": 0.25701333271584537,
+        "ece_10bin": 0.18514506067673817
+      }
+    },
+    {
+      "task": "information_extraction",
+      "model": "qwen2.5_0.5b",
+      "seed": 42,
+      "tau": 0.05,
+      "artifact_path": "C:\\Users\\riddh\\OneDrive\\Desktop\\SLM use cases\\model_runs\\sddf_training_splits_slm_only\\sddf_pipeline_artifacts_v3\\information_extraction\\qwen2.5_0.5b__seed42.json",
+      "test_metrics": {
+        "n": 35.0,
+        "positive_rate": 0.45714285714285713,
+        "avg_pred_fail_prob": 0.46272419720749514,
+        "f1": 0.64,
+        "accuracy": 0.4857142857142857,
+        "roc_auc": 0.6019736842105263,
+        "pr_auc": 0.6268788572878646,
+        "brier": 0.24694194642820752,
+        "ece_10bin": 0.16820933731382687
+      }
+    },
+    {
+      "task": "information_extraction",
+      "model": "qwen2.5_0.5b",
+      "seed": 43,
+      "tau": 0.05,
+      "artifact_path": "C:\\Users\\riddh\\OneDrive\\Desktop\\SLM use cases\\model_runs\\sddf_training_splits_slm_only\\sddf_pipeline_artifacts_v3\\information_extraction\\qwen2.5_0.5b__seed43.json",
+      "test_metrics": {
+        "n": 35.0,
+        "positive_rate": 0.45714285714285713,
+        "avg_pred_fail_prob": 0.46272419720749514,
+        "f1": 0.64,
+        "accuracy": 0.4857142857142857,
+        "roc_auc": 0.6019736842105263,
+        "pr_auc": 0.6268788572878646,
+        "brier": 0.24694194642820752,
+        "ece_10bin": 0.16820933731382687
+      }
+    },
+    {
+      "task": "information_extraction",
+      "model": "qwen2.5_0.5b",
+      "seed": 44,
+      "tau": 0.05,
+      "artifact_path": "C:\\Users\\riddh\\OneDrive\\Desktop\\SLM use cases\\model_runs\\sddf_training_splits_slm_only\\sddf_pipeline_artifacts_v3\\information_extraction\\qwen2.5_0.5b__seed44.json",
+      "test_metrics": {
+        "n": 35.0,
+        "positive_rate": 0.45714285714285713,
+        "avg_pred_fail_prob": 0.46272419720749514,
+        "f1": 0.64,
+        "accuracy": 0.4857142857142857,
+        "roc_auc": 0.6019736842105263,
+        "pr_auc": 0.6268788572878646,
+        "brier": 0.24694194642820752,
+        "ece_10bin": 0.16820933731382687
+      }
+    },
+    {
+      "task": "information_extraction",
+      "model": "qwen2.5_0.5b",
+      "seed": 45,
+      "tau": 0.05,
+      "artifact_path": "C:\\Users\\riddh\\OneDrive\\Desktop\\SLM use cases\\model_runs\\sddf_training_splits_slm_only\\sddf_pipeline_artifacts_v3\\information_extraction\\qwen2.5_0.5b__seed45.json",
+      "test_metrics": {
+        "n": 35.0,
+        "positive_rate": 0.45714285714285713,
+        "avg_pred_fail_prob": 0.46272419720749514,
+        "f1": 0.64,
+        "accuracy": 0.4857142857142857,
+        "roc_auc": 0.6019736842105263,
+        "pr_auc": 0.6268788572878646,
+        "brier": 0.24694194642820752,
+        "ece_10bin": 0.16820933731382687
+      }
+    },
+    {
+      "task": "information_extraction",
+      "model": "qwen2.5_0.5b",
+      "seed": 46,
+      "tau": 0.05,
+      "artifact_path": "C:\\Users\\riddh\\OneDrive\\Desktop\\SLM use cases\\model_runs\\sddf_training_splits_slm_only\\sddf_pipeline_artifacts_v3\\information_extraction\\qwen2.5_0.5b__seed46.json",
+      "test_metrics": {
+        "n": 35.0,
+        "positive_rate": 0.45714285714285713,
+        "avg_pred_fail_prob": 0.46272419720749514,
+        "f1": 0.64,
+        "accuracy": 0.4857142857142857,
+        "roc_auc": 0.6019736842105263,
+        "pr_auc": 0.6268788572878646,
+        "brier": 0.24694194642820752,
+        "ece_10bin": 0.16820933731382687
+      }
+    },
+    {
+      "task": "information_extraction",
+      "model": "qwen2.5_3b",
+      "seed": 42,
+      "tau": 0.15,
+      "artifact_path": "C:\\Users\\riddh\\OneDrive\\Desktop\\SLM use cases\\model_runs\\sddf_training_splits_slm_only\\sddf_pipeline_artifacts_v3\\information_extraction\\qwen2.5_3b__seed42.json",
+      "test_metrics": {
+        "n": 35.0,
+        "positive_rate": 0.2857142857142857,
+        "avg_pred_fail_prob": 0.48724889648421216,
+        "f1": 0.37209302325581395,
+        "accuracy": 0.22857142857142856,
+        "roc_auc": 0.62,
+        "pr_auc": 0.4520050537697596,
+        "brier": 0.27343728205892065,
+        "ece_10bin": 0.3141456771809645
+      }
+    },
+    {
+      "task": "information_extraction",
+      "model": "qwen2.5_3b",
+      "seed": 43,
+      "tau": 0.15,
+      "artifact_path": "C:\\Users\\riddh\\OneDrive\\Desktop\\SLM use cases\\model_runs\\sddf_training_splits_slm_only\\sddf_pipeline_artifacts_v3\\information_extraction\\qwen2.5_3b__seed43.json",
+      "test_metrics": {
+        "n": 35.0,
+        "positive_rate": 0.2857142857142857,
+        "avg_pred_fail_prob": 0.48724889648421216,
+        "f1": 0.37209302325581395,
+        "accuracy": 0.22857142857142856,
+        "roc_auc": 0.62,
+        "pr_auc": 0.4520050537697596,
+        "brier": 0.27343728205892065,
+        "ece_10bin": 0.3141456771809645
+      }
+    },
+    {
+      "task": "information_extraction",
+      "model": "qwen2.5_3b",
+      "seed": 44,
+      "tau": 0.15,
+      "artifact_path": "C:\\Users\\riddh\\OneDrive\\Desktop\\SLM use cases\\model_runs\\sddf_training_splits_slm_only\\sddf_pipeline_artifacts_v3\\information_extraction\\qwen2.5_3b__seed44.json",
+      "test_metrics": {
+        "n": 35.0,
+        "positive_rate": 0.2857142857142857,
+        "avg_pred_fail_prob": 0.48724889648421216,
+        "f1": 0.37209302325581395,
+        "accuracy": 0.22857142857142856,
+        "roc_auc": 0.62,
+        "pr_auc": 0.4520050537697596,
+        "brier": 0.27343728205892065,
+        "ece_10bin": 0.3141456771809645
+      }
+    },
+    {
+      "task": "information_extraction",
+      "model": "qwen2.5_3b",
+      "seed": 45,
+      "tau": 0.15,
+      "artifact_path": "C:\\Users\\riddh\\OneDrive\\Desktop\\SLM use cases\\model_runs\\sddf_training_splits_slm_only\\sddf_pipeline_artifacts_v3\\information_extraction\\qwen2.5_3b__seed45.json",
+      "test_metrics": {
+        "n": 35.0,
+        "positive_rate": 0.2857142857142857,
+        "avg_pred_fail_prob": 0.48724889648421216,
+        "f1": 0.37209302325581395,
+        "accuracy": 0.22857142857142856,
+        "roc_auc": 0.62,
+        "pr_auc": 0.4520050537697596,
+        "brier": 0.27343728205892065,
+        "ece_10bin": 0.3141456771809645
+      }
+    },
+    {
+      "task": "information_extraction",
+      "model": "qwen2.5_3b",
+      "seed": 46,
+      "tau": 0.15,
+      "artifact_path": "C:\\Users\\riddh\\OneDrive\\Desktop\\SLM use cases\\model_runs\\sddf_training_splits_slm_only\\sddf_pipeline_artifacts_v3\\information_extraction\\qwen2.5_3b__seed46.json",
+      "test_metrics": {
+        "n": 35.0,
+        "positive_rate": 0.2857142857142857,
+        "avg_pred_fail_prob": 0.48724889648421216,
+        "f1": 0.37209302325581395,
+        "accuracy": 0.22857142857142856,
+        "roc_auc": 0.62,
+        "pr_auc": 0.4520050537697596,
+        "brier": 0.27343728205892065,
+        "ece_10bin": 0.3141456771809645
+      }
+    },
+    {
+      "task": "information_extraction",
+      "model": "qwen2.5_7b",
+      "seed": 42,
+      "tau": 0.15,
+      "artifact_path": "C:\\Users\\riddh\\OneDrive\\Desktop\\SLM use cases\\model_runs\\sddf_training_splits_slm_only\\sddf_pipeline_artifacts_v3\\information_extraction\\qwen2.5_7b__seed42.json",
+      "test_metrics": {
+        "n": 35.0,
+        "positive_rate": 0.22857142857142856,
+        "avg_pred_fail_prob": 0.44369425102834753,
+        "f1": 0.3888888888888889,
+        "accuracy": 0.37142857142857144,
+        "roc_auc": 0.773148148148148,
+        "pr_auc": 0.6751706932773109,
+        "brier": 0.20792981939035818,
+        "ece_10bin": 0.2961203736609576
+      }
+    },
+    {
+      "task": "information_extraction",
+      "model": "qwen2.5_7b",
+      "seed": 43,
+      "tau": 0.15,
+      "artifact_path": "C:\\Users\\riddh\\OneDrive\\Desktop\\SLM use cases\\model_runs\\sddf_training_splits_slm_only\\sddf_pipeline_artifacts_v3\\information_extraction\\qwen2.5_7b__seed43.json",
+      "test_metrics": {
+        "n": 35.0,
+        "positive_rate": 0.22857142857142856,
+        "avg_pred_fail_prob": 0.44369425102834753,
+        "f1": 0.3888888888888889,
+        "accuracy": 0.37142857142857144,
+        "roc_auc": 0.773148148148148,
+        "pr_auc": 0.6751706932773109,
+        "brier": 0.20792981939035818,
+        "ece_10bin": 0.2961203736609576
+      }
+    },
+    {
+      "task": "information_extraction",
+      "model": "qwen2.5_7b",
+      "seed": 44,
+      "tau": 0.15,
+      "artifact_path": "C:\\Users\\riddh\\OneDrive\\Desktop\\SLM use cases\\model_runs\\sddf_training_splits_slm_only\\sddf_pipeline_artifacts_v3\\information_extraction\\qwen2.5_7b__seed44.json",
+      "test_metrics": {
+        "n": 35.0,
+        "positive_rate": 0.22857142857142856,
+        "avg_pred_fail_prob": 0.44369425102834753,
+        "f1": 0.3888888888888889,
+        "accuracy": 0.37142857142857144,
+        "roc_auc": 0.773148148148148,
+        "pr_auc": 0.6751706932773109,
+        "brier": 0.20792981939035818,
+        "ece_10bin": 0.2961203736609576
+      }
+    },
+    {
+      "task": "information_extraction",
+      "model": "qwen2.5_7b",
+      "seed": 45,
+      "tau": 0.15,
+      "artifact_path": "C:\\Users\\riddh\\OneDrive\\Desktop\\SLM use cases\\model_runs\\sddf_training_splits_slm_only\\sddf_pipeline_artifacts_v3\\information_extraction\\qwen2.5_7b__seed45.json",
+      "test_metrics": {
+        "n": 35.0,
+        "positive_rate": 0.22857142857142856,
+        "avg_pred_fail_prob": 0.44369425102834753,
+        "f1": 0.3888888888888889,
+        "accuracy": 0.37142857142857144,
+        "roc_auc": 0.773148148148148,
+        "pr_auc": 0.6751706932773109,
+        "brier": 0.20792981939035818,
+        "ece_10bin": 0.2961203736609576
+      }
+    },
+    {
+      "task": "information_extraction",
+      "model": "qwen2.5_7b",
+      "seed": 46,
+      "tau": 0.15,
+      "artifact_path": "C:\\Users\\riddh\\OneDrive\\Desktop\\SLM use cases\\model_runs\\sddf_training_splits_slm_only\\sddf_pipeline_artifacts_v3\\information_extraction\\qwen2.5_7b__seed46.json",
+      "test_metrics": {
+        "n": 35.0,
+        "positive_rate": 0.22857142857142856,
+        "avg_pred_fail_prob": 0.44369425102834753,
+        "f1": 0.3888888888888889,
+        "accuracy": 0.37142857142857144,
+        "roc_auc": 0.773148148148148,
+        "pr_auc": 0.6751706932773109,
+        "brier": 0.20792981939035818,
+        "ece_10bin": 0.2961203736609576
+      }
+    },
+    {
+      "task": "instruction_following",
+      "model": "qwen2.5_0.5b",
+      "seed": 42,
+      "tau": 0.39999999999999997,
+      "artifact_path": "C:\\Users\\riddh\\OneDrive\\Desktop\\SLM use cases\\model_runs\\sddf_training_splits_slm_only\\sddf_pipeline_artifacts_v3\\instruction_following\\qwen2.5_0.5b__seed42.json",
+      "test_metrics": {
+        "n": 54.0,
+        "positive_rate": 0.42592592592592593,
+        "avg_pred_fail_prob": 0.4255192549340582,
+        "f1": 0.6545454545454545,
+        "accuracy": 0.6481481481481481,
+        "roc_auc": 0.6830294530154277,
+        "pr_auc": 0.6288618875899444,
+        "brier": 0.22167312089684205,
+        "ece_10bin": 0.09650330452201973
+      }
+    },
+    {
+      "task": "instruction_following",
+      "model": "qwen2.5_0.5b",
+      "seed": 43,
+      "tau": 0.39999999999999997,
+      "artifact_path": "C:\\Users\\riddh\\OneDrive\\Desktop\\SLM use cases\\model_runs\\sddf_training_splits_slm_only\\sddf_pipeline_artifacts_v3\\instruction_following\\qwen2.5_0.5b__seed43.json",
+      "test_metrics": {
+        "n": 54.0,
+        "positive_rate": 0.42592592592592593,
+        "avg_pred_fail_prob": 0.4255192549340582,
+        "f1": 0.6545454545454545,
+        "accuracy": 0.6481481481481481,
+        "roc_auc": 0.6830294530154277,
+        "pr_auc": 0.6288618875899444,
+        "brier": 0.22167312089684205,
+        "ece_10bin": 0.09650330452201973
+      }
+    },
+    {
+      "task": "instruction_following",
+      "model": "qwen2.5_0.5b",
+      "seed": 44,
+      "tau": 0.39999999999999997,
+      "artifact_path": "C:\\Users\\riddh\\OneDrive\\Desktop\\SLM use cases\\model_runs\\sddf_training_splits_slm_only\\sddf_pipeline_artifacts_v3\\instruction_following\\qwen2.5_0.5b__seed44.json",
+      "test_metrics": {
+        "n": 54.0,
+        "positive_rate": 0.42592592592592593,
+        "avg_pred_fail_prob": 0.4255192549340582,
+        "f1": 0.6545454545454545,
+        "accuracy": 0.6481481481481481,
+        "roc_auc": 0.6830294530154277,
+        "pr_auc": 0.6288618875899444,
+        "brier": 0.22167312089684205,
+        "ece_10bin": 0.09650330452201973
+      }
+    },
+    {
+      "task": "instruction_following",
+      "model": "qwen2.5_0.5b",
+      "seed": 45,
+      "tau": 0.39999999999999997,
+      "artifact_path": "C:\\Users\\riddh\\OneDrive\\Desktop\\SLM use cases\\model_runs\\sddf_training_splits_slm_only\\sddf_pipeline_artifacts_v3\\instruction_following\\qwen2.5_0.5b__seed45.json",
+      "test_metrics": {
+        "n": 54.0,
+        "positive_rate": 0.42592592592592593,
+        "avg_pred_fail_prob": 0.4255192549340582,
+        "f1": 0.6545454545454545,
+        "accuracy": 0.6481481481481481,
+        "roc_auc": 0.6830294530154277,
+        "pr_auc": 0.6288618875899444,
+        "brier": 0.22167312089684205,
+        "ece_10bin": 0.09650330452201973
+      }
+    },
+    {
+      "task": "instruction_following",
+      "model": "qwen2.5_0.5b",
+      "seed": 46,
+      "tau": 0.39999999999999997,
+      "artifact_path": "C:\\Users\\riddh\\OneDrive\\Desktop\\SLM use cases\\model_runs\\sddf_training_splits_slm_only\\sddf_pipeline_artifacts_v3\\instruction_following\\qwen2.5_0.5b__seed46.json",
+      "test_metrics": {
+        "n": 54.0,
+        "positive_rate": 0.42592592592592593,
+        "avg_pred_fail_prob": 0.4255192549340582,
+        "f1": 0.6545454545454545,
+        "accuracy": 0.6481481481481481,
+        "roc_auc": 0.6830294530154277,
+        "pr_auc": 0.6288618875899444,
+        "brier": 0.22167312089684205,
+        "ece_10bin": 0.09650330452201973
+      }
+    },
+    {
+      "task": "instruction_following",
+      "model": "qwen2.5_3b",
+      "seed": 42,
+      "tau": 0.2,
+      "artifact_path": "C:\\Users\\riddh\\OneDrive\\Desktop\\SLM use cases\\model_runs\\sddf_training_splits_slm_only\\sddf_pipeline_artifacts_v3\\instruction_following\\qwen2.5_3b__seed42.json",
+      "test_metrics": {
+        "n": 54.0,
+        "positive_rate": 0.12962962962962962,
+        "avg_pred_fail_prob": 0.4873780085872536,
+        "f1": 0.24561403508771928,
+        "accuracy": 0.2037037037037037,
+        "roc_auc": 0.4741641337386018,
+        "pr_auc": 0.13621791869726568,
+        "brier": 0.28225395586408736,
+        "ece_10bin": 0.3577483789576239
+      }
+    },
+    {
+      "task": "instruction_following",
+      "model": "qwen2.5_3b",
+      "seed": 43,
+      "tau": 0.2,
+      "artifact_path": "C:\\Users\\riddh\\OneDrive\\Desktop\\SLM use cases\\model_runs\\sddf_training_splits_slm_only\\sddf_pipeline_artifacts_v3\\instruction_following\\qwen2.5_3b__seed43.json",
+      "test_metrics": {
+        "n": 54.0,
+        "positive_rate": 0.12962962962962962,
+        "avg_pred_fail_prob": 0.4873780085872536,
+        "f1": 0.24561403508771928,
+        "accuracy": 0.2037037037037037,
+        "roc_auc": 0.4741641337386018,
+        "pr_auc": 0.13621791869726568,
+        "brier": 0.28225395586408736,
+        "ece_10bin": 0.3577483789576239
+      }
+    },
+    {
+      "task": "instruction_following",
+      "model": "qwen2.5_3b",
+      "seed": 44,
+      "tau": 0.2,
+      "artifact_path": "C:\\Users\\riddh\\OneDrive\\Desktop\\SLM use cases\\model_runs\\sddf_training_splits_slm_only\\sddf_pipeline_artifacts_v3\\instruction_following\\qwen2.5_3b__seed44.json",
+      "test_metrics": {
+        "n": 54.0,
+        "positive_rate": 0.12962962962962962,
+        "avg_pred_fail_prob": 0.4873780085872536,
+        "f1": 0.24561403508771928,
+        "accuracy": 0.2037037037037037,
+        "roc_auc": 0.4741641337386018,
+        "pr_auc": 0.13621791869726568,
+        "brier": 0.28225395586408736,
+        "ece_10bin": 0.3577483789576239
+      }
+    },
+    {
+      "task": "instruction_following",
+      "model": "qwen2.5_3b",
+      "seed": 45,
+      "tau": 0.2,
+      "artifact_path": "C:\\Users\\riddh\\OneDrive\\Desktop\\SLM use cases\\model_runs\\sddf_training_splits_slm_only\\sddf_pipeline_artifacts_v3\\instruction_following\\qwen2.5_3b__seed45.json",
+      "test_metrics": {
+        "n": 54.0,
+        "positive_rate": 0.12962962962962962,
+        "avg_pred_fail_prob": 0.4873780085872536,
+        "f1": 0.24561403508771928,
+        "accuracy": 0.2037037037037037,
+        "roc_auc": 0.4741641337386018,
+        "pr_auc": 0.13621791869726568,
+        "brier": 0.28225395586408736,
+        "ece_10bin": 0.3577483789576239
+      }
+    },
+    {
+      "task": "instruction_following",
+      "model": "qwen2.5_3b",
+      "seed": 46,
+      "tau": 0.2,
+      "artifact_path": "C:\\Users\\riddh\\OneDrive\\Desktop\\SLM use cases\\model_runs\\sddf_training_splits_slm_only\\sddf_pipeline_artifacts_v3\\instruction_following\\qwen2.5_3b__seed46.json",
+      "test_metrics": {
+        "n": 54.0,
+        "positive_rate": 0.12962962962962962,
+        "avg_pred_fail_prob": 0.4873780085872536,
+        "f1": 0.24561403508771928,
+        "accuracy": 0.2037037037037037,
+        "roc_auc": 0.4741641337386018,
+        "pr_auc": 0.13621791869726568,
+        "brier": 0.28225395586408736,
+        "ece_10bin": 0.3577483789576239
+      }
+    },
+    {
+      "task": "instruction_following",
+      "model": "qwen2.5_7b",
+      "seed": 42,
+      "tau": 0.3,
+      "artifact_path": "C:\\Users\\riddh\\OneDrive\\Desktop\\SLM use cases\\model_runs\\sddf_training_splits_slm_only\\sddf_pipeline_artifacts_v3\\instruction_following\\qwen2.5_7b__seed42.json",
+      "test_metrics": {
+        "n": 54.0,
+        "positive_rate": 0.2037037037037037,
+        "avg_pred_fail_prob": 0.4211520260183956,
+        "f1": 0.34615384615384615,
+        "accuracy": 0.37037037037037035,
+        "roc_auc": 0.6511627906976744,
+        "pr_auc": 0.5844187583378271,
+        "brier": 0.20435039685005202,
+        "ece_10bin": 0.2859254005603388
+      }
+    },
+    {
+      "task": "instruction_following",
+      "model": "qwen2.5_7b",
+      "seed": 43,
+      "tau": 0.3,
+      "artifact_path": "C:\\Users\\riddh\\OneDrive\\Desktop\\SLM use cases\\model_runs\\sddf_training_splits_slm_only\\sddf_pipeline_artifacts_v3\\instruction_following\\qwen2.5_7b__seed43.json",
+      "test_metrics": {
+        "n": 54.0,
+        "positive_rate": 0.2037037037037037,
+        "avg_pred_fail_prob": 0.4211520260183956,
+        "f1": 0.34615384615384615,
+        "accuracy": 0.37037037037037035,
+        "roc_auc": 0.6511627906976744,
+        "pr_auc": 0.5844187583378271,
+        "brier": 0.20435039685005202,
+        "ece_10bin": 0.2859254005603388
+      }
+    },
+    {
+      "task": "instruction_following",
+      "model": "qwen2.5_7b",
+      "seed": 44,
+      "tau": 0.3,
+      "artifact_path": "C:\\Users\\riddh\\OneDrive\\Desktop\\SLM use cases\\model_runs\\sddf_training_splits_slm_only\\sddf_pipeline_artifacts_v3\\instruction_following\\qwen2.5_7b__seed44.json",
+      "test_metrics": {
+        "n": 54.0,
+        "positive_rate": 0.2037037037037037,
+        "avg_pred_fail_prob": 0.4211520260183956,
+        "f1": 0.34615384615384615,
+        "accuracy": 0.37037037037037035,
+        "roc_auc": 0.6511627906976744,
+        "pr_auc": 0.5844187583378271,
+        "brier": 0.20435039685005202,
+        "ece_10bin": 0.2859254005603388
+      }
+    },
+    {
+      "task": "instruction_following",
+      "model": "qwen2.5_7b",
+      "seed": 45,
+      "tau": 0.3,
+      "artifact_path": "C:\\Users\\riddh\\OneDrive\\Desktop\\SLM use cases\\model_runs\\sddf_training_splits_slm_only\\sddf_pipeline_artifacts_v3\\instruction_following\\qwen2.5_7b__seed45.json",
+      "test_metrics": {
+        "n": 54.0,
+        "positive_rate": 0.2037037037037037,
+        "avg_pred_fail_prob": 0.4211520260183956,
+        "f1": 0.34615384615384615,
+        "accuracy": 0.37037037037037035,
+        "roc_auc": 0.6511627906976744,
+        "pr_auc": 0.5844187583378271,
+        "brier": 0.20435039685005202,
+        "ece_10bin": 0.2859254005603388
+      }
+    },
+    {
+      "task": "instruction_following",
+      "model": "qwen2.5_7b",
+      "seed": 46,
+      "tau": 0.3,
+      "artifact_path": "C:\\Users\\riddh\\OneDrive\\Desktop\\SLM use cases\\model_runs\\sddf_training_splits_slm_only\\sddf_pipeline_artifacts_v3\\instruction_following\\qwen2.5_7b__seed46.json",
+      "test_metrics": {
+        "n": 54.0,
+        "positive_rate": 0.2037037037037037,
+        "avg_pred_fail_prob": 0.4211520260183956,
+        "f1": 0.34615384615384615,
+        "accuracy": 0.37037037037037035,
+        "roc_auc": 0.6511627906976744,
+        "pr_auc": 0.5844187583378271,
+        "brier": 0.20435039685005202,
+        "ece_10bin": 0.2859254005603388
+      }
+    },
+    {
+      "task": "maths",
+      "model": "qwen2.5_0.5b",
+      "seed": 42,
+      "tau": 0.05,
+      "artifact_path": "C:\\Users\\riddh\\OneDrive\\Desktop\\SLM use cases\\model_runs\\sddf_training_splits_slm_only\\sddf_pipeline_artifacts_v3\\maths\\qwen2.5_0.5b__seed42.json",
+      "test_metrics": {
+        "n": 54.0,
+        "positive_rate": 0.8518518518518519,
+        "avg_pred_fail_prob": 0.4961327295872341,
+        "f1": 0.92,
+        "accuracy": 0.8518518518518519,
+        "roc_auc": 0.7282608695652174,
+        "pr_auc": 0.9479250952925207,
+        "brier": 0.24988492208861512,
+        "ece_10bin": 0.3557191222646179
+      }
+    },
+    {
+      "task": "maths",
+      "model": "qwen2.5_0.5b",
+      "seed": 43,
+      "tau": 0.05,
+      "artifact_path": "C:\\Users\\riddh\\OneDrive\\Desktop\\SLM use cases\\model_runs\\sddf_training_splits_slm_only\\sddf_pipeline_artifacts_v3\\maths\\qwen2.5_0.5b__seed43.json",
+      "test_metrics": {
+        "n": 54.0,
+        "positive_rate": 0.8518518518518519,
+        "avg_pred_fail_prob": 0.4961327295872341,
+        "f1": 0.92,
+        "accuracy": 0.8518518518518519,
+        "roc_auc": 0.7282608695652174,
+        "pr_auc": 0.9479250952925207,
+        "brier": 0.24988492208861512,
+        "ece_10bin": 0.3557191222646179
+      }
+    },
+    {
+      "task": "maths",
+      "model": "qwen2.5_0.5b",
+      "seed": 44,
+      "tau": 0.05,
+      "artifact_path": "C:\\Users\\riddh\\OneDrive\\Desktop\\SLM use cases\\model_runs\\sddf_training_splits_slm_only\\sddf_pipeline_artifacts_v3\\maths\\qwen2.5_0.5b__seed44.json",
+      "test_metrics": {
+        "n": 54.0,
+        "positive_rate": 0.8518518518518519,
+        "avg_pred_fail_prob": 0.4961327295872341,
+        "f1": 0.92,
+        "accuracy": 0.8518518518518519,
+        "roc_auc": 0.7282608695652174,
+        "pr_auc": 0.9479250952925207,
+        "brier": 0.24988492208861512,
+        "ece_10bin": 0.3557191222646179
+      }
+    },
+    {
+      "task": "maths",
+      "model": "qwen2.5_0.5b",
+      "seed": 45,
+      "tau": 0.05,
+      "artifact_path": "C:\\Users\\riddh\\OneDrive\\Desktop\\SLM use cases\\model_runs\\sddf_training_splits_slm_only\\sddf_pipeline_artifacts_v3\\maths\\qwen2.5_0.5b__seed45.json",
+      "test_metrics": {
+        "n": 54.0,
+        "positive_rate": 0.8518518518518519,
+        "avg_pred_fail_prob": 0.4961327295872341,
+        "f1": 0.92,
+        "accuracy": 0.8518518518518519,
+        "roc_auc": 0.7282608695652174,
+        "pr_auc": 0.9479250952925207,
+        "brier": 0.24988492208861512,
+        "ece_10bin": 0.3557191222646179
+      }
+    },
+    {
+      "task": "maths",
+      "model": "qwen2.5_0.5b",
+      "seed": 46,
+      "tau": 0.05,
+      "artifact_path": "C:\\Users\\riddh\\OneDrive\\Desktop\\SLM use cases\\model_runs\\sddf_training_splits_slm_only\\sddf_pipeline_artifacts_v3\\maths\\qwen2.5_0.5b__seed46.json",
+      "test_metrics": {
+        "n": 54.0,
+        "positive_rate": 0.8518518518518519,
+        "avg_pred_fail_prob": 0.4961327295872341,
+        "f1": 0.92,
+        "accuracy": 0.8518518518518519,
+        "roc_auc": 0.7282608695652174,
+        "pr_auc": 0.9479250952925207,
+        "brier": 0.24988492208861512,
+        "ece_10bin": 0.3557191222646179
+      }
+    },
+    {
+      "task": "maths",
+      "model": "qwen2.5_3b",
+      "seed": 42,
+      "tau": 0.25,
+      "artifact_path": "C:\\Users\\riddh\\OneDrive\\Desktop\\SLM use cases\\model_runs\\sddf_training_splits_slm_only\\sddf_pipeline_artifacts_v3\\maths\\qwen2.5_3b__seed42.json",
+      "test_metrics": {
+        "n": 54.0,
+        "positive_rate": 0.35185185185185186,
+        "avg_pred_fail_prob": 0.4797563197908887,
+        "f1": 0.53125,
+        "accuracy": 0.4444444444444444,
+        "roc_auc": 0.8120300751879699,
+        "pr_auc": 0.8117449638015757,
+        "brier": 0.17476695211177395,
+        "ece_10bin": 0.20759094873976636
+      }
+    },
+    {
+      "task": "maths",
+      "model": "qwen2.5_3b",
+      "seed": 43,
+      "tau": 0.25,
+      "artifact_path": "C:\\Users\\riddh\\OneDrive\\Desktop\\SLM use cases\\model_runs\\sddf_training_splits_slm_only\\sddf_pipeline_artifacts_v3\\maths\\qwen2.5_3b__seed43.json",
+      "test_metrics": {
+        "n": 54.0,
+        "positive_rate": 0.35185185185185186,
+        "avg_pred_fail_prob": 0.4797563197908887,
+        "f1": 0.53125,
+        "accuracy": 0.4444444444444444,
+        "roc_auc": 0.8120300751879699,
+        "pr_auc": 0.8117449638015757,
+        "brier": 0.17476695211177395,
+        "ece_10bin": 0.20759094873976636
+      }
+    },
+    {
+      "task": "maths",
+      "model": "qwen2.5_3b",
+      "seed": 44,
+      "tau": 0.25,
+      "artifact_path": "C:\\Users\\riddh\\OneDrive\\Desktop\\SLM use cases\\model_runs\\sddf_training_splits_slm_only\\sddf_pipeline_artifacts_v3\\maths\\qwen2.5_3b__seed44.json",
+      "test_metrics": {
+        "n": 54.0,
+        "positive_rate": 0.35185185185185186,
+        "avg_pred_fail_prob": 0.4797563197908887,
+        "f1": 0.53125,
+        "accuracy": 0.4444444444444444,
+        "roc_auc": 0.8120300751879699,
+        "pr_auc": 0.8117449638015757,
+        "brier": 0.17476695211177395,
+        "ece_10bin": 0.20759094873976636
+      }
+    },
+    {
+      "task": "maths",
+      "model": "qwen2.5_3b",
+      "seed": 45,
+      "tau": 0.25,
+      "artifact_path": "C:\\Users\\riddh\\OneDrive\\Desktop\\SLM use cases\\model_runs\\sddf_training_splits_slm_only\\sddf_pipeline_artifacts_v3\\maths\\qwen2.5_3b__seed45.json",
+      "test_metrics": {
+        "n": 54.0,
+        "positive_rate": 0.35185185185185186,
+        "avg_pred_fail_prob": 0.4797563197908887,
+        "f1": 0.53125,
+        "accuracy": 0.4444444444444444,
+        "roc_auc": 0.8120300751879699,
+        "pr_auc": 0.8117449638015757,
+        "brier": 0.17476695211177395,
+        "ece_10bin": 0.20759094873976636
+      }
+    },
+    {
+      "task": "maths",
+      "model": "qwen2.5_3b",
+      "seed": 46,
+      "tau": 0.25,
+      "artifact_path": "C:\\Users\\riddh\\OneDrive\\Desktop\\SLM use cases\\model_runs\\sddf_training_splits_slm_only\\sddf_pipeline_artifacts_v3\\maths\\qwen2.5_3b__seed46.json",
+      "test_metrics": {
+        "n": 54.0,
+        "positive_rate": 0.35185185185185186,
+        "avg_pred_fail_prob": 0.4797563197908887,
+        "f1": 0.53125,
+        "accuracy": 0.4444444444444444,
+        "roc_auc": 0.8120300751879699,
+        "pr_auc": 0.8117449638015757,
+        "brier": 0.17476695211177395,
+        "ece_10bin": 0.20759094873976636
+      }
+    },
+    {
+      "task": "maths",
+      "model": "qwen2.5_7b",
+      "seed": 42,
+      "tau": 0.05,
+      "artifact_path": "C:\\Users\\riddh\\OneDrive\\Desktop\\SLM use cases\\model_runs\\sddf_training_splits_slm_only\\sddf_pipeline_artifacts_v3\\maths\\qwen2.5_7b__seed42.json",
+      "test_metrics": {
+        "n": 54.0,
+        "positive_rate": 0.6481481481481481,
+        "avg_pred_fail_prob": 0.48867909628099865,
+        "f1": 0.7865168539325843,
+        "accuracy": 0.6481481481481481,
+        "roc_auc": 0.7413533834586468,
+        "pr_auc": 0.8854583833156294,
+        "brier": 0.2144708087977395,
+        "ece_10bin": 0.17487661700183957
+      }
+    },
+    {
+      "task": "maths",
+      "model": "qwen2.5_7b",
+      "seed": 43,
+      "tau": 0.05,
+      "artifact_path": "C:\\Users\\riddh\\OneDrive\\Desktop\\SLM use cases\\model_runs\\sddf_training_splits_slm_only\\sddf_pipeline_artifacts_v3\\maths\\qwen2.5_7b__seed43.json",
+      "test_metrics": {
+        "n": 54.0,
+        "positive_rate": 0.6481481481481481,
+        "avg_pred_fail_prob": 0.48867909628099865,
+        "f1": 0.7865168539325843,
+        "accuracy": 0.6481481481481481,
+        "roc_auc": 0.7413533834586468,
+        "pr_auc": 0.8854583833156294,
+        "brier": 0.2144708087977395,
+        "ece_10bin": 0.17487661700183957
+      }
+    },
+    {
+      "task": "maths",
+      "model": "qwen2.5_7b",
+      "seed": 44,
+      "tau": 0.05,
+      "artifact_path": "C:\\Users\\riddh\\OneDrive\\Desktop\\SLM use cases\\model_runs\\sddf_training_splits_slm_only\\sddf_pipeline_artifacts_v3\\maths\\qwen2.5_7b__seed44.json",
+      "test_metrics": {
+        "n": 54.0,
+        "positive_rate": 0.6481481481481481,
+        "avg_pred_fail_prob": 0.48867909628099865,
+        "f1": 0.7865168539325843,
+        "accuracy": 0.6481481481481481,
+        "roc_auc": 0.7413533834586468,
+        "pr_auc": 0.8854583833156294,
+        "brier": 0.2144708087977395,
+        "ece_10bin": 0.17487661700183957
+      }
+    },
+    {
+      "task": "maths",
+      "model": "qwen2.5_7b",
+      "seed": 45,
+      "tau": 0.05,
+      "artifact_path": "C:\\Users\\riddh\\OneDrive\\Desktop\\SLM use cases\\model_runs\\sddf_training_splits_slm_only\\sddf_pipeline_artifacts_v3\\maths\\qwen2.5_7b__seed45.json",
+      "test_metrics": {
+        "n": 54.0,
+        "positive_rate": 0.6481481481481481,
+        "avg_pred_fail_prob": 0.48867909628099865,
+        "f1": 0.7865168539325843,
+        "accuracy": 0.6481481481481481,
+        "roc_auc": 0.7413533834586468,
+        "pr_auc": 0.8854583833156294,
+        "brier": 0.2144708087977395,
+        "ece_10bin": 0.17487661700183957
+      }
+    },
+    {
+      "task": "maths",
+      "model": "qwen2.5_7b",
+      "seed": 46,
+      "tau": 0.05,
+      "artifact_path": "C:\\Users\\riddh\\OneDrive\\Desktop\\SLM use cases\\model_runs\\sddf_training_splits_slm_only\\sddf_pipeline_artifacts_v3\\maths\\qwen2.5_7b__seed46.json",
+      "test_metrics": {
+        "n": 54.0,
+        "positive_rate": 0.6481481481481481,
+        "avg_pred_fail_prob": 0.48867909628099865,
+        "f1": 0.7865168539325843,
+        "accuracy": 0.6481481481481481,
+        "roc_auc": 0.7413533834586468,
+        "pr_auc": 0.8854583833156294,
+        "brier": 0.2144708087977395,
+        "ece_10bin": 0.17487661700183957
+      }
+    },
+    {
+      "task": "retrieval_grounded",
+      "model": "qwen2.5_0.5b",
+      "seed": 42,
+      "tau": 0.1,
+      "artifact_path": "C:\\Users\\riddh\\OneDrive\\Desktop\\SLM use cases\\model_runs\\sddf_training_splits_slm_only\\sddf_pipeline_artifacts_v3\\retrieval_grounded\\qwen2.5_0.5b__seed42.json",
+      "test_metrics": {
+        "n": 63.0,
+        "positive_rate": 0.4444444444444444,
+        "avg_pred_fail_prob": 0.5080120573908533,
+        "f1": 0.6511627906976745,
+        "accuracy": 0.5238095238095238,
+        "roc_auc": 0.8285714285714286,
+        "pr_auc": 0.7737772345973413,
+        "brier": 0.17471387341799896,
+        "ece_10bin": 0.09885491707813805
+      }
+    },
+    {
+      "task": "retrieval_grounded",
+      "model": "qwen2.5_3b",
+      "seed": 42,
+      "tau": 0.5499999999999999,
+      "artifact_path": "C:\\Users\\riddh\\OneDrive\\Desktop\\SLM use cases\\model_runs\\sddf_training_splits_slm_only\\sddf_pipeline_artifacts_v3\\retrieval_grounded\\qwen2.5_3b__seed42.json",
+      "test_metrics": {
+        "n": 63.0,
+        "positive_rate": 0.36507936507936506,
+        "avg_pred_fail_prob": 0.47038204613118756,
+        "f1": 0.6122448979591837,
+        "accuracy": 0.6984126984126984,
+        "roc_auc": 0.741304347826087,
+        "pr_auc": 0.6120767847548938,
+        "brier": 0.20971991645861612,
+        "ece_10bin": 0.1705727968505116
+      }
+    },
+    {
+      "task": "retrieval_grounded",
+      "model": "qwen2.5_7b",
+      "seed": 42,
+      "tau": 0.3,
+      "artifact_path": "C:\\Users\\riddh\\OneDrive\\Desktop\\SLM use cases\\model_runs\\sddf_training_splits_slm_only\\sddf_pipeline_artifacts_v3\\retrieval_grounded\\qwen2.5_7b__seed42.json",
+      "test_metrics": {
+        "n": 63.0,
+        "positive_rate": 0.3333333333333333,
+        "avg_pred_fail_prob": 0.45852503085038154,
+        "f1": 0.6774193548387096,
+        "accuracy": 0.6825396825396826,
+        "roc_auc": 0.8287981859410432,
+        "pr_auc": 0.6653850909950632,
+        "brier": 0.17620754688769857,
+        "ece_10bin": 0.15868987466645296
+      }
+    },
+    {
+      "task": "summarization",
+      "model": "qwen2.5_0.5b",
+      "seed": 42,
+      "tau": 0.7999999999999999,
+      "artifact_path": "C:\\Users\\riddh\\OneDrive\\Desktop\\SLM use cases\\model_runs\\sddf_training_splits_slm_only\\sddf_pipeline_artifacts_v3\\summarization\\qwen2.5_0.5b__seed42.json",
+      "test_metrics": {
+        "n": 56.0,
+        "positive_rate": 0.35714285714285715,
+        "avg_pred_fail_prob": 0.49576538574258183,
+        "f1": 0.17391304347826086,
+        "accuracy": 0.6607142857142857,
+        "roc_auc": 0.7013888888888888,
+        "pr_auc": 0.6072347520891022,
+        "brier": 0.2217445425960523,
+        "ece_10bin": 0.13950956700921507
+      }
+    },
+    {
+      "task": "summarization",
+      "model": "qwen2.5_3b",
+      "seed": 42,
+      "tau": 0.6,
+      "artifact_path": "C:\\Users\\riddh\\OneDrive\\Desktop\\SLM use cases\\model_runs\\sddf_training_splits_slm_only\\sddf_pipeline_artifacts_v3\\summarization\\qwen2.5_3b__seed42.json",
+      "test_metrics": {
+        "n": 56.0,
+        "positive_rate": 0.25,
+        "avg_pred_fail_prob": 0.49010014966664134,
+        "f1": 0.2608695652173913,
+        "accuracy": 0.6964285714285714,
+        "roc_auc": 0.5357142857142857,
+        "pr_auc": 0.3053196612691221,
+        "brier": 0.2580122987171559,
+        "ece_10bin": 0.24215585277245627
+      }
+    },
+    {
+      "task": "summarization",
+      "model": "qwen2.5_7b",
+      "seed": 42,
+      "tau": 0.2,
+      "artifact_path": "C:\\Users\\riddh\\OneDrive\\Desktop\\SLM use cases\\model_runs\\sddf_training_splits_slm_only\\sddf_pipeline_artifacts_v3\\summarization\\qwen2.5_7b__seed42.json",
+      "test_metrics": {
+        "n": 56.0,
+        "positive_rate": 0.30357142857142855,
+        "avg_pred_fail_prob": 0.5027933509173622,
+        "f1": 0.47058823529411764,
+        "accuracy": 0.35714285714285715,
+        "roc_auc": 0.5761689291101055,
+        "pr_auc": 0.3386043297009067,
+        "brier": 0.26795461595166836,
+        "ece_10bin": 0.25072729972078933
+      }
+    },
+    {
+      "task": "text_generation",
+      "model": "qwen2.5_0.5b",
+      "seed": 42,
+      "tau": 0.15,
+      "artifact_path": "C:\\Users\\riddh\\OneDrive\\Desktop\\SLM use cases\\model_runs\\sddf_training_splits_slm_only\\sddf_pipeline_artifacts_v3\\text_generation\\qwen2.5_0.5b__seed42.json",
+      "test_metrics": {
+        "n": 24.0,
+        "positive_rate": 0.125,
+        "avg_pred_fail_prob": 0.43061931835027467,
+        "f1": 0.2222222222222222,
+        "accuracy": 0.125,
+        "roc_auc": 0.2698412698412698,
+        "pr_auc": 0.11093073593073594,
+        "brier": 0.24205374040943384,
+        "ece_10bin": 0.3056193183502747
+      }
+    },
+    {
+      "task": "text_generation",
+      "model": "qwen2.5_3b",
+      "seed": 42,
+      "tau": 0.6,
+      "artifact_path": "C:\\Users\\riddh\\OneDrive\\Desktop\\SLM use cases\\model_runs\\sddf_training_splits_slm_only\\sddf_pipeline_artifacts_v3\\text_generation\\qwen2.5_3b__seed42.json",
+      "test_metrics": {
+        "n": 24.0,
+        "positive_rate": 0.125,
+        "avg_pred_fail_prob": 0.513461096573443,
+        "f1": 0.15384615384615385,
+        "accuracy": 0.5416666666666666,
+        "roc_auc": 0.5714285714285714,
+        "pr_auc": 0.2736111111111111,
+        "brier": 0.29541289871370147,
+        "ece_10bin": 0.4424411374110572
+      }
+    },
+    {
+      "task": "text_generation",
+      "model": "qwen2.5_7b",
+      "seed": 42,
+      "tau": 0.65,
+      "artifact_path": "C:\\Users\\riddh\\OneDrive\\Desktop\\SLM use cases\\model_runs\\sddf_training_splits_slm_only\\sddf_pipeline_artifacts_v3\\text_generation\\qwen2.5_7b__seed42.json",
+      "test_metrics": {
+        "n": 24.0,
+        "positive_rate": 0.041666666666666664,
+        "avg_pred_fail_prob": 0.23249655517637993,
+        "f1": 0.0,
+        "accuracy": 0.8333333333333334,
+        "roc_auc": 0.04347826086956519,
+        "pr_auc": 0.043478260869565216,
+        "brier": 0.1825423835413413,
+        "ece_10bin": 0.23177695364686807
+      }
+    }
+  ],
+  "errors": []
+}

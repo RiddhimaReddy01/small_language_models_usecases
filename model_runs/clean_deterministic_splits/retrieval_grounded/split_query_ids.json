@@ -1,0 +1,38 @@
+{
+  "train": [
+    "retrieval_grounded:1",
+    "retrieval_grounded:10",
+    "retrieval_grounded:11",
+    "retrieval_grounded:12",
+    "retrieval_grounded:13",
+    "retrieval_grounded:14",
+    "retrieval_grounded:15",
+    "retrieval_grounded:16",
+    "retrieval_grounded:17",
+    "retrieval_grounded:18",
+    "retrieval_grounded:2",
+    "retrieval_grounded:20",
+    "retrieval_grounded:23",
+    "retrieval_grounded:24",
+    "retrieval_grounded:25",
+    "retrieval_grounded:26",
+    "retrieval_grounded:27",
+    "retrieval_grounded:28",
+    "retrieval_grounded:3",
+    "retrieval_grounded:31",
+    "retrieval_grounded:32",
+    "retrieval_grounded:34"
+  ],
+  "val": [
+    "retrieval_grounded:19",
+    "retrieval_grounded:35"
+  ],
+  "test": [
+    "retrieval_grounded:0",
+    "retrieval_grounded:21",
+    "retrieval_grounded:22",
+    "retrieval_grounded:29",
+    "retrieval_grounded:30",
+    "retrieval_grounded:33"
+  ]
+}

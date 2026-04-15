@@ -1,0 +1,258 @@
+[
+  {
+    "task": "classification",
+    "model": "qwen2.5:0.5b",
+    "isotonic_tau": 0.714404,
+    "analytical_tau": null,
+    "error": null,
+    "status": "Model mismatch \u2717"
+  },
+  {
+    "task": "classification",
+    "model": "qwen2.5:3b",
+    "isotonic_tau": 0.985952,
+    "analytical_tau": null,
+    "error": null,
+    "status": "Model mismatch \u2717"
+  },
+  {
+    "task": "classification",
+    "model": "qwen2.5:7b",
+    "isotonic_tau": 0.398623,
+    "analytical_tau": null,
+    "error": null,
+    "status": "Model mismatch \u2717"
+  },
+  {
+    "task": "classification",
+    "model": "groq:llama-3.3-70b-versatile",
+    "isotonic_tau": 0.716393,
+    "analytical_tau": 1.0,
+    "error": 0.28360700000000005,
+    "status": "Model mismatch \u2717"
+  },
+  {
+    "task": "code_generation",
+    "model": "qwen2.5:0.5b",
+    "isotonic_tau": 1.0,
+    "analytical_tau": null,
+    "error": null,
+    "status": "Model mismatch \u2717"
+  },
+  {
+    "task": "code_generation",
+    "model": "qwen2.5:3b",
+    "isotonic_tau": 0.611452,
+    "analytical_tau": null,
+    "error": null,
+    "status": "Model mismatch \u2717"
+  },
+  {
+    "task": "code_generation",
+    "model": "qwen2.5:7b",
+    "isotonic_tau": 0.765095,
+    "analytical_tau": null,
+    "error": null,
+    "status": "Model mismatch \u2717"
+  },
+  {
+    "task": "code_generation",
+    "model": "groq:llama-3.3-70b-versatile",
+    "isotonic_tau": 0.78064,
+    "analytical_tau": null,
+    "error": null,
+    "status": "Model mismatch \u2717"
+  },
+  {
+    "task": "information_extraction",
+    "model": "qwen2.5:0.5b",
+    "isotonic_tau": 0.27959,
+    "analytical_tau": null,
+    "error": null,
+    "status": "Model mismatch \u2717"
+  },
+  {
+    "task": "information_extraction",
+    "model": "qwen2.5:3b",
+    "isotonic_tau": 0.160125,
+    "analytical_tau": 0.2701992435318354,
+    "error": 0.1100742435318354,
+    "status": "Model mismatch \u2717"
+  },
+  {
+    "task": "information_extraction",
+    "model": "qwen2.5:7b",
+    "isotonic_tau": 0.389646,
+    "analytical_tau": 0.22075241208943835,
+    "error": 0.16889358791056164,
+    "status": "Model mismatch \u2717"
+  },
+  {
+    "task": "information_extraction",
+    "model": "groq:llama-3.3-70b-versatile",
+    "isotonic_tau": 0.29514,
+    "analytical_tau": 0.23243326024971195,
+    "error": 0.06270673975028807,
+    "status": "Acceptable"
+  },
+  {
+    "task": "instruction_following",
+    "model": "qwen2.5:0.5b",
+    "isotonic_tau": 0.460079,
+    "analytical_tau": 1.0,
+    "error": 0.539921,
+    "status": "Model mismatch \u2717"
+  },
+  {
+    "task": "instruction_following",
+    "model": "qwen2.5:3b",
+    "isotonic_tau": 0.984518,
+    "analytical_tau": 5.0396670313773356e-05,
+    "error": 0.9844676033296862,
+    "status": "Model mismatch \u2717"
+  },
+  {
+    "task": "instruction_following",
+    "model": "qwen2.5:7b",
+    "isotonic_tau": 0.366953,
+    "analytical_tau": null,
+    "error": null,
+    "status": "Model mismatch \u2717"
+  },
+  {
+    "task": "instruction_following",
+    "model": "groq:llama-3.3-70b-versatile",
+    "isotonic_tau": 0.20467,
+    "analytical_tau": 0.011519519425382737,
+    "error": 0.19315048057461726,
+    "status": "Model mismatch \u2717"
+  },
+  {
+    "task": "maths",
+    "model": "qwen2.5:0.5b",
+    "isotonic_tau": 1.0,
+    "analytical_tau": null,
+    "error": null,
+    "status": "Model mismatch \u2717"
+  },
+  {
+    "task": "maths",
+    "model": "qwen2.5:3b",
+    "isotonic_tau": 0.114011,
+    "analytical_tau": null,
+    "error": null,
+    "status": "Model mismatch \u2717"
+  },
+  {
+    "task": "maths",
+    "model": "qwen2.5:7b",
+    "isotonic_tau": 0.749989,
+    "analytical_tau": 0.9472832818865907,
+    "error": 0.1972942818865907,
+    "status": "Model mismatch \u2717"
+  },
+  {
+    "task": "maths",
+    "model": "groq:llama-3.3-70b-versatile",
+    "isotonic_tau": 0.78988,
+    "analytical_tau": 0.9520969593314571,
+    "error": 0.16221695933145708,
+    "status": "Model mismatch \u2717"
+  },
+  {
+    "task": "retrieval_grounded",
+    "model": "qwen2.5:0.5b",
+    "isotonic_tau": 0.407367,
+    "analytical_tau": null,
+    "error": null,
+    "status": "Model mismatch \u2717"
+  },
+  {
+    "task": "retrieval_grounded",
+    "model": "qwen2.5:3b",
+    "isotonic_tau": 0.372501,
+    "analytical_tau": 1.0,
+    "error": 0.627499,
+    "status": "Model mismatch \u2717"
+  },
+  {
+    "task": "retrieval_grounded",
+    "model": "qwen2.5:7b",
+    "isotonic_tau": 0.527543,
+    "analytical_tau": null,
+    "error": null,
+    "status": "Model mismatch \u2717"
+  },
+  {
+    "task": "retrieval_grounded",
+    "model": "groq:llama-3.3-70b-versatile",
+    "isotonic_tau": 0.830657,
+    "analytical_tau": 0.7540858863945044,
+    "error": 0.07657111360549562,
+    "status": "Acceptable"
+  },
+  {
+    "task": "summarization",
+    "model": "qwen2.5:0.5b",
+    "isotonic_tau": 0.747358,
+    "analytical_tau": null,
+    "error": null,
+    "status": "Model mismatch \u2717"
+  },
+  {
+    "task": "summarization",
+    "model": "qwen2.5:3b",
+    "isotonic_tau": 0.093182,
+    "analytical_tau": 0.10775049891873385,
+    "error": 0.014568498918733852,
+    "status": "Well-aligned \u2713"
+  },
+  {
+    "task": "summarization",
+    "model": "qwen2.5:7b",
+    "isotonic_tau": 0.187593,
+    "analytical_tau": null,
+    "error": null,
+    "status": "Model mismatch \u2717"
+  },
+  {
+    "task": "summarization",
+    "model": "groq:llama-3.3-70b-versatile",
+    "isotonic_tau": 0.362219,
+    "analytical_tau": 0.34258441229323644,
+    "error": 0.019634587706763573,
+    "status": "Well-aligned \u2713"
+  },
+  {
+    "task": "text_generation",
+    "model": "qwen2.5:0.5b",
+    "isotonic_tau": 0.107614,
+    "analytical_tau": 0.12799592157578202,
+    "error": 0.020381921575782017,
+    "status": "Well-aligned \u2713"
+  },
+  {
+    "task": "text_generation",
+    "model": "qwen2.5:3b",
+    "isotonic_tau": 0.06063,
+    "analytical_tau": 0.05715900755816056,
+    "error": 0.003470992441839446,
+    "status": "Well-aligned \u2713"
+  },
+  {
+    "task": "text_generation",
+    "model": "qwen2.5:7b",
+    "isotonic_tau": 0.039184,
+    "analytical_tau": 0.0012550240550903223,
+    "error": 0.037928975944909675,
+    "status": "Well-aligned \u2713"
+  },
+  {
+    "task": "text_generation",
+    "model": "groq:llama-3.3-70b-versatile",
+    "isotonic_tau": 0.0,
+    "analytical_tau": 0.6931471791181285,
+    "error": 0.6931471791181285,
+    "status": "Model mismatch \u2717"
+  }
+]

@@ -1,0 +1,121 @@
+{
+  "runs": [
+    {
+      "task": "classification",
+      "model": "llama_llama-3.3-70b-versatile",
+      "status": "ok"
+    }
+  ],
+  "errors": [
+    {
+      "task": "classification",
+      "model": "qwen2.5_0.5b",
+      "error": "Target collapse on train split: failure label has only one class"
+    },
+    {
+      "task": "classification",
+      "model": "qwen2.5_3b",
+      "error": "Target collapse on train split: failure label has only one class"
+    },
+    {
+      "task": "code_generation",
+      "model": "llama_llama-3.3-70b-versatile",
+      "error": "Target collapse on train split: failure label has only one class"
+    },
+    {
+      "task": "code_generation",
+      "model": "qwen2.5_0.5b",
+      "error": "Target collapse on train split: failure label has only one class"
+    },
+    {
+      "task": "code_generation",
+      "model": "qwen2.5_3b",
+      "error": "Target collapse on train split: failure label has only one class"
+    },
+    {
+      "task": "information_extraction",
+      "model": "llama_llama-3.3-70b-versatile",
+      "error": "Target collapse on train split: failure label has only one class"
+    },
+    {
+      "task": "information_extraction",
+      "model": "qwen2.5_0.5b",
+      "error": "Target collapse on train split: failure label has only one class"
+    },
+    {
+      "task": "information_extraction",
+      "model": "qwen2.5_3b",
+      "error": "Target collapse on train split: failure label has only one class"
+    },
+    {
+      "task": "instruction_following",
+      "model": "llama_llama-3.3-70b-versatile",
+      "error": "Target collapse on train split: failure label has only one class"
+    },
+    {
+      "task": "instruction_following",
+      "model": "qwen2.5_0.5b",
+      "error": "Target collapse on train split: failure label has only one class"
+    },
+    {
+      "task": "instruction_following",
+      "model": "qwen2.5_3b",
+      "error": "Target collapse on train split: failure label has only one class"
+    },
+    {
+      "task": "maths",
+      "model": "llama_llama-3.3-70b-versatile",
+      "error": "Target collapse on train split: failure label has only one class"
+    },
+    {
+      "task": "maths",
+      "model": "qwen2.5_0.5b",
+      "error": "Target collapse on train split: failure label has only one class"
+    },
+    {
+      "task": "maths",
+      "model": "qwen2.5_3b",
+      "error": "Target collapse on train split: failure label has only one class"
+    },
+    {
+      "task": "retrieval_grounded",
+      "model": "llama_llama-3.3-70b-versatile",
+      "error": "Target collapse on train split: failure label has only one class"
+    },
+    {
+      "task": "retrieval_grounded",
+      "model": "qwen2.5_0.5b",
+      "error": "Target collapse on train split: failure label has only one class"
+    },
+    {
+      "task": "retrieval_grounded",
+      "model": "qwen2.5_3b",
+      "error": "Target collapse on train split: failure label has only one class"
+    },
+    {
+      "task": "summarization",
+      "model": "llama_llama-3.3-70b-versatile",
+      "error": "Target collapse on train split: failure label has only one class"
+    },
+    {
+      "task": "summarization",
+      "model": "qwen2.5_0.5b",
+      "error": "Target collapse on train split: failure label has only one class"
+    },
+    {
+      "task": "summarization",
+      "model": "qwen2.5_3b",
+      "error": "Target collapse on train split: failure label has only one class"
+    },
+    {
+      "task": "text_generation",
+      "model": "llama_llama-3.3-70b-versatile",
+      "error": "Target collapse on train split: failure label has only one class"
+    },
+    {
+      "task": "text_generation",
+      "model": "qwen2.5_0.5b",
+      "error": "Target collapse on train split: failure label has only one class"
+    }
+  ]
+}

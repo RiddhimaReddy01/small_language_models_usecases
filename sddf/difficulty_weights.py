@@ -245,8 +245,25 @@ class DifficultyWeightLearner:
     # ------------------------------------------------------------------
 
     # ------------------------------------------------------------------
-    # Feature pre-filtering — correlation-based
+    # Feature pre-filtering — constant feature removal + correlation-based
     # ------------------------------------------------------------------
+
+    def _detect_constant_features(
+        self,
+        samples: list[dict[str, float]],
+    ) -> list[str]:
+        """Return list of features with zero variance (constant across samples)."""
+        constant = []
+        n = len(samples)
+        if n == 0:
+            return constant
+        for dim in self.dimensions:
+            x_vals = [float(s.get(dim, 0.0)) for s in samples]
+            x_min = min(x_vals)
+            x_max = max(x_vals)
+            if x_max - x_min < 1e-9:  # Zero variance
+                constant.append(dim)
+        return constant
 
     def _select_features(
         self,
@@ -311,6 +328,19 @@ class DifficultyWeightLearner:
         if not samples:
             return {"weights": dict(self.weights), "norm_stats": dict(self.norm_stats)}
 
+        # ── Step 0: detect and remove constant features ──────────────────────
+        # Features with zero variance cannot be used for learning. Exclude them
+        # before correlation analysis.
+        constant_features = self._detect_constant_features(samples)
+        working_dims = [d for d in self.dimensions if d not in constant_features]
+        if not working_dims:
+            # Fallback: use all dimensions if all are constant (shouldn't happen)
+            working_dims = list(self.dimensions)
+
+        # Temporarily set dimensions to working set for this fit.
+        orig_dims = self.dimensions
+        self.dimensions = working_dims
+
         # ── Step 1: correlation-based feature pre-selection ──────────────────
         # Remove features with |r| < min_feature_corr before optimization.
         # Zeroed features stay at uniform weight among themselves so the full
@@ -362,10 +392,14 @@ class DifficultyWeightLearner:
         # Inactive dims each get a tiny floor weight (eps) so a query can
         # still receive a non-zero score from any feature, but they contribute
         # negligibly.  Re-normalise the full vector to sum to 1.
+        # Constant features get near-zero weight.
         eps = 1e-9
         full_weights: dict[str, float] = {}
-        for dim in self.dimensions:
-            if dim in active_weights:
+        for dim in orig_dims:
+            if dim in constant_features:
+                # Constant features get zero weight (they can't help routing)
+                full_weights[dim] = eps
+            elif dim in active_weights:
                 full_weights[dim] = float(active_weights[dim])
             else:
                 full_weights[dim] = eps
@@ -373,6 +407,7 @@ class DifficultyWeightLearner:
         full_weights = {d: v / total for d, v in full_weights.items()}
 
         # Update self so score() works correctly after fit().
+        self.dimensions = orig_dims  # Restore original dimensions
         self.norm_stats = sub.norm_stats
         self.entropy_reg = best_ent
         self.weights = full_weights
@@ -388,6 +423,7 @@ class DifficultyWeightLearner:
                 "cv_folds": int(self.cv_folds),
                 "active_dims": active_dims,
                 "inactive_dims": inactive_dims,
+                "constant_features": constant_features,
                 "feature_corrs": {d: round(float(v), 4) for d, v in feature_corrs.items()},
                 "pos_rate": round(pos_rate, 4),
                 "sparse_floor_entropy": sparse_floor,

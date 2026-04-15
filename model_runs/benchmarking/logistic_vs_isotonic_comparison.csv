@@ -1,0 +1,33 @@
+task,model,isotonic_tau,analytical_tau,error,status
+classification,qwen2.5:0.5b,0.714404,,,Model mismatch ✗
+classification,qwen2.5:3b,0.985952,,,Model mismatch ✗
+classification,qwen2.5:7b,0.398623,,,Model mismatch ✗
+classification,groq:llama-3.3-70b-versatile,0.716393,1.0,0.28360700000000005,Model mismatch ✗
+code_generation,qwen2.5:0.5b,1.0,,,Model mismatch ✗
+code_generation,qwen2.5:3b,0.611452,,,Model mismatch ✗
+code_generation,qwen2.5:7b,0.765095,,,Model mismatch ✗
+code_generation,groq:llama-3.3-70b-versatile,0.78064,,,Model mismatch ✗
+information_extraction,qwen2.5:0.5b,0.27959,,,Model mismatch ✗
+information_extraction,qwen2.5:3b,0.160125,0.2701992435318354,0.1100742435318354,Model mismatch ✗
+information_extraction,qwen2.5:7b,0.389646,0.22075241208943835,0.16889358791056164,Model mismatch ✗
+information_extraction,groq:llama-3.3-70b-versatile,0.29514,0.23243326024971195,0.06270673975028807,Acceptable
+instruction_following,qwen2.5:0.5b,0.460079,1.0,0.539921,Model mismatch ✗
+instruction_following,qwen2.5:3b,0.984518,5.0396670313773356e-05,0.9844676033296862,Model mismatch ✗
+instruction_following,qwen2.5:7b,0.366953,,,Model mismatch ✗
+instruction_following,groq:llama-3.3-70b-versatile,0.20467,0.011519519425382737,0.19315048057461726,Model mismatch ✗
+maths,qwen2.5:0.5b,1.0,,,Model mismatch ✗
+maths,qwen2.5:3b,0.114011,,,Model mismatch ✗
+maths,qwen2.5:7b,0.749989,0.9472832818865907,0.1972942818865907,Model mismatch ✗
+maths,groq:llama-3.3-70b-versatile,0.78988,0.9520969593314571,0.16221695933145708,Model mismatch ✗
+retrieval_grounded,qwen2.5:0.5b,0.407367,,,Model mismatch ✗
+retrieval_grounded,qwen2.5:3b,0.372501,1.0,0.627499,Model mismatch ✗
+retrieval_grounded,qwen2.5:7b,0.527543,,,Model mismatch ✗
+retrieval_grounded,groq:llama-3.3-70b-versatile,0.830657,0.7540858863945044,0.07657111360549562,Acceptable
+summarization,qwen2.5:0.5b,0.747358,,,Model mismatch ✗
+summarization,qwen2.5:3b,0.093182,0.10775049891873385,0.014568498918733852,Well-aligned ✓
+summarization,qwen2.5:7b,0.187593,,,Model mismatch ✗
+summarization,groq:llama-3.3-70b-versatile,0.362219,0.34258441229323644,0.019634587706763573,Well-aligned ✓
+text_generation,qwen2.5:0.5b,0.107614,0.12799592157578202,0.020381921575782017,Well-aligned ✓
+text_generation,qwen2.5:3b,0.06063,0.05715900755816056,0.003470992441839446,Well-aligned ✓
+text_generation,qwen2.5:7b,0.039184,0.0012550240550903223,0.037928975944909675,Well-aligned ✓
+text_generation,groq:llama-3.3-70b-versatile,0.0,0.6931471791181285,0.6931471791181285,Model mismatch ✗

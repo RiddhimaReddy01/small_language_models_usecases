@@ -2,2153 +2,15 @@
   "source_split": "train",
   "model_type": "task_per_slm_difficulty_weights",
   "families": {
-    "information_extraction": {
-      "qwen2.5_3b": {
-        "weights": {
-          "n_in": 9.999999819999997e-10,
-          "entropy": 9.99999989e-10,
-          "reasoning_proxy": 0.9999999819999996,
-          "constraint_count": 9.999999819999997e-10,
-          "parametric_dependence": 9.999999819999997e-10,
-          "dependency_distance": 9.999999819999997e-10,
-          "reasoning_x_constraint": 9.999999819999997e-10,
-          "length_x_entropy": 9.999999819999997e-10,
-          "knowledge_x_reasoning": 9.999999819999997e-10,
-          "classification_ambiguity": 9.99999989e-10,
-          "classification_negation_density": 9.99999989e-10,
-          "classification_domain_shift": 9.99999989e-10,
-          "math_numeric_density": 9.99999989e-10,
-          "math_symbol_density": 9.99999989e-10,
-          "math_precision_cues": 9.99999989e-10,
-          "instruction_format_strictness": 9.99999989e-10,
-          "instruction_prohibition_count": 9.99999989e-10,
-          "instruction_step_count": 9.99999989e-10,
-          "instruction_conflict_cues": 9.99999989e-10
-        },
-        "norm_stats": {
-          "n_in": {
-            "p05": 109.0,
-            "p95": 154.0
-          },
-          "reasoning_proxy": {
-            "p05": 2.0,
-            "p95": 5.85
-          },
-          "constraint_count": {
-            "p05": 1.0,
-            "p95": 4.0
-          },
-          "parametric_dependence": {
-            "p05": 0.27777777777777773,
-            "p95": 0.8333333333333334
-          },
-          "dependency_distance": {
-            "p05": 15.75,
-            "p95": 123.77777777777777
-          },
-          "reasoning_x_constraint": {
-            "p05": 2.35,
-            "p95": 17.4
-          },
-          "length_x_entropy": {
-            "p05": 661.32897353641,
-            "p95": 970.7073308220714
-          },
-          "knowledge_x_reasoning": {
-            "p05": 0.9722222222222221,
-            "p95": 3.8
-          }
-        },
-        "fit_config": {
-          "l2": 0.0,
-          "entropy_reg": 0.1,
-          "steps": 800,
-          "learning_rate": 0.05,
-          "cv_folds": 3,
-          "active_dims": [
-            "n_in",
-            "reasoning_proxy",
-            "constraint_count",
-            "parametric_dependence",
-            "dependency_distance",
-            "reasoning_x_constraint",
-            "length_x_entropy",
-            "knowledge_x_reasoning"
-          ],
-          "inactive_dims": [
-            "entropy",
-            "classification_ambiguity",
-            "classification_negation_density",
-            "classification_domain_shift",
-            "math_numeric_density",
-            "math_symbol_density",
-            "math_precision_cues",
-            "instruction_format_strictness",
-            "instruction_prohibition_count",
-            "instruction_step_count",
-            "instruction_conflict_cues"
-          ],
-          "feature_corrs": {
-            "n_in": -0.228,
-            "entropy": 0.0299,
-            "reasoning_proxy": 0.1513,
-            "constraint_count": 0.0908,
-            "parametric_dependence": 0.2512,
-            "dependency_distance": -0.3951,
-            "reasoning_x_constraint": 0.1703,
-            "length_x_entropy": -0.1929,
-            "knowledge_x_reasoning": 0.3032,
-            "classification_ambiguity": 0.0,
-            "classification_negation_density": 0.0,
-            "classification_domain_shift": 0.0,
-            "math_numeric_density": 0.0,
-            "math_symbol_density": 0.0,
-            "math_precision_cues": 0.0,
-            "instruction_format_strictness": 0.0,
-            "instruction_prohibition_count": 0.0,
-            "instruction_step_count": 0.0,
-            "instruction_conflict_cues": 0.0
-          },
-          "pos_rate": 0.1159,
-          "sparse_floor_entropy": 0.03
-        }
-      },
-      "qwen2.5_0.5b": {
-        "weights": {
-          "n_in": 9.999999869999996e-10,
-          "entropy": 9.999999869999996e-10,
-          "reasoning_proxy": 0.9999999819999992,
-          "constraint_count": 9.999999819999992e-10,
-          "parametric_dependence": 9.999999819999992e-10,
-          "dependency_distance": 9.999999819999992e-10,
-          "reasoning_x_constraint": 9.999999819999992e-10,
-          "length_x_entropy": 9.999999869999996e-10,
-          "knowledge_x_reasoning": 9.999999819999992e-10,
-          "classification_ambiguity": 9.999999869999996e-10,
-          "classification_negation_density": 9.999999869999996e-10,
-          "classification_domain_shift": 9.999999869999996e-10,
-          "math_numeric_density": 9.999999869999996e-10,
-          "math_symbol_density": 9.999999869999996e-10,
-          "math_precision_cues": 9.999999869999996e-10,
-          "instruction_format_strictness": 9.999999869999996e-10,
-          "instruction_prohibition_count": 9.999999869999996e-10,
-          "instruction_step_count": 9.999999869999996e-10,
-          "instruction_conflict_cues": 9.999999869999996e-10
-        },
-        "norm_stats": {
-          "reasoning_proxy": {
-            "p05": 2.0,
-            "p95": 5.85
-          },
-          "constraint_count": {
-            "p05": 1.0,
-            "p95": 4.0
-          },
-          "parametric_dependence": {
-            "p05": 0.27777777777777773,
-            "p95": 0.8333333333333334
-          },
-          "dependency_distance": {
-            "p05": 15.75,
-            "p95": 123.77777777777777
-          },
-          "reasoning_x_constraint": {
-            "p05": 2.35,
-            "p95": 17.4
-          },
-          "knowledge_x_reasoning": {
-            "p05": 0.9722222222222221,
-            "p95": 3.8
-          }
-        },
-        "fit_config": {
-          "l2": 0.0,
-          "entropy_reg": 0.001,
-          "steps": 800,
-          "learning_rate": 0.05,
-          "cv_folds": 3,
-          "active_dims": [
-            "reasoning_proxy",
-            "constraint_count",
-            "parametric_dependence",
-            "dependency_distance",
-            "reasoning_x_constraint",
-            "knowledge_x_reasoning"
-          ],
-          "inactive_dims": [
-            "n_in",
-            "entropy",
-            "length_x_entropy",
-            "classification_ambiguity",
-            "classification_negation_density",
-            "classification_domain_shift",
-            "math_numeric_density",
-            "math_symbol_density",
-            "math_precision_cues",
-            "instruction_format_strictness",
-            "instruction_prohibition_count",
-            "instruction_step_count",
-            "instruction_conflict_cues"
-          ],
-          "feature_corrs": {
-            "n_in": -0.0294,
-            "entropy": -0.022,
-            "reasoning_proxy": 0.2249,
-            "constraint_count": 0.167,
-            "parametric_dependence": 0.1026,
-            "dependency_distance": 0.1046,
-            "reasoning_x_constraint": 0.2538,
-            "length_x_entropy": -0.0296,
-            "knowledge_x_reasoning": 0.2037,
-            "classification_ambiguity": 0.0,
-            "classification_negation_density": 0.0,
-            "classification_domain_shift": 0.0,
-            "math_numeric_density": 0.0,
-            "math_symbol_density": 0.0,
-            "math_precision_cues": 0.0,
-            "instruction_format_strictness": 0.0,
-            "instruction_prohibition_count": 0.0,
-            "instruction_step_count": 0.0,
-            "instruction_conflict_cues": 0.0
-          },
-          "pos_rate": 0.2609,
-          "sparse_floor_entropy": 0.0
-        }
-      },
-      "qwen2.5_7b": {
-        "weights": {
-          "n_in": 9.999999819999997e-10,
-          "entropy": 9.999999819999997e-10,
-          "reasoning_proxy": 0.9999999819999997,
-          "constraint_count": 9.999999819999997e-10,
-          "parametric_dependence": 9.999999819999997e-10,
-          "dependency_distance": 9.999999819999997e-10,
-          "reasoning_x_constraint": 9.999999819999997e-10,
-          "length_x_entropy": 9.999999819999997e-10,
-          "knowledge_x_reasoning": 9.999999819999997e-10,
-          "classification_ambiguity": 9.9999999e-10,
-          "classification_negation_density": 9.9999999e-10,
-          "classification_domain_shift": 9.9999999e-10,
-          "math_numeric_density": 9.9999999e-10,
-          "math_symbol_density": 9.9999999e-10,
-          "math_precision_cues": 9.9999999e-10,
-          "instruction_format_strictness": 9.9999999e-10,
-          "instruction_prohibition_count": 9.9999999e-10,
-          "instruction_step_count": 9.9999999e-10,
-          "instruction_conflict_cues": 9.9999999e-10
-        },
-        "norm_stats": {
-          "n_in": {
-            "p05": 109.0,
-            "p95": 154.0
-          },
-          "entropy": {
-            "p05": 5.907215949669986,
-            "p95": 6.441055749593929
-          },
-          "reasoning_proxy": {
-            "p05": 2.0,
-            "p95": 5.85
-          },
-          "constraint_count": {
-            "p05": 1.0,
-            "p95": 4.0
-          },
-          "parametric_dependence": {
-            "p05": 0.27777777777777773,
-            "p95": 0.8333333333333334
-          },
-          "dependency_distance": {
-            "p05": 15.75,
-            "p95": 123.77777777777777
-          },
-          "reasoning_x_constraint": {
-            "p05": 2.35,
-            "p95": 17.4
-          },
-          "length_x_entropy": {
-            "p05": 661.32897353641,
-            "p95": 970.7073308220714
-          },
-          "knowledge_x_reasoning": {
-            "p05": 0.9722222222222221,
-            "p95": 3.8
-          }
-        },
-        "fit_config": {
-          "l2": 0.0,
-          "entropy_reg": 0.1,
-          "steps": 800,
-          "learning_rate": 0.05,
-          "cv_folds": 3,
-          "active_dims": [
-            "n_in",
-            "entropy",
-            "reasoning_proxy",
-            "constraint_count",
-            "parametric_dependence",
-            "dependency_distance",
-            "reasoning_x_constraint",
-            "length_x_entropy",
-            "knowledge_x_reasoning"
-          ],
-          "inactive_dims": [
-            "classification_ambiguity",
-            "classification_negation_density",
-            "classification_domain_shift",
-            "math_numeric_density",
-            "math_symbol_density",
-            "math_precision_cues",
-            "instruction_format_strictness",
-            "instruction_prohibition_count",
-            "instruction_step_count",
-            "instruction_conflict_cues"
-          ],
-          "feature_corrs": {
-            "n_in": -0.1409,
-            "entropy": -0.0457,
-            "reasoning_proxy": 0.0415,
-            "constraint_count": -0.0988,
-            "parametric_dependence": 0.0674,
-            "dependency_distance": -0.2521,
-            "reasoning_x_constraint": -0.0646,
-            "length_x_entropy": -0.1363,
-            "knowledge_x_reasoning": 0.0659,
-            "classification_ambiguity": 0.0,
-            "classification_negation_density": 0.0,
-            "classification_domain_shift": 0.0,
-            "math_numeric_density": 0.0,
-            "math_symbol_density": 0.0,
-            "math_precision_cues": 0.0,
-            "instruction_format_strictness": 0.0,
-            "instruction_prohibition_count": 0.0,
-            "instruction_step_count": 0.0,
-            "instruction_conflict_cues": 0.0
-          },
-          "pos_rate": 0.0725,
-          "sparse_floor_entropy": 0.1
-        }
-      }
-    },
     "code_generation": {
-      "qwen2.5_0.5b": {
-        "weights": {
-          "n_in": 9.999999819999997e-10,
-          "entropy": 9.999999819999997e-10,
-          "reasoning_proxy": 9.999999819999997e-10,
-          "constraint_count": 9.999999819999997e-10,
-          "parametric_dependence": 0.9999999819999994,
-          "dependency_distance": 9.999999819999997e-10,
-          "reasoning_x_constraint": 9.999999889999997e-10,
-          "length_x_entropy": 9.999999819999997e-10,
-          "knowledge_x_reasoning": 9.999999819999997e-10,
-          "classification_ambiguity": 9.999999889999997e-10,
-          "classification_negation_density": 9.999999889999997e-10,
-          "classification_domain_shift": 9.999999889999997e-10,
-          "math_numeric_density": 9.999999889999997e-10,
-          "math_symbol_density": 9.999999889999997e-10,
-          "math_precision_cues": 9.999999889999997e-10,
-          "instruction_format_strictness": 9.999999889999997e-10,
-          "instruction_prohibition_count": 9.999999889999997e-10,
-          "instruction_step_count": 9.999999889999997e-10,
-          "instruction_conflict_cues": 9.999999889999997e-10
-        },
-        "norm_stats": {
-          "n_in": {
-            "p05": 19.0,
-            "p95": 127.0
-          },
-          "entropy": {
-            "p05": 3.5766176449086644,
-            "p95": 6.000451613007316
-          },
-          "reasoning_proxy": {
-            "p05": 0.0,
-            "p95": 8.2
-          },
-          "constraint_count": {
-            "p05": 1.0,
-            "p95": 6.0
-          },
-          "parametric_dependence": {
-            "p05": 0.05555555555555555,
-            "p95": 0.3333333333333333
-          },
-          "dependency_distance": {
-            "p05": 2.375,
-            "p95": 82.5
-          },
-          "length_x_entropy": {
-            "p05": 69.68367439558378,
-            "p95": 807.2330425785602
-          },
-          "knowledge_x_reasoning": {
-            "p05": 0.0,
-            "p95": 1.866666666666667
-          }
-        },
-        "fit_config": {
-          "l2": 0.0,
-          "entropy_reg": 0.1,
-          "steps": 800,
-          "learning_rate": 0.05,
-          "cv_folds": 3,
-          "active_dims": [
-            "n_in",
-            "entropy",
-            "reasoning_proxy",
-            "constraint_count",
-            "parametric_dependence",
-            "dependency_distance",
-            "length_x_entropy",
-            "knowledge_x_reasoning"
-          ],
-          "inactive_dims": [
-            "reasoning_x_constraint",
-            "classification_ambiguity",
-            "classification_negation_density",
-            "classification_domain_shift",
-            "math_numeric_density",
-            "math_symbol_density",
-            "math_precision_cues",
-            "instruction_format_strictness",
-            "instruction_prohibition_count",
-            "instruction_step_count",
-            "instruction_conflict_cues"
-          ],
-          "feature_corrs": {
-            "n_in": -0.0596,
-            "entropy": -0.1218,
-            "reasoning_proxy": -0.0377,
-            "constraint_count": -0.079,
-            "parametric_dependence": -0.1064,
-            "dependency_distance": -0.0455,
-            "reasoning_x_constraint": -0.0193,
-            "length_x_entropy": -0.0541,
-            "knowledge_x_reasoning": -0.0495,
-            "classification_ambiguity": 0.0,
-            "classification_negation_density": 0.0,
-            "classification_domain_shift": 0.0,
-            "math_numeric_density": 0.0,
-            "math_symbol_density": 0.0,
-            "math_precision_cues": 0.0,
-            "instruction_format_strictness": 0.0,
-            "instruction_prohibition_count": 0.0,
-            "instruction_step_count": 0.0,
-            "instruction_conflict_cues": 0.0
-          },
-          "pos_rate": 0.0763,
-          "sparse_floor_entropy": 0.1
-        }
-      },
       "qwen2.5_7b": {
         "weights": {
-          "n_in": 9.999999819999997e-10,
-          "entropy": 9.999999819999997e-10,
-          "reasoning_proxy": 9.999999819999997e-10,
-          "constraint_count": 9.999999889999997e-10,
-          "parametric_dependence": 0.9999999819999994,
-          "dependency_distance": 9.999999819999997e-10,
-          "reasoning_x_constraint": 9.999999819999997e-10,
-          "length_x_entropy": 9.999999819999997e-10,
-          "knowledge_x_reasoning": 9.999999819999997e-10,
-          "classification_ambiguity": 9.999999889999997e-10,
-          "classification_negation_density": 9.999999889999997e-10,
-          "classification_domain_shift": 9.999999889999997e-10,
-          "math_numeric_density": 9.999999889999997e-10,
-          "math_symbol_density": 9.999999889999997e-10,
-          "math_precision_cues": 9.999999889999997e-10,
-          "instruction_format_strictness": 9.999999889999997e-10,
-          "instruction_prohibition_count": 9.999999889999997e-10,
-          "instruction_step_count": 9.999999889999997e-10,
-          "instruction_conflict_cues": 9.999999889999997e-10
-        },
-        "norm_stats": {
-          "n_in": {
-            "p05": 19.0,
-            "p95": 127.0
-          },
-          "entropy": {
-            "p05": 3.5766176449086644,
-            "p95": 6.000451613007316
-          },
-          "reasoning_proxy": {
-            "p05": 0.0,
-            "p95": 8.2
-          },
-          "parametric_dependence": {
-            "p05": 0.05555555555555555,
-            "p95": 0.3333333333333333
-          },
-          "dependency_distance": {
-            "p05": 2.375,
-            "p95": 82.5
-          },
-          "reasoning_x_constraint": {
-            "p05": 0.0,
-            "p95": 38.85
-          },
-          "length_x_entropy": {
-            "p05": 69.68367439558378,
-            "p95": 807.2330425785602
-          },
-          "knowledge_x_reasoning": {
-            "p05": 0.0,
-            "p95": 1.866666666666667
-          }
-        },
-        "fit_config": {
-          "l2": 0.0,
-          "entropy_reg": 0.1,
-          "steps": 800,
-          "learning_rate": 0.05,
-          "cv_folds": 3,
-          "active_dims": [
-            "n_in",
-            "entropy",
-            "reasoning_proxy",
-            "parametric_dependence",
-            "dependency_distance",
-            "reasoning_x_constraint",
-            "length_x_entropy",
-            "knowledge_x_reasoning"
-          ],
-          "inactive_dims": [
-            "constraint_count",
-            "classification_ambiguity",
-            "classification_negation_density",
-            "classification_domain_shift",
-            "math_numeric_density",
-            "math_symbol_density",
-            "math_precision_cues",
-            "instruction_format_strictness",
-            "instruction_prohibition_count",
-            "instruction_step_count",
-            "instruction_conflict_cues"
-          ],
-          "feature_corrs": {
-            "n_in": -0.0847,
-            "entropy": -0.0917,
-            "reasoning_proxy": -0.0796,
-            "constraint_count": -0.0281,
-            "parametric_dependence": -0.0656,
-            "dependency_distance": -0.0882,
-            "reasoning_x_constraint": -0.0686,
-            "length_x_entropy": -0.0843,
-            "knowledge_x_reasoning": -0.073,
-            "classification_ambiguity": 0.0,
-            "classification_negation_density": 0.0,
-            "classification_domain_shift": 0.0,
-            "math_numeric_density": 0.0,
-            "math_symbol_density": 0.0,
-            "math_precision_cues": 0.0,
-            "instruction_format_strictness": 0.0,
-            "instruction_prohibition_count": 0.0,
-            "instruction_step_count": 0.0,
-            "instruction_conflict_cues": 0.0
-          },
-          "pos_rate": 0.0169,
-          "sparse_floor_entropy": 0.1
-        }
-      },
-      "qwen2.5_3b": {
-        "weights": {
-          "n_in": 9.999999819999994e-10,
-          "entropy": 9.999999819999994e-10,
-          "reasoning_proxy": 9.999999819999994e-10,
-          "constraint_count": 9.999999819999994e-10,
-          "parametric_dependence": 0.9999999819999995,
-          "dependency_distance": 9.999999819999994e-10,
-          "reasoning_x_constraint": 9.999999819999994e-10,
-          "length_x_entropy": 9.999999819999994e-10,
-          "knowledge_x_reasoning": 9.999999819999994e-10,
-          "classification_ambiguity": 9.999999899999998e-10,
-          "classification_negation_density": 9.999999899999998e-10,
-          "classification_domain_shift": 9.999999899999998e-10,
-          "math_numeric_density": 9.999999899999998e-10,
-          "math_symbol_density": 9.999999899999998e-10,
-          "math_precision_cues": 9.999999899999998e-10,
-          "instruction_format_strictness": 9.999999899999998e-10,
-          "instruction_prohibition_count": 9.999999899999998e-10,
-          "instruction_step_count": 9.999999899999998e-10,
-          "instruction_conflict_cues": 9.999999899999998e-10
-        },
-        "norm_stats": {
-          "n_in": {
-            "p05": 19.0,
-            "p95": 127.0
-          },
-          "entropy": {
-            "p05": 3.5766176449086644,
-            "p95": 6.000451613007316
-          },
-          "reasoning_proxy": {
-            "p05": 0.0,
-            "p95": 8.2
-          },
-          "constraint_count": {
-            "p05": 1.0,
-            "p95": 6.0
-          },
-          "parametric_dependence": {
-            "p05": 0.05555555555555555,
-            "p95": 0.3333333333333333
-          },
-          "dependency_distance": {
-            "p05": 2.375,
-            "p95": 82.5
-          },
-          "reasoning_x_constraint": {
-            "p05": 0.0,
-            "p95": 38.85
-          },
-          "length_x_entropy": {
-            "p05": 69.68367439558378,
-            "p95": 807.2330425785602
-          },
-          "knowledge_x_reasoning": {
-            "p05": 0.0,
-            "p95": 1.866666666666667
-          }
-        },
-        "fit_config": {
-          "l2": 0.0,
-          "entropy_reg": 0.1,
-          "steps": 800,
-          "learning_rate": 0.05,
-          "cv_folds": 3,
-          "active_dims": [
-            "n_in",
-            "entropy",
-            "reasoning_proxy",
-            "constraint_count",
-            "parametric_dependence",
-            "dependency_distance",
-            "reasoning_x_constraint",
-            "length_x_entropy",
-            "knowledge_x_reasoning"
-          ],
-          "inactive_dims": [
-            "classification_ambiguity",
-            "classification_negation_density",
-            "classification_domain_shift",
-            "math_numeric_density",
-            "math_symbol_density",
-            "math_precision_cues",
-            "instruction_format_strictness",
-            "instruction_prohibition_count",
-            "instruction_step_count",
-            "instruction_conflict_cues"
-          ],
-          "feature_corrs": {
-            "n_in": -0.1743,
-            "entropy": -0.2096,
-            "reasoning_proxy": -0.1274,
-            "constraint_count": -0.1127,
-            "parametric_dependence": -0.1254,
-            "dependency_distance": -0.1459,
-            "reasoning_x_constraint": -0.1292,
-            "length_x_entropy": -0.1712,
-            "knowledge_x_reasoning": -0.1283,
-            "classification_ambiguity": 0.0,
-            "classification_negation_density": 0.0,
-            "classification_domain_shift": 0.0,
-            "math_numeric_density": 0.0,
-            "math_symbol_density": 0.0,
-            "math_precision_cues": 0.0,
-            "instruction_format_strictness": 0.0,
-            "instruction_prohibition_count": 0.0,
-            "instruction_step_count": 0.0,
-            "instruction_conflict_cues": 0.0
-          },
-          "pos_rate": 0.0593,
-          "sparse_floor_entropy": 0.1
-        }
-      }
-    },
-    "classification": {
-      "qwen2.5_3b": {
-        "weights": {
-          "n_in": 9.999999819999997e-10,
-          "entropy": 0.9999999819999996,
-          "reasoning_proxy": 9.999999819999997e-10,
-          "constraint_count": 9.999999910000004e-10,
-          "parametric_dependence": 9.999999819999997e-10,
-          "dependency_distance": 9.999999819999997e-10,
-          "reasoning_x_constraint": 9.999999819999997e-10,
-          "length_x_entropy": 9.999999819999997e-10,
-          "knowledge_x_reasoning": 9.999999819999997e-10,
-          "classification_ambiguity": 9.999999819999997e-10,
-          "classification_negation_density": 9.999999819999997e-10,
-          "classification_domain_shift": 9.999999910000004e-10,
-          "math_numeric_density": 9.999999910000004e-10,
-          "math_symbol_density": 9.999999910000004e-10,
-          "math_precision_cues": 9.999999910000004e-10,
-          "instruction_format_strictness": 9.999999910000004e-10,
-          "instruction_prohibition_count": 9.999999910000004e-10,
-          "instruction_step_count": 9.999999910000004e-10,
-          "instruction_conflict_cues": 9.999999910000004e-10
-        },
-        "norm_stats": {
-          "n_in": {
-            "p05": 24.0,
-            "p95": 61.0
-          },
-          "entropy": {
-            "p05": 4.373660689688184,
-            "p95": 5.576480936342608
-          },
-          "reasoning_proxy": {
-            "p05": 1.1,
-            "p95": 2.95
-          },
-          "parametric_dependence": {
-            "p05": 0.0,
-            "p95": 0.5
-          },
-          "dependency_distance": {
-            "p05": 3.0,
-            "p95": 41.5
-          },
-          "reasoning_x_constraint": {
-            "p05": 1.1,
-            "p95": 3.95
-          },
-          "length_x_entropy": {
-            "p05": 108.03910001730776,
-            "p95": 338.26520258700896
-          },
-          "knowledge_x_reasoning": {
-            "p05": 0.0,
-            "p95": 1.2333333333333334
-          },
-          "classification_ambiguity": {
-            "p05": 0.0,
-            "p95": 0.125
-          },
-          "classification_negation_density": {
-            "p05": 0.0,
-            "p95": 0.17142857142857143
-          }
-        },
-        "fit_config": {
-          "l2": 0.0,
-          "entropy_reg": 0.1,
-          "steps": 800,
-          "learning_rate": 0.05,
-          "cv_folds": 3,
-          "active_dims": [
-            "n_in",
-            "entropy",
-            "reasoning_proxy",
-            "parametric_dependence",
-            "dependency_distance",
-            "reasoning_x_constraint",
-            "length_x_entropy",
-            "knowledge_x_reasoning",
-            "classification_ambiguity",
-            "classification_negation_density"
-          ],
-          "inactive_dims": [
-            "constraint_count",
-            "classification_domain_shift",
-            "math_numeric_density",
-            "math_symbol_density",
-            "math_precision_cues",
-            "instruction_format_strictness",
-            "instruction_prohibition_count",
-            "instruction_step_count",
-            "instruction_conflict_cues"
-          ],
-          "feature_corrs": {
-            "n_in": 0.164,
-            "entropy": 0.1452,
-            "reasoning_proxy": 0.0757,
-            "constraint_count": -0.028,
-            "parametric_dependence": 0.1412,
-            "dependency_distance": 0.185,
-            "reasoning_x_constraint": 0.0792,
-            "length_x_entropy": 0.1628,
-            "knowledge_x_reasoning": 0.1311,
-            "classification_ambiguity": 0.1373,
-            "classification_negation_density": -0.1468,
-            "classification_domain_shift": 0.0,
-            "math_numeric_density": 0.0,
-            "math_symbol_density": 0.0,
-            "math_precision_cues": 0.0,
-            "instruction_format_strictness": 0.0,
-            "instruction_prohibition_count": 0.0,
-            "instruction_step_count": 0.0,
-            "instruction_conflict_cues": 0.0
-          },
-          "pos_rate": 0.1417,
-          "sparse_floor_entropy": 0.03
-        }
-      },
-      "qwen2.5_7b": {
-        "weights": {
-          "n_in": 9.999999829999998e-10,
-          "entropy": 9.999999829999998e-10,
-          "reasoning_proxy": 9.999999829999998e-10,
-          "constraint_count": 9.999999909999995e-10,
-          "parametric_dependence": 9.999999829999998e-10,
-          "dependency_distance": 0.6629556113419924,
-          "reasoning_x_constraint": 9.999999829999998e-10,
-          "length_x_entropy": 9.999999829999998e-10,
-          "knowledge_x_reasoning": 9.999999829999998e-10,
-          "classification_ambiguity": 0.33704437165800716,
-          "classification_negation_density": 9.999999829999998e-10,
-          "classification_domain_shift": 9.999999909999995e-10,
-          "math_numeric_density": 9.999999909999995e-10,
-          "math_symbol_density": 9.999999909999995e-10,
-          "math_precision_cues": 9.999999909999995e-10,
-          "instruction_format_strictness": 9.999999909999995e-10,
-          "instruction_prohibition_count": 9.999999909999995e-10,
-          "instruction_step_count": 9.999999909999995e-10,
-          "instruction_conflict_cues": 9.999999909999995e-10
-        },
-        "norm_stats": {
-          "n_in": {
-            "p05": 24.0,
-            "p95": 61.0
-          },
-          "entropy": {
-            "p05": 4.373660689688184,
-            "p95": 5.576480936342608
-          },
-          "reasoning_proxy": {
-            "p05": 1.1,
-            "p95": 2.95
-          },
-          "parametric_dependence": {
-            "p05": 0.0,
-            "p95": 0.5
-          },
-          "dependency_distance": {
-            "p05": 3.0,
-            "p95": 41.5
-          },
-          "reasoning_x_constraint": {
-            "p05": 1.1,
-            "p95": 3.95
-          },
-          "length_x_entropy": {
-            "p05": 108.03910001730776,
-            "p95": 338.26520258700896
-          },
-          "knowledge_x_reasoning": {
-            "p05": 0.0,
-            "p95": 1.2333333333333334
-          },
-          "classification_ambiguity": {
-            "p05": 0.0,
-            "p95": 0.125
-          },
-          "classification_negation_density": {
-            "p05": 0.0,
-            "p95": 0.17142857142857143
-          }
-        },
-        "fit_config": {
-          "l2": 0.0,
-          "entropy_reg": 0.1,
-          "steps": 800,
-          "learning_rate": 0.05,
-          "cv_folds": 3,
-          "active_dims": [
-            "n_in",
-            "entropy",
-            "reasoning_proxy",
-            "parametric_dependence",
-            "dependency_distance",
-            "reasoning_x_constraint",
-            "length_x_entropy",
-            "knowledge_x_reasoning",
-            "classification_ambiguity",
-            "classification_negation_density"
-          ],
-          "inactive_dims": [
-            "constraint_count",
-            "classification_domain_shift",
-            "math_numeric_density",
-            "math_symbol_density",
-            "math_precision_cues",
-            "instruction_format_strictness",
-            "instruction_prohibition_count",
-            "instruction_step_count",
-            "instruction_conflict_cues"
-          ],
-          "feature_corrs": {
-            "n_in": -0.0871,
-            "entropy": -0.0986,
-            "reasoning_proxy": -0.087,
-            "constraint_count": -0.0187,
-            "parametric_dependence": -0.1491,
-            "dependency_distance": 0.1547,
-            "reasoning_x_constraint": -0.0804,
-            "length_x_entropy": -0.0954,
-            "knowledge_x_reasoning": -0.1681,
-            "classification_ambiguity": 0.1981,
-            "classification_negation_density": -0.1417,
-            "classification_domain_shift": 0.0,
-            "math_numeric_density": 0.0,
-            "math_symbol_density": 0.0,
-            "math_precision_cues": 0.0,
-            "instruction_format_strictness": 0.0,
-            "instruction_prohibition_count": 0.0,
-            "instruction_step_count": 0.0,
-            "instruction_conflict_cues": 0.0
-          },
-          "pos_rate": 0.1333,
-          "sparse_floor_entropy": 0.03
-        }
-      },
-      "qwen2.5_0.5b": {
-        "weights": {
-          "n_in": 0.09292014368668247,
-          "entropy": 0.32950952772122033,
-          "reasoning_proxy": 0.0964139279064252,
-          "constraint_count": 9.999999909999993e-10,
-          "parametric_dependence": 0.025556595599260993,
-          "dependency_distance": 9.999999889999995e-10,
-          "reasoning_x_constraint": 0.10098353788847174,
-          "length_x_entropy": 0.06769645253216527,
-          "knowledge_x_reasoning": 9.999999889999995e-10,
-          "classification_ambiguity": 0.1418598106074462,
-          "classification_negation_density": 0.14505999305832726,
-          "classification_domain_shift": 9.999999909999993e-10,
-          "math_numeric_density": 9.999999909999993e-10,
-          "math_symbol_density": 9.999999909999993e-10,
-          "math_precision_cues": 9.999999909999993e-10,
-          "instruction_format_strictness": 9.999999909999993e-10,
-          "instruction_prohibition_count": 9.999999909999993e-10,
-          "instruction_step_count": 9.999999909999993e-10,
-          "instruction_conflict_cues": 9.999999909999993e-10
-        },
-        "norm_stats": {
-          "n_in": {
-            "p05": 24.0,
-            "p95": 61.0
-          },
-          "entropy": {
-            "p05": 4.373660689688184,
-            "p95": 5.576480936342608
-          },
-          "reasoning_proxy": {
-            "p05": 1.1,
-            "p95": 2.95
-          },
-          "parametric_dependence": {
-            "p05": 0.0,
-            "p95": 0.5
-          },
-          "dependency_distance": {
-            "p05": 3.0,
-            "p95": 41.5
-          },
-          "reasoning_x_constraint": {
-            "p05": 1.1,
-            "p95": 3.95
-          },
-          "length_x_entropy": {
-            "p05": 108.03910001730776,
-            "p95": 338.26520258700896
-          },
-          "knowledge_x_reasoning": {
-            "p05": 0.0,
-            "p95": 1.2333333333333334
-          },
-          "classification_ambiguity": {
-            "p05": 0.0,
-            "p95": 0.125
-          },
-          "classification_negation_density": {
-            "p05": 0.0,
-            "p95": 0.17142857142857143
-          }
-        },
-        "fit_config": {
-          "l2": 0.0,
-          "entropy_reg": 0.001,
-          "steps": 800,
-          "learning_rate": 0.05,
-          "cv_folds": 3,
-          "active_dims": [
-            "n_in",
-            "entropy",
-            "reasoning_proxy",
-            "parametric_dependence",
-            "dependency_distance",
-            "reasoning_x_constraint",
-            "length_x_entropy",
-            "knowledge_x_reasoning",
-            "classification_ambiguity",
-            "classification_negation_density"
-          ],
-          "inactive_dims": [
-            "constraint_count",
-            "classification_domain_shift",
-            "math_numeric_density",
-            "math_symbol_density",
-            "math_precision_cues",
-            "instruction_format_strictness",
-            "instruction_prohibition_count",
-            "instruction_step_count",
-            "instruction_conflict_cues"
-          ],
-          "feature_corrs": {
-            "n_in": 0.0635,
-            "entropy": 0.07,
-            "reasoning_proxy": 0.0326,
-            "constraint_count": 0.0184,
-            "parametric_dependence": 0.0963,
-            "dependency_distance": -0.0472,
-            "reasoning_x_constraint": 0.0306,
-            "length_x_entropy": 0.068,
-            "knowledge_x_reasoning": 0.0861,
-            "classification_ambiguity": 0.0357,
-            "classification_negation_density": 0.0447,
-            "classification_domain_shift": 0.0,
-            "math_numeric_density": 0.0,
-            "math_symbol_density": 0.0,
-            "math_precision_cues": 0.0,
-            "instruction_format_strictness": 0.0,
-            "instruction_prohibition_count": 0.0,
-            "instruction_step_count": 0.0,
-            "instruction_conflict_cues": 0.0
-          },
-          "pos_rate": 0.2167,
-          "sparse_floor_entropy": 0.0
-        }
-      }
-    },
-    "instruction_following": {
-      "qwen2.5_3b": {
-        "weights": {
-          "n_in": 9.999999870000004e-10,
-          "entropy": 0.8268821038324031,
-          "reasoning_proxy": 9.999999830000002e-10,
-          "constraint_count": 9.999999830000002e-10,
-          "parametric_dependence": 9.999999870000004e-10,
-          "dependency_distance": 9.999999870000004e-10,
-          "reasoning_x_constraint": 9.999999870000004e-10,
-          "length_x_entropy": 9.999999870000004e-10,
-          "knowledge_x_reasoning": 9.999999870000004e-10,
-          "classification_ambiguity": 9.999999870000004e-10,
-          "classification_negation_density": 9.999999870000004e-10,
-          "classification_domain_shift": 9.999999870000004e-10,
-          "math_numeric_density": 9.999999870000004e-10,
-          "math_symbol_density": 9.999999870000004e-10,
-          "math_precision_cues": 9.999999870000004e-10,
-          "instruction_format_strictness": 0.17311787916759724,
-          "instruction_prohibition_count": 9.999999870000004e-10,
-          "instruction_step_count": 9.999999830000002e-10,
-          "instruction_conflict_cues": 9.999999830000002e-10
-        },
-        "norm_stats": {
-          "entropy": {
-            "p05": 3.9976702764876113,
-            "p95": 5.604108891685206
-          },
-          "reasoning_proxy": {
-            "p05": 0.0,
-            "p95": 2.7
-          },
-          "constraint_count": {
-            "p05": 0.0,
-            "p95": 7.0
-          },
-          "instruction_format_strictness": {
-            "p05": 0.0,
-            "p95": 0.25
-          },
-          "instruction_step_count": {
-            "p05": 0.0,
-            "p95": 0.4137931034482759
-          },
-          "instruction_conflict_cues": {
-            "p05": 0.0,
-            "p95": 0.3333333333333333
-          }
-        },
-        "fit_config": {
-          "l2": 0.0,
-          "entropy_reg": 0.1,
-          "steps": 800,
-          "learning_rate": 0.05,
-          "cv_folds": 3,
-          "active_dims": [
-            "entropy",
-            "reasoning_proxy",
-            "constraint_count",
-            "instruction_format_strictness",
-            "instruction_step_count",
-            "instruction_conflict_cues"
-          ],
-          "inactive_dims": [
-            "n_in",
-            "parametric_dependence",
-            "dependency_distance",
-            "reasoning_x_constraint",
-            "length_x_entropy",
-            "knowledge_x_reasoning",
-            "classification_ambiguity",
-            "classification_negation_density",
-            "classification_domain_shift",
-            "math_numeric_density",
-            "math_symbol_density",
-            "math_precision_cues",
-            "instruction_prohibition_count"
-          ],
-          "feature_corrs": {
-            "n_in": -0.0061,
-            "entropy": 0.0369,
-            "reasoning_proxy": -0.0494,
-            "constraint_count": 0.0906,
-            "parametric_dependence": -0.0012,
-            "dependency_distance": -0.0196,
-            "reasoning_x_constraint": -0.0225,
-            "length_x_entropy": -0.0089,
-            "knowledge_x_reasoning": -0.0213,
-            "classification_ambiguity": 0.0,
-            "classification_negation_density": 0.0,
-            "classification_domain_shift": 0.0,
-            "math_numeric_density": 0.0,
-            "math_symbol_density": 0.0,
-            "math_precision_cues": 0.0,
-            "instruction_format_strictness": 0.178,
-            "instruction_prohibition_count": -0.0089,
-            "instruction_step_count": -0.1286,
-            "instruction_conflict_cues": -0.046
-          },
-          "pos_rate": 0.1307,
-          "sparse_floor_entropy": 0.03
-        }
-      },
-      "qwen2.5_7b": {
-        "weights": {
-          "n_in": 9.999999819999997e-10,
-          "entropy": 0.9999999819999996,
-          "reasoning_proxy": 9.99999989e-10,
-          "constraint_count": 9.999999819999997e-10,
-          "parametric_dependence": 9.99999989e-10,
-          "dependency_distance": 9.999999819999997e-10,
-          "reasoning_x_constraint": 9.99999989e-10,
-          "length_x_entropy": 9.99999989e-10,
-          "knowledge_x_reasoning": 9.99999989e-10,
-          "classification_ambiguity": 9.99999989e-10,
-          "classification_negation_density": 9.99999989e-10,
-          "classification_domain_shift": 9.99999989e-10,
-          "math_numeric_density": 9.99999989e-10,
-          "math_symbol_density": 9.99999989e-10,
-          "math_precision_cues": 9.99999989e-10,
-          "instruction_format_strictness": 9.999999819999997e-10,
-          "instruction_prohibition_count": 9.999999819999997e-10,
-          "instruction_step_count": 9.999999819999997e-10,
-          "instruction_conflict_cues": 9.999999819999997e-10
-        },
-        "norm_stats": {
-          "n_in": {
-            "p05": 18.0,
-            "p95": 64.0
-          },
-          "entropy": {
-            "p05": 3.9976702764876113,
-            "p95": 5.604108891685206
-          },
-          "constraint_count": {
-            "p05": 0.0,
-            "p95": 7.0
-          },
-          "dependency_distance": {
-            "p05": 2.375,
-            "p95": 45.0
-          },
-          "instruction_format_strictness": {
-            "p05": 0.0,
-            "p95": 0.25
-          },
-          "instruction_prohibition_count": {
-            "p05": 0.0,
-            "p95": 0.6666666666666666
-          },
-          "instruction_step_count": {
-            "p05": 0.0,
-            "p95": 0.4137931034482759
-          },
-          "instruction_conflict_cues": {
-            "p05": 0.0,
-            "p95": 0.3333333333333333
-          }
-        },
-        "fit_config": {
-          "l2": 0.0,
-          "entropy_reg": 0.1,
-          "steps": 800,
-          "learning_rate": 0.05,
-          "cv_folds": 3,
-          "active_dims": [
-            "n_in",
-            "entropy",
-            "constraint_count",
-            "dependency_distance",
-            "instruction_format_strictness",
-            "instruction_prohibition_count",
-            "instruction_step_count",
-            "instruction_conflict_cues"
-          ],
-          "inactive_dims": [
-            "reasoning_proxy",
-            "parametric_dependence",
-            "reasoning_x_constraint",
-            "length_x_entropy",
-            "knowledge_x_reasoning",
-            "classification_ambiguity",
-            "classification_negation_density",
-            "classification_domain_shift",
-            "math_numeric_density",
-            "math_symbol_density",
-            "math_precision_cues"
-          ],
-          "feature_corrs": {
-            "n_in": 0.0374,
-            "entropy": 0.0812,
-            "reasoning_proxy": 0.0023,
-            "constraint_count": 0.0377,
-            "parametric_dependence": -0.0096,
-            "dependency_distance": 0.0912,
-            "reasoning_x_constraint": -0.006,
-            "length_x_entropy": 0.028,
-            "knowledge_x_reasoning": -0.0026,
-            "classification_ambiguity": 0.0,
-            "classification_negation_density": 0.0,
-            "classification_domain_shift": 0.0,
-            "math_numeric_density": 0.0,
-            "math_symbol_density": 0.0,
-            "math_precision_cues": 0.0,
-            "instruction_format_strictness": 0.03,
-            "instruction_prohibition_count": -0.1146,
-            "instruction_step_count": -0.0726,
-            "instruction_conflict_cues": 0.1216
-          },
-          "pos_rate": 0.0458,
-          "sparse_floor_entropy": 0.1
-        }
-      },
-      "qwen2.5_0.5b": {
-        "weights": {
-          "n_in": 9.99999988e-10,
-          "entropy": 0.9999999819999994,
-          "reasoning_proxy": 9.999999819999994e-10,
-          "constraint_count": 9.99999988e-10,
-          "parametric_dependence": 9.99999988e-10,
-          "dependency_distance": 9.99999988e-10,
-          "reasoning_x_constraint": 9.999999819999994e-10,
-          "length_x_entropy": 9.99999988e-10,
-          "knowledge_x_reasoning": 9.999999819999994e-10,
-          "classification_ambiguity": 9.99999988e-10,
-          "classification_negation_density": 9.99999988e-10,
-          "classification_domain_shift": 9.99999988e-10,
-          "math_numeric_density": 9.99999988e-10,
-          "math_symbol_density": 9.99999988e-10,
-          "math_precision_cues": 9.99999988e-10,
-          "instruction_format_strictness": 9.999999819999994e-10,
-          "instruction_prohibition_count": 9.999999819999994e-10,
-          "instruction_step_count": 9.999999819999994e-10,
-          "instruction_conflict_cues": 9.99999988e-10
-        },
-        "norm_stats": {
-          "entropy": {
-            "p05": 3.9976702764876113,
-            "p95": 5.604108891685206
-          },
-          "reasoning_proxy": {
-            "p05": 0.0,
-            "p95": 2.7
-          },
-          "reasoning_x_constraint": {
-            "p05": 0.0,
-            "p95": 17.5
-          },
-          "knowledge_x_reasoning": {
-            "p05": 0.0,
-            "p95": 0.6000000000000001
-          },
-          "instruction_format_strictness": {
-            "p05": 0.0,
-            "p95": 0.25
-          },
-          "instruction_prohibition_count": {
-            "p05": 0.0,
-            "p95": 0.6666666666666666
-          },
-          "instruction_step_count": {
-            "p05": 0.0,
-            "p95": 0.4137931034482759
-          }
-        },
-        "fit_config": {
-          "l2": 0.0,
-          "entropy_reg": 0.001,
-          "steps": 800,
-          "learning_rate": 0.05,
-          "cv_folds": 3,
-          "active_dims": [
-            "entropy",
-            "reasoning_proxy",
-            "reasoning_x_constraint",
-            "knowledge_x_reasoning",
-            "instruction_format_strictness",
-            "instruction_prohibition_count",
-            "instruction_step_count"
-          ],
-          "inactive_dims": [
-            "n_in",
-            "constraint_count",
-            "parametric_dependence",
-            "dependency_distance",
-            "length_x_entropy",
-            "classification_ambiguity",
-            "classification_negation_density",
-            "classification_domain_shift",
-            "math_numeric_density",
-            "math_symbol_density",
-            "math_precision_cues",
-            "instruction_conflict_cues"
-          ],
-          "feature_corrs": {
-            "n_in": 0.0187,
-            "entropy": 0.121,
-            "reasoning_proxy": -0.059,
-            "constraint_count": -0.0061,
-            "parametric_dependence": 0.0287,
-            "dependency_distance": -0.0004,
-            "reasoning_x_constraint": -0.085,
-            "length_x_entropy": 0.013,
-            "knowledge_x_reasoning": -0.0311,
-            "classification_ambiguity": 0.0,
-            "classification_negation_density": 0.0,
-            "classification_domain_shift": 0.0,
-            "math_numeric_density": 0.0,
-            "math_symbol_density": 0.0,
-            "math_precision_cues": 0.0,
-            "instruction_format_strictness": 0.0903,
-            "instruction_prohibition_count": -0.0919,
-            "instruction_step_count": -0.113,
-            "instruction_conflict_cues": -0.0168
-          },
-          "pos_rate": 0.2418,
-          "sparse_floor_entropy": 0.0
-        }
-      }
-    },
-    "retrieval_grounded": {
-      "qwen2.5_0.5b": {
-        "weights": {
-          "n_in": 9.999999819999994e-10,
-          "entropy": 9.999999819999994e-10,
-          "reasoning_proxy": 9.999999819999994e-10,
-          "constraint_count": 9.999999819999994e-10,
-          "parametric_dependence": 0.9999999819999995,
-          "dependency_distance": 9.999999819999994e-10,
-          "reasoning_x_constraint": 9.999999819999994e-10,
-          "length_x_entropy": 9.999999819999994e-10,
-          "knowledge_x_reasoning": 9.999999819999994e-10,
-          "classification_ambiguity": 9.999999899999998e-10,
-          "classification_negation_density": 9.999999899999998e-10,
-          "classification_domain_shift": 9.999999899999998e-10,
-          "math_numeric_density": 9.999999899999998e-10,
-          "math_symbol_density": 9.999999899999998e-10,
-          "math_precision_cues": 9.999999899999998e-10,
-          "instruction_format_strictness": 9.999999899999998e-10,
-          "instruction_prohibition_count": 9.999999899999998e-10,
-          "instruction_step_count": 9.999999899999998e-10,
-          "instruction_conflict_cues": 9.999999899999998e-10
-        },
-        "norm_stats": {
-          "n_in": {
-            "p05": 60.0,
-            "p95": 184.0
-          },
-          "entropy": {
-            "p05": 5.244719690894578,
-            "p95": 6.8005594022973765
-          },
-          "reasoning_proxy": {
-            "p05": 2.1,
-            "p95": 8.05
-          },
-          "constraint_count": {
-            "p05": 1.0,
-            "p95": 3.0
-          },
-          "parametric_dependence": {
-            "p05": 0.1111111111111111,
-            "p95": 1.0
-          },
-          "dependency_distance": {
-            "p05": 49.0,
-            "p95": 160.0
-          },
-          "reasoning_x_constraint": {
-            "p05": 2.1,
-            "p95": 19.35
-          },
-          "length_x_entropy": {
-            "p05": 309.76289771739914,
-            "p95": 1231.8947267884123
-          },
-          "knowledge_x_reasoning": {
-            "p05": 0.4555555555555555,
-            "p95": 5.683333333333334
-          }
-        },
-        "fit_config": {
-          "l2": 0.0,
-          "entropy_reg": 0.1,
-          "steps": 800,
-          "learning_rate": 0.05,
-          "cv_folds": 3,
-          "active_dims": [
-            "n_in",
-            "entropy",
-            "reasoning_proxy",
-            "constraint_count",
-            "parametric_dependence",
-            "dependency_distance",
-            "reasoning_x_constraint",
-            "length_x_entropy",
-            "knowledge_x_reasoning"
-          ],
-          "inactive_dims": [
-            "classification_ambiguity",
-            "classification_negation_density",
-            "classification_domain_shift",
-            "math_numeric_density",
-            "math_symbol_density",
-            "math_precision_cues",
-            "instruction_format_strictness",
-            "instruction_prohibition_count",
-            "instruction_step_count",
-            "instruction_conflict_cues"
-          ],
-          "feature_corrs": {
-            "n_in": -0.13,
-            "entropy": -0.0885,
-            "reasoning_proxy": -0.1027,
-            "constraint_count": -0.0636,
-            "parametric_dependence": -0.1076,
-            "dependency_distance": -0.1145,
-            "reasoning_x_constraint": -0.1084,
-            "length_x_entropy": -0.1276,
-            "knowledge_x_reasoning": -0.1329,
-            "classification_ambiguity": 0.0,
-            "classification_negation_density": 0.0,
-            "classification_domain_shift": 0.0,
-            "math_numeric_density": 0.0,
-            "math_symbol_density": 0.0,
-            "math_precision_cues": 0.0,
-            "instruction_format_strictness": 0.0,
-            "instruction_prohibition_count": 0.0,
-            "instruction_step_count": 0.0,
-            "instruction_conflict_cues": 0.0
-          },
-          "pos_rate": 0.1849,
-          "sparse_floor_entropy": 0.03
-        }
-      },
-      "qwen2.5_3b": {
-        "weights": {
-          "n_in": 9.999999859999994e-10,
-          "entropy": 9.999999859999994e-10,
-          "reasoning_proxy": 9.999999819999992e-10,
-          "constraint_count": 9.999999819999992e-10,
-          "parametric_dependence": 9.999999859999994e-10,
-          "dependency_distance": 0.9999999819999992,
-          "reasoning_x_constraint": 9.999999819999992e-10,
-          "length_x_entropy": 9.999999859999994e-10,
-          "knowledge_x_reasoning": 9.999999819999992e-10,
-          "classification_ambiguity": 9.999999859999994e-10,
-          "classification_negation_density": 9.999999859999994e-10,
-          "classification_domain_shift": 9.999999859999994e-10,
-          "math_numeric_density": 9.999999859999994e-10,
-          "math_symbol_density": 9.999999859999994e-10,
-          "math_precision_cues": 9.999999859999994e-10,
-          "instruction_format_strictness": 9.999999859999994e-10,
-          "instruction_prohibition_count": 9.999999859999994e-10,
-          "instruction_step_count": 9.999999859999994e-10,
-          "instruction_conflict_cues": 9.999999859999994e-10
-        },
-        "norm_stats": {
-          "reasoning_proxy": {
-            "p05": 2.1,
-            "p95": 8.05
-          },
-          "constraint_count": {
-            "p05": 1.0,
-            "p95": 3.0
-          },
-          "dependency_distance": {
-            "p05": 49.0,
-            "p95": 160.0
-          },
-          "reasoning_x_constraint": {
-            "p05": 2.1,
-            "p95": 19.35
-          },
-          "knowledge_x_reasoning": {
-            "p05": 0.4555555555555555,
-            "p95": 5.683333333333334
-          }
-        },
-        "fit_config": {
-          "l2": 0.0,
-          "entropy_reg": 0.1,
-          "steps": 800,
-          "learning_rate": 0.05,
-          "cv_folds": 3,
-          "active_dims": [
-            "reasoning_proxy",
-            "constraint_count",
-            "dependency_distance",
-            "reasoning_x_constraint",
-            "knowledge_x_reasoning"
-          ],
-          "inactive_dims": [
-            "n_in",
-            "entropy",
-            "parametric_dependence",
-            "length_x_entropy",
-            "classification_ambiguity",
-            "classification_negation_density",
-            "classification_domain_shift",
-            "math_numeric_density",
-            "math_symbol_density",
-            "math_precision_cues",
-            "instruction_format_strictness",
-            "instruction_prohibition_count",
-            "instruction_step_count",
-            "instruction_conflict_cues"
-          ],
-          "feature_corrs": {
-            "n_in": -0.0251,
-            "entropy": 0.0165,
-            "reasoning_proxy": -0.0871,
-            "constraint_count": -0.0353,
-            "parametric_dependence": 0.0014,
-            "dependency_distance": -0.048,
-            "reasoning_x_constraint": -0.0807,
-            "length_x_entropy": -0.0227,
-            "knowledge_x_reasoning": -0.0401,
-            "classification_ambiguity": 0.0,
-            "classification_negation_density": 0.0,
-            "classification_domain_shift": 0.0,
-            "math_numeric_density": 0.0,
-            "math_symbol_density": 0.0,
-            "math_precision_cues": 0.0,
-            "instruction_format_strictness": 0.0,
-            "instruction_prohibition_count": 0.0,
-            "instruction_step_count": 0.0,
-            "instruction_conflict_cues": 0.0
-          },
-          "pos_rate": 0.0753,
-          "sparse_floor_entropy": 0.1
-        }
-      },
-      "qwen2.5_7b": {
-        "weights": {
-          "n_in": 9.999999819999994e-10,
-          "entropy": 9.999999819999994e-10,
-          "reasoning_proxy": 9.999999819999994e-10,
-          "constraint_count": 9.999999819999994e-10,
-          "parametric_dependence": 0.9999999819999995,
-          "dependency_distance": 9.999999819999994e-10,
-          "reasoning_x_constraint": 9.999999819999994e-10,
-          "length_x_entropy": 9.999999819999994e-10,
-          "knowledge_x_reasoning": 9.999999819999994e-10,
-          "classification_ambiguity": 9.999999899999998e-10,
-          "classification_negation_density": 9.999999899999998e-10,
-          "classification_domain_shift": 9.999999899999998e-10,
-          "math_numeric_density": 9.999999899999998e-10,
-          "math_symbol_density": 9.999999899999998e-10,
-          "math_precision_cues": 9.999999899999998e-10,
-          "instruction_format_strictness": 9.999999899999998e-10,
-          "instruction_prohibition_count": 9.999999899999998e-10,
-          "instruction_step_count": 9.999999899999998e-10,
-          "instruction_conflict_cues": 9.999999899999998e-10
-        },
-        "norm_stats": {
-          "n_in": {
-            "p05": 60.0,
-            "p95": 184.0
-          },
-          "entropy": {
-            "p05": 5.244719690894578,
-            "p95": 6.8005594022973765
-          },
-          "reasoning_proxy": {
-            "p05": 2.1,
-            "p95": 8.05
-          },
-          "constraint_count": {
-            "p05": 1.0,
-            "p95": 3.0
-          },
-          "parametric_dependence": {
-            "p05": 0.1111111111111111,
-            "p95": 1.0
-          },
-          "dependency_distance": {
-            "p05": 49.0,
-            "p95": 160.0
-          },
-          "reasoning_x_constraint": {
-            "p05": 2.1,
-            "p95": 19.35
-          },
-          "length_x_entropy": {
-            "p05": 309.76289771739914,
-            "p95": 1231.8947267884123
-          },
-          "knowledge_x_reasoning": {
-            "p05": 0.4555555555555555,
-            "p95": 5.683333333333334
-          }
-        },
-        "fit_config": {
-          "l2": 0.0,
-          "entropy_reg": 0.3,
-          "steps": 800,
-          "learning_rate": 0.05,
-          "cv_folds": 3,
-          "active_dims": [
-            "n_in",
-            "entropy",
-            "reasoning_proxy",
-            "constraint_count",
-            "parametric_dependence",
-            "dependency_distance",
-            "reasoning_x_constraint",
-            "length_x_entropy",
-            "knowledge_x_reasoning"
-          ],
-          "inactive_dims": [
-            "classification_ambiguity",
-            "classification_negation_density",
-            "classification_domain_shift",
-            "math_numeric_density",
-            "math_symbol_density",
-            "math_precision_cues",
-            "instruction_format_strictness",
-            "instruction_prohibition_count",
-            "instruction_step_count",
-            "instruction_conflict_cues"
-          ],
-          "feature_corrs": {
-            "n_in": 0.1583,
-            "entropy": 0.1603,
-            "reasoning_proxy": 0.0413,
-            "constraint_count": 0.0567,
-            "parametric_dependence": 0.1526,
-            "dependency_distance": 0.1117,
-            "reasoning_x_constraint": 0.0394,
-            "length_x_entropy": 0.1712,
-            "knowledge_x_reasoning": 0.1251,
-            "classification_ambiguity": 0.0,
-            "classification_negation_density": 0.0,
-            "classification_domain_shift": 0.0,
-            "math_numeric_density": 0.0,
-            "math_symbol_density": 0.0,
-            "math_precision_cues": 0.0,
-            "instruction_format_strictness": 0.0,
-            "instruction_prohibition_count": 0.0,
-            "instruction_step_count": 0.0,
-            "instruction_conflict_cues": 0.0
-          },
-          "pos_rate": 0.089,
-          "sparse_floor_entropy": 0.1
-        }
-      }
-    },
-    "maths": {
-      "qwen2.5_7b": {
-        "weights": {
-          "n_in": 9.999999819999999e-10,
-          "entropy": 9.999999819999999e-10,
-          "reasoning_proxy": 9.999999819999999e-10,
-          "constraint_count": 9.999999819999999e-10,
-          "parametric_dependence": 9.999999819999999e-10,
-          "dependency_distance": 9.999999819999999e-10,
-          "reasoning_x_constraint": 9.999999819999999e-10,
-          "length_x_entropy": 9.999999819999999e-10,
-          "knowledge_x_reasoning": 0.9999999819999998,
-          "classification_ambiguity": 9.99999993e-10,
-          "classification_negation_density": 9.99999993e-10,
-          "classification_domain_shift": 9.99999993e-10,
-          "math_numeric_density": 9.999999819999999e-10,
-          "math_symbol_density": 9.999999819999999e-10,
-          "math_precision_cues": 9.999999819999999e-10,
-          "instruction_format_strictness": 9.99999993e-10,
-          "instruction_prohibition_count": 9.99999993e-10,
-          "instruction_step_count": 9.99999993e-10,
-          "instruction_conflict_cues": 9.99999993e-10
-        },
-        "norm_stats": {
-          "n_in": {
-            "p05": 30.0,
-            "p95": 105.0
-          },
-          "entropy": {
-            "p05": 4.694019357121935,
-            "p95": 5.96497928712412
-          },
-          "reasoning_proxy": {
-            "p05": 2.3,
-            "p95": 5.15
-          },
-          "constraint_count": {
-            "p05": 0.0,
-            "p95": 1.0
-          },
-          "parametric_dependence": {
-            "p05": 0.05555555555555555,
-            "p95": 0.3333333333333333
-          },
-          "dependency_distance": {
-            "p05": 3.75,
-            "p95": 77.0
-          },
-          "reasoning_x_constraint": {
-            "p05": 0.0,
-            "p95": 3.3
-          },
-          "length_x_entropy": {
-            "p05": 139.20671786825557,
-            "p95": 623.9416414588637
-          },
-          "knowledge_x_reasoning": {
-            "p05": 0.12777777777777777,
-            "p95": 1.2166666666666666
-          },
-          "math_numeric_density": {
-            "p05": 0.0,
-            "p95": 0.27272727272727276
-          },
-          "math_symbol_density": {
-            "p05": 0.0,
-            "p95": 0.09195402298850575
-          },
-          "math_precision_cues": {
-            "p05": 0.0,
-            "p95": 1.0
-          }
-        },
-        "fit_config": {
-          "l2": 0.0,
-          "entropy_reg": 0.3,
-          "steps": 800,
-          "learning_rate": 0.05,
-          "cv_folds": 3,
-          "active_dims": [
-            "n_in",
-            "entropy",
-            "reasoning_proxy",
-            "constraint_count",
-            "parametric_dependence",
-            "dependency_distance",
-            "reasoning_x_constraint",
-            "length_x_entropy",
-            "knowledge_x_reasoning",
-            "math_numeric_density",
-            "math_symbol_density",
-            "math_precision_cues"
-          ],
-          "inactive_dims": [
-            "classification_ambiguity",
-            "classification_negation_density",
-            "classification_domain_shift",
-            "instruction_format_strictness",
-            "instruction_prohibition_count",
-            "instruction_step_count",
-            "instruction_conflict_cues"
-          ],
-          "feature_corrs": {
-            "n_in": 0.2289,
-            "entropy": 0.1543,
-            "reasoning_proxy": 0.2037,
-            "constraint_count": -0.1106,
-            "parametric_dependence": 0.2149,
-            "dependency_distance": 0.1904,
-            "reasoning_x_constraint": -0.0971,
-            "length_x_entropy": 0.234,
-            "knowledge_x_reasoning": 0.2954,
-            "classification_ambiguity": 0.0,
-            "classification_negation_density": 0.0,
-            "classification_domain_shift": 0.0,
-            "math_numeric_density": 0.0732,
-            "math_symbol_density": -0.03,
-            "math_precision_cues": 0.1447,
-            "instruction_format_strictness": 0.0,
-            "instruction_prohibition_count": 0.0,
-            "instruction_step_count": 0.0,
-            "instruction_conflict_cues": 0.0
-          },
-          "pos_rate": 0.1185,
-          "sparse_floor_entropy": 0.03
-        }
-      },
-      "qwen2.5_3b": {
-        "weights": {
-          "n_in": 9.99999986e-10,
-          "entropy": 0.4697545273154783,
-          "reasoning_proxy": 0.13656577402058329,
-          "constraint_count": 9.999999899999998e-10,
-          "parametric_dependence": 9.99999986e-10,
-          "dependency_distance": 9.99999986e-10,
-          "reasoning_x_constraint": 9.999999899999998e-10,
-          "length_x_entropy": 9.99999986e-10,
-          "knowledge_x_reasoning": 0.16658801725979547,
-          "classification_ambiguity": 9.999999899999998e-10,
-          "classification_negation_density": 9.999999899999998e-10,
-          "classification_domain_shift": 9.999999899999998e-10,
-          "math_numeric_density": 0.06462608598536917,
-          "math_symbol_density": 9.999999899999998e-10,
-          "math_precision_cues": 0.16246558141877374,
-          "instruction_format_strictness": 9.999999899999998e-10,
-          "instruction_prohibition_count": 9.999999899999998e-10,
-          "instruction_step_count": 9.999999899999998e-10,
-          "instruction_conflict_cues": 9.999999899999998e-10
-        },
-        "norm_stats": {
-          "n_in": {
-            "p05": 30.0,
-            "p95": 105.0
-          },
-          "entropy": {
-            "p05": 4.694019357121935,
-            "p95": 5.96497928712412
-          },
-          "reasoning_proxy": {
-            "p05": 2.3,
-            "p95": 5.15
-          },
-          "parametric_dependence": {
-            "p05": 0.05555555555555555,
-            "p95": 0.3333333333333333
-          },
-          "dependency_distance": {
-            "p05": 3.75,
-            "p95": 77.0
-          },
-          "length_x_entropy": {
-            "p05": 139.20671786825557,
-            "p95": 623.9416414588637
-          },
-          "knowledge_x_reasoning": {
-            "p05": 0.12777777777777777,
-            "p95": 1.2166666666666666
-          },
-          "math_numeric_density": {
-            "p05": 0.0,
-            "p95": 0.27272727272727276
-          },
-          "math_precision_cues": {
-            "p05": 0.0,
-            "p95": 1.0
-          }
-        },
-        "fit_config": {
-          "l2": 0.0,
-          "entropy_reg": 0.001,
-          "steps": 800,
-          "learning_rate": 0.05,
-          "cv_folds": 3,
-          "active_dims": [
-            "n_in",
-            "entropy",
-            "reasoning_proxy",
-            "parametric_dependence",
-            "dependency_distance",
-            "length_x_entropy",
-            "knowledge_x_reasoning",
-            "math_numeric_density",
-            "math_precision_cues"
-          ],
-          "inactive_dims": [
-            "constraint_count",
-            "reasoning_x_constraint",
-            "classification_ambiguity",
-            "classification_negation_density",
-            "classification_domain_shift",
-            "math_symbol_density",
-            "instruction_format_strictness",
-            "instruction_prohibition_count",
-            "instruction_step_count",
-            "instruction_conflict_cues"
-          ],
-          "feature_corrs": {
-            "n_in": 0.2519,
-            "entropy": 0.2482,
-            "reasoning_proxy": 0.2822,
-            "constraint_count": 0.0174,
-            "parametric_dependence": 0.1822,
-            "dependency_distance": 0.2631,
-            "reasoning_x_constraint": 0.0259,
-            "length_x_entropy": 0.2543,
-            "knowledge_x_reasoning": 0.2659,
-            "classification_ambiguity": 0.0,
-            "classification_negation_density": 0.0,
-            "classification_domain_shift": 0.0,
-            "math_numeric_density": 0.1712,
-            "math_symbol_density": 0.0203,
-            "math_precision_cues": -0.0627,
-            "instruction_format_strictness": 0.0,
-            "instruction_prohibition_count": 0.0,
-            "instruction_step_count": 0.0,
-            "instruction_conflict_cues": 0.0
-          },
-          "pos_rate": 0.2074,
-          "sparse_floor_entropy": 0.0
-        }
-      },
-      "qwen2.5_0.5b": {
-        "weights": {
-          "n_in": 9.999999819999999e-10,
-          "entropy": 0.9999999819999998,
-          "reasoning_proxy": 9.999999819999999e-10,
-          "constraint_count": 9.999999819999999e-10,
-          "parametric_dependence": 9.999999819999999e-10,
-          "dependency_distance": 9.999999819999999e-10,
-          "reasoning_x_constraint": 9.999999819999999e-10,
-          "length_x_entropy": 9.999999819999999e-10,
-          "knowledge_x_reasoning": 9.999999819999999e-10,
-          "classification_ambiguity": 9.999999930000007e-10,
-          "classification_negation_density": 9.999999930000007e-10,
-          "classification_domain_shift": 9.999999930000007e-10,
-          "math_numeric_density": 9.999999819999999e-10,
-          "math_symbol_density": 9.999999819999999e-10,
-          "math_precision_cues": 9.999999819999999e-10,
-          "instruction_format_strictness": 9.999999930000007e-10,
-          "instruction_prohibition_count": 9.999999930000007e-10,
-          "instruction_step_count": 9.999999930000007e-10,
-          "instruction_conflict_cues": 9.999999930000007e-10
-        },
-        "norm_stats": {
-          "n_in": {
-            "p05": 30.0,
-            "p95": 105.0
-          },
-          "entropy": {
-            "p05": 4.694019357121935,
-            "p95": 5.96497928712412
-          },
-          "reasoning_proxy": {
-            "p05": 2.3,
-            "p95": 5.15
-          },
-          "constraint_count": {
-            "p05": 0.0,
-            "p95": 1.0
-          },
-          "parametric_dependence": {
-            "p05": 0.05555555555555555,
-            "p95": 0.3333333333333333
-          },
-          "dependency_distance": {
-            "p05": 3.75,
-            "p95": 77.0
-          },
-          "reasoning_x_constraint": {
-            "p05": 0.0,
-            "p95": 3.3
-          },
-          "length_x_entropy": {
-            "p05": 139.20671786825557,
-            "p95": 623.9416414588637
-          },
-          "knowledge_x_reasoning": {
-            "p05": 0.12777777777777777,
-            "p95": 1.2166666666666666
-          },
-          "math_numeric_density": {
-            "p05": 0.0,
-            "p95": 0.27272727272727276
-          },
-          "math_symbol_density": {
-            "p05": 0.0,
-            "p95": 0.09195402298850575
-          },
-          "math_precision_cues": {
-            "p05": 0.0,
-            "p95": 1.0
-          }
-        },
-        "fit_config": {
-          "l2": 0.0,
-          "entropy_reg": 0.1,
-          "steps": 800,
-          "learning_rate": 0.05,
-          "cv_folds": 3,
-          "active_dims": [
-            "n_in",
-            "entropy",
-            "reasoning_proxy",
-            "constraint_count",
-            "parametric_dependence",
-            "dependency_distance",
-            "reasoning_x_constraint",
-            "length_x_entropy",
-            "knowledge_x_reasoning",
-            "math_numeric_density",
-            "math_symbol_density",
-            "math_precision_cues"
-          ],
-          "inactive_dims": [
-            "classification_ambiguity",
-            "classification_negation_density",
-            "classification_domain_shift",
-            "instruction_format_strictness",
-            "instruction_prohibition_count",
-            "instruction_step_count",
-            "instruction_conflict_cues"
-          ],
-          "feature_corrs": {
-            "n_in": 0.4932,
-            "entropy": 0.5121,
-            "reasoning_proxy": 0.416,
-            "constraint_count": 0.0408,
-            "parametric_dependence": 0.1901,
-            "dependency_distance": 0.3946,
-            "reasoning_x_constraint": 0.0668,
-            "length_x_entropy": 0.4975,
-            "knowledge_x_reasoning": 0.2905,
-            "classification_ambiguity": 0.0,
-            "classification_negation_density": 0.0,
-            "classification_domain_shift": 0.0,
-            "math_numeric_density": 0.2922,
-            "math_symbol_density": 0.1411,
-            "math_precision_cues": 0.1113,
-            "instruction_format_strictness": 0.0,
-            "instruction_prohibition_count": 0.0,
-            "instruction_step_count": 0.0,
-            "instruction_conflict_cues": 0.0
-          },
-          "pos_rate": 0.5481,
-          "sparse_floor_entropy": 0.0
-        }
-      }
-    },
-    "summarization": {
-      "qwen2.5_0.5b": {
-        "weights": {
-          "n_in": 9.999999829999992e-10,
-          "entropy": 0.29578038784249594,
-          "reasoning_proxy": 9.999999829999992e-10,
-          "constraint_count": 9.999999869999994e-10,
-          "parametric_dependence": 9.999999869999994e-10,
-          "dependency_distance": 9.999999829999992e-10,
-          "reasoning_x_constraint": 0.7042195951575033,
-          "length_x_entropy": 9.999999829999992e-10,
-          "knowledge_x_reasoning": 9.999999869999994e-10,
-          "classification_ambiguity": 9.999999869999994e-10,
-          "classification_negation_density": 9.999999869999994e-10,
-          "classification_domain_shift": 9.999999869999994e-10,
-          "math_numeric_density": 9.999999869999994e-10,
-          "math_symbol_density": 9.999999869999994e-10,
-          "math_precision_cues": 9.999999869999994e-10,
-          "instruction_format_strictness": 9.999999869999994e-10,
-          "instruction_prohibition_count": 9.999999869999994e-10,
-          "instruction_step_count": 9.999999869999994e-10,
-          "instruction_conflict_cues": 9.999999869999994e-10
-        },
-        "norm_stats": {
-          "n_in": {
-            "p05": 74.0,
-            "p95": 234.0
-          },
-          "entropy": {
-            "p05": 5.797037401816363,
-            "p95": 7.052069031481253
-          },
-          "reasoning_proxy": {
-            "p05": 1.0,
-            "p95": 7.95
-          },
-          "dependency_distance": {
-            "p05": 10.375,
-            "p95": 194.75
-          },
-          "reasoning_x_constraint": {
-            "p05": 1.0,
-            "p95": 16.8
-          },
-          "length_x_entropy": {
-            "p05": 427.87715798266856,
-            "p95": 1591.8890652950395
-          }
-        },
-        "fit_config": {
-          "l2": 0.0,
-          "entropy_reg": 0.1,
-          "steps": 800,
-          "learning_rate": 0.05,
-          "cv_folds": 3,
-          "active_dims": [
-            "n_in",
-            "entropy",
-            "reasoning_proxy",
-            "dependency_distance",
-            "reasoning_x_constraint",
-            "length_x_entropy"
-          ],
-          "inactive_dims": [
-            "constraint_count",
-            "parametric_dependence",
-            "knowledge_x_reasoning",
-            "classification_ambiguity",
-            "classification_negation_density",
-            "classification_domain_shift",
-            "math_numeric_density",
-            "math_symbol_density",
-            "math_precision_cues",
-            "instruction_format_strictness",
-            "instruction_prohibition_count",
-            "instruction_step_count",
-            "instruction_conflict_cues"
-          ],
-          "feature_corrs": {
-            "n_in": 0.04,
-            "entropy": 0.1943,
-            "reasoning_proxy": 0.0805,
-            "constraint_count": 0.0299,
-            "parametric_dependence": -0.0279,
-            "dependency_distance": 0.0885,
-            "reasoning_x_constraint": 0.0521,
-            "length_x_entropy": 0.0623,
-            "knowledge_x_reasoning": 0.0057,
-            "classification_ambiguity": 0.0,
-            "classification_negation_density": 0.0,
-            "classification_domain_shift": 0.0,
-            "math_numeric_density": 0.0,
-            "math_symbol_density": 0.0,
-            "math_precision_cues": 0.0,
-            "instruction_format_strictness": 0.0,
-            "instruction_prohibition_count": 0.0,
-            "instruction_step_count": 0.0,
-            "instruction_conflict_cues": 0.0
-          },
-          "pos_rate": 0.1,
-          "sparse_floor_entropy": 0.03
-        }
-      },
-      "qwen2.5_7b": {
-        "weights": {
-          "n_in": 9.999999829999992e-10,
-          "entropy": 0.9999999819999991,
+          "n_in": 0.9999999819999991,
+          "entropy": 9.99999981999999e-10,
           "reasoning_proxy": 9.999999829999992e-10,
           "constraint_count": 9.999999829999992e-10,
           "parametric_dependence": 9.999999829999992e-10,
-          "dependency_distance": 9.99999981999999e-10,
+          "dependency_distance": 9.999999829999992e-10,
           "reasoning_x_constraint": 9.999999829999992e-10,
           "length_x_entropy": 9.999999829999992e-10,
           "knowledge_x_reasoning": 9.999999829999992e-10,
@@ -2164,13 +26,13 @@
           "instruction_conflict_cues": 9.999999829999992e-10
         },
         "norm_stats": {
-          "entropy": {
-            "p05": 5.797037401816363,
-            "p95": 7.052069031481253
+          "n_in": {
+            "p05": 19.0,
+            "p95": 143.0
           },
-          "dependency_distance": {
-            "p05": 10.375,
-            "p95": 194.75
+          "entropy": {
+            "p05": 3.5766176449086644,
+            "p95": 6.077283924537311
           }
         },
         "fit_config": {
@@ -2180,17 +42,19 @@
           "learning_rate": 0.05,
           "cv_folds": 3,
           "active_dims": [
-            "entropy",
-            "dependency_distance"
+            "n_in",
+            "entropy"
           ],
           "inactive_dims": [
-            "n_in",
             "reasoning_proxy",
             "constraint_count",
             "parametric_dependence",
+            "dependency_distance",
             "reasoning_x_constraint",
             "length_x_entropy",
-            "knowledge_x_reasoning",
+            "knowledge_x_reasoning"
+          ],
+          "constant_features": [
             "classification_ambiguity",
             "classification_negation_density",
             "classification_domain_shift",
@@ -2203,72 +67,50 @@
             "instruction_conflict_cues"
           ],
           "feature_corrs": {
-            "n_in": 0.0065,
-            "entropy": 0.0937,
-            "reasoning_proxy": 0.0128,
-            "constraint_count": 0.022,
-            "parametric_dependence": 0.0218,
-            "dependency_distance": -0.0453,
-            "reasoning_x_constraint": 0.0148,
-            "length_x_entropy": 0.0134,
-            "knowledge_x_reasoning": -0.007,
-            "classification_ambiguity": 0.0,
-            "classification_negation_density": 0.0,
-            "classification_domain_shift": 0.0,
-            "math_numeric_density": 0.0,
-            "math_symbol_density": 0.0,
-            "math_precision_cues": 0.0,
-            "instruction_format_strictness": 0.0,
-            "instruction_prohibition_count": 0.0,
-            "instruction_step_count": 0.0,
-            "instruction_conflict_cues": 0.0
+            "n_in": 0.0,
+            "entropy": 0.0,
+            "reasoning_proxy": 0.0,
+            "constraint_count": 0.0,
+            "parametric_dependence": 0.0,
+            "dependency_distance": 0.0,
+            "reasoning_x_constraint": 0.0,
+            "length_x_entropy": 0.0,
+            "knowledge_x_reasoning": 0.0
           },
-          "pos_rate": 0.0727,
+          "pos_rate": 0.0,
           "sparse_floor_entropy": 0.1
         }
       },
-      "qwen2.5_3b": {
+      "qwen2.5_0.5b": {
         "weights": {
-          "n_in": 9.999999819999992e-10,
-          "entropy": 0.9999999819999992,
-          "reasoning_proxy": 9.999999859999996e-10,
-          "constraint_count": 9.999999819999992e-10,
-          "parametric_dependence": 9.999999859999996e-10,
-          "dependency_distance": 9.999999819999992e-10,
-          "reasoning_x_constraint": 9.999999859999996e-10,
-          "length_x_entropy": 9.999999819999992e-10,
-          "knowledge_x_reasoning": 9.999999859999996e-10,
-          "classification_ambiguity": 9.999999859999996e-10,
-          "classification_negation_density": 9.999999859999996e-10,
-          "classification_domain_shift": 9.999999859999996e-10,
-          "math_numeric_density": 9.999999859999996e-10,
-          "math_symbol_density": 9.999999859999996e-10,
-          "math_precision_cues": 9.999999859999996e-10,
-          "instruction_format_strictness": 9.999999859999996e-10,
-          "instruction_prohibition_count": 9.999999859999996e-10,
-          "instruction_step_count": 9.999999859999996e-10,
-          "instruction_conflict_cues": 9.999999859999996e-10
+          "n_in": 9.99999981999999e-10,
+          "entropy": 0.9999999819999991,
+          "reasoning_proxy": 9.999999829999992e-10,
+          "constraint_count": 9.999999829999992e-10,
+          "parametric_dependence": 9.999999829999992e-10,
+          "dependency_distance": 9.999999829999992e-10,
+          "reasoning_x_constraint": 9.999999829999992e-10,
+          "length_x_entropy": 9.999999829999992e-10,
+          "knowledge_x_reasoning": 9.999999829999992e-10,
+          "classification_ambiguity": 9.999999829999992e-10,
+          "classification_negation_density": 9.999999829999992e-10,
+          "classification_domain_shift": 9.999999829999992e-10,
+          "math_numeric_density": 9.999999829999992e-10,
+          "math_symbol_density": 9.999999829999992e-10,
+          "math_precision_cues": 9.999999829999992e-10,
+          "instruction_format_strictness": 9.999999829999992e-10,
+          "instruction_prohibition_count": 9.999999829999992e-10,
+          "instruction_step_count": 9.999999829999992e-10,
+          "instruction_conflict_cues": 9.999999829999992e-10
         },
         "norm_stats": {
           "n_in": {
-            "p05": 74.0,
-            "p95": 234.0
+            "p05": 19.0,
+            "p95": 143.0
           },
           "entropy": {
-            "p05": 5.797037401816363,
-            "p95": 7.052069031481253
-          },
-          "constraint_count": {
-            "p05": 1.0,
-            "p95": 3.0
-          },
-          "dependency_distance": {
-            "p05": 10.375,
-            "p95": 194.75
-          },
-          "length_x_entropy": {
-            "p05": 427.87715798266856,
-            "p95": 1591.8890652950395
+            "p05": 3.5766176449086644,
+            "p95": 6.077283924537311
           }
         },
         "fit_config": {
@@ -2279,16 +121,18 @@
           "cv_folds": 3,
           "active_dims": [
             "n_in",
-            "entropy",
-            "constraint_count",
-            "dependency_distance",
-            "length_x_entropy"
+            "entropy"
           ],
           "inactive_dims": [
             "reasoning_proxy",
+            "constraint_count",
             "parametric_dependence",
+            "dependency_distance",
             "reasoning_x_constraint",
-            "knowledge_x_reasoning",
+            "length_x_entropy",
+            "knowledge_x_reasoning"
+          ],
+          "constant_features": [
             "classification_ambiguity",
             "classification_negation_density",
             "classification_domain_shift",
@@ -2301,82 +145,423 @@
             "instruction_conflict_cues"
           ],
           "feature_corrs": {
-            "n_in": -0.116,
-            "entropy": 0.0304,
-            "reasoning_proxy": -0.0249,
-            "constraint_count": -0.03,
-            "parametric_dependence": -0.0018,
-            "dependency_distance": -0.0844,
-            "reasoning_x_constraint": -0.0268,
-            "length_x_entropy": -0.098,
-            "knowledge_x_reasoning": -0.0216,
-            "classification_ambiguity": 0.0,
-            "classification_negation_density": 0.0,
-            "classification_domain_shift": 0.0,
-            "math_numeric_density": 0.0,
-            "math_symbol_density": 0.0,
-            "math_precision_cues": 0.0,
-            "instruction_format_strictness": 0.0,
-            "instruction_prohibition_count": 0.0,
-            "instruction_step_count": 0.0,
-            "instruction_conflict_cues": 0.0
+            "n_in": 0.0,
+            "entropy": 0.0,
+            "reasoning_proxy": 0.0,
+            "constraint_count": 0.0,
+            "parametric_dependence": 0.0,
+            "dependency_distance": 0.0,
+            "reasoning_x_constraint": 0.0,
+            "length_x_entropy": 0.0,
+            "knowledge_x_reasoning": 0.0
           },
-          "pos_rate": 0.0636,
+          "pos_rate": 1.0,
+          "sparse_floor_entropy": 0.0
+        }
+      },
+      "qwen2.5_3b": {
+        "weights": {
+          "n_in": 9.999999819999997e-10,
+          "entropy": 0.9999999819999997,
+          "reasoning_proxy": 9.999999819999997e-10,
+          "constraint_count": 9.999999819999997e-10,
+          "parametric_dependence": 9.999999819999997e-10,
+          "dependency_distance": 9.999999819999997e-10,
+          "reasoning_x_constraint": 9.999999819999997e-10,
+          "length_x_entropy": 9.999999819999997e-10,
+          "knowledge_x_reasoning": 9.999999819999997e-10,
+          "classification_ambiguity": 9.999999900000002e-10,
+          "classification_negation_density": 9.999999900000002e-10,
+          "classification_domain_shift": 9.999999900000002e-10,
+          "math_numeric_density": 9.999999900000002e-10,
+          "math_symbol_density": 9.999999900000002e-10,
+          "math_precision_cues": 9.999999900000002e-10,
+          "instruction_format_strictness": 9.999999900000002e-10,
+          "instruction_prohibition_count": 9.999999900000002e-10,
+          "instruction_step_count": 9.999999900000002e-10,
+          "instruction_conflict_cues": 9.999999900000002e-10
+        },
+        "norm_stats": {
+          "n_in": {
+            "p05": 19.0,
+            "p95": 143.0
+          },
+          "entropy": {
+            "p05": 3.5766176449086644,
+            "p95": 6.077283924537311
+          },
+          "reasoning_proxy": {
+            "p05": 0.0,
+            "p95": 10.6
+          },
+          "constraint_count": {
+            "p05": 1.0,
+            "p95": 5.0
+          },
+          "parametric_dependence": {
+            "p05": 0.0,
+            "p95": 0.3333333333333333
+          },
+          "dependency_distance": {
+            "p05": 2.6,
+            "p95": 6.393939393939394
+          },
+          "reasoning_x_constraint": {
+            "p05": 0.0,
+            "p95": 42.4
+          },
+          "length_x_entropy": {
+            "p05": 67.95573525326462,
+            "p95": 869.0516012088355
+          },
+          "knowledge_x_reasoning": {
+            "p05": 0.0,
+            "p95": 4.675
+          }
+        },
+        "fit_config": {
+          "l2": 0.0,
+          "entropy_reg": 0.1,
+          "steps": 800,
+          "learning_rate": 0.05,
+          "cv_folds": 3,
+          "active_dims": [
+            "n_in",
+            "entropy",
+            "reasoning_proxy",
+            "constraint_count",
+            "parametric_dependence",
+            "dependency_distance",
+            "reasoning_x_constraint",
+            "length_x_entropy",
+            "knowledge_x_reasoning"
+          ],
+          "inactive_dims": [],
+          "constant_features": [
+            "classification_ambiguity",
+            "classification_negation_density",
+            "classification_domain_shift",
+            "math_numeric_density",
+            "math_symbol_density",
+            "math_precision_cues",
+            "instruction_format_strictness",
+            "instruction_prohibition_count",
+            "instruction_step_count",
+            "instruction_conflict_cues"
+          ],
+          "feature_corrs": {
+            "n_in": -0.0853,
+            "entropy": -0.0569,
+            "reasoning_proxy": -0.0948,
+            "constraint_count": -0.1083,
+            "parametric_dependence": -0.0715,
+            "dependency_distance": -0.0763,
+            "reasoning_x_constraint": -0.0826,
+            "length_x_entropy": -0.0833,
+            "knowledge_x_reasoning": -0.0773
+          },
+          "pos_rate": 0.02,
           "sparse_floor_entropy": 0.1
         }
       }
     },
-    "text_generation": {
-      "qwen2.5_3b": {
+    "maths": {
+      "qwen2.5_7b": {
         "weights": {
-          "n_in": 0.13258709553226933,
-          "entropy": 0.13258709553226933,
-          "reasoning_proxy": 9.999999859999994e-10,
-          "constraint_count": 0.4696516038709221,
-          "parametric_dependence": 9.999999879999995e-10,
-          "dependency_distance": 0.13258709553226933,
-          "reasoning_x_constraint": 9.999999859999994e-10,
-          "length_x_entropy": 0.13258709553226933,
-          "knowledge_x_reasoning": 9.999999879999995e-10,
-          "classification_ambiguity": 9.999999879999995e-10,
-          "classification_negation_density": 9.999999879999995e-10,
-          "classification_domain_shift": 9.999999879999995e-10,
-          "math_numeric_density": 9.999999879999995e-10,
-          "math_symbol_density": 9.999999879999995e-10,
-          "math_precision_cues": 9.999999879999995e-10,
-          "instruction_format_strictness": 9.999999879999995e-10,
-          "instruction_prohibition_count": 9.999999879999995e-10,
-          "instruction_step_count": 9.999999879999995e-10,
-          "instruction_conflict_cues": 9.999999879999995e-10
+          "n_in": 0.4280228397022603,
+          "entropy": 9.999999839999997e-10,
+          "reasoning_proxy": 9.999999839999997e-10,
+          "constraint_count": 9.999999839999997e-10,
+          "parametric_dependence": 0.045664873691472777,
+          "dependency_distance": 0.5263122706062665,
+          "reasoning_x_constraint": 9.999999909999998e-10,
+          "length_x_entropy": 9.999999839999997e-10,
+          "knowledge_x_reasoning": 9.999999909999998e-10,
+          "classification_ambiguity": 9.999999909999998e-10,
+          "classification_negation_density": 9.999999909999998e-10,
+          "classification_domain_shift": 9.999999909999998e-10,
+          "math_numeric_density": 9.999999839999997e-10,
+          "math_symbol_density": 9.999999839999997e-10,
+          "math_precision_cues": 9.999999839999997e-10,
+          "instruction_format_strictness": 9.999999909999998e-10,
+          "instruction_prohibition_count": 9.999999909999998e-10,
+          "instruction_step_count": 9.999999909999998e-10,
+          "instruction_conflict_cues": 9.999999909999998e-10
         },
         "norm_stats": {
           "n_in": {
-            "p05": 25.0,
-            "p95": 26.0
+            "p05": 30.0,
+            "p95": 105.0
           },
           "entropy": {
-            "p05": 4.4838561897747224,
-            "p95": 4.5465935642949376
+            "p05": 4.694019357121935,
+            "p95": 5.96497928712412
           },
           "reasoning_proxy": {
-            "p05": 1.25,
-            "p95": 1.5
+            "p05": 2.3,
+            "p95": 5.15
           },
           "constraint_count": {
-            "p05": 4.0,
-            "p95": 5.0
+            "p05": 0.0,
+            "p95": 1.0
+          },
+          "parametric_dependence": {
+            "p05": 0.05555555555555555,
+            "p95": 0.5
           },
           "dependency_distance": {
-            "p05": 21.0,
-            "p95": 22.0
-          },
-          "reasoning_x_constraint": {
-            "p05": 5.0,
-            "p95": 6.25
+            "p05": 2.63768115942029,
+            "p95": 3.3870967741935485
           },
           "length_x_entropy": {
-            "p05": 112.09640474436806,
-            "p95": 118.21143267166838
+            "p05": 139.20671786825557,
+            "p95": 623.9416414588637
+          },
+          "math_numeric_density": {
+            "p05": 0.0,
+            "p95": 0.27272727272727276
+          },
+          "math_symbol_density": {
+            "p05": 0.0,
+            "p95": 0.09195402298850575
+          },
+          "math_precision_cues": {
+            "p05": 0.0,
+            "p95": 1.0
+          }
+        },
+        "fit_config": {
+          "l2": 0.0,
+          "entropy_reg": 0.01,
+          "steps": 800,
+          "learning_rate": 0.05,
+          "cv_folds": 3,
+          "active_dims": [
+            "n_in",
+            "entropy",
+            "reasoning_proxy",
+            "constraint_count",
+            "parametric_dependence",
+            "dependency_distance",
+            "length_x_entropy",
+            "math_numeric_density",
+            "math_symbol_density",
+            "math_precision_cues"
+          ],
+          "inactive_dims": [
+            "reasoning_x_constraint",
+            "knowledge_x_reasoning"
+          ],
+          "constant_features": [
+            "classification_ambiguity",
+            "classification_negation_density",
+            "classification_domain_shift",
+            "instruction_format_strictness",
+            "instruction_prohibition_count",
+            "instruction_step_count",
+            "instruction_conflict_cues"
+          ],
+          "feature_corrs": {
+            "n_in": 0.0428,
+            "entropy": -0.0411,
+            "reasoning_proxy": 0.053,
+            "constraint_count": -0.0428,
+            "parametric_dependence": -0.1029,
+            "dependency_distance": 0.1396,
+            "reasoning_x_constraint": 0.0053,
+            "length_x_entropy": 0.0443,
+            "knowledge_x_reasoning": -0.0111,
+            "math_numeric_density": -0.0655,
+            "math_symbol_density": -0.1125,
+            "math_precision_cues": 0.0838
+          },
+          "pos_rate": 0.6815,
+          "sparse_floor_entropy": 0.0
+        }
+      },
+      "qwen2.5_0.5b": {
+        "weights": {
+          "n_in": 9.999999829999998e-10,
+          "entropy": 9.999999829999998e-10,
+          "reasoning_proxy": 9.999999909999998e-10,
+          "constraint_count": 9.999999829999998e-10,
+          "parametric_dependence": 9.999999829999998e-10,
+          "dependency_distance": 0.7536579062608314,
+          "reasoning_x_constraint": 9.999999909999998e-10,
+          "length_x_entropy": 9.999999829999998e-10,
+          "knowledge_x_reasoning": 9.999999829999998e-10,
+          "classification_ambiguity": 9.999999909999998e-10,
+          "classification_negation_density": 9.999999909999998e-10,
+          "classification_domain_shift": 9.999999909999998e-10,
+          "math_numeric_density": 0.2463420767391684,
+          "math_symbol_density": 9.999999829999998e-10,
+          "math_precision_cues": 9.999999829999998e-10,
+          "instruction_format_strictness": 9.999999909999998e-10,
+          "instruction_prohibition_count": 9.999999909999998e-10,
+          "instruction_step_count": 9.999999909999998e-10,
+          "instruction_conflict_cues": 9.999999909999998e-10
+        },
+        "norm_stats": {
+          "n_in": {
+            "p05": 30.0,
+            "p95": 105.0
+          },
+          "entropy": {
+            "p05": 4.694019357121935,
+            "p95": 5.96497928712412
+          },
+          "constraint_count": {
+            "p05": 0.0,
+            "p95": 1.0
+          },
+          "parametric_dependence": {
+            "p05": 0.05555555555555555,
+            "p95": 0.5
+          },
+          "dependency_distance": {
+            "p05": 2.63768115942029,
+            "p95": 3.3870967741935485
+          },
+          "length_x_entropy": {
+            "p05": 139.20671786825557,
+            "p95": 623.9416414588637
+          },
+          "knowledge_x_reasoning": {
+            "p05": 0.12777777777777777,
+            "p95": 2.0
+          },
+          "math_numeric_density": {
+            "p05": 0.0,
+            "p95": 0.27272727272727276
+          },
+          "math_symbol_density": {
+            "p05": 0.0,
+            "p95": 0.09195402298850575
+          },
+          "math_precision_cues": {
+            "p05": 0.0,
+            "p95": 1.0
+          }
+        },
+        "fit_config": {
+          "l2": 0.0,
+          "entropy_reg": 0.1,
+          "steps": 800,
+          "learning_rate": 0.05,
+          "cv_folds": 3,
+          "active_dims": [
+            "n_in",
+            "entropy",
+            "constraint_count",
+            "parametric_dependence",
+            "dependency_distance",
+            "length_x_entropy",
+            "knowledge_x_reasoning",
+            "math_numeric_density",
+            "math_symbol_density",
+            "math_precision_cues"
+          ],
+          "inactive_dims": [
+            "reasoning_proxy",
+            "reasoning_x_constraint"
+          ],
+          "constant_features": [
+            "classification_ambiguity",
+            "classification_negation_density",
+            "classification_domain_shift",
+            "instruction_format_strictness",
+            "instruction_prohibition_count",
+            "instruction_step_count",
+            "instruction_conflict_cues"
+          ],
+          "feature_corrs": {
+            "n_in": -0.057,
+            "entropy": -0.0488,
+            "reasoning_proxy": -0.0081,
+            "constraint_count": -0.033,
+            "parametric_dependence": -0.1208,
+            "dependency_distance": 0.1058,
+            "reasoning_x_constraint": -0.0205,
+            "length_x_entropy": -0.0543,
+            "knowledge_x_reasoning": -0.0991,
+            "math_numeric_density": -0.0396,
+            "math_symbol_density": -0.1573,
+            "math_precision_cues": 0.045
+          },
+          "pos_rate": 0.8815,
+          "sparse_floor_entropy": 0.0
+        }
+      },
+      "qwen2.5_3b": {
+        "weights": {
+          "n_in": 9.99999983e-10,
+          "entropy": 9.99999983e-10,
+          "reasoning_proxy": 9.99999983e-10,
+          "constraint_count": 9.99999983e-10,
+          "parametric_dependence": 9.99999983e-10,
+          "dependency_distance": 0.7530357938611346,
+          "reasoning_x_constraint": 9.99999983e-10,
+          "length_x_entropy": 9.99999983e-10,
+          "knowledge_x_reasoning": 9.99999983e-10,
+          "classification_ambiguity": 9.999999929999998e-10,
+          "classification_negation_density": 9.999999929999998e-10,
+          "classification_domain_shift": 9.999999929999998e-10,
+          "math_numeric_density": 9.99999983e-10,
+          "math_symbol_density": 9.99999983e-10,
+          "math_precision_cues": 0.2469641891388653,
+          "instruction_format_strictness": 9.999999929999998e-10,
+          "instruction_prohibition_count": 9.999999929999998e-10,
+          "instruction_step_count": 9.999999929999998e-10,
+          "instruction_conflict_cues": 9.999999929999998e-10
+        },
+        "norm_stats": {
+          "n_in": {
+            "p05": 30.0,
+            "p95": 105.0
+          },
+          "entropy": {
+            "p05": 4.694019357121935,
+            "p95": 5.96497928712412
+          },
+          "reasoning_proxy": {
+            "p05": 2.3,
+            "p95": 5.15
+          },
+          "constraint_count": {
+            "p05": 0.0,
+            "p95": 1.0
+          },
+          "parametric_dependence": {
+            "p05": 0.05555555555555555,
+            "p95": 0.5
+          },
+          "dependency_distance": {
+            "p05": 2.63768115942029,
+            "p95": 3.3870967741935485
+          },
+          "reasoning_x_constraint": {
+            "p05": 0.0,
+            "p95": 3.3
+          },
+          "length_x_entropy": {
+            "p05": 139.20671786825557,
+            "p95": 623.9416414588637
+          },
+          "knowledge_x_reasoning": {
+            "p05": 0.12777777777777777,
+            "p95": 2.0
+          },
+          "math_numeric_density": {
+            "p05": 0.0,
+            "p95": 0.27272727272727276
+          },
+          "math_symbol_density": {
+            "p05": 0.0,
+            "p95": 0.09195402298850575
+          },
+          "math_precision_cues": {
+            "p05": 0.0,
+            "p95": 1.0
           }
         },
         "fit_config": {
@@ -2390,258 +575,40 @@
             "entropy",
             "reasoning_proxy",
             "constraint_count",
+            "parametric_dependence",
             "dependency_distance",
             "reasoning_x_constraint",
-            "length_x_entropy"
-          ],
-          "inactive_dims": [
-            "parametric_dependence",
+            "length_x_entropy",
             "knowledge_x_reasoning",
+            "math_numeric_density",
+            "math_symbol_density",
+            "math_precision_cues"
+          ],
+          "inactive_dims": [],
+          "constant_features": [
             "classification_ambiguity",
             "classification_negation_density",
             "classification_domain_shift",
-            "math_numeric_density",
-            "math_symbol_density",
-            "math_precision_cues",
             "instruction_format_strictness",
             "instruction_prohibition_count",
             "instruction_step_count",
             "instruction_conflict_cues"
           ],
           "feature_corrs": {
-            "n_in": 0.1153,
-            "entropy": 0.1153,
-            "reasoning_proxy": -0.0406,
-            "constraint_count": -0.0776,
-            "parametric_dependence": 0.0,
-            "dependency_distance": 0.1153,
-            "reasoning_x_constraint": -0.0673,
-            "length_x_entropy": 0.1153,
-            "knowledge_x_reasoning": 0.0,
-            "classification_ambiguity": 0.0,
-            "classification_negation_density": 0.0,
-            "classification_domain_shift": 0.0,
-            "math_numeric_density": 0.0,
-            "math_symbol_density": 0.0,
-            "math_precision_cues": 0.0,
-            "instruction_format_strictness": 0.0,
-            "instruction_prohibition_count": 0.0,
-            "instruction_step_count": 0.0,
-            "instruction_conflict_cues": 0.0
+            "n_in": -0.2602,
+            "entropy": -0.413,
+            "reasoning_proxy": -0.1827,
+            "constraint_count": -0.0726,
+            "parametric_dependence": -0.4651,
+            "dependency_distance": 0.2992,
+            "reasoning_x_constraint": -0.0517,
+            "length_x_entropy": -0.2558,
+            "knowledge_x_reasoning": -0.3156,
+            "math_numeric_density": -0.3869,
+            "math_symbol_density": -0.1314,
+            "math_precision_cues": -0.0725
           },
-          "pos_rate": 0.5474,
-          "sparse_floor_entropy": 0.0
-        }
-      },
-      "qwen2.5_0.5b": {
-        "weights": {
-          "n_in": 9.999999829999996e-10,
-          "entropy": 9.999999829999996e-10,
-          "reasoning_proxy": 0.5243714029533315,
-          "constraint_count": 0.47562858004666797,
-          "parametric_dependence": 9.99999988e-10,
-          "dependency_distance": 9.999999829999996e-10,
-          "reasoning_x_constraint": 9.999999829999996e-10,
-          "length_x_entropy": 9.999999829999996e-10,
-          "knowledge_x_reasoning": 9.99999988e-10,
-          "classification_ambiguity": 9.99999988e-10,
-          "classification_negation_density": 9.99999988e-10,
-          "classification_domain_shift": 9.99999988e-10,
-          "math_numeric_density": 9.99999988e-10,
-          "math_symbol_density": 9.99999988e-10,
-          "math_precision_cues": 9.99999988e-10,
-          "instruction_format_strictness": 9.99999988e-10,
-          "instruction_prohibition_count": 9.99999988e-10,
-          "instruction_step_count": 9.99999988e-10,
-          "instruction_conflict_cues": 9.99999988e-10
-        },
-        "norm_stats": {
-          "n_in": {
-            "p05": 25.0,
-            "p95": 26.0
-          },
-          "entropy": {
-            "p05": 4.4838561897747224,
-            "p95": 4.5465935642949376
-          },
-          "reasoning_proxy": {
-            "p05": 1.25,
-            "p95": 1.5
-          },
-          "constraint_count": {
-            "p05": 4.0,
-            "p95": 5.0
-          },
-          "dependency_distance": {
-            "p05": 21.0,
-            "p95": 22.0
-          },
-          "reasoning_x_constraint": {
-            "p05": 5.0,
-            "p95": 6.25
-          },
-          "length_x_entropy": {
-            "p05": 112.09640474436806,
-            "p95": 118.21143267166838
-          }
-        },
-        "fit_config": {
-          "l2": 0.0,
-          "entropy_reg": 0.3,
-          "steps": 800,
-          "learning_rate": 0.05,
-          "cv_folds": 3,
-          "active_dims": [
-            "n_in",
-            "entropy",
-            "reasoning_proxy",
-            "constraint_count",
-            "dependency_distance",
-            "reasoning_x_constraint",
-            "length_x_entropy"
-          ],
-          "inactive_dims": [
-            "parametric_dependence",
-            "knowledge_x_reasoning",
-            "classification_ambiguity",
-            "classification_negation_density",
-            "classification_domain_shift",
-            "math_numeric_density",
-            "math_symbol_density",
-            "math_precision_cues",
-            "instruction_format_strictness",
-            "instruction_prohibition_count",
-            "instruction_step_count",
-            "instruction_conflict_cues"
-          ],
-          "feature_corrs": {
-            "n_in": 0.1154,
-            "entropy": 0.1154,
-            "reasoning_proxy": 0.0344,
-            "constraint_count": 0.0358,
-            "parametric_dependence": 0.0,
-            "dependency_distance": 0.1154,
-            "reasoning_x_constraint": 0.0466,
-            "length_x_entropy": 0.1154,
-            "knowledge_x_reasoning": 0.0,
-            "classification_ambiguity": 0.0,
-            "classification_negation_density": 0.0,
-            "classification_domain_shift": 0.0,
-            "math_numeric_density": 0.0,
-            "math_symbol_density": 0.0,
-            "math_precision_cues": 0.0,
-            "instruction_format_strictness": 0.0,
-            "instruction_prohibition_count": 0.0,
-            "instruction_step_count": 0.0,
-            "instruction_conflict_cues": 0.0
-          },
-          "pos_rate": 0.5684,
-          "sparse_floor_entropy": 0.0
-        }
-      },
-      "qwen2.5_7b": {
-        "weights": {
-          "n_in": 9.999999829999996e-10,
-          "entropy": 9.999999829999996e-10,
-          "reasoning_proxy": 0.5440639278120114,
-          "constraint_count": 0.45593605518798813,
-          "parametric_dependence": 9.99999988e-10,
-          "dependency_distance": 9.999999829999996e-10,
-          "reasoning_x_constraint": 9.999999829999996e-10,
-          "length_x_entropy": 9.999999829999996e-10,
-          "knowledge_x_reasoning": 9.99999988e-10,
-          "classification_ambiguity": 9.99999988e-10,
-          "classification_negation_density": 9.99999988e-10,
-          "classification_domain_shift": 9.99999988e-10,
-          "math_numeric_density": 9.99999988e-10,
-          "math_symbol_density": 9.99999988e-10,
-          "math_precision_cues": 9.99999988e-10,
-          "instruction_format_strictness": 9.99999988e-10,
-          "instruction_prohibition_count": 9.99999988e-10,
-          "instruction_step_count": 9.99999988e-10,
-          "instruction_conflict_cues": 9.99999988e-10
-        },
-        "norm_stats": {
-          "n_in": {
-            "p05": 25.0,
-            "p95": 26.0
-          },
-          "entropy": {
-            "p05": 4.4838561897747224,
-            "p95": 4.5465935642949376
-          },
-          "reasoning_proxy": {
-            "p05": 1.25,
-            "p95": 1.5
-          },
-          "constraint_count": {
-            "p05": 4.0,
-            "p95": 5.0
-          },
-          "dependency_distance": {
-            "p05": 21.0,
-            "p95": 22.0
-          },
-          "reasoning_x_constraint": {
-            "p05": 5.0,
-            "p95": 6.25
-          },
-          "length_x_entropy": {
-            "p05": 112.09640474436806,
-            "p95": 118.21143267166838
-          }
-        },
-        "fit_config": {
-          "l2": 0.0,
-          "entropy_reg": 0.3,
-          "steps": 800,
-          "learning_rate": 0.05,
-          "cv_folds": 3,
-          "active_dims": [
-            "n_in",
-            "entropy",
-            "reasoning_proxy",
-            "constraint_count",
-            "dependency_distance",
-            "reasoning_x_constraint",
-            "length_x_entropy"
-          ],
-          "inactive_dims": [
-            "parametric_dependence",
-            "knowledge_x_reasoning",
-            "classification_ambiguity",
-            "classification_negation_density",
-            "classification_domain_shift",
-            "math_numeric_density",
-            "math_symbol_density",
-            "math_precision_cues",
-            "instruction_format_strictness",
-            "instruction_prohibition_count",
-            "instruction_step_count",
-            "instruction_conflict_cues"
-          ],
-          "feature_corrs": {
-            "n_in": 0.1029,
-            "entropy": 0.1029,
-            "reasoning_proxy": 0.0778,
-            "constraint_count": -0.1317,
-            "parametric_dependence": 0.0,
-            "dependency_distance": 0.1029,
-            "reasoning_x_constraint": 0.0322,
-            "length_x_entropy": 0.1029,
-            "knowledge_x_reasoning": 0.0,
-            "classification_ambiguity": 0.0,
-            "classification_negation_density": 0.0,
-            "classification_domain_shift": 0.0,
-            "math_numeric_density": 0.0,
-            "math_symbol_density": 0.0,
-            "math_precision_cues": 0.0,
-            "instruction_format_strictness": 0.0,
-            "instruction_prohibition_count": 0.0,
-            "instruction_step_count": 0.0,
-            "instruction_conflict_cues": 0.0
-          },
-          "pos_rate": 0.3474,
+          "pos_rate": 0.2593,
           "sparse_floor_entropy": 0.0
         }
       }

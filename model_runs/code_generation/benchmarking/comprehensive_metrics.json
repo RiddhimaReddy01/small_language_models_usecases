@@ -4,113 +4,113 @@
   "baseline_model": "groq:llama-3.3-70b-versatile",
   "models": {
     "qwen2.5_0.5b": {
-      "sample_count": 421,
+      "sample_count": 353,
       "capability": {
-        "score": 0.6437054631828979,
-        "semantic_risk": 0.17458432304038002,
+        "score": 0.8583569405099151,
+        "semantic_risk": 0.050991501416430565,
         "primary_metric_score_name": "pass@1",
-        "valid_output_rate": 1.0,
+        "valid_output_rate": 0.8583569405099151,
         "per_bin": {
           "0": {
             "sample_count": 28,
-            "capability": 0.5357142857142857,
-            "semantic_risk": 0.2275,
-            "avg_latency_sec": 6.419467857142857,
-            "valid_output_rate": 1.0
+            "capability": 0.75,
+            "semantic_risk": 0.08999999999999998,
+            "avg_latency_sec": 5.1860607142857145,
+            "valid_output_rate": 0.75
           },
           "1": {
             "sample_count": 30,
-            "capability": 0.5,
-            "semantic_risk": 0.24500000000000002,
-            "avg_latency_sec": 7.4242633333333306,
-            "valid_output_rate": 1.0
+            "capability": 0.7,
+            "semantic_risk": 0.10799999999999997,
+            "avg_latency_sec": 5.590856666666667,
+            "valid_output_rate": 0.7
           },
           "2": {
             "sample_count": 33,
-            "capability": 0.5757575757575758,
-            "semantic_risk": 0.20787878787878789,
-            "avg_latency_sec": 6.194954545454545,
-            "valid_output_rate": 1.0
+            "capability": 0.8181818181818182,
+            "semantic_risk": 0.06545454545454545,
+            "avg_latency_sec": 4.9091000000000005,
+            "valid_output_rate": 0.8181818181818182
           },
           "3": {
             "sample_count": 18,
-            "capability": 0.6666666666666666,
-            "semantic_risk": 0.1633333333333333,
-            "avg_latency_sec": 7.268122222222222,
-            "valid_output_rate": 1.0
+            "capability": 0.7222222222222222,
+            "semantic_risk": 0.09999999999999999,
+            "avg_latency_sec": 6.195133333333333,
+            "valid_output_rate": 0.7222222222222222
           },
           "4": {
-            "sample_count": 312,
-            "capability": 0.6730769230769231,
-            "semantic_risk": 0.16019230769230777,
-            "avg_latency_sec": 6.45958076923077,
-            "valid_output_rate": 1.0
+            "sample_count": 244,
+            "capability": 0.9057377049180327,
+            "semantic_risk": 0.03393442622950821,
+            "avg_latency_sec": 4.714732377049177,
+            "valid_output_rate": 0.9057377049180327
           }
         }
       },
       "operational": {
-        "avg_latency_sec": 6.539481947743464,
-        "p50_latency_sec": 5.0523,
-        "p95_latency_sec": 16.147,
-        "p99_latency_sec": 24.958240000000014,
-        "throughput_qps": 0.15291731179792667,
-        "success_rate": 1.0,
-        "error_rate": 0.0
+        "avg_latency_sec": 4.920234560906516,
+        "p50_latency_sec": 4.655,
+        "p95_latency_sec": 8.370979999999998,
+        "p99_latency_sec": 10.803720000000013,
+        "throughput_qps": 0.20324234294548707,
+        "success_rate": 0.8583569405099151,
+        "error_rate": 0.141643059490085
       },
       "model_key": "qwen2.5_0.5b",
       "display_name": "qwen2.5:0.5b"
     },
     "qwen2.5_3b": {
-      "sample_count": 421,
+      "sample_count": 353,
       "capability": {
-        "score": 0.6603325415676959,
-        "semantic_risk": 0.16643705463182903,
+        "score": 0.9943342776203966,
+        "semantic_risk": 0.0051133144475920675,
         "primary_metric_score_name": "pass@1",
         "valid_output_rate": 1.0,
         "per_bin": {
           "0": {
             "sample_count": 28,
-            "capability": 0.6428571428571429,
-            "semantic_risk": 0.175,
-            "avg_latency_sec": 12.279825000000002,
+            "capability": 0.9642857142857143,
+            "semantic_risk": 0.032232142857142855,
+            "avg_latency_sec": 13.340010714285714,
             "valid_output_rate": 1.0
           },
           "1": {
             "sample_count": 30,
-            "capability": 0.4666666666666667,
-            "semantic_risk": 0.26133333333333336,
-            "avg_latency_sec": 13.425926666666665,
+            "capability": 1.0,
+            "semantic_risk": 0.0,
+            "avg_latency_sec": 17.235153333333333,
             "valid_output_rate": 1.0
           },
           "2": {
             "sample_count": 33,
-            "capability": 0.6060606060606061,
-            "semantic_risk": 0.19303030303030302,
-            "avg_latency_sec": 11.837315151515153,
+            "capability": 1.0,
+            "semantic_risk": 0.0,
+            "avg_latency_sec": 13.101218181818183,
             "valid_output_rate": 1.0
           },
           "3": {
             "sample_count": 18,
-            "capability": 0.7222222222222222,
-            "semantic_risk": 0.1361111111111111,
-            "avg_latency_sec": 14.761933333333332,
+            "capability": 1.0,
+            "semantic_risk": 0.0,
+            "avg_latency_sec": 15.695794444444443,
             "valid_output_rate": 1.0
           },
           "4": {
-            "sample_count": 312,
-            "capability": 0.6826923076923077,
-            "semantic_risk": 0.15548076923076928,
-            "avg_latency_sec": 12.971499679487184,
+            "sample_count": 244,
+            "capability": 0.9959016393442623,
+            "semantic_risk": 0.0036987704918032788,
+            "avg_latency_sec": 11.916336065573763,
             "valid_output_rate": 1.0
           }
         }
       },
       "operational": {
-        "avg_latency_sec": 12.9455273159145,
-        "p50_latency_sec": 11.469,
-        "p95_latency_sec": 25.0972,
-        "p99_latency_sec": 33.572040000000015,
-        "throughput_qps": 0.07724675678298994,
+        "avg_latency_sec": 12.784774504249306,
+        "p50_latency_sec": 10.4545,
+        "p95_latency_sec": 28.87474,
+        "p99_latency_sec": 35.29902,
+        "throughput_qps": 0.07821803972120335,
         "success_rate": 1.0,
         "error_rate": 0.0
       },
@@ -118,56 +118,56 @@
       "display_name": "qwen2.5:3b"
     },
     "qwen2.5_7b": {
-      "sample_count": 289,
+      "sample_count": 353,
       "capability": {
-        "score": 0.5294117647058824,
-        "semantic_risk": 0.23058823529411784,
+        "score": 1.0,
+        "semantic_risk": 0.0,
         "primary_metric_score_name": "pass@1",
         "valid_output_rate": 1.0,
         "per_bin": {
           "0": {
-            "sample_count": 19,
-            "capability": 0.42105263157894735,
-            "semantic_risk": 0.28368421052631576,
-            "avg_latency_sec": 31.960321052631578,
+            "sample_count": 28,
+            "capability": 1.0,
+            "semantic_risk": 0.0,
+            "avg_latency_sec": 24.783196428571422,
             "valid_output_rate": 1.0
           },
           "1": {
-            "sample_count": 24,
-            "capability": 0.3333333333333333,
-            "semantic_risk": 0.3266666666666667,
-            "avg_latency_sec": 33.92187083333333,
+            "sample_count": 30,
+            "capability": 1.0,
+            "semantic_risk": 0.0,
+            "avg_latency_sec": 20.38266333333333,
             "valid_output_rate": 1.0
           },
           "2": {
-            "sample_count": 25,
-            "capability": 0.4,
-            "semantic_risk": 0.29400000000000004,
-            "avg_latency_sec": 38.58616399999999,
+            "sample_count": 33,
+            "capability": 1.0,
+            "semantic_risk": 0.0,
+            "avg_latency_sec": 29.85968484848485,
             "valid_output_rate": 1.0
           },
           "3": {
-            "sample_count": 12,
-            "capability": 0.5833333333333334,
-            "semantic_risk": 0.20416666666666664,
-            "avg_latency_sec": 36.78415833333333,
+            "sample_count": 18,
+            "capability": 1.0,
+            "semantic_risk": 0.0,
+            "avg_latency_sec": 25.07143333333333,
             "valid_output_rate": 1.0
           },
           "4": {
-            "sample_count": 209,
-            "capability": 0.5741626794258373,
-            "semantic_risk": 0.2086602870813397,
-            "avg_latency_sec": 28.840620574162685,
+            "sample_count": 244,
+            "capability": 1.0,
+            "semantic_risk": 0.0,
+            "avg_latency_sec": 30.5445549180328,
             "valid_output_rate": 1.0
           }
         }
       },
       "operational": {
-        "avg_latency_sec": 30.640569896193803,
-        "p50_latency_sec": 26.8617,
-        "p95_latency_sec": 65.40829999999998,
-        "p99_latency_sec": 96.79411600000003,
-        "throughput_qps": 0.032636468688012905,
+        "avg_latency_sec": 28.880839093484404,
+        "p50_latency_sec": 28.0506,
+        "p95_latency_sec": 58.965519999999984,
+        "p99_latency_sec": 80.21516800000006,
+        "throughput_qps": 0.03462503276871906,
         "success_rate": 1.0,
         "error_rate": 0.0
       },
@@ -175,56 +175,56 @@
       "display_name": "qwen2.5:7b"
     },
     "llama_llama-3.3-70b-versatile": {
-      "sample_count": 289,
+      "sample_count": 353,
       "capability": {
-        "score": 0.5224913494809689,
-        "semantic_risk": 0.2339792387543254,
+        "score": 0.9971671388101983,
+        "semantic_risk": 0.0025566572237960337,
         "primary_metric_score_name": "pass@1",
         "valid_output_rate": 1.0,
         "per_bin": {
           "0": {
-            "sample_count": 19,
-            "capability": 0.3684210526315789,
-            "semantic_risk": 0.3094736842105263,
-            "avg_latency_sec": 0.44053684210526317,
+            "sample_count": 28,
+            "capability": 1.0,
+            "semantic_risk": 0.0,
+            "avg_latency_sec": 0.4221178571428572,
             "valid_output_rate": 1.0
           },
           "1": {
-            "sample_count": 24,
-            "capability": 0.3333333333333333,
-            "semantic_risk": 0.3266666666666667,
-            "avg_latency_sec": 0.43607083333333335,
+            "sample_count": 30,
+            "capability": 1.0,
+            "semantic_risk": 0.0,
+            "avg_latency_sec": 0.4339633333333333,
             "valid_output_rate": 1.0
           },
           "2": {
-            "sample_count": 25,
-            "capability": 0.4,
-            "semantic_risk": 0.29400000000000004,
-            "avg_latency_sec": 0.6141639999999999,
+            "sample_count": 33,
+            "capability": 1.0,
+            "semantic_risk": 0.0,
+            "avg_latency_sec": 0.5707848484848486,
             "valid_output_rate": 1.0
           },
           "3": {
-            "sample_count": 12,
-            "capability": 0.5833333333333334,
-            "semantic_risk": 0.20416666666666664,
-            "avg_latency_sec": 0.5460333333333334,
+            "sample_count": 18,
+            "capability": 1.0,
+            "semantic_risk": 0.0,
+            "avg_latency_sec": 0.5302666666666668,
             "valid_output_rate": 1.0
           },
           "4": {
-            "sample_count": 209,
-            "capability": 0.569377990430622,
-            "semantic_risk": 0.21100478468899522,
-            "avg_latency_sec": 0.5298837320574162,
+            "sample_count": 244,
+            "capability": 0.9959016393442623,
+            "semantic_risk": 0.0036987704918032788,
+            "avg_latency_sec": 0.4769356557377047,
             "valid_output_rate": 1.0
           }
         }
       },
       "operational": {
-        "avg_latency_sec": 0.5241802768166091,
-        "p50_latency_sec": 0.4814,
-        "p95_latency_sec": 0.8860799999999996,
-        "p99_latency_sec": 1.0684360000000002,
-        "throughput_qps": 1.9077406080081534,
+        "avg_latency_sec": 0.48042832861189816,
+        "p50_latency_sec": 0.4458,
+        "p95_latency_sec": 0.8843199999999998,
+        "p99_latency_sec": 1.0784440000000004,
+        "throughput_qps": 2.0814759256376503,
         "success_rate": 1.0,
         "error_rate": 0.0
       },

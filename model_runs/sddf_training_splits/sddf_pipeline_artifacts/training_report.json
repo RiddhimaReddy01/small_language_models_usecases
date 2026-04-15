@@ -1,0 +1,166 @@
+{
+  "runs": [
+    {
+      "task": "classification",
+      "model": "llama_llama-3.3-70b-versatile",
+      "artifact": "C:\\Users\\riddh\\OneDrive\\Desktop\\SLM use cases\\model_runs\\sddf_training_splits\\sddf_pipeline_artifacts\\classification\\llama_llama-3.3-70b-versatile.json"
+    },
+    {
+      "task": "classification",
+      "model": "qwen2.5_0.5b",
+      "artifact": "C:\\Users\\riddh\\OneDrive\\Desktop\\SLM use cases\\model_runs\\sddf_training_splits\\sddf_pipeline_artifacts\\classification\\qwen2.5_0.5b.json"
+    },
+    {
+      "task": "classification",
+      "model": "qwen2.5_3b",
+      "artifact": "C:\\Users\\riddh\\OneDrive\\Desktop\\SLM use cases\\model_runs\\sddf_training_splits\\sddf_pipeline_artifacts\\classification\\qwen2.5_3b.json"
+    },
+    {
+      "task": "classification",
+      "model": "qwen2.5_7b",
+      "artifact": "C:\\Users\\riddh\\OneDrive\\Desktop\\SLM use cases\\model_runs\\sddf_training_splits\\sddf_pipeline_artifacts\\classification\\qwen2.5_7b.json"
+    },
+    {
+      "task": "code_generation",
+      "model": "llama_llama-3.3-70b-versatile",
+      "artifact": "C:\\Users\\riddh\\OneDrive\\Desktop\\SLM use cases\\model_runs\\sddf_training_splits\\sddf_pipeline_artifacts\\code_generation\\llama_llama-3.3-70b-versatile.json"
+    },
+    {
+      "task": "code_generation",
+      "model": "qwen2.5_0.5b",
+      "artifact": "C:\\Users\\riddh\\OneDrive\\Desktop\\SLM use cases\\model_runs\\sddf_training_splits\\sddf_pipeline_artifacts\\code_generation\\qwen2.5_0.5b.json"
+    },
+    {
+      "task": "code_generation",
+      "model": "qwen2.5_3b",
+      "artifact": "C:\\Users\\riddh\\OneDrive\\Desktop\\SLM use cases\\model_runs\\sddf_training_splits\\sddf_pipeline_artifacts\\code_generation\\qwen2.5_3b.json"
+    },
+    {
+      "task": "code_generation",
+      "model": "qwen2.5_7b",
+      "artifact": "C:\\Users\\riddh\\OneDrive\\Desktop\\SLM use cases\\model_runs\\sddf_training_splits\\sddf_pipeline_artifacts\\code_generation\\qwen2.5_7b.json"
+    },
+    {
+      "task": "instruction_following",
+      "model": "llama_llama-3.3-70b-versatile",
+      "artifact": "C:\\Users\\riddh\\OneDrive\\Desktop\\SLM use cases\\model_runs\\sddf_training_splits\\sddf_pipeline_artifacts\\instruction_following\\llama_llama-3.3-70b-versatile.json"
+    },
+    {
+      "task": "instruction_following",
+      "model": "qwen2.5_0.5b",
+      "artifact": "C:\\Users\\riddh\\OneDrive\\Desktop\\SLM use cases\\model_runs\\sddf_training_splits\\sddf_pipeline_artifacts\\instruction_following\\qwen2.5_0.5b.json"
+    },
+    {
+      "task": "instruction_following",
+      "model": "qwen2.5_3b",
+      "artifact": "C:\\Users\\riddh\\OneDrive\\Desktop\\SLM use cases\\model_runs\\sddf_training_splits\\sddf_pipeline_artifacts\\instruction_following\\qwen2.5_3b.json"
+    },
+    {
+      "task": "instruction_following",
+      "model": "qwen2.5_7b",
+      "artifact": "C:\\Users\\riddh\\OneDrive\\Desktop\\SLM use cases\\model_runs\\sddf_training_splits\\sddf_pipeline_artifacts\\instruction_following\\qwen2.5_7b.json"
+    },
+    {
+      "task": "maths",
+      "model": "llama_llama-3.3-70b-versatile",
+      "artifact": "C:\\Users\\riddh\\OneDrive\\Desktop\\SLM use cases\\model_runs\\sddf_training_splits\\sddf_pipeline_artifacts\\maths\\llama_llama-3.3-70b-versatile.json"
+    },
+    {
+      "task": "maths",
+      "model": "qwen2.5_0.5b",
+      "artifact": "C:\\Users\\riddh\\OneDrive\\Desktop\\SLM use cases\\model_runs\\sddf_training_splits\\sddf_pipeline_artifacts\\maths\\qwen2.5_0.5b.json"
+    },
+    {
+      "task": "maths",
+      "model": "qwen2.5_3b",
+      "artifact": "C:\\Users\\riddh\\OneDrive\\Desktop\\SLM use cases\\model_runs\\sddf_training_splits\\sddf_pipeline_artifacts\\maths\\qwen2.5_3b.json"
+    },
+    {
+      "task": "maths",
+      "model": "qwen2.5_7b",
+      "artifact": "C:\\Users\\riddh\\OneDrive\\Desktop\\SLM use cases\\model_runs\\sddf_training_splits\\sddf_pipeline_artifacts\\maths\\qwen2.5_7b.json"
+    },
+    {
+      "task": "summarization",
+      "model": "llama_llama-3.3-70b-versatile",
+      "artifact": "C:\\Users\\riddh\\OneDrive\\Desktop\\SLM use cases\\model_runs\\sddf_training_splits\\sddf_pipeline_artifacts\\summarization\\llama_llama-3.3-70b-versatile.json"
+    },
+    {
+      "task": "summarization",
+      "model": "qwen2.5_0.5b",
+      "artifact": "C:\\Users\\riddh\\OneDrive\\Desktop\\SLM use cases\\model_runs\\sddf_training_splits\\sddf_pipeline_artifacts\\summarization\\qwen2.5_0.5b.json"
+    },
+    {
+      "task": "summarization",
+      "model": "qwen2.5_3b",
+      "artifact": "C:\\Users\\riddh\\OneDrive\\Desktop\\SLM use cases\\model_runs\\sddf_training_splits\\sddf_pipeline_artifacts\\summarization\\qwen2.5_3b.json"
+    },
+    {
+      "task": "summarization",
+      "model": "qwen2.5_7b",
+      "artifact": "C:\\Users\\riddh\\OneDrive\\Desktop\\SLM use cases\\model_runs\\sddf_training_splits\\sddf_pipeline_artifacts\\summarization\\qwen2.5_7b.json"
+    }
+  ],
+  "errors": [
+    {
+      "task": "information_extraction",
+      "model": "llama_llama-3.3-70b-versatile",
+      "error": "Constant features on train: ['entity_type_diversity']"
+    },
+    {
+      "task": "information_extraction",
+      "model": "qwen2.5_0.5b",
+      "error": "Constant features on train: ['entity_type_diversity']"
+    },
+    {
+      "task": "information_extraction",
+      "model": "qwen2.5_3b",
+      "error": "Constant features on train: ['entity_type_diversity']"
+    },
+    {
+      "task": "information_extraction",
+      "model": "qwen2.5_7b",
+      "error": "Constant features on train: ['entity_type_diversity']"
+    },
+    {
+      "task": "retrieval_grounded",
+      "model": "llama_llama-3.3-70b-versatile",
+      "error": "Constant features on train: ['context_length']"
+    },
+    {
+      "task": "retrieval_grounded",
+      "model": "qwen2.5_0.5b",
+      "error": "Constant features on train: ['context_length']"
+    },
+    {
+      "task": "retrieval_grounded",
+      "model": "qwen2.5_3b",
+      "error": "Constant features on train: ['context_length']"
+    },
+    {
+      "task": "retrieval_grounded",
+      "model": "qwen2.5_7b",
+      "error": "Constant features on train: ['context_length']"
+    },
+    {
+      "task": "text_generation",
+      "model": "llama_llama-3.3-70b-versatile",
+      "error": "Target collapse on train: only one class present"
+    },
+    {
+      "task": "text_generation",
+      "model": "qwen2.5_0.5b",
+      "error": "Constant features on train: ['modal_verb_count', 'sentence_count', 'entity_count']"
+    },
+    {
+      "task": "text_generation",
+      "model": "qwen2.5_3b",
+      "error": "Constant features on train: ['modal_verb_count', 'sentence_count', 'entity_count']"
+    },
+    {
+      "task": "text_generation",
+      "model": "qwen2.5_7b",
+      "error": "Constant features on train: ['modal_verb_count', 'sentence_count', 'entity_count']"
+    }
+  ]
+}

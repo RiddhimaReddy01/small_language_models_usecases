@@ -1,0 +1,156 @@
+================================================================================
+VALIDATION (VAL) SPLIT: COMPREHENSIVE RESULTS REPORT
+================================================================================
+
+PURPOSE OF VALIDATION PHASE:
+  1. Evaluate learned weights on unseen data (val samples NOT used for training)
+  2. Calibrate routing threshold (tau*) that splits between SLM and LLM
+  3. Verify model capability and risk constraints are met
+
+VALIDATION SPLIT SIZE: 1,330 total samples across 8 tasks
+
+================================================================================
+VALIDATION PERFORMANCE BY TASK
+================================================================================
+
+Task                  | Samples | Avg Success | Best Model        | Worst Model
+                      |         | Rate        |                   |
+TEXT_GENERATION       | 128     | 89.3%       | llama 100.0%      | qwen0.5b 75.8%
+INFORMATION_EXTR.     | 105     | 74.3%       | llama 80.0%       | qwen0.5b 67.6%
+INSTRUCTION_FOLLOW.   | 213     | 77.1%       | llama 91.1%       | qwen0.5b 61.0%
+SUMMARIZATION         | 166     | 70.6%       | qwen3b 73.5%      | qwen0.5b 67.5%
+MATHS                 | 202     | 46.7%       | llama 65.8%       | qwen0.5b 19.8%
+RETRIEVAL_GROUNDED    | 185     | 58.1%       | llama 68.6%       | qwen0.5b 46.5%
+CLASSIFICATION        | 160     | 49.4%       | llama 58.8%       | qwen0.5b 37.5%
+CODE_GENERATION       | 171     | 28.5%       | qwen7b 33.3%      | qwen0.5b 19.3%
+
+AVERAGE ACROSS ALL TASKS: 59.5% success rate (all models combined)
+
+
+================================================================================
+VALIDATION PERFORMANCE BY MODEL (RANKED)
+================================================================================
+
+Model                   | Avg Success Rate | Variance | Reliability
+llama-3.3-70b          | 70.6%            | Low      | MOST RELIABLE (best on 5/8 tasks)
+qwen2.5_3b             | 62.2%            | Medium   | GOOD (best on 1/8 tasks)
+qwen2.5_7b             | 62.1%            | Medium   | GOOD (best on 1/8 tasks)
+qwen2.5_0.5b           | 48.1%            | High     | WEAK (never best, fails badly on maths/code)
+
+CONCLUSION: llama-3.3-70b is the most reliable fallback model
+
+
+================================================================================
+VALIDATION RESULTS: WHAT THIS MEANS FOR ROUTING
+================================================================================
+
+HIGH CONFIDENCE TASKS (>70% val success):
+  - TEXT_GENERATION (89.3%):     Models are strong here
+    * Routing: Can use loose threshold, many samples go to SLM
+    * Threshold: Can be LOW (e.g., tau=0.2 meaning route if P(fail) < 0.2)
+    * Result: More SLM usage, lower cost, good quality
+    
+  - INSTRUCTION_FOLLOWING (77.1%): Models are strong
+    * Routing: Can use loose threshold
+    * Threshold: Can be LOW
+    * Result: More SLM usage
+    
+  - INFORMATION_EXTRACTION (74.3%): Models are decent
+    * Routing: Moderate threshold
+    * Result: Balanced SLM/LLM usage
+    
+  - SUMMARIZATION (70.6%): Models are acceptable
+    * Routing: Moderate threshold
+    * Result: Balanced usage
+
+MEDIUM CONFIDENCE TASKS (50-70%):
+  - RETRIEVAL_GROUNDED (58.1%):  Models are moderate
+    * Routing: Need strict threshold
+    * Threshold: Must be HIGH (e.g., tau=0.6, only route confident samples)
+    * Result: Most go to LLM, SLM handles only easy cases
+    
+  - CLASSIFICATION (49.4%):      Models struggling
+    * Routing: Very strict threshold needed
+    * Threshold: Very HIGH
+    * Result: Conservative routing, most to LLM
+
+POOR CONFIDENCE TASKS (<50%):
+  - CODE_GENERATION (28.5%):     Models very weak
+    * Routing: Extremely strict threshold
+    * Recommendation: Consider routing ALL to LLM (don't use SLM at all)
+    * Result: LLM-only routing, highest cost but best quality
+    
+  - MATHS (46.7%):               Models struggling
+    * Routing: Extremely strict threshold
+    * Threshold: Very HIGH (>0.7)
+    * Result: Mostly LLM, only easiest to SLM
+
+
+================================================================================
+THRESHOLD CALIBRATION PROCESS (Happens on VAL data)
+================================================================================
+
+BEFORE DEPLOYMENT:
+  1. Use weights learned from TRAIN split
+  2. Score all VAL samples: difficulty_score = P(SLM fails)
+  3. For each possible threshold tau:
+     - Route samples with score < tau to SLM
+     - Route samples with score >= tau to LLM
+     - Measure: Can SLM + LLM exceed capability threshold?
+     - Measure: Does LLM error rate exceed risk limit?
+  4. Select tau* that satisfies constraints
+
+CONSTRAINTS APPLIED (typically):
+  - Capability threshold (cap_min): LLM must succeed at rate > cap_min
+  - Risk threshold (risk_max): Error rate must be < risk_max
+
+EXPECTED RESULT:
+  - High val success -> Low tau* (aggressive SLM routing)
+  - Low val success -> High tau* (conservative LLM routing)
+
+
+================================================================================
+CURRENT STATE (No thresholds file found)
+================================================================================
+
+WHAT'S MISSING:
+  - task_thresholds.json not present or not accessible
+  - Without this, we don't know what tau* was selected
+  - Cannot determine if constraints are satisfied
+
+IMPLICATIONS:
+  - Threshold calibration may not be finalized
+  - Routing policy may not be locked
+  - Need to generate/check task_thresholds.json
+
+
+================================================================================
+VALIDATION INSIGHTS FOR DEPLOYMENT
+================================================================================
+
+READY FOR PRODUCTION:
+  ✓ TEXT_GENERATION: 89.3% val success (high confidence)
+  ✓ INSTRUCTION_FOLLOWING: 77.1% val success (good confidence)
+  ✓ INFORMATION_EXTRACTION: 74.3% val success (good confidence)
+  ✓ SUMMARIZATION: 70.6% val success (acceptable confidence)
+
+NEEDS CAREFUL HANDLING:
+  ~ RETRIEVAL_GROUNDED: 58.1% val success (moderate confidence)
+  ~ CLASSIFICATION: 49.4% val success (low confidence)
+
+PROBLEMATIC:
+  ✗ CODE_GENERATION: 28.5% val success (too weak for SLM routing)
+  ✗ MATHS: 46.7% val success (too weak, needs conservative threshold)
+
+OVERALL ASSESSMENT:
+  - 4/8 tasks have good val performance (>70%)
+  - 2/8 tasks need careful threshold tuning
+  - 2/8 tasks probably shouldn't use SLM at all (use LLM-only)
+  - llama-3.3-70b is strongest fallback model
+
+RECOMMENDATION FOR DEPLOYMENT:
+  1. Tasks with >70% val success: Use SLM with reasonable thresholds
+  2. Tasks with 50-70% val success: Use very strict SLM thresholds (mostly LLM)
+  3. Tasks with <50% val success: Use LLM-only routing (don't use SLM)
+  4. Always have llama-3.3-70b as fallback for all models/tasks
+

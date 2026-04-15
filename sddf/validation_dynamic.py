@@ -225,43 +225,284 @@ def find_operational_zone(
     }
 
 
+def find_operational_tau_adaptive(
+    metrics: list[dict[str, Any]],
+    cap_percentile: float = 50.0,
+    risk_percentile: float = 75.0,
+) -> dict[str, Any]:
+    """
+    Find operational tau using adaptive percentile-based targets.
+
+    Args:
+        metrics: Per-sample metrics with score, capability, risk
+        cap_percentile: P-th percentile of capability curve (default 50 = median)
+        risk_percentile: Q-th percentile of risk curve (default 75 = 75th percentile)
+
+    Returns:
+        Dict with selected_tau_score, cap_target, risk_target, and diagnostics
+    """
+    if not metrics:
+        return {
+            "selected_tau_score": None,
+            "tau_source": "empty_metrics",
+            "cap_target": None,
+            "risk_target": None,
+            "feasible_tau_values": [],
+            "feasible_tau_count": 0,
+            "selected_capability": 0.0,
+            "selected_risk": 1.0,
+            "tau_candidates_count": 0,
+        }
+
+    points = sorted(metrics, key=lambda m: float(m.get("score", 0.5)))
+    tau_candidates = sorted(set(float(m.get("score", 0.5)) for m in points))
+
+    # Estimate cap_tau and risk_tau for each tau
+    cap_taus: list[float] = []
+    risk_taus: list[float] = []
+    selected_stats: dict[float, tuple[float, float]] = {}
+
+    for tau in tau_candidates:
+        selected = [m for m in points if float(m.get("score", 0.5)) <= tau]
+        if not selected:
+            continue
+        cap_tau = float(sum(float(m.get("capability", 0.0)) for m in selected) / len(selected))
+        risk_tau = float(sum(float(m.get("risk", 1.0)) for m in selected) / len(selected))
+
+        cap_taus.append(cap_tau)
+        risk_taus.append(risk_tau)
+        selected_stats[tau] = (cap_tau, risk_tau)
+
+    # Compute adaptive targets as percentiles
+    cap_target = float(np.percentile(cap_taus, cap_percentile)) if cap_taus else 0.0
+    risk_target = float(np.percentile(risk_taus, risk_percentile)) if risk_taus else 1.0
+
+    # Find feasible set
+    feasible_tau_values: list[float] = []
+    for tau in tau_candidates:
+        if tau not in selected_stats:
+            continue
+        cap_tau, risk_tau = selected_stats[tau]
+        if cap_tau >= cap_target and risk_tau <= risk_target:
+            feasible_tau_values.append(float(tau))
+
+    # Select final tau
+    if feasible_tau_values:
+        selected_tau = float(max(feasible_tau_values))
+        tau_source = "strict_feasible_adaptive"
+    else:
+        # Fallback: minimize combined violation
+        violations = []
+        for tau in tau_candidates:
+            if tau not in selected_stats:
+                continue
+            cap_tau, risk_tau = selected_stats[tau]
+            cap_violation = max(0.0, cap_target - cap_tau)
+            risk_violation = max(0.0, risk_tau - risk_target)
+            violations.append((cap_violation + risk_violation, risk_tau, -cap_tau, -tau, tau))
+
+        selected_tau = float(sorted(violations)[0][-1]) if violations else None
+        tau_source = "fallback_min_violation_adaptive"
+
+    if selected_tau is not None and selected_tau in selected_stats:
+        selected_capability, selected_risk = selected_stats[selected_tau]
+    else:
+        selected_capability, selected_risk = 0.0, 1.0
+
+    return {
+        "selected_tau_score": selected_tau,
+        "tau_source": tau_source,
+        "cap_target": cap_target,
+        "risk_target": risk_target,
+        "cap_percentile": cap_percentile,
+        "risk_percentile": risk_percentile,
+        "feasible_tau_values": [float(t) for t in feasible_tau_values],
+        "feasible_tau_count": int(len(feasible_tau_values)),
+        "selected_capability": float(selected_capability),
+        "selected_risk": float(selected_risk),
+        "tau_candidates_count": int(len(tau_candidates)),
+    }
+
+
+def find_operational_tau_continuous(
+    metrics: list[dict[str, Any]],
+    cap_static: float,
+    risk_static: float,
+    baseline_cap: float,
+    baseline_risk: float,
+    mcap: float = 0.05,
+    mrisk: float = 0.05,
+    cap_min: float = 0.40,
+    cap_max: float = 1.00,
+    risk_min: float = 0.00,
+    risk_max: float = 1.00,
+) -> dict[str, Any]:
+    cap_dyn = clamp(min(cap_static, baseline_cap - mcap), cap_min, cap_max)
+    risk_dyn = clamp(max(risk_static, baseline_risk + mrisk), risk_min, risk_max)
+
+    if not metrics:
+        return {
+            "cap_dyn": cap_dyn,
+            "risk_dyn": risk_dyn,
+            "selected_tau_score": None,
+            "tau_source": "fallback_min_violation",
+            "feasible_tau_values": [],
+            "feasible_tau_count": 0,
+            "feasible_tau_min": None,
+            "feasible_tau_max": None,
+            "selected_capability": 0.0,
+            "selected_risk": 1.0,
+            "tau_candidates_count": 0,
+            "violations_by_tau": {},
+        }
+
+    points = sorted(metrics, key=lambda m: float(m.get("score", 0.5)))
+    tau_candidates = sorted(set(float(m.get("score", 0.5)) for m in points))
+    violations_by_tau: dict[str, float] = {}
+    feasible_tau_values: list[float] = []
+    selected_stats: dict[float, tuple[float, float]] = {}
+
+    for tau in tau_candidates:
+        selected = [m for m in points if float(m.get("score", 0.5)) <= tau]
+        if not selected:
+            continue
+        cap_tau = float(sum(float(m.get("capability", 0.0)) for m in selected) / len(selected))
+        risk_tau = float(sum(float(m.get("risk", 1.0)) for m in selected) / len(selected))
+        selected_stats[tau] = (cap_tau, risk_tau)
+
+        cap_ok = cap_tau >= cap_dyn
+        risk_ok = risk_tau <= risk_dyn
+        if cap_ok and risk_ok:
+            feasible_tau_values.append(float(tau))
+
+        cap_violation = max(0.0, cap_dyn - cap_tau)
+        risk_violation = max(0.0, risk_tau - risk_dyn)
+        violations_by_tau[f"{tau:.12g}"] = float(cap_violation + risk_violation)
+
+    if feasible_tau_values:
+        selected_tau = float(max(feasible_tau_values))
+        tau_source = "strict_feasible_max"
+    else:
+        # Minimum-violation fallback with tie-breakers: lower risk, higher cap, larger tau.
+        fallback_candidates = []
+        for tau in tau_candidates:
+            cap_tau, risk_tau = selected_stats.get(float(tau), (0.0, 1.0))
+            violation = max(0.0, cap_dyn - cap_tau) + max(0.0, risk_tau - risk_dyn)
+            fallback_candidates.append((float(violation), float(risk_tau), -float(cap_tau), -float(tau), float(tau)))
+        selected_tau = float(sorted(fallback_candidates)[0][-1]) if fallback_candidates else None
+        tau_source = "fallback_min_violation"
+
+    if selected_tau is not None and selected_tau in selected_stats:
+        selected_capability, selected_risk = selected_stats[selected_tau]
+    else:
+        selected_capability, selected_risk = 0.0, 1.0
+
+    return {
+        "cap_dyn": cap_dyn,
+        "risk_dyn": risk_dyn,
+        "selected_tau_score": selected_tau,
+        "tau_source": tau_source,
+        "feasible_tau_values": [float(t) for t in feasible_tau_values],
+        "feasible_tau_count": int(len(feasible_tau_values)),
+        "feasible_tau_min": float(min(feasible_tau_values)) if feasible_tau_values else None,
+        "feasible_tau_max": float(max(feasible_tau_values)) if feasible_tau_values else None,
+        "selected_capability": float(selected_capability),
+        "selected_risk": float(selected_risk),
+        "tau_candidates_count": int(len(tau_candidates)),
+        "violations_by_tau": violations_by_tau,
+    }
+
+
 def run_validation(
     val_samples: list[dict],
     scores: dict[str, float],
     task: str,
     cap_static: float = 0.65,
     risk_static: float = 0.30,
+    use_adaptive: bool = True,
+    cap_percentile: float = 50.0,
+    risk_percentile: float = 75.0,
 ) -> dict[str, Any]:
+    """
+    Run validation with either fixed targets (old) or adaptive percentile targets (new).
+
+    Args:
+        val_samples: Validation samples with slm_correct, llm_correct, etc.
+        scores: Dict of sample_id -> difficulty_score
+        task: Task name (determines task_risk_base)
+        cap_static: Fixed capability target (only used if use_adaptive=False)
+        risk_static: Fixed risk target (only used if use_adaptive=False)
+        use_adaptive: If True, use adaptive percentile-based targets; else use fixed targets
+        cap_percentile: P-th percentile for capability target (default 50 = median)
+        risk_percentile: Q-th percentile for risk target (default 75)
+    """
     metrics, baseline_cap, baseline_risk = compute_per_sample_metrics(val_samples, scores, task)
     cap_curve, risk_curve, coverage = build_difficulty_curves(metrics)
 
-    zone = find_operational_zone(
-        cap_curve,
-        risk_curve,
-        coverage,
-        cap_static,
-        risk_static,
-        baseline_cap,
-        baseline_risk,
-    )
-
-    return {
-        "task": task,
-        "n_val_samples": len(val_samples),
-        "n_metrics": len(metrics),
-        "baseline_capability": baseline_cap,
-        "baseline_risk": baseline_risk,
-        "cap_static": cap_static,
-        "risk_static": risk_static,
-        "cap_dynamic": zone["cap_dyn"],
-        "risk_dynamic": zone["risk_dyn"],
-        "feasible_set": zone["feasible_set"],
-        "strict_tau": zone["strict_tau"],
-        "fallback_tau": zone["fallback_tau"],
-        "selected_tau": zone["selected_tau"],
-        "tau_source": zone["tau_source"],
-        "violations": zone["violations"],
-        "cap_curve": zone["cap_curve"],
-        "risk_curve": zone["risk_curve"],
-        "metrics": metrics,
-    }
+    if use_adaptive:
+        # Use adaptive percentile-based targets
+        zone = find_operational_tau_adaptive(
+            metrics,
+            cap_percentile=cap_percentile,
+            risk_percentile=risk_percentile,
+        )
+        return {
+            "task": task,
+            "n_val_samples": len(val_samples),
+            "n_metrics": len(metrics),
+            "baseline_capability": baseline_cap,
+            "baseline_risk": baseline_risk,
+            "validation_mode": "adaptive_percentile",
+            "cap_percentile": cap_percentile,
+            "risk_percentile": risk_percentile,
+            "cap_target": zone["cap_target"],
+            "risk_target": zone["risk_target"],
+            "feasible_tau_values": zone["feasible_tau_values"],
+            "feasible_tau_count": zone["feasible_tau_count"],
+            "selected_tau_score": zone["selected_tau_score"],
+            "tau_source": zone["tau_source"],
+            "selected_capability": zone["selected_capability"],
+            "selected_risk": zone["selected_risk"],
+            "tau_candidates_count": zone["tau_candidates_count"],
+            # Keep bin-curve outputs for plotting/reporting
+            "cap_curve": cap_curve,
+            "risk_curve": risk_curve,
+            "coverage_by_bin": coverage,
+            "metrics": metrics,
+        }
+    else:
+        # Use fixed targets (backward compatible with old approach)
+        zone = find_operational_tau_continuous(
+            metrics,
+            cap_static,
+            risk_static,
+            baseline_cap,
+            baseline_risk,
+        )
+        return {
+            "task": task,
+            "n_val_samples": len(val_samples),
+            "n_metrics": len(metrics),
+            "baseline_capability": baseline_cap,
+            "baseline_risk": baseline_risk,
+            "validation_mode": "fixed_targets",
+            "cap_static": cap_static,
+            "risk_static": risk_static,
+            "cap_dynamic": zone["cap_dyn"],
+            "risk_dynamic": zone["risk_dyn"],
+            "feasible_tau_values": zone["feasible_tau_values"],
+            "feasible_tau_count": zone["feasible_tau_count"],
+            "feasible_tau_min": zone["feasible_tau_min"],
+            "feasible_tau_max": zone["feasible_tau_max"],
+            "selected_tau_score": zone["selected_tau_score"],
+            "tau_source": zone["tau_source"],
+            "selected_capability": zone["selected_capability"],
+            "selected_risk": zone["selected_risk"],
+            "tau_candidates_count": zone["tau_candidates_count"],
+            "violations_by_tau": zone["violations_by_tau"],
+            # Keep bin-curve outputs for backward-compatible plotting/reporting.
+            "cap_curve": cap_curve,
+            "risk_curve": risk_curve,
+            "coverage_by_bin": coverage,
+            "metrics": metrics,
+        }

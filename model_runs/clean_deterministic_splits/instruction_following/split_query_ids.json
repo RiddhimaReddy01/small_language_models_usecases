@@ -1,0 +1,38 @@
+{
+  "train": [
+    "instruction_following:0",
+    "instruction_following:1",
+    "instruction_following:10",
+    "instruction_following:11",
+    "instruction_following:15",
+    "instruction_following:17",
+    "instruction_following:2",
+    "instruction_following:21",
+    "instruction_following:23",
+    "instruction_following:24",
+    "instruction_following:25",
+    "instruction_following:26",
+    "instruction_following:28",
+    "instruction_following:29",
+    "instruction_following:35"
+  ],
+  "val": [
+    "instruction_following:12",
+    "instruction_following:16",
+    "instruction_following:20",
+    "instruction_following:30",
+    "instruction_following:32"
+  ],
+  "test": [
+    "instruction_following:13",
+    "instruction_following:14",
+    "instruction_following:18",
+    "instruction_following:19",
+    "instruction_following:22",
+    "instruction_following:27",
+    "instruction_following:3",
+    "instruction_following:31",
+    "instruction_following:33",
+    "instruction_following:34"
+  ]
+}

@@ -1652,6 +1652,11 @@ def _parse_args() -> argparse.Namespace:
             "Overrides --cap-threshold and --risk-threshold for matching tasks."
         ),
     )
+    parser.add_argument(
+        "--learn-family-weights",
+        action="store_true",
+        help="Learn per-task per-model difficulty feature weights from training split.",
+    )
     return parser.parse_args()
 
 
@@ -1870,70 +1875,71 @@ def main() -> None:
     # This is the true routing signal — not the hand-crafted sev×und product.
 
     # Build (task, model_key, samples) tuples — one fit job per SLM per task.
-    fit_jobs: list[tuple[str, str, list[dict[str, Any]]]] = []
-    for task_name, model_rows in task_available_rows.items():
-        refs = reference_lookup_by_task.get(task_name, {})
-        baseline_cap_by_sid: dict[str, float] = {}
-        if BASELINE_MODEL in model_rows:
-            for row in model_rows[BASELINE_MODEL]:
-                if _split_name_for_row(row) != "train":
-                    continue
-                sid = str(row.get("sample_id", ""))
-                if sid not in refs:
-                    continue
-                cap, _risk, _failure = _evaluate_row(row, refs)
-                baseline_cap_by_sid[sid] = float(cap)
-
-        for model_key, rows in model_rows.items():
-            if model_key == BASELINE_MODEL:
-                continue
-            samples: list[dict[str, Any]] = []
-            for row in rows:
-                if _split_name_for_row(row) != "train":
-                    continue
-                sid = str(row.get("sample_id", ""))
-                if sid not in refs:
-                    continue
-                slm_cap, _risk, _failure = _evaluate_row(row, refs)
-                baseline_cap = baseline_cap_by_sid.get(sid, 1.0)
-                # Binary routing signal: 1 = "should route to LLM" (SLM failed, LLM succeeded)
-                #                        0 = "SLM is fine" (SLM succeeded, or both failed)
-                # Continuous difference conflated partial failures with complete failures.
-                # Binary signal is the correct decision-theoretic target for a routing classifier.
-                routing_target = 1.0 if (float(slm_cap) < 0.5 and float(baseline_cap) >= 0.5) else 0.0
-                sample = _extract_feature_vector(row)
-                sample["target"] = routing_target
-                samples.append(sample)
-            if samples:
-                fit_jobs.append((task_name, model_key, samples))
-
-    # Fit all jobs concurrently across CPU cores.
     task_family_weight_models: dict[str, dict[str, Any]] = {}
-    n_workers = min(len(fit_jobs), 8)
-    print(f"[SDDF] Fitting {len(fit_jobs)} weight models with {n_workers} workers...")
-    with ProcessPoolExecutor(max_workers=n_workers) as pool:
-        futures = {
-            pool.submit(_fit_weight_model, task_name, model_key, samples): (task_name, model_key)
-            for task_name, model_key, samples in fit_jobs
-        }
-        for fut in as_completed(futures):
-            task_name, model_key = futures[fut]
-            try:
-                result = fut.result()
-                task_family_weight_models.setdefault(task_name, {})[model_key] = result
-                print(f"[SDDF]   fit done: {task_name}/{model_key}")
-            except Exception as exc:
-                print(f"[SDDF]   fit FAILED {task_name}/{model_key}: {exc}")
+    if args.learn_family_weights:
+        fit_jobs: list[tuple[str, str, list[dict[str, Any]]]] = []
+        for task_name, model_rows in task_available_rows.items():
+            refs = reference_lookup_by_task.get(task_name, {})
+            baseline_cap_by_sid: dict[str, float] = {}
+            if BASELINE_MODEL in model_rows:
+                for row in model_rows[BASELINE_MODEL]:
+                    if _split_name_for_row(row) != "train":
+                        continue
+                    sid = str(row.get("sample_id", ""))
+                    if sid not in refs:
+                        continue
+                    cap, _risk, _failure = _evaluate_row(row, refs)
+                    baseline_cap_by_sid[sid] = float(cap)
 
-    weights_out = BENCHMARK_ROOT / "difficulty_weights" / "family_weights_learned.json"
-    _write_json(
-        weights_out,
-        {
-            "source_split": "train",
-            "model_type": "task_per_slm_difficulty_weights",
-            "families": task_family_weight_models,
-            "features": list(DIFFICULTY_FEATURES),
-        },
+            for model_key, rows in model_rows.items():
+                if model_key == BASELINE_MODEL:
+                    continue
+                samples: list[dict[str, Any]] = []
+                for row in rows:
+                    if _split_name_for_row(row) != "train":
+                        continue
+                    sid = str(row.get("sample_id", ""))
+                    if sid not in refs:
+                        continue
+                    slm_cap, _risk, _failure = _evaluate_row(row, refs)
+                    baseline_cap = baseline_cap_by_sid.get(sid, 1.0)
+                    # Binary routing signal: 1 = "should route to LLM" (SLM failed, LLM succeeded)
+                    #                        0 = "SLM is fine" (SLM succeeded, or both failed)
+                    # Continuous difference conflated partial failures with complete failures.
+                    # Binary signal is the correct decision-theoretic target for a routing classifier.
+                    routing_target = 1.0 if (float(slm_cap) < 0.5 and float(baseline_cap) >= 0.5) else 0.0
+                    sample = _extract_feature_vector(row)
+                    sample["target"] = routing_target
+                    samples.append(sample)
+                if samples:
+                    fit_jobs.append((task_name, model_key, samples))
+
+        # Fit all jobs concurrently across CPU cores.
+        n_workers = min(len(fit_jobs), 8)
+        print(f"[SDDF] Fitting {len(fit_jobs)} weight models with {n_workers} workers...")
+        with ProcessPoolExecutor(max_workers=n_workers) as pool:
+            futures = {
+                pool.submit(_fit_weight_model, task_name, model_key, samples): (task_name, model_key)
+                for task_name, model_key, samples in fit_jobs
+            }
+            for fut in as_completed(futures):
+                task_name, model_key = futures[fut]
+                try:
+                    result = fut.result()
+                    task_family_weight_models.setdefault(task_name, {})[model_key] = result
+                    print(f"[SDDF]   fit done: {task_name}/{model_key}")
+                except Exception as exc:
+                    print(f"[SDDF]   fit FAILED {task_name}/{model_key}: {exc}")
+
+        weights_out = BENCHMARK_ROOT / "difficulty_weights" / "family_weights_learned.json"
+        _write_json(
+            weights_out,
+            {
+                "source_split": "train",
+                "model_type": "task_per_slm_difficulty_weights",
+                "families": task_family_weight_models,
+                "features": list(DIFFICULTY_FEATURES),
+            },
     )
 
     for task_dir in task_dirs:

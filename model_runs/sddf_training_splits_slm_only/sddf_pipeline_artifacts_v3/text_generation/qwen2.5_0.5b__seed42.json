@@ -1,0 +1,93 @@
+{
+  "task": "text_generation",
+  "model": "qwen2.5_0.5b",
+  "seed": 42,
+  "features": [
+    "token_count",
+    "type_token_ratio",
+    "avg_word_length",
+    "entity_density",
+    "flesch_kincaid_grade",
+    "gunning_fog",
+    "embedding_query_context_cosine"
+  ],
+  "feature_selection": {
+    "initial_count": 10,
+    "final_count": 7,
+    "dropped": {
+      "null_or_nonfinite": [],
+      "low_variance": [
+        "creativity_keyword_density",
+        "topic_keyword_density"
+      ],
+      "high_correlation": [
+        "constraint_keyword_density"
+      ]
+    }
+  },
+  "tau": 0.15,
+  "class_weight": "balanced",
+  "scaler_mean": [
+    33.9,
+    0.9174861111111111,
+    4.722958333333334,
+    0.042930555555555555,
+    6.914357692307694,
+    8.534102564102566,
+    0.2772727032502492
+  ],
+  "scaler_scale": [
+    0.9949874371066197,
+    0.005468748897707131,
+    0.13515670988468112,
+    0.008673597211091077,
+    0.6059959695846663,
+    0.7107242280495444,
+    0.026468159998570835
+  ],
+  "weights": [
+    -0.13183263466487638,
+    -0.1608311931511064,
+    -0.248848027779371,
+    -0.1388047291051495,
+    -0.3331541388970973,
+    0.7982031043090574,
+    -0.07726405600898398
+  ],
+  "bias": -0.08136124098575158,
+  "metrics": {
+    "train": {
+      "n": 120.0,
+      "positive_rate": 0.24166666666666667,
+      "avg_pred_fail_prob": 0.4801307013312454,
+      "f1": 0.38926174496644295,
+      "accuracy": 0.24166666666666667,
+      "roc_auc": 0.656309208033346,
+      "pr_auc": 0.43216311835335885,
+      "brier": 0.22804985475379952,
+      "ece_10bin": 0.2384640346645788
+    },
+    "val": {
+      "n": 39.0,
+      "positive_rate": 0.20512820512820512,
+      "avg_pred_fail_prob": 0.4842611603139328,
+      "f1": 0.34782608695652173,
+      "accuracy": 0.23076923076923078,
+      "roc_auc": 0.41532258064516125,
+      "pr_auc": 0.2052427074631022,
+      "brier": 0.2865202863058913,
+      "ece_10bin": 0.3127049753906458
+    },
+    "test": {
+      "n": 24.0,
+      "positive_rate": 0.125,
+      "avg_pred_fail_prob": 0.43061931835027467,
+      "f1": 0.2222222222222222,
+      "accuracy": 0.125,
+      "roc_auc": 0.2698412698412698,
+      "pr_auc": 0.11093073593073594,
+      "brier": 0.24205374040943384,
+      "ece_10bin": 0.3056193183502747
+    }
+  }
+}

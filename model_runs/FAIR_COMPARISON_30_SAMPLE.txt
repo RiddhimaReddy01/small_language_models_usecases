@@ -1,0 +1,173 @@
+================================================================================
+FAIR COMPARISON GUIDE: 30+ Sample Minimum Per Task
+================================================================================
+
+STRATEGY: For each task, identify the best model subset that has 30+ common samples
+
+================================================================================
+TIER 1: ALL 4 MODELS COMPARABLE (2 tasks)
+================================================================================
+
+MATHS (135 common samples) - STRONGEST COMPARISON
+  Common Models: llama-3.3-70b, qwen2.5_0.5b, qwen2.5_3b, qwen2.5_7b
+  
+  Success Rates on 135 Samples:
+    1. llama-3.3-70b:    98/135 (72.6%) [BEST]
+    2. qwen2.5_3b:       90/135 (66.7%)
+    3. qwen2.5_7b:       28/135 (20.7%)
+    4. qwen2.5_0.5b:      0/135 ( 0.0%) [UNRELIABLE]
+  
+  VERDICT: Use all 4 models, but flag qwen0.5b as unreliable
+  COMPARISON: llama70b > qwen3b > qwen7b >> qwen0.5b
+
+
+CODE_GENERATION (50 common samples) - GOOD COMPARISON
+  Common Models: llama-3.3-70b, qwen2.5_0.5b, qwen2.5_3b, qwen2.5_7b
+  
+  Success Rates on 50 Samples:
+    1. qwen2.5_3b:       20/50 (40.0%) [BEST]
+    2. llama-3.3-70b:    19/50 (38.0%)
+    3. qwen2.5_7b:       18/50 (36.0%)
+    4. qwen2.5_0.5b:      0/50 ( 0.0%) [UNRELIABLE]
+  
+  VERDICT: Use all 4 models (note: only 50 common), but flag qwen0.5b
+  COMPARISON: qwen3b ≈ llama70b ≈ qwen7b >> qwen0.5b
+
+
+================================================================================
+TIER 2: 3-MODEL COMPARISON (4 tasks)
+================================================================================
+
+CLASSIFICATION (120 common samples)
+  Recommended Models: llama-3.3-70b, qwen2.5_3b, qwen2.5_7b (exclude qwen0.5b)
+  
+  Success Rates on 120 Samples:
+    1. llama-3.3-70b:    71/120 (59.2%) [BEST]
+    2. qwen2.5_3b:       66/120 (55.0%)
+    3. qwen2.5_7b:       57/120 (47.5%)
+  
+  VERDICT: Drop qwen0.5b (no common samples), compare with 3 models
+  COMPARISON: llama70b > qwen3b > qwen7b
+
+
+INFORMATION_EXTRACTION (69 common samples)
+  Recommended Models: llama-3.3-70b, qwen2.5_0.5b, qwen2.5_7b (exclude qwen3b)
+  
+  Success Rates on 69 Samples:
+    1. llama-3.3-70b:    52/69 (75.4%) [BEST]
+    2. qwen2.5_7b:       48/69 (69.6%)
+    3. qwen2.5_0.5b:     42/69 (60.9%)
+  
+  VERDICT: Drop qwen3b (only 23 samples), compare with 3 models
+  COMPARISON: llama70b > qwen7b > qwen0.5b
+
+
+RETRIEVAL_GROUNDED (146 common samples)
+  Recommended Models: llama-3.3-70b, qwen2.5_0.5b, qwen2.5_7b (exclude qwen3b)
+  
+  Success Rates on 146 Samples:
+    1. llama-3.3-70b:    97/146 (66.4%) [BEST]
+    2. qwen2.5_7b:       86/146 (58.9%)
+    3. qwen2.5_0.5b:     81/146 (55.5%)
+  
+  VERDICT: Drop qwen3b (only 51 samples), compare with 3 models
+  COMPARISON: llama70b > qwen7b ≈ qwen0.5b
+
+
+TEXT_GENERATION (95 common samples)
+  Recommended Models: llama-3.3-70b, qwen2.5_0.5b, qwen2.5_7b (exclude qwen3b)
+  
+  Success Rates on 95 Samples:
+    1. llama-3.3-70b:    95/95 (100.0%) [PERFECT]
+    2. qwen2.5_7b:       93/95 ( 97.9%)
+    3. qwen2.5_0.5b:     85/95 ( 89.5%)
+  
+  VERDICT: Drop qwen3b (only 22 samples), compare with 3 models
+  COMPARISON: llama70b ≈ qwen7b > qwen0.5b
+
+
+================================================================================
+TIER 3: 2-MODEL COMPARISON ONLY (2 tasks)
+================================================================================
+
+INSTRUCTION_FOLLOWING - BEST PAIR: llama-3.3-70b vs qwen2.5_0.5b (117 samples)
+  Alt pair: qwen2.5_3b vs qwen2.5_7b (38 samples - too small)
+  
+  Success Rates on 117 Samples:
+    1. llama-3.3-70b:   100/117 (85.5%) [BEST]
+    2. qwen2.5_0.5b:     58/117 (49.6%)
+  
+  VERDICT: Use llama vs qwen0.5b pair
+  NOTE: qwen3b/7b have no overlap with llama
+
+
+SUMMARIZATION - BEST PAIR: llama-3.3-70b vs qwen2.5_0.5b (110 samples)
+  Alt pair: qwen2.5_3b vs qwen2.5_7b (32 samples - too small)
+  
+  Success Rates on 110 Samples:
+    1. llama-3.3-70b:    78/110 (70.9%) [BEST]
+    2. qwen2.5_0.5b:     32/110 (29.1%)
+  
+  VERDICT: Use llama vs qwen0.5b pair
+  NOTE: qwen3b/7b have no overlap with llama
+
+
+================================================================================
+DEPLOYMENT RECOMMENDATION
+================================================================================
+
+HIGHEST CONFIDENCE (use these):
+  ✓ Maths: All 4 models (135 samples) - qwen0.5b unreliable but included
+  ✓ Code_generation: All 4 models (50 samples) - qwen0.5b unreliable but included
+  ✓ Classification: llama70b, qwen3b, qwen7b (120 samples)
+  ✓ Information_extraction: llama70b, qwen0.5b, qwen7b (69 samples)
+  ✓ Text_generation: llama70b, qwen0.5b, qwen7b (95 samples)
+
+MEDIUM CONFIDENCE (acceptable):
+  ~ Retrieval_grounded: llama70b, qwen0.5b, qwen7b (146 samples)
+
+LOWER CONFIDENCE (pairwise only):
+  ~ Instruction_following: llama70b vs qwen0.5b (117 samples)
+  ~ Summarization: llama70b vs qwen0.5b (110 samples)
+
+DO NOT USE qwen0.5b:
+  ✗ Maths & Code_generation: 0% success rate (invalid logistic regression)
+  ✗ For any task: Falls back to LLM only (too weak for routing)
+
+
+================================================================================
+IMPACT ON LEARNED WEIGHTS
+================================================================================
+
+Tasks where learned weights ARE comparable across models:
+  - MATHS (all 4 models)
+  - CODE_GENERATION (all 4 models)
+  - CLASSIFICATION (3 models - exclude qwen0.5b)
+  - INFORMATION_EXTRACTION (3 models - exclude qwen3b)
+  - RETRIEVAL_GROUNDED (3 models - exclude qwen3b)
+  - TEXT_GENERATION (3 models - exclude qwen3b)
+
+Tasks where learned weights require model-specific use:
+  - INSTRUCTION_FOLLOWING (only comparable llama vs qwen0.5b)
+  - SUMMARIZATION (only comparable llama vs qwen0.5b)
+
+
+================================================================================
+FINAL ACTION ITEMS
+================================================================================
+
+1. For production routing:
+   - Use learned weights for models in the recommended subset only
+   - For qwen0.5b on maths/code_gen: Route to LLM (don't use weights)
+   - For other models: Use weights on their respective common samples
+
+2. For future improvements:
+   - Re-collect missing samples for small models (qwen0.5b, qwen3b)
+   - Aim for consistent sample coverage across all models per task
+   - Consider standardizing train/val/test splits
+
+3. For validation:
+   - Test weights on the exact common sample set (not beyond)
+   - Don't extrapolate weights to non-common samples
+   - Validate qwen0.5b behavior separately or exclude from routing
+

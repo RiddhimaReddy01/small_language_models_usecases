@@ -1,0 +1,430 @@
+{
+  "version": "v3",
+  "runs": [
+    {
+      "task": "retrieval_grounded",
+      "model": "qwen2.5_3b",
+      "seed": 42,
+      "artifact": "C:\\Users\\riddh\\OneDrive\\Desktop\\SLM use cases\\model_runs\\sddf_training_splits_slm_only\\sddf_pipeline_artifacts_v3\\retrieval_grounded\\qwen2.5_3b__seed42.json"
+    },
+    {
+      "task": "retrieval_grounded",
+      "model": "qwen2.5_7b",
+      "seed": 42,
+      "artifact": "C:\\Users\\riddh\\OneDrive\\Desktop\\SLM use cases\\model_runs\\sddf_training_splits_slm_only\\sddf_pipeline_artifacts_v3\\retrieval_grounded\\qwen2.5_7b__seed42.json"
+    },
+    {
+      "task": "summarization",
+      "model": "qwen2.5_0.5b",
+      "seed": 42,
+      "artifact": "C:\\Users\\riddh\\OneDrive\\Desktop\\SLM use cases\\model_runs\\sddf_training_splits_slm_only\\sddf_pipeline_artifacts_v3\\summarization\\qwen2.5_0.5b__seed42.json"
+    },
+    {
+      "task": "summarization",
+      "model": "qwen2.5_3b",
+      "seed": 42,
+      "artifact": "C:\\Users\\riddh\\OneDrive\\Desktop\\SLM use cases\\model_runs\\sddf_training_splits_slm_only\\sddf_pipeline_artifacts_v3\\summarization\\qwen2.5_3b__seed42.json"
+    },
+    {
+      "task": "summarization",
+      "model": "qwen2.5_7b",
+      "seed": 42,
+      "artifact": "C:\\Users\\riddh\\OneDrive\\Desktop\\SLM use cases\\model_runs\\sddf_training_splits_slm_only\\sddf_pipeline_artifacts_v3\\summarization\\qwen2.5_7b__seed42.json"
+    },
+    {
+      "task": "text_generation",
+      "model": "qwen2.5_0.5b",
+      "seed": 42,
+      "artifact": "C:\\Users\\riddh\\OneDrive\\Desktop\\SLM use cases\\model_runs\\sddf_training_splits_slm_only\\sddf_pipeline_artifacts_v3\\text_generation\\qwen2.5_0.5b__seed42.json"
+    },
+    {
+      "task": "text_generation",
+      "model": "qwen2.5_3b",
+      "seed": 42,
+      "artifact": "C:\\Users\\riddh\\OneDrive\\Desktop\\SLM use cases\\model_runs\\sddf_training_splits_slm_only\\sddf_pipeline_artifacts_v3\\text_generation\\qwen2.5_3b__seed42.json"
+    },
+    {
+      "task": "text_generation",
+      "model": "qwen2.5_7b",
+      "seed": 42,
+      "artifact": "C:\\Users\\riddh\\OneDrive\\Desktop\\SLM use cases\\model_runs\\sddf_training_splits_slm_only\\sddf_pipeline_artifacts_v3\\text_generation\\qwen2.5_7b__seed42.json"
+    }
+  ],
+  "errors": [],
+  "skipped_existing": [
+    {
+      "task": "classification",
+      "model": "qwen2.5_0.5b",
+      "seed": 42,
+      "artifact": "C:\\Users\\riddh\\OneDrive\\Desktop\\SLM use cases\\model_runs\\sddf_training_splits_slm_only\\sddf_pipeline_artifacts_v3\\classification\\qwen2.5_0.5b__seed42.json"
+    },
+    {
+      "task": "classification",
+      "model": "qwen2.5_3b",
+      "seed": 42,
+      "artifact": "C:\\Users\\riddh\\OneDrive\\Desktop\\SLM use cases\\model_runs\\sddf_training_splits_slm_only\\sddf_pipeline_artifacts_v3\\classification\\qwen2.5_3b__seed42.json"
+    },
+    {
+      "task": "classification",
+      "model": "qwen2.5_7b",
+      "seed": 42,
+      "artifact": "C:\\Users\\riddh\\OneDrive\\Desktop\\SLM use cases\\model_runs\\sddf_training_splits_slm_only\\sddf_pipeline_artifacts_v3\\classification\\qwen2.5_7b__seed42.json"
+    },
+    {
+      "task": "code_generation",
+      "model": "qwen2.5_0.5b",
+      "seed": 42,
+      "artifact": "C:\\Users\\riddh\\OneDrive\\Desktop\\SLM use cases\\model_runs\\sddf_training_splits_slm_only\\sddf_pipeline_artifacts_v3\\code_generation\\qwen2.5_0.5b__seed42.json"
+    },
+    {
+      "task": "code_generation",
+      "model": "qwen2.5_3b",
+      "seed": 42,
+      "artifact": "C:\\Users\\riddh\\OneDrive\\Desktop\\SLM use cases\\model_runs\\sddf_training_splits_slm_only\\sddf_pipeline_artifacts_v3\\code_generation\\qwen2.5_3b__seed42.json"
+    },
+    {
+      "task": "code_generation",
+      "model": "qwen2.5_7b",
+      "seed": 42,
+      "artifact": "C:\\Users\\riddh\\OneDrive\\Desktop\\SLM use cases\\model_runs\\sddf_training_splits_slm_only\\sddf_pipeline_artifacts_v3\\code_generation\\qwen2.5_7b__seed42.json"
+    },
+    {
+      "task": "information_extraction",
+      "model": "qwen2.5_0.5b",
+      "seed": 42,
+      "artifact": "C:\\Users\\riddh\\OneDrive\\Desktop\\SLM use cases\\model_runs\\sddf_training_splits_slm_only\\sddf_pipeline_artifacts_v3\\information_extraction\\qwen2.5_0.5b__seed42.json"
+    },
+    {
+      "task": "information_extraction",
+      "model": "qwen2.5_3b",
+      "seed": 42,
+      "artifact": "C:\\Users\\riddh\\OneDrive\\Desktop\\SLM use cases\\model_runs\\sddf_training_splits_slm_only\\sddf_pipeline_artifacts_v3\\information_extraction\\qwen2.5_3b__seed42.json"
+    },
+    {
+      "task": "information_extraction",
+      "model": "qwen2.5_7b",
+      "seed": 42,
+      "artifact": "C:\\Users\\riddh\\OneDrive\\Desktop\\SLM use cases\\model_runs\\sddf_training_splits_slm_only\\sddf_pipeline_artifacts_v3\\information_extraction\\qwen2.5_7b__seed42.json"
+    },
+    {
+      "task": "instruction_following",
+      "model": "qwen2.5_0.5b",
+      "seed": 42,
+      "artifact": "C:\\Users\\riddh\\OneDrive\\Desktop\\SLM use cases\\model_runs\\sddf_training_splits_slm_only\\sddf_pipeline_artifacts_v3\\instruction_following\\qwen2.5_0.5b__seed42.json"
+    },
+    {
+      "task": "instruction_following",
+      "model": "qwen2.5_3b",
+      "seed": 42,
+      "artifact": "C:\\Users\\riddh\\OneDrive\\Desktop\\SLM use cases\\model_runs\\sddf_training_splits_slm_only\\sddf_pipeline_artifacts_v3\\instruction_following\\qwen2.5_3b__seed42.json"
+    },
+    {
+      "task": "instruction_following",
+      "model": "qwen2.5_7b",
+      "seed": 42,
+      "artifact": "C:\\Users\\riddh\\OneDrive\\Desktop\\SLM use cases\\model_runs\\sddf_training_splits_slm_only\\sddf_pipeline_artifacts_v3\\instruction_following\\qwen2.5_7b__seed42.json"
+    },
+    {
+      "task": "maths",
+      "model": "qwen2.5_0.5b",
+      "seed": 42,
+      "artifact": "C:\\Users\\riddh\\OneDrive\\Desktop\\SLM use cases\\model_runs\\sddf_training_splits_slm_only\\sddf_pipeline_artifacts_v3\\maths\\qwen2.5_0.5b__seed42.json"
+    },
+    {
+      "task": "maths",
+      "model": "qwen2.5_3b",
+      "seed": 42,
+      "artifact": "C:\\Users\\riddh\\OneDrive\\Desktop\\SLM use cases\\model_runs\\sddf_training_splits_slm_only\\sddf_pipeline_artifacts_v3\\maths\\qwen2.5_3b__seed42.json"
+    },
+    {
+      "task": "maths",
+      "model": "qwen2.5_7b",
+      "seed": 42,
+      "artifact": "C:\\Users\\riddh\\OneDrive\\Desktop\\SLM use cases\\model_runs\\sddf_training_splits_slm_only\\sddf_pipeline_artifacts_v3\\maths\\qwen2.5_7b__seed42.json"
+    },
+    {
+      "task": "retrieval_grounded",
+      "model": "qwen2.5_0.5b",
+      "seed": 42,
+      "artifact": "C:\\Users\\riddh\\OneDrive\\Desktop\\SLM use cases\\model_runs\\sddf_training_splits_slm_only\\sddf_pipeline_artifacts_v3\\retrieval_grounded\\qwen2.5_0.5b__seed42.json"
+    }
+  ],
+  "feature_schema_path": "C:\\Users\\riddh\\OneDrive\\Desktop\\SLM use cases\\framework\\benchmarking\\sddf_feature_schema_v2.json",
+  "seeds": [
+    42
+  ],
+  "seed_aggregates": [
+    {
+      "task": "retrieval_grounded",
+      "model": "qwen2.5_3b",
+      "val_f1": {
+        "n": 1,
+        "mean": 0.7272727272727273,
+        "ci95": 0.0
+      },
+      "test_f1": {
+        "n": 1,
+        "mean": 0.6122448979591837,
+        "ci95": 0.0
+      },
+      "test_roc_auc": {
+        "n": 1,
+        "mean": 0.741304347826087,
+        "ci95": 0.0
+      },
+      "test_pr_auc": {
+        "n": 1,
+        "mean": 0.6120767847548938,
+        "ci95": 0.0
+      },
+      "test_brier": {
+        "n": 1,
+        "mean": 0.20971991645861612,
+        "ci95": 0.0
+      },
+      "test_ece_10bin": {
+        "n": 1,
+        "mean": 0.1705727968505116,
+        "ci95": 0.0
+      }
+    },
+    {
+      "task": "retrieval_grounded",
+      "model": "qwen2.5_7b",
+      "val_f1": {
+        "n": 1,
+        "mean": 0.75,
+        "ci95": 0.0
+      },
+      "test_f1": {
+        "n": 1,
+        "mean": 0.6774193548387096,
+        "ci95": 0.0
+      },
+      "test_roc_auc": {
+        "n": 1,
+        "mean": 0.8287981859410432,
+        "ci95": 0.0
+      },
+      "test_pr_auc": {
+        "n": 1,
+        "mean": 0.6653850909950632,
+        "ci95": 0.0
+      },
+      "test_brier": {
+        "n": 1,
+        "mean": 0.17620754688769857,
+        "ci95": 0.0
+      },
+      "test_ece_10bin": {
+        "n": 1,
+        "mean": 0.15868987466645296,
+        "ci95": 0.0
+      }
+    },
+    {
+      "task": "summarization",
+      "model": "qwen2.5_0.5b",
+      "val_f1": {
+        "n": 1,
+        "mean": 0.47058823529411764,
+        "ci95": 0.0
+      },
+      "test_f1": {
+        "n": 1,
+        "mean": 0.17391304347826086,
+        "ci95": 0.0
+      },
+      "test_roc_auc": {
+        "n": 1,
+        "mean": 0.7013888888888888,
+        "ci95": 0.0
+      },
+      "test_pr_auc": {
+        "n": 1,
+        "mean": 0.6072347520891022,
+        "ci95": 0.0
+      },
+      "test_brier": {
+        "n": 1,
+        "mean": 0.2217445425960523,
+        "ci95": 0.0
+      },
+      "test_ece_10bin": {
+        "n": 1,
+        "mean": 0.13950956700921507,
+        "ci95": 0.0
+      }
+    },
+    {
+      "task": "summarization",
+      "model": "qwen2.5_3b",
+      "val_f1": {
+        "n": 1,
+        "mean": 0.3157894736842105,
+        "ci95": 0.0
+      },
+      "test_f1": {
+        "n": 1,
+        "mean": 0.2608695652173913,
+        "ci95": 0.0
+      },
+      "test_roc_auc": {
+        "n": 1,
+        "mean": 0.5357142857142857,
+        "ci95": 0.0
+      },
+      "test_pr_auc": {
+        "n": 1,
+        "mean": 0.3053196612691221,
+        "ci95": 0.0
+      },
+      "test_brier": {
+        "n": 1,
+        "mean": 0.2580122987171559,
+        "ci95": 0.0
+      },
+      "test_ece_10bin": {
+        "n": 1,
+        "mean": 0.24215585277245627,
+        "ci95": 0.0
+      }
+    },
+    {
+      "task": "summarization",
+      "model": "qwen2.5_7b",
+      "val_f1": {
+        "n": 1,
+        "mean": 0.5,
+        "ci95": 0.0
+      },
+      "test_f1": {
+        "n": 1,
+        "mean": 0.47058823529411764,
+        "ci95": 0.0
+      },
+      "test_roc_auc": {
+        "n": 1,
+        "mean": 0.5761689291101055,
+        "ci95": 0.0
+      },
+      "test_pr_auc": {
+        "n": 1,
+        "mean": 0.3386043297009067,
+        "ci95": 0.0
+      },
+      "test_brier": {
+        "n": 1,
+        "mean": 0.26795461595166836,
+        "ci95": 0.0
+      },
+      "test_ece_10bin": {
+        "n": 1,
+        "mean": 0.25072729972078933,
+        "ci95": 0.0
+      }
+    },
+    {
+      "task": "text_generation",
+      "model": "qwen2.5_0.5b",
+      "val_f1": {
+        "n": 1,
+        "mean": 0.34782608695652173,
+        "ci95": 0.0
+      },
+      "test_f1": {
+        "n": 1,
+        "mean": 0.2222222222222222,
+        "ci95": 0.0
+      },
+      "test_roc_auc": {
+        "n": 1,
+        "mean": 0.2698412698412698,
+        "ci95": 0.0
+      },
+      "test_pr_auc": {
+        "n": 1,
+        "mean": 0.11093073593073594,
+        "ci95": 0.0
+      },
+      "test_brier": {
+        "n": 1,
+        "mean": 0.24205374040943384,
+        "ci95": 0.0
+      },
+      "test_ece_10bin": {
+        "n": 1,
+        "mean": 0.3056193183502747,
+        "ci95": 0.0
+      }
+    },
+    {
+      "task": "text_generation",
+      "model": "qwen2.5_3b",
+      "val_f1": {
+        "n": 1,
+        "mean": 0.35294117647058826,
+        "ci95": 0.0
+      },
+      "test_f1": {
+        "n": 1,
+        "mean": 0.15384615384615385,
+        "ci95": 0.0
+      },
+      "test_roc_auc": {
+        "n": 1,
+        "mean": 0.5714285714285714,
+        "ci95": 0.0
+      },
+      "test_pr_auc": {
+        "n": 1,
+        "mean": 0.2736111111111111,
+        "ci95": 0.0
+      },
+      "test_brier": {
+        "n": 1,
+        "mean": 0.29541289871370147,
+        "ci95": 0.0
+      },
+      "test_ece_10bin": {
+        "n": 1,
+        "mean": 0.4424411374110572,
+        "ci95": 0.0
+      }
+    },
+    {
+      "task": "text_generation",
+      "model": "qwen2.5_7b",
+      "val_f1": {
+        "n": 1,
+        "mean": 0.6666666666666666,
+        "ci95": 0.0
+      },
+      "test_f1": {
+        "n": 1,
+        "mean": 0.0,
+        "ci95": 0.0
+      },
+      "test_roc_auc": {
+        "n": 1,
+        "mean": 0.04347826086956519,
+        "ci95": 0.0
+      },
+      "test_pr_auc": {
+        "n": 1,
+        "mean": 0.043478260869565216,
+        "ci95": 0.0
+      },
+      "test_brier": {
+        "n": 1,
+        "mean": 0.1825423835413413,
+        "ci95": 0.0
+      },
+      "test_ece_10bin": {
+        "n": 1,
+        "mean": 0.23177695364686807,
+        "ci95": 0.0
+      }
+    }
+  ]
+}

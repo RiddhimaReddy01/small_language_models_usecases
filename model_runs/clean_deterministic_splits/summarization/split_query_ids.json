@@ -1,0 +1,38 @@
+{
+  "train": [
+    "summarization:0",
+    "summarization:10",
+    "summarization:18",
+    "summarization:20",
+    "summarization:25",
+    "summarization:3",
+    "summarization:30",
+    "summarization:33",
+    "summarization:38",
+    "summarization:43",
+    "summarization:45",
+    "summarization:46",
+    "summarization:5",
+    "summarization:50",
+    "summarization:51",
+    "summarization:53",
+    "summarization:56"
+  ],
+  "val": [
+    "summarization:1",
+    "summarization:21",
+    "summarization:26",
+    "summarization:28",
+    "summarization:35",
+    "summarization:41",
+    "summarization:55"
+  ],
+  "test": [
+    "summarization:11",
+    "summarization:15",
+    "summarization:16",
+    "summarization:31",
+    "summarization:36",
+    "summarization:40"
+  ]
+}

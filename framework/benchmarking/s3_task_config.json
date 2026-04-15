@@ -1,0 +1,84 @@
+{
+  "weights": {
+    "TC": 3,
+    "OS": 2,
+    "SK": 4,
+    "DS": 2,
+    "LT": 3,
+    "VL": 1
+  },
+  "task_scores": {
+    "*": {
+      "TC": 3,
+      "OS": 3,
+      "SK": 3,
+      "DS": 2,
+      "LT": 3,
+      "VL": 2
+    },
+    "classification": {
+      "TC": 2,
+      "OS": 3,
+      "SK": 3,
+      "DS": 2,
+      "LT": 3,
+      "VL": 3
+    },
+    "code_generation": {
+      "TC": 4,
+      "OS": 3,
+      "SK": 4,
+      "DS": 2,
+      "LT": 3,
+      "VL": 2
+    },
+    "information_extraction": {
+      "TC": 3,
+      "OS": 4,
+      "SK": 3,
+      "DS": 3,
+      "LT": 3,
+      "VL": 2
+    },
+    "instruction_following": {
+      "TC": 3,
+      "OS": 3,
+      "SK": 3,
+      "DS": 2,
+      "LT": 3,
+      "VL": 2
+    },
+    "maths": {
+      "TC": 4,
+      "OS": 3,
+      "SK": 4,
+      "DS": 2,
+      "LT": 3,
+      "VL": 2
+    },
+    "retrieval_grounded": {
+      "TC": 4,
+      "OS": 4,
+      "SK": 4,
+      "DS": 3,
+      "LT": 3,
+      "VL": 2
+    },
+    "summarization": {
+      "TC": 3,
+      "OS": 3,
+      "SK": 2,
+      "DS": 2,
+      "LT": 3,
+      "VL": 2
+    },
+    "text_generation": {
+      "TC": 3,
+      "OS": 2,
+      "SK": 2,
+      "DS": 2,
+      "LT": 3,
+      "VL": 2
+    }
+  }
+}

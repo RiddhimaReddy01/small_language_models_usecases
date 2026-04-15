@@ -1,0 +1,38 @@
+{
+  "train": [
+    "text_generation:10",
+    "text_generation:11",
+    "text_generation:12",
+    "text_generation:13",
+    "text_generation:14",
+    "text_generation:15",
+    "text_generation:16",
+    "text_generation:18",
+    "text_generation:2",
+    "text_generation:21",
+    "text_generation:22",
+    "text_generation:23",
+    "text_generation:25",
+    "text_generation:27",
+    "text_generation:28",
+    "text_generation:31",
+    "text_generation:32"
+  ],
+  "val": [
+    "text_generation:0",
+    "text_generation:17",
+    "text_generation:3",
+    "text_generation:34",
+    "text_generation:35"
+  ],
+  "test": [
+    "text_generation:1",
+    "text_generation:19",
+    "text_generation:20",
+    "text_generation:24",
+    "text_generation:26",
+    "text_generation:29",
+    "text_generation:30",
+    "text_generation:33"
+  ]
+}

@@ -33,6 +33,8 @@ def main() -> int:
     parser.add_argument("--abstain-grid-step", type=float, default=0.01)
     parser.add_argument("--tau-bootstrap-draws", type=int, default=200)
     parser.add_argument("--tau-conservative-percentile", type=float, default=10.0)
+    parser.add_argument("--task-thresholds", type=Path, default=ROOT / "task_thresholds.json",
+                        help="JSON file with per-task cap/risk thresholds (default: task_thresholds.json)")
     parser.add_argument("--skip-benchmarking", action="store_true")
     parser.add_argument("--skip-dashboard", action="store_true")
     parser.add_argument("--skip-summary", action="store_true")
@@ -69,6 +71,8 @@ def main() -> int:
         "--tau-conservative-percentile",
         str(args.tau_conservative_percentile),
     ]
+    if args.task_thresholds and Path(args.task_thresholds).exists():
+        sddf_cmd.extend(["--task-thresholds", str(args.task_thresholds)])
     if args.learn_family_weights:
         sddf_cmd.append("--learn-family-weights")
     if args.difficulty_weights:

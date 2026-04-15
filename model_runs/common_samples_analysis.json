@@ -1,0 +1,1321 @@
+{
+  "summary": {
+    "code_generation": {
+      "common_count": 50,
+      "total_models": 4,
+      "agreement": "0 all-agree, 28 all-fail, 22 mixed"
+    },
+    "maths": {
+      "common_count": 135,
+      "total_models": 4,
+      "agreement": "0 all-agree, 27 all-fail, 108 mixed"
+    }
+  },
+  "code_generation": {
+    "common_sample_ids": [
+      "code_generation_0001",
+      "code_generation_0002",
+      "code_generation_0003",
+      "code_generation_0005",
+      "code_generation_0009",
+      "code_generation_0013",
+      "code_generation_0017",
+      "code_generation_0028",
+      "code_generation_0029",
+      "code_generation_0030",
+      "code_generation_0031",
+      "code_generation_0032",
+      "code_generation_0036",
+      "code_generation_0038",
+      "code_generation_0040",
+      "code_generation_0042",
+      "code_generation_0048",
+      "code_generation_0051",
+      "code_generation_0056",
+      "code_generation_0061",
+      "code_generation_0065",
+      "code_generation_0067",
+      "code_generation_0071",
+      "code_generation_0074",
+      "code_generation_0077",
+      "code_generation_0080",
+      "code_generation_0086",
+      "code_generation_0097",
+      "code_generation_0101",
+      "code_generation_0103",
+      "code_generation_0104",
+      "code_generation_0109",
+      "code_generation_0110",
+      "code_generation_0111",
+      "code_generation_0115",
+      "code_generation_0117",
+      "code_generation_0118",
+      "code_generation_0119",
+      "code_generation_0120",
+      "code_generation_0122",
+      "code_generation_0124",
+      "code_generation_0127",
+      "code_generation_0130",
+      "code_generation_0133",
+      "code_generation_0141",
+      "code_generation_0150",
+      "code_generation_0151",
+      "code_generation_0152",
+      "code_generation_0160",
+      "code_generation_0161"
+    ],
+    "performance_matrix": {
+      "code_generation_0001": {
+        "llama_llama-3.3-70b-versatile": false,
+        "qwen2.5_0.5b": false,
+        "qwen2.5_3b": false,
+        "qwen2.5_7b": false
+      },
+      "code_generation_0002": {
+        "llama_llama-3.3-70b-versatile": true,
+        "qwen2.5_0.5b": false,
+        "qwen2.5_3b": false,
+        "qwen2.5_7b": true
+      },
+      "code_generation_0003": {
+        "llama_llama-3.3-70b-versatile": false,
+        "qwen2.5_0.5b": false,
+        "qwen2.5_3b": false,
+        "qwen2.5_7b": false
+      },
+      "code_generation_0005": {
+        "llama_llama-3.3-70b-versatile": false,
+        "qwen2.5_0.5b": false,
+        "qwen2.5_3b": false,
+        "qwen2.5_7b": false
+      },
+      "code_generation_0009": {
+        "llama_llama-3.3-70b-versatile": false,
+        "qwen2.5_0.5b": false,
+        "qwen2.5_3b": true,
+        "qwen2.5_7b": true
+      },
+      "code_generation_0013": {
+        "llama_llama-3.3-70b-versatile": true,
+        "qwen2.5_0.5b": false,
+        "qwen2.5_3b": true,
+        "qwen2.5_7b": true
+      },
+      "code_generation_0017": {
+        "llama_llama-3.3-70b-versatile": false,
+        "qwen2.5_0.5b": false,
+        "qwen2.5_3b": false,
+        "qwen2.5_7b": false
+      },
+      "code_generation_0028": {
+        "llama_llama-3.3-70b-versatile": false,
+        "qwen2.5_0.5b": false,
+        "qwen2.5_3b": false,
+        "qwen2.5_7b": false
+      },
+      "code_generation_0029": {
+        "llama_llama-3.3-70b-versatile": true,
+        "qwen2.5_0.5b": false,
+        "qwen2.5_3b": true,
+        "qwen2.5_7b": false
+      },
+      "code_generation_0030": {
+        "llama_llama-3.3-70b-versatile": false,
+        "qwen2.5_0.5b": false,
+        "qwen2.5_3b": false,
+        "qwen2.5_7b": false
+      },
+      "code_generation_0031": {
+        "llama_llama-3.3-70b-versatile": false,
+        "qwen2.5_0.5b": false,
+        "qwen2.5_3b": false,
+        "qwen2.5_7b": false
+      },
+      "code_generation_0032": {
+        "llama_llama-3.3-70b-versatile": true,
+        "qwen2.5_0.5b": false,
+        "qwen2.5_3b": true,
+        "qwen2.5_7b": true
+      },
+      "code_generation_0036": {
+        "llama_llama-3.3-70b-versatile": true,
+        "qwen2.5_0.5b": false,
+        "qwen2.5_3b": true,
+        "qwen2.5_7b": true
+      },
+      "code_generation_0038": {
+        "llama_llama-3.3-70b-versatile": false,
+        "qwen2.5_0.5b": false,
+        "qwen2.5_3b": false,
+        "qwen2.5_7b": false
+      },
+      "code_generation_0040": {
+        "llama_llama-3.3-70b-versatile": false,
+        "qwen2.5_0.5b": false,
+        "qwen2.5_3b": false,
+        "qwen2.5_7b": false
+      },
+      "code_generation_0042": {
+        "llama_llama-3.3-70b-versatile": false,
+        "qwen2.5_0.5b": false,
+        "qwen2.5_3b": false,
+        "qwen2.5_7b": false
+      },
+      "code_generation_0048": {
+        "llama_llama-3.3-70b-versatile": false,
+        "qwen2.5_0.5b": false,
+        "qwen2.5_3b": false,
+        "qwen2.5_7b": false
+      },
+      "code_generation_0051": {
+        "llama_llama-3.3-70b-versatile": true,
+        "qwen2.5_0.5b": false,
+        "qwen2.5_3b": true,
+        "qwen2.5_7b": false
+      },
+      "code_generation_0056": {
+        "llama_llama-3.3-70b-versatile": false,
+        "qwen2.5_0.5b": false,
+        "qwen2.5_3b": false,
+        "qwen2.5_7b": false
+      },
+      "code_generation_0061": {
+        "llama_llama-3.3-70b-versatile": false,
+        "qwen2.5_0.5b": false,
+        "qwen2.5_3b": false,
+        "qwen2.5_7b": false
+      },
+      "code_generation_0065": {
+        "llama_llama-3.3-70b-versatile": false,
+        "qwen2.5_0.5b": false,
+        "qwen2.5_3b": true,
+        "qwen2.5_7b": false
+      },
+      "code_generation_0067": {
+        "llama_llama-3.3-70b-versatile": false,
+        "qwen2.5_0.5b": false,
+        "qwen2.5_3b": false,
+        "qwen2.5_7b": false
+      },
+      "code_generation_0071": {
+        "llama_llama-3.3-70b-versatile": false,
+        "qwen2.5_0.5b": false,
+        "qwen2.5_3b": false,
+        "qwen2.5_7b": false
+      },
+      "code_generation_0074": {
+        "llama_llama-3.3-70b-versatile": true,
+        "qwen2.5_0.5b": false,
+        "qwen2.5_3b": true,
+        "qwen2.5_7b": true
+      },
+      "code_generation_0077": {
+        "llama_llama-3.3-70b-versatile": false,
+        "qwen2.5_0.5b": false,
+        "qwen2.5_3b": false,
+        "qwen2.5_7b": false
+      },
+      "code_generation_0080": {
+        "llama_llama-3.3-70b-versatile": false,
+        "qwen2.5_0.5b": false,
+        "qwen2.5_3b": false,
+        "qwen2.5_7b": false
+      },
+      "code_generation_0086": {
+        "llama_llama-3.3-70b-versatile": false,
+        "qwen2.5_0.5b": false,
+        "qwen2.5_3b": false,
+        "qwen2.5_7b": false
+      },
+      "code_generation_0097": {
+        "llama_llama-3.3-70b-versatile": false,
+        "qwen2.5_0.5b": false,
+        "qwen2.5_3b": false,
+        "qwen2.5_7b": false
+      },
+      "code_generation_0101": {
+        "llama_llama-3.3-70b-versatile": false,
+        "qwen2.5_0.5b": false,
+        "qwen2.5_3b": false,
+        "qwen2.5_7b": false
+      },
+      "code_generation_0103": {
+        "llama_llama-3.3-70b-versatile": false,
+        "qwen2.5_0.5b": false,
+        "qwen2.5_3b": false,
+        "qwen2.5_7b": false
+      },
+      "code_generation_0104": {
+        "llama_llama-3.3-70b-versatile": false,
+        "qwen2.5_0.5b": false,
+        "qwen2.5_3b": false,
+        "qwen2.5_7b": false
+      },
+      "code_generation_0109": {
+        "llama_llama-3.3-70b-versatile": true,
+        "qwen2.5_0.5b": false,
+        "qwen2.5_3b": true,
+        "qwen2.5_7b": true
+      },
+      "code_generation_0110": {
+        "llama_llama-3.3-70b-versatile": true,
+        "qwen2.5_0.5b": false,
+        "qwen2.5_3b": true,
+        "qwen2.5_7b": true
+      },
+      "code_generation_0111": {
+        "llama_llama-3.3-70b-versatile": false,
+        "qwen2.5_0.5b": false,
+        "qwen2.5_3b": false,
+        "qwen2.5_7b": false
+      },
+      "code_generation_0115": {
+        "llama_llama-3.3-70b-versatile": false,
+        "qwen2.5_0.5b": false,
+        "qwen2.5_3b": false,
+        "qwen2.5_7b": false
+      },
+      "code_generation_0117": {
+        "llama_llama-3.3-70b-versatile": true,
+        "qwen2.5_0.5b": false,
+        "qwen2.5_3b": true,
+        "qwen2.5_7b": true
+      },
+      "code_generation_0118": {
+        "llama_llama-3.3-70b-versatile": false,
+        "qwen2.5_0.5b": false,
+        "qwen2.5_3b": false,
+        "qwen2.5_7b": false
+      },
+      "code_generation_0119": {
+        "llama_llama-3.3-70b-versatile": false,
+        "qwen2.5_0.5b": false,
+        "qwen2.5_3b": false,
+        "qwen2.5_7b": false
+      },
+      "code_generation_0120": {
+        "llama_llama-3.3-70b-versatile": true,
+        "qwen2.5_0.5b": false,
+        "qwen2.5_3b": true,
+        "qwen2.5_7b": true
+      },
+      "code_generation_0122": {
+        "llama_llama-3.3-70b-versatile": true,
+        "qwen2.5_0.5b": false,
+        "qwen2.5_3b": false,
+        "qwen2.5_7b": true
+      },
+      "code_generation_0124": {
+        "llama_llama-3.3-70b-versatile": false,
+        "qwen2.5_0.5b": false,
+        "qwen2.5_3b": false,
+        "qwen2.5_7b": false
+      },
+      "code_generation_0127": {
+        "llama_llama-3.3-70b-versatile": false,
+        "qwen2.5_0.5b": false,
+        "qwen2.5_3b": true,
+        "qwen2.5_7b": true
+      },
+      "code_generation_0130": {
+        "llama_llama-3.3-70b-versatile": true,
+        "qwen2.5_0.5b": false,
+        "qwen2.5_3b": true,
+        "qwen2.5_7b": true
+      },
+      "code_generation_0133": {
+        "llama_llama-3.3-70b-versatile": true,
+        "qwen2.5_0.5b": false,
+        "qwen2.5_3b": true,
+        "qwen2.5_7b": true
+      },
+      "code_generation_0141": {
+        "llama_llama-3.3-70b-versatile": true,
+        "qwen2.5_0.5b": false,
+        "qwen2.5_3b": true,
+        "qwen2.5_7b": true
+      },
+      "code_generation_0150": {
+        "llama_llama-3.3-70b-versatile": true,
+        "qwen2.5_0.5b": false,
+        "qwen2.5_3b": true,
+        "qwen2.5_7b": true
+      },
+      "code_generation_0151": {
+        "llama_llama-3.3-70b-versatile": false,
+        "qwen2.5_0.5b": false,
+        "qwen2.5_3b": false,
+        "qwen2.5_7b": false
+      },
+      "code_generation_0152": {
+        "llama_llama-3.3-70b-versatile": true,
+        "qwen2.5_0.5b": false,
+        "qwen2.5_3b": true,
+        "qwen2.5_7b": true
+      },
+      "code_generation_0160": {
+        "llama_llama-3.3-70b-versatile": true,
+        "qwen2.5_0.5b": false,
+        "qwen2.5_3b": true,
+        "qwen2.5_7b": true
+      },
+      "code_generation_0161": {
+        "llama_llama-3.3-70b-versatile": true,
+        "qwen2.5_0.5b": false,
+        "qwen2.5_3b": true,
+        "qwen2.5_7b": false
+      }
+    }
+  },
+  "maths": {
+    "common_sample_ids": [
+      "maths_0001",
+      "maths_0002",
+      "maths_0005",
+      "maths_0006",
+      "maths_0008",
+      "maths_0009",
+      "maths_0011",
+      "maths_0015",
+      "maths_0016",
+      "maths_0020",
+      "maths_0031",
+      "maths_0037",
+      "maths_0043",
+      "maths_0045",
+      "maths_0052",
+      "maths_0054",
+      "maths_0062",
+      "maths_0067",
+      "maths_0069",
+      "maths_0075",
+      "maths_0079",
+      "maths_0081",
+      "maths_0082",
+      "maths_0084",
+      "maths_0085",
+      "maths_0086",
+      "maths_0087",
+      "maths_0094",
+      "maths_0098",
+      "maths_0105",
+      "maths_0110",
+      "maths_0119",
+      "maths_0121",
+      "maths_0129",
+      "maths_0137",
+      "maths_0142",
+      "maths_0147",
+      "maths_0149",
+      "maths_0153",
+      "maths_0158",
+      "maths_0159",
+      "maths_0160",
+      "maths_0162",
+      "maths_0163",
+      "maths_0167",
+      "maths_0168",
+      "maths_0169",
+      "maths_0173",
+      "maths_0176",
+      "maths_0179",
+      "maths_0180",
+      "maths_0182",
+      "maths_0184",
+      "maths_0185",
+      "maths_0192",
+      "maths_0195",
+      "maths_0198",
+      "maths_0209",
+      "maths_0211",
+      "maths_0213",
+      "maths_0220",
+      "maths_0236",
+      "maths_0238",
+      "maths_0241",
+      "maths_0244",
+      "maths_0245",
+      "maths_0262",
+      "maths_0270",
+      "maths_0271",
+      "maths_0277",
+      "maths_0279",
+      "maths_0283",
+      "maths_0287",
+      "maths_0288",
+      "maths_0290",
+      "maths_0292",
+      "maths_0297",
+      "maths_0298",
+      "maths_0300",
+      "maths_0301",
+      "maths_0304",
+      "maths_0305",
+      "maths_0306",
+      "maths_0307",
+      "maths_0308",
+      "maths_0309",
+      "maths_0311",
+      "maths_0312",
+      "maths_0313",
+      "maths_0314",
+      "maths_0315",
+      "maths_0317",
+      "maths_0319",
+      "maths_0321",
+      "maths_0324",
+      "maths_0325",
+      "maths_0330",
+      "maths_0333",
+      "maths_0336",
+      "maths_0346",
+      "maths_0349",
+      "maths_0357",
+      "maths_0359",
+      "maths_0364",
+      "maths_0368",
+      "maths_0371",
+      "maths_0378",
+      "maths_0380",
+      "maths_0382",
+      "maths_0383",
+      "maths_0387",
+      "maths_0388",
+      "maths_0391",
+      "maths_0392",
+      "maths_0399",
+      "maths_0400",
+      "maths_0403",
+      "maths_0404",
+      "maths_0407",
+      "maths_0412",
+      "maths_0413",
+      "maths_0417",
+      "maths_0431",
+      "maths_0434",
+      "maths_0438",
+      "maths_0445",
+      "maths_0448",
+      "maths_0450",
+      "maths_0452",
+      "maths_0456",
+      "maths_0460",
+      "maths_0468",
+      "maths_0471",
+      "maths_0490",
+      "maths_0493"
+    ],
+    "performance_matrix": {
+      "maths_0001": {
+        "llama_llama-3.3-70b-versatile": true,
+        "qwen2.5_0.5b": false,
+        "qwen2.5_3b": true,
+        "qwen2.5_7b": false
+      },
+      "maths_0002": {
+        "llama_llama-3.3-70b-versatile": true,
+        "qwen2.5_0.5b": false,
+        "qwen2.5_3b": true,
+        "qwen2.5_7b": false
+      },
+      "maths_0005": {
+        "llama_llama-3.3-70b-versatile": true,
+        "qwen2.5_0.5b": false,
+        "qwen2.5_3b": true,
+        "qwen2.5_7b": false
+      },
+      "maths_0006": {
+        "llama_llama-3.3-70b-versatile": true,
+        "qwen2.5_0.5b": false,
+        "qwen2.5_3b": true,
+        "qwen2.5_7b": true
+      },
+      "maths_0008": {
+        "llama_llama-3.3-70b-versatile": true,
+        "qwen2.5_0.5b": false,
+        "qwen2.5_3b": true,
+        "qwen2.5_7b": false
+      },
+      "maths_0009": {
+        "llama_llama-3.3-70b-versatile": false,
+        "qwen2.5_0.5b": false,
+        "qwen2.5_3b": false,
+        "qwen2.5_7b": false
+      },
+      "maths_0011": {
+        "llama_llama-3.3-70b-versatile": true,
+        "qwen2.5_0.5b": false,
+        "qwen2.5_3b": true,
+        "qwen2.5_7b": true
+      },
+      "maths_0015": {
+        "llama_llama-3.3-70b-versatile": true,
+        "qwen2.5_0.5b": false,
+        "qwen2.5_3b": true,
+        "qwen2.5_7b": false
+      },
+      "maths_0016": {
+        "llama_llama-3.3-70b-versatile": false,
+        "qwen2.5_0.5b": false,
+        "qwen2.5_3b": false,
+        "qwen2.5_7b": false
+      },
+      "maths_0020": {
+        "llama_llama-3.3-70b-versatile": true,
+        "qwen2.5_0.5b": false,
+        "qwen2.5_3b": true,
+        "qwen2.5_7b": false
+      },
+      "maths_0031": {
+        "llama_llama-3.3-70b-versatile": false,
+        "qwen2.5_0.5b": false,
+        "qwen2.5_3b": false,
+        "qwen2.5_7b": false
+      },
+      "maths_0037": {
+        "llama_llama-3.3-70b-versatile": true,
+        "qwen2.5_0.5b": false,
+        "qwen2.5_3b": true,
+        "qwen2.5_7b": false
+      },
+      "maths_0043": {
+        "llama_llama-3.3-70b-versatile": true,
+        "qwen2.5_0.5b": false,
+        "qwen2.5_3b": true,
+        "qwen2.5_7b": false
+      },
+      "maths_0045": {
+        "llama_llama-3.3-70b-versatile": true,
+        "qwen2.5_0.5b": false,
+        "qwen2.5_3b": false,
+        "qwen2.5_7b": false
+      },
+      "maths_0052": {
+        "llama_llama-3.3-70b-versatile": true,
+        "qwen2.5_0.5b": false,
+        "qwen2.5_3b": false,
+        "qwen2.5_7b": true
+      },
+      "maths_0054": {
+        "llama_llama-3.3-70b-versatile": true,
+        "qwen2.5_0.5b": false,
+        "qwen2.5_3b": true,
+        "qwen2.5_7b": false
+      },
+      "maths_0062": {
+        "llama_llama-3.3-70b-versatile": true,
+        "qwen2.5_0.5b": false,
+        "qwen2.5_3b": true,
+        "qwen2.5_7b": false
+      },
+      "maths_0067": {
+        "llama_llama-3.3-70b-versatile": true,
+        "qwen2.5_0.5b": false,
+        "qwen2.5_3b": true,
+        "qwen2.5_7b": false
+      },
+      "maths_0069": {
+        "llama_llama-3.3-70b-versatile": false,
+        "qwen2.5_0.5b": false,
+        "qwen2.5_3b": false,
+        "qwen2.5_7b": false
+      },
+      "maths_0075": {
+        "llama_llama-3.3-70b-versatile": true,
+        "qwen2.5_0.5b": false,
+        "qwen2.5_3b": true,
+        "qwen2.5_7b": true
+      },
+      "maths_0079": {
+        "llama_llama-3.3-70b-versatile": true,
+        "qwen2.5_0.5b": false,
+        "qwen2.5_3b": true,
+        "qwen2.5_7b": false
+      },
+      "maths_0081": {
+        "llama_llama-3.3-70b-versatile": true,
+        "qwen2.5_0.5b": false,
+        "qwen2.5_3b": true,
+        "qwen2.5_7b": false
+      },
+      "maths_0082": {
+        "llama_llama-3.3-70b-versatile": true,
+        "qwen2.5_0.5b": false,
+        "qwen2.5_3b": true,
+        "qwen2.5_7b": true
+      },
+      "maths_0084": {
+        "llama_llama-3.3-70b-versatile": true,
+        "qwen2.5_0.5b": false,
+        "qwen2.5_3b": true,
+        "qwen2.5_7b": false
+      },
+      "maths_0085": {
+        "llama_llama-3.3-70b-versatile": true,
+        "qwen2.5_0.5b": false,
+        "qwen2.5_3b": true,
+        "qwen2.5_7b": false
+      },
+      "maths_0086": {
+        "llama_llama-3.3-70b-versatile": true,
+        "qwen2.5_0.5b": false,
+        "qwen2.5_3b": true,
+        "qwen2.5_7b": true
+      },
+      "maths_0087": {
+        "llama_llama-3.3-70b-versatile": false,
+        "qwen2.5_0.5b": false,
+        "qwen2.5_3b": false,
+        "qwen2.5_7b": false
+      },
+      "maths_0094": {
+        "llama_llama-3.3-70b-versatile": true,
+        "qwen2.5_0.5b": false,
+        "qwen2.5_3b": true,
+        "qwen2.5_7b": false
+      },
+      "maths_0098": {
+        "llama_llama-3.3-70b-versatile": true,
+        "qwen2.5_0.5b": false,
+        "qwen2.5_3b": false,
+        "qwen2.5_7b": false
+      },
+      "maths_0105": {
+        "llama_llama-3.3-70b-versatile": false,
+        "qwen2.5_0.5b": false,
+        "qwen2.5_3b": false,
+        "qwen2.5_7b": false
+      },
+      "maths_0110": {
+        "llama_llama-3.3-70b-versatile": true,
+        "qwen2.5_0.5b": false,
+        "qwen2.5_3b": true,
+        "qwen2.5_7b": false
+      },
+      "maths_0119": {
+        "llama_llama-3.3-70b-versatile": true,
+        "qwen2.5_0.5b": false,
+        "qwen2.5_3b": true,
+        "qwen2.5_7b": true
+      },
+      "maths_0121": {
+        "llama_llama-3.3-70b-versatile": true,
+        "qwen2.5_0.5b": false,
+        "qwen2.5_3b": true,
+        "qwen2.5_7b": false
+      },
+      "maths_0129": {
+        "llama_llama-3.3-70b-versatile": false,
+        "qwen2.5_0.5b": false,
+        "qwen2.5_3b": false,
+        "qwen2.5_7b": false
+      },
+      "maths_0137": {
+        "llama_llama-3.3-70b-versatile": true,
+        "qwen2.5_0.5b": false,
+        "qwen2.5_3b": true,
+        "qwen2.5_7b": true
+      },
+      "maths_0142": {
+        "llama_llama-3.3-70b-versatile": true,
+        "qwen2.5_0.5b": false,
+        "qwen2.5_3b": true,
+        "qwen2.5_7b": true
+      },
+      "maths_0147": {
+        "llama_llama-3.3-70b-versatile": true,
+        "qwen2.5_0.5b": false,
+        "qwen2.5_3b": true,
+        "qwen2.5_7b": false
+      },
+      "maths_0149": {
+        "llama_llama-3.3-70b-versatile": true,
+        "qwen2.5_0.5b": false,
+        "qwen2.5_3b": false,
+        "qwen2.5_7b": false
+      },
+      "maths_0153": {
+        "llama_llama-3.3-70b-versatile": false,
+        "qwen2.5_0.5b": false,
+        "qwen2.5_3b": false,
+        "qwen2.5_7b": false
+      },
+      "maths_0158": {
+        "llama_llama-3.3-70b-versatile": true,
+        "qwen2.5_0.5b": false,
+        "qwen2.5_3b": true,
+        "qwen2.5_7b": false
+      },
+      "maths_0159": {
+        "llama_llama-3.3-70b-versatile": true,
+        "qwen2.5_0.5b": false,
+        "qwen2.5_3b": true,
+        "qwen2.5_7b": false
+      },
+      "maths_0160": {
+        "llama_llama-3.3-70b-versatile": false,
+        "qwen2.5_0.5b": false,
+        "qwen2.5_3b": false,
+        "qwen2.5_7b": false
+      },
+      "maths_0162": {
+        "llama_llama-3.3-70b-versatile": true,
+        "qwen2.5_0.5b": false,
+        "qwen2.5_3b": false,
+        "qwen2.5_7b": false
+      },
+      "maths_0163": {
+        "llama_llama-3.3-70b-versatile": true,
+        "qwen2.5_0.5b": false,
+        "qwen2.5_3b": true,
+        "qwen2.5_7b": true
+      },
+      "maths_0167": {
+        "llama_llama-3.3-70b-versatile": true,
+        "qwen2.5_0.5b": false,
+        "qwen2.5_3b": true,
+        "qwen2.5_7b": false
+      },
+      "maths_0168": {
+        "llama_llama-3.3-70b-versatile": true,
+        "qwen2.5_0.5b": false,
+        "qwen2.5_3b": true,
+        "qwen2.5_7b": true
+      },
+      "maths_0169": {
+        "llama_llama-3.3-70b-versatile": true,
+        "qwen2.5_0.5b": false,
+        "qwen2.5_3b": true,
+        "qwen2.5_7b": false
+      },
+      "maths_0173": {
+        "llama_llama-3.3-70b-versatile": true,
+        "qwen2.5_0.5b": false,
+        "qwen2.5_3b": true,
+        "qwen2.5_7b": false
+      },
+      "maths_0176": {
+        "llama_llama-3.3-70b-versatile": true,
+        "qwen2.5_0.5b": false,
+        "qwen2.5_3b": true,
+        "qwen2.5_7b": false
+      },
+      "maths_0179": {
+        "llama_llama-3.3-70b-versatile": false,
+        "qwen2.5_0.5b": false,
+        "qwen2.5_3b": false,
+        "qwen2.5_7b": false
+      },
+      "maths_0180": {
+        "llama_llama-3.3-70b-versatile": true,
+        "qwen2.5_0.5b": false,
+        "qwen2.5_3b": true,
+        "qwen2.5_7b": true
+      },
+      "maths_0182": {
+        "llama_llama-3.3-70b-versatile": false,
+        "qwen2.5_0.5b": false,
+        "qwen2.5_3b": false,
+        "qwen2.5_7b": false
+      },
+      "maths_0184": {
+        "llama_llama-3.3-70b-versatile": false,
+        "qwen2.5_0.5b": false,
+        "qwen2.5_3b": true,
+        "qwen2.5_7b": true
+      },
+      "maths_0185": {
+        "llama_llama-3.3-70b-versatile": true,
+        "qwen2.5_0.5b": false,
+        "qwen2.5_3b": true,
+        "qwen2.5_7b": false
+      },
+      "maths_0192": {
+        "llama_llama-3.3-70b-versatile": false,
+        "qwen2.5_0.5b": false,
+        "qwen2.5_3b": false,
+        "qwen2.5_7b": false
+      },
+      "maths_0195": {
+        "llama_llama-3.3-70b-versatile": true,
+        "qwen2.5_0.5b": false,
+        "qwen2.5_3b": true,
+        "qwen2.5_7b": false
+      },
+      "maths_0198": {
+        "llama_llama-3.3-70b-versatile": true,
+        "qwen2.5_0.5b": false,
+        "qwen2.5_3b": true,
+        "qwen2.5_7b": false
+      },
+      "maths_0209": {
+        "llama_llama-3.3-70b-versatile": false,
+        "qwen2.5_0.5b": false,
+        "qwen2.5_3b": true,
+        "qwen2.5_7b": false
+      },
+      "maths_0211": {
+        "llama_llama-3.3-70b-versatile": true,
+        "qwen2.5_0.5b": false,
+        "qwen2.5_3b": true,
+        "qwen2.5_7b": false
+      },
+      "maths_0213": {
+        "llama_llama-3.3-70b-versatile": true,
+        "qwen2.5_0.5b": false,
+        "qwen2.5_3b": true,
+        "qwen2.5_7b": false
+      },
+      "maths_0220": {
+        "llama_llama-3.3-70b-versatile": true,
+        "qwen2.5_0.5b": false,
+        "qwen2.5_3b": true,
+        "qwen2.5_7b": false
+      },
+      "maths_0236": {
+        "llama_llama-3.3-70b-versatile": true,
+        "qwen2.5_0.5b": false,
+        "qwen2.5_3b": true,
+        "qwen2.5_7b": true
+      },
+      "maths_0238": {
+        "llama_llama-3.3-70b-versatile": true,
+        "qwen2.5_0.5b": false,
+        "qwen2.5_3b": false,
+        "qwen2.5_7b": false
+      },
+      "maths_0241": {
+        "llama_llama-3.3-70b-versatile": true,
+        "qwen2.5_0.5b": false,
+        "qwen2.5_3b": true,
+        "qwen2.5_7b": true
+      },
+      "maths_0244": {
+        "llama_llama-3.3-70b-versatile": false,
+        "qwen2.5_0.5b": false,
+        "qwen2.5_3b": false,
+        "qwen2.5_7b": false
+      },
+      "maths_0245": {
+        "llama_llama-3.3-70b-versatile": true,
+        "qwen2.5_0.5b": false,
+        "qwen2.5_3b": false,
+        "qwen2.5_7b": false
+      },
+      "maths_0262": {
+        "llama_llama-3.3-70b-versatile": false,
+        "qwen2.5_0.5b": false,
+        "qwen2.5_3b": false,
+        "qwen2.5_7b": false
+      },
+      "maths_0270": {
+        "llama_llama-3.3-70b-versatile": true,
+        "qwen2.5_0.5b": false,
+        "qwen2.5_3b": true,
+        "qwen2.5_7b": true
+      },
+      "maths_0271": {
+        "llama_llama-3.3-70b-versatile": true,
+        "qwen2.5_0.5b": false,
+        "qwen2.5_3b": true,
+        "qwen2.5_7b": false
+      },
+      "maths_0277": {
+        "llama_llama-3.3-70b-versatile": false,
+        "qwen2.5_0.5b": false,
+        "qwen2.5_3b": true,
+        "qwen2.5_7b": false
+      },
+      "maths_0279": {
+        "llama_llama-3.3-70b-versatile": false,
+        "qwen2.5_0.5b": false,
+        "qwen2.5_3b": false,
+        "qwen2.5_7b": false
+      },
+      "maths_0283": {
+        "llama_llama-3.3-70b-versatile": false,
+        "qwen2.5_0.5b": false,
+        "qwen2.5_3b": true,
+        "qwen2.5_7b": false
+      },
+      "maths_0287": {
+        "llama_llama-3.3-70b-versatile": false,
+        "qwen2.5_0.5b": false,
+        "qwen2.5_3b": false,
+        "qwen2.5_7b": false
+      },
+      "maths_0288": {
+        "llama_llama-3.3-70b-versatile": true,
+        "qwen2.5_0.5b": false,
+        "qwen2.5_3b": true,
+        "qwen2.5_7b": false
+      },
+      "maths_0290": {
+        "llama_llama-3.3-70b-versatile": true,
+        "qwen2.5_0.5b": false,
+        "qwen2.5_3b": true,
+        "qwen2.5_7b": true
+      },
+      "maths_0292": {
+        "llama_llama-3.3-70b-versatile": false,
+        "qwen2.5_0.5b": false,
+        "qwen2.5_3b": false,
+        "qwen2.5_7b": false
+      },
+      "maths_0297": {
+        "llama_llama-3.3-70b-versatile": false,
+        "qwen2.5_0.5b": false,
+        "qwen2.5_3b": false,
+        "qwen2.5_7b": false
+      },
+      "maths_0298": {
+        "llama_llama-3.3-70b-versatile": true,
+        "qwen2.5_0.5b": false,
+        "qwen2.5_3b": false,
+        "qwen2.5_7b": false
+      },
+      "maths_0300": {
+        "llama_llama-3.3-70b-versatile": true,
+        "qwen2.5_0.5b": false,
+        "qwen2.5_3b": false,
+        "qwen2.5_7b": false
+      },
+      "maths_0301": {
+        "llama_llama-3.3-70b-versatile": false,
+        "qwen2.5_0.5b": false,
+        "qwen2.5_3b": true,
+        "qwen2.5_7b": false
+      },
+      "maths_0304": {
+        "llama_llama-3.3-70b-versatile": true,
+        "qwen2.5_0.5b": false,
+        "qwen2.5_3b": true,
+        "qwen2.5_7b": false
+      },
+      "maths_0305": {
+        "llama_llama-3.3-70b-versatile": true,
+        "qwen2.5_0.5b": false,
+        "qwen2.5_3b": true,
+        "qwen2.5_7b": false
+      },
+      "maths_0306": {
+        "llama_llama-3.3-70b-versatile": true,
+        "qwen2.5_0.5b": false,
+        "qwen2.5_3b": true,
+        "qwen2.5_7b": false
+      },
+      "maths_0307": {
+        "llama_llama-3.3-70b-versatile": false,
+        "qwen2.5_0.5b": false,
+        "qwen2.5_3b": true,
+        "qwen2.5_7b": false
+      },
+      "maths_0308": {
+        "llama_llama-3.3-70b-versatile": false,
+        "qwen2.5_0.5b": false,
+        "qwen2.5_3b": false,
+        "qwen2.5_7b": false
+      },
+      "maths_0309": {
+        "llama_llama-3.3-70b-versatile": false,
+        "qwen2.5_0.5b": false,
+        "qwen2.5_3b": false,
+        "qwen2.5_7b": false
+      },
+      "maths_0311": {
+        "llama_llama-3.3-70b-versatile": true,
+        "qwen2.5_0.5b": false,
+        "qwen2.5_3b": true,
+        "qwen2.5_7b": false
+      },
+      "maths_0312": {
+        "llama_llama-3.3-70b-versatile": false,
+        "qwen2.5_0.5b": false,
+        "qwen2.5_3b": false,
+        "qwen2.5_7b": false
+      },
+      "maths_0313": {
+        "llama_llama-3.3-70b-versatile": true,
+        "qwen2.5_0.5b": false,
+        "qwen2.5_3b": true,
+        "qwen2.5_7b": false
+      },
+      "maths_0314": {
+        "llama_llama-3.3-70b-versatile": true,
+        "qwen2.5_0.5b": false,
+        "qwen2.5_3b": true,
+        "qwen2.5_7b": true
+      },
+      "maths_0315": {
+        "llama_llama-3.3-70b-versatile": false,
+        "qwen2.5_0.5b": false,
+        "qwen2.5_3b": false,
+        "qwen2.5_7b": false
+      },
+      "maths_0317": {
+        "llama_llama-3.3-70b-versatile": true,
+        "qwen2.5_0.5b": false,
+        "qwen2.5_3b": true,
+        "qwen2.5_7b": false
+      },
+      "maths_0319": {
+        "llama_llama-3.3-70b-versatile": true,
+        "qwen2.5_0.5b": false,
+        "qwen2.5_3b": true,
+        "qwen2.5_7b": true
+      },
+      "maths_0321": {
+        "llama_llama-3.3-70b-versatile": false,
+        "qwen2.5_0.5b": false,
+        "qwen2.5_3b": false,
+        "qwen2.5_7b": true
+      },
+      "maths_0324": {
+        "llama_llama-3.3-70b-versatile": true,
+        "qwen2.5_0.5b": false,
+        "qwen2.5_3b": true,
+        "qwen2.5_7b": true
+      },
+      "maths_0325": {
+        "llama_llama-3.3-70b-versatile": false,
+        "qwen2.5_0.5b": false,
+        "qwen2.5_3b": false,
+        "qwen2.5_7b": false
+      },
+      "maths_0330": {
+        "llama_llama-3.3-70b-versatile": true,
+        "qwen2.5_0.5b": false,
+        "qwen2.5_3b": true,
+        "qwen2.5_7b": false
+      },
+      "maths_0333": {
+        "llama_llama-3.3-70b-versatile": true,
+        "qwen2.5_0.5b": false,
+        "qwen2.5_3b": true,
+        "qwen2.5_7b": false
+      },
+      "maths_0336": {
+        "llama_llama-3.3-70b-versatile": true,
+        "qwen2.5_0.5b": false,
+        "qwen2.5_3b": false,
+        "qwen2.5_7b": false
+      },
+      "maths_0346": {
+        "llama_llama-3.3-70b-versatile": true,
+        "qwen2.5_0.5b": false,
+        "qwen2.5_3b": false,
+        "qwen2.5_7b": false
+      },
+      "maths_0349": {
+        "llama_llama-3.3-70b-versatile": true,
+        "qwen2.5_0.5b": false,
+        "qwen2.5_3b": true,
+        "qwen2.5_7b": false
+      },
+      "maths_0357": {
+        "llama_llama-3.3-70b-versatile": true,
+        "qwen2.5_0.5b": false,
+        "qwen2.5_3b": true,
+        "qwen2.5_7b": false
+      },
+      "maths_0359": {
+        "llama_llama-3.3-70b-versatile": true,
+        "qwen2.5_0.5b": false,
+        "qwen2.5_3b": true,
+        "qwen2.5_7b": false
+      },
+      "maths_0364": {
+        "llama_llama-3.3-70b-versatile": false,
+        "qwen2.5_0.5b": false,
+        "qwen2.5_3b": false,
+        "qwen2.5_7b": false
+      },
+      "maths_0368": {
+        "llama_llama-3.3-70b-versatile": true,
+        "qwen2.5_0.5b": false,
+        "qwen2.5_3b": false,
+        "qwen2.5_7b": false
+      },
+      "maths_0371": {
+        "llama_llama-3.3-70b-versatile": true,
+        "qwen2.5_0.5b": false,
+        "qwen2.5_3b": false,
+        "qwen2.5_7b": false
+      },
+      "maths_0378": {
+        "llama_llama-3.3-70b-versatile": true,
+        "qwen2.5_0.5b": false,
+        "qwen2.5_3b": true,
+        "qwen2.5_7b": false
+      },
+      "maths_0380": {
+        "llama_llama-3.3-70b-versatile": false,
+        "qwen2.5_0.5b": false,
+        "qwen2.5_3b": false,
+        "qwen2.5_7b": false
+      },
+      "maths_0382": {
+        "llama_llama-3.3-70b-versatile": true,
+        "qwen2.5_0.5b": false,
+        "qwen2.5_3b": true,
+        "qwen2.5_7b": false
+      },
+      "maths_0383": {
+        "llama_llama-3.3-70b-versatile": true,
+        "qwen2.5_0.5b": false,
+        "qwen2.5_3b": true,
+        "qwen2.5_7b": false
+      },
+      "maths_0387": {
+        "llama_llama-3.3-70b-versatile": true,
+        "qwen2.5_0.5b": false,
+        "qwen2.5_3b": true,
+        "qwen2.5_7b": true
+      },
+      "maths_0388": {
+        "llama_llama-3.3-70b-versatile": true,
+        "qwen2.5_0.5b": false,
+        "qwen2.5_3b": true,
+        "qwen2.5_7b": true
+      },
+      "maths_0391": {
+        "llama_llama-3.3-70b-versatile": true,
+        "qwen2.5_0.5b": false,
+        "qwen2.5_3b": false,
+        "qwen2.5_7b": false
+      },
+      "maths_0392": {
+        "llama_llama-3.3-70b-versatile": true,
+        "qwen2.5_0.5b": false,
+        "qwen2.5_3b": true,
+        "qwen2.5_7b": true
+      },
+      "maths_0399": {
+        "llama_llama-3.3-70b-versatile": true,
+        "qwen2.5_0.5b": false,
+        "qwen2.5_3b": true,
+        "qwen2.5_7b": true
+      },
+      "maths_0400": {
+        "llama_llama-3.3-70b-versatile": true,
+        "qwen2.5_0.5b": false,
+        "qwen2.5_3b": true,
+        "qwen2.5_7b": false
+      },
+      "maths_0403": {
+        "llama_llama-3.3-70b-versatile": false,
+        "qwen2.5_0.5b": false,
+        "qwen2.5_3b": false,
+        "qwen2.5_7b": false
+      },
+      "maths_0404": {
+        "llama_llama-3.3-70b-versatile": true,
+        "qwen2.5_0.5b": false,
+        "qwen2.5_3b": true,
+        "qwen2.5_7b": false
+      },
+      "maths_0407": {
+        "llama_llama-3.3-70b-versatile": true,
+        "qwen2.5_0.5b": false,
+        "qwen2.5_3b": true,
+        "qwen2.5_7b": false
+      },
+      "maths_0412": {
+        "llama_llama-3.3-70b-versatile": true,
+        "qwen2.5_0.5b": false,
+        "qwen2.5_3b": false,
+        "qwen2.5_7b": false
+      },
+      "maths_0413": {
+        "llama_llama-3.3-70b-versatile": false,
+        "qwen2.5_0.5b": false,
+        "qwen2.5_3b": true,
+        "qwen2.5_7b": false
+      },
+      "maths_0417": {
+        "llama_llama-3.3-70b-versatile": false,
+        "qwen2.5_0.5b": false,
+        "qwen2.5_3b": true,
+        "qwen2.5_7b": false
+      },
+      "maths_0431": {
+        "llama_llama-3.3-70b-versatile": false,
+        "qwen2.5_0.5b": false,
+        "qwen2.5_3b": false,
+        "qwen2.5_7b": true
+      },
+      "maths_0434": {
+        "llama_llama-3.3-70b-versatile": true,
+        "qwen2.5_0.5b": false,
+        "qwen2.5_3b": true,
+        "qwen2.5_7b": false
+      },
+      "maths_0438": {
+        "llama_llama-3.3-70b-versatile": true,
+        "qwen2.5_0.5b": false,
+        "qwen2.5_3b": true,
+        "qwen2.5_7b": false
+      },
+      "maths_0445": {
+        "llama_llama-3.3-70b-versatile": true,
+        "qwen2.5_0.5b": false,
+        "qwen2.5_3b": true,
+        "qwen2.5_7b": true
+      },
+      "maths_0448": {
+        "llama_llama-3.3-70b-versatile": true,
+        "qwen2.5_0.5b": false,
+        "qwen2.5_3b": true,
+        "qwen2.5_7b": false
+      },
+      "maths_0450": {
+        "llama_llama-3.3-70b-versatile": true,
+        "qwen2.5_0.5b": false,
+        "qwen2.5_3b": false,
+        "qwen2.5_7b": false
+      },
+      "maths_0452": {
+        "llama_llama-3.3-70b-versatile": true,
+        "qwen2.5_0.5b": false,
+        "qwen2.5_3b": true,
+        "qwen2.5_7b": false
+      },
+      "maths_0456": {
+        "llama_llama-3.3-70b-versatile": true,
+        "qwen2.5_0.5b": false,
+        "qwen2.5_3b": true,
+        "qwen2.5_7b": false
+      },
+      "maths_0460": {
+        "llama_llama-3.3-70b-versatile": true,
+        "qwen2.5_0.5b": false,
+        "qwen2.5_3b": true,
+        "qwen2.5_7b": true
+      },
+      "maths_0468": {
+        "llama_llama-3.3-70b-versatile": false,
+        "qwen2.5_0.5b": false,
+        "qwen2.5_3b": false,
+        "qwen2.5_7b": false
+      },
+      "maths_0471": {
+        "llama_llama-3.3-70b-versatile": true,
+        "qwen2.5_0.5b": false,
+        "qwen2.5_3b": true,
+        "qwen2.5_7b": false
+      },
+      "maths_0490": {
+        "llama_llama-3.3-70b-versatile": true,
+        "qwen2.5_0.5b": false,
+        "qwen2.5_3b": true,
+        "qwen2.5_7b": false
+      },
+      "maths_0493": {
+        "llama_llama-3.3-70b-versatile": true,
+        "qwen2.5_0.5b": false,
+        "qwen2.5_3b": true,
+        "qwen2.5_7b": false
+      }
+    }
+  }
+}

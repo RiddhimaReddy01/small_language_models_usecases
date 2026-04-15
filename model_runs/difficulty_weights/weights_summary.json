@@ -1,0 +1,410 @@
+{
+  "classification": {
+    "llama_llama-3.3-70b-versatile": {
+      "samples": 120,
+      "positive": 49,
+      "negative": 71,
+      "intercept": -0.02772811,
+      "weights": {
+        "avg_sentence_length": 0.571282,
+        "entity_density": 0.41648,
+        "negation_count": 0.329997,
+        "clause_count": 0.229188,
+        "readability_fk": 0.0
+      }
+    },
+    "qwen2.5_0.5b": {
+      "samples": 35,
+      "positive": 17,
+      "negative": 18,
+      "intercept": 0.18281248,
+      "weights": {
+        "entity_density": 1.456038,
+        "avg_sentence_length": 0.149832,
+        "clause_count": 0.084312,
+        "negation_count": 0.008416,
+        "readability_fk": 0.0
+      }
+    },
+    "qwen2.5_3b": {
+      "samples": 120,
+      "positive": 54,
+      "negative": 66,
+      "intercept": 0.38745992,
+      "weights": {
+        "entity_density": 1.956768,
+        "avg_sentence_length": 0.828133,
+        "negation_count": 0.176695,
+        "clause_count": 0.08356,
+        "readability_fk": 0.0
+      }
+    },
+    "qwen2.5_7b": {
+      "samples": 120,
+      "positive": 63,
+      "negative": 57,
+      "intercept": 0.01805093,
+      "weights": {
+        "avg_sentence_length": 0.517115,
+        "negation_count": 0.051531,
+        "entity_density": 0.038952,
+        "clause_count": 0.031349,
+        "readability_fk": 0.0
+      }
+    }
+  },
+  "code_generation": {
+    "llama_llama-3.3-70b-versatile": {
+      "samples": 118,
+      "positive": 75,
+      "negative": 43,
+      "intercept": -0.05857153,
+      "weights": {
+        "token_count": 0.966784,
+        "avg_sentence_length": 0.738792,
+        "modal_verb_count": 0.676194,
+        "algorithm_keyword_count": 0.352989,
+        "readability_fog": 0.0
+      }
+    },
+    "qwen2.5_0.5b": {
+      "samples": 0,
+      "status": "SKIP - no training samples",
+      "weights": {}
+    },
+    "qwen2.5_3b": {
+      "samples": 50,
+      "positive": 30,
+      "negative": 20,
+      "intercept": -0.11910179,
+      "weights": {
+        "modal_verb_count": 1.058377,
+        "avg_sentence_length": 0.613424,
+        "token_count": 0.604114,
+        "algorithm_keyword_count": 0.064068,
+        "readability_fog": 0.0
+      }
+    },
+    "qwen2.5_7b": {
+      "samples": 118,
+      "positive": 81,
+      "negative": 37,
+      "intercept": 0.13370032,
+      "weights": {
+        "avg_sentence_length": 0.792753,
+        "token_count": 0.637283,
+        "modal_verb_count": 0.266629,
+        "algorithm_keyword_count": 0.015319,
+        "readability_fog": 0.0
+      }
+    }
+  },
+  "information_extraction": {
+    "llama_llama-3.3-70b-versatile": {
+      "samples": 69,
+      "positive": 17,
+      "negative": 52,
+      "intercept": -0.11371117,
+      "weights": {
+        "avg_sentence_length": 0.870277,
+        "sentence_count": 0.691504,
+        "entity_count": 0.497509,
+        "token_count": 0.019289,
+        "entity_type_diversity": 0.0
+      }
+    },
+    "qwen2.5_0.5b": {
+      "samples": 69,
+      "positive": 27,
+      "negative": 42,
+      "intercept": -0.01265709,
+      "weights": {
+        "avg_sentence_length": 0.749906,
+        "sentence_count": 0.537014,
+        "token_count": 0.224515,
+        "entity_count": 0.082844,
+        "entity_type_diversity": 0.0
+      }
+    },
+    "qwen2.5_3b": {
+      "samples": 23,
+      "positive": 5,
+      "negative": 18,
+      "intercept": -0.13702833,
+      "weights": {
+        "avg_sentence_length": 0.961372,
+        "sentence_count": 0.817126,
+        "token_count": 0.618779,
+        "entity_count": 0.146486,
+        "entity_type_diversity": 0.0
+      }
+    },
+    "qwen2.5_7b": {
+      "samples": 69,
+      "positive": 21,
+      "negative": 48,
+      "intercept": -0.041248,
+      "weights": {
+        "avg_sentence_length": 0.576821,
+        "token_count": 0.193566,
+        "sentence_count": 0.164484,
+        "entity_count": 0.105582,
+        "entity_type_diversity": 0.0
+      }
+    }
+  },
+  "instruction_following": {
+    "llama_llama-3.3-70b-versatile": {
+      "samples": 153,
+      "positive": 21,
+      "negative": 132,
+      "intercept": -0.23412659,
+      "weights": {
+        "negation_count": 0.730862,
+        "format_keyword_count": 0.711117,
+        "sentence_count": 0.507337,
+        "modal_verb_count": 0.10745,
+        "readability_fk": 0.0
+      }
+    },
+    "qwen2.5_0.5b": {
+      "samples": 117,
+      "positive": 59,
+      "negative": 58,
+      "intercept": 0.0050472,
+      "weights": {
+        "modal_verb_count": 0.494579,
+        "negation_count": 0.427203,
+        "format_keyword_count": 0.224486,
+        "sentence_count": 0.130925,
+        "readability_fk": 0.0
+      }
+    },
+    "qwen2.5_3b": {
+      "samples": 38,
+      "positive": 10,
+      "negative": 28,
+      "intercept": -0.52086628,
+      "weights": {
+        "format_keyword_count": 0.985153,
+        "modal_verb_count": 0.804016,
+        "sentence_count": 0.721392,
+        "negation_count": 0.44017,
+        "readability_fk": 0.0
+      }
+    },
+    "qwen2.5_7b": {
+      "samples": 38,
+      "positive": 12,
+      "negative": 26,
+      "intercept": -0.11653234,
+      "weights": {
+        "format_keyword_count": 0.69983,
+        "modal_verb_count": 0.08037,
+        "sentence_count": 0.072605,
+        "negation_count": 0.026615,
+        "readability_fk": 0.0
+      }
+    }
+  },
+  "maths": {
+    "llama_llama-3.3-70b-versatile": {
+      "samples": 135,
+      "positive": 37,
+      "negative": 98,
+      "intercept": -0.53245983,
+      "weights": {
+        "numeric_density": 1.204452,
+        "sentence_count": 0.706025,
+        "modal_verb_count": 0.397105,
+        "symbol_count": 0.229518,
+        "readability_fk": 0.0
+      }
+    },
+    "qwen2.5_0.5b": {
+      "samples": 0,
+      "status": "SKIP - no training samples",
+      "weights": {}
+    },
+    "qwen2.5_3b": {
+      "samples": 135,
+      "positive": 45,
+      "negative": 90,
+      "intercept": -0.18542472,
+      "weights": {
+        "numeric_density": 0.851434,
+        "sentence_count": 0.416835,
+        "symbol_count": 0.15425,
+        "modal_verb_count": 0.136073,
+        "readability_fk": 0.0
+      }
+    },
+    "qwen2.5_7b": {
+      "samples": 135,
+      "positive": 107,
+      "negative": 28,
+      "intercept": 0.01664152,
+      "weights": {
+        "modal_verb_count": 0.173319,
+        "numeric_density": 0.16736,
+        "symbol_count": 0.079715,
+        "sentence_count": 0.060596,
+        "readability_fk": 0.0
+      }
+    }
+  },
+  "retrieval_grounded": {
+    "llama_llama-3.3-70b-versatile": {
+      "samples": 146,
+      "positive": 49,
+      "negative": 97,
+      "intercept": -0.17826751,
+      "weights": {
+        "sentence_count": 0.646914,
+        "entity_count": 0.514653,
+        "question_length": 0.473241,
+        "context_length": 0.0,
+        "readability_fk": 0.0
+      }
+    },
+    "qwen2.5_0.5b": {
+      "samples": 146,
+      "positive": 65,
+      "negative": 81,
+      "intercept": -0.00378361,
+      "weights": {
+        "sentence_count": 0.275563,
+        "question_length": 0.176681,
+        "entity_count": 0.062782,
+        "context_length": 0.0,
+        "readability_fk": 0.0
+      }
+    },
+    "qwen2.5_3b": {
+      "samples": 51,
+      "positive": 19,
+      "negative": 32,
+      "intercept": -0.06064025,
+      "weights": {
+        "question_length": 0.508545,
+        "sentence_count": 0.431701,
+        "entity_count": 0.350607,
+        "context_length": 0.0,
+        "readability_fk": 0.0
+      }
+    },
+    "qwen2.5_7b": {
+      "samples": 146,
+      "positive": 60,
+      "negative": 86,
+      "intercept": -0.08674542,
+      "weights": {
+        "sentence_count": 0.600427,
+        "question_length": 0.541948,
+        "entity_count": 0.415142,
+        "context_length": 0.0,
+        "readability_fk": 0.0
+      }
+    }
+  },
+  "summarization": {
+    "llama_llama-3.3-70b-versatile": {
+      "samples": 110,
+      "positive": 32,
+      "negative": 78,
+      "intercept": -0.019467,
+      "weights": {
+        "avg_sentence_length": 0.589994,
+        "sentence_count": 0.589025,
+        "source_length": 0.419134,
+        "entity_count": 0.006178,
+        "readability_fk": 0.0
+      }
+    },
+    "qwen2.5_0.5b": {
+      "samples": 110,
+      "positive": 78,
+      "negative": 32,
+      "intercept": 0.0503794,
+      "weights": {
+        "source_length": 0.69503,
+        "sentence_count": 0.448359,
+        "avg_sentence_length": 0.280642,
+        "entity_count": 0.21013,
+        "readability_fk": 0.0
+      }
+    },
+    "qwen2.5_3b": {
+      "samples": 32,
+      "positive": 4,
+      "negative": 28,
+      "intercept": -0.15089395,
+      "weights": {
+        "avg_sentence_length": 0.723915,
+        "sentence_count": 0.569581,
+        "source_length": 0.189907,
+        "entity_count": 0.132526,
+        "readability_fk": 0.0
+      }
+    },
+    "qwen2.5_7b": {
+      "samples": 32,
+      "positive": 6,
+      "negative": 26,
+      "intercept": -0.00841518,
+      "weights": {
+        "sentence_count": 0.193704,
+        "avg_sentence_length": 0.114009,
+        "entity_count": 0.047223,
+        "source_length": 0.038672,
+        "readability_fk": 0.0
+      }
+    }
+  },
+  "text_generation": {
+    "llama_llama-3.3-70b-versatile": {
+      "samples": 0,
+      "status": "SKIP - no training samples",
+      "weights": {}
+    },
+    "qwen2.5_0.5b": {
+      "samples": 95,
+      "positive": 10,
+      "negative": 85,
+      "intercept": -0.0778493,
+      "weights": {
+        "token_count": 0.438647,
+        "modal_verb_count": 0.0,
+        "readability_fk": 0.0,
+        "sentence_count": 0.0,
+        "entity_count": 0.0
+      }
+    },
+    "qwen2.5_3b": {
+      "samples": 22,
+      "positive": 3,
+      "negative": 19,
+      "intercept": -0.13077652,
+      "weights": {
+        "token_count": 0.461417,
+        "modal_verb_count": 0.444077,
+        "readability_fk": 0.0,
+        "sentence_count": 0.0,
+        "entity_count": 0.0
+      }
+    },
+    "qwen2.5_7b": {
+      "samples": 95,
+      "positive": 2,
+      "negative": 93,
+      "intercept": -1.24897571,
+      "weights": {
+        "token_count": 1.912729,
+        "modal_verb_count": 0.0,
+        "readability_fk": 0.0,
+        "sentence_count": 0.0,
+        "entity_count": 0.0
+      }
+    }
+  }
+}

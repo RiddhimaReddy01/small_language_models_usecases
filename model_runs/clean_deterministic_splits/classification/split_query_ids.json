@@ -1,0 +1,38 @@
+{
+  "train": [
+    "classification:10",
+    "classification:11",
+    "classification:12",
+    "classification:13",
+    "classification:14",
+    "classification:15",
+    "classification:16",
+    "classification:18",
+    "classification:2",
+    "classification:21",
+    "classification:22",
+    "classification:23",
+    "classification:26",
+    "classification:28",
+    "classification:29",
+    "classification:31",
+    "classification:32"
+  ],
+  "val": [
+    "classification:0",
+    "classification:1",
+    "classification:17",
+    "classification:24",
+    "classification:25",
+    "classification:3",
+    "classification:30",
+    "classification:33",
+    "classification:34"
+  ],
+  "test": [
+    "classification:19",
+    "classification:20",
+    "classification:27",
+    "classification:35"
+  ]
+}

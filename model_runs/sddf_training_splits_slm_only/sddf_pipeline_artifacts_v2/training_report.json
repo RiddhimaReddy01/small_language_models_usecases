@@ -1,0 +1,127 @@
+{
+  "runs": [
+    {
+      "task": "classification",
+      "model": "qwen2.5_0.5b",
+      "artifact": "C:\\Users\\riddh\\OneDrive\\Desktop\\SLM use cases\\model_runs\\sddf_training_splits_slm_only\\sddf_pipeline_artifacts_v2\\classification\\qwen2.5_0.5b.json"
+    },
+    {
+      "task": "classification",
+      "model": "qwen2.5_3b",
+      "artifact": "C:\\Users\\riddh\\OneDrive\\Desktop\\SLM use cases\\model_runs\\sddf_training_splits_slm_only\\sddf_pipeline_artifacts_v2\\classification\\qwen2.5_3b.json"
+    },
+    {
+      "task": "classification",
+      "model": "qwen2.5_7b",
+      "artifact": "C:\\Users\\riddh\\OneDrive\\Desktop\\SLM use cases\\model_runs\\sddf_training_splits_slm_only\\sddf_pipeline_artifacts_v2\\classification\\qwen2.5_7b.json"
+    }
+  ],
+  "errors": [
+    {
+      "task": "code_generation",
+      "model": "qwen2.5_0.5b",
+      "error": "Constant features on train: ['embedding_query_context_cosine']"
+    },
+    {
+      "task": "code_generation",
+      "model": "qwen2.5_3b",
+      "error": "Constant features on train: ['embedding_query_context_cosine']"
+    },
+    {
+      "task": "code_generation",
+      "model": "qwen2.5_7b",
+      "error": "Constant features on train: ['embedding_query_context_cosine']"
+    },
+    {
+      "task": "information_extraction",
+      "model": "qwen2.5_0.5b",
+      "error": "Constant features on train: ['embedding_query_context_cosine']"
+    },
+    {
+      "task": "information_extraction",
+      "model": "qwen2.5_3b",
+      "error": "Constant features on train: ['embedding_query_context_cosine']"
+    },
+    {
+      "task": "information_extraction",
+      "model": "qwen2.5_7b",
+      "error": "Constant features on train: ['embedding_query_context_cosine']"
+    },
+    {
+      "task": "instruction_following",
+      "model": "qwen2.5_0.5b",
+      "error": "Constant features on train: ['embedding_query_context_cosine']"
+    },
+    {
+      "task": "instruction_following",
+      "model": "qwen2.5_3b",
+      "error": "Constant features on train: ['embedding_query_context_cosine']"
+    },
+    {
+      "task": "instruction_following",
+      "model": "qwen2.5_7b",
+      "error": "Constant features on train: ['embedding_query_context_cosine']"
+    },
+    {
+      "task": "maths",
+      "model": "qwen2.5_0.5b",
+      "error": "Constant features on train: ['equation_marker_density', 'embedding_query_context_cosine']"
+    },
+    {
+      "task": "maths",
+      "model": "qwen2.5_3b",
+      "error": "Constant features on train: ['equation_marker_density', 'embedding_query_context_cosine']"
+    },
+    {
+      "task": "maths",
+      "model": "qwen2.5_7b",
+      "error": "Constant features on train: ['equation_marker_density', 'embedding_query_context_cosine']"
+    },
+    {
+      "task": "retrieval_grounded",
+      "model": "qwen2.5_0.5b",
+      "error": "Constant features on train: ['embedding_query_context_cosine']"
+    },
+    {
+      "task": "retrieval_grounded",
+      "model": "qwen2.5_3b",
+      "error": "Constant features on train: ['embedding_query_context_cosine']"
+    },
+    {
+      "task": "retrieval_grounded",
+      "model": "qwen2.5_7b",
+      "error": "Constant features on train: ['embedding_query_context_cosine']"
+    },
+    {
+      "task": "summarization",
+      "model": "qwen2.5_0.5b",
+      "error": "Constant features on train: ['embedding_query_context_cosine']"
+    },
+    {
+      "task": "summarization",
+      "model": "qwen2.5_3b",
+      "error": "Constant features on train: ['embedding_query_context_cosine']"
+    },
+    {
+      "task": "summarization",
+      "model": "qwen2.5_7b",
+      "error": "Constant features on train: ['embedding_query_context_cosine']"
+    },
+    {
+      "task": "text_generation",
+      "model": "qwen2.5_0.5b",
+      "error": "Constant features on train: ['creativity_keyword_density', 'topic_keyword_density', 'embedding_query_context_cosine']"
+    },
+    {
+      "task": "text_generation",
+      "model": "qwen2.5_3b",
+      "error": "Constant features on train: ['creativity_keyword_density', 'topic_keyword_density', 'embedding_query_context_cosine']"
+    },
+    {
+      "task": "text_generation",
+      "model": "qwen2.5_7b",
+      "error": "Constant features on train: ['creativity_keyword_density', 'topic_keyword_density', 'embedding_query_context_cosine']"
+    }
+  ],
+  "feature_schema_path": "C:\\Users\\riddh\\OneDrive\\Desktop\\SLM use cases\\framework\\benchmarking\\sddf_feature_schema_v2.json"
+}

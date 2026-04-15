@@ -1,0 +1,215 @@
+{
+  "runs": [
+    {
+      "task": "classification",
+      "model": "qwen2.5_0.5b",
+      "tau": 0.49999999999999994,
+      "artifact_path": "C:\\Users\\riddh\\OneDrive\\Desktop\\SLM use cases\\model_runs\\sddf_training_splits_slm_only\\sddf_pipeline_artifacts_v2\\classification\\qwen2.5_0.5b.json",
+      "test_metrics": {
+        "n": 42.0,
+        "positive_rate": 0.6190476190476191,
+        "avg_pred_fail_prob": 0.49341134630189404,
+        "f1": 0.7441860465116279,
+        "accuracy": 0.7380952380952381,
+        "risk_weighted": 0.6190476190476191
+      }
+    },
+    {
+      "task": "classification",
+      "model": "qwen2.5_3b",
+      "tau": 0.39999999999999997,
+      "artifact_path": "C:\\Users\\riddh\\OneDrive\\Desktop\\SLM use cases\\model_runs\\sddf_training_splits_slm_only\\sddf_pipeline_artifacts_v2\\classification\\qwen2.5_3b.json",
+      "test_metrics": {
+        "n": 42.0,
+        "positive_rate": 0.38095238095238093,
+        "avg_pred_fail_prob": 0.4574074960241818,
+        "f1": 0.7777777777777778,
+        "accuracy": 0.8095238095238095,
+        "risk_weighted": 0.38095238095238093
+      }
+    },
+    {
+      "task": "classification",
+      "model": "qwen2.5_7b",
+      "tau": 0.2,
+      "artifact_path": "C:\\Users\\riddh\\OneDrive\\Desktop\\SLM use cases\\model_runs\\sddf_training_splits_slm_only\\sddf_pipeline_artifacts_v2\\classification\\qwen2.5_7b.json",
+      "test_metrics": {
+        "n": 42.0,
+        "positive_rate": 0.6190476190476191,
+        "avg_pred_fail_prob": 0.5028095499865246,
+        "f1": 0.7575757575757576,
+        "accuracy": 0.6190476190476191,
+        "risk_weighted": 0.6190476190476191
+      }
+    },
+    {
+      "task": "code_generation",
+      "model": "qwen2.5_0.5b",
+      "tau": 0.05,
+      "artifact_path": "C:\\Users\\riddh\\OneDrive\\Desktop\\SLM use cases\\model_runs\\sddf_training_splits_slm_only\\sddf_pipeline_artifacts_v2\\code_generation\\qwen2.5_0.5b.json",
+      "test_metrics": {
+        "n": 54.0,
+        "positive_rate": 0.7777777777777778,
+        "avg_pred_fail_prob": 0.6301289906848054,
+        "f1": 0.875,
+        "accuracy": 0.7777777777777778,
+        "risk_weighted": 0.7777777777777778
+      }
+    },
+    {
+      "task": "code_generation",
+      "model": "qwen2.5_3b",
+      "tau": 0.1,
+      "artifact_path": "C:\\Users\\riddh\\OneDrive\\Desktop\\SLM use cases\\model_runs\\sddf_training_splits_slm_only\\sddf_pipeline_artifacts_v2\\code_generation\\qwen2.5_3b.json",
+      "test_metrics": {
+        "n": 54.0,
+        "positive_rate": 0.4444444444444444,
+        "avg_pred_fail_prob": 0.3885209270013768,
+        "f1": 0.6575342465753424,
+        "accuracy": 0.5370370370370371,
+        "risk_weighted": 0.4444444444444444
+      }
+    },
+    {
+      "task": "code_generation",
+      "model": "qwen2.5_7b",
+      "tau": 0.44999999999999996,
+      "artifact_path": "C:\\Users\\riddh\\OneDrive\\Desktop\\SLM use cases\\model_runs\\sddf_training_splits_slm_only\\sddf_pipeline_artifacts_v2\\code_generation\\qwen2.5_7b.json",
+      "test_metrics": {
+        "n": 54.0,
+        "positive_rate": 0.42592592592592593,
+        "avg_pred_fail_prob": 0.38206513681515236,
+        "f1": 0.6086956521739131,
+        "accuracy": 0.6666666666666666,
+        "risk_weighted": 0.42592592592592593
+      }
+    },
+    {
+      "task": "information_extraction",
+      "model": "qwen2.5_0.5b",
+      "tau": 0.05,
+      "artifact_path": "C:\\Users\\riddh\\OneDrive\\Desktop\\SLM use cases\\model_runs\\sddf_training_splits_slm_only\\sddf_pipeline_artifacts_v2\\information_extraction\\qwen2.5_0.5b.json",
+      "test_metrics": {
+        "n": 35.0,
+        "positive_rate": 0.45714285714285713,
+        "avg_pred_fail_prob": 0.46463981190875686,
+        "f1": 0.64,
+        "accuracy": 0.4857142857142857,
+        "risk_weighted": 0.45714285714285713
+      }
+    },
+    {
+      "task": "information_extraction",
+      "model": "qwen2.5_3b",
+      "tau": 0.15,
+      "artifact_path": "C:\\Users\\riddh\\OneDrive\\Desktop\\SLM use cases\\model_runs\\sddf_training_splits_slm_only\\sddf_pipeline_artifacts_v2\\information_extraction\\qwen2.5_3b.json",
+      "test_metrics": {
+        "n": 35.0,
+        "positive_rate": 0.2857142857142857,
+        "avg_pred_fail_prob": 0.4881550845755352,
+        "f1": 0.37209302325581395,
+        "accuracy": 0.22857142857142856,
+        "risk_weighted": 0.2857142857142857
+      }
+    },
+    {
+      "task": "information_extraction",
+      "model": "qwen2.5_7b",
+      "tau": 0.15,
+      "artifact_path": "C:\\Users\\riddh\\OneDrive\\Desktop\\SLM use cases\\model_runs\\sddf_training_splits_slm_only\\sddf_pipeline_artifacts_v2\\information_extraction\\qwen2.5_7b.json",
+      "test_metrics": {
+        "n": 35.0,
+        "positive_rate": 0.22857142857142856,
+        "avg_pred_fail_prob": 0.4415115959622687,
+        "f1": 0.3888888888888889,
+        "accuracy": 0.37142857142857144,
+        "risk_weighted": 0.22857142857142856
+      }
+    },
+    {
+      "task": "instruction_following",
+      "model": "qwen2.5_0.5b",
+      "tau": 0.39999999999999997,
+      "artifact_path": "C:\\Users\\riddh\\OneDrive\\Desktop\\SLM use cases\\model_runs\\sddf_training_splits_slm_only\\sddf_pipeline_artifacts_v2\\instruction_following\\qwen2.5_0.5b.json",
+      "test_metrics": {
+        "n": 54.0,
+        "positive_rate": 0.42592592592592593,
+        "avg_pred_fail_prob": 0.4255192549340582,
+        "f1": 0.6545454545454545,
+        "accuracy": 0.6481481481481481,
+        "risk_weighted": 0.42592592592592593
+      }
+    },
+    {
+      "task": "instruction_following",
+      "model": "qwen2.5_3b",
+      "tau": 0.2,
+      "artifact_path": "C:\\Users\\riddh\\OneDrive\\Desktop\\SLM use cases\\model_runs\\sddf_training_splits_slm_only\\sddf_pipeline_artifacts_v2\\instruction_following\\qwen2.5_3b.json",
+      "test_metrics": {
+        "n": 54.0,
+        "positive_rate": 0.12962962962962962,
+        "avg_pred_fail_prob": 0.4873780085872536,
+        "f1": 0.24561403508771928,
+        "accuracy": 0.2037037037037037,
+        "risk_weighted": 0.12962962962962962
+      }
+    },
+    {
+      "task": "instruction_following",
+      "model": "qwen2.5_7b",
+      "tau": 0.3,
+      "artifact_path": "C:\\Users\\riddh\\OneDrive\\Desktop\\SLM use cases\\model_runs\\sddf_training_splits_slm_only\\sddf_pipeline_artifacts_v2\\instruction_following\\qwen2.5_7b.json",
+      "test_metrics": {
+        "n": 54.0,
+        "positive_rate": 0.2037037037037037,
+        "avg_pred_fail_prob": 0.4211520260183956,
+        "f1": 0.34615384615384615,
+        "accuracy": 0.37037037037037035,
+        "risk_weighted": 0.2037037037037037
+      }
+    },
+    {
+      "task": "retrieval_grounded",
+      "model": "qwen2.5_0.5b",
+      "tau": 0.1,
+      "artifact_path": "C:\\Users\\riddh\\OneDrive\\Desktop\\SLM use cases\\model_runs\\sddf_training_splits_slm_only\\sddf_pipeline_artifacts_v2\\retrieval_grounded\\qwen2.5_0.5b.json",
+      "test_metrics": {
+        "n": 63.0,
+        "positive_rate": 0.4444444444444444,
+        "avg_pred_fail_prob": 0.5080120573908533,
+        "f1": 0.6511627906976745,
+        "accuracy": 0.5238095238095238,
+        "risk_weighted": 0.4444444444444444
+      }
+    },
+    {
+      "task": "retrieval_grounded",
+      "model": "qwen2.5_3b",
+      "tau": 0.5499999999999999,
+      "artifact_path": "C:\\Users\\riddh\\OneDrive\\Desktop\\SLM use cases\\model_runs\\sddf_training_splits_slm_only\\sddf_pipeline_artifacts_v2\\retrieval_grounded\\qwen2.5_3b.json",
+      "test_metrics": {
+        "n": 63.0,
+        "positive_rate": 0.36507936507936506,
+        "avg_pred_fail_prob": 0.47038204613118756,
+        "f1": 0.6122448979591837,
+        "accuracy": 0.6984126984126984,
+        "risk_weighted": 0.36507936507936506
+      }
+    },
+    {
+      "task": "retrieval_grounded",
+      "model": "qwen2.5_7b",
+      "tau": 0.3,
+      "artifact_path": "C:\\Users\\riddh\\OneDrive\\Desktop\\SLM use cases\\model_runs\\sddf_training_splits_slm_only\\sddf_pipeline_artifacts_v2\\retrieval_grounded\\qwen2.5_7b.json",
+      "test_metrics": {
+        "n": 63.0,
+        "positive_rate": 0.3333333333333333,
+        "avg_pred_fail_prob": 0.45852503085038154,
+        "f1": 0.6774193548387096,
+        "accuracy": 0.6825396825396826,
+        "risk_weighted": 0.3333333333333333
+      }
+    }
+  ],
+  "errors": []
+}

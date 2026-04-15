@@ -1,0 +1,123 @@
+================================================================================
+COMMON SAMPLES ANALYSIS - EXECUTIVE SUMMARY
+================================================================================
+
+FINDING: Only 2 tasks have models evaluated on identical or overlapping samples
+
+TASKS WITH COMPARABLE WEIGHTS (Models trained on same/overlapping samples):
+================================================================================
+
+1. MATHS TASK
+   - Common samples: 135 (100% overlap - all models)
+   - Status: FULLY COMPARABLE - All models trained on identical 135 samples
+   
+   Model Performance on Common Samples:
+   - llama-3.3-70b:    98/135 correct (72.6%)
+   - qwen2.5_3b:       90/135 correct (66.7%)
+   - qwen2.5_7b:       28/135 correct (20.7%)
+   - qwen2.5_0.5b:      0/135 correct (0.0%)  <-- UNRELIABLE
+   
+   Agreement Statistics:
+   - All models fail:  27/135 samples (20% - genuinely hard math)
+   - Mixed results:   108/135 samples (80% - performance varies)
+   - All models succeed: 0 samples (no easy math problems)
+   
+   => Weight comparison IS VALID across all models on maths
+   => qwen0.5b weights are unreliable (0% success rate)
+
+2. CODE GENERATION TASK
+   - Common samples: 50 (100% overlap for qwen3b, 43% for others)
+   - Status: PARTIALLY COMPARABLE - All models trained on same 50 samples
+   
+   Model Performance on Common Samples:
+   - qwen2.5_3b:       20/50 correct (40.0%)
+   - llama-3.3-70b:    19/50 correct (38.0%)
+   - qwen2.5_7b:       18/50 correct (36.0%)
+   - qwen2.5_0.5b:      0/50 correct (0.0%)  <-- UNRELIABLE
+   
+   Agreement Statistics:
+   - All models fail:  28/50 samples (56% - genuinely hard code)
+   - Mixed results:    22/50 samples (44% - some models solve)
+   - All models succeed: 0 samples (no easy code problems)
+   
+   => Weight comparison IS VALID for the 50 common samples
+   => qwen0.5b weights are unreliable (0% success rate)
+   => Larger models have 68 additional samples not in qwen3b
+
+
+TASKS WITHOUT COMPARABLE WEIGHTS (Models on different samples):
+================================================================================
+
+These 6 tasks have ZERO common samples across models:
+- CLASSIFICATION:        0 common samples (models on completely different queries)
+- INFORMATION_EXTRACTION: 0 common samples (models on completely different queries)
+- INSTRUCTION_FOLLOWING: 0 common samples (models on completely different queries)
+- RETRIEVAL_GROUNDED:    0 common samples (models on completely different queries)
+- SUMMARIZATION:         0 common samples (models on completely different queries)
+- TEXT_GENERATION:       0 common samples (models on completely different queries)
+
+=> Weight comparison INVALID across models for these tasks
+=> Can only use weights individually per model
+
+
+CRITICAL ISSUE: qwen2.5_0.5b
+================================================================================
+
+Problem: qwen0.5b has 0% success rate on BOTH comparable tasks (maths, code_gen)
+- Maths:    0/135 correct (100% failure rate)
+- Code_gen: 0/50 correct (100% failure rate)
+
+Why this is problematic:
+- Logistic regression needs both positive and negative examples to learn
+- With 0% success rate, the model learned from only negative examples
+- Weight magnitudes may not reflect true feature importance
+- Predictions may be unreliable for difficulty scoring
+
+Recommendation:
+- Do NOT use qwen0.5b for production routing (or use with extreme caution)
+- Consider it a "fallback to LLM" model rather than SLM with difficulty routing
+- If deploying, validate against manual test set first
+
+
+SUMMARY TABLE
+================================================================================
+
+Task              | Common | Total  | Overlap% | Comparable? | Use Weights?
+                  |Samples | Models |          |             |
+-----------------+--------+--------+----------+-------------+------------------
+maths             | 135    | 4      | 100%     | YES         | Trust all models
+code_generation   | 50     | 4      | 43-100%  | PARTIAL     | Trust on 50 overlap
+classification    | 0      | 4      | 0%       | NO          | Per-model only
+information_extr. | 0      | 4      | 0%       | NO          | Per-model only
+instruction_foll. | 0      | 4      | 0%       | NO          | Per-model only
+retrieval_ground. | 0      | 4      | 0%       | NO          | Per-model only
+summarization     | 0      | 4      | 0%       | NO          | Per-model only
+text_generation   | 0      | 4      | 0%       | NO          | Per-model only
+
+TOTAL:           185/    32     6-8%     2 YES, 6 NO   Use with caveats
+                 1078
+
+
+RECOMMENDATIONS
+================================================================================
+
+1. FOR PRODUCTION DEPLOYMENT:
+   - Use maths weights directly across models (most reliable)
+   - Use code_generation weights on the 50 common samples only
+   - For other tasks, deploy per-model routing or fall back to llama70b
+   
+2. FOR FUTURE DATA COLLECTION:
+   - Ensure ALL models evaluate on the SAME sample set per task
+   - Current approach of filtering by model creates incomparable data
+   - Use same train/val/test split across all models
+   
+3. FOR qwen0.5b:
+   - Consider this model as "always route to LLM" (capability too low)
+   - Or exclude from feature-based routing entirely
+   - Use only for backwards compatibility if needed
+   
+4. FOR DATA QUALITY:
+   - Investigate why 6 tasks have 0% sample overlap
+   - May indicate incomplete inference runs for some models
+   - Should collect missing samples if possible (but you said cannot rerun)
+

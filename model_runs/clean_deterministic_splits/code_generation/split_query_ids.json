@@ -1,0 +1,38 @@
+{
+  "train": [
+    "code_generation:0",
+    "code_generation:1",
+    "code_generation:10",
+    "code_generation:14",
+    "code_generation:15",
+    "code_generation:16",
+    "code_generation:19",
+    "code_generation:20",
+    "code_generation:21",
+    "code_generation:24",
+    "code_generation:25",
+    "code_generation:27",
+    "code_generation:30",
+    "code_generation:31",
+    "code_generation:35",
+    "code_generation:37",
+    "code_generation:39",
+    "code_generation:4",
+    "code_generation:40"
+  ],
+  "val": [
+    "code_generation:12",
+    "code_generation:18",
+    "code_generation:22",
+    "code_generation:34",
+    "code_generation:36"
+  ],
+  "test": [
+    "code_generation:11",
+    "code_generation:17",
+    "code_generation:2",
+    "code_generation:26",
+    "code_generation:29",
+    "code_generation:32"
+  ]
+}

@@ -1,0 +1,295 @@
+{
+  "seed": "slm-clean-v1",
+  "train_ratio": 0.6,
+  "val_ratio": 0.2,
+  "test_ratio": 0.2,
+  "tasks": {
+    "classification": {
+      "models": {
+        "llama_llama-3.3-70b-versatile": {
+          "clean_rows_before_intersection": 250,
+          "rows_after_intersection": 30,
+          "split_sizes": {
+            "train": 17,
+            "val": 9,
+            "test": 4
+          }
+        },
+        "qwen2.5_0.5b": {
+          "clean_rows_before_intersection": 75,
+          "rows_after_intersection": 30,
+          "split_sizes": {
+            "train": 17,
+            "val": 9,
+            "test": 4
+          }
+        },
+        "qwen2.5_3b": {
+          "clean_rows_before_intersection": 400,
+          "rows_after_intersection": 30,
+          "split_sizes": {
+            "train": 17,
+            "val": 9,
+            "test": 4
+          }
+        }
+      },
+      "common_query_count": 30,
+      "split_sizes": {
+        "train": 17,
+        "val": 9,
+        "test": 4
+      }
+    },
+    "code_generation": {
+      "models": {
+        "llama_llama-3.3-70b-versatile": {
+          "clean_rows_before_intersection": 239,
+          "rows_after_intersection": 30,
+          "split_sizes": {
+            "train": 19,
+            "val": 5,
+            "test": 6
+          }
+        },
+        "qwen2.5_0.5b": {
+          "clean_rows_before_intersection": 74,
+          "rows_after_intersection": 30,
+          "split_sizes": {
+            "train": 19,
+            "val": 5,
+            "test": 6
+          }
+        },
+        "qwen2.5_3b": {
+          "clean_rows_before_intersection": 421,
+          "rows_after_intersection": 30,
+          "split_sizes": {
+            "train": 19,
+            "val": 5,
+            "test": 6
+          }
+        }
+      },
+      "common_query_count": 30,
+      "split_sizes": {
+        "train": 19,
+        "val": 5,
+        "test": 6
+      }
+    },
+    "information_extraction": {
+      "models": {
+        "llama_llama-3.3-70b-versatile": {
+          "clean_rows_before_intersection": 250,
+          "rows_after_intersection": 30,
+          "split_sizes": {
+            "train": 27,
+            "val": 1,
+            "test": 2
+          }
+        },
+        "qwen2.5_0.5b": {
+          "clean_rows_before_intersection": 75,
+          "rows_after_intersection": 30,
+          "split_sizes": {
+            "train": 27,
+            "val": 1,
+            "test": 2
+          }
+        },
+        "qwen2.5_3b": {
+          "clean_rows_before_intersection": 250,
+          "rows_after_intersection": 30,
+          "split_sizes": {
+            "train": 27,
+            "val": 1,
+            "test": 2
+          }
+        }
+      },
+      "common_query_count": 30,
+      "split_sizes": {
+        "train": 27,
+        "val": 1,
+        "test": 2
+      }
+    },
+    "instruction_following": {
+      "models": {
+        "llama_llama-3.3-70b-versatile": {
+          "clean_rows_before_intersection": 250,
+          "rows_after_intersection": 30,
+          "split_sizes": {
+            "train": 15,
+            "val": 5,
+            "test": 10
+          }
+        },
+        "qwen2.5_0.5b": {
+          "clean_rows_before_intersection": 75,
+          "rows_after_intersection": 30,
+          "split_sizes": {
+            "train": 15,
+            "val": 5,
+            "test": 10
+          }
+        },
+        "qwen2.5_3b": {
+          "clean_rows_before_intersection": 500,
+          "rows_after_intersection": 30,
+          "split_sizes": {
+            "train": 15,
+            "val": 5,
+            "test": 10
+          }
+        }
+      },
+      "common_query_count": 30,
+      "split_sizes": {
+        "train": 15,
+        "val": 5,
+        "test": 10
+      }
+    },
+    "maths": {
+      "models": {
+        "llama_llama-3.3-70b-versatile": {
+          "clean_rows_before_intersection": 250,
+          "rows_after_intersection": 30,
+          "split_sizes": {
+            "train": 20,
+            "val": 4,
+            "test": 6
+          }
+        },
+        "qwen2.5_0.5b": {
+          "clean_rows_before_intersection": 75,
+          "rows_after_intersection": 30,
+          "split_sizes": {
+            "train": 20,
+            "val": 4,
+            "test": 6
+          }
+        },
+        "qwen2.5_3b": {
+          "clean_rows_before_intersection": 500,
+          "rows_after_intersection": 30,
+          "split_sizes": {
+            "train": 20,
+            "val": 4,
+            "test": 6
+          }
+        }
+      },
+      "common_query_count": 30,
+      "split_sizes": {
+        "train": 20,
+        "val": 4,
+        "test": 6
+      }
+    },
+    "retrieval_grounded": {
+      "models": {
+        "llama_llama-3.3-70b-versatile": {
+          "clean_rows_before_intersection": 250,
+          "rows_after_intersection": 30,
+          "split_sizes": {
+            "train": 22,
+            "val": 2,
+            "test": 6
+          }
+        },
+        "qwen2.5_0.5b": {
+          "clean_rows_before_intersection": 75,
+          "rows_after_intersection": 30,
+          "split_sizes": {
+            "train": 22,
+            "val": 2,
+            "test": 6
+          }
+        },
+        "qwen2.5_3b": {
+          "clean_rows_before_intersection": 500,
+          "rows_after_intersection": 30,
+          "split_sizes": {
+            "train": 22,
+            "val": 2,
+            "test": 6
+          }
+        }
+      },
+      "common_query_count": 30,
+      "split_sizes": {
+        "train": 22,
+        "val": 2,
+        "test": 6
+      }
+    },
+    "summarization": {
+      "models": {
+        "llama_llama-3.3-70b-versatile": {
+          "clean_rows_before_intersection": 216,
+          "rows_after_intersection": 30,
+          "split_sizes": {
+            "train": 17,
+            "val": 7,
+            "test": 6
+          }
+        },
+        "qwen2.5_0.5b": {
+          "clean_rows_before_intersection": 75,
+          "rows_after_intersection": 30,
+          "split_sizes": {
+            "train": 17,
+            "val": 7,
+            "test": 6
+          }
+        },
+        "qwen2.5_3b": {
+          "clean_rows_before_intersection": 308,
+          "rows_after_intersection": 30,
+          "split_sizes": {
+            "train": 17,
+            "val": 7,
+            "test": 6
+          }
+        }
+      },
+      "common_query_count": 30,
+      "split_sizes": {
+        "train": 17,
+        "val": 7,
+        "test": 6
+      }
+    },
+    "text_generation": {
+      "models": {
+        "llama_llama-3.3-70b-versatile": {
+          "clean_rows_before_intersection": 249,
+          "rows_after_intersection": 30,
+          "split_sizes": {
+            "train": 17,
+            "val": 5,
+            "test": 8
+          }
+        },
+        "qwen2.5_0.5b": {
+          "clean_rows_before_intersection": 47,
+          "rows_after_intersection": 30,
+          "split_sizes": {
+            "train": 17,
+            "val": 5,
+            "test": 8
+          }
+        }
+      },
+      "common_query_count": 30,
+      "split_sizes": {
+        "train": 17,
+        "val": 5,
+        "test": 8
+      }
+    }
+  }
+}

@@ -1,0 +1,15 @@
+task,model,test_reason,base_cov,base_cap,base_risk,worst_drop,gate_flip_count
+classification,qwen2.5:0.5b,cap_below+risk_above,0.7647058823529411,0.5076923076923077,0.2756923076923077,"drop_avg_sentence_length (?util +0.000, ?cap +0.000, ?risk +0.000, ?cov +0.000)",0
+code_generation,qwen2.5:0.5b,cap_below+risk_above,0.0,0.0,1.0,"drop_algorithm_keyword_count (?util +0.000, ?cap +0.000, ?risk +0.000, ?cov +0.000)",0
+code_generation,qwen2.5:3b,cap_below+risk_above,0.7348484848484849,0.3917525773195876,0.5489432989690722,"drop_algorithm_keyword_count (?util +0.000, ?cap +0.000, ?risk +0.000, ?cov +0.000)",0
+information_extraction,groq:llama-3.3-70b-versatile,cap_below,0.8157894736842105,0.7419354838709677,0.15483870967741936,"drop_avg_sentence_length (?util +0.000, ?cap +0.000, ?risk +0.000, ?cov +0.000)",5
+information_extraction,qwen2.5:0.5b,cap_below+risk_above,0.02631578947368421,0.5,0.30000000000000004,"drop_avg_sentence_length (?util +0.000, ?cap +0.000, ?risk +0.000, ?cov +0.000)",0
+information_extraction,qwen2.5:3b,cap_below+risk_above,0.0,0.0,1.0,"drop_avg_sentence_length (?util +0.000, ?cap +0.000, ?risk +0.000, ?cov +0.000)",0
+information_extraction,qwen2.5:7b,cap_below+risk_above,0.039473684210526314,0.6666666666666666,0.20000000000000004,"drop_avg_sentence_length (?util +0.000, ?cap +0.000, ?risk +0.000, ?cov +0.000)",5
+instruction_following,qwen2.5:0.5b,cap_below+risk_above,0.3283582089552239,0.5227272727272727,0.2505681818181818,"drop_format_keyword_count (?util +0.000, ?cap +0.000, ?risk +0.000, ?cov +0.000)",5
+maths,qwen2.5:0.5b,cap_below+risk_above,0.0,0.0,1.0,"drop_modal_verb_count (?util +0.000, ?cap +0.000, ?risk +0.000, ?cov +0.000)",0
+maths,qwen2.5:3b,cap_below+risk_above,0.06134969325153374,0.6,0.34199999999999997,"drop_modal_verb_count (?util +0.000, ?cap +0.000, ?risk +0.000, ?cov +0.000)",0
+maths,qwen2.5:7b,cap_below+risk_above,0.006134969325153374,0.0,0.855,"drop_modal_verb_count (?util +0.000, ?cap +0.000, ?risk +0.000, ?cov +0.000)",0
+summarization,qwen2.5:7b,cap_below,0.3695652173913043,0.5588235294117647,0.1060294117647059,"drop_avg_sentence_length (?util +0.000, ?cap +0.000, ?risk +0.000, ?cov +0.000)",5
+text_generation,qwen2.5:0.5b,cap_below+risk_above,0.0,0.0,1.0,"drop_entity_count (?util +0.000, ?cap +0.000, ?risk +0.000, ?cov +0.000)",0
+text_generation,qwen2.5:3b,cap_below+risk_above,0.0,0.0,1.0,"drop_entity_count (?util +0.000, ?cap +0.000, ?risk +0.000, ?cov +0.000)",0

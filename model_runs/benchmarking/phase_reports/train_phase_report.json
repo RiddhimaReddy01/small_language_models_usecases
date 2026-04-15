@@ -1,0 +1,3770 @@
+{
+  "classification": {
+    "task": "classification",
+    "report_split": "train",
+    "threshold_method": "continuous_knn_local_ci_strict_tau",
+    "models": {
+      "qwen2.5_0.5b": {
+        "task": "classification",
+        "model_key": "qwen2.5_0.5b",
+        "display_name": "qwen2.5:0.5b",
+        "report_split": "train",
+        "threshold_split": "val",
+        "tau_star_difficulty": null,
+        "hash_split_policy": "sha1(sample_id)%100: train<30, val<70, test>=70",
+        "train_curve_row_count": 35,
+        "val_threshold_row_count": 160,
+        "report_row_count": 35,
+        "split_contract_ok": true,
+        "leakage_violations": [],
+        "capability_threshold": 0.75,
+        "risk_threshold": 0.2,
+        "frozen_policy_check": true,
+        "pass_operating_gate": false,
+        "n_rows": 35,
+        "routing_quality": {
+          "tp": 0.0,
+          "fp": 0.0,
+          "fn": 18.0,
+          "tn": 17.0,
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "accuracy": 0.4857142857142857
+        },
+        "baseline_quality": {
+          "always_slm": {
+            "tp": 18.0,
+            "fp": 17.0,
+            "fn": 0.0,
+            "tn": 0.0,
+            "precision": 0.5142857142857142,
+            "recall": 1.0,
+            "f1": 0.6792452830188679,
+            "accuracy": 0.5142857142857142
+          },
+          "always_baseline": {
+            "tp": 0.0,
+            "fp": 0.0,
+            "fn": 18.0,
+            "tn": 17.0,
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "accuracy": 0.4857142857142857
+          }
+        },
+        "significance": {
+          "policy_vs_always_slm_mcnemar": {
+            "b": 18.0,
+            "c": 17.0,
+            "chi2": 0.0,
+            "p_value": 1.0,
+            "p_value_holm_adjusted": 1.0
+          },
+          "policy_vs_always_baseline_mcnemar": {
+            "b": 0.0,
+            "c": 0.0,
+            "chi2": 0.0,
+            "p_value": 1.0,
+            "p_value_holm_adjusted": 1.0
+          }
+        },
+        "coverage_slm": 0.0,
+        "coverage_slm_or_hybrid": 0.0,
+        "selected_capability": 0.0,
+        "selected_risk": 1.0,
+        "utility": -1.0,
+        "baseline_utility": {
+          "always_slm": 0.8565714285714285,
+          "always_baseline": -1.0
+        },
+        "calibration": {
+          "capability_ece": 0.04330857142857142,
+          "capability_brier": 0.1707965062857143,
+          "risk_ece": 0.024242857142857153,
+          "risk_brier": 0.05355828199999999
+        },
+        "bootstrap_ci_90": {
+          "precision": [
+            0.0,
+            0.0
+          ],
+          "recall": [
+            0.0,
+            0.0
+          ],
+          "f1": [
+            0.0,
+            0.0
+          ],
+          "accuracy": [
+            0.34285714285714286,
+            0.6285714285714286
+          ],
+          "coverage_slm": [
+            0.0,
+            0.0
+          ],
+          "selected_capability": [
+            0.0,
+            0.0
+          ],
+          "selected_risk": [
+            1.0,
+            1.0
+          ],
+          "utility": [
+            -1.0,
+            -1.0
+          ]
+        }
+      },
+      "qwen2.5_3b": {
+        "task": "classification",
+        "model_key": "qwen2.5_3b",
+        "display_name": "qwen2.5:3b",
+        "report_split": "train",
+        "threshold_split": "val",
+        "tau_star_difficulty": null,
+        "hash_split_policy": "sha1(sample_id)%100: train<30, val<70, test>=70",
+        "train_curve_row_count": 120,
+        "val_threshold_row_count": 160,
+        "report_row_count": 120,
+        "split_contract_ok": true,
+        "leakage_violations": [],
+        "capability_threshold": 0.75,
+        "risk_threshold": 0.2,
+        "frozen_policy_check": true,
+        "pass_operating_gate": false,
+        "n_rows": 120,
+        "routing_quality": {
+          "tp": 0.0,
+          "fp": 0.0,
+          "fn": 66.0,
+          "tn": 54.0,
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "accuracy": 0.45
+        },
+        "baseline_quality": {
+          "always_slm": {
+            "tp": 66.0,
+            "fp": 54.0,
+            "fn": 0.0,
+            "tn": 0.0,
+            "precision": 0.55,
+            "recall": 1.0,
+            "f1": 0.7096774193548387,
+            "accuracy": 0.55
+          },
+          "always_baseline": {
+            "tp": 0.0,
+            "fp": 0.0,
+            "fn": 66.0,
+            "tn": 54.0,
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "accuracy": 0.45
+          }
+        },
+        "significance": {
+          "policy_vs_always_slm_mcnemar": {
+            "b": 66.0,
+            "c": 54.0,
+            "chi2": 1.0083333333333333,
+            "p_value": 0.3153024520817455,
+            "p_value_holm_adjusted": 1.0
+          },
+          "policy_vs_always_baseline_mcnemar": {
+            "b": 0.0,
+            "c": 0.0,
+            "chi2": 0.0,
+            "p_value": 1.0,
+            "p_value_holm_adjusted": 1.0
+          }
+        },
+        "coverage_slm": 0.0,
+        "coverage_slm_or_hybrid": 0.0,
+        "selected_capability": 0.0,
+        "selected_risk": 1.0,
+        "utility": -1.0,
+        "baseline_utility": {
+          "always_slm": 0.8905,
+          "always_baseline": -1.0
+        },
+        "calibration": {
+          "capability_ece": 0.09739083333333326,
+          "capability_brier": 0.11045174741666668,
+          "risk_ece": 0.054492499999999916,
+          "risk_brier": 0.031120507583333328
+        },
+        "bootstrap_ci_90": {
+          "precision": [
+            0.0,
+            0.0
+          ],
+          "recall": [
+            0.0,
+            0.0
+          ],
+          "f1": [
+            0.0,
+            0.0
+          ],
+          "accuracy": [
+            0.375,
+            0.5166666666666667
+          ],
+          "coverage_slm": [
+            0.0,
+            0.0
+          ],
+          "selected_capability": [
+            0.0,
+            0.0
+          ],
+          "selected_risk": [
+            1.0,
+            1.0
+          ],
+          "utility": [
+            -1.0,
+            -1.0
+          ]
+        }
+      },
+      "qwen2.5_7b": {
+        "task": "classification",
+        "model_key": "qwen2.5_7b",
+        "display_name": "qwen2.5:7b",
+        "report_split": "train",
+        "threshold_split": "val",
+        "tau_star_difficulty": null,
+        "hash_split_policy": "sha1(sample_id)%100: train<30, val<70, test>=70",
+        "train_curve_row_count": 120,
+        "val_threshold_row_count": 160,
+        "report_row_count": 120,
+        "split_contract_ok": true,
+        "leakage_violations": [],
+        "capability_threshold": 0.75,
+        "risk_threshold": 0.2,
+        "frozen_policy_check": true,
+        "pass_operating_gate": false,
+        "n_rows": 120,
+        "routing_quality": {
+          "tp": 0.0,
+          "fp": 0.0,
+          "fn": 57.0,
+          "tn": 63.0,
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "accuracy": 0.525
+        },
+        "baseline_quality": {
+          "always_slm": {
+            "tp": 57.0,
+            "fp": 63.0,
+            "fn": 0.0,
+            "tn": 0.0,
+            "precision": 0.475,
+            "recall": 1.0,
+            "f1": 0.6440677966101694,
+            "accuracy": 0.475
+          },
+          "always_baseline": {
+            "tp": 0.0,
+            "fp": 0.0,
+            "fn": 57.0,
+            "tn": 63.0,
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "accuracy": 0.525
+          }
+        },
+        "significance": {
+          "policy_vs_always_slm_mcnemar": {
+            "b": 57.0,
+            "c": 63.0,
+            "chi2": 0.20833333333333334,
+            "p_value": 0.6480768681391462,
+            "p_value_holm_adjusted": 1.0
+          },
+          "policy_vs_always_baseline_mcnemar": {
+            "b": 0.0,
+            "c": 0.0,
+            "chi2": 0.0,
+            "p_value": 1.0,
+            "p_value_holm_adjusted": 1.0
+          }
+        },
+        "coverage_slm": 0.0,
+        "coverage_slm_or_hybrid": 0.0,
+        "selected_capability": 0.0,
+        "selected_risk": 1.0,
+        "utility": -1.0,
+        "baseline_utility": {
+          "always_slm": 0.8280833333333333,
+          "always_baseline": -1.0
+        },
+        "calibration": {
+          "capability_ece": 0.02031249999999995,
+          "capability_brier": 0.24422299124999997,
+          "risk_ece": 0.010997499999999995,
+          "risk_brier": 0.07521443725
+        },
+        "bootstrap_ci_90": {
+          "precision": [
+            0.0,
+            0.0
+          ],
+          "recall": [
+            0.0,
+            0.0
+          ],
+          "f1": [
+            0.0,
+            0.0
+          ],
+          "accuracy": [
+            0.45,
+            0.592083333333333
+          ],
+          "coverage_slm": [
+            0.0,
+            0.0
+          ],
+          "selected_capability": [
+            0.0,
+            0.0
+          ],
+          "selected_risk": [
+            1.0,
+            1.0
+          ],
+          "utility": [
+            -1.0,
+            -1.0
+          ]
+        }
+      },
+      "llama_llama-3.3-70b-versatile": {
+        "task": "classification",
+        "model_key": "llama_llama-3.3-70b-versatile",
+        "display_name": "groq:llama-3.3-70b-versatile",
+        "report_split": "train",
+        "threshold_split": "val",
+        "tau_star_difficulty": null,
+        "hash_split_policy": "sha1(sample_id)%100: train<30, val<70, test>=70",
+        "train_curve_row_count": 120,
+        "val_threshold_row_count": 160,
+        "report_row_count": 120,
+        "split_contract_ok": true,
+        "leakage_violations": [],
+        "capability_threshold": 0.75,
+        "risk_threshold": 0.2,
+        "frozen_policy_check": true,
+        "pass_operating_gate": false,
+        "n_rows": 120,
+        "routing_quality": {
+          "tp": 0.0,
+          "fp": 0.0,
+          "fn": 71.0,
+          "tn": 49.0,
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "accuracy": 0.4083333333333333
+        },
+        "baseline_quality": {
+          "always_slm": {
+            "tp": 71.0,
+            "fp": 49.0,
+            "fn": 0.0,
+            "tn": 0.0,
+            "precision": 0.5916666666666667,
+            "recall": 1.0,
+            "f1": 0.743455497382199,
+            "accuracy": 0.5916666666666667
+          },
+          "always_baseline": {
+            "tp": 0.0,
+            "fp": 0.0,
+            "fn": 71.0,
+            "tn": 49.0,
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "accuracy": 0.4083333333333333
+          }
+        },
+        "significance": {
+          "policy_vs_always_slm_mcnemar": {
+            "b": 71.0,
+            "c": 49.0,
+            "chi2": 3.675,
+            "p_value": 0.05523425371806384,
+            "p_value_holm_adjusted": 0.8837480594890215
+          },
+          "policy_vs_always_baseline_mcnemar": {
+            "b": 0.0,
+            "c": 0.0,
+            "chi2": 0.0,
+            "p_value": 1.0,
+            "p_value_holm_adjusted": 1.0
+          }
+        },
+        "coverage_slm": 0.0,
+        "coverage_slm_or_hybrid": 0.0,
+        "selected_capability": 0.0,
+        "selected_risk": 1.0,
+        "utility": -1.0,
+        "baseline_utility": {
+          "always_slm": 0.91925,
+          "always_baseline": -1.0
+        },
+        "calibration": {
+          "capability_ece": 0.050736666666666666,
+          "capability_brier": 0.1995996105,
+          "risk_ece": 0.028257500000000022,
+          "risk_brier": 0.06259435324999998
+        },
+        "bootstrap_ci_90": {
+          "precision": [
+            0.0,
+            0.0
+          ],
+          "recall": [
+            0.0,
+            0.0
+          ],
+          "f1": [
+            0.0,
+            0.0
+          ],
+          "accuracy": [
+            0.3333333333333333,
+            0.475
+          ],
+          "coverage_slm": [
+            0.0,
+            0.0
+          ],
+          "selected_capability": [
+            0.0,
+            0.0
+          ],
+          "selected_risk": [
+            1.0,
+            1.0
+          ],
+          "utility": [
+            -1.0,
+            -1.0
+          ]
+        }
+      }
+    }
+  },
+  "code_generation": {
+    "task": "code_generation",
+    "report_split": "train",
+    "threshold_method": "continuous_knn_local_ci_strict_tau",
+    "models": {
+      "qwen2.5_0.5b": {
+        "task": "code_generation",
+        "model_key": "qwen2.5_0.5b",
+        "display_name": "qwen2.5:0.5b",
+        "report_split": "train",
+        "threshold_split": "val",
+        "tau_star_difficulty": null,
+        "hash_split_policy": "sha1(sample_id)%100: train<30, val<70, test>=70",
+        "train_curve_row_count": 118,
+        "val_threshold_row_count": 171,
+        "report_row_count": 118,
+        "split_contract_ok": true,
+        "leakage_violations": [],
+        "capability_threshold": 0.55,
+        "risk_threshold": 0.4,
+        "frozen_policy_check": true,
+        "pass_operating_gate": false,
+        "n_rows": 118,
+        "routing_quality": {
+          "tp": 0.0,
+          "fp": 0.0,
+          "fn": 0.0,
+          "tn": 118.0,
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "accuracy": 1.0
+        },
+        "baseline_quality": {
+          "always_slm": {
+            "tp": 0.0,
+            "fp": 118.0,
+            "fn": 0.0,
+            "tn": 0.0,
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "accuracy": 0.0
+          },
+          "always_baseline": {
+            "tp": 0.0,
+            "fp": 0.0,
+            "fn": 0.0,
+            "tn": 118.0,
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "accuracy": 1.0
+          }
+        },
+        "significance": {
+          "policy_vs_always_slm_mcnemar": {
+            "b": 0.0,
+            "c": 118.0,
+            "chi2": 116.00847457627118,
+            "p_value": 4.7326982919297275e-27,
+            "p_value_holm_adjusted": 1.4671364704982155e-25
+          },
+          "policy_vs_always_baseline_mcnemar": {
+            "b": 0.0,
+            "c": 0.0,
+            "chi2": 0.0,
+            "p_value": 1.0,
+            "p_value_holm_adjusted": 1.0
+          }
+        },
+        "coverage_slm": 0.0,
+        "coverage_slm_or_hybrid": 0.0,
+        "selected_capability": 0.0,
+        "selected_risk": 1.0,
+        "utility": -1.0,
+        "baseline_utility": {
+          "always_slm": 0.64,
+          "always_baseline": -1.0
+        },
+        "calibration": {
+          "capability_ece": 0.1930000000000001,
+          "capability_brier": 0.037249,
+          "risk_ece": 0.3683000000000003,
+          "risk_brier": 0.13564489
+        },
+        "bootstrap_ci_90": {
+          "precision": [
+            0.0,
+            0.0
+          ],
+          "recall": [
+            0.0,
+            0.0
+          ],
+          "f1": [
+            0.0,
+            0.0
+          ],
+          "accuracy": [
+            1.0,
+            1.0
+          ],
+          "coverage_slm": [
+            0.0,
+            0.0
+          ],
+          "selected_capability": [
+            0.0,
+            0.0
+          ],
+          "selected_risk": [
+            1.0,
+            1.0
+          ],
+          "utility": [
+            -1.0,
+            -1.0
+          ]
+        }
+      },
+      "qwen2.5_3b": {
+        "task": "code_generation",
+        "model_key": "qwen2.5_3b",
+        "display_name": "qwen2.5:3b",
+        "report_split": "train",
+        "threshold_split": "val",
+        "tau_star_difficulty": null,
+        "hash_split_policy": "sha1(sample_id)%100: train<30, val<70, test>=70",
+        "train_curve_row_count": 50,
+        "val_threshold_row_count": 171,
+        "report_row_count": 50,
+        "split_contract_ok": true,
+        "leakage_violations": [],
+        "capability_threshold": 0.55,
+        "risk_threshold": 0.4,
+        "frozen_policy_check": true,
+        "pass_operating_gate": false,
+        "n_rows": 50,
+        "routing_quality": {
+          "tp": 0.0,
+          "fp": 0.0,
+          "fn": 20.0,
+          "tn": 30.0,
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "accuracy": 0.6
+        },
+        "baseline_quality": {
+          "always_slm": {
+            "tp": 20.0,
+            "fp": 30.0,
+            "fn": 0.0,
+            "tn": 0.0,
+            "precision": 0.4,
+            "recall": 1.0,
+            "f1": 0.5714285714285715,
+            "accuracy": 0.4
+          },
+          "always_baseline": {
+            "tp": 0.0,
+            "fp": 0.0,
+            "fn": 20.0,
+            "tn": 30.0,
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "accuracy": 0.6
+          }
+        },
+        "significance": {
+          "policy_vs_always_slm_mcnemar": {
+            "b": 20.0,
+            "c": 30.0,
+            "chi2": 1.62,
+            "p_value": 0.20309178757716786,
+            "p_value_holm_adjusted": 1.0
+          },
+          "policy_vs_always_baseline_mcnemar": {
+            "b": 0.0,
+            "c": 0.0,
+            "chi2": 0.0,
+            "p_value": 1.0,
+            "p_value_holm_adjusted": 1.0
+          }
+        },
+        "coverage_slm": 0.0,
+        "coverage_slm_or_hybrid": 0.0,
+        "selected_capability": 0.0,
+        "selected_risk": 1.0,
+        "utility": -1.0,
+        "baseline_utility": {
+          "always_slm": 0.5585,
+          "always_baseline": -1.0
+        },
+        "calibration": {
+          "capability_ece": 0.18369599999999994,
+          "capability_brier": 0.165230822,
+          "risk_ece": 0.130404,
+          "risk_brier": 0.13457942879999998
+        },
+        "bootstrap_ci_90": {
+          "precision": [
+            0.0,
+            0.0
+          ],
+          "recall": [
+            0.0,
+            0.0
+          ],
+          "f1": [
+            0.0,
+            0.0
+          ],
+          "accuracy": [
+            0.48,
+            0.72
+          ],
+          "coverage_slm": [
+            0.0,
+            0.0
+          ],
+          "selected_capability": [
+            0.0,
+            0.0
+          ],
+          "selected_risk": [
+            1.0,
+            1.0
+          ],
+          "utility": [
+            -1.0,
+            -1.0
+          ]
+        }
+      },
+      "qwen2.5_7b": {
+        "task": "code_generation",
+        "model_key": "qwen2.5_7b",
+        "display_name": "qwen2.5:7b",
+        "report_split": "train",
+        "threshold_split": "val",
+        "tau_star_difficulty": 0.113117,
+        "hash_split_policy": "sha1(sample_id)%100: train<30, val<70, test>=70",
+        "train_curve_row_count": 118,
+        "val_threshold_row_count": 171,
+        "report_row_count": 118,
+        "split_contract_ok": true,
+        "leakage_violations": [],
+        "capability_threshold": 0.55,
+        "risk_threshold": 0.4,
+        "frozen_policy_check": true,
+        "pass_operating_gate": false,
+        "n_rows": 118,
+        "routing_quality": {
+          "tp": 5.0,
+          "fp": 5.0,
+          "fn": 32.0,
+          "tn": 76.0,
+          "precision": 0.5,
+          "recall": 0.13513513513513514,
+          "f1": 0.21276595744680854,
+          "accuracy": 0.6864406779661016
+        },
+        "baseline_quality": {
+          "always_slm": {
+            "tp": 37.0,
+            "fp": 81.0,
+            "fn": 0.0,
+            "tn": 0.0,
+            "precision": 0.3135593220338983,
+            "recall": 1.0,
+            "f1": 0.4774193548387097,
+            "accuracy": 0.3135593220338983
+          },
+          "always_baseline": {
+            "tp": 0.0,
+            "fp": 0.0,
+            "fn": 37.0,
+            "tn": 81.0,
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "accuracy": 0.6864406779661016
+          }
+        },
+        "significance": {
+          "policy_vs_always_slm_mcnemar": {
+            "b": 32.0,
+            "c": 76.0,
+            "chi2": 17.12037037037037,
+            "p_value": 3.508398931737147e-05,
+            "p_value_holm_adjusted": 0.0008770997329342867
+          },
+          "policy_vs_always_baseline_mcnemar": {
+            "b": 5.0,
+            "c": 5.0,
+            "chi2": 0.1,
+            "p_value": 0.7518296340458492,
+            "p_value_holm_adjusted": 1.0
+          }
+        },
+        "coverage_slm": 0.0847457627118644,
+        "coverage_slm_or_hybrid": 0.0847457627118644,
+        "selected_capability": 0.5,
+        "selected_risk": 0.45125000000000004,
+        "utility": -0.24150423728813564,
+        "baseline_utility": {
+          "always_slm": 0.45887711864406755,
+          "always_baseline": -1.0
+        },
+        "calibration": {
+          "capability_ece": 0.08536016949152542,
+          "capability_brier": 0.13984611449152548,
+          "risk_ece": 0.06478983050847471,
+          "risk_brier": 0.11390582457627117
+        },
+        "bootstrap_ci_90": {
+          "precision": [
+            0.2222222222222222,
+            0.75
+          ],
+          "recall": [
+            0.05227272727272729,
+            0.2222222222222222
+          ],
+          "f1": [
+            0.08308823529411767,
+            0.32653061224489793
+          ],
+          "accuracy": [
+            0.6186440677966102,
+            0.7542372881355932
+          ],
+          "coverage_slm": [
+            0.0423728813559322,
+            0.1271186440677966
+          ],
+          "selected_capability": [
+            0.2222222222222222,
+            0.75
+          ],
+          "selected_risk": [
+            0.225625,
+            0.7019444444444445
+          ],
+          "utility": [
+            -0.5701177024482109,
+            0.02967161016949152
+          ]
+        }
+      },
+      "llama_llama-3.3-70b-versatile": {
+        "task": "code_generation",
+        "model_key": "llama_llama-3.3-70b-versatile",
+        "display_name": "groq:llama-3.3-70b-versatile",
+        "report_split": "train",
+        "threshold_split": "val",
+        "tau_star_difficulty": 0.128324,
+        "hash_split_policy": "sha1(sample_id)%100: train<30, val<70, test>=70",
+        "train_curve_row_count": 118,
+        "val_threshold_row_count": 171,
+        "report_row_count": 118,
+        "split_contract_ok": true,
+        "leakage_violations": [],
+        "capability_threshold": 0.55,
+        "risk_threshold": 0.4,
+        "frozen_policy_check": true,
+        "pass_operating_gate": true,
+        "n_rows": 118,
+        "routing_quality": {
+          "tp": 14.0,
+          "fp": 2.0,
+          "fn": 29.0,
+          "tn": 73.0,
+          "precision": 0.875,
+          "recall": 0.32558139534883723,
+          "f1": 0.47457627118644063,
+          "accuracy": 0.7372881355932204
+        },
+        "baseline_quality": {
+          "always_slm": {
+            "tp": 43.0,
+            "fp": 75.0,
+            "fn": 0.0,
+            "tn": 0.0,
+            "precision": 0.3644067796610169,
+            "recall": 1.0,
+            "f1": 0.5341614906832298,
+            "accuracy": 0.3644067796610169
+          },
+          "always_baseline": {
+            "tp": 0.0,
+            "fp": 0.0,
+            "fn": 43.0,
+            "tn": 75.0,
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "accuracy": 0.635593220338983
+          }
+        },
+        "significance": {
+          "policy_vs_always_slm_mcnemar": {
+            "b": 29.0,
+            "c": 73.0,
+            "chi2": 18.127450980392158,
+            "p_value": 2.066014236747514e-05,
+            "p_value_holm_adjusted": 0.0005371637015543537
+          },
+          "policy_vs_always_baseline_mcnemar": {
+            "b": 2.0,
+            "c": 14.0,
+            "chi2": 7.5625,
+            "p_value": 0.005959526470109115,
+            "p_value_holm_adjusted": 0.1240132221844583
+          }
+        },
+        "coverage_slm": 0.13559322033898305,
+        "coverage_slm_or_hybrid": 0.13559322033898305,
+        "selected_capability": 0.875,
+        "selected_risk": 0.1128125,
+        "utility": 0.24153072033898304,
+        "baseline_utility": {
+          "always_slm": 0.517478813559322,
+          "always_baseline": -1.0
+        },
+        "calibration": {
+          "capability_ece": 0.06826864406779659,
+          "capability_brier": 0.1318892183898305,
+          "risk_ece": 0.07561440677966101,
+          "risk_brier": 0.10742796822033897
+        },
+        "bootstrap_ci_90": {
+          "precision": [
+            0.7138655462184874,
+            1.0
+          ],
+          "recall": [
+            0.2222222222222222,
+            0.45652173913043476
+          ],
+          "f1": [
+            0.3404255319148936,
+            0.6060606060606061
+          ],
+          "accuracy": [
+            0.6775423728813559,
+            0.8050847457627118
+          ],
+          "coverage_slm": [
+            0.09322033898305085,
+            0.19491525423728814
+          ],
+          "selected_capability": [
+            0.7138655462184874,
+            1.0
+          ],
+          "selected_risk": [
+            0.0,
+            0.25823634453781474
+          ],
+          "utility": [
+            0.039358353510895894,
+            0.37746542758089335
+          ]
+        }
+      }
+    }
+  },
+  "information_extraction": {
+    "task": "information_extraction",
+    "report_split": "train",
+    "threshold_method": "continuous_knn_local_ci_strict_tau",
+    "models": {
+      "qwen2.5_0.5b": {
+        "task": "information_extraction",
+        "model_key": "qwen2.5_0.5b",
+        "display_name": "qwen2.5:0.5b",
+        "report_split": "train",
+        "threshold_split": "val",
+        "tau_star_difficulty": 0.432732,
+        "hash_split_policy": "sha1(sample_id)%100: train<30, val<70, test>=70",
+        "train_curve_row_count": 69,
+        "val_threshold_row_count": 105,
+        "report_row_count": 69,
+        "split_contract_ok": true,
+        "leakage_violations": [],
+        "capability_threshold": 0.75,
+        "risk_threshold": 0.3,
+        "frozen_policy_check": true,
+        "pass_operating_gate": true,
+        "n_rows": 69,
+        "routing_quality": {
+          "tp": 7.0,
+          "fp": 2.0,
+          "fn": 35.0,
+          "tn": 25.0,
+          "precision": 0.7777777777777778,
+          "recall": 0.16666666666666666,
+          "f1": 0.2745098039215686,
+          "accuracy": 0.463768115942029
+        },
+        "baseline_quality": {
+          "always_slm": {
+            "tp": 42.0,
+            "fp": 27.0,
+            "fn": 0.0,
+            "tn": 0.0,
+            "precision": 0.6086956521739131,
+            "recall": 1.0,
+            "f1": 0.7567567567567568,
+            "accuracy": 0.6086956521739131
+          },
+          "always_baseline": {
+            "tp": 0.0,
+            "fp": 0.0,
+            "fn": 42.0,
+            "tn": 27.0,
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "accuracy": 0.391304347826087
+          }
+        },
+        "significance": {
+          "policy_vs_always_slm_mcnemar": {
+            "b": 35.0,
+            "c": 25.0,
+            "chi2": 1.35,
+            "p_value": 0.24527811680677283,
+            "p_value_holm_adjusted": 1.0
+          },
+          "policy_vs_always_baseline_mcnemar": {
+            "b": 2.0,
+            "c": 7.0,
+            "chi2": 1.7777777777777777,
+            "p_value": 0.18242243945173575,
+            "p_value_holm_adjusted": 1.0
+          }
+        },
+        "coverage_slm": 0.13043478260869565,
+        "coverage_slm_or_hybrid": 0.13043478260869565,
+        "selected_capability": 0.7777777777777778,
+        "selected_risk": 0.13333333333333336,
+        "utility": 0.19154589371980674,
+        "baseline_utility": {
+          "always_slm": 0.9173913043478261,
+          "always_baseline": -1.0
+        },
+        "calibration": {
+          "capability_ece": 0.07650289855072458,
+          "capability_brier": 0.23451290999999996,
+          "risk_ece": 0.045897101449275404,
+          "risk_brier": 0.0844277410144928
+        },
+        "bootstrap_ci_90": {
+          "precision": [
+            0.5,
+            1.0
+          ],
+          "recall": [
+            0.07142857142857142,
+            0.27284090909090897
+          ],
+          "f1": [
+            0.1276595744680851,
+            0.41509433962264153
+          ],
+          "accuracy": [
+            0.36231884057971014,
+            0.5652173913043478
+          ],
+          "coverage_slm": [
+            0.057971014492753624,
+            0.2028985507246377
+          ],
+          "selected_capability": [
+            0.5,
+            1.0
+          ],
+          "selected_risk": [
+            0.0,
+            0.30000000000000004
+          ],
+          "utility": [
+            -0.05905797101449278,
+            0.3804347826086957
+          ]
+        }
+      },
+      "qwen2.5_3b": {
+        "task": "information_extraction",
+        "model_key": "qwen2.5_3b",
+        "display_name": "qwen2.5:3b",
+        "report_split": "train",
+        "threshold_split": "val",
+        "tau_star_difficulty": 0.412931,
+        "hash_split_policy": "sha1(sample_id)%100: train<30, val<70, test>=70",
+        "train_curve_row_count": 23,
+        "val_threshold_row_count": 105,
+        "report_row_count": 23,
+        "split_contract_ok": true,
+        "leakage_violations": [],
+        "capability_threshold": 0.75,
+        "risk_threshold": 0.3,
+        "frozen_policy_check": true,
+        "pass_operating_gate": true,
+        "n_rows": 23,
+        "routing_quality": {
+          "tp": 6.0,
+          "fp": 0.0,
+          "fn": 12.0,
+          "tn": 5.0,
+          "precision": 1.0,
+          "recall": 0.3333333333333333,
+          "f1": 0.5,
+          "accuracy": 0.4782608695652174
+        },
+        "baseline_quality": {
+          "always_slm": {
+            "tp": 18.0,
+            "fp": 5.0,
+            "fn": 0.0,
+            "tn": 0.0,
+            "precision": 0.782608695652174,
+            "recall": 1.0,
+            "f1": 0.878048780487805,
+            "accuracy": 0.782608695652174
+          },
+          "always_baseline": {
+            "tp": 0.0,
+            "fp": 0.0,
+            "fn": 18.0,
+            "tn": 5.0,
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "accuracy": 0.21739130434782608
+          }
+        },
+        "significance": {
+          "policy_vs_always_slm_mcnemar": {
+            "b": 12.0,
+            "c": 5.0,
+            "chi2": 2.1176470588235294,
+            "p_value": 0.14561009539686698,
+            "p_value_holm_adjusted": 1.0
+          },
+          "policy_vs_always_baseline_mcnemar": {
+            "b": 0.0,
+            "c": 6.0,
+            "chi2": 4.166666666666667,
+            "p_value": 0.041226833337163676,
+            "p_value_holm_adjusted": 0.7420830000689462
+          }
+        },
+        "coverage_slm": 0.2608695652173913,
+        "coverage_slm_or_hybrid": 0.2608695652173913,
+        "selected_capability": 1.0,
+        "selected_risk": 0.0,
+        "utility": 0.5108695652173914,
+        "baseline_utility": {
+          "always_slm": 1.0652173913043477,
+          "always_baseline": -1.0
+        },
+        "calibration": {
+          "capability_ece": 0.09350434782608696,
+          "capability_brier": 0.18251418173913042,
+          "risk_ece": 0.05609999999999996,
+          "risk_brier": 0.0656975134782609
+        },
+        "bootstrap_ci_90": {
+          "precision": [
+            1.0,
+            1.0
+          ],
+          "recall": [
+            0.1362121212121212,
+            0.5219679633867275
+          ],
+          "f1": [
+            0.23976470588235296,
+            0.6859113300492609
+          ],
+          "accuracy": [
+            0.30434782608695654,
+            0.6521739130434783
+          ],
+          "coverage_slm": [
+            0.08695652173913043,
+            0.391304347826087
+          ],
+          "selected_capability": [
+            1.0,
+            1.0
+          ],
+          "selected_risk": [
+            0.0,
+            0.0
+          ],
+          "utility": [
+            0.33695652173913043,
+            0.6413043478260869
+          ]
+        }
+      },
+      "qwen2.5_7b": {
+        "task": "information_extraction",
+        "model_key": "qwen2.5_7b",
+        "display_name": "qwen2.5:7b",
+        "report_split": "train",
+        "threshold_split": "val",
+        "tau_star_difficulty": 0.474749,
+        "hash_split_policy": "sha1(sample_id)%100: train<30, val<70, test>=70",
+        "train_curve_row_count": 69,
+        "val_threshold_row_count": 105,
+        "report_row_count": 69,
+        "split_contract_ok": true,
+        "leakage_violations": [],
+        "capability_threshold": 0.75,
+        "risk_threshold": 0.3,
+        "frozen_policy_check": true,
+        "pass_operating_gate": true,
+        "n_rows": 69,
+        "routing_quality": {
+          "tp": 26.0,
+          "fp": 6.0,
+          "fn": 22.0,
+          "tn": 15.0,
+          "precision": 0.8125,
+          "recall": 0.5416666666666666,
+          "f1": 0.65,
+          "accuracy": 0.5942028985507246
+        },
+        "baseline_quality": {
+          "always_slm": {
+            "tp": 48.0,
+            "fp": 21.0,
+            "fn": 0.0,
+            "tn": 0.0,
+            "precision": 0.6956521739130435,
+            "recall": 1.0,
+            "f1": 0.8205128205128205,
+            "accuracy": 0.6956521739130435
+          },
+          "always_baseline": {
+            "tp": 0.0,
+            "fp": 0.0,
+            "fn": 48.0,
+            "tn": 21.0,
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "accuracy": 0.30434782608695654
+          }
+        },
+        "significance": {
+          "policy_vs_always_slm_mcnemar": {
+            "b": 22.0,
+            "c": 15.0,
+            "chi2": 0.972972972972973,
+            "p_value": 0.3239398455985341,
+            "p_value_holm_adjusted": 1.0
+          },
+          "policy_vs_always_baseline_mcnemar": {
+            "b": 6.0,
+            "c": 26.0,
+            "chi2": 11.28125,
+            "p_value": 0.0007829382178911192,
+            "p_value_holm_adjusted": 0.021139331883060216
+          }
+        },
+        "coverage_slm": 0.463768115942029,
+        "coverage_slm_or_hybrid": 0.463768115942029,
+        "selected_capability": 0.8125,
+        "selected_risk": 0.11250000000000002,
+        "utility": 0.554393115942029,
+        "baseline_utility": {
+          "always_slm": 0.9913043478260868,
+          "always_baseline": -1.0
+        },
+        "calibration": {
+          "capability_ece": 0.11283913043478258,
+          "capability_brier": 0.22330377028985507,
+          "risk_ece": 0.06770000000000004,
+          "risk_brier": 0.08038537405797105
+        },
+        "bootstrap_ci_90": {
+          "precision": [
+            0.6923076923076923,
+            0.9166666666666666
+          ],
+          "recall": [
+            0.43474159146841673,
+            0.6666666666666666
+          ],
+          "f1": [
+            0.5555555555555555,
+            0.7595624656026417
+          ],
+          "accuracy": [
+            0.5072463768115942,
+            0.7101449275362319
+          ],
+          "coverage_slm": [
+            0.36231884057971014,
+            0.5652173913043478
+          ],
+          "selected_capability": [
+            0.6923076923076923,
+            0.9166666666666666
+          ],
+          "selected_risk": [
+            0.05000000000000001,
+            0.18461538461538465
+          ],
+          "utility": [
+            0.4248744221079424,
+            0.7009057971014492
+          ]
+        }
+      },
+      "llama_llama-3.3-70b-versatile": {
+        "task": "information_extraction",
+        "model_key": "llama_llama-3.3-70b-versatile",
+        "display_name": "groq:llama-3.3-70b-versatile",
+        "report_split": "train",
+        "threshold_split": "val",
+        "tau_star_difficulty": 0.264913,
+        "hash_split_policy": "sha1(sample_id)%100: train<30, val<70, test>=70",
+        "train_curve_row_count": 69,
+        "val_threshold_row_count": 105,
+        "report_row_count": 69,
+        "split_contract_ok": true,
+        "leakage_violations": [],
+        "capability_threshold": 0.75,
+        "risk_threshold": 0.3,
+        "frozen_policy_check": true,
+        "pass_operating_gate": true,
+        "n_rows": 69,
+        "routing_quality": {
+          "tp": 4.0,
+          "fp": 0.0,
+          "fn": 48.0,
+          "tn": 17.0,
+          "precision": 1.0,
+          "recall": 0.07692307692307693,
+          "f1": 0.14285714285714288,
+          "accuracy": 0.30434782608695654
+        },
+        "baseline_quality": {
+          "always_slm": {
+            "tp": 52.0,
+            "fp": 17.0,
+            "fn": 0.0,
+            "tn": 0.0,
+            "precision": 0.7536231884057971,
+            "recall": 1.0,
+            "f1": 0.859504132231405,
+            "accuracy": 0.7536231884057971
+          },
+          "always_baseline": {
+            "tp": 0.0,
+            "fp": 0.0,
+            "fn": 52.0,
+            "tn": 17.0,
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "accuracy": 0.2463768115942029
+          }
+        },
+        "significance": {
+          "policy_vs_always_slm_mcnemar": {
+            "b": 48.0,
+            "c": 17.0,
+            "chi2": 13.846153846153847,
+            "p_value": 0.0001984024045859721,
+            "p_value_holm_adjusted": 0.00476165771006333
+          },
+          "policy_vs_always_baseline_mcnemar": {
+            "b": 0.0,
+            "c": 4.0,
+            "chi2": 2.25,
+            "p_value": 0.13361440253771617,
+            "p_value_holm_adjusted": 1.0
+          }
+        },
+        "coverage_slm": 0.057971014492753624,
+        "coverage_slm_or_hybrid": 0.057971014492753624,
+        "selected_capability": 1.0,
+        "selected_risk": 0.0,
+        "utility": 0.3079710144927536,
+        "baseline_utility": {
+          "always_slm": 1.0405797101449274,
+          "always_baseline": -1.0
+        },
+        "calibration": {
+          "capability_ece": 0.04472608695652171,
+          "capability_brier": 0.1827116763768116,
+          "risk_ece": 0.026830434782608686,
+          "risk_brier": 0.06577730623188409
+        },
+        "bootstrap_ci_90": {
+          "precision": [
+            1.0,
+            1.0
+          ],
+          "recall": [
+            0.02,
+            0.13470279720279713
+          ],
+          "f1": [
+            0.0392156862745098,
+            0.2374237288135592
+          ],
+          "accuracy": [
+            0.21739130434782608,
+            0.391304347826087
+          ],
+          "coverage_slm": [
+            0.014492753623188406,
+            0.10144927536231885
+          ],
+          "selected_capability": [
+            1.0,
+            1.0
+          ],
+          "selected_risk": [
+            0.0,
+            0.0
+          ],
+          "utility": [
+            0.2644927536231884,
+            0.35144927536231885
+          ]
+        }
+      }
+    }
+  },
+  "instruction_following": {
+    "task": "instruction_following",
+    "report_split": "train",
+    "threshold_method": "continuous_knn_local_ci_strict_tau",
+    "models": {
+      "qwen2.5_0.5b": {
+        "task": "instruction_following",
+        "model_key": "qwen2.5_0.5b",
+        "display_name": "qwen2.5:0.5b",
+        "report_split": "train",
+        "threshold_split": "val",
+        "tau_star_difficulty": 0.278665,
+        "hash_split_policy": "sha1(sample_id)%100: train<30, val<70, test>=70",
+        "train_curve_row_count": 117,
+        "val_threshold_row_count": 213,
+        "report_row_count": 117,
+        "split_contract_ok": true,
+        "leakage_violations": [],
+        "capability_threshold": 0.7,
+        "risk_threshold": 0.3,
+        "frozen_policy_check": true,
+        "pass_operating_gate": true,
+        "n_rows": 117,
+        "routing_quality": {
+          "tp": 6.0,
+          "fp": 0.0,
+          "fn": 52.0,
+          "tn": 59.0,
+          "precision": 1.0,
+          "recall": 0.10344827586206896,
+          "f1": 0.1875,
+          "accuracy": 0.5555555555555556
+        },
+        "baseline_quality": {
+          "always_slm": {
+            "tp": 58.0,
+            "fp": 59.0,
+            "fn": 0.0,
+            "tn": 0.0,
+            "precision": 0.49572649572649574,
+            "recall": 1.0,
+            "f1": 0.6628571428571429,
+            "accuracy": 0.49572649572649574
+          },
+          "always_baseline": {
+            "tp": 0.0,
+            "fp": 0.0,
+            "fn": 58.0,
+            "tn": 59.0,
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "accuracy": 0.5042735042735043
+          }
+        },
+        "significance": {
+          "policy_vs_always_slm_mcnemar": {
+            "b": 52.0,
+            "c": 59.0,
+            "chi2": 0.32432432432432434,
+            "p_value": 0.5690204003534876,
+            "p_value_holm_adjusted": 1.0
+          },
+          "policy_vs_always_baseline_mcnemar": {
+            "b": 0.0,
+            "c": 6.0,
+            "chi2": 4.166666666666667,
+            "p_value": 0.041226833337163676,
+            "p_value_holm_adjusted": 0.7420830000689462
+          }
+        },
+        "coverage_slm": 0.05128205128205128,
+        "coverage_slm_or_hybrid": 0.05128205128205128,
+        "selected_capability": 1.0,
+        "selected_risk": 0.0,
+        "utility": 0.30128205128205127,
+        "baseline_utility": {
+          "always_slm": 0.8591880341880342,
+          "always_baseline": -1.0
+        },
+        "calibration": {
+          "capability_ece": 0.12459999999999996,
+          "capability_brier": 0.24572236786324786,
+          "risk_ece": 0.06288888888888879,
+          "risk_brier": 0.06772794564102562
+        },
+        "bootstrap_ci_90": {
+          "precision": [
+            1.0,
+            1.0
+          ],
+          "recall": [
+            0.04838709677419355,
+            0.1754901960784313
+          ],
+          "f1": [
+            0.09230769230769231,
+            0.2985820895522387
+          ],
+          "accuracy": [
+            0.48717948717948717,
+            0.6243589743589739
+          ],
+          "coverage_slm": [
+            0.02564102564102564,
+            0.08547008547008547
+          ],
+          "selected_capability": [
+            1.0,
+            1.0
+          ],
+          "selected_risk": [
+            0.0,
+            0.0
+          ],
+          "utility": [
+            0.27564102564102566,
+            0.3354700854700855
+          ]
+        }
+      },
+      "qwen2.5_3b": {
+        "task": "instruction_following",
+        "model_key": "qwen2.5_3b",
+        "display_name": "qwen2.5:3b",
+        "report_split": "train",
+        "threshold_split": "val",
+        "tau_star_difficulty": 0.275173,
+        "hash_split_policy": "sha1(sample_id)%100: train<30, val<70, test>=70",
+        "train_curve_row_count": 38,
+        "val_threshold_row_count": 213,
+        "report_row_count": 38,
+        "split_contract_ok": true,
+        "leakage_violations": [],
+        "capability_threshold": 0.7,
+        "risk_threshold": 0.3,
+        "frozen_policy_check": true,
+        "pass_operating_gate": true,
+        "n_rows": 38,
+        "routing_quality": {
+          "tp": 13.0,
+          "fp": 1.0,
+          "fn": 15.0,
+          "tn": 9.0,
+          "precision": 0.9285714285714286,
+          "recall": 0.4642857142857143,
+          "f1": 0.6190476190476191,
+          "accuracy": 0.5789473684210527
+        },
+        "baseline_quality": {
+          "always_slm": {
+            "tp": 28.0,
+            "fp": 10.0,
+            "fn": 0.0,
+            "tn": 0.0,
+            "precision": 0.7368421052631579,
+            "recall": 1.0,
+            "f1": 0.8484848484848484,
+            "accuracy": 0.7368421052631579
+          },
+          "always_baseline": {
+            "tp": 0.0,
+            "fp": 0.0,
+            "fn": 28.0,
+            "tn": 10.0,
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "accuracy": 0.2631578947368421
+          }
+        },
+        "significance": {
+          "policy_vs_always_slm_mcnemar": {
+            "b": 15.0,
+            "c": 9.0,
+            "chi2": 1.0416666666666667,
+            "p_value": 0.3074341659273953,
+            "p_value_holm_adjusted": 1.0
+          },
+          "policy_vs_always_baseline_mcnemar": {
+            "b": 1.0,
+            "c": 13.0,
+            "chi2": 8.642857142857142,
+            "p_value": 0.003283460986069042,
+            "p_value_holm_adjusted": 0.07551960267958797
+          }
+        },
+        "coverage_slm": 0.3684210526315789,
+        "coverage_slm_or_hybrid": 0.3684210526315789,
+        "selected_capability": 0.9285714285714286,
+        "selected_risk": 0.03749999999999999,
+        "utility": 0.5630639097744361,
+        "baseline_utility": {
+          "always_slm": 1.0460526315789473,
+          "always_baseline": -1.0
+        },
+        "calibration": {
+          "capability_ece": 0.09935789473684209,
+          "capability_brier": 0.1780883952631579,
+          "risk_ece": 0.03715526315789476,
+          "risk_brier": 0.04908740605263155
+        },
+        "bootstrap_ci_90": {
+          "precision": [
+            0.8181818181818182,
+            1.0
+          ],
+          "recall": [
+            0.31951724137931037,
+            0.6155677655677654
+          ],
+          "f1": [
+            0.4735294117647058,
+            0.7555555555555554
+          ],
+          "accuracy": [
+            0.4473684210526316,
+            0.7105263157894737
+          ],
+          "coverage_slm": [
+            0.23684210526315788,
+            0.5
+          ],
+          "selected_capability": [
+            0.8181818181818182,
+            1.0
+          ],
+          "selected_risk": [
+            0.0,
+            0.09545454545454544
+          ],
+          "utility": [
+            0.43253654970760247,
+            0.7092105263157894
+          ]
+        }
+      },
+      "qwen2.5_7b": {
+        "task": "instruction_following",
+        "model_key": "qwen2.5_7b",
+        "display_name": "qwen2.5:7b",
+        "report_split": "train",
+        "threshold_split": "val",
+        "tau_star_difficulty": 0.560107,
+        "hash_split_policy": "sha1(sample_id)%100: train<30, val<70, test>=70",
+        "train_curve_row_count": 38,
+        "val_threshold_row_count": 213,
+        "report_row_count": 38,
+        "split_contract_ok": true,
+        "leakage_violations": [],
+        "capability_threshold": 0.7,
+        "risk_threshold": 0.3,
+        "frozen_policy_check": true,
+        "pass_operating_gate": true,
+        "n_rows": 38,
+        "routing_quality": {
+          "tp": 13.0,
+          "fp": 4.0,
+          "fn": 13.0,
+          "tn": 8.0,
+          "precision": 0.7647058823529411,
+          "recall": 0.5,
+          "f1": 0.6046511627906976,
+          "accuracy": 0.5526315789473685
+        },
+        "baseline_quality": {
+          "always_slm": {
+            "tp": 26.0,
+            "fp": 12.0,
+            "fn": 0.0,
+            "tn": 0.0,
+            "precision": 0.6842105263157895,
+            "recall": 1.0,
+            "f1": 0.8125000000000001,
+            "accuracy": 0.6842105263157895
+          },
+          "always_baseline": {
+            "tp": 0.0,
+            "fp": 0.0,
+            "fn": 26.0,
+            "tn": 12.0,
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "accuracy": 0.3157894736842105
+          }
+        },
+        "significance": {
+          "policy_vs_always_slm_mcnemar": {
+            "b": 13.0,
+            "c": 8.0,
+            "chi2": 0.7619047619047619,
+            "p_value": 0.38273308888522606,
+            "p_value_holm_adjusted": 1.0
+          },
+          "policy_vs_always_baseline_mcnemar": {
+            "b": 4.0,
+            "c": 13.0,
+            "chi2": 3.764705882352941,
+            "p_value": 0.05234506327316321,
+            "p_value_holm_adjusted": 0.8375210123706114
+          }
+        },
+        "coverage_slm": 0.4473684210526316,
+        "coverage_slm_or_hybrid": 0.4473684210526316,
+        "selected_capability": 0.7647058823529411,
+        "selected_risk": 0.12352941176470586,
+        "utility": 0.515015479876161,
+        "baseline_utility": {
+          "always_slm": 1.0052631578947369,
+          "always_baseline": -1.0
+        },
+        "calibration": {
+          "capability_ece": 0.14219473684210543,
+          "capability_brier": 0.20939525210526314,
+          "risk_ece": 0.04001052631578944,
+          "risk_brier": 0.05771283052631579
+        },
+        "bootstrap_ci_90": {
+          "precision": [
+            0.5882352941176471,
+            0.9230769230769231
+          ],
+          "recall": [
+            0.33266666666666667,
+            0.652257525083612
+          ],
+          "f1": [
+            0.43243243243243246,
+            0.7346938775510204
+          ],
+          "accuracy": [
+            0.42105263157894735,
+            0.6842105263157895
+          ],
+          "coverage_slm": [
+            0.3157894736842105,
+            0.5789473684210527
+          ],
+          "selected_capability": [
+            0.5882352941176471,
+            0.9230769230769231
+          ],
+          "selected_risk": [
+            0.04038461538461538,
+            0.21617647058823525
+          ],
+          "utility": [
+            0.2940283400809717,
+            0.6919172932330828
+          ]
+        }
+      },
+      "llama_llama-3.3-70b-versatile": {
+        "task": "instruction_following",
+        "model_key": "llama_llama-3.3-70b-versatile",
+        "display_name": "groq:llama-3.3-70b-versatile",
+        "report_split": "train",
+        "threshold_split": "val",
+        "tau_star_difficulty": 0.655923,
+        "hash_split_policy": "sha1(sample_id)%100: train<30, val<70, test>=70",
+        "train_curve_row_count": 153,
+        "val_threshold_row_count": 213,
+        "report_row_count": 153,
+        "split_contract_ok": true,
+        "leakage_violations": [],
+        "capability_threshold": 0.7,
+        "risk_threshold": 0.3,
+        "frozen_policy_check": true,
+        "pass_operating_gate": true,
+        "n_rows": 153,
+        "routing_quality": {
+          "tp": 116.0,
+          "fp": 19.0,
+          "fn": 16.0,
+          "tn": 2.0,
+          "precision": 0.8592592592592593,
+          "recall": 0.8787878787878788,
+          "f1": 0.8689138576779026,
+          "accuracy": 0.7712418300653595
+        },
+        "baseline_quality": {
+          "always_slm": {
+            "tp": 132.0,
+            "fp": 21.0,
+            "fn": 0.0,
+            "tn": 0.0,
+            "precision": 0.8627450980392157,
+            "recall": 1.0,
+            "f1": 0.9263157894736842,
+            "accuracy": 0.8627450980392157
+          },
+          "always_baseline": {
+            "tp": 0.0,
+            "fp": 0.0,
+            "fn": 132.0,
+            "tn": 21.0,
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "accuracy": 0.13725490196078433
+          }
+        },
+        "significance": {
+          "policy_vs_always_slm_mcnemar": {
+            "b": 16.0,
+            "c": 2.0,
+            "chi2": 9.38888888888889,
+            "p_value": 0.002183044737362255,
+            "p_value_holm_adjusted": 0.05021002895933186
+          },
+          "policy_vs_always_baseline_mcnemar": {
+            "b": 19.0,
+            "c": 116.0,
+            "chi2": 68.26666666666667,
+            "p_value": 1.4281484668543412e-16,
+            "p_value_holm_adjusted": 4.427260247248458e-15
+          }
+        },
+        "coverage_slm": 0.8823529411764706,
+        "coverage_slm_or_hybrid": 0.8823529411764706,
+        "selected_capability": 0.8592592592592593,
+        "selected_risk": 0.07388888888888889,
+        "utility": 1.0232788671023965,
+        "baseline_utility": {
+          "always_slm": 1.1436274509803923,
+          "always_baseline": -1.0
+        },
+        "calibration": {
+          "capability_ece": 0.04772614379084961,
+          "capability_brier": 0.11499286307189542,
+          "risk_ece": 0.025056209150326796,
+          "risk_brier": 0.03169336117647058
+        },
+        "bootstrap_ci_90": {
+          "precision": [
+            0.8133626977892493,
+            0.9091224747474747
+          ],
+          "recall": [
+            0.8344012605042017,
+            0.9264705882352942
+          ],
+          "f1": [
+            0.8326536370927021,
+            0.904446650923143
+          ],
+          "accuracy": [
+            0.7186274509803922,
+            0.8300653594771242
+          ],
+          "coverage_slm": [
+            0.8431372549019608,
+            0.9281045751633987
+          ],
+          "selected_capability": [
+            0.8133626977892493,
+            0.9091224747474747
+          ],
+          "selected_risk": [
+            0.047710700757575754,
+            0.09798458366064411
+          ],
+          "utility": [
+            0.9659647950089127,
+            1.083589176612674
+          ]
+        }
+      }
+    }
+  },
+  "maths": {
+    "task": "maths",
+    "report_split": "train",
+    "threshold_method": "continuous_knn_local_ci_strict_tau",
+    "models": {
+      "qwen2.5_0.5b": {
+        "task": "maths",
+        "model_key": "qwen2.5_0.5b",
+        "display_name": "qwen2.5:0.5b",
+        "report_split": "train",
+        "threshold_split": "val",
+        "tau_star_difficulty": null,
+        "hash_split_policy": "sha1(sample_id)%100: train<30, val<70, test>=70",
+        "train_curve_row_count": 135,
+        "val_threshold_row_count": 202,
+        "report_row_count": 135,
+        "split_contract_ok": true,
+        "leakage_violations": [],
+        "capability_threshold": 0.65,
+        "risk_threshold": 0.35,
+        "frozen_policy_check": true,
+        "pass_operating_gate": false,
+        "n_rows": 135,
+        "routing_quality": {
+          "tp": 0.0,
+          "fp": 0.0,
+          "fn": 0.0,
+          "tn": 135.0,
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "accuracy": 1.0
+        },
+        "baseline_quality": {
+          "always_slm": {
+            "tp": 0.0,
+            "fp": 135.0,
+            "fn": 0.0,
+            "tn": 0.0,
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "accuracy": 0.0
+          },
+          "always_baseline": {
+            "tp": 0.0,
+            "fp": 0.0,
+            "fn": 0.0,
+            "tn": 135.0,
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "accuracy": 1.0
+          }
+        },
+        "significance": {
+          "policy_vs_always_slm_mcnemar": {
+            "b": 0.0,
+            "c": 135.0,
+            "chi2": 133.0074074074074,
+            "p_value": 9.007507307597336e-31,
+            "p_value_holm_adjusted": 2.8824023384311474e-29
+          },
+          "policy_vs_always_baseline_mcnemar": {
+            "b": 0.0,
+            "c": 0.0,
+            "chi2": 0.0,
+            "p_value": 1.0,
+            "p_value_holm_adjusted": 1.0
+          }
+        },
+        "coverage_slm": 0.0,
+        "coverage_slm_or_hybrid": 0.0,
+        "selected_capability": 0.0,
+        "selected_risk": 1.0,
+        "utility": -1.0,
+        "baseline_utility": {
+          "always_slm": 0.6400000000000001,
+          "always_baseline": -1.0
+        },
+        "calibration": {
+          "capability_ece": 0.198,
+          "capability_brier": 0.039203999999999996,
+          "risk_ece": 0.3256999999999998,
+          "risk_brier": 0.10608048999999999
+        },
+        "bootstrap_ci_90": {
+          "precision": [
+            0.0,
+            0.0
+          ],
+          "recall": [
+            0.0,
+            0.0
+          ],
+          "f1": [
+            0.0,
+            0.0
+          ],
+          "accuracy": [
+            1.0,
+            1.0
+          ],
+          "coverage_slm": [
+            0.0,
+            0.0
+          ],
+          "selected_capability": [
+            0.0,
+            0.0
+          ],
+          "selected_risk": [
+            1.0,
+            1.0
+          ],
+          "utility": [
+            -1.0,
+            -1.0
+          ]
+        }
+      },
+      "qwen2.5_3b": {
+        "task": "maths",
+        "model_key": "qwen2.5_3b",
+        "display_name": "qwen2.5:3b",
+        "report_split": "train",
+        "threshold_split": "val",
+        "tau_star_difficulty": 0.32381,
+        "hash_split_policy": "sha1(sample_id)%100: train<30, val<70, test>=70",
+        "train_curve_row_count": 135,
+        "val_threshold_row_count": 202,
+        "report_row_count": 135,
+        "split_contract_ok": true,
+        "leakage_violations": [],
+        "capability_threshold": 0.65,
+        "risk_threshold": 0.35,
+        "frozen_policy_check": true,
+        "pass_operating_gate": true,
+        "n_rows": 135,
+        "routing_quality": {
+          "tp": 16.0,
+          "fp": 3.0,
+          "fn": 74.0,
+          "tn": 42.0,
+          "precision": 0.8421052631578947,
+          "recall": 0.17777777777777778,
+          "f1": 0.29357798165137616,
+          "accuracy": 0.42962962962962964
+        },
+        "baseline_quality": {
+          "always_slm": {
+            "tp": 90.0,
+            "fp": 45.0,
+            "fn": 0.0,
+            "tn": 0.0,
+            "precision": 0.6666666666666666,
+            "recall": 1.0,
+            "f1": 0.8,
+            "accuracy": 0.6666666666666666
+          },
+          "always_baseline": {
+            "tp": 0.0,
+            "fp": 0.0,
+            "fn": 90.0,
+            "tn": 45.0,
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "accuracy": 0.3333333333333333
+          }
+        },
+        "significance": {
+          "policy_vs_always_slm_mcnemar": {
+            "b": 74.0,
+            "c": 42.0,
+            "chi2": 8.28448275862069,
+            "p_value": 0.003998529287113742,
+            "p_value_holm_adjusted": 0.0759720564551611
+          },
+          "policy_vs_always_baseline_mcnemar": {
+            "b": 3.0,
+            "c": 16.0,
+            "chi2": 7.578947368421052,
+            "p_value": 0.005905391532593253,
+            "p_value_holm_adjusted": 0.1240132221844583
+          }
+        },
+        "coverage_slm": 0.14074074074074075,
+        "coverage_slm_or_hybrid": 0.14074074074074075,
+        "selected_capability": 0.8421052631578947,
+        "selected_risk": 0.135,
+        "utility": 0.21626705653021439,
+        "baseline_utility": {
+          "always_slm": 0.8816666666666668,
+          "always_baseline": -1.0
+        },
+        "calibration": {
+          "capability_ece": 0.20042444444444446,
+          "capability_brier": 0.18215638600000003,
+          "risk_ece": 0.14920888888888886,
+          "risk_brier": 0.13316066370370372
+        },
+        "bootstrap_ci_90": {
+          "precision": [
+            0.7,
+            1.0
+          ],
+          "recall": [
+            0.11956521739130435,
+            0.24731182795698925
+          ],
+          "f1": [
+            0.20560747663551404,
+            0.3866713352007468
+          ],
+          "accuracy": [
+            0.35555555555555557,
+            0.4966666666666663
+          ],
+          "coverage_slm": [
+            0.0962962962962963,
+            0.19296296296296261
+          ],
+          "selected_capability": [
+            0.7,
+            1.0
+          ],
+          "selected_risk": [
+            0.0,
+            0.2565
+          ],
+          "utility": [
+            0.06263888888888891,
+            0.37232689210950076
+          ]
+        }
+      },
+      "qwen2.5_7b": {
+        "task": "maths",
+        "model_key": "qwen2.5_7b",
+        "display_name": "qwen2.5:7b",
+        "report_split": "train",
+        "threshold_split": "val",
+        "tau_star_difficulty": 0.449898,
+        "hash_split_policy": "sha1(sample_id)%100: train<30, val<70, test>=70",
+        "train_curve_row_count": 135,
+        "val_threshold_row_count": 202,
+        "report_row_count": 135,
+        "split_contract_ok": true,
+        "leakage_violations": [],
+        "capability_threshold": 0.65,
+        "risk_threshold": 0.35,
+        "frozen_policy_check": true,
+        "pass_operating_gate": false,
+        "n_rows": 135,
+        "routing_quality": {
+          "tp": 5.0,
+          "fp": 16.0,
+          "fn": 23.0,
+          "tn": 91.0,
+          "precision": 0.23809523809523808,
+          "recall": 0.17857142857142858,
+          "f1": 0.20408163265306123,
+          "accuracy": 0.7111111111111111
+        },
+        "baseline_quality": {
+          "always_slm": {
+            "tp": 28.0,
+            "fp": 107.0,
+            "fn": 0.0,
+            "tn": 0.0,
+            "precision": 0.2074074074074074,
+            "recall": 1.0,
+            "f1": 0.3435582822085889,
+            "accuracy": 0.2074074074074074
+          },
+          "always_baseline": {
+            "tp": 0.0,
+            "fp": 0.0,
+            "fn": 28.0,
+            "tn": 107.0,
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "accuracy": 0.7925925925925926
+          }
+        },
+        "significance": {
+          "policy_vs_always_slm_mcnemar": {
+            "b": 23.0,
+            "c": 91.0,
+            "chi2": 39.37719298245614,
+            "p_value": 3.4935365003914246e-10,
+            "p_value_holm_adjusted": 1.0131255851135131e-08
+          },
+          "policy_vs_always_baseline_mcnemar": {
+            "b": 16.0,
+            "c": 5.0,
+            "chi2": 4.761904761904762,
+            "p_value": 0.02909633174125221,
+            "p_value_holm_adjusted": 0.552830303083792
+          }
+        },
+        "coverage_slm": 0.15555555555555556,
+        "coverage_slm_or_hybrid": 0.15555555555555556,
+        "selected_capability": 0.23809523809523808,
+        "selected_risk": 0.6514285714285715,
+        "utility": -0.4363492063492064,
+        "baseline_utility": {
+          "always_slm": 0.3741851851851852,
+          "always_baseline": -1.0
+        },
+        "calibration": {
+          "capability_ece": 0.33313037037037035,
+          "capability_brier": 0.28647382,
+          "risk_ece": 0.2848318518518517,
+          "risk_brier": 0.20942159666666665
+        },
+        "bootstrap_ci_90": {
+          "precision": [
+            0.08695652173913043,
+            0.39424242424242395
+          ],
+          "recall": [
+            0.06655913978494624,
+            0.2962962962962963
+          ],
+          "f1": [
+            0.08,
+            0.32562885619364024
+          ],
+          "accuracy": [
+            0.6518518518518519,
+            0.7707407407407404
+          ],
+          "coverage_slm": [
+            0.1037037037037037,
+            0.21481481481481482
+          ],
+          "selected_capability": [
+            0.08695652173913043,
+            0.39424242424242395
+          ],
+          "selected_risk": [
+            0.5179227272727273,
+            0.7806521739130435
+          ],
+          "utility": [
+            -0.5988888888888889,
+            -0.2647516203703706
+          ]
+        }
+      },
+      "llama_llama-3.3-70b-versatile": {
+        "task": "maths",
+        "model_key": "llama_llama-3.3-70b-versatile",
+        "display_name": "groq:llama-3.3-70b-versatile",
+        "report_split": "train",
+        "threshold_split": "val",
+        "tau_star_difficulty": 0.38134,
+        "hash_split_policy": "sha1(sample_id)%100: train<30, val<70, test>=70",
+        "train_curve_row_count": 135,
+        "val_threshold_row_count": 202,
+        "report_row_count": 135,
+        "split_contract_ok": true,
+        "leakage_violations": [],
+        "capability_threshold": 0.65,
+        "risk_threshold": 0.35,
+        "frozen_policy_check": true,
+        "pass_operating_gate": true,
+        "n_rows": 135,
+        "routing_quality": {
+          "tp": 30.0,
+          "fp": 0.0,
+          "fn": 68.0,
+          "tn": 37.0,
+          "precision": 1.0,
+          "recall": 0.30612244897959184,
+          "f1": 0.46874999999999994,
+          "accuracy": 0.4962962962962963
+        },
+        "baseline_quality": {
+          "always_slm": {
+            "tp": 98.0,
+            "fp": 37.0,
+            "fn": 0.0,
+            "tn": 0.0,
+            "precision": 0.725925925925926,
+            "recall": 1.0,
+            "f1": 0.8412017167381975,
+            "accuracy": 0.725925925925926
+          },
+          "always_baseline": {
+            "tp": 0.0,
+            "fp": 0.0,
+            "fn": 98.0,
+            "tn": 37.0,
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "accuracy": 0.2740740740740741
+          }
+        },
+        "significance": {
+          "policy_vs_always_slm_mcnemar": {
+            "b": 68.0,
+            "c": 37.0,
+            "chi2": 8.571428571428571,
+            "p_value": 0.0034147911781178173,
+            "p_value_holm_adjusted": 0.06829582356235635
+          },
+          "policy_vs_always_baseline_mcnemar": {
+            "b": 0.0,
+            "c": 30.0,
+            "chi2": 28.033333333333335,
+            "p_value": 1.1924366854416816e-07,
+            "p_value_holm_adjusted": 3.4580663877808764e-06
+          }
+        },
+        "coverage_slm": 0.2222222222222222,
+        "coverage_slm_or_hybrid": 0.2222222222222222,
+        "selected_capability": 1.0,
+        "selected_risk": 0.0,
+        "utility": 0.4722222222222222,
+        "baseline_utility": {
+          "always_slm": 0.9471481481481482,
+          "always_baseline": -1.0
+        },
+        "calibration": {
+          "capability_ece": 0.07811037037037022,
+          "capability_brier": 0.11915792585185185,
+          "risk_ece": 0.06993703703703703,
+          "risk_brier": 0.08710850999999999
+        },
+        "bootstrap_ci_90": {
+          "precision": [
+            1.0,
+            1.0
+          ],
+          "recall": [
+            0.2282339647008179,
+            0.38310062056737576
+          ],
+          "f1": [
+            0.3716457322295176,
+            0.5539733950260265
+          ],
+          "accuracy": [
+            0.4222222222222222,
+            0.5703703703703704
+          ],
+          "coverage_slm": [
+            0.17037037037037037,
+            0.2814814814814815
+          ],
+          "selected_capability": [
+            1.0,
+            1.0
+          ],
+          "selected_risk": [
+            0.0,
+            0.0
+          ],
+          "utility": [
+            0.4203703703703704,
+            0.5314814814814814
+          ]
+        }
+      }
+    }
+  },
+  "retrieval_grounded": {
+    "task": "retrieval_grounded",
+    "report_split": "train",
+    "threshold_method": "continuous_knn_local_ci_strict_tau",
+    "models": {
+      "qwen2.5_0.5b": {
+        "task": "retrieval_grounded",
+        "model_key": "qwen2.5_0.5b",
+        "display_name": "qwen2.5:0.5b",
+        "report_split": "train",
+        "threshold_split": "val",
+        "tau_star_difficulty": 0.385281,
+        "hash_split_policy": "sha1(sample_id)%100: train<30, val<70, test>=70",
+        "train_curve_row_count": 146,
+        "val_threshold_row_count": 185,
+        "report_row_count": 146,
+        "split_contract_ok": true,
+        "leakage_violations": [],
+        "capability_threshold": 0.7,
+        "risk_threshold": 0.3,
+        "frozen_policy_check": true,
+        "pass_operating_gate": true,
+        "n_rows": 146,
+        "routing_quality": {
+          "tp": 8.0,
+          "fp": 3.0,
+          "fn": 73.0,
+          "tn": 62.0,
+          "precision": 0.7272727272727273,
+          "recall": 0.09876543209876543,
+          "f1": 0.17391304347826084,
+          "accuracy": 0.4794520547945205
+        },
+        "baseline_quality": {
+          "always_slm": {
+            "tp": 81.0,
+            "fp": 65.0,
+            "fn": 0.0,
+            "tn": 0.0,
+            "precision": 0.5547945205479452,
+            "recall": 1.0,
+            "f1": 0.7136563876651982,
+            "accuracy": 0.5547945205479452
+          },
+          "always_baseline": {
+            "tp": 0.0,
+            "fp": 0.0,
+            "fn": 81.0,
+            "tn": 65.0,
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "accuracy": 0.4452054794520548
+          }
+        },
+        "significance": {
+          "policy_vs_always_slm_mcnemar": {
+            "b": 73.0,
+            "c": 62.0,
+            "chi2": 0.7407407407407407,
+            "p_value": 0.3894236957350262,
+            "p_value_holm_adjusted": 1.0
+          },
+          "policy_vs_always_baseline_mcnemar": {
+            "b": 3.0,
+            "c": 8.0,
+            "chi2": 1.4545454545454546,
+            "p_value": 0.22779999398822898,
+            "p_value_holm_adjusted": 1.0
+          }
+        },
+        "coverage_slm": 0.07534246575342465,
+        "coverage_slm_or_hybrid": 0.07534246575342465,
+        "selected_capability": 0.7272727272727273,
+        "selected_risk": 0.18545454545454546,
+        "utility": 0.07170610211706105,
+        "baseline_utility": {
+          "always_slm": 0.8359589041095891,
+          "always_baseline": -1.0
+        },
+        "calibration": {
+          "capability_ece": 0.10727808219178082,
+          "capability_brier": 0.2528084823287672,
+          "risk_ece": 0.052633561643835626,
+          "risk_brier": 0.11690041801369863
+        },
+        "bootstrap_ci_90": {
+          "precision": [
+            0.5,
+            1.0
+          ],
+          "recall": [
+            0.04996913580246914,
+            0.15802469135802458
+          ],
+          "f1": [
+            0.09185070386155239,
+            0.26673539518900335
+          ],
+          "accuracy": [
+            0.4174657534246576,
+            0.5547945205479452
+          ],
+          "coverage_slm": [
+            0.0410958904109589,
+            0.11643835616438356
+          ],
+          "selected_capability": [
+            0.5,
+            1.0
+          ],
+          "selected_risk": [
+            0.0,
+            0.34
+          ],
+          "utility": [
+            -0.16020547945205482,
+            0.27773972602739694
+          ]
+        }
+      },
+      "qwen2.5_3b": {
+        "task": "retrieval_grounded",
+        "model_key": "qwen2.5_3b",
+        "display_name": "qwen2.5:3b",
+        "report_split": "train",
+        "threshold_split": "val",
+        "tau_star_difficulty": 0.173261,
+        "hash_split_policy": "sha1(sample_id)%100: train<30, val<70, test>=70",
+        "train_curve_row_count": 51,
+        "val_threshold_row_count": 185,
+        "report_row_count": 51,
+        "split_contract_ok": true,
+        "leakage_violations": [],
+        "capability_threshold": 0.7,
+        "risk_threshold": 0.3,
+        "frozen_policy_check": true,
+        "pass_operating_gate": false,
+        "n_rows": 51,
+        "routing_quality": {
+          "tp": 0.0,
+          "fp": 0.0,
+          "fn": 32.0,
+          "tn": 19.0,
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "accuracy": 0.37254901960784315
+        },
+        "baseline_quality": {
+          "always_slm": {
+            "tp": 32.0,
+            "fp": 19.0,
+            "fn": 0.0,
+            "tn": 0.0,
+            "precision": 0.6274509803921569,
+            "recall": 1.0,
+            "f1": 0.7710843373493976,
+            "accuracy": 0.6274509803921569
+          },
+          "always_baseline": {
+            "tp": 0.0,
+            "fp": 0.0,
+            "fn": 32.0,
+            "tn": 19.0,
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "accuracy": 0.37254901960784315
+          }
+        },
+        "significance": {
+          "policy_vs_always_slm_mcnemar": {
+            "b": 32.0,
+            "c": 19.0,
+            "chi2": 2.823529411764706,
+            "p_value": 0.09289194088370532,
+            "p_value_holm_adjusted": 1.0
+          },
+          "policy_vs_always_baseline_mcnemar": {
+            "b": 0.0,
+            "c": 0.0,
+            "chi2": 0.0,
+            "p_value": 1.0,
+            "p_value_holm_adjusted": 1.0
+          }
+        },
+        "coverage_slm": 0.0,
+        "coverage_slm_or_hybrid": 0.0,
+        "selected_capability": 0.0,
+        "selected_risk": 1.0,
+        "utility": -1.0,
+        "baseline_utility": {
+          "always_slm": 0.9035294117647057,
+          "always_baseline": -1.0
+        },
+        "calibration": {
+          "capability_ece": 0.047413725490196075,
+          "capability_brier": 0.21667771745098038,
+          "risk_ece": 0.03804901960784318,
+          "risk_brier": 0.10019343313725491
+        },
+        "bootstrap_ci_90": {
+          "precision": [
+            0.0,
+            0.0
+          ],
+          "recall": [
+            0.0,
+            0.0
+          ],
+          "f1": [
+            0.0,
+            0.0
+          ],
+          "accuracy": [
+            0.27450980392156865,
+            0.49019607843137253
+          ],
+          "coverage_slm": [
+            0.0,
+            0.0
+          ],
+          "selected_capability": [
+            0.0,
+            0.0
+          ],
+          "selected_risk": [
+            1.0,
+            1.0
+          ],
+          "utility": [
+            -1.0,
+            -1.0
+          ]
+        }
+      },
+      "qwen2.5_7b": {
+        "task": "retrieval_grounded",
+        "model_key": "qwen2.5_7b",
+        "display_name": "qwen2.5:7b",
+        "report_split": "train",
+        "threshold_split": "val",
+        "tau_star_difficulty": 0.167185,
+        "hash_split_policy": "sha1(sample_id)%100: train<30, val<70, test>=70",
+        "train_curve_row_count": 146,
+        "val_threshold_row_count": 185,
+        "report_row_count": 146,
+        "split_contract_ok": true,
+        "leakage_violations": [],
+        "capability_threshold": 0.7,
+        "risk_threshold": 0.3,
+        "frozen_policy_check": true,
+        "pass_operating_gate": true,
+        "n_rows": 146,
+        "routing_quality": {
+          "tp": 17.0,
+          "fp": 2.0,
+          "fn": 69.0,
+          "tn": 58.0,
+          "precision": 0.8947368421052632,
+          "recall": 0.19767441860465115,
+          "f1": 0.32380952380952377,
+          "accuracy": 0.5136986301369864
+        },
+        "baseline_quality": {
+          "always_slm": {
+            "tp": 86.0,
+            "fp": 60.0,
+            "fn": 0.0,
+            "tn": 0.0,
+            "precision": 0.589041095890411,
+            "recall": 1.0,
+            "f1": 0.7413793103448275,
+            "accuracy": 0.589041095890411
+          },
+          "always_baseline": {
+            "tp": 0.0,
+            "fp": 0.0,
+            "fn": 86.0,
+            "tn": 60.0,
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "accuracy": 0.410958904109589
+          }
+        },
+        "significance": {
+          "policy_vs_always_slm_mcnemar": {
+            "b": 69.0,
+            "c": 58.0,
+            "chi2": 0.7874015748031497,
+            "p_value": 0.37488699045279694,
+            "p_value_holm_adjusted": 1.0
+          },
+          "policy_vs_always_baseline_mcnemar": {
+            "b": 2.0,
+            "c": 17.0,
+            "chi2": 10.31578947368421,
+            "p_value": 0.0013189686125793583,
+            "p_value_holm_adjusted": 0.03287361674283043
+          }
+        },
+        "coverage_slm": 0.13013698630136986,
+        "coverage_slm_or_hybrid": 0.13013698630136986,
+        "selected_capability": 0.8947368421052632,
+        "selected_risk": 0.07157894736842106,
+        "utility": 0.28224224945926457,
+        "baseline_utility": {
+          "always_slm": 0.8678082191780823,
+          "always_baseline": -1.0
+        },
+        "calibration": {
+          "capability_ece": 0.06448698630136988,
+          "capability_brier": 0.1935031843150685,
+          "risk_ece": 0.044436301369863006,
+          "risk_brier": 0.08947359335616438
+        },
+        "bootstrap_ci_90": {
+          "precision": [
+            0.7691025641025642,
+            1.0
+          ],
+          "recall": [
+            0.1308982683982684,
+            0.27374999999999994
+          ],
+          "f1": [
+            0.2247191011235955,
+            0.4190952380952381
+          ],
+          "accuracy": [
+            0.4520547945205479,
+            0.5753424657534246
+          ],
+          "coverage_slm": [
+            0.08904109589041095,
+            0.18493150684931506
+          ],
+          "selected_capability": [
+            0.7691025641025642,
+            1.0
+          ],
+          "selected_risk": [
+            0.0,
+            0.15701025641025632
+          ],
+          "utility": [
+            0.14660469667318984,
+            0.3820926969178081
+          ]
+        }
+      },
+      "llama_llama-3.3-70b-versatile": {
+        "task": "retrieval_grounded",
+        "model_key": "llama_llama-3.3-70b-versatile",
+        "display_name": "groq:llama-3.3-70b-versatile",
+        "report_split": "train",
+        "threshold_split": "val",
+        "tau_star_difficulty": 0.182354,
+        "hash_split_policy": "sha1(sample_id)%100: train<30, val<70, test>=70",
+        "train_curve_row_count": 146,
+        "val_threshold_row_count": 185,
+        "report_row_count": 146,
+        "split_contract_ok": true,
+        "leakage_violations": [],
+        "capability_threshold": 0.7,
+        "risk_threshold": 0.3,
+        "frozen_policy_check": true,
+        "pass_operating_gate": true,
+        "n_rows": 146,
+        "routing_quality": {
+          "tp": 22.0,
+          "fp": 1.0,
+          "fn": 75.0,
+          "tn": 48.0,
+          "precision": 0.9565217391304348,
+          "recall": 0.2268041237113402,
+          "f1": 0.36666666666666664,
+          "accuracy": 0.4794520547945205
+        },
+        "baseline_quality": {
+          "always_slm": {
+            "tp": 97.0,
+            "fp": 49.0,
+            "fn": 0.0,
+            "tn": 0.0,
+            "precision": 0.6643835616438356,
+            "recall": 1.0,
+            "f1": 0.7983539094650206,
+            "accuracy": 0.6643835616438356
+          },
+          "always_baseline": {
+            "tp": 0.0,
+            "fp": 0.0,
+            "fn": 97.0,
+            "tn": 49.0,
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "accuracy": 0.3356164383561644
+          }
+        },
+        "significance": {
+          "policy_vs_always_slm_mcnemar": {
+            "b": 75.0,
+            "c": 48.0,
+            "chi2": 5.495934959349594,
+            "p_value": 0.019060733071643434,
+            "p_value_holm_adjusted": 0.3430931952895818
+          },
+          "policy_vs_always_baseline_mcnemar": {
+            "b": 1.0,
+            "c": 22.0,
+            "chi2": 17.391304347826086,
+            "p_value": 3.0421456547338823e-05,
+            "p_value_holm_adjusted": 0.000851800783325487
+          }
+        },
+        "coverage_slm": 0.15753424657534246,
+        "coverage_slm_or_hybrid": 0.15753424657534246,
+        "selected_capability": 0.9565217391304348,
+        "selected_risk": 0.02956521739130435,
+        "utility": 0.36709946396664683,
+        "baseline_utility": {
+          "always_slm": 0.937876712328767,
+          "always_baseline": -1.0
+        },
+        "calibration": {
+          "capability_ece": 0.062474657534246435,
+          "capability_brier": 0.19146740006849317,
+          "risk_ece": 0.04080684931506851,
+          "risk_brier": 0.0885344167123288
+        },
+        "bootstrap_ci_90": {
+          "precision": [
+            0.875,
+            1.0
+          ],
+          "recall": [
+            0.1588293162813576,
+            0.299020618556701
+          ],
+          "f1": [
+            0.2718117492183643,
+            0.4567396236487388
+          ],
+          "accuracy": [
+            0.4174657534246576,
+            0.5482876712328764
+          ],
+          "coverage_slm": [
+            0.1095890410958904,
+            0.2054794520547945
+          ],
+          "selected_capability": [
+            0.875,
+            1.0
+          ],
+          "selected_risk": [
+            0.0,
+            0.085
+          ],
+          "utility": [
+            0.2699543378995434,
+            0.4486301369863014
+          ]
+        }
+      }
+    }
+  },
+  "summarization": {
+    "task": "summarization",
+    "report_split": "train",
+    "threshold_method": "continuous_knn_local_ci_strict_tau",
+    "models": {
+      "qwen2.5_0.5b": {
+        "task": "summarization",
+        "model_key": "qwen2.5_0.5b",
+        "display_name": "qwen2.5:0.5b",
+        "report_split": "train",
+        "threshold_split": "val",
+        "tau_star_difficulty": 0.483551,
+        "hash_split_policy": "sha1(sample_id)%100: train<30, val<70, test>=70",
+        "train_curve_row_count": 110,
+        "val_threshold_row_count": 166,
+        "report_row_count": 110,
+        "split_contract_ok": true,
+        "leakage_violations": [],
+        "capability_threshold": 0.65,
+        "risk_threshold": 0.35,
+        "frozen_policy_check": true,
+        "pass_operating_gate": false,
+        "n_rows": 110,
+        "routing_quality": {
+          "tp": 21.0,
+          "fp": 32.0,
+          "fn": 11.0,
+          "tn": 46.0,
+          "precision": 0.39622641509433965,
+          "recall": 0.65625,
+          "f1": 0.49411764705882355,
+          "accuracy": 0.6090909090909091
+        },
+        "baseline_quality": {
+          "always_slm": {
+            "tp": 32.0,
+            "fp": 78.0,
+            "fn": 0.0,
+            "tn": 0.0,
+            "precision": 0.2909090909090909,
+            "recall": 1.0,
+            "f1": 0.45070422535211263,
+            "accuracy": 0.2909090909090909
+          },
+          "always_baseline": {
+            "tp": 0.0,
+            "fp": 0.0,
+            "fn": 32.0,
+            "tn": 78.0,
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "accuracy": 0.7090909090909091
+          }
+        },
+        "significance": {
+          "policy_vs_always_slm_mcnemar": {
+            "b": 11.0,
+            "c": 46.0,
+            "chi2": 20.280701754385966,
+            "p_value": 6.6871690133091165e-06,
+            "p_value_holm_adjusted": 0.00018055356335934614
+          },
+          "policy_vs_always_baseline_mcnemar": {
+            "b": 32.0,
+            "c": 21.0,
+            "chi2": 1.8867924528301887,
+            "p_value": 0.16956414519056337,
+            "p_value_holm_adjusted": 1.0
+          }
+        },
+        "coverage_slm": 0.4818181818181818,
+        "coverage_slm_or_hybrid": 0.4818181818181818,
+        "selected_capability": 0.39622641509433965,
+        "selected_risk": 0.13726415094339622,
+        "utility": 0.4436106346483705,
+        "baseline_utility": {
+          "always_slm": 0.9099318181818182,
+          "always_baseline": -1.0
+        },
+        "calibration": {
+          "capability_ece": 0.38502000000000003,
+          "capability_brier": 0.356660323090909,
+          "risk_ece": 0.08654727272727268,
+          "risk_brier": 0.019857526909090914
+        },
+        "bootstrap_ci_90": {
+          "precision": [
+            0.2855795148247978,
+            0.5098692810457516
+          ],
+          "recall": [
+            0.5198620689655172,
+            0.8
+          ],
+          "f1": [
+            0.3764705882352941,
+            0.6067966512447676
+          ],
+          "accuracy": [
+            0.5272727272727272,
+            0.6909090909090909
+          ],
+          "coverage_slm": [
+            0.4090909090909091,
+            0.5636363636363636
+          ],
+          "selected_capability": [
+            0.2855795148247978,
+            0.5098692810457516
+          ],
+          "selected_risk": [
+            0.11076410256410257,
+            0.16167760047281318
+          ],
+          "utility": [
+            0.3529009740259741,
+            0.5357025707898658
+          ]
+        }
+      },
+      "qwen2.5_3b": {
+        "task": "summarization",
+        "model_key": "qwen2.5_3b",
+        "display_name": "qwen2.5:3b",
+        "report_split": "train",
+        "threshold_split": "val",
+        "tau_star_difficulty": 0.528933,
+        "hash_split_policy": "sha1(sample_id)%100: train<30, val<70, test>=70",
+        "train_curve_row_count": 32,
+        "val_threshold_row_count": 166,
+        "report_row_count": 32,
+        "split_contract_ok": true,
+        "leakage_violations": [],
+        "capability_threshold": 0.65,
+        "risk_threshold": 0.35,
+        "frozen_policy_check": true,
+        "pass_operating_gate": true,
+        "n_rows": 32,
+        "routing_quality": {
+          "tp": 20.0,
+          "fp": 3.0,
+          "fn": 8.0,
+          "tn": 1.0,
+          "precision": 0.8695652173913043,
+          "recall": 0.7142857142857143,
+          "f1": 0.7843137254901961,
+          "accuracy": 0.65625
+        },
+        "baseline_quality": {
+          "always_slm": {
+            "tp": 28.0,
+            "fp": 4.0,
+            "fn": 0.0,
+            "tn": 0.0,
+            "precision": 0.875,
+            "recall": 1.0,
+            "f1": 0.9333333333333333,
+            "accuracy": 0.875
+          },
+          "always_baseline": {
+            "tp": 0.0,
+            "fp": 0.0,
+            "fn": 28.0,
+            "tn": 4.0,
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "accuracy": 0.125
+          }
+        },
+        "significance": {
+          "policy_vs_always_slm_mcnemar": {
+            "b": 8.0,
+            "c": 1.0,
+            "chi2": 4.0,
+            "p_value": 0.045500263896358396,
+            "p_value_holm_adjusted": 0.7735044862380928
+          },
+          "policy_vs_always_baseline_mcnemar": {
+            "b": 3.0,
+            "c": 20.0,
+            "chi2": 11.130434782608695,
+            "p_value": 0.0008492268308191797,
+            "p_value_holm_adjusted": 0.02207989760129867
+          }
+        },
+        "coverage_slm": 0.71875,
+        "coverage_slm_or_hybrid": 0.71875,
+        "selected_capability": 0.8695652173913043,
+        "selected_risk": 0.03228260869565218,
+        "utility": 0.9038586956521739,
+        "baseline_utility": {
+          "always_slm": 1.1878125,
+          "always_baseline": -1.0
+        },
+        "calibration": {
+          "capability_ece": 0.14306874999999986,
+          "capability_brier": 0.13150478249999997,
+          "risk_ece": 0.032490624999999995,
+          "risk_brier": 0.0078613159375
+        },
+        "bootstrap_ci_90": {
+          "precision": [
+            0.7368421052631579,
+            0.9615384615384616
+          ],
+          "recall": [
+            0.5597777777777778,
+            0.8571428571428571
+          ],
+          "f1": [
+            0.6666666666666666,
+            0.8771929824561403
+          ],
+          "accuracy": [
+            0.5,
+            0.78125
+          ],
+          "coverage_slm": [
+            0.5921875000000001,
+            0.84375
+          ],
+          "selected_capability": [
+            0.7368421052631579,
+            0.9615384615384616
+          ],
+          "selected_risk": [
+            0.00951923076923077,
+            0.06513157894736843
+          ],
+          "utility": [
+            0.7390131578947369,
+            1.0438935439560435
+          ]
+        }
+      },
+      "qwen2.5_7b": {
+        "task": "summarization",
+        "model_key": "qwen2.5_7b",
+        "display_name": "qwen2.5:7b",
+        "report_split": "train",
+        "threshold_split": "val",
+        "tau_star_difficulty": 0.501434,
+        "hash_split_policy": "sha1(sample_id)%100: train<30, val<70, test>=70",
+        "train_curve_row_count": 32,
+        "val_threshold_row_count": 166,
+        "report_row_count": 32,
+        "split_contract_ok": true,
+        "leakage_violations": [],
+        "capability_threshold": 0.65,
+        "risk_threshold": 0.35,
+        "frozen_policy_check": true,
+        "pass_operating_gate": true,
+        "n_rows": 32,
+        "routing_quality": {
+          "tp": 12.0,
+          "fp": 1.0,
+          "fn": 14.0,
+          "tn": 5.0,
+          "precision": 0.9230769230769231,
+          "recall": 0.46153846153846156,
+          "f1": 0.6153846153846155,
+          "accuracy": 0.53125
+        },
+        "baseline_quality": {
+          "always_slm": {
+            "tp": 26.0,
+            "fp": 6.0,
+            "fn": 0.0,
+            "tn": 0.0,
+            "precision": 0.8125,
+            "recall": 1.0,
+            "f1": 0.896551724137931,
+            "accuracy": 0.8125
+          },
+          "always_baseline": {
+            "tp": 0.0,
+            "fp": 0.0,
+            "fn": 26.0,
+            "tn": 6.0,
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "accuracy": 0.1875
+          }
+        },
+        "significance": {
+          "policy_vs_always_slm_mcnemar": {
+            "b": 14.0,
+            "c": 5.0,
+            "chi2": 3.3684210526315788,
+            "p_value": 0.06645742001693117,
+            "p_value_holm_adjusted": 0.9968613002539675
+          },
+          "policy_vs_always_baseline_mcnemar": {
+            "b": 1.0,
+            "c": 12.0,
+            "chi2": 7.6923076923076925,
+            "p_value": 0.005545667315244055,
+            "p_value_holm_adjusted": 0.1220046809353692
+          }
+        },
+        "coverage_slm": 0.40625,
+        "coverage_slm_or_hybrid": 0.40625,
+        "selected_capability": 0.9230769230769231,
+        "selected_risk": 0.01903846153846154,
+        "utility": 0.6179807692307693,
+        "baseline_utility": {
+          "always_slm": 1.15671875,
+          "always_baseline": -1.0
+        },
+        "calibration": {
+          "capability_ece": 0.08699375000000006,
+          "capability_brier": 0.156964303125,
+          "risk_ece": 0.019756249999999996,
+          "risk_brier": 0.009535725625000002
+        },
+        "bootstrap_ci_90": {
+          "precision": [
+            0.7777777777777778,
+            1.0
+          ],
+          "recall": [
+            0.30434782608695654,
+            0.640142857142857
+          ],
+          "f1": [
+            0.4444444444444444,
+            0.7619047619047621
+          ],
+          "accuracy": [
+            0.375,
+            0.6875
+          ],
+          "coverage_slm": [
+            0.25,
+            0.5625
+          ],
+          "selected_capability": [
+            0.7777777777777778,
+            1.0
+          ],
+          "selected_risk": [
+            0.0,
+            0.05500000000000001
+          ],
+          "utility": [
+            0.46299999999999997,
+            0.7848611111111111
+          ]
+        }
+      },
+      "llama_llama-3.3-70b-versatile": {
+        "task": "summarization",
+        "model_key": "llama_llama-3.3-70b-versatile",
+        "display_name": "groq:llama-3.3-70b-versatile",
+        "report_split": "train",
+        "threshold_split": "val",
+        "tau_star_difficulty": 0.475585,
+        "hash_split_policy": "sha1(sample_id)%100: train<30, val<70, test>=70",
+        "train_curve_row_count": 110,
+        "val_threshold_row_count": 166,
+        "report_row_count": 110,
+        "split_contract_ok": true,
+        "leakage_violations": [],
+        "capability_threshold": 0.65,
+        "risk_threshold": 0.35,
+        "frozen_policy_check": true,
+        "pass_operating_gate": true,
+        "n_rows": 110,
+        "routing_quality": {
+          "tp": 23.0,
+          "fp": 5.0,
+          "fn": 55.0,
+          "tn": 27.0,
+          "precision": 0.8214285714285714,
+          "recall": 0.2948717948717949,
+          "f1": 0.4339622641509434,
+          "accuracy": 0.45454545454545453
+        },
+        "baseline_quality": {
+          "always_slm": {
+            "tp": 78.0,
+            "fp": 32.0,
+            "fn": 0.0,
+            "tn": 0.0,
+            "precision": 0.7090909090909091,
+            "recall": 1.0,
+            "f1": 0.8297872340425533,
+            "accuracy": 0.7090909090909091
+          },
+          "always_baseline": {
+            "tp": 0.0,
+            "fp": 0.0,
+            "fn": 78.0,
+            "tn": 32.0,
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "accuracy": 0.2909090909090909
+          }
+        },
+        "significance": {
+          "policy_vs_always_slm_mcnemar": {
+            "b": 55.0,
+            "c": 27.0,
+            "chi2": 8.890243902439025,
+            "p_value": 0.002866984316802783,
+            "p_value_holm_adjusted": 0.060206670652858445
+          },
+          "policy_vs_always_baseline_mcnemar": {
+            "b": 5.0,
+            "c": 23.0,
+            "chi2": 10.321428571428571,
+            "p_value": 0.0013149446697132171,
+            "p_value_holm_adjusted": 0.03287361674283043
+          }
+        },
+        "coverage_slm": 0.2545454545454545,
+        "coverage_slm_or_hybrid": 0.2545454545454545,
+        "selected_capability": 0.8214285714285714,
+        "selected_risk": 0.044196428571428574,
+        "utility": 0.4157061688311688,
+        "baseline_utility": {
+          "always_slm": 1.109181818181818,
+          "always_baseline": -1.0
+        },
+        "calibration": {
+          "capability_ece": 0.024543636363636368,
+          "capability_brier": 0.2028881665454545,
+          "risk_ece": 0.0010063636363636386,
+          "risk_brier": 0.011525106818181818
+        },
+        "bootstrap_ci_90": {
+          "precision": [
+            0.7096774193548387,
+            0.95
+          ],
+          "recall": [
+            0.20833333333333334,
+            0.38281101614434937
+          ],
+          "f1": [
+            0.329532967032967,
+            0.5300317066446097
+          ],
+          "accuracy": [
+            0.38181818181818183,
+            0.5363636363636364
+          ],
+          "coverage_slm": [
+            0.1904545454545455,
+            0.32727272727272727
+          ],
+          "selected_capability": [
+            0.7096774193548387,
+            0.95
+          ],
+          "selected_risk": [
+            0.012375,
+            0.07185483870967742
+          ],
+          "utility": [
+            0.32918622953133814,
+            0.5061439393939394
+          ]
+        }
+      }
+    }
+  },
+  "text_generation": {
+    "task": "text_generation",
+    "report_split": "train",
+    "threshold_method": "continuous_knn_local_ci_strict_tau",
+    "models": {
+      "qwen2.5_0.5b": {
+        "task": "text_generation",
+        "model_key": "qwen2.5_0.5b",
+        "display_name": "qwen2.5:0.5b",
+        "report_split": "train",
+        "threshold_split": "val",
+        "tau_star_difficulty": 0.372586,
+        "hash_split_policy": "sha1(sample_id)%100: train<30, val<70, test>=70",
+        "train_curve_row_count": 95,
+        "val_threshold_row_count": 128,
+        "report_row_count": 95,
+        "split_contract_ok": true,
+        "leakage_violations": [],
+        "capability_threshold": 0.7,
+        "risk_threshold": 0.3,
+        "frozen_policy_check": true,
+        "pass_operating_gate": false,
+        "n_rows": 95,
+        "routing_quality": {
+          "tp": 0.0,
+          "fp": 0.0,
+          "fn": 85.0,
+          "tn": 10.0,
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "accuracy": 0.10526315789473684
+        },
+        "baseline_quality": {
+          "always_slm": {
+            "tp": 85.0,
+            "fp": 10.0,
+            "fn": 0.0,
+            "tn": 0.0,
+            "precision": 0.8947368421052632,
+            "recall": 1.0,
+            "f1": 0.9444444444444444,
+            "accuracy": 0.8947368421052632
+          },
+          "always_baseline": {
+            "tp": 0.0,
+            "fp": 0.0,
+            "fn": 85.0,
+            "tn": 10.0,
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "accuracy": 0.10526315789473684
+          }
+        },
+        "significance": {
+          "policy_vs_always_slm_mcnemar": {
+            "b": 85.0,
+            "c": 10.0,
+            "chi2": 57.642105263157895,
+            "p_value": 3.144224194307368e-14,
+            "p_value_holm_adjusted": 9.432672582922105e-13
+          },
+          "policy_vs_always_baseline_mcnemar": {
+            "b": 0.0,
+            "c": 0.0,
+            "chi2": 0.0,
+            "p_value": 1.0,
+            "p_value_holm_adjusted": 1.0
+          }
+        },
+        "coverage_slm": 0.0,
+        "coverage_slm_or_hybrid": 0.0,
+        "selected_capability": 0.0,
+        "selected_risk": 1.0,
+        "utility": -1.0,
+        "baseline_utility": {
+          "always_slm": 1.204736842105263,
+          "always_baseline": -1.0
+        },
+        "calibration": {
+          "capability_ece": 0.13688421052631594,
+          "capability_brier": 0.11294067368421058,
+          "risk_ece": 0.018343157894736842,
+          "risk_brier": 0.003345993684210527
+        },
+        "bootstrap_ci_90": {
+          "precision": [
+            0.0,
+            0.0
+          ],
+          "recall": [
+            0.0,
+            0.0
+          ],
+          "f1": [
+            0.0,
+            0.0
+          ],
+          "accuracy": [
+            0.05263157894736842,
+            0.15789473684210525
+          ],
+          "coverage_slm": [
+            0.0,
+            0.0
+          ],
+          "selected_capability": [
+            0.0,
+            0.0
+          ],
+          "selected_risk": [
+            1.0,
+            1.0
+          ],
+          "utility": [
+            -1.0,
+            -1.0
+          ]
+        }
+      },
+      "qwen2.5_3b": {
+        "task": "text_generation",
+        "model_key": "qwen2.5_3b",
+        "display_name": "qwen2.5:3b",
+        "report_split": "train",
+        "threshold_split": "val",
+        "tau_star_difficulty": 0.388152,
+        "hash_split_policy": "sha1(sample_id)%100: train<30, val<70, test>=70",
+        "train_curve_row_count": 22,
+        "val_threshold_row_count": 128,
+        "report_row_count": 22,
+        "split_contract_ok": true,
+        "leakage_violations": [],
+        "capability_threshold": 0.7,
+        "risk_threshold": 0.3,
+        "frozen_policy_check": true,
+        "pass_operating_gate": true,
+        "n_rows": 22,
+        "routing_quality": {
+          "tp": 1.0,
+          "fp": 0.0,
+          "fn": 18.0,
+          "tn": 3.0,
+          "precision": 1.0,
+          "recall": 0.05263157894736842,
+          "f1": 0.1,
+          "accuracy": 0.18181818181818182
+        },
+        "baseline_quality": {
+          "always_slm": {
+            "tp": 19.0,
+            "fp": 3.0,
+            "fn": 0.0,
+            "tn": 0.0,
+            "precision": 0.8636363636363636,
+            "recall": 1.0,
+            "f1": 0.9268292682926829,
+            "accuracy": 0.8636363636363636
+          },
+          "always_baseline": {
+            "tp": 0.0,
+            "fp": 0.0,
+            "fn": 19.0,
+            "tn": 3.0,
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "accuracy": 0.13636363636363635
+          }
+        },
+        "significance": {
+          "policy_vs_always_slm_mcnemar": {
+            "b": 18.0,
+            "c": 3.0,
+            "chi2": 9.333333333333334,
+            "p_value": 0.0022502265680857912,
+            "p_value_holm_adjusted": 0.05021002895933186
+          },
+          "policy_vs_always_baseline_mcnemar": {
+            "b": 0.0,
+            "c": 1.0,
+            "chi2": 0.0,
+            "p_value": 1.0,
+            "p_value_holm_adjusted": 1.0
+          }
+        },
+        "coverage_slm": 0.045454545454545456,
+        "coverage_slm_or_hybrid": 0.045454545454545456,
+        "selected_capability": 1.0,
+        "selected_risk": 0.0,
+        "utility": 0.29545454545454547,
+        "baseline_utility": {
+          "always_slm": 1.1913636363636362,
+          "always_baseline": -1.0
+        },
+        "calibration": {
+          "capability_ece": 0.03324545454545447,
+          "capability_brier": 0.11377517000000002,
+          "risk_ece": 0.0006772727272727347,
+          "risk_brier": 0.003686471363636364
+        },
+        "bootstrap_ci_90": {
+          "precision": [
+            0.0,
+            1.0
+          ],
+          "recall": [
+            0.0,
+            0.15
+          ],
+          "f1": [
+            0.0,
+            0.2608695652173913
+          ],
+          "accuracy": [
+            0.045454545454545456,
+            0.3181818181818182
+          ],
+          "coverage_slm": [
+            0.0,
+            0.13636363636363635
+          ],
+          "selected_capability": [
+            0.0,
+            1.0
+          ],
+          "selected_risk": [
+            0.0,
+            1.0
+          ],
+          "utility": [
+            -1.0,
+            0.38636363636363635
+          ]
+        }
+      },
+      "qwen2.5_7b": {
+        "task": "text_generation",
+        "model_key": "qwen2.5_7b",
+        "display_name": "qwen2.5:7b",
+        "report_split": "train",
+        "threshold_split": "val",
+        "tau_star_difficulty": 0.655595,
+        "hash_split_policy": "sha1(sample_id)%100: train<30, val<70, test>=70",
+        "train_curve_row_count": 95,
+        "val_threshold_row_count": 128,
+        "report_row_count": 95,
+        "split_contract_ok": true,
+        "leakage_violations": [],
+        "capability_threshold": 0.7,
+        "risk_threshold": 0.3,
+        "frozen_policy_check": true,
+        "pass_operating_gate": true,
+        "n_rows": 95,
+        "routing_quality": {
+          "tp": 47.0,
+          "fp": 0.0,
+          "fn": 46.0,
+          "tn": 2.0,
+          "precision": 1.0,
+          "recall": 0.5053763440860215,
+          "f1": 0.6714285714285714,
+          "accuracy": 0.5157894736842106
+        },
+        "baseline_quality": {
+          "always_slm": {
+            "tp": 93.0,
+            "fp": 2.0,
+            "fn": 0.0,
+            "tn": 0.0,
+            "precision": 0.9789473684210527,
+            "recall": 1.0,
+            "f1": 0.9893617021276596,
+            "accuracy": 0.9789473684210527
+          },
+          "always_baseline": {
+            "tp": 0.0,
+            "fp": 0.0,
+            "fn": 93.0,
+            "tn": 2.0,
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "accuracy": 0.021052631578947368
+          }
+        },
+        "significance": {
+          "policy_vs_always_slm_mcnemar": {
+            "b": 46.0,
+            "c": 2.0,
+            "chi2": 38.520833333333336,
+            "p_value": 5.417231673911746e-10,
+            "p_value_holm_adjusted": 1.516824868695289e-08
+          },
+          "policy_vs_always_baseline_mcnemar": {
+            "b": 0.0,
+            "c": 47.0,
+            "chi2": 45.02127659574468,
+            "p_value": 1.949052256116927e-11,
+            "p_value_holm_adjusted": 5.84715676835078e-10
+          }
+        },
+        "coverage_slm": 0.49473684210526314,
+        "coverage_slm_or_hybrid": 0.49473684210526314,
+        "selected_capability": 1.0,
+        "selected_risk": 0.0,
+        "utility": 0.7447368421052631,
+        "baseline_utility": {
+          "always_slm": 1.2409473684210526,
+          "always_baseline": -1.0
+        },
+        "calibration": {
+          "capability_ece": 0.017777894736842437,
+          "capability_brier": 0.021243996526315798,
+          "risk_ece": 0.0031978947368421044,
+          "risk_brier": 0.0006884105263157896
+        },
+        "bootstrap_ci_90": {
+          "precision": [
+            1.0,
+            1.0
+          ],
+          "recall": [
+            0.4175824175824176,
+            0.5851988899167437
+          ],
+          "f1": [
+            0.5891472868217055,
+            0.7383285832490575
+          ],
+          "accuracy": [
+            0.43157894736842106,
+            0.6
+          ],
+          "coverage_slm": [
+            0.4105263157894737,
+            0.5789473684210527
+          ],
+          "selected_capability": [
+            1.0,
+            1.0
+          ],
+          "selected_risk": [
+            0.0,
+            0.0
+          ],
+          "utility": [
+            0.6605263157894736,
+            0.8289473684210527
+          ]
+        }
+      },
+      "llama_llama-3.3-70b-versatile": {
+        "task": "text_generation",
+        "model_key": "llama_llama-3.3-70b-versatile",
+        "display_name": "groq:llama-3.3-70b-versatile",
+        "report_split": "train",
+        "threshold_split": "val",
+        "tau_star_difficulty": 0.0,
+        "hash_split_policy": "sha1(sample_id)%100: train<30, val<70, test>=70",
+        "train_curve_row_count": 95,
+        "val_threshold_row_count": 128,
+        "report_row_count": 95,
+        "split_contract_ok": true,
+        "leakage_violations": [],
+        "capability_threshold": 0.7,
+        "risk_threshold": 0.3,
+        "frozen_policy_check": true,
+        "pass_operating_gate": true,
+        "n_rows": 95,
+        "routing_quality": {
+          "tp": 95.0,
+          "fp": 0.0,
+          "fn": 0.0,
+          "tn": 0.0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "accuracy": 1.0
+        },
+        "baseline_quality": {
+          "always_slm": {
+            "tp": 95.0,
+            "fp": 0.0,
+            "fn": 0.0,
+            "tn": 0.0,
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "accuracy": 1.0
+          },
+          "always_baseline": {
+            "tp": 0.0,
+            "fp": 0.0,
+            "fn": 95.0,
+            "tn": 0.0,
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "accuracy": 0.0
+          }
+        },
+        "significance": {
+          "policy_vs_always_slm_mcnemar": {
+            "b": 0.0,
+            "c": 0.0,
+            "chi2": 0.0,
+            "p_value": 1.0,
+            "p_value_holm_adjusted": 1.0
+          },
+          "policy_vs_always_baseline_mcnemar": {
+            "b": 0.0,
+            "c": 95.0,
+            "chi2": 93.01052631578948,
+            "p_value": 5.201694611862449e-22,
+            "p_value_holm_adjusted": 1.6645422757959836e-20
+          }
+        },
+        "coverage_slm": 1.0,
+        "coverage_slm_or_hybrid": 1.0,
+        "selected_capability": 1.0,
+        "selected_risk": 0.0,
+        "utility": 1.25,
+        "baseline_utility": {
+          "always_slm": 1.25,
+          "always_baseline": -1.0
+        },
+        "calibration": {
+          "capability_ece": 0.0,
+          "capability_brier": 0.0,
+          "risk_ece": 0.0,
+          "risk_brier": 0.0
+        },
+        "bootstrap_ci_90": {
+          "precision": [
+            1.0,
+            1.0
+          ],
+          "recall": [
+            1.0,
+            1.0
+          ],
+          "f1": [
+            1.0,
+            1.0
+          ],
+          "accuracy": [
+            1.0,
+            1.0
+          ],
+          "coverage_slm": [
+            1.0,
+            1.0
+          ],
+          "selected_capability": [
+            1.0,
+            1.0
+          ],
+          "selected_risk": [
+            0.0,
+            0.0
+          ],
+          "utility": [
+            1.25,
+            1.25
+          ]
+        }
+      }
+    }
+  }
+}

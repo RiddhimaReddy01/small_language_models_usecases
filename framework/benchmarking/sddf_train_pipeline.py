@@ -346,12 +346,12 @@ def _build_frame(task: str, rows: list[dict[str, Any]], feature_names: list[str]
 def _sanitize_features(
     x_train: pd.DataFrame,
     x_val: pd.DataFrame,
-    x_test: pd.DataFrame,
     feature_names: list[str],
     variance_threshold: float,
     corr_threshold: float,
-) -> tuple[pd.DataFrame, pd.DataFrame, pd.DataFrame, list[str], dict[str, list[str]]]:
-    dropped_null = [c for c in feature_names if (x_train[c].isnull().any() or x_val[c].isnull().any() or x_test[c].isnull().any())]
+) -> tuple[pd.DataFrame, pd.DataFrame, list[str], dict[str, list[str]]]:
+    # Governance: feature selection decisions are made from TRAIN only.
+    dropped_null = [c for c in feature_names if x_train[c].isnull().any()]
     keep_1 = [c for c in feature_names if c not in dropped_null]
     if not keep_1:
         raise ValueError("All features dropped due to null values")
@@ -383,12 +383,11 @@ def _sanitize_features(
     return (
         x_train[keep_3].copy(),
         x_val[keep_3].copy(),
-        x_test[keep_3].copy(),
         keep_3,
         {
-            "null_or_nonfinite": dropped_null,
-            "low_variance": dropped_low_var,
-            "high_correlation": dropped_corr,
+            "null_or_nonfinite_train_only": dropped_null,
+            "low_variance_train_only": dropped_low_var,
+            "high_correlation_train_only": dropped_corr,
         },
     )
 
@@ -467,28 +466,23 @@ def train_task_model(
 ) -> dict[str, Any]:
     train_rows = _read_jsonl(model_dir / "train.jsonl")
     val_rows = _read_jsonl(model_dir / "val.jsonl")
-    test_rows = _read_jsonl(model_dir / "test.jsonl")
-    if not train_rows or not val_rows or not test_rows:
-        raise ValueError("Missing one or more split files")
+    if not train_rows or not val_rows:
+        raise ValueError("Missing one or more split files (train/val)")
 
     df_train = _build_frame(task, train_rows, feature_names, extractor)
     df_val = _build_frame(task, val_rows, feature_names, extractor)
-    df_test = _build_frame(task, test_rows, feature_names, extractor)
 
     x_train = df_train[feature_names].copy()
     x_val = df_val[feature_names].copy()
-    x_test = df_test[feature_names].copy()
     y_train = df_train["y"].astype(int).to_numpy()
     y_val = df_val["y"].astype(int).to_numpy()
-    y_test = df_test["y"].astype(int).to_numpy()
 
     if len(np.unique(y_train)) < 2:
         raise ValueError("Target collapse on train: only one class present")
 
-    x_train, x_val, x_test, selected_features, dropped = _sanitize_features(
+    x_train, x_val, selected_features, dropped = _sanitize_features(
         x_train=x_train,
         x_val=x_val,
-        x_test=x_test,
         feature_names=feature_names,
         variance_threshold=variance_threshold,
         corr_threshold=corr_threshold,
@@ -497,7 +491,6 @@ def train_task_model(
     scaler = StandardScaler()
     x_train_s = scaler.fit_transform(x_train)
     x_val_s = scaler.transform(x_val)
-    x_test_s = scaler.transform(x_test)
 
     post_const = [selected_features[i] for i in range(len(selected_features)) if float(np.ptp(x_train_s[:, i])) <= 1e-12]
     if post_const:
@@ -519,7 +512,6 @@ def train_task_model(
 
     p_train = clf.predict_proba(x_train_s)[:, 1]
     p_val = clf.predict_proba(x_val_s)[:, 1]
-    p_test = clf.predict_proba(x_test_s)[:, 1]
     tau = _calibrate_threshold(y_val=y_val, p_val=p_val)
 
     return {
@@ -541,7 +533,6 @@ def train_task_model(
         "metrics": {
             "train": _split_metrics(y_train, p_train, tau),
             "val": _split_metrics(y_val, p_val, tau),
-            "test": _split_metrics(y_test, p_test, tau),
         },
     }
 
@@ -728,28 +719,28 @@ def main() -> int:
         key = (str(run["task"]), str(run["model"]))
         if key not in seed_aggregates:
             seed_aggregates[key] = {
+                "train_f1": [],
                 "val_f1": [],
-                "test_f1": [],
-                "test_roc_auc": [],
-                "test_pr_auc": [],
-                "test_brier": [],
-                "test_ece_10bin": [],
+                "val_roc_auc": [],
+                "val_pr_auc": [],
+                "val_brier": [],
+                "val_ece_10bin": [],
             }
         m = art.get("metrics", {})
+        tr = m.get("train", {})
         v = m.get("val", {})
-        t = m.get("test", {})
+        if isinstance(tr.get("f1"), (int, float)):
+            seed_aggregates[key]["train_f1"].append(float(tr["f1"]))
         if isinstance(v.get("f1"), (int, float)):
             seed_aggregates[key]["val_f1"].append(float(v["f1"]))
-        if isinstance(t.get("f1"), (int, float)):
-            seed_aggregates[key]["test_f1"].append(float(t["f1"]))
-        if isinstance(t.get("roc_auc"), (int, float)):
-            seed_aggregates[key]["test_roc_auc"].append(float(t["roc_auc"]))
-        if isinstance(t.get("pr_auc"), (int, float)):
-            seed_aggregates[key]["test_pr_auc"].append(float(t["pr_auc"]))
-        if isinstance(t.get("brier"), (int, float)):
-            seed_aggregates[key]["test_brier"].append(float(t["brier"]))
-        if isinstance(t.get("ece_10bin"), (int, float)):
-            seed_aggregates[key]["test_ece_10bin"].append(float(t["ece_10bin"]))
+        if isinstance(v.get("roc_auc"), (int, float)):
+            seed_aggregates[key]["val_roc_auc"].append(float(v["roc_auc"]))
+        if isinstance(v.get("pr_auc"), (int, float)):
+            seed_aggregates[key]["val_pr_auc"].append(float(v["pr_auc"]))
+        if isinstance(v.get("brier"), (int, float)):
+            seed_aggregates[key]["val_brier"].append(float(v["brier"]))
+        if isinstance(v.get("ece_10bin"), (int, float)):
+            seed_aggregates[key]["val_ece_10bin"].append(float(v["ece_10bin"]))
 
     report["seed_aggregates"] = []
     for (task, model), metrics_dict in sorted(seed_aggregates.items()):

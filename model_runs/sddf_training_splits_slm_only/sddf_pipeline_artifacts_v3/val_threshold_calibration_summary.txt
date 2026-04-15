@@ -1,0 +1,7 @@
+runs=84
+errors=0
+pass_calibration_gate=46
+fail_calibration_gate=38
+selected_tau_score_unique_count=4
+selected_tau_score_min=0.0
+selected_tau_score_max=1.0

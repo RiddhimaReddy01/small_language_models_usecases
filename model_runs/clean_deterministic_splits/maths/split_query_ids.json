@@ -1,0 +1,38 @@
+{
+  "train": [
+    "maths:1",
+    "maths:10",
+    "maths:11",
+    "maths:13",
+    "maths:14",
+    "maths:15",
+    "maths:16",
+    "maths:17",
+    "maths:18",
+    "maths:2",
+    "maths:20",
+    "maths:22",
+    "maths:24",
+    "maths:25",
+    "maths:29",
+    "maths:3",
+    "maths:31",
+    "maths:33",
+    "maths:34",
+    "maths:35"
+  ],
+  "val": [
+    "maths:0",
+    "maths:21",
+    "maths:23",
+    "maths:27"
+  ],
+  "test": [
+    "maths:12",
+    "maths:19",
+    "maths:26",
+    "maths:28",
+    "maths:30",
+    "maths:32"
+  ]
+}

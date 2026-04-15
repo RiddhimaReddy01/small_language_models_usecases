@@ -1,0 +1,754 @@
+{
+  "seed": 42,
+  "tau_thresholds": {
+    "tau1": 3.2,
+    "tau2": 4.0
+  },
+  "n_results": 24,
+  "results": [
+    {
+      "task": "classification",
+      "model": "qwen2.5_0.5b",
+      "seed": 42,
+      "s3_scores": {
+        "TC": 2,
+        "OS": 3,
+        "SK": 3,
+        "DS": 2,
+        "LT": 3,
+        "VL": 3
+      },
+      "s3_weights": {
+        "TC": 3,
+        "OS": 2,
+        "SK": 4,
+        "DS": 2,
+        "LT": 3,
+        "VL": 1
+      },
+      "tau_cap": 0.49999999999999994,
+      "tau_risk": 0.49999999999999994,
+      "artifact_tau": 0.49999999999999994,
+      "decision": {
+        "disqualified": false,
+        "gate_reason": "Gate pass",
+        "tier": "pure_slm",
+        "s3_score": 2.6666666666666665,
+        "tau_route": 0.49999999999999994
+      }
+    },
+    {
+      "task": "classification",
+      "model": "qwen2.5_3b",
+      "seed": 42,
+      "s3_scores": {
+        "TC": 2,
+        "OS": 3,
+        "SK": 3,
+        "DS": 2,
+        "LT": 3,
+        "VL": 3
+      },
+      "s3_weights": {
+        "TC": 3,
+        "OS": 2,
+        "SK": 4,
+        "DS": 2,
+        "LT": 3,
+        "VL": 1
+      },
+      "tau_cap": 0.39999999999999997,
+      "tau_risk": 0.39999999999999997,
+      "artifact_tau": 0.39999999999999997,
+      "decision": {
+        "disqualified": false,
+        "gate_reason": "Gate pass",
+        "tier": "pure_slm",
+        "s3_score": 2.6666666666666665,
+        "tau_route": 0.39999999999999997
+      }
+    },
+    {
+      "task": "classification",
+      "model": "qwen2.5_7b",
+      "seed": 42,
+      "s3_scores": {
+        "TC": 2,
+        "OS": 3,
+        "SK": 3,
+        "DS": 2,
+        "LT": 3,
+        "VL": 3
+      },
+      "s3_weights": {
+        "TC": 3,
+        "OS": 2,
+        "SK": 4,
+        "DS": 2,
+        "LT": 3,
+        "VL": 1
+      },
+      "tau_cap": 0.2,
+      "tau_risk": 0.2,
+      "artifact_tau": 0.2,
+      "decision": {
+        "disqualified": false,
+        "gate_reason": "Gate pass",
+        "tier": "pure_slm",
+        "s3_score": 2.6666666666666665,
+        "tau_route": 0.2
+      }
+    },
+    {
+      "task": "code_generation",
+      "model": "qwen2.5_0.5b",
+      "seed": 42,
+      "s3_scores": {
+        "TC": 4,
+        "OS": 3,
+        "SK": 4,
+        "DS": 2,
+        "LT": 3,
+        "VL": 2
+      },
+      "s3_weights": {
+        "TC": 3,
+        "OS": 2,
+        "SK": 4,
+        "DS": 2,
+        "LT": 3,
+        "VL": 1
+      },
+      "tau_cap": 0.05,
+      "tau_risk": 0.05,
+      "artifact_tau": 0.05,
+      "decision": {
+        "disqualified": false,
+        "gate_reason": "Flag Rule: SK>=4",
+        "tier": "hybrid",
+        "s3_score": 3.2666666666666666,
+        "tau_route": 0.05
+      }
+    },
+    {
+      "task": "code_generation",
+      "model": "qwen2.5_3b",
+      "seed": 42,
+      "s3_scores": {
+        "TC": 4,
+        "OS": 3,
+        "SK": 4,
+        "DS": 2,
+        "LT": 3,
+        "VL": 2
+      },
+      "s3_weights": {
+        "TC": 3,
+        "OS": 2,
+        "SK": 4,
+        "DS": 2,
+        "LT": 3,
+        "VL": 1
+      },
+      "tau_cap": 0.1,
+      "tau_risk": 0.1,
+      "artifact_tau": 0.1,
+      "decision": {
+        "disqualified": false,
+        "gate_reason": "Flag Rule: SK>=4",
+        "tier": "hybrid",
+        "s3_score": 3.2666666666666666,
+        "tau_route": 0.1
+      }
+    },
+    {
+      "task": "code_generation",
+      "model": "qwen2.5_7b",
+      "seed": 42,
+      "s3_scores": {
+        "TC": 4,
+        "OS": 3,
+        "SK": 4,
+        "DS": 2,
+        "LT": 3,
+        "VL": 2
+      },
+      "s3_weights": {
+        "TC": 3,
+        "OS": 2,
+        "SK": 4,
+        "DS": 2,
+        "LT": 3,
+        "VL": 1
+      },
+      "tau_cap": 0.44999999999999996,
+      "tau_risk": 0.44999999999999996,
+      "artifact_tau": 0.44999999999999996,
+      "decision": {
+        "disqualified": false,
+        "gate_reason": "Flag Rule: SK>=4",
+        "tier": "hybrid",
+        "s3_score": 3.2666666666666666,
+        "tau_route": 0.44999999999999996
+      }
+    },
+    {
+      "task": "information_extraction",
+      "model": "qwen2.5_0.5b",
+      "seed": 42,
+      "s3_scores": {
+        "TC": 3,
+        "OS": 4,
+        "SK": 3,
+        "DS": 3,
+        "LT": 3,
+        "VL": 2
+      },
+      "s3_weights": {
+        "TC": 3,
+        "OS": 2,
+        "SK": 4,
+        "DS": 2,
+        "LT": 3,
+        "VL": 1
+      },
+      "tau_cap": 0.05,
+      "tau_risk": 0.05,
+      "artifact_tau": 0.05,
+      "decision": {
+        "disqualified": false,
+        "gate_reason": "Gate pass",
+        "tier": "pure_slm",
+        "s3_score": 3.0666666666666664,
+        "tau_route": 0.05
+      }
+    },
+    {
+      "task": "information_extraction",
+      "model": "qwen2.5_3b",
+      "seed": 42,
+      "s3_scores": {
+        "TC": 3,
+        "OS": 4,
+        "SK": 3,
+        "DS": 3,
+        "LT": 3,
+        "VL": 2
+      },
+      "s3_weights": {
+        "TC": 3,
+        "OS": 2,
+        "SK": 4,
+        "DS": 2,
+        "LT": 3,
+        "VL": 1
+      },
+      "tau_cap": 0.15,
+      "tau_risk": 0.15,
+      "artifact_tau": 0.15,
+      "decision": {
+        "disqualified": false,
+        "gate_reason": "Gate pass",
+        "tier": "pure_slm",
+        "s3_score": 3.0666666666666664,
+        "tau_route": 0.15
+      }
+    },
+    {
+      "task": "information_extraction",
+      "model": "qwen2.5_7b",
+      "seed": 42,
+      "s3_scores": {
+        "TC": 3,
+        "OS": 4,
+        "SK": 3,
+        "DS": 3,
+        "LT": 3,
+        "VL": 2
+      },
+      "s3_weights": {
+        "TC": 3,
+        "OS": 2,
+        "SK": 4,
+        "DS": 2,
+        "LT": 3,
+        "VL": 1
+      },
+      "tau_cap": 0.15,
+      "tau_risk": 0.15,
+      "artifact_tau": 0.15,
+      "decision": {
+        "disqualified": false,
+        "gate_reason": "Gate pass",
+        "tier": "pure_slm",
+        "s3_score": 3.0666666666666664,
+        "tau_route": 0.15
+      }
+    },
+    {
+      "task": "instruction_following",
+      "model": "qwen2.5_0.5b",
+      "seed": 42,
+      "s3_scores": {
+        "TC": 3,
+        "OS": 3,
+        "SK": 3,
+        "DS": 2,
+        "LT": 3,
+        "VL": 2
+      },
+      "s3_weights": {
+        "TC": 3,
+        "OS": 2,
+        "SK": 4,
+        "DS": 2,
+        "LT": 3,
+        "VL": 1
+      },
+      "tau_cap": 0.39999999999999997,
+      "tau_risk": 0.39999999999999997,
+      "artifact_tau": 0.39999999999999997,
+      "decision": {
+        "disqualified": false,
+        "gate_reason": "Gate pass",
+        "tier": "pure_slm",
+        "s3_score": 2.8000000000000003,
+        "tau_route": 0.39999999999999997
+      }
+    },
+    {
+      "task": "instruction_following",
+      "model": "qwen2.5_3b",
+      "seed": 42,
+      "s3_scores": {
+        "TC": 3,
+        "OS": 3,
+        "SK": 3,
+        "DS": 2,
+        "LT": 3,
+        "VL": 2
+      },
+      "s3_weights": {
+        "TC": 3,
+        "OS": 2,
+        "SK": 4,
+        "DS": 2,
+        "LT": 3,
+        "VL": 1
+      },
+      "tau_cap": 0.2,
+      "tau_risk": 0.2,
+      "artifact_tau": 0.2,
+      "decision": {
+        "disqualified": false,
+        "gate_reason": "Gate pass",
+        "tier": "pure_slm",
+        "s3_score": 2.8000000000000003,
+        "tau_route": 0.2
+      }
+    },
+    {
+      "task": "instruction_following",
+      "model": "qwen2.5_7b",
+      "seed": 42,
+      "s3_scores": {
+        "TC": 3,
+        "OS": 3,
+        "SK": 3,
+        "DS": 2,
+        "LT": 3,
+        "VL": 2
+      },
+      "s3_weights": {
+        "TC": 3,
+        "OS": 2,
+        "SK": 4,
+        "DS": 2,
+        "LT": 3,
+        "VL": 1
+      },
+      "tau_cap": 0.3,
+      "tau_risk": 0.3,
+      "artifact_tau": 0.3,
+      "decision": {
+        "disqualified": false,
+        "gate_reason": "Gate pass",
+        "tier": "pure_slm",
+        "s3_score": 2.8000000000000003,
+        "tau_route": 0.3
+      }
+    },
+    {
+      "task": "maths",
+      "model": "qwen2.5_0.5b",
+      "seed": 42,
+      "s3_scores": {
+        "TC": 4,
+        "OS": 3,
+        "SK": 4,
+        "DS": 2,
+        "LT": 3,
+        "VL": 2
+      },
+      "s3_weights": {
+        "TC": 3,
+        "OS": 2,
+        "SK": 4,
+        "DS": 2,
+        "LT": 3,
+        "VL": 1
+      },
+      "tau_cap": 0.05,
+      "tau_risk": 0.05,
+      "artifact_tau": 0.05,
+      "decision": {
+        "disqualified": false,
+        "gate_reason": "Flag Rule: SK>=4",
+        "tier": "hybrid",
+        "s3_score": 3.2666666666666666,
+        "tau_route": 0.05
+      }
+    },
+    {
+      "task": "maths",
+      "model": "qwen2.5_3b",
+      "seed": 42,
+      "s3_scores": {
+        "TC": 4,
+        "OS": 3,
+        "SK": 4,
+        "DS": 2,
+        "LT": 3,
+        "VL": 2
+      },
+      "s3_weights": {
+        "TC": 3,
+        "OS": 2,
+        "SK": 4,
+        "DS": 2,
+        "LT": 3,
+        "VL": 1
+      },
+      "tau_cap": 0.25,
+      "tau_risk": 0.25,
+      "artifact_tau": 0.25,
+      "decision": {
+        "disqualified": false,
+        "gate_reason": "Flag Rule: SK>=4",
+        "tier": "hybrid",
+        "s3_score": 3.2666666666666666,
+        "tau_route": 0.25
+      }
+    },
+    {
+      "task": "maths",
+      "model": "qwen2.5_7b",
+      "seed": 42,
+      "s3_scores": {
+        "TC": 4,
+        "OS": 3,
+        "SK": 4,
+        "DS": 2,
+        "LT": 3,
+        "VL": 2
+      },
+      "s3_weights": {
+        "TC": 3,
+        "OS": 2,
+        "SK": 4,
+        "DS": 2,
+        "LT": 3,
+        "VL": 1
+      },
+      "tau_cap": 0.05,
+      "tau_risk": 0.05,
+      "artifact_tau": 0.05,
+      "decision": {
+        "disqualified": false,
+        "gate_reason": "Flag Rule: SK>=4",
+        "tier": "hybrid",
+        "s3_score": 3.2666666666666666,
+        "tau_route": 0.05
+      }
+    },
+    {
+      "task": "retrieval_grounded",
+      "model": "qwen2.5_0.5b",
+      "seed": 42,
+      "s3_scores": {
+        "TC": 4,
+        "OS": 4,
+        "SK": 4,
+        "DS": 3,
+        "LT": 3,
+        "VL": 2
+      },
+      "s3_weights": {
+        "TC": 3,
+        "OS": 2,
+        "SK": 4,
+        "DS": 2,
+        "LT": 3,
+        "VL": 1
+      },
+      "tau_cap": 0.1,
+      "tau_risk": 0.1,
+      "artifact_tau": 0.1,
+      "decision": {
+        "disqualified": false,
+        "gate_reason": "Flag Rule: SK>=4",
+        "tier": "hybrid",
+        "s3_score": 3.533333333333333,
+        "tau_route": 0.1
+      }
+    },
+    {
+      "task": "retrieval_grounded",
+      "model": "qwen2.5_3b",
+      "seed": 42,
+      "s3_scores": {
+        "TC": 4,
+        "OS": 4,
+        "SK": 4,
+        "DS": 3,
+        "LT": 3,
+        "VL": 2
+      },
+      "s3_weights": {
+        "TC": 3,
+        "OS": 2,
+        "SK": 4,
+        "DS": 2,
+        "LT": 3,
+        "VL": 1
+      },
+      "tau_cap": 0.5499999999999999,
+      "tau_risk": 0.5499999999999999,
+      "artifact_tau": 0.5499999999999999,
+      "decision": {
+        "disqualified": false,
+        "gate_reason": "Flag Rule: SK>=4",
+        "tier": "hybrid",
+        "s3_score": 3.533333333333333,
+        "tau_route": 0.5499999999999999
+      }
+    },
+    {
+      "task": "retrieval_grounded",
+      "model": "qwen2.5_7b",
+      "seed": 42,
+      "s3_scores": {
+        "TC": 4,
+        "OS": 4,
+        "SK": 4,
+        "DS": 3,
+        "LT": 3,
+        "VL": 2
+      },
+      "s3_weights": {
+        "TC": 3,
+        "OS": 2,
+        "SK": 4,
+        "DS": 2,
+        "LT": 3,
+        "VL": 1
+      },
+      "tau_cap": 0.3,
+      "tau_risk": 0.3,
+      "artifact_tau": 0.3,
+      "decision": {
+        "disqualified": false,
+        "gate_reason": "Flag Rule: SK>=4",
+        "tier": "hybrid",
+        "s3_score": 3.533333333333333,
+        "tau_route": 0.3
+      }
+    },
+    {
+      "task": "summarization",
+      "model": "qwen2.5_0.5b",
+      "seed": 42,
+      "s3_scores": {
+        "TC": 3,
+        "OS": 3,
+        "SK": 2,
+        "DS": 2,
+        "LT": 3,
+        "VL": 2
+      },
+      "s3_weights": {
+        "TC": 3,
+        "OS": 2,
+        "SK": 4,
+        "DS": 2,
+        "LT": 3,
+        "VL": 1
+      },
+      "tau_cap": 0.7999999999999999,
+      "tau_risk": 0.7999999999999999,
+      "artifact_tau": 0.7999999999999999,
+      "decision": {
+        "disqualified": false,
+        "gate_reason": "Gate pass",
+        "tier": "pure_slm",
+        "s3_score": 2.5333333333333337,
+        "tau_route": 0.7999999999999999
+      }
+    },
+    {
+      "task": "summarization",
+      "model": "qwen2.5_3b",
+      "seed": 42,
+      "s3_scores": {
+        "TC": 3,
+        "OS": 3,
+        "SK": 2,
+        "DS": 2,
+        "LT": 3,
+        "VL": 2
+      },
+      "s3_weights": {
+        "TC": 3,
+        "OS": 2,
+        "SK": 4,
+        "DS": 2,
+        "LT": 3,
+        "VL": 1
+      },
+      "tau_cap": 0.6,
+      "tau_risk": 0.6,
+      "artifact_tau": 0.6,
+      "decision": {
+        "disqualified": false,
+        "gate_reason": "Gate pass",
+        "tier": "pure_slm",
+        "s3_score": 2.5333333333333337,
+        "tau_route": 0.6
+      }
+    },
+    {
+      "task": "summarization",
+      "model": "qwen2.5_7b",
+      "seed": 42,
+      "s3_scores": {
+        "TC": 3,
+        "OS": 3,
+        "SK": 2,
+        "DS": 2,
+        "LT": 3,
+        "VL": 2
+      },
+      "s3_weights": {
+        "TC": 3,
+        "OS": 2,
+        "SK": 4,
+        "DS": 2,
+        "LT": 3,
+        "VL": 1
+      },
+      "tau_cap": 0.2,
+      "tau_risk": 0.2,
+      "artifact_tau": 0.2,
+      "decision": {
+        "disqualified": false,
+        "gate_reason": "Gate pass",
+        "tier": "pure_slm",
+        "s3_score": 2.5333333333333337,
+        "tau_route": 0.2
+      }
+    },
+    {
+      "task": "text_generation",
+      "model": "qwen2.5_0.5b",
+      "seed": 42,
+      "s3_scores": {
+        "TC": 3,
+        "OS": 2,
+        "SK": 2,
+        "DS": 2,
+        "LT": 3,
+        "VL": 2
+      },
+      "s3_weights": {
+        "TC": 3,
+        "OS": 2,
+        "SK": 4,
+        "DS": 2,
+        "LT": 3,
+        "VL": 1
+      },
+      "tau_cap": 0.15,
+      "tau_risk": 0.15,
+      "artifact_tau": 0.15,
+      "decision": {
+        "disqualified": false,
+        "gate_reason": "Gate pass",
+        "tier": "pure_slm",
+        "s3_score": 2.4,
+        "tau_route": 0.15
+      }
+    },
+    {
+      "task": "text_generation",
+      "model": "qwen2.5_3b",
+      "seed": 42,
+      "s3_scores": {
+        "TC": 3,
+        "OS": 2,
+        "SK": 2,
+        "DS": 2,
+        "LT": 3,
+        "VL": 2
+      },
+      "s3_weights": {
+        "TC": 3,
+        "OS": 2,
+        "SK": 4,
+        "DS": 2,
+        "LT": 3,
+        "VL": 1
+      },
+      "tau_cap": 0.6,
+      "tau_risk": 0.6,
+      "artifact_tau": 0.6,
+      "decision": {
+        "disqualified": false,
+        "gate_reason": "Gate pass",
+        "tier": "pure_slm",
+        "s3_score": 2.4,
+        "tau_route": 0.6
+      }
+    },
+    {
+      "task": "text_generation",
+      "model": "qwen2.5_7b",
+      "seed": 42,
+      "s3_scores": {
+        "TC": 3,
+        "OS": 2,
+        "SK": 2,
+        "DS": 2,
+        "LT": 3,
+        "VL": 2
+      },
+      "s3_weights": {
+        "TC": 3,
+        "OS": 2,
+        "SK": 4,
+        "DS": 2,
+        "LT": 3,
+        "VL": 1
+      },
+      "tau_cap": 0.65,
+      "tau_risk": 0.65,
+      "artifact_tau": 0.65,
+      "decision": {
+        "disqualified": false,
+        "gate_reason": "Gate pass",
+        "tier": "pure_slm",
+        "s3_score": 2.4,
+        "tau_route": 0.65
+      }
+    }
+  ]
+}

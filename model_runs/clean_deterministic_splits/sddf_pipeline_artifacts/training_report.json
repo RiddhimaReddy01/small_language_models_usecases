@@ -1,0 +1,121 @@
+{
+  "runs": [
+    {
+      "task": "classification",
+      "model": "llama_llama-3.3-70b-versatile",
+      "artifact": "C:\\Users\\riddh\\OneDrive\\Desktop\\SLM use cases\\model_runs\\clean_deterministic_splits\\sddf_pipeline_artifacts\\classification\\llama_llama-3.3-70b-versatile.json"
+    }
+  ],
+  "errors": [
+    {
+      "task": "classification",
+      "model": "qwen2.5_0.5b",
+      "error": "Target collapse on train: only one class present"
+    },
+    {
+      "task": "classification",
+      "model": "qwen2.5_3b",
+      "error": "Target collapse on train: only one class present"
+    },
+    {
+      "task": "code_generation",
+      "model": "llama_llama-3.3-70b-versatile",
+      "error": "Target collapse on train: only one class present"
+    },
+    {
+      "task": "code_generation",
+      "model": "qwen2.5_0.5b",
+      "error": "Target collapse on train: only one class present"
+    },
+    {
+      "task": "code_generation",
+      "model": "qwen2.5_3b",
+      "error": "Target collapse on train: only one class present"
+    },
+    {
+      "task": "information_extraction",
+      "model": "llama_llama-3.3-70b-versatile",
+      "error": "Target collapse on train: only one class present"
+    },
+    {
+      "task": "information_extraction",
+      "model": "qwen2.5_0.5b",
+      "error": "Target collapse on train: only one class present"
+    },
+    {
+      "task": "information_extraction",
+      "model": "qwen2.5_3b",
+      "error": "Target collapse on train: only one class present"
+    },
+    {
+      "task": "instruction_following",
+      "model": "llama_llama-3.3-70b-versatile",
+      "error": "Target collapse on train: only one class present"
+    },
+    {
+      "task": "instruction_following",
+      "model": "qwen2.5_0.5b",
+      "error": "Target collapse on train: only one class present"
+    },
+    {
+      "task": "instruction_following",
+      "model": "qwen2.5_3b",
+      "error": "Target collapse on train: only one class present"
+    },
+    {
+      "task": "maths",
+      "model": "llama_llama-3.3-70b-versatile",
+      "error": "Target collapse on train: only one class present"
+    },
+    {
+      "task": "maths",
+      "model": "qwen2.5_0.5b",
+      "error": "Target collapse on train: only one class present"
+    },
+    {
+      "task": "maths",
+      "model": "qwen2.5_3b",
+      "error": "Target collapse on train: only one class present"
+    },
+    {
+      "task": "retrieval_grounded",
+      "model": "llama_llama-3.3-70b-versatile",
+      "error": "Target collapse on train: only one class present"
+    },
+    {
+      "task": "retrieval_grounded",
+      "model": "qwen2.5_0.5b",
+      "error": "Target collapse on train: only one class present"
+    },
+    {
+      "task": "retrieval_grounded",
+      "model": "qwen2.5_3b",
+      "error": "Target collapse on train: only one class present"
+    },
+    {
+      "task": "summarization",
+      "model": "llama_llama-3.3-70b-versatile",
+      "error": "Target collapse on train: only one class present"
+    },
+    {
+      "task": "summarization",
+      "model": "qwen2.5_0.5b",
+      "error": "Target collapse on train: only one class present"
+    },
+    {
+      "task": "summarization",
+      "model": "qwen2.5_3b",
+      "error": "Target collapse on train: only one class present"
+    },
+    {
+      "task": "text_generation",
+      "model": "llama_llama-3.3-70b-versatile",
+      "error": "Target collapse on train: only one class present"
+    },
+    {
+      "task": "text_generation",
+      "model": "qwen2.5_0.5b",
+      "error": "Target collapse on train: only one class present"
+    }
+  ]
+}

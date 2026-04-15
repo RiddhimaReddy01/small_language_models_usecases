@@ -1,0 +1,230 @@
+================================================================================
+COMPLETE PIPELINE OVERVIEW: TRAIN -> VAL -> LEARNED WEIGHTS -> ROUTING
+================================================================================
+
+PIPELINE FLOW:
+
+  TRAIN SPLIT (30% samples)
+    |
+    +-> Extract features
+    +-> Fit logistic regression (learn weights)
+    +-> Output: Learned difficulty weights
+
+  VAL SPLIT (40% samples)
+    |
+    +-> Use learned weights
+    +-> Score difficulty on unseen data
+    +-> Calibrate routing threshold (tau*)
+    +-> Output: Routing policy + thresholds
+
+  TEST SPLIT (30% samples)
+    |
+    +-> Use learned weights & thresholds
+    +-> Evaluate final performance
+    +-> Validate that constraints are met
+
+================================================================================
+WHAT WE FOUND: TRAIN SPLIT
+================================================================================
+
+LEARNED WEIGHTS FROM TRAINING:
+  - Successfully trained on 2 tasks with all 4 models
+  - Partially trained on 4 tasks with 3 models
+  - Failed on 2 tasks for qwen0.5b (0% success -> invalid model)
+
+KEY WEIGHTS (Most Important Features):
+  - MATHS: numeric_density (1.20) - strongest predictor
+  - CODE_GENERATION: token_count (0.97) - length matters
+  - CLASSIFICATION: entity_density (1.96) - semantic complexity
+  - TEXT_GENERATION: token_count (1.91) - extreme length sensitivity
+  - INFORMATION_EXTRACTION: avg_sentence_length (0.96) - structure
+  - RETRIEVAL_GROUNDED: sentence_count (0.65) - document complexity
+  - SUMMARIZATION: sentence_count (0.59) - structural features
+  - INSTRUCTION_FOLLOWING: format_keyword_count (0.66) - format
+
+SAMPLE DISTRIBUTION:
+  - Best coverage: MATHS (135 samples all 4 models)
+  - Good coverage: CODE_GEN (50 samples all 4 models)
+  - Fragmented: 6 other tasks have uneven coverage
+
+ISSUES:
+  - qwen0.5b: 0% success on maths/code_gen (weights unreliable)
+  - qwen3b: Missing from 6/8 tasks
+  - 6 tasks: Zero common samples across models
+
+================================================================================
+WHAT WE FOUND: VALIDATION SPLIT
+================================================================================
+
+VALIDATION PERFORMANCE (1,330 total samples):
+
+TASK PERFORMANCE RANKING:
+  1. TEXT_GENERATION:       89.3% success (EXCELLENT)
+  2. INSTRUCTION_FOLLOWING: 77.1% success (GOOD)
+  3. INFORMATION_EXTRACTION: 74.3% success (GOOD)
+  4. SUMMARIZATION:         70.6% success (ACCEPTABLE)
+  5. RETRIEVAL_GROUNDED:    58.1% success (MODERATE)
+  6. CLASSIFICATION:        49.4% success (LOW)
+  7. MATHS:                 46.7% success (LOW)
+  8. CODE_GENERATION:       28.5% success (VERY LOW)
+
+MODEL PERFORMANCE RANKING:
+  1. llama-3.3-70b:  70.6% avg (most reliable, best on 5/8 tasks)
+  2. qwen2.5_3b:     62.2% avg
+  3. qwen2.5_7b:     62.1% avg
+  4. qwen2.5_0.5b:   48.1% avg (weakest, never best)
+
+THRESHOLD IMPLICATIONS:
+  - High val success (>70%): Can use loose thresholds (more SLM)
+  - Medium val success (50-70%): Need strict thresholds (mostly LLM)
+  - Low val success (<50%): Consider LLM-only routing
+
+================================================================================
+VALIDATION PERFORMANCE INSIGHTS
+================================================================================
+
+HIGH CONFIDENCE TASKS (>70% val success):
+  TEXT_GENERATION (89.3%):
+    - Models nearly perfect on this task
+    - Can route aggressively to SLM with low threshold
+    - Expected: 60-70% SLM usage, 30-40% LLM fallback
+
+  INSTRUCTION_FOLLOWING (77.1%):
+    - Models strong at following instructions
+    - Can use loose thresholds
+    - Expected: 50-60% SLM usage
+
+  INFORMATION_EXTRACTION (74.3%):
+    - Good performance on extraction tasks
+    - Balanced routing possible
+    - Expected: 40-50% SLM usage
+
+  SUMMARIZATION (70.6%):
+    - Acceptable performance
+    - Moderate routing strategy
+    - Expected: 40-50% SLM usage
+
+MEDIUM CONFIDENCE TASKS (50-70%):
+  RETRIEVAL_GROUNDED (58.1%):
+    - Models moderate performance
+    - Need conservative thresholds
+    - Expected: 20-30% SLM usage, 70-80% LLM
+
+LOW CONFIDENCE TASKS (<50%):
+  CLASSIFICATION (49.4%):
+    - Models struggling
+    - Very conservative routing only
+    - Expected: <20% SLM usage or LLM-only
+
+  MATHS (46.7%):
+    - Models weak at math
+    - Recommend LLM-only or extreme caution
+    - Expected: LLM-only recommended
+
+  CODE_GENERATION (28.5%):
+    - Models very weak
+    - Cannot reliably route to SLM
+    - RECOMMENDATION: Use LLM-only (do not use SLM)
+
+================================================================================
+ROUTING STRATEGY RECOMMENDATIONS
+================================================================================
+
+TIER 1: AGGRESSIVE SLM ROUTING (High confidence)
+  Tasks: TEXT_GENERATION, INSTRUCTION_FOLLOWING
+  Val Performance: 77-89%
+  Strategy: Low threshold (tau* ~0.2-0.3)
+  Usage: 60-70% SLM, 30-40% LLM fallback
+  Fallback: llama-3.3-70b
+
+TIER 2: BALANCED ROUTING (Good confidence)
+  Tasks: INFORMATION_EXTRACTION, SUMMARIZATION
+  Val Performance: 70-74%
+  Strategy: Moderate threshold (tau* ~0.4-0.5)
+  Usage: 40-50% SLM, 50-60% LLM
+
+TIER 3: CONSERVATIVE ROUTING (Moderate confidence)
+  Tasks: RETRIEVAL_GROUNDED
+  Val Performance: 58%
+  Strategy: High threshold (tau* ~0.6-0.7)
+  Usage: 20-30% SLM, 70-80% LLM
+
+TIER 4: LLM-ONLY ROUTING (Low confidence)
+  Tasks: CLASSIFICATION, MATHS, CODE_GENERATION
+  Val Performance: 28-49%
+  Strategy: DO NOT use SLM routing
+  Usage: 0% SLM, 100% LLM
+  Reason: Val performance too low for reliable difficulty prediction
+
+================================================================================
+MODEL-SPECIFIC RECOMMENDATIONS
+================================================================================
+
+LLAMA-3.3-70B:
+  - Best choice (70.6% avg val success)
+  - Use as primary model
+  - Use as fallback for all other models
+  - Performs best on: TEXT_GENERATION (100%), INSTRUCTION (91%), etc.
+
+QWEN2.5_3B & QWEN2.5_7B:
+  - Good alternatives (62% avg val success)
+  - Use with same routing thresholds as llama
+  - Acceptable quality
+
+QWEN2.5_0.5B:
+  - TOO WEAK for production (48% avg val success)
+  - Fails on critical tasks: MATHS (19.8%), CODE_GEN (19.3%)
+  - RECOMMENDATION: Exclude from service or use LLM-only fallback
+
+================================================================================
+EXPECTED TEST PERFORMANCE
+================================================================================
+
+Based on val performance, expected test performance:
+
+HIGH CONFIDENCE (val >75%):
+  - TEXT_GENERATION: 89.3% val -> expect 85% test (very reliable)
+  - INSTRUCTION_FOLLOWING: 77.1% val -> expect 72% test (reliable)
+
+GOOD CONFIDENCE (val 70-75%):
+  - INFORMATION_EXTRACTION: 74.3% val -> expect 68% test
+  - SUMMARIZATION: 70.6% val -> expect 65% test
+
+MODERATE CONFIDENCE (val 50-70%):
+  - RETRIEVAL_GROUNDED: 58.1% val -> expect 50% test
+
+LOW CONFIDENCE (val <50%):
+  - CLASSIFICATION: 49.4% val -> expect 40% test (unreliable)
+  - MATHS: 46.7% val -> expect 38% test (unreliable)
+  - CODE_GENERATION: 28.5% val -> expect 18% test (very unreliable)
+
+================================================================================
+VALIDATION SUMMARY & DEPLOYMENT READINESS
+================================================================================
+
+READY FOR PRODUCTION (4/8 tasks):
+  ✓ TEXT_GENERATION: Use SLM with loose thresholds
+  ✓ INSTRUCTION_FOLLOWING: Use SLM with moderate thresholds
+  ✓ INFORMATION_EXTRACTION: Use SLM with moderate thresholds
+  ✓ SUMMARIZATION: Use SLM with moderate thresholds
+
+NEEDS CAUTION (1/8 tasks):
+  ~ RETRIEVAL_GROUNDED: Use SLM with very strict thresholds only
+
+NOT READY FOR SLM ROUTING (3/8 tasks):
+  ✗ CLASSIFICATION: Use LLM-only or extreme caution
+  ✗ MATHS: Use LLM-only recommended
+  ✗ CODE_GENERATION: Use LLM-only (do not use SLM)
+
+OVERALL ASSESSMENT:
+  - 50% of tasks ready for confident SLM routing
+  - 12% of tasks need careful threshold tuning
+  - 38% of tasks should avoid SLM routing entirely
+  - llama-3.3-70b is the strongest fallback option
+
+KEY ACTIONS:
+  1. Implement tiered routing based on val performance
+  2. Use strict thresholds for low-performance tasks
+  3. Make llama-3.3-70b the universal fallback
+  4. Consider excluding qwen0.5b from service
+  5. Plan for LLM-only routing on code_gen/maths/classification
