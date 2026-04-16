@@ -1,0 +1,5689 @@
+{
+  "source_repos": {
+    "smita_repo": "C:\\Users\\riddh\\OneDrive\\Desktop\\SLM use cases\\repos\\SLM_Research_Project",
+    "riddhima_repo": "C:\\Users\\riddh\\OneDrive\\Desktop\\SLM use cases\\repos\\small_language_models_usecases"
+  },
+  "method_notes": {
+    "difficulty_features": "Computed using sddf/difficulty.py annotate_dominant_dimension().",
+    "validation_thresholds": "Computed using sddf/validation_dynamic.py with adaptive percentiles (cap=50th, risk=75th).",
+    "tau_fallback": "validation_dynamic returns tau_source; fallback indicated as fallback_min_violation_adaptive where applicable.",
+    "metrics_note": "ROC-AUC, PR-AUC, Brier, and ECE are hard-label proxies because probability logits are not persisted in Smita raw output files.",
+    "uc8_note": "UC8 raw outputs do not include class labels/correct flags; generation criteria coverage proxy used."
+  },
+  "results_by_uc": {
+    "uc1": {
+      "task_family": "classification",
+      "n_rows_total": 630,
+      "n_items_total": 30,
+      "split_strategy": "deterministic_item_split_60_20_20",
+      "train_items_count": 18,
+      "val_items_count": 6,
+      "test_items_count": 6,
+      "models": {
+        "Gemma3-4B": {
+          "model_tier": "SLM",
+          "train_phase": {
+            "n_samples": 54,
+            "failure_signal_rate": 0.2222222222222222,
+            "feature_means": {
+              "n_in": 12.055555555555555,
+              "entropy": 3.53250545746593,
+              "reasoning_proxy": 0.0,
+              "constraint_count": 0.0,
+              "parametric_dependence": 0.0,
+              "dependency_distance": 0.0,
+              "reasoning_x_constraint": 0.0,
+              "length_x_entropy": 43.39531562058457,
+              "knowledge_x_reasoning": 0.0,
+              "classification_ambiguity": 0.0,
+              "classification_negation_density": 0.0,
+              "classification_domain_shift": 0.966388888888889,
+              "math_numeric_density": 0.0,
+              "math_symbol_density": 0.0,
+              "math_precision_cues": 0.0,
+              "instruction_format_strictness": 0.0,
+              "instruction_prohibition_count": 0.0,
+              "instruction_step_count": 0.0,
+              "instruction_conflict_cues": 0.0
+            }
+          },
+          "validation_phase": {
+            "n_samples": 18,
+            "baseline_capability": 1.0,
+            "baseline_risk": 0.0,
+            "tau_cap": 1.0,
+            "tau_risk": 0.0,
+            "tau_star": 3.906890595608519,
+            "tau_source": "strict_feasible_adaptive",
+            "capability_curve": {
+              "0": 1.0,
+              "1": 1.0,
+              "2": 1.0,
+              "3": 1.0,
+              "4": 1.0,
+              "5": 1.0,
+              "6": 1.0,
+              "7": 1.0,
+              "8": 1.0,
+              "9": 1.0
+            },
+            "risk_curve": {
+              "0": 0.0,
+              "1": 0.0,
+              "2": 0.0,
+              "3": 0.0,
+              "4": 0.0,
+              "5": 0.0,
+              "6": 0.0,
+              "7": 0.0,
+              "8": 0.0,
+              "9": 0.0
+            },
+            "coverage_curve": {
+              "0": 1,
+              "1": 1,
+              "2": 1,
+              "3": 1,
+              "4": 1,
+              "5": 1,
+              "6": 1,
+              "7": 1,
+              "8": 1,
+              "9": 9
+            }
+          },
+          "test_phase": {
+            "dataset_outputs": {
+              "predictions": 18,
+              "routing_decisions": 18,
+              "correctness": {
+                "correct": 9,
+                "incorrect": 9
+              },
+              "failure_categories": {
+                "hard_failure": 18
+              }
+            },
+            "metrics": {
+              "metric_mode": "hard_label_proxy",
+              "accuracy": 0.5,
+              "precision_macro": 0.7,
+              "recall_macro": 0.625,
+              "f1_macro": 0.4857142857142857,
+              "roc_auc_ovr_hard": 0.625,
+              "pr_auc_macro_hard": 0.575,
+              "brier_multiclass_hard": 1.0,
+              "ece_hard": 0.5,
+              "p95_latency_ms": 574.3499999999999,
+              "n_test_samples": 18,
+              "n_predictions": 18,
+              "n_routing_decisions": 18,
+              "n_failures": 9,
+              "n_routed_slm": 15,
+              "n_routed_llm": 3
+            }
+          }
+        },
+        "Llama-3.1-8B": {
+          "model_tier": "SLM",
+          "train_phase": {
+            "n_samples": 54,
+            "failure_signal_rate": 0.3333333333333333,
+            "feature_means": {
+              "n_in": 12.055555555555555,
+              "entropy": 3.53250545746593,
+              "reasoning_proxy": 0.0,
+              "constraint_count": 0.0,
+              "parametric_dependence": 0.0,
+              "dependency_distance": 0.0,
+              "reasoning_x_constraint": 0.0,
+              "length_x_entropy": 43.39531562058457,
+              "knowledge_x_reasoning": 0.0,
+              "classification_ambiguity": 0.0,
+              "classification_negation_density": 0.0,
+              "classification_domain_shift": 0.966388888888889,
+              "math_numeric_density": 0.0,
+              "math_symbol_density": 0.0,
+              "math_precision_cues": 0.0,
+              "instruction_format_strictness": 0.0,
+              "instruction_prohibition_count": 0.0,
+              "instruction_step_count": 0.0,
+              "instruction_conflict_cues": 0.0
+            }
+          },
+          "validation_phase": {
+            "n_samples": 18,
+            "baseline_capability": 1.0,
+            "baseline_risk": 0.09333333333333334,
+            "tau_cap": 0.8333333333333334,
+            "tau_risk": 0.18666666666666668,
+            "tau_star": 3.906890595608519,
+            "tau_source": "strict_feasible_adaptive",
+            "capability_curve": {
+              "0": 0.5,
+              "1": 0.5,
+              "2": 0.5,
+              "3": 0.5,
+              "4": 0.5,
+              "5": 0.5,
+              "6": 1.0,
+              "7": 1.0,
+              "8": 1.0,
+              "9": 1.0
+            },
+            "risk_curve": {
+              "0": 0.28,
+              "1": 0.28,
+              "2": 0.28,
+              "3": 0.28,
+              "4": 0.28,
+              "5": 0.28,
+              "6": 0.0,
+              "7": 0.0,
+              "8": 0.0,
+              "9": 0.0
+            },
+            "coverage_curve": {
+              "0": 1,
+              "1": 1,
+              "2": 1,
+              "3": 1,
+              "4": 1,
+              "5": 1,
+              "6": 1,
+              "7": 1,
+              "8": 1,
+              "9": 9
+            }
+          },
+          "test_phase": {
+            "dataset_outputs": {
+              "predictions": 18,
+              "routing_decisions": 18,
+              "correctness": {
+                "correct": 9,
+                "incorrect": 9
+              },
+              "failure_categories": {
+                "hard_failure": 18
+              }
+            },
+            "metrics": {
+              "metric_mode": "hard_label_proxy",
+              "accuracy": 0.5,
+              "precision_macro": 0.7,
+              "recall_macro": 0.625,
+              "f1_macro": 0.4857142857142857,
+              "roc_auc_ovr_hard": 0.625,
+              "pr_auc_macro_hard": 0.575,
+              "brier_multiclass_hard": 1.0,
+              "ece_hard": 0.5,
+              "p95_latency_ms": 1829.5499999999993,
+              "n_test_samples": 18,
+              "n_predictions": 18,
+              "n_routing_decisions": 18,
+              "n_failures": 9,
+              "n_routed_slm": 15,
+              "n_routed_llm": 3
+            }
+          }
+        },
+        "Llama-3.2-3B": {
+          "model_tier": "SLM",
+          "train_phase": {
+            "n_samples": 54,
+            "failure_signal_rate": 0.4444444444444444,
+            "feature_means": {
+              "n_in": 12.055555555555555,
+              "entropy": 3.53250545746593,
+              "reasoning_proxy": 0.0,
+              "constraint_count": 0.0,
+              "parametric_dependence": 0.0,
+              "dependency_distance": 0.0,
+              "reasoning_x_constraint": 0.0,
+              "length_x_entropy": 43.39531562058457,
+              "knowledge_x_reasoning": 0.0,
+              "classification_ambiguity": 0.0,
+              "classification_negation_density": 0.0,
+              "classification_domain_shift": 0.966388888888889,
+              "math_numeric_density": 0.0,
+              "math_symbol_density": 0.0,
+              "math_precision_cues": 0.0,
+              "instruction_format_strictness": 0.0,
+              "instruction_prohibition_count": 0.0,
+              "instruction_step_count": 0.0,
+              "instruction_conflict_cues": 0.0
+            }
+          },
+          "validation_phase": {
+            "n_samples": 18,
+            "baseline_capability": 1.0,
+            "baseline_risk": 0.09333333333333334,
+            "tau_cap": 1.0,
+            "tau_risk": 0.04666666666666667,
+            "tau_star": 3.85216872360328,
+            "tau_source": "strict_feasible_adaptive",
+            "capability_curve": {
+              "0": 0.9666666666666666,
+              "1": 0.9666666666666666,
+              "2": 0.9666666666666666,
+              "3": 0.9666666666666666,
+              "4": 0.9666666666666666,
+              "5": 0.9666666666666666,
+              "6": 0.9666666666666666,
+              "7": 0.9666666666666666,
+              "8": 0.9666666666666666,
+              "9": 0.9666666666666666
+            },
+            "risk_curve": {
+              "0": 0.018666666666666668,
+              "1": 0.018666666666666668,
+              "2": 0.018666666666666668,
+              "3": 0.018666666666666668,
+              "4": 0.018666666666666668,
+              "5": 0.018666666666666668,
+              "6": 0.018666666666666668,
+              "7": 0.018666666666666668,
+              "8": 0.018666666666666668,
+              "9": 0.018666666666666668
+            },
+            "coverage_curve": {
+              "0": 1,
+              "1": 1,
+              "2": 1,
+              "3": 1,
+              "4": 1,
+              "5": 1,
+              "6": 1,
+              "7": 1,
+              "8": 1,
+              "9": 9
+            }
+          },
+          "test_phase": {
+            "dataset_outputs": {
+              "predictions": 18,
+              "routing_decisions": 18,
+              "correctness": {
+                "correct": 6,
+                "incorrect": 12
+              },
+              "failure_categories": {
+                "hard_failure": 18
+              }
+            },
+            "metrics": {
+              "metric_mode": "hard_label_proxy",
+              "accuracy": 0.3333333333333333,
+              "precision_macro": 0.16666666666666666,
+              "recall_macro": 0.5,
+              "f1_macro": 0.25,
+              "roc_auc_ovr_hard": 0.5,
+              "pr_auc_macro_hard": 0.5,
+              "brier_multiclass_hard": 1.3333333333333333,
+              "ece_hard": 0.6666666666666667,
+              "p95_latency_ms": 879.5999999999998,
+              "n_test_samples": 18,
+              "n_predictions": 18,
+              "n_routing_decisions": 18,
+              "n_failures": 12,
+              "n_routed_slm": 15,
+              "n_routed_llm": 3
+            }
+          }
+        },
+        "Llama-3.3-70B": {
+          "model_tier": "LLM",
+          "train_phase": {
+            "n_samples": 54,
+            "failure_signal_rate": 0.1111111111111111,
+            "feature_means": {
+              "n_in": 12.055555555555555,
+              "entropy": 3.53250545746593,
+              "reasoning_proxy": 0.0,
+              "constraint_count": 0.0,
+              "parametric_dependence": 0.0,
+              "dependency_distance": 0.0,
+              "reasoning_x_constraint": 0.0,
+              "length_x_entropy": 43.39531562058457,
+              "knowledge_x_reasoning": 0.0,
+              "classification_ambiguity": 0.0,
+              "classification_negation_density": 0.0,
+              "classification_domain_shift": 0.966388888888889,
+              "math_numeric_density": 0.0,
+              "math_symbol_density": 0.0,
+              "math_precision_cues": 0.0,
+              "instruction_format_strictness": 0.0,
+              "instruction_prohibition_count": 0.0,
+              "instruction_step_count": 0.0,
+              "instruction_conflict_cues": 0.0
+            }
+          },
+          "validation_phase": {
+            "n_samples": 18,
+            "baseline_capability": 1.0,
+            "baseline_risk": 0.0,
+            "tau_cap": 1.0,
+            "tau_risk": 0.0,
+            "tau_star": 3.906890595608519,
+            "tau_source": "strict_feasible_adaptive",
+            "capability_curve": {
+              "0": 1.0,
+              "1": 1.0,
+              "2": 1.0,
+              "3": 1.0,
+              "4": 1.0,
+              "5": 1.0,
+              "6": 1.0,
+              "7": 1.0,
+              "8": 1.0,
+              "9": 1.0
+            },
+            "risk_curve": {
+              "0": 0.0,
+              "1": 0.0,
+              "2": 0.0,
+              "3": 0.0,
+              "4": 0.0,
+              "5": 0.0,
+              "6": 0.0,
+              "7": 0.0,
+              "8": 0.0,
+              "9": 0.0
+            },
+            "coverage_curve": {
+              "0": 1,
+              "1": 1,
+              "2": 1,
+              "3": 1,
+              "4": 1,
+              "5": 1,
+              "6": 1,
+              "7": 1,
+              "8": 1,
+              "9": 9
+            }
+          },
+          "test_phase": {
+            "dataset_outputs": {
+              "predictions": 18,
+              "routing_decisions": 18,
+              "correctness": {
+                "correct": 15,
+                "incorrect": 3
+              },
+              "failure_categories": {
+                "hard_failure": 18
+              }
+            },
+            "metrics": {
+              "metric_mode": "hard_label_proxy",
+              "accuracy": 0.8333333333333334,
+              "precision_macro": 0.8333333333333333,
+              "recall_macro": 0.875,
+              "f1_macro": 0.8285714285714285,
+              "roc_auc_ovr_hard": 0.875,
+              "pr_auc_macro_hard": 0.7916666666666666,
+              "brier_multiclass_hard": 0.3333333333333333,
+              "ece_hard": 0.16666666666666663,
+              "p95_latency_ms": 2426.3,
+              "n_test_samples": 18,
+              "n_predictions": 18,
+              "n_routing_decisions": 18,
+              "n_failures": 3,
+              "n_routed_slm": 0,
+              "n_routed_llm": 18
+            }
+          }
+        },
+        "Mistral-7B": {
+          "model_tier": "SLM",
+          "train_phase": {
+            "n_samples": 54,
+            "failure_signal_rate": 0.05555555555555555,
+            "feature_means": {
+              "n_in": 12.055555555555555,
+              "entropy": 3.53250545746593,
+              "reasoning_proxy": 0.0,
+              "constraint_count": 0.0,
+              "parametric_dependence": 0.0,
+              "dependency_distance": 0.0,
+              "reasoning_x_constraint": 0.0,
+              "length_x_entropy": 43.39531562058457,
+              "knowledge_x_reasoning": 0.0,
+              "classification_ambiguity": 0.0,
+              "classification_negation_density": 0.0,
+              "classification_domain_shift": 0.966388888888889,
+              "math_numeric_density": 0.0,
+              "math_symbol_density": 0.0,
+              "math_precision_cues": 0.0,
+              "instruction_format_strictness": 0.0,
+              "instruction_prohibition_count": 0.0,
+              "instruction_step_count": 0.0,
+              "instruction_conflict_cues": 0.0
+            }
+          },
+          "validation_phase": {
+            "n_samples": 18,
+            "baseline_capability": 1.0,
+            "baseline_risk": 0.09333333333333334,
+            "tau_cap": 1.0,
+            "tau_risk": 0.04666666666666667,
+            "tau_star": 3.85216872360328,
+            "tau_source": "strict_feasible_adaptive",
+            "capability_curve": {
+              "0": 0.9666666666666666,
+              "1": 0.9666666666666666,
+              "2": 0.9666666666666666,
+              "3": 0.9666666666666666,
+              "4": 0.9666666666666666,
+              "5": 0.9666666666666666,
+              "6": 0.9666666666666666,
+              "7": 0.9666666666666666,
+              "8": 0.9666666666666666,
+              "9": 0.9666666666666666
+            },
+            "risk_curve": {
+              "0": 0.018666666666666668,
+              "1": 0.018666666666666668,
+              "2": 0.018666666666666668,
+              "3": 0.018666666666666668,
+              "4": 0.018666666666666668,
+              "5": 0.018666666666666668,
+              "6": 0.018666666666666668,
+              "7": 0.018666666666666668,
+              "8": 0.018666666666666668,
+              "9": 0.018666666666666668
+            },
+            "coverage_curve": {
+              "0": 1,
+              "1": 1,
+              "2": 1,
+              "3": 1,
+              "4": 1,
+              "5": 1,
+              "6": 1,
+              "7": 1,
+              "8": 1,
+              "9": 9
+            }
+          },
+          "test_phase": {
+            "dataset_outputs": {
+              "predictions": 18,
+              "routing_decisions": 18,
+              "correctness": {
+                "correct": 15,
+                "incorrect": 3
+              },
+              "failure_categories": {
+                "hard_failure": 18
+              }
+            },
+            "metrics": {
+              "metric_mode": "hard_label_proxy",
+              "accuracy": 0.8333333333333334,
+              "precision_macro": 0.9,
+              "recall_macro": 0.75,
+              "f1_macro": 0.7777777777777777,
+              "roc_auc_ovr_hard": 0.75,
+              "pr_auc_macro_hard": 0.7333333333333334,
+              "brier_multiclass_hard": 0.3333333333333333,
+              "ece_hard": 0.16666666666666663,
+              "p95_latency_ms": 322.79999999999984,
+              "n_test_samples": 18,
+              "n_predictions": 18,
+              "n_routing_decisions": 18,
+              "n_failures": 3,
+              "n_routed_slm": 15,
+              "n_routed_llm": 3
+            }
+          }
+        },
+        "Phi4-Mini": {
+          "model_tier": "SLM",
+          "train_phase": {
+            "n_samples": 54,
+            "failure_signal_rate": 0.2222222222222222,
+            "feature_means": {
+              "n_in": 12.055555555555555,
+              "entropy": 3.53250545746593,
+              "reasoning_proxy": 0.0,
+              "constraint_count": 0.0,
+              "parametric_dependence": 0.0,
+              "dependency_distance": 0.0,
+              "reasoning_x_constraint": 0.0,
+              "length_x_entropy": 43.39531562058457,
+              "knowledge_x_reasoning": 0.0,
+              "classification_ambiguity": 0.0,
+              "classification_negation_density": 0.0,
+              "classification_domain_shift": 0.966388888888889,
+              "math_numeric_density": 0.0,
+              "math_symbol_density": 0.0,
+              "math_precision_cues": 0.0,
+              "instruction_format_strictness": 0.0,
+              "instruction_prohibition_count": 0.0,
+              "instruction_step_count": 0.0,
+              "instruction_conflict_cues": 0.0
+            }
+          },
+          "validation_phase": {
+            "n_samples": 18,
+            "baseline_capability": 1.0,
+            "baseline_risk": 0.0,
+            "tau_cap": 1.0,
+            "tau_risk": 0.0,
+            "tau_star": 3.906890595608519,
+            "tau_source": "strict_feasible_adaptive",
+            "capability_curve": {
+              "0": 1.0,
+              "1": 1.0,
+              "2": 1.0,
+              "3": 1.0,
+              "4": 1.0,
+              "5": 1.0,
+              "6": 1.0,
+              "7": 1.0,
+              "8": 1.0,
+              "9": 1.0
+            },
+            "risk_curve": {
+              "0": 0.0,
+              "1": 0.0,
+              "2": 0.0,
+              "3": 0.0,
+              "4": 0.0,
+              "5": 0.0,
+              "6": 0.0,
+              "7": 0.0,
+              "8": 0.0,
+              "9": 0.0
+            },
+            "coverage_curve": {
+              "0": 1,
+              "1": 1,
+              "2": 1,
+              "3": 1,
+              "4": 1,
+              "5": 1,
+              "6": 1,
+              "7": 1,
+              "8": 1,
+              "9": 9
+            }
+          },
+          "test_phase": {
+            "dataset_outputs": {
+              "predictions": 18,
+              "routing_decisions": 18,
+              "correctness": {
+                "correct": 12,
+                "incorrect": 6
+              },
+              "failure_categories": {
+                "hard_failure": 18
+              }
+            },
+            "metrics": {
+              "metric_mode": "hard_label_proxy",
+              "accuracy": 0.6666666666666666,
+              "precision_macro": 0.75,
+              "recall_macro": 0.75,
+              "f1_macro": 0.6666666666666666,
+              "roc_auc_ovr_hard": 0.75,
+              "pr_auc_macro_hard": 0.6666666666666666,
+              "brier_multiclass_hard": 0.6666666666666666,
+              "ece_hard": 0.33333333333333337,
+              "p95_latency_ms": 863.5,
+              "n_test_samples": 18,
+              "n_predictions": 18,
+              "n_routing_decisions": 18,
+              "n_failures": 6,
+              "n_routed_slm": 15,
+              "n_routed_llm": 3
+            }
+          }
+        },
+        "Qwen2.5-7B": {
+          "model_tier": "SLM",
+          "train_phase": {
+            "n_samples": 54,
+            "failure_signal_rate": 0.4444444444444444,
+            "feature_means": {
+              "n_in": 12.055555555555555,
+              "entropy": 3.53250545746593,
+              "reasoning_proxy": 0.0,
+              "constraint_count": 0.0,
+              "parametric_dependence": 0.0,
+              "dependency_distance": 0.0,
+              "reasoning_x_constraint": 0.0,
+              "length_x_entropy": 43.39531562058457,
+              "knowledge_x_reasoning": 0.0,
+              "classification_ambiguity": 0.0,
+              "classification_negation_density": 0.0,
+              "classification_domain_shift": 0.966388888888889,
+              "math_numeric_density": 0.0,
+              "math_symbol_density": 0.0,
+              "math_precision_cues": 0.0,
+              "instruction_format_strictness": 0.0,
+              "instruction_prohibition_count": 0.0,
+              "instruction_step_count": 0.0,
+              "instruction_conflict_cues": 0.0
+            }
+          },
+          "validation_phase": {
+            "n_samples": 18,
+            "baseline_capability": 1.0,
+            "baseline_risk": 0.09333333333333334,
+            "tau_cap": 0.8333333333333334,
+            "tau_risk": 0.18666666666666668,
+            "tau_star": 3.906890595608519,
+            "tau_source": "strict_feasible_adaptive",
+            "capability_curve": {
+              "0": 0.5,
+              "1": 0.5,
+              "2": 0.5,
+              "3": 0.5,
+              "4": 0.5,
+              "5": 0.5,
+              "6": 1.0,
+              "7": 1.0,
+              "8": 1.0,
+              "9": 1.0
+            },
+            "risk_curve": {
+              "0": 0.28,
+              "1": 0.28,
+              "2": 0.28,
+              "3": 0.28,
+              "4": 0.28,
+              "5": 0.28,
+              "6": 0.0,
+              "7": 0.0,
+              "8": 0.0,
+              "9": 0.0
+            },
+            "coverage_curve": {
+              "0": 1,
+              "1": 1,
+              "2": 1,
+              "3": 1,
+              "4": 1,
+              "5": 1,
+              "6": 1,
+              "7": 1,
+              "8": 1,
+              "9": 9
+            }
+          },
+          "test_phase": {
+            "dataset_outputs": {
+              "predictions": 18,
+              "routing_decisions": 18,
+              "correctness": {
+                "correct": 9,
+                "incorrect": 9
+              },
+              "failure_categories": {
+                "hard_failure": 18
+              }
+            },
+            "metrics": {
+              "metric_mode": "hard_label_proxy",
+              "accuracy": 0.5,
+              "precision_macro": 0.7,
+              "recall_macro": 0.625,
+              "f1_macro": 0.4857142857142857,
+              "roc_auc_ovr_hard": 0.625,
+              "pr_auc_macro_hard": 0.575,
+              "brier_multiclass_hard": 1.0,
+              "ece_hard": 0.5,
+              "p95_latency_ms": 536.5499999999998,
+              "n_test_samples": 18,
+              "n_predictions": 18,
+              "n_routing_decisions": 18,
+              "n_failures": 9,
+              "n_routed_slm": 15,
+              "n_routed_llm": 3
+            }
+          }
+        }
+      }
+    },
+    "uc2": {
+      "task_family": "information_extraction",
+      "n_rows_total": 630,
+      "n_items_total": 30,
+      "split_strategy": "deterministic_item_split_60_20_20",
+      "train_items_count": 18,
+      "val_items_count": 6,
+      "test_items_count": 6,
+      "models": {
+        "Gemma3-4B": {
+          "model_tier": "SLM",
+          "train_phase": {
+            "n_samples": 54,
+            "failure_signal_rate": 0.5,
+            "feature_means": {
+              "n_in": 32.666666666666664,
+              "entropy": 4.866151280759201,
+              "reasoning_proxy": 0.0,
+              "constraint_count": 0.0,
+              "parametric_dependence": 0.0,
+              "dependency_distance": 0.0,
+              "reasoning_x_constraint": 0.0,
+              "length_x_entropy": 164.71249065221213,
+              "knowledge_x_reasoning": 0.0,
+              "classification_ambiguity": 0.0,
+              "classification_negation_density": 0.0,
+              "classification_domain_shift": 0.0,
+              "math_numeric_density": 0.0,
+              "math_symbol_density": 0.0,
+              "math_precision_cues": 0.0,
+              "instruction_format_strictness": 0.0,
+              "instruction_prohibition_count": 0.0,
+              "instruction_step_count": 0.0,
+              "instruction_conflict_cues": 0.0
+            }
+          },
+          "validation_phase": {
+            "n_samples": 18,
+            "baseline_capability": 0.3333333333333333,
+            "baseline_risk": 0.39999999999999997,
+            "tau_cap": 0.3333333333333333,
+            "tau_risk": 0.39999999999999997,
+            "tau_star": 0.0,
+            "tau_source": "strict_feasible_adaptive",
+            "capability_curve": {
+              "0": 0.33333333333333337,
+              "1": 0.33333333333333337,
+              "2": 0.33333333333333337,
+              "3": 0.33333333333333337,
+              "4": 0.33333333333333337,
+              "5": 0.33333333333333337,
+              "6": 0.33333333333333337,
+              "7": 0.33333333333333337,
+              "8": 0.33333333333333337,
+              "9": 0.33333333333333337
+            },
+            "risk_curve": {
+              "0": 0.4,
+              "1": 0.4,
+              "2": 0.4,
+              "3": 0.4,
+              "4": 0.4,
+              "5": 0.4,
+              "6": 0.4,
+              "7": 0.4,
+              "8": 0.4,
+              "9": 0.39999999999999997
+            },
+            "coverage_curve": {
+              "0": 1,
+              "1": 1,
+              "2": 1,
+              "3": 1,
+              "4": 1,
+              "5": 1,
+              "6": 1,
+              "7": 1,
+              "8": 1,
+              "9": 9
+            }
+          },
+          "test_phase": {
+            "dataset_outputs": {
+              "predictions": 18,
+              "routing_decisions": 18,
+              "correctness": {
+                "correct": 9,
+                "incorrect": 9
+              },
+              "failure_categories": {
+                "wrong_prediction": 9,
+                "none": 9
+              }
+            },
+            "metrics": {
+              "metric_mode": "hard_label_proxy",
+              "accuracy": 1.0,
+              "precision_macro": 1.0,
+              "recall_macro": 1.0,
+              "f1_macro": 1.0,
+              "roc_auc_ovr_hard": 1.0,
+              "pr_auc_macro_hard": 1.0,
+              "brier_multiclass_hard": 0.0,
+              "ece_hard": 0.0,
+              "p95_latency_ms": 3600.0499999999997,
+              "n_test_samples": 18,
+              "n_predictions": 18,
+              "n_routing_decisions": 18,
+              "n_failures": 9,
+              "n_routed_slm": 18,
+              "n_routed_llm": 0
+            }
+          }
+        },
+        "Llama-3.1-8B": {
+          "model_tier": "SLM",
+          "train_phase": {
+            "n_samples": 54,
+            "failure_signal_rate": 0.5,
+            "feature_means": {
+              "n_in": 32.666666666666664,
+              "entropy": 4.866151280759201,
+              "reasoning_proxy": 0.0,
+              "constraint_count": 0.0,
+              "parametric_dependence": 0.0,
+              "dependency_distance": 0.0,
+              "reasoning_x_constraint": 0.0,
+              "length_x_entropy": 164.71249065221213,
+              "knowledge_x_reasoning": 0.0,
+              "classification_ambiguity": 0.0,
+              "classification_negation_density": 0.0,
+              "classification_domain_shift": 0.0,
+              "math_numeric_density": 0.0,
+              "math_symbol_density": 0.0,
+              "math_precision_cues": 0.0,
+              "instruction_format_strictness": 0.0,
+              "instruction_prohibition_count": 0.0,
+              "instruction_step_count": 0.0,
+              "instruction_conflict_cues": 0.0
+            }
+          },
+          "validation_phase": {
+            "n_samples": 18,
+            "baseline_capability": 0.3333333333333333,
+            "baseline_risk": 0.39999999999999997,
+            "tau_cap": 0.3333333333333333,
+            "tau_risk": 0.39999999999999997,
+            "tau_star": 0.0,
+            "tau_source": "strict_feasible_adaptive",
+            "capability_curve": {
+              "0": 0.33333333333333337,
+              "1": 0.33333333333333337,
+              "2": 0.33333333333333337,
+              "3": 0.33333333333333337,
+              "4": 0.33333333333333337,
+              "5": 0.33333333333333337,
+              "6": 0.33333333333333337,
+              "7": 0.33333333333333337,
+              "8": 0.33333333333333337,
+              "9": 0.33333333333333337
+            },
+            "risk_curve": {
+              "0": 0.4,
+              "1": 0.4,
+              "2": 0.4,
+              "3": 0.4,
+              "4": 0.4,
+              "5": 0.4,
+              "6": 0.4,
+              "7": 0.4,
+              "8": 0.4,
+              "9": 0.39999999999999997
+            },
+            "coverage_curve": {
+              "0": 1,
+              "1": 1,
+              "2": 1,
+              "3": 1,
+              "4": 1,
+              "5": 1,
+              "6": 1,
+              "7": 1,
+              "8": 1,
+              "9": 9
+            }
+          },
+          "test_phase": {
+            "dataset_outputs": {
+              "predictions": 18,
+              "routing_decisions": 18,
+              "correctness": {
+                "correct": 9,
+                "incorrect": 9
+              },
+              "failure_categories": {
+                "wrong_prediction": 9,
+                "none": 9
+              }
+            },
+            "metrics": {
+              "metric_mode": "hard_label_proxy",
+              "accuracy": 1.0,
+              "precision_macro": 1.0,
+              "recall_macro": 1.0,
+              "f1_macro": 1.0,
+              "roc_auc_ovr_hard": 1.0,
+              "pr_auc_macro_hard": 1.0,
+              "brier_multiclass_hard": 0.0,
+              "ece_hard": 0.0,
+              "p95_latency_ms": 7615.049999999999,
+              "n_test_samples": 18,
+              "n_predictions": 18,
+              "n_routing_decisions": 18,
+              "n_failures": 9,
+              "n_routed_slm": 18,
+              "n_routed_llm": 0
+            }
+          }
+        },
+        "Llama-3.2-3B": {
+          "model_tier": "SLM",
+          "train_phase": {
+            "n_samples": 54,
+            "failure_signal_rate": 0.5555555555555556,
+            "feature_means": {
+              "n_in": 32.666666666666664,
+              "entropy": 4.866151280759201,
+              "reasoning_proxy": 0.0,
+              "constraint_count": 0.0,
+              "parametric_dependence": 0.0,
+              "dependency_distance": 0.0,
+              "reasoning_x_constraint": 0.0,
+              "length_x_entropy": 164.71249065221213,
+              "knowledge_x_reasoning": 0.0,
+              "classification_ambiguity": 0.0,
+              "classification_negation_density": 0.0,
+              "classification_domain_shift": 0.0,
+              "math_numeric_density": 0.0,
+              "math_symbol_density": 0.0,
+              "math_precision_cues": 0.0,
+              "instruction_format_strictness": 0.0,
+              "instruction_prohibition_count": 0.0,
+              "instruction_step_count": 0.0,
+              "instruction_conflict_cues": 0.0
+            }
+          },
+          "validation_phase": {
+            "n_samples": 18,
+            "baseline_capability": 0.3333333333333333,
+            "baseline_risk": 0.39999999999999997,
+            "tau_cap": 0.3333333333333333,
+            "tau_risk": 0.39999999999999997,
+            "tau_star": 0.0,
+            "tau_source": "strict_feasible_adaptive",
+            "capability_curve": {
+              "0": 0.33333333333333337,
+              "1": 0.33333333333333337,
+              "2": 0.33333333333333337,
+              "3": 0.33333333333333337,
+              "4": 0.33333333333333337,
+              "5": 0.33333333333333337,
+              "6": 0.33333333333333337,
+              "7": 0.33333333333333337,
+              "8": 0.33333333333333337,
+              "9": 0.33333333333333337
+            },
+            "risk_curve": {
+              "0": 0.4,
+              "1": 0.4,
+              "2": 0.4,
+              "3": 0.4,
+              "4": 0.4,
+              "5": 0.4,
+              "6": 0.4,
+              "7": 0.4,
+              "8": 0.4,
+              "9": 0.39999999999999997
+            },
+            "coverage_curve": {
+              "0": 1,
+              "1": 1,
+              "2": 1,
+              "3": 1,
+              "4": 1,
+              "5": 1,
+              "6": 1,
+              "7": 1,
+              "8": 1,
+              "9": 9
+            }
+          },
+          "test_phase": {
+            "dataset_outputs": {
+              "predictions": 18,
+              "routing_decisions": 18,
+              "correctness": {
+                "correct": 6,
+                "incorrect": 12
+              },
+              "failure_categories": {
+                "wrong_prediction": 12,
+                "none": 6
+              }
+            },
+            "metrics": {
+              "metric_mode": "hard_label_proxy",
+              "accuracy": 1.0,
+              "precision_macro": 1.0,
+              "recall_macro": 1.0,
+              "f1_macro": 1.0,
+              "roc_auc_ovr_hard": 1.0,
+              "pr_auc_macro_hard": 1.0,
+              "brier_multiclass_hard": 0.0,
+              "ece_hard": 0.0,
+              "p95_latency_ms": 2953.7999999999997,
+              "n_test_samples": 18,
+              "n_predictions": 18,
+              "n_routing_decisions": 18,
+              "n_failures": 12,
+              "n_routed_slm": 18,
+              "n_routed_llm": 0
+            }
+          }
+        },
+        "Llama-3.3-70B": {
+          "model_tier": "LLM",
+          "train_phase": {
+            "n_samples": 54,
+            "failure_signal_rate": 0.3888888888888889,
+            "feature_means": {
+              "n_in": 32.666666666666664,
+              "entropy": 4.866151280759201,
+              "reasoning_proxy": 0.0,
+              "constraint_count": 0.0,
+              "parametric_dependence": 0.0,
+              "dependency_distance": 0.0,
+              "reasoning_x_constraint": 0.0,
+              "length_x_entropy": 164.71249065221213,
+              "knowledge_x_reasoning": 0.0,
+              "classification_ambiguity": 0.0,
+              "classification_negation_density": 0.0,
+              "classification_domain_shift": 0.0,
+              "math_numeric_density": 0.0,
+              "math_symbol_density": 0.0,
+              "math_precision_cues": 0.0,
+              "instruction_format_strictness": 0.0,
+              "instruction_prohibition_count": 0.0,
+              "instruction_step_count": 0.0,
+              "instruction_conflict_cues": 0.0
+            }
+          },
+          "validation_phase": {
+            "n_samples": 18,
+            "baseline_capability": 0.3333333333333333,
+            "baseline_risk": 0.39999999999999997,
+            "tau_cap": 0.3333333333333333,
+            "tau_risk": 0.39999999999999997,
+            "tau_star": 0.0,
+            "tau_source": "strict_feasible_adaptive",
+            "capability_curve": {
+              "0": 0.33333333333333337,
+              "1": 0.33333333333333337,
+              "2": 0.33333333333333337,
+              "3": 0.33333333333333337,
+              "4": 0.33333333333333337,
+              "5": 0.33333333333333337,
+              "6": 0.33333333333333337,
+              "7": 0.33333333333333337,
+              "8": 0.33333333333333337,
+              "9": 0.33333333333333337
+            },
+            "risk_curve": {
+              "0": 0.4,
+              "1": 0.4,
+              "2": 0.4,
+              "3": 0.4,
+              "4": 0.4,
+              "5": 0.4,
+              "6": 0.4,
+              "7": 0.4,
+              "8": 0.4,
+              "9": 0.39999999999999997
+            },
+            "coverage_curve": {
+              "0": 1,
+              "1": 1,
+              "2": 1,
+              "3": 1,
+              "4": 1,
+              "5": 1,
+              "6": 1,
+              "7": 1,
+              "8": 1,
+              "9": 9
+            }
+          },
+          "test_phase": {
+            "dataset_outputs": {
+              "predictions": 18,
+              "routing_decisions": 18,
+              "correctness": {
+                "correct": 9,
+                "incorrect": 9
+              },
+              "failure_categories": {
+                "wrong_prediction": 9,
+                "none": 9
+              }
+            },
+            "metrics": {
+              "metric_mode": "hard_label_proxy",
+              "accuracy": 1.0,
+              "precision_macro": 1.0,
+              "recall_macro": 1.0,
+              "f1_macro": 1.0,
+              "roc_auc_ovr_hard": 1.0,
+              "pr_auc_macro_hard": 1.0,
+              "brier_multiclass_hard": 0.0,
+              "ece_hard": 0.0,
+              "p95_latency_ms": 2571.35,
+              "n_test_samples": 18,
+              "n_predictions": 18,
+              "n_routing_decisions": 18,
+              "n_failures": 9,
+              "n_routed_slm": 0,
+              "n_routed_llm": 18
+            }
+          }
+        },
+        "Mistral-7B": {
+          "model_tier": "SLM",
+          "train_phase": {
+            "n_samples": 54,
+            "failure_signal_rate": 0.5,
+            "feature_means": {
+              "n_in": 32.666666666666664,
+              "entropy": 4.866151280759201,
+              "reasoning_proxy": 0.0,
+              "constraint_count": 0.0,
+              "parametric_dependence": 0.0,
+              "dependency_distance": 0.0,
+              "reasoning_x_constraint": 0.0,
+              "length_x_entropy": 164.71249065221213,
+              "knowledge_x_reasoning": 0.0,
+              "classification_ambiguity": 0.0,
+              "classification_negation_density": 0.0,
+              "classification_domain_shift": 0.0,
+              "math_numeric_density": 0.0,
+              "math_symbol_density": 0.0,
+              "math_precision_cues": 0.0,
+              "instruction_format_strictness": 0.0,
+              "instruction_prohibition_count": 0.0,
+              "instruction_step_count": 0.0,
+              "instruction_conflict_cues": 0.0
+            }
+          },
+          "validation_phase": {
+            "n_samples": 18,
+            "baseline_capability": 0.3333333333333333,
+            "baseline_risk": 0.39999999999999997,
+            "tau_cap": 0.3333333333333333,
+            "tau_risk": 0.39999999999999997,
+            "tau_star": 0.0,
+            "tau_source": "strict_feasible_adaptive",
+            "capability_curve": {
+              "0": 0.33333333333333337,
+              "1": 0.33333333333333337,
+              "2": 0.33333333333333337,
+              "3": 0.33333333333333337,
+              "4": 0.33333333333333337,
+              "5": 0.33333333333333337,
+              "6": 0.33333333333333337,
+              "7": 0.33333333333333337,
+              "8": 0.33333333333333337,
+              "9": 0.33333333333333337
+            },
+            "risk_curve": {
+              "0": 0.4,
+              "1": 0.4,
+              "2": 0.4,
+              "3": 0.4,
+              "4": 0.4,
+              "5": 0.4,
+              "6": 0.4,
+              "7": 0.4,
+              "8": 0.4,
+              "9": 0.39999999999999997
+            },
+            "coverage_curve": {
+              "0": 1,
+              "1": 1,
+              "2": 1,
+              "3": 1,
+              "4": 1,
+              "5": 1,
+              "6": 1,
+              "7": 1,
+              "8": 1,
+              "9": 9
+            }
+          },
+          "test_phase": {
+            "dataset_outputs": {
+              "predictions": 18,
+              "routing_decisions": 18,
+              "correctness": {
+                "correct": 12,
+                "incorrect": 6
+              },
+              "failure_categories": {
+                "none": 12,
+                "wrong_prediction": 6
+              }
+            },
+            "metrics": {
+              "metric_mode": "hard_label_proxy",
+              "accuracy": 1.0,
+              "precision_macro": 1.0,
+              "recall_macro": 1.0,
+              "f1_macro": 1.0,
+              "roc_auc_ovr_hard": 1.0,
+              "pr_auc_macro_hard": 1.0,
+              "brier_multiclass_hard": 0.0,
+              "ece_hard": 0.0,
+              "p95_latency_ms": 5467.9,
+              "n_test_samples": 18,
+              "n_predictions": 18,
+              "n_routing_decisions": 18,
+              "n_failures": 6,
+              "n_routed_slm": 18,
+              "n_routed_llm": 0
+            }
+          }
+        },
+        "Phi4-Mini": {
+          "model_tier": "SLM",
+          "train_phase": {
+            "n_samples": 54,
+            "failure_signal_rate": 0.46296296296296297,
+            "feature_means": {
+              "n_in": 32.666666666666664,
+              "entropy": 4.866151280759201,
+              "reasoning_proxy": 0.0,
+              "constraint_count": 0.0,
+              "parametric_dependence": 0.0,
+              "dependency_distance": 0.0,
+              "reasoning_x_constraint": 0.0,
+              "length_x_entropy": 164.71249065221213,
+              "knowledge_x_reasoning": 0.0,
+              "classification_ambiguity": 0.0,
+              "classification_negation_density": 0.0,
+              "classification_domain_shift": 0.0,
+              "math_numeric_density": 0.0,
+              "math_symbol_density": 0.0,
+              "math_precision_cues": 0.0,
+              "instruction_format_strictness": 0.0,
+              "instruction_prohibition_count": 0.0,
+              "instruction_step_count": 0.0,
+              "instruction_conflict_cues": 0.0
+            }
+          },
+          "validation_phase": {
+            "n_samples": 18,
+            "baseline_capability": 0.3333333333333333,
+            "baseline_risk": 0.39999999999999997,
+            "tau_cap": 0.3333333333333333,
+            "tau_risk": 0.39999999999999997,
+            "tau_star": 0.0,
+            "tau_source": "strict_feasible_adaptive",
+            "capability_curve": {
+              "0": 0.33333333333333337,
+              "1": 0.33333333333333337,
+              "2": 0.33333333333333337,
+              "3": 0.33333333333333337,
+              "4": 0.33333333333333337,
+              "5": 0.33333333333333337,
+              "6": 0.33333333333333337,
+              "7": 0.33333333333333337,
+              "8": 0.33333333333333337,
+              "9": 0.33333333333333337
+            },
+            "risk_curve": {
+              "0": 0.4,
+              "1": 0.4,
+              "2": 0.4,
+              "3": 0.4,
+              "4": 0.4,
+              "5": 0.4,
+              "6": 0.4,
+              "7": 0.4,
+              "8": 0.4,
+              "9": 0.39999999999999997
+            },
+            "coverage_curve": {
+              "0": 1,
+              "1": 1,
+              "2": 1,
+              "3": 1,
+              "4": 1,
+              "5": 1,
+              "6": 1,
+              "7": 1,
+              "8": 1,
+              "9": 9
+            }
+          },
+          "test_phase": {
+            "dataset_outputs": {
+              "predictions": 18,
+              "routing_decisions": 18,
+              "correctness": {
+                "correct": 13,
+                "incorrect": 5
+              },
+              "failure_categories": {
+                "none": 13,
+                "wrong_prediction": 5
+              }
+            },
+            "metrics": {
+              "metric_mode": "hard_label_proxy",
+              "accuracy": 1.0,
+              "precision_macro": 1.0,
+              "recall_macro": 1.0,
+              "f1_macro": 1.0,
+              "roc_auc_ovr_hard": 1.0,
+              "pr_auc_macro_hard": 1.0,
+              "brier_multiclass_hard": 0.0,
+              "ece_hard": 0.0,
+              "p95_latency_ms": 4609.449999999999,
+              "n_test_samples": 18,
+              "n_predictions": 18,
+              "n_routing_decisions": 18,
+              "n_failures": 5,
+              "n_routed_slm": 18,
+              "n_routed_llm": 0
+            }
+          }
+        },
+        "Qwen2.5-7B": {
+          "model_tier": "SLM",
+          "train_phase": {
+            "n_samples": 54,
+            "failure_signal_rate": 0.3888888888888889,
+            "feature_means": {
+              "n_in": 32.666666666666664,
+              "entropy": 4.866151280759201,
+              "reasoning_proxy": 0.0,
+              "constraint_count": 0.0,
+              "parametric_dependence": 0.0,
+              "dependency_distance": 0.0,
+              "reasoning_x_constraint": 0.0,
+              "length_x_entropy": 164.71249065221213,
+              "knowledge_x_reasoning": 0.0,
+              "classification_ambiguity": 0.0,
+              "classification_negation_density": 0.0,
+              "classification_domain_shift": 0.0,
+              "math_numeric_density": 0.0,
+              "math_symbol_density": 0.0,
+              "math_precision_cues": 0.0,
+              "instruction_format_strictness": 0.0,
+              "instruction_prohibition_count": 0.0,
+              "instruction_step_count": 0.0,
+              "instruction_conflict_cues": 0.0
+            }
+          },
+          "validation_phase": {
+            "n_samples": 18,
+            "baseline_capability": 0.3333333333333333,
+            "baseline_risk": 0.39999999999999997,
+            "tau_cap": 0.3333333333333333,
+            "tau_risk": 0.39999999999999997,
+            "tau_star": 0.0,
+            "tau_source": "strict_feasible_adaptive",
+            "capability_curve": {
+              "0": 0.33333333333333337,
+              "1": 0.33333333333333337,
+              "2": 0.33333333333333337,
+              "3": 0.33333333333333337,
+              "4": 0.33333333333333337,
+              "5": 0.33333333333333337,
+              "6": 0.33333333333333337,
+              "7": 0.33333333333333337,
+              "8": 0.33333333333333337,
+              "9": 0.33333333333333337
+            },
+            "risk_curve": {
+              "0": 0.4,
+              "1": 0.4,
+              "2": 0.4,
+              "3": 0.4,
+              "4": 0.4,
+              "5": 0.4,
+              "6": 0.4,
+              "7": 0.4,
+              "8": 0.4,
+              "9": 0.39999999999999997
+            },
+            "coverage_curve": {
+              "0": 1,
+              "1": 1,
+              "2": 1,
+              "3": 1,
+              "4": 1,
+              "5": 1,
+              "6": 1,
+              "7": 1,
+              "8": 1,
+              "9": 9
+            }
+          },
+          "test_phase": {
+            "dataset_outputs": {
+              "predictions": 18,
+              "routing_decisions": 18,
+              "correctness": {
+                "correct": 9,
+                "incorrect": 9
+              },
+              "failure_categories": {
+                "wrong_prediction": 9,
+                "none": 9
+              }
+            },
+            "metrics": {
+              "metric_mode": "hard_label_proxy",
+              "accuracy": 1.0,
+              "precision_macro": 1.0,
+              "recall_macro": 1.0,
+              "f1_macro": 1.0,
+              "roc_auc_ovr_hard": 1.0,
+              "pr_auc_macro_hard": 1.0,
+              "brier_multiclass_hard": 0.0,
+              "ece_hard": 0.0,
+              "p95_latency_ms": 4417.349999999999,
+              "n_test_samples": 18,
+              "n_predictions": 18,
+              "n_routing_decisions": 18,
+              "n_failures": 9,
+              "n_routed_slm": 18,
+              "n_routed_llm": 0
+            }
+          }
+        }
+      }
+    },
+    "uc3": {
+      "task_family": "classification",
+      "n_rows_total": 630,
+      "n_items_total": 30,
+      "split_strategy": "deterministic_item_split_60_20_20",
+      "train_items_count": 18,
+      "val_items_count": 6,
+      "test_items_count": 6,
+      "models": {
+        "Gemma3-4B": {
+          "model_tier": "SLM",
+          "train_phase": {
+            "n_samples": 54,
+            "failure_signal_rate": 0.1111111111111111,
+            "feature_means": {
+              "n_in": 14.0,
+              "entropy": 3.720456993181446,
+              "reasoning_proxy": 0.0,
+              "constraint_count": 0.0,
+              "parametric_dependence": 0.0,
+              "dependency_distance": 0.0,
+              "reasoning_x_constraint": 0.0,
+              "length_x_entropy": 52.515588657108886,
+              "knowledge_x_reasoning": 0.0,
+              "classification_ambiguity": 0.013888888888888888,
+              "classification_negation_density": 0.06388888888888888,
+              "classification_domain_shift": 0.9477777777777777,
+              "math_numeric_density": 0.0,
+              "math_symbol_density": 0.0,
+              "math_precision_cues": 0.0,
+              "instruction_format_strictness": 0.0,
+              "instruction_prohibition_count": 0.0,
+              "instruction_step_count": 0.0,
+              "instruction_conflict_cues": 0.0
+            }
+          },
+          "validation_phase": {
+            "n_samples": 18,
+            "baseline_capability": 0.7222222222222222,
+            "baseline_risk": 0.09333333333333334,
+            "tau_cap": 0.8166666666666667,
+            "tau_risk": 0.133,
+            "tau_star": 4.058813890331201,
+            "tau_source": "strict_feasible_adaptive",
+            "capability_curve": {
+              "0": 0.6666666666666666,
+              "1": 0.6666666666666666,
+              "2": 0.6666666666666666,
+              "3": 0.6666666666666666,
+              "4": 0.6666666666666666,
+              "5": 0.6666666666666666,
+              "6": 0.6666666666666666,
+              "7": 0.6666666666666666,
+              "8": 0.6666666666666666,
+              "9": 1.0
+            },
+            "risk_curve": {
+              "0": 0.18666666666666668,
+              "1": 0.18666666666666668,
+              "2": 0.18666666666666668,
+              "3": 0.18666666666666668,
+              "4": 0.18666666666666668,
+              "5": 0.18666666666666668,
+              "6": 0.18666666666666668,
+              "7": 0.18666666666666668,
+              "8": 0.18666666666666668,
+              "9": 0.0
+            },
+            "coverage_curve": {
+              "0": 1,
+              "1": 1,
+              "2": 1,
+              "3": 1,
+              "4": 1,
+              "5": 1,
+              "6": 1,
+              "7": 1,
+              "8": 1,
+              "9": 9
+            }
+          },
+          "test_phase": {
+            "dataset_outputs": {
+              "predictions": 18,
+              "routing_decisions": 18,
+              "correctness": {
+                "correct": 15,
+                "incorrect": 3
+              },
+              "failure_categories": {
+                "hard_failure": 18
+              }
+            },
+            "metrics": {
+              "metric_mode": "hard_label_proxy",
+              "accuracy": 0.8333333333333334,
+              "precision_macro": 0.875,
+              "recall_macro": 0.875,
+              "f1_macro": 0.8333333333333333,
+              "roc_auc_ovr_hard": 0.9125,
+              "pr_auc_macro_hard": 0.7916666666666666,
+              "brier_multiclass_hard": 0.3333333333333333,
+              "ece_hard": 0.16666666666666663,
+              "p95_latency_ms": 513.3499999999998,
+              "n_test_samples": 18,
+              "n_predictions": 18,
+              "n_routing_decisions": 18,
+              "n_failures": 3,
+              "n_routed_slm": 15,
+              "n_routed_llm": 3
+            }
+          }
+        },
+        "Llama-3.1-8B": {
+          "model_tier": "SLM",
+          "train_phase": {
+            "n_samples": 54,
+            "failure_signal_rate": 0.05555555555555555,
+            "feature_means": {
+              "n_in": 14.0,
+              "entropy": 3.720456993181446,
+              "reasoning_proxy": 0.0,
+              "constraint_count": 0.0,
+              "parametric_dependence": 0.0,
+              "dependency_distance": 0.0,
+              "reasoning_x_constraint": 0.0,
+              "length_x_entropy": 52.515588657108886,
+              "knowledge_x_reasoning": 0.0,
+              "classification_ambiguity": 0.013888888888888888,
+              "classification_negation_density": 0.06388888888888888,
+              "classification_domain_shift": 0.9477777777777777,
+              "math_numeric_density": 0.0,
+              "math_symbol_density": 0.0,
+              "math_precision_cues": 0.0,
+              "instruction_format_strictness": 0.0,
+              "instruction_prohibition_count": 0.0,
+              "instruction_step_count": 0.0,
+              "instruction_conflict_cues": 0.0
+            }
+          },
+          "validation_phase": {
+            "n_samples": 18,
+            "baseline_capability": 0.7222222222222222,
+            "baseline_risk": 0.18666666666666668,
+            "tau_cap": 0.775,
+            "tau_risk": 0.17500000000000002,
+            "tau_star": 3.807354922057604,
+            "tau_source": "strict_feasible_adaptive",
+            "capability_curve": {
+              "0": 0.6666666666666667,
+              "1": 0.6666666666666667,
+              "2": 0.6666666666666667,
+              "3": 0.6666666666666667,
+              "4": 0.6666666666666667,
+              "5": 0.6666666666666667,
+              "6": 0.6666666666666667,
+              "7": 0.6666666666666667,
+              "8": 0.6666666666666667,
+              "9": 0.6666666666666667
+            },
+            "risk_curve": {
+              "0": 0.1866666666666667,
+              "1": 0.1866666666666667,
+              "2": 0.1866666666666667,
+              "3": 0.1866666666666667,
+              "4": 0.1866666666666667,
+              "5": 0.1866666666666667,
+              "6": 0.1866666666666667,
+              "7": 0.1866666666666667,
+              "8": 0.1866666666666667,
+              "9": 0.1866666666666667
+            },
+            "coverage_curve": {
+              "0": 1,
+              "1": 1,
+              "2": 1,
+              "3": 1,
+              "4": 1,
+              "5": 1,
+              "6": 1,
+              "7": 1,
+              "8": 1,
+              "9": 9
+            }
+          },
+          "test_phase": {
+            "dataset_outputs": {
+              "predictions": 18,
+              "routing_decisions": 18,
+              "correctness": {
+                "correct": 15,
+                "incorrect": 3
+              },
+              "failure_categories": {
+                "hard_failure": 18
+              }
+            },
+            "metrics": {
+              "metric_mode": "hard_label_proxy",
+              "accuracy": 0.8333333333333334,
+              "precision_macro": 0.6666666666666666,
+              "recall_macro": 0.75,
+              "f1_macro": 0.7,
+              "roc_auc_ovr_hard": 0.84375,
+              "pr_auc_macro_hard": 0.7083333333333334,
+              "brier_multiclass_hard": 0.3333333333333333,
+              "ece_hard": 0.16666666666666663,
+              "p95_latency_ms": 1358.4999999999998,
+              "n_test_samples": 18,
+              "n_predictions": 18,
+              "n_routing_decisions": 18,
+              "n_failures": 3,
+              "n_routed_slm": 6,
+              "n_routed_llm": 12
+            }
+          }
+        },
+        "Llama-3.2-3B": {
+          "model_tier": "SLM",
+          "train_phase": {
+            "n_samples": 54,
+            "failure_signal_rate": 0.1111111111111111,
+            "feature_means": {
+              "n_in": 14.0,
+              "entropy": 3.720456993181446,
+              "reasoning_proxy": 0.0,
+              "constraint_count": 0.0,
+              "parametric_dependence": 0.0,
+              "dependency_distance": 0.0,
+              "reasoning_x_constraint": 0.0,
+              "length_x_entropy": 52.515588657108886,
+              "knowledge_x_reasoning": 0.0,
+              "classification_ambiguity": 0.013888888888888888,
+              "classification_negation_density": 0.06388888888888888,
+              "classification_domain_shift": 0.9477777777777777,
+              "math_numeric_density": 0.0,
+              "math_symbol_density": 0.0,
+              "math_precision_cues": 0.0,
+              "instruction_format_strictness": 0.0,
+              "instruction_prohibition_count": 0.0,
+              "instruction_step_count": 0.0,
+              "instruction_conflict_cues": 0.0
+            }
+          },
+          "validation_phase": {
+            "n_samples": 18,
+            "baseline_capability": 0.7222222222222222,
+            "baseline_risk": 0.0,
+            "tau_cap": 1.0,
+            "tau_risk": 0.0,
+            "tau_star": 4.058813890331201,
+            "tau_source": "strict_feasible_adaptive",
+            "capability_curve": {
+              "0": 1.0,
+              "1": 1.0,
+              "2": 1.0,
+              "3": 1.0,
+              "4": 1.0,
+              "5": 1.0,
+              "6": 1.0,
+              "7": 1.0,
+              "8": 1.0,
+              "9": 1.0
+            },
+            "risk_curve": {
+              "0": 0.0,
+              "1": 0.0,
+              "2": 0.0,
+              "3": 0.0,
+              "4": 0.0,
+              "5": 0.0,
+              "6": 0.0,
+              "7": 0.0,
+              "8": 0.0,
+              "9": 0.0
+            },
+            "coverage_curve": {
+              "0": 1,
+              "1": 1,
+              "2": 1,
+              "3": 1,
+              "4": 1,
+              "5": 1,
+              "6": 1,
+              "7": 1,
+              "8": 1,
+              "9": 9
+            }
+          },
+          "test_phase": {
+            "dataset_outputs": {
+              "predictions": 18,
+              "routing_decisions": 18,
+              "correctness": {
+                "correct": 12,
+                "incorrect": 6
+              },
+              "failure_categories": {
+                "hard_failure": 18
+              }
+            },
+            "metrics": {
+              "metric_mode": "hard_label_proxy",
+              "accuracy": 0.6666666666666666,
+              "precision_macro": 0.5,
+              "recall_macro": 0.5,
+              "f1_macro": 0.4666666666666666,
+              "roc_auc_ovr_hard": null,
+              "pr_auc_macro_hard": 0.4666666666666666,
+              "brier_multiclass_hard": 0.6666666666666666,
+              "ece_hard": 0.33333333333333337,
+              "p95_latency_ms": 685.8,
+              "n_test_samples": 18,
+              "n_predictions": 18,
+              "n_routing_decisions": 18,
+              "n_failures": 6,
+              "n_routed_slm": 15,
+              "n_routed_llm": 3
+            }
+          }
+        },
+        "Llama-3.3-70B": {
+          "model_tier": "LLM",
+          "train_phase": {
+            "n_samples": 54,
+            "failure_signal_rate": 0.12962962962962962,
+            "feature_means": {
+              "n_in": 14.0,
+              "entropy": 3.720456993181446,
+              "reasoning_proxy": 0.0,
+              "constraint_count": 0.0,
+              "parametric_dependence": 0.0,
+              "dependency_distance": 0.0,
+              "reasoning_x_constraint": 0.0,
+              "length_x_entropy": 52.515588657108886,
+              "knowledge_x_reasoning": 0.0,
+              "classification_ambiguity": 0.013888888888888888,
+              "classification_negation_density": 0.06388888888888888,
+              "classification_domain_shift": 0.9477777777777777,
+              "math_numeric_density": 0.0,
+              "math_symbol_density": 0.0,
+              "math_precision_cues": 0.0,
+              "instruction_format_strictness": 0.0,
+              "instruction_prohibition_count": 0.0,
+              "instruction_step_count": 0.0,
+              "instruction_conflict_cues": 0.0
+            }
+          },
+          "validation_phase": {
+            "n_samples": 18,
+            "baseline_capability": 0.7222222222222222,
+            "baseline_risk": 0.15555555555555556,
+            "tau_cap": 1.0,
+            "tau_risk": 0.05600000000000001,
+            "tau_star": 3.773557262275186,
+            "tau_source": "strict_feasible_adaptive",
+            "capability_curve": {
+              "0": 0.9444444444444444,
+              "1": 0.9444444444444444,
+              "2": 0.9444444444444444,
+              "3": 0.9444444444444444,
+              "4": 0.9444444444444444,
+              "5": 0.9444444444444444,
+              "6": 0.9444444444444444,
+              "7": 0.9444444444444444,
+              "8": 0.9444444444444444,
+              "9": 0.9444444444444444
+            },
+            "risk_curve": {
+              "0": 0.03111111111111111,
+              "1": 0.03111111111111111,
+              "2": 0.03111111111111111,
+              "3": 0.03111111111111111,
+              "4": 0.03111111111111111,
+              "5": 0.03111111111111111,
+              "6": 0.03111111111111111,
+              "7": 0.03111111111111111,
+              "8": 0.03111111111111111,
+              "9": 0.03111111111111111
+            },
+            "coverage_curve": {
+              "0": 1,
+              "1": 1,
+              "2": 1,
+              "3": 1,
+              "4": 1,
+              "5": 1,
+              "6": 1,
+              "7": 1,
+              "8": 1,
+              "9": 9
+            }
+          },
+          "test_phase": {
+            "dataset_outputs": {
+              "predictions": 18,
+              "routing_decisions": 18,
+              "correctness": {
+                "correct": 15,
+                "incorrect": 3
+              },
+              "failure_categories": {
+                "hard_failure": 18
+              }
+            },
+            "metrics": {
+              "metric_mode": "hard_label_proxy",
+              "accuracy": 0.8333333333333334,
+              "precision_macro": 0.6666666666666666,
+              "recall_macro": 0.75,
+              "f1_macro": 0.7,
+              "roc_auc_ovr_hard": 0.84375,
+              "pr_auc_macro_hard": 0.7083333333333334,
+              "brier_multiclass_hard": 0.3333333333333333,
+              "ece_hard": 0.16666666666666663,
+              "p95_latency_ms": 2426.9,
+              "n_test_samples": 18,
+              "n_predictions": 18,
+              "n_routing_decisions": 18,
+              "n_failures": 3,
+              "n_routed_slm": 0,
+              "n_routed_llm": 18
+            }
+          }
+        },
+        "Mistral-7B": {
+          "model_tier": "SLM",
+          "train_phase": {
+            "n_samples": 54,
+            "failure_signal_rate": 0.05555555555555555,
+            "feature_means": {
+              "n_in": 14.0,
+              "entropy": 3.720456993181446,
+              "reasoning_proxy": 0.0,
+              "constraint_count": 0.0,
+              "parametric_dependence": 0.0,
+              "dependency_distance": 0.0,
+              "reasoning_x_constraint": 0.0,
+              "length_x_entropy": 52.515588657108886,
+              "knowledge_x_reasoning": 0.0,
+              "classification_ambiguity": 0.013888888888888888,
+              "classification_negation_density": 0.06388888888888888,
+              "classification_domain_shift": 0.9477777777777777,
+              "math_numeric_density": 0.0,
+              "math_symbol_density": 0.0,
+              "math_precision_cues": 0.0,
+              "instruction_format_strictness": 0.0,
+              "instruction_prohibition_count": 0.0,
+              "instruction_step_count": 0.0,
+              "instruction_conflict_cues": 0.0
+            }
+          },
+          "validation_phase": {
+            "n_samples": 18,
+            "baseline_capability": 0.7222222222222222,
+            "baseline_risk": 0.28,
+            "tau_cap": 0.7083333333333333,
+            "tau_risk": 0.2146666666666667,
+            "tau_star": 3.773557262275186,
+            "tau_source": "strict_feasible_adaptive",
+            "capability_curve": {
+              "0": 0.6333333333333333,
+              "1": 0.6333333333333333,
+              "2": 0.6333333333333333,
+              "3": 0.6333333333333333,
+              "4": 0.6333333333333333,
+              "5": 0.6333333333333333,
+              "6": 0.6333333333333333,
+              "7": 0.6333333333333333,
+              "8": 0.6333333333333333,
+              "9": 0.6333333333333333
+            },
+            "risk_curve": {
+              "0": 0.20533333333333337,
+              "1": 0.20533333333333337,
+              "2": 0.20533333333333337,
+              "3": 0.20533333333333337,
+              "4": 0.20533333333333337,
+              "5": 0.20533333333333337,
+              "6": 0.20533333333333337,
+              "7": 0.20533333333333337,
+              "8": 0.20533333333333337,
+              "9": 0.20533333333333337
+            },
+            "coverage_curve": {
+              "0": 1,
+              "1": 1,
+              "2": 1,
+              "3": 1,
+              "4": 1,
+              "5": 1,
+              "6": 1,
+              "7": 1,
+              "8": 1,
+              "9": 9
+            }
+          },
+          "test_phase": {
+            "dataset_outputs": {
+              "predictions": 18,
+              "routing_decisions": 18,
+              "correctness": {
+                "correct": 15,
+                "incorrect": 3
+              },
+              "failure_categories": {
+                "hard_failure": 18
+              }
+            },
+            "metrics": {
+              "metric_mode": "hard_label_proxy",
+              "accuracy": 0.8333333333333334,
+              "precision_macro": 0.6666666666666666,
+              "recall_macro": 0.75,
+              "f1_macro": 0.7,
+              "roc_auc_ovr_hard": 0.84375,
+              "pr_auc_macro_hard": 0.7083333333333334,
+              "brier_multiclass_hard": 0.3333333333333333,
+              "ece_hard": 0.16666666666666663,
+              "p95_latency_ms": 348.19999999999976,
+              "n_test_samples": 18,
+              "n_predictions": 18,
+              "n_routing_decisions": 18,
+              "n_failures": 3,
+              "n_routed_slm": 3,
+              "n_routed_llm": 15
+            }
+          }
+        },
+        "Phi4-Mini": {
+          "model_tier": "SLM",
+          "train_phase": {
+            "n_samples": 54,
+            "failure_signal_rate": 0.2222222222222222,
+            "feature_means": {
+              "n_in": 14.0,
+              "entropy": 3.720456993181446,
+              "reasoning_proxy": 0.0,
+              "constraint_count": 0.0,
+              "parametric_dependence": 0.0,
+              "dependency_distance": 0.0,
+              "reasoning_x_constraint": 0.0,
+              "length_x_entropy": 52.515588657108886,
+              "knowledge_x_reasoning": 0.0,
+              "classification_ambiguity": 0.013888888888888888,
+              "classification_negation_density": 0.06388888888888888,
+              "classification_domain_shift": 0.9477777777777777,
+              "math_numeric_density": 0.0,
+              "math_symbol_density": 0.0,
+              "math_precision_cues": 0.0,
+              "instruction_format_strictness": 0.0,
+              "instruction_prohibition_count": 0.0,
+              "instruction_step_count": 0.0,
+              "instruction_conflict_cues": 0.0
+            }
+          },
+          "validation_phase": {
+            "n_samples": 18,
+            "baseline_capability": 0.7222222222222222,
+            "baseline_risk": 0.18666666666666668,
+            "tau_cap": 0.775,
+            "tau_risk": 0.17500000000000002,
+            "tau_star": 3.807354922057604,
+            "tau_source": "strict_feasible_adaptive",
+            "capability_curve": {
+              "0": 0.6666666666666667,
+              "1": 0.6666666666666667,
+              "2": 0.6666666666666667,
+              "3": 0.6666666666666667,
+              "4": 0.6666666666666667,
+              "5": 0.6666666666666667,
+              "6": 0.6666666666666667,
+              "7": 0.6666666666666667,
+              "8": 0.6666666666666667,
+              "9": 0.6666666666666667
+            },
+            "risk_curve": {
+              "0": 0.1866666666666667,
+              "1": 0.1866666666666667,
+              "2": 0.1866666666666667,
+              "3": 0.1866666666666667,
+              "4": 0.1866666666666667,
+              "5": 0.1866666666666667,
+              "6": 0.1866666666666667,
+              "7": 0.1866666666666667,
+              "8": 0.1866666666666667,
+              "9": 0.1866666666666667
+            },
+            "coverage_curve": {
+              "0": 1,
+              "1": 1,
+              "2": 1,
+              "3": 1,
+              "4": 1,
+              "5": 1,
+              "6": 1,
+              "7": 1,
+              "8": 1,
+              "9": 9
+            }
+          },
+          "test_phase": {
+            "dataset_outputs": {
+              "predictions": 18,
+              "routing_decisions": 18,
+              "correctness": {
+                "correct": 12,
+                "incorrect": 6
+              },
+              "failure_categories": {
+                "hard_failure": 18
+              }
+            },
+            "metrics": {
+              "metric_mode": "hard_label_proxy",
+              "accuracy": 0.6666666666666666,
+              "precision_macro": 0.5416666666666666,
+              "recall_macro": 0.625,
+              "f1_macro": 0.5333333333333333,
+              "roc_auc_ovr_hard": 0.75625,
+              "pr_auc_macro_hard": 0.5,
+              "brier_multiclass_hard": 0.6666666666666666,
+              "ece_hard": 0.33333333333333337,
+              "p95_latency_ms": 810.6499999999999,
+              "n_test_samples": 18,
+              "n_predictions": 18,
+              "n_routing_decisions": 18,
+              "n_failures": 6,
+              "n_routed_slm": 6,
+              "n_routed_llm": 12
+            }
+          }
+        },
+        "Qwen2.5-7B": {
+          "model_tier": "SLM",
+          "train_phase": {
+            "n_samples": 54,
+            "failure_signal_rate": 0.05555555555555555,
+            "feature_means": {
+              "n_in": 14.0,
+              "entropy": 3.720456993181446,
+              "reasoning_proxy": 0.0,
+              "constraint_count": 0.0,
+              "parametric_dependence": 0.0,
+              "dependency_distance": 0.0,
+              "reasoning_x_constraint": 0.0,
+              "length_x_entropy": 52.515588657108886,
+              "knowledge_x_reasoning": 0.0,
+              "classification_ambiguity": 0.013888888888888888,
+              "classification_negation_density": 0.06388888888888888,
+              "classification_domain_shift": 0.9477777777777777,
+              "math_numeric_density": 0.0,
+              "math_symbol_density": 0.0,
+              "math_precision_cues": 0.0,
+              "instruction_format_strictness": 0.0,
+              "instruction_prohibition_count": 0.0,
+              "instruction_step_count": 0.0,
+              "instruction_conflict_cues": 0.0
+            }
+          },
+          "validation_phase": {
+            "n_samples": 18,
+            "baseline_capability": 0.7222222222222222,
+            "baseline_risk": 0.18666666666666668,
+            "tau_cap": 1.0,
+            "tau_risk": 0.08400000000000002,
+            "tau_star": 3.773557262275186,
+            "tau_source": "strict_feasible_adaptive",
+            "capability_curve": {
+              "0": 0.9333333333333333,
+              "1": 0.9333333333333333,
+              "2": 0.9333333333333333,
+              "3": 0.9333333333333333,
+              "4": 0.9333333333333333,
+              "5": 0.9333333333333333,
+              "6": 0.9333333333333333,
+              "7": 0.9333333333333333,
+              "8": 0.9333333333333333,
+              "9": 0.9333333333333333
+            },
+            "risk_curve": {
+              "0": 0.037333333333333336,
+              "1": 0.037333333333333336,
+              "2": 0.037333333333333336,
+              "3": 0.037333333333333336,
+              "4": 0.037333333333333336,
+              "5": 0.037333333333333336,
+              "6": 0.037333333333333336,
+              "7": 0.037333333333333336,
+              "8": 0.037333333333333336,
+              "9": 0.037333333333333336
+            },
+            "coverage_curve": {
+              "0": 1,
+              "1": 1,
+              "2": 1,
+              "3": 1,
+              "4": 1,
+              "5": 1,
+              "6": 1,
+              "7": 1,
+              "8": 1,
+              "9": 9
+            }
+          },
+          "test_phase": {
+            "dataset_outputs": {
+              "predictions": 18,
+              "routing_decisions": 18,
+              "correctness": {
+                "correct": 15,
+                "incorrect": 3
+              },
+              "failure_categories": {
+                "hard_failure": 18
+              }
+            },
+            "metrics": {
+              "metric_mode": "hard_label_proxy",
+              "accuracy": 0.8333333333333334,
+              "precision_macro": 0.6666666666666666,
+              "recall_macro": 0.75,
+              "f1_macro": 0.7,
+              "roc_auc_ovr_hard": 0.84375,
+              "pr_auc_macro_hard": 0.7083333333333334,
+              "brier_multiclass_hard": 0.3333333333333333,
+              "ece_hard": 0.16666666666666663,
+              "p95_latency_ms": 382.4,
+              "n_test_samples": 18,
+              "n_predictions": 18,
+              "n_routing_decisions": 18,
+              "n_failures": 3,
+              "n_routed_slm": 3,
+              "n_routed_llm": 15
+            }
+          }
+        }
+      }
+    },
+    "uc4": {
+      "task_family": "classification",
+      "n_rows_total": 630,
+      "n_items_total": 30,
+      "split_strategy": "deterministic_item_split_60_20_20",
+      "train_items_count": 18,
+      "val_items_count": 6,
+      "test_items_count": 6,
+      "models": {
+        "Gemma3-4B": {
+          "model_tier": "SLM",
+          "train_phase": {
+            "n_samples": 54,
+            "failure_signal_rate": 0.16666666666666666,
+            "feature_means": {
+              "n_in": 14.5,
+              "entropy": 3.7748436841450506,
+              "reasoning_proxy": 0.0,
+              "constraint_count": 0.0,
+              "parametric_dependence": 0.0,
+              "dependency_distance": 0.0,
+              "reasoning_x_constraint": 0.0,
+              "length_x_entropy": 54.95984273390235,
+              "knowledge_x_reasoning": 0.0,
+              "classification_ambiguity": 0.0763888888888889,
+              "classification_negation_density": 0.09250610500610501,
+              "classification_domain_shift": 0.9958333333333335,
+              "math_numeric_density": 0.0,
+              "math_symbol_density": 0.0,
+              "math_precision_cues": 0.0,
+              "instruction_format_strictness": 0.0,
+              "instruction_prohibition_count": 0.0,
+              "instruction_step_count": 0.0,
+              "instruction_conflict_cues": 0.0
+            }
+          },
+          "validation_phase": {
+            "n_samples": 18,
+            "baseline_capability": 1.0,
+            "baseline_risk": 0.0,
+            "tau_cap": 1.0,
+            "tau_risk": 0.0,
+            "tau_star": 3.9698157824268097,
+            "tau_source": "strict_feasible_adaptive",
+            "capability_curve": {
+              "0": 1.0,
+              "1": 1.0,
+              "2": 1.0,
+              "3": 1.0,
+              "4": 1.0,
+              "5": 1.0,
+              "6": 1.0,
+              "7": 1.0,
+              "8": 1.0,
+              "9": 1.0
+            },
+            "risk_curve": {
+              "0": 0.0,
+              "1": 0.0,
+              "2": 0.0,
+              "3": 0.0,
+              "4": 0.0,
+              "5": 0.0,
+              "6": 0.0,
+              "7": 0.0,
+              "8": 0.0,
+              "9": 0.0
+            },
+            "coverage_curve": {
+              "0": 1,
+              "1": 1,
+              "2": 1,
+              "3": 1,
+              "4": 1,
+              "5": 1,
+              "6": 1,
+              "7": 1,
+              "8": 1,
+              "9": 9
+            }
+          },
+          "test_phase": {
+            "dataset_outputs": {
+              "predictions": 18,
+              "routing_decisions": 18,
+              "correctness": {
+                "correct": 18,
+                "incorrect": 0
+              },
+              "failure_categories": {
+                "hard_failure": 18
+              }
+            },
+            "metrics": {
+              "metric_mode": "hard_label_proxy",
+              "accuracy": 1.0,
+              "precision_macro": 1.0,
+              "recall_macro": 1.0,
+              "f1_macro": 1.0,
+              "roc_auc_ovr_hard": 1.0,
+              "pr_auc_macro_hard": 1.0,
+              "brier_multiclass_hard": 0.0,
+              "ece_hard": 0.0,
+              "p95_latency_ms": 504.15,
+              "n_test_samples": 18,
+              "n_predictions": 18,
+              "n_routing_decisions": 18,
+              "n_failures": 0,
+              "n_routed_slm": 15,
+              "n_routed_llm": 3
+            }
+          }
+        },
+        "Llama-3.1-8B": {
+          "model_tier": "SLM",
+          "train_phase": {
+            "n_samples": 54,
+            "failure_signal_rate": 0.1111111111111111,
+            "feature_means": {
+              "n_in": 14.5,
+              "entropy": 3.7748436841450506,
+              "reasoning_proxy": 0.0,
+              "constraint_count": 0.0,
+              "parametric_dependence": 0.0,
+              "dependency_distance": 0.0,
+              "reasoning_x_constraint": 0.0,
+              "length_x_entropy": 54.95984273390235,
+              "knowledge_x_reasoning": 0.0,
+              "classification_ambiguity": 0.0763888888888889,
+              "classification_negation_density": 0.09250610500610501,
+              "classification_domain_shift": 0.9958333333333335,
+              "math_numeric_density": 0.0,
+              "math_symbol_density": 0.0,
+              "math_precision_cues": 0.0,
+              "instruction_format_strictness": 0.0,
+              "instruction_prohibition_count": 0.0,
+              "instruction_step_count": 0.0,
+              "instruction_conflict_cues": 0.0
+            }
+          },
+          "validation_phase": {
+            "n_samples": 18,
+            "baseline_capability": 1.0,
+            "baseline_risk": 0.0,
+            "tau_cap": 1.0,
+            "tau_risk": 0.0,
+            "tau_star": 3.9698157824268097,
+            "tau_source": "strict_feasible_adaptive",
+            "capability_curve": {
+              "0": 1.0,
+              "1": 1.0,
+              "2": 1.0,
+              "3": 1.0,
+              "4": 1.0,
+              "5": 1.0,
+              "6": 1.0,
+              "7": 1.0,
+              "8": 1.0,
+              "9": 1.0
+            },
+            "risk_curve": {
+              "0": 0.0,
+              "1": 0.0,
+              "2": 0.0,
+              "3": 0.0,
+              "4": 0.0,
+              "5": 0.0,
+              "6": 0.0,
+              "7": 0.0,
+              "8": 0.0,
+              "9": 0.0
+            },
+            "coverage_curve": {
+              "0": 1,
+              "1": 1,
+              "2": 1,
+              "3": 1,
+              "4": 1,
+              "5": 1,
+              "6": 1,
+              "7": 1,
+              "8": 1,
+              "9": 9
+            }
+          },
+          "test_phase": {
+            "dataset_outputs": {
+              "predictions": 18,
+              "routing_decisions": 18,
+              "correctness": {
+                "correct": 18,
+                "incorrect": 0
+              },
+              "failure_categories": {
+                "hard_failure": 18
+              }
+            },
+            "metrics": {
+              "metric_mode": "hard_label_proxy",
+              "accuracy": 1.0,
+              "precision_macro": 1.0,
+              "recall_macro": 1.0,
+              "f1_macro": 1.0,
+              "roc_auc_ovr_hard": 1.0,
+              "pr_auc_macro_hard": 1.0,
+              "brier_multiclass_hard": 0.0,
+              "ece_hard": 0.0,
+              "p95_latency_ms": 1677.6499999999992,
+              "n_test_samples": 18,
+              "n_predictions": 18,
+              "n_routing_decisions": 18,
+              "n_failures": 0,
+              "n_routed_slm": 15,
+              "n_routed_llm": 3
+            }
+          }
+        },
+        "Llama-3.2-3B": {
+          "model_tier": "SLM",
+          "train_phase": {
+            "n_samples": 54,
+            "failure_signal_rate": 0.1111111111111111,
+            "feature_means": {
+              "n_in": 14.5,
+              "entropy": 3.7748436841450506,
+              "reasoning_proxy": 0.0,
+              "constraint_count": 0.0,
+              "parametric_dependence": 0.0,
+              "dependency_distance": 0.0,
+              "reasoning_x_constraint": 0.0,
+              "length_x_entropy": 54.95984273390235,
+              "knowledge_x_reasoning": 0.0,
+              "classification_ambiguity": 0.0763888888888889,
+              "classification_negation_density": 0.09250610500610501,
+              "classification_domain_shift": 0.9958333333333335,
+              "math_numeric_density": 0.0,
+              "math_symbol_density": 0.0,
+              "math_precision_cues": 0.0,
+              "instruction_format_strictness": 0.0,
+              "instruction_prohibition_count": 0.0,
+              "instruction_step_count": 0.0,
+              "instruction_conflict_cues": 0.0
+            }
+          },
+          "validation_phase": {
+            "n_samples": 18,
+            "baseline_capability": 1.0,
+            "baseline_risk": 0.0,
+            "tau_cap": 1.0,
+            "tau_risk": 0.0,
+            "tau_star": 3.9698157824268097,
+            "tau_source": "strict_feasible_adaptive",
+            "capability_curve": {
+              "0": 1.0,
+              "1": 1.0,
+              "2": 1.0,
+              "3": 1.0,
+              "4": 1.0,
+              "5": 1.0,
+              "6": 1.0,
+              "7": 1.0,
+              "8": 1.0,
+              "9": 1.0
+            },
+            "risk_curve": {
+              "0": 0.0,
+              "1": 0.0,
+              "2": 0.0,
+              "3": 0.0,
+              "4": 0.0,
+              "5": 0.0,
+              "6": 0.0,
+              "7": 0.0,
+              "8": 0.0,
+              "9": 0.0
+            },
+            "coverage_curve": {
+              "0": 1,
+              "1": 1,
+              "2": 1,
+              "3": 1,
+              "4": 1,
+              "5": 1,
+              "6": 1,
+              "7": 1,
+              "8": 1,
+              "9": 9
+            }
+          },
+          "test_phase": {
+            "dataset_outputs": {
+              "predictions": 18,
+              "routing_decisions": 18,
+              "correctness": {
+                "correct": 18,
+                "incorrect": 0
+              },
+              "failure_categories": {
+                "hard_failure": 18
+              }
+            },
+            "metrics": {
+              "metric_mode": "hard_label_proxy",
+              "accuracy": 1.0,
+              "precision_macro": 1.0,
+              "recall_macro": 1.0,
+              "f1_macro": 1.0,
+              "roc_auc_ovr_hard": 1.0,
+              "pr_auc_macro_hard": 1.0,
+              "brier_multiclass_hard": 0.0,
+              "ece_hard": 0.0,
+              "p95_latency_ms": 1030.999999999999,
+              "n_test_samples": 18,
+              "n_predictions": 18,
+              "n_routing_decisions": 18,
+              "n_failures": 0,
+              "n_routed_slm": 15,
+              "n_routed_llm": 3
+            }
+          }
+        },
+        "Llama-3.3-70B": {
+          "model_tier": "LLM",
+          "train_phase": {
+            "n_samples": 54,
+            "failure_signal_rate": 0.05555555555555555,
+            "feature_means": {
+              "n_in": 14.5,
+              "entropy": 3.7748436841450506,
+              "reasoning_proxy": 0.0,
+              "constraint_count": 0.0,
+              "parametric_dependence": 0.0,
+              "dependency_distance": 0.0,
+              "reasoning_x_constraint": 0.0,
+              "length_x_entropy": 54.95984273390235,
+              "knowledge_x_reasoning": 0.0,
+              "classification_ambiguity": 0.0763888888888889,
+              "classification_negation_density": 0.09250610500610501,
+              "classification_domain_shift": 0.9958333333333335,
+              "math_numeric_density": 0.0,
+              "math_symbol_density": 0.0,
+              "math_precision_cues": 0.0,
+              "instruction_format_strictness": 0.0,
+              "instruction_prohibition_count": 0.0,
+              "instruction_step_count": 0.0,
+              "instruction_conflict_cues": 0.0
+            }
+          },
+          "validation_phase": {
+            "n_samples": 18,
+            "baseline_capability": 1.0,
+            "baseline_risk": 0.0,
+            "tau_cap": 1.0,
+            "tau_risk": 0.0,
+            "tau_star": 3.9698157824268097,
+            "tau_source": "strict_feasible_adaptive",
+            "capability_curve": {
+              "0": 1.0,
+              "1": 1.0,
+              "2": 1.0,
+              "3": 1.0,
+              "4": 1.0,
+              "5": 1.0,
+              "6": 1.0,
+              "7": 1.0,
+              "8": 1.0,
+              "9": 1.0
+            },
+            "risk_curve": {
+              "0": 0.0,
+              "1": 0.0,
+              "2": 0.0,
+              "3": 0.0,
+              "4": 0.0,
+              "5": 0.0,
+              "6": 0.0,
+              "7": 0.0,
+              "8": 0.0,
+              "9": 0.0
+            },
+            "coverage_curve": {
+              "0": 1,
+              "1": 1,
+              "2": 1,
+              "3": 1,
+              "4": 1,
+              "5": 1,
+              "6": 1,
+              "7": 1,
+              "8": 1,
+              "9": 9
+            }
+          },
+          "test_phase": {
+            "dataset_outputs": {
+              "predictions": 18,
+              "routing_decisions": 18,
+              "correctness": {
+                "correct": 18,
+                "incorrect": 0
+              },
+              "failure_categories": {
+                "hard_failure": 18
+              }
+            },
+            "metrics": {
+              "metric_mode": "hard_label_proxy",
+              "accuracy": 1.0,
+              "precision_macro": 1.0,
+              "recall_macro": 1.0,
+              "f1_macro": 1.0,
+              "roc_auc_ovr_hard": 1.0,
+              "pr_auc_macro_hard": 1.0,
+              "brier_multiclass_hard": 0.0,
+              "ece_hard": 0.0,
+              "p95_latency_ms": 363.15,
+              "n_test_samples": 18,
+              "n_predictions": 18,
+              "n_routing_decisions": 18,
+              "n_failures": 0,
+              "n_routed_slm": 0,
+              "n_routed_llm": 18
+            }
+          }
+        },
+        "Mistral-7B": {
+          "model_tier": "SLM",
+          "train_phase": {
+            "n_samples": 54,
+            "failure_signal_rate": 0.09259259259259259,
+            "feature_means": {
+              "n_in": 14.5,
+              "entropy": 3.7748436841450506,
+              "reasoning_proxy": 0.0,
+              "constraint_count": 0.0,
+              "parametric_dependence": 0.0,
+              "dependency_distance": 0.0,
+              "reasoning_x_constraint": 0.0,
+              "length_x_entropy": 54.95984273390235,
+              "knowledge_x_reasoning": 0.0,
+              "classification_ambiguity": 0.0763888888888889,
+              "classification_negation_density": 0.09250610500610501,
+              "classification_domain_shift": 0.9958333333333335,
+              "math_numeric_density": 0.0,
+              "math_symbol_density": 0.0,
+              "math_precision_cues": 0.0,
+              "instruction_format_strictness": 0.0,
+              "instruction_prohibition_count": 0.0,
+              "instruction_step_count": 0.0,
+              "instruction_conflict_cues": 0.0
+            }
+          },
+          "validation_phase": {
+            "n_samples": 18,
+            "baseline_capability": 1.0,
+            "baseline_risk": 0.0,
+            "tau_cap": 1.0,
+            "tau_risk": 0.0,
+            "tau_star": 3.9698157824268097,
+            "tau_source": "strict_feasible_adaptive",
+            "capability_curve": {
+              "0": 1.0,
+              "1": 1.0,
+              "2": 1.0,
+              "3": 1.0,
+              "4": 1.0,
+              "5": 1.0,
+              "6": 1.0,
+              "7": 1.0,
+              "8": 1.0,
+              "9": 1.0
+            },
+            "risk_curve": {
+              "0": 0.0,
+              "1": 0.0,
+              "2": 0.0,
+              "3": 0.0,
+              "4": 0.0,
+              "5": 0.0,
+              "6": 0.0,
+              "7": 0.0,
+              "8": 0.0,
+              "9": 0.0
+            },
+            "coverage_curve": {
+              "0": 1,
+              "1": 1,
+              "2": 1,
+              "3": 1,
+              "4": 1,
+              "5": 1,
+              "6": 1,
+              "7": 1,
+              "8": 1,
+              "9": 9
+            }
+          },
+          "test_phase": {
+            "dataset_outputs": {
+              "predictions": 18,
+              "routing_decisions": 18,
+              "correctness": {
+                "correct": 18,
+                "incorrect": 0
+              },
+              "failure_categories": {
+                "hard_failure": 18
+              }
+            },
+            "metrics": {
+              "metric_mode": "hard_label_proxy",
+              "accuracy": 1.0,
+              "precision_macro": 1.0,
+              "recall_macro": 1.0,
+              "f1_macro": 1.0,
+              "roc_auc_ovr_hard": 1.0,
+              "pr_auc_macro_hard": 1.0,
+              "brier_multiclass_hard": 0.0,
+              "ece_hard": 0.0,
+              "p95_latency_ms": 480.29999999999995,
+              "n_test_samples": 18,
+              "n_predictions": 18,
+              "n_routing_decisions": 18,
+              "n_failures": 0,
+              "n_routed_slm": 15,
+              "n_routed_llm": 3
+            }
+          }
+        },
+        "Phi4-Mini": {
+          "model_tier": "SLM",
+          "train_phase": {
+            "n_samples": 54,
+            "failure_signal_rate": 0.16666666666666666,
+            "feature_means": {
+              "n_in": 14.5,
+              "entropy": 3.7748436841450506,
+              "reasoning_proxy": 0.0,
+              "constraint_count": 0.0,
+              "parametric_dependence": 0.0,
+              "dependency_distance": 0.0,
+              "reasoning_x_constraint": 0.0,
+              "length_x_entropy": 54.95984273390235,
+              "knowledge_x_reasoning": 0.0,
+              "classification_ambiguity": 0.0763888888888889,
+              "classification_negation_density": 0.09250610500610501,
+              "classification_domain_shift": 0.9958333333333335,
+              "math_numeric_density": 0.0,
+              "math_symbol_density": 0.0,
+              "math_precision_cues": 0.0,
+              "instruction_format_strictness": 0.0,
+              "instruction_prohibition_count": 0.0,
+              "instruction_step_count": 0.0,
+              "instruction_conflict_cues": 0.0
+            }
+          },
+          "validation_phase": {
+            "n_samples": 18,
+            "baseline_capability": 1.0,
+            "baseline_risk": 0.09333333333333334,
+            "tau_cap": 0.9166666666666667,
+            "tau_risk": 0.10733333333333335,
+            "tau_star": 3.807354922057604,
+            "tau_source": "strict_feasible_adaptive",
+            "capability_curve": {
+              "0": 0.9666666666666666,
+              "1": 0.9666666666666666,
+              "2": 0.9666666666666666,
+              "3": 0.9666666666666666,
+              "4": 0.9666666666666666,
+              "5": 0.9666666666666666,
+              "6": 0.9666666666666666,
+              "7": 0.9666666666666666,
+              "8": 0.9666666666666666,
+              "9": 0.9666666666666666
+            },
+            "risk_curve": {
+              "0": 0.018666666666666668,
+              "1": 0.018666666666666668,
+              "2": 0.018666666666666668,
+              "3": 0.018666666666666668,
+              "4": 0.018666666666666668,
+              "5": 0.018666666666666668,
+              "6": 0.018666666666666668,
+              "7": 0.018666666666666668,
+              "8": 0.018666666666666668,
+              "9": 0.018666666666666668
+            },
+            "coverage_curve": {
+              "0": 1,
+              "1": 1,
+              "2": 1,
+              "3": 1,
+              "4": 1,
+              "5": 1,
+              "6": 1,
+              "7": 1,
+              "8": 1,
+              "9": 9
+            }
+          },
+          "test_phase": {
+            "dataset_outputs": {
+              "predictions": 18,
+              "routing_decisions": 18,
+              "correctness": {
+                "correct": 18,
+                "incorrect": 0
+              },
+              "failure_categories": {
+                "hard_failure": 18
+              }
+            },
+            "metrics": {
+              "metric_mode": "hard_label_proxy",
+              "accuracy": 1.0,
+              "precision_macro": 1.0,
+              "recall_macro": 1.0,
+              "f1_macro": 1.0,
+              "roc_auc_ovr_hard": 1.0,
+              "pr_auc_macro_hard": 1.0,
+              "brier_multiclass_hard": 0.0,
+              "ece_hard": 0.0,
+              "p95_latency_ms": 873.65,
+              "n_test_samples": 18,
+              "n_predictions": 18,
+              "n_routing_decisions": 18,
+              "n_failures": 0,
+              "n_routed_slm": 9,
+              "n_routed_llm": 9
+            }
+          }
+        },
+        "Qwen2.5-7B": {
+          "model_tier": "SLM",
+          "train_phase": {
+            "n_samples": 54,
+            "failure_signal_rate": 0.1111111111111111,
+            "feature_means": {
+              "n_in": 14.5,
+              "entropy": 3.7748436841450506,
+              "reasoning_proxy": 0.0,
+              "constraint_count": 0.0,
+              "parametric_dependence": 0.0,
+              "dependency_distance": 0.0,
+              "reasoning_x_constraint": 0.0,
+              "length_x_entropy": 54.95984273390235,
+              "knowledge_x_reasoning": 0.0,
+              "classification_ambiguity": 0.0763888888888889,
+              "classification_negation_density": 0.09250610500610501,
+              "classification_domain_shift": 0.9958333333333335,
+              "math_numeric_density": 0.0,
+              "math_symbol_density": 0.0,
+              "math_precision_cues": 0.0,
+              "instruction_format_strictness": 0.0,
+              "instruction_prohibition_count": 0.0,
+              "instruction_step_count": 0.0,
+              "instruction_conflict_cues": 0.0
+            }
+          },
+          "validation_phase": {
+            "n_samples": 18,
+            "baseline_capability": 1.0,
+            "baseline_risk": 0.09333333333333334,
+            "tau_cap": 0.9166666666666667,
+            "tau_risk": 0.10733333333333335,
+            "tau_star": 3.807354922057604,
+            "tau_source": "strict_feasible_adaptive",
+            "capability_curve": {
+              "0": 0.9666666666666666,
+              "1": 0.9666666666666666,
+              "2": 0.9666666666666666,
+              "3": 0.9666666666666666,
+              "4": 0.9666666666666666,
+              "5": 0.9666666666666666,
+              "6": 0.9666666666666666,
+              "7": 0.9666666666666666,
+              "8": 0.9666666666666666,
+              "9": 0.9666666666666666
+            },
+            "risk_curve": {
+              "0": 0.018666666666666668,
+              "1": 0.018666666666666668,
+              "2": 0.018666666666666668,
+              "3": 0.018666666666666668,
+              "4": 0.018666666666666668,
+              "5": 0.018666666666666668,
+              "6": 0.018666666666666668,
+              "7": 0.018666666666666668,
+              "8": 0.018666666666666668,
+              "9": 0.018666666666666668
+            },
+            "coverage_curve": {
+              "0": 1,
+              "1": 1,
+              "2": 1,
+              "3": 1,
+              "4": 1,
+              "5": 1,
+              "6": 1,
+              "7": 1,
+              "8": 1,
+              "9": 9
+            }
+          },
+          "test_phase": {
+            "dataset_outputs": {
+              "predictions": 18,
+              "routing_decisions": 18,
+              "correctness": {
+                "correct": 18,
+                "incorrect": 0
+              },
+              "failure_categories": {
+                "hard_failure": 18
+              }
+            },
+            "metrics": {
+              "metric_mode": "hard_label_proxy",
+              "accuracy": 1.0,
+              "precision_macro": 1.0,
+              "recall_macro": 1.0,
+              "f1_macro": 1.0,
+              "roc_auc_ovr_hard": 1.0,
+              "pr_auc_macro_hard": 1.0,
+              "brier_multiclass_hard": 0.0,
+              "ece_hard": 0.0,
+              "p95_latency_ms": 441.5499999999999,
+              "n_test_samples": 18,
+              "n_predictions": 18,
+              "n_routing_decisions": 18,
+              "n_failures": 0,
+              "n_routed_slm": 9,
+              "n_routed_llm": 9
+            }
+          }
+        }
+      }
+    },
+    "uc5": {
+      "task_family": "code_generation",
+      "n_rows_total": 630,
+      "n_items_total": 30,
+      "split_strategy": "deterministic_item_split_60_20_20",
+      "train_items_count": 18,
+      "val_items_count": 6,
+      "test_items_count": 6,
+      "models": {
+        "Gemma3-4B": {
+          "model_tier": "SLM",
+          "train_phase": {
+            "n_samples": 54,
+            "failure_signal_rate": 0.7222222222222222,
+            "feature_means": {
+              "n_in": 9.166666666666666,
+              "entropy": 3.0262213184728455,
+              "reasoning_proxy": 0.0,
+              "constraint_count": 0.0,
+              "parametric_dependence": 0.0,
+              "dependency_distance": 0.0,
+              "reasoning_x_constraint": 0.0,
+              "length_x_entropy": 28.606329292393827,
+              "knowledge_x_reasoning": 0.0,
+              "classification_ambiguity": 0.0,
+              "classification_negation_density": 0.0,
+              "classification_domain_shift": 0.0,
+              "math_numeric_density": 0.0,
+              "math_symbol_density": 0.0,
+              "math_precision_cues": 0.0,
+              "instruction_format_strictness": 0.0,
+              "instruction_prohibition_count": 0.0,
+              "instruction_step_count": 0.0,
+              "instruction_conflict_cues": 0.0
+            }
+          },
+          "validation_phase": {
+            "n_samples": 18,
+            "baseline_capability": 0.3888888888888889,
+            "baseline_risk": 0.7520833333333333,
+            "tau_cap": 0.16666666666666666,
+            "tau_risk": 0.7520833333333333,
+            "tau_star": 0.0,
+            "tau_source": "strict_feasible_adaptive",
+            "capability_curve": {
+              "0": 0.0,
+              "1": 0.0,
+              "2": 0.0,
+              "3": 0.42857142857142855,
+              "4": 0.42857142857142855,
+              "5": 0.42857142857142855,
+              "6": 0.42857142857142855,
+              "7": 0.42857142857142855,
+              "8": 0.42857142857142855,
+              "9": 0.42857142857142855
+            },
+            "risk_curve": {
+              "0": 0.9025,
+              "1": 0.9025,
+              "2": 0.9025,
+              "3": 0.5157142857142857,
+              "4": 0.5157142857142857,
+              "5": 0.5157142857142857,
+              "6": 0.5157142857142857,
+              "7": 0.5157142857142857,
+              "8": 0.5157142857142857,
+              "9": 0.5157142857142857
+            },
+            "coverage_curve": {
+              "0": 1,
+              "1": 1,
+              "2": 1,
+              "3": 1,
+              "4": 1,
+              "5": 1,
+              "6": 1,
+              "7": 1,
+              "8": 1,
+              "9": 9
+            }
+          },
+          "test_phase": {
+            "dataset_outputs": {
+              "predictions": 18,
+              "routing_decisions": 18,
+              "correctness": {
+                "correct": 12,
+                "incorrect": 6
+              },
+              "failure_categories": {
+                "hard_failure": 18
+              }
+            },
+            "metrics": {
+              "metric_mode": "hard_label_proxy",
+              "accuracy": 0.6666666666666666,
+              "precision_macro": 0.5738636363636364,
+              "recall_macro": 0.75,
+              "f1_macro": 0.6407563025210085,
+              "roc_auc_ovr_hard": 0.8145833333333333,
+              "pr_auc_macro_hard": 0.6571969696969697,
+              "brier_multiclass_hard": 0.6666666666666666,
+              "ece_hard": 0.33333333333333337,
+              "p95_latency_ms": 736.3,
+              "n_test_samples": 18,
+              "n_predictions": 18,
+              "n_routing_decisions": 18,
+              "n_failures": 6,
+              "n_routed_slm": 18,
+              "n_routed_llm": 0
+            }
+          }
+        },
+        "Llama-3.1-8B": {
+          "model_tier": "SLM",
+          "train_phase": {
+            "n_samples": 54,
+            "failure_signal_rate": 0.6666666666666666,
+            "feature_means": {
+              "n_in": 9.166666666666666,
+              "entropy": 3.0262213184728455,
+              "reasoning_proxy": 0.0,
+              "constraint_count": 0.0,
+              "parametric_dependence": 0.0,
+              "dependency_distance": 0.0,
+              "reasoning_x_constraint": 0.0,
+              "length_x_entropy": 28.606329292393827,
+              "knowledge_x_reasoning": 0.0,
+              "classification_ambiguity": 0.0,
+              "classification_negation_density": 0.0,
+              "classification_domain_shift": 0.0,
+              "math_numeric_density": 0.0,
+              "math_symbol_density": 0.0,
+              "math_precision_cues": 0.0,
+              "instruction_format_strictness": 0.0,
+              "instruction_prohibition_count": 0.0,
+              "instruction_step_count": 0.0,
+              "instruction_conflict_cues": 0.0
+            }
+          },
+          "validation_phase": {
+            "n_samples": 18,
+            "baseline_capability": 0.3888888888888889,
+            "baseline_risk": 0.45125000000000004,
+            "tau_cap": 0.5,
+            "tau_risk": 0.45125000000000004,
+            "tau_star": 0.0,
+            "tau_source": "strict_feasible_adaptive",
+            "capability_curve": {
+              "0": 0.9,
+              "1": 0.9,
+              "2": 0.9,
+              "3": 0.9,
+              "4": 0.9,
+              "5": 0.9,
+              "6": 0.9,
+              "7": 0.9,
+              "8": 0.9,
+              "9": 0.9
+            },
+            "risk_curve": {
+              "0": 0.09025000000000001,
+              "1": 0.09025000000000001,
+              "2": 0.09025000000000001,
+              "3": 0.09025000000000001,
+              "4": 0.09025000000000001,
+              "5": 0.09025000000000001,
+              "6": 0.09025000000000001,
+              "7": 0.09025000000000001,
+              "8": 0.09025000000000001,
+              "9": 0.09025000000000001
+            },
+            "coverage_curve": {
+              "0": 1,
+              "1": 1,
+              "2": 1,
+              "3": 1,
+              "4": 1,
+              "5": 1,
+              "6": 1,
+              "7": 1,
+              "8": 1,
+              "9": 9
+            }
+          },
+          "test_phase": {
+            "dataset_outputs": {
+              "predictions": 18,
+              "routing_decisions": 18,
+              "correctness": {
+                "correct": 15,
+                "incorrect": 3
+              },
+              "failure_categories": {
+                "hard_failure": 18
+              }
+            },
+            "metrics": {
+              "metric_mode": "hard_label_proxy",
+              "accuracy": 0.8333333333333334,
+              "precision_macro": 0.875,
+              "recall_macro": 0.875,
+              "f1_macro": 0.8333333333333333,
+              "roc_auc_ovr_hard": 0.9125,
+              "pr_auc_macro_hard": 0.7916666666666666,
+              "brier_multiclass_hard": 0.3333333333333333,
+              "ece_hard": 0.16666666666666663,
+              "p95_latency_ms": 3535.799999999999,
+              "n_test_samples": 18,
+              "n_predictions": 18,
+              "n_routing_decisions": 18,
+              "n_failures": 3,
+              "n_routed_slm": 18,
+              "n_routed_llm": 0
+            }
+          }
+        },
+        "Llama-3.2-3B": {
+          "model_tier": "SLM",
+          "train_phase": {
+            "n_samples": 54,
+            "failure_signal_rate": 0.8888888888888888,
+            "feature_means": {
+              "n_in": 9.166666666666666,
+              "entropy": 3.0262213184728455,
+              "reasoning_proxy": 0.0,
+              "constraint_count": 0.0,
+              "parametric_dependence": 0.0,
+              "dependency_distance": 0.0,
+              "reasoning_x_constraint": 0.0,
+              "length_x_entropy": 28.606329292393827,
+              "knowledge_x_reasoning": 0.0,
+              "classification_ambiguity": 0.0,
+              "classification_negation_density": 0.0,
+              "classification_domain_shift": 0.0,
+              "math_numeric_density": 0.0,
+              "math_symbol_density": 0.0,
+              "math_precision_cues": 0.0,
+              "instruction_format_strictness": 0.0,
+              "instruction_prohibition_count": 0.0,
+              "instruction_step_count": 0.0,
+              "instruction_conflict_cues": 0.0
+            }
+          },
+          "validation_phase": {
+            "n_samples": 18,
+            "baseline_capability": 0.3888888888888889,
+            "baseline_risk": 0.45125000000000004,
+            "tau_cap": 0.5,
+            "tau_risk": 0.45125000000000004,
+            "tau_star": 0.0,
+            "tau_source": "strict_feasible_adaptive",
+            "capability_curve": {
+              "0": 0.0,
+              "1": 0.0,
+              "2": 0.0,
+              "3": 0.0,
+              "4": 0.0,
+              "5": 0.0,
+              "6": 0.9166666666666666,
+              "7": 0.9166666666666666,
+              "8": 0.9166666666666666,
+              "9": 0.9166666666666666
+            },
+            "risk_curve": {
+              "0": 0.9025,
+              "1": 0.9025,
+              "2": 0.9025,
+              "3": 0.9025,
+              "4": 0.9025,
+              "5": 0.9025,
+              "6": 0.07520833333333334,
+              "7": 0.07520833333333334,
+              "8": 0.07520833333333334,
+              "9": 0.07520833333333334
+            },
+            "coverage_curve": {
+              "0": 1,
+              "1": 1,
+              "2": 1,
+              "3": 1,
+              "4": 1,
+              "5": 1,
+              "6": 1,
+              "7": 1,
+              "8": 1,
+              "9": 9
+            }
+          },
+          "test_phase": {
+            "dataset_outputs": {
+              "predictions": 18,
+              "routing_decisions": 18,
+              "correctness": {
+                "correct": 9,
+                "incorrect": 9
+              },
+              "failure_categories": {
+                "hard_failure": 18
+              }
+            },
+            "metrics": {
+              "metric_mode": "hard_label_proxy",
+              "accuracy": 0.5,
+              "precision_macro": 0.25,
+              "recall_macro": 0.5,
+              "f1_macro": 0.325,
+              "roc_auc_ovr_hard": 0.66875,
+              "pr_auc_macro_hard": 0.37499999999999994,
+              "brier_multiclass_hard": 1.0,
+              "ece_hard": 0.5,
+              "p95_latency_ms": 1303.2999999999997,
+              "n_test_samples": 18,
+              "n_predictions": 18,
+              "n_routing_decisions": 18,
+              "n_failures": 9,
+              "n_routed_slm": 18,
+              "n_routed_llm": 0
+            }
+          }
+        },
+        "Llama-3.3-70B": {
+          "model_tier": "LLM",
+          "train_phase": {
+            "n_samples": 54,
+            "failure_signal_rate": 0.3888888888888889,
+            "feature_means": {
+              "n_in": 9.166666666666666,
+              "entropy": 3.0262213184728455,
+              "reasoning_proxy": 0.0,
+              "constraint_count": 0.0,
+              "parametric_dependence": 0.0,
+              "dependency_distance": 0.0,
+              "reasoning_x_constraint": 0.0,
+              "length_x_entropy": 28.606329292393827,
+              "knowledge_x_reasoning": 0.0,
+              "classification_ambiguity": 0.0,
+              "classification_negation_density": 0.0,
+              "classification_domain_shift": 0.0,
+              "math_numeric_density": 0.0,
+              "math_symbol_density": 0.0,
+              "math_precision_cues": 0.0,
+              "instruction_format_strictness": 0.0,
+              "instruction_prohibition_count": 0.0,
+              "instruction_step_count": 0.0,
+              "instruction_conflict_cues": 0.0
+            }
+          },
+          "validation_phase": {
+            "n_samples": 18,
+            "baseline_capability": 0.3888888888888889,
+            "baseline_risk": 0.5515277777777778,
+            "tau_cap": 0.3888888888888889,
+            "tau_risk": 0.5515277777777778,
+            "tau_star": 0.0,
+            "tau_source": "strict_feasible_adaptive",
+            "capability_curve": {
+              "0": 0.3333333333333333,
+              "1": 0.3333333333333333,
+              "2": 0.3333333333333333,
+              "3": 0.4761904761904762,
+              "4": 0.4761904761904762,
+              "5": 0.4761904761904762,
+              "6": 0.4761904761904762,
+              "7": 0.4761904761904762,
+              "8": 0.4761904761904762,
+              "9": 0.4761904761904762
+            },
+            "risk_curve": {
+              "0": 0.6016666666666667,
+              "1": 0.6016666666666667,
+              "2": 0.6016666666666667,
+              "3": 0.47273809523809524,
+              "4": 0.47273809523809524,
+              "5": 0.47273809523809524,
+              "6": 0.47273809523809524,
+              "7": 0.47273809523809524,
+              "8": 0.47273809523809524,
+              "9": 0.47273809523809524
+            },
+            "coverage_curve": {
+              "0": 1,
+              "1": 1,
+              "2": 1,
+              "3": 1,
+              "4": 1,
+              "5": 1,
+              "6": 1,
+              "7": 1,
+              "8": 1,
+              "9": 9
+            }
+          },
+          "test_phase": {
+            "dataset_outputs": {
+              "predictions": 18,
+              "routing_decisions": 18,
+              "correctness": {
+                "correct": 15,
+                "incorrect": 3
+              },
+              "failure_categories": {
+                "hard_failure": 18
+              }
+            },
+            "metrics": {
+              "metric_mode": "hard_label_proxy",
+              "accuracy": 0.8333333333333334,
+              "precision_macro": 0.625,
+              "recall_macro": 0.75,
+              "f1_macro": 0.6666666666666666,
+              "roc_auc_ovr_hard": 0.85,
+              "pr_auc_macro_hard": 0.6666666666666666,
+              "brier_multiclass_hard": 0.3333333333333333,
+              "ece_hard": 0.16666666666666663,
+              "p95_latency_ms": 2443.05,
+              "n_test_samples": 18,
+              "n_predictions": 18,
+              "n_routing_decisions": 18,
+              "n_failures": 3,
+              "n_routed_slm": 0,
+              "n_routed_llm": 18
+            }
+          }
+        },
+        "Mistral-7B": {
+          "model_tier": "SLM",
+          "train_phase": {
+            "n_samples": 54,
+            "failure_signal_rate": 0.8333333333333334,
+            "feature_means": {
+              "n_in": 9.166666666666666,
+              "entropy": 3.0262213184728455,
+              "reasoning_proxy": 0.0,
+              "constraint_count": 0.0,
+              "parametric_dependence": 0.0,
+              "dependency_distance": 0.0,
+              "reasoning_x_constraint": 0.0,
+              "length_x_entropy": 28.606329292393827,
+              "knowledge_x_reasoning": 0.0,
+              "classification_ambiguity": 0.0,
+              "classification_negation_density": 0.0,
+              "classification_domain_shift": 0.0,
+              "math_numeric_density": 0.0,
+              "math_symbol_density": 0.0,
+              "math_precision_cues": 0.0,
+              "instruction_format_strictness": 0.0,
+              "instruction_prohibition_count": 0.0,
+              "instruction_step_count": 0.0,
+              "instruction_conflict_cues": 0.0
+            }
+          },
+          "validation_phase": {
+            "n_samples": 18,
+            "baseline_capability": 0.3888888888888889,
+            "baseline_risk": 0.7520833333333333,
+            "tau_cap": 0.16666666666666666,
+            "tau_risk": 0.7520833333333333,
+            "tau_star": 0.0,
+            "tau_source": "strict_feasible_adaptive",
+            "capability_curve": {
+              "0": 0.0,
+              "1": 0.0,
+              "2": 0.0,
+              "3": 0.42857142857142855,
+              "4": 0.42857142857142855,
+              "5": 0.42857142857142855,
+              "6": 0.42857142857142855,
+              "7": 0.42857142857142855,
+              "8": 0.42857142857142855,
+              "9": 0.42857142857142855
+            },
+            "risk_curve": {
+              "0": 0.9025,
+              "1": 0.9025,
+              "2": 0.9025,
+              "3": 0.5157142857142857,
+              "4": 0.5157142857142857,
+              "5": 0.5157142857142857,
+              "6": 0.5157142857142857,
+              "7": 0.5157142857142857,
+              "8": 0.5157142857142857,
+              "9": 0.5157142857142857
+            },
+            "coverage_curve": {
+              "0": 1,
+              "1": 1,
+              "2": 1,
+              "3": 1,
+              "4": 1,
+              "5": 1,
+              "6": 1,
+              "7": 1,
+              "8": 1,
+              "9": 9
+            }
+          },
+          "test_phase": {
+            "dataset_outputs": {
+              "predictions": 18,
+              "routing_decisions": 18,
+              "correctness": {
+                "correct": 0,
+                "incorrect": 18
+              },
+              "failure_categories": {
+                "hard_failure": 18
+              }
+            },
+            "metrics": {
+              "metric_mode": "hard_label_proxy",
+              "accuracy": 0.0,
+              "precision_macro": 0.0,
+              "recall_macro": 0.0,
+              "f1_macro": 0.0,
+              "roc_auc_ovr_hard": null,
+              "pr_auc_macro_hard": 0.2,
+              "brier_multiclass_hard": 2.0,
+              "ece_hard": 1.0,
+              "p95_latency_ms": 926.1999999999998,
+              "n_test_samples": 18,
+              "n_predictions": 18,
+              "n_routing_decisions": 18,
+              "n_failures": 18,
+              "n_routed_slm": 18,
+              "n_routed_llm": 0
+            }
+          }
+        },
+        "Phi4-Mini": {
+          "model_tier": "SLM",
+          "train_phase": {
+            "n_samples": 54,
+            "failure_signal_rate": 0.8333333333333334,
+            "feature_means": {
+              "n_in": 9.166666666666666,
+              "entropy": 3.0262213184728455,
+              "reasoning_proxy": 0.0,
+              "constraint_count": 0.0,
+              "parametric_dependence": 0.0,
+              "dependency_distance": 0.0,
+              "reasoning_x_constraint": 0.0,
+              "length_x_entropy": 28.606329292393827,
+              "knowledge_x_reasoning": 0.0,
+              "classification_ambiguity": 0.0,
+              "classification_negation_density": 0.0,
+              "classification_domain_shift": 0.0,
+              "math_numeric_density": 0.0,
+              "math_symbol_density": 0.0,
+              "math_precision_cues": 0.0,
+              "instruction_format_strictness": 0.0,
+              "instruction_prohibition_count": 0.0,
+              "instruction_step_count": 0.0,
+              "instruction_conflict_cues": 0.0
+            }
+          },
+          "validation_phase": {
+            "n_samples": 18,
+            "baseline_capability": 0.3888888888888889,
+            "baseline_risk": 0.7520833333333333,
+            "tau_cap": 0.16666666666666666,
+            "tau_risk": 0.7520833333333333,
+            "tau_star": 0.0,
+            "tau_source": "strict_feasible_adaptive",
+            "capability_curve": {
+              "0": 0.0,
+              "1": 0.0,
+              "2": 0.0,
+              "3": 0.42857142857142855,
+              "4": 0.42857142857142855,
+              "5": 0.42857142857142855,
+              "6": 0.42857142857142855,
+              "7": 0.42857142857142855,
+              "8": 0.42857142857142855,
+              "9": 0.42857142857142855
+            },
+            "risk_curve": {
+              "0": 0.9025,
+              "1": 0.9025,
+              "2": 0.9025,
+              "3": 0.5157142857142857,
+              "4": 0.5157142857142857,
+              "5": 0.5157142857142857,
+              "6": 0.5157142857142857,
+              "7": 0.5157142857142857,
+              "8": 0.5157142857142857,
+              "9": 0.5157142857142857
+            },
+            "coverage_curve": {
+              "0": 1,
+              "1": 1,
+              "2": 1,
+              "3": 1,
+              "4": 1,
+              "5": 1,
+              "6": 1,
+              "7": 1,
+              "8": 1,
+              "9": 9
+            }
+          },
+          "test_phase": {
+            "dataset_outputs": {
+              "predictions": 18,
+              "routing_decisions": 18,
+              "correctness": {
+                "correct": 6,
+                "incorrect": 12
+              },
+              "failure_categories": {
+                "hard_failure": 18
+              }
+            },
+            "metrics": {
+              "metric_mode": "hard_label_proxy",
+              "accuracy": 0.3333333333333333,
+              "precision_macro": 0.08333333333333333,
+              "recall_macro": 0.25,
+              "f1_macro": 0.125,
+              "roc_auc_ovr_hard": 0.5,
+              "pr_auc_macro_hard": 0.25,
+              "brier_multiclass_hard": 1.3333333333333333,
+              "ece_hard": 0.6666666666666667,
+              "p95_latency_ms": 1406.85,
+              "n_test_samples": 18,
+              "n_predictions": 18,
+              "n_routing_decisions": 18,
+              "n_failures": 12,
+              "n_routed_slm": 18,
+              "n_routed_llm": 0
+            }
+          }
+        },
+        "Qwen2.5-7B": {
+          "model_tier": "SLM",
+          "train_phase": {
+            "n_samples": 54,
+            "failure_signal_rate": 0.6111111111111112,
+            "feature_means": {
+              "n_in": 9.166666666666666,
+              "entropy": 3.0262213184728455,
+              "reasoning_proxy": 0.0,
+              "constraint_count": 0.0,
+              "parametric_dependence": 0.0,
+              "dependency_distance": 0.0,
+              "reasoning_x_constraint": 0.0,
+              "length_x_entropy": 28.606329292393827,
+              "knowledge_x_reasoning": 0.0,
+              "classification_ambiguity": 0.0,
+              "classification_negation_density": 0.0,
+              "classification_domain_shift": 0.0,
+              "math_numeric_density": 0.0,
+              "math_symbol_density": 0.0,
+              "math_precision_cues": 0.0,
+              "instruction_format_strictness": 0.0,
+              "instruction_prohibition_count": 0.0,
+              "instruction_step_count": 0.0,
+              "instruction_conflict_cues": 0.0
+            }
+          },
+          "validation_phase": {
+            "n_samples": 18,
+            "baseline_capability": 0.3888888888888889,
+            "baseline_risk": 0.6016666666666667,
+            "tau_cap": 0.3333333333333333,
+            "tau_risk": 0.6016666666666667,
+            "tau_star": 0.0,
+            "tau_source": "strict_feasible_adaptive",
+            "capability_curve": {
+              "0": 0.33333333333333337,
+              "1": 0.33333333333333337,
+              "2": 0.33333333333333337,
+              "3": 0.33333333333333337,
+              "4": 0.33333333333333337,
+              "5": 0.33333333333333337,
+              "6": 0.33333333333333337,
+              "7": 0.33333333333333337,
+              "8": 0.33333333333333337,
+              "9": 0.33333333333333337
+            },
+            "risk_curve": {
+              "0": 0.6016666666666667,
+              "1": 0.6016666666666667,
+              "2": 0.6016666666666667,
+              "3": 0.6016666666666667,
+              "4": 0.6016666666666667,
+              "5": 0.6016666666666667,
+              "6": 0.6016666666666667,
+              "7": 0.6016666666666667,
+              "8": 0.6016666666666667,
+              "9": 0.6016666666666667
+            },
+            "coverage_curve": {
+              "0": 1,
+              "1": 1,
+              "2": 1,
+              "3": 1,
+              "4": 1,
+              "5": 1,
+              "6": 1,
+              "7": 1,
+              "8": 1,
+              "9": 9
+            }
+          },
+          "test_phase": {
+            "dataset_outputs": {
+              "predictions": 18,
+              "routing_decisions": 18,
+              "correctness": {
+                "correct": 3,
+                "incorrect": 15
+              },
+              "failure_categories": {
+                "hard_failure": 18
+              }
+            },
+            "metrics": {
+              "metric_mode": "hard_label_proxy",
+              "accuracy": 0.16666666666666666,
+              "precision_macro": 0.2,
+              "recall_macro": 0.1,
+              "f1_macro": 0.13333333333333333,
+              "roc_auc_ovr_hard": null,
+              "pr_auc_macro_hard": 0.26666666666666666,
+              "brier_multiclass_hard": 1.6666666666666667,
+              "ece_hard": 0.8333333333333334,
+              "p95_latency_ms": 693.2,
+              "n_test_samples": 18,
+              "n_predictions": 18,
+              "n_routing_decisions": 18,
+              "n_failures": 15,
+              "n_routed_slm": 18,
+              "n_routed_llm": 0
+            }
+          }
+        }
+      }
+    },
+    "uc6": {
+      "task_family": "classification",
+      "n_rows_total": 632,
+      "n_items_total": 30,
+      "split_strategy": "deterministic_item_split_60_20_20",
+      "train_items_count": 18,
+      "val_items_count": 6,
+      "test_items_count": 6,
+      "models": {
+        "Gemma3-4B": {
+          "model_tier": "SLM",
+          "train_phase": {
+            "n_samples": 54,
+            "failure_signal_rate": 0.7222222222222222,
+            "feature_means": {
+              "n_in": 56.833333333333336,
+              "entropy": 5.547109040478232,
+              "reasoning_proxy": 0.0,
+              "constraint_count": 0.0,
+              "parametric_dependence": 0.0,
+              "dependency_distance": 0.0,
+              "reasoning_x_constraint": 0.0,
+              "length_x_entropy": 315.5412673327742,
+              "knowledge_x_reasoning": 0.0,
+              "classification_ambiguity": 0.027777777777777776,
+              "classification_negation_density": 0.12088743054402815,
+              "classification_domain_shift": 1.0,
+              "math_numeric_density": 0.0,
+              "math_symbol_density": 0.0,
+              "math_precision_cues": 0.0,
+              "instruction_format_strictness": 0.0,
+              "instruction_prohibition_count": 0.0,
+              "instruction_step_count": 0.0,
+              "instruction_conflict_cues": 0.0
+            }
+          },
+          "validation_phase": {
+            "n_samples": 18,
+            "baseline_capability": 0.7777777777777778,
+            "baseline_risk": 0.28,
+            "tau_cap": 0.875,
+            "tau_risk": 0.203,
+            "tau_star": 5.377778405861395,
+            "tau_source": "strict_feasible_adaptive",
+            "capability_curve": {
+              "0": 0.9,
+              "1": 0.9,
+              "2": 0.9,
+              "3": 0.9,
+              "4": 0.9,
+              "5": 0.9,
+              "6": 0.9,
+              "7": 0.9,
+              "8": 0.9,
+              "9": 0.9
+            },
+            "risk_curve": {
+              "0": 0.05600000000000001,
+              "1": 0.05600000000000001,
+              "2": 0.05600000000000001,
+              "3": 0.05600000000000001,
+              "4": 0.05600000000000001,
+              "5": 0.05600000000000001,
+              "6": 0.05600000000000001,
+              "7": 0.05600000000000001,
+              "8": 0.05600000000000001,
+              "9": 0.05600000000000001
+            },
+            "coverage_curve": {
+              "0": 1,
+              "1": 1,
+              "2": 1,
+              "3": 1,
+              "4": 1,
+              "5": 1,
+              "6": 1,
+              "7": 1,
+              "8": 1,
+              "9": 9
+            }
+          },
+          "test_phase": {
+            "dataset_outputs": {
+              "predictions": 18,
+              "routing_decisions": 18,
+              "correctness": {
+                "correct": 3,
+                "incorrect": 15
+              },
+              "failure_categories": {
+                "wrong_prediction": 15,
+                "none": 3
+              }
+            },
+            "metrics": {
+              "metric_mode": "hard_label_proxy",
+              "accuracy": 0.16666666666666666,
+              "precision_macro": 0.25,
+              "recall_macro": 0.25,
+              "f1_macro": 0.25,
+              "roc_auc_ovr_hard": null,
+              "pr_auc_macro_hard": 0.4583333333333333,
+              "brier_multiclass_hard": 1.6666666666666667,
+              "ece_hard": 0.8333333333333334,
+              "p95_latency_ms": 600.9499999999999,
+              "n_test_samples": 18,
+              "n_predictions": 18,
+              "n_routing_decisions": 18,
+              "n_failures": 15,
+              "n_routed_slm": 6,
+              "n_routed_llm": 12
+            }
+          }
+        },
+        "Llama-3.1-8B": {
+          "model_tier": "SLM",
+          "train_phase": {
+            "n_samples": 54,
+            "failure_signal_rate": 0.3333333333333333,
+            "feature_means": {
+              "n_in": 56.833333333333336,
+              "entropy": 5.547109040478232,
+              "reasoning_proxy": 0.0,
+              "constraint_count": 0.0,
+              "parametric_dependence": 0.0,
+              "dependency_distance": 0.0,
+              "reasoning_x_constraint": 0.0,
+              "length_x_entropy": 315.5412673327742,
+              "knowledge_x_reasoning": 0.0,
+              "classification_ambiguity": 0.027777777777777776,
+              "classification_negation_density": 0.12088743054402815,
+              "classification_domain_shift": 1.0,
+              "math_numeric_density": 0.0,
+              "math_symbol_density": 0.0,
+              "math_precision_cues": 0.0,
+              "instruction_format_strictness": 0.0,
+              "instruction_prohibition_count": 0.0,
+              "instruction_step_count": 0.0,
+              "instruction_conflict_cues": 0.0
+            }
+          },
+          "validation_phase": {
+            "n_samples": 18,
+            "baseline_capability": 0.7777777777777778,
+            "baseline_risk": 0.0,
+            "tau_cap": 1.0,
+            "tau_risk": 0.0,
+            "tau_star": 5.642054706834413,
+            "tau_source": "strict_feasible_adaptive",
+            "capability_curve": {
+              "0": 1.0,
+              "1": 1.0,
+              "2": 1.0,
+              "3": 1.0,
+              "4": 1.0,
+              "5": 1.0,
+              "6": 1.0,
+              "7": 1.0,
+              "8": 1.0,
+              "9": 1.0
+            },
+            "risk_curve": {
+              "0": 0.0,
+              "1": 0.0,
+              "2": 0.0,
+              "3": 0.0,
+              "4": 0.0,
+              "5": 0.0,
+              "6": 0.0,
+              "7": 0.0,
+              "8": 0.0,
+              "9": 0.0
+            },
+            "coverage_curve": {
+              "0": 1,
+              "1": 1,
+              "2": 1,
+              "3": 1,
+              "4": 1,
+              "5": 1,
+              "6": 1,
+              "7": 1,
+              "8": 1,
+              "9": 9
+            }
+          },
+          "test_phase": {
+            "dataset_outputs": {
+              "predictions": 18,
+              "routing_decisions": 18,
+              "correctness": {
+                "correct": 12,
+                "incorrect": 6
+              },
+              "failure_categories": {
+                "none": 12,
+                "wrong_prediction": 6
+              }
+            },
+            "metrics": {
+              "metric_mode": "hard_label_proxy",
+              "accuracy": 0.6666666666666666,
+              "precision_macro": 0.4444444444444444,
+              "recall_macro": 0.5555555555555555,
+              "f1_macro": 0.48888888888888893,
+              "roc_auc_ovr_hard": 0.6805555555555557,
+              "pr_auc_macro_hard": 0.48148148148148145,
+              "brier_multiclass_hard": 0.6666666666666666,
+              "ece_hard": 0.33333333333333337,
+              "p95_latency_ms": 2881.35,
+              "n_test_samples": 18,
+              "n_predictions": 18,
+              "n_routing_decisions": 18,
+              "n_failures": 6,
+              "n_routed_slm": 15,
+              "n_routed_llm": 3
+            }
+          }
+        },
+        "Llama-3.2-3B": {
+          "model_tier": "SLM",
+          "train_phase": {
+            "n_samples": 54,
+            "failure_signal_rate": 0.6111111111111112,
+            "feature_means": {
+              "n_in": 56.833333333333336,
+              "entropy": 5.547109040478232,
+              "reasoning_proxy": 0.0,
+              "constraint_count": 0.0,
+              "parametric_dependence": 0.0,
+              "dependency_distance": 0.0,
+              "reasoning_x_constraint": 0.0,
+              "length_x_entropy": 315.5412673327742,
+              "knowledge_x_reasoning": 0.0,
+              "classification_ambiguity": 0.027777777777777776,
+              "classification_negation_density": 0.12088743054402815,
+              "classification_domain_shift": 1.0,
+              "math_numeric_density": 0.0,
+              "math_symbol_density": 0.0,
+              "math_precision_cues": 0.0,
+              "instruction_format_strictness": 0.0,
+              "instruction_prohibition_count": 0.0,
+              "instruction_step_count": 0.0,
+              "instruction_conflict_cues": 0.0
+            }
+          },
+          "validation_phase": {
+            "n_samples": 18,
+            "baseline_capability": 0.7777777777777778,
+            "baseline_risk": 0.09333333333333334,
+            "tau_cap": 1.0,
+            "tau_risk": 0.07,
+            "tau_star": 5.52394895320971,
+            "tau_source": "strict_feasible_adaptive",
+            "capability_curve": {
+              "0": 0.9666666666666666,
+              "1": 0.9666666666666666,
+              "2": 0.9666666666666666,
+              "3": 0.9666666666666666,
+              "4": 0.9666666666666666,
+              "5": 0.9666666666666666,
+              "6": 0.9666666666666666,
+              "7": 0.9666666666666666,
+              "8": 0.9666666666666666,
+              "9": 0.9666666666666666
+            },
+            "risk_curve": {
+              "0": 0.018666666666666668,
+              "1": 0.018666666666666668,
+              "2": 0.018666666666666668,
+              "3": 0.018666666666666668,
+              "4": 0.018666666666666668,
+              "5": 0.018666666666666668,
+              "6": 0.018666666666666668,
+              "7": 0.018666666666666668,
+              "8": 0.018666666666666668,
+              "9": 0.018666666666666668
+            },
+            "coverage_curve": {
+              "0": 1,
+              "1": 1,
+              "2": 1,
+              "3": 1,
+              "4": 1,
+              "5": 1,
+              "6": 1,
+              "7": 1,
+              "8": 1,
+              "9": 9
+            }
+          },
+          "test_phase": {
+            "dataset_outputs": {
+              "predictions": 18,
+              "routing_decisions": 18,
+              "correctness": {
+                "correct": 9,
+                "incorrect": 9
+              },
+              "failure_categories": {
+                "wrong_prediction": 9,
+                "none": 9
+              }
+            },
+            "metrics": {
+              "metric_mode": "hard_label_proxy",
+              "accuracy": 0.5,
+              "precision_macro": 0.31666666666666665,
+              "recall_macro": 0.29166666666666663,
+              "f1_macro": 0.303030303030303,
+              "roc_auc_ovr_hard": null,
+              "pr_auc_macro_hard": 0.3111111111111111,
+              "brier_multiclass_hard": 1.0,
+              "ece_hard": 0.5,
+              "p95_latency_ms": 1062.6499999999999,
+              "n_test_samples": 18,
+              "n_predictions": 18,
+              "n_routing_decisions": 18,
+              "n_failures": 9,
+              "n_routed_slm": 12,
+              "n_routed_llm": 6
+            }
+          }
+        },
+        "Llama-3.3-70B": {
+          "model_tier": "LLM",
+          "train_phase": {
+            "n_samples": 56,
+            "failure_signal_rate": 0.30357142857142855,
+            "feature_means": {
+              "n_in": 56.732142857142854,
+              "entropy": 5.545528614854269,
+              "reasoning_proxy": 0.0,
+              "constraint_count": 0.0,
+              "parametric_dependence": 0.0,
+              "dependency_distance": 0.0,
+              "reasoning_x_constraint": 0.0,
+              "length_x_entropy": 314.8845893795463,
+              "knowledge_x_reasoning": 0.0,
+              "classification_ambiguity": 0.03125,
+              "classification_negation_density": 0.12436223010252066,
+              "classification_domain_shift": 1.0,
+              "math_numeric_density": 0.0,
+              "math_symbol_density": 0.0,
+              "math_precision_cues": 0.0,
+              "instruction_format_strictness": 0.0,
+              "instruction_prohibition_count": 0.0,
+              "instruction_step_count": 0.0,
+              "instruction_conflict_cues": 0.0
+            }
+          },
+          "validation_phase": {
+            "n_samples": 18,
+            "baseline_capability": 0.7777777777777778,
+            "baseline_risk": 0.12444444444444445,
+            "tau_cap": 0.8611111111111112,
+            "tau_risk": 0.11666666666666667,
+            "tau_star": 5.554366504189006,
+            "tau_source": "strict_feasible_adaptive",
+            "capability_curve": {
+              "0": 0.5,
+              "1": 0.5,
+              "2": 0.9583333333333334,
+              "3": 0.9583333333333334,
+              "4": 0.9583333333333334,
+              "5": 0.9583333333333334,
+              "6": 0.9583333333333334,
+              "7": 0.9583333333333334,
+              "8": 0.9583333333333334,
+              "9": 0.9583333333333334
+            },
+            "risk_curve": {
+              "0": 0.28,
+              "1": 0.28,
+              "2": 0.023333333333333334,
+              "3": 0.023333333333333334,
+              "4": 0.023333333333333334,
+              "5": 0.023333333333333334,
+              "6": 0.023333333333333334,
+              "7": 0.023333333333333334,
+              "8": 0.023333333333333334,
+              "9": 0.023333333333333334
+            },
+            "coverage_curve": {
+              "0": 1,
+              "1": 1,
+              "2": 1,
+              "3": 1,
+              "4": 1,
+              "5": 1,
+              "6": 1,
+              "7": 1,
+              "8": 1,
+              "9": 9
+            }
+          },
+          "test_phase": {
+            "dataset_outputs": {
+              "predictions": 18,
+              "routing_decisions": 18,
+              "correctness": {
+                "correct": 9,
+                "incorrect": 9
+              },
+              "failure_categories": {
+                "none": 9,
+                "wrong_prediction": 9
+              }
+            },
+            "metrics": {
+              "metric_mode": "hard_label_proxy",
+              "accuracy": 0.5,
+              "precision_macro": 0.3333333333333333,
+              "recall_macro": 0.6666666666666666,
+              "f1_macro": 0.43333333333333335,
+              "roc_auc_ovr_hard": 0.725,
+              "pr_auc_macro_hard": 0.5,
+              "brier_multiclass_hard": 1.0,
+              "ece_hard": 0.5,
+              "p95_latency_ms": 2593.9,
+              "n_test_samples": 18,
+              "n_predictions": 18,
+              "n_routing_decisions": 18,
+              "n_failures": 9,
+              "n_routed_slm": 0,
+              "n_routed_llm": 18
+            }
+          }
+        },
+        "Mistral-7B": {
+          "model_tier": "SLM",
+          "train_phase": {
+            "n_samples": 54,
+            "failure_signal_rate": 0.7777777777777778,
+            "feature_means": {
+              "n_in": 56.833333333333336,
+              "entropy": 5.547109040478232,
+              "reasoning_proxy": 0.0,
+              "constraint_count": 0.0,
+              "parametric_dependence": 0.0,
+              "dependency_distance": 0.0,
+              "reasoning_x_constraint": 0.0,
+              "length_x_entropy": 315.5412673327742,
+              "knowledge_x_reasoning": 0.0,
+              "classification_ambiguity": 0.027777777777777776,
+              "classification_negation_density": 0.12088743054402815,
+              "classification_domain_shift": 1.0,
+              "math_numeric_density": 0.0,
+              "math_symbol_density": 0.0,
+              "math_precision_cues": 0.0,
+              "instruction_format_strictness": 0.0,
+              "instruction_prohibition_count": 0.0,
+              "instruction_step_count": 0.0,
+              "instruction_conflict_cues": 0.0
+            }
+          },
+          "validation_phase": {
+            "n_samples": 18,
+            "baseline_capability": 0.7777777777777778,
+            "baseline_risk": 0.37333333333333335,
+            "tau_cap": 0.5833333333333333,
+            "tau_risk": 0.32200000000000006,
+            "tau_star": 5.377778405861395,
+            "tau_source": "strict_feasible_adaptive",
+            "capability_curve": {
+              "0": 0.6,
+              "1": 0.6,
+              "2": 0.6,
+              "3": 0.6,
+              "4": 0.6,
+              "5": 0.6,
+              "6": 0.6,
+              "7": 0.6,
+              "8": 0.6,
+              "9": 0.6
+            },
+            "risk_curve": {
+              "0": 0.22400000000000003,
+              "1": 0.22400000000000003,
+              "2": 0.22400000000000003,
+              "3": 0.22400000000000003,
+              "4": 0.22400000000000003,
+              "5": 0.22400000000000003,
+              "6": 0.22400000000000003,
+              "7": 0.22400000000000003,
+              "8": 0.22400000000000003,
+              "9": 0.22400000000000003
+            },
+            "coverage_curve": {
+              "0": 1,
+              "1": 1,
+              "2": 1,
+              "3": 1,
+              "4": 1,
+              "5": 1,
+              "6": 1,
+              "7": 1,
+              "8": 1,
+              "9": 9
+            }
+          },
+          "test_phase": {
+            "dataset_outputs": {
+              "predictions": 18,
+              "routing_decisions": 18,
+              "correctness": {
+                "correct": 3,
+                "incorrect": 15
+              },
+              "failure_categories": {
+                "wrong_prediction": 15,
+                "none": 3
+              }
+            },
+            "metrics": {
+              "metric_mode": "hard_label_proxy",
+              "accuracy": 0.16666666666666666,
+              "precision_macro": 0.125,
+              "recall_macro": 0.08333333333333333,
+              "f1_macro": 0.1,
+              "roc_auc_ovr_hard": null,
+              "pr_auc_macro_hard": 0.25,
+              "brier_multiclass_hard": 1.6666666666666667,
+              "ece_hard": 0.8333333333333334,
+              "p95_latency_ms": 810.5,
+              "n_test_samples": 18,
+              "n_predictions": 18,
+              "n_routing_decisions": 18,
+              "n_failures": 15,
+              "n_routed_slm": 6,
+              "n_routed_llm": 12
+            }
+          }
+        },
+        "Phi4-Mini": {
+          "model_tier": "SLM",
+          "train_phase": {
+            "n_samples": 54,
+            "failure_signal_rate": 0.6666666666666666,
+            "feature_means": {
+              "n_in": 56.833333333333336,
+              "entropy": 5.547109040478232,
+              "reasoning_proxy": 0.0,
+              "constraint_count": 0.0,
+              "parametric_dependence": 0.0,
+              "dependency_distance": 0.0,
+              "reasoning_x_constraint": 0.0,
+              "length_x_entropy": 315.5412673327742,
+              "knowledge_x_reasoning": 0.0,
+              "classification_ambiguity": 0.027777777777777776,
+              "classification_negation_density": 0.12088743054402815,
+              "classification_domain_shift": 1.0,
+              "math_numeric_density": 0.0,
+              "math_symbol_density": 0.0,
+              "math_precision_cues": 0.0,
+              "instruction_format_strictness": 0.0,
+              "instruction_prohibition_count": 0.0,
+              "instruction_step_count": 0.0,
+              "instruction_conflict_cues": 0.0
+            }
+          },
+          "validation_phase": {
+            "n_samples": 18,
+            "baseline_capability": 0.7777777777777778,
+            "baseline_risk": 0.28,
+            "tau_cap": 0.5,
+            "tau_risk": 0.28,
+            "tau_star": 5.642054706834413,
+            "tau_source": "strict_feasible_adaptive",
+            "capability_curve": {
+              "0": 0.0,
+              "1": 0.0,
+              "2": 0.0,
+              "3": 0.9047619047619048,
+              "4": 0.9047619047619048,
+              "5": 0.9047619047619048,
+              "6": 0.9047619047619048,
+              "7": 0.9047619047619048,
+              "8": 0.9047619047619048,
+              "9": 0.9047619047619048
+            },
+            "risk_curve": {
+              "0": 0.56,
+              "1": 0.56,
+              "2": 0.56,
+              "3": 0.05333333333333334,
+              "4": 0.05333333333333334,
+              "5": 0.05333333333333334,
+              "6": 0.05333333333333334,
+              "7": 0.05333333333333334,
+              "8": 0.05333333333333334,
+              "9": 0.05333333333333334
+            },
+            "coverage_curve": {
+              "0": 1,
+              "1": 1,
+              "2": 1,
+              "3": 1,
+              "4": 1,
+              "5": 1,
+              "6": 1,
+              "7": 1,
+              "8": 1,
+              "9": 9
+            }
+          },
+          "test_phase": {
+            "dataset_outputs": {
+              "predictions": 18,
+              "routing_decisions": 18,
+              "correctness": {
+                "correct": 6,
+                "incorrect": 12
+              },
+              "failure_categories": {
+                "wrong_prediction": 12,
+                "none": 6
+              }
+            },
+            "metrics": {
+              "metric_mode": "hard_label_proxy",
+              "accuracy": 0.3333333333333333,
+              "precision_macro": 0.13333333333333333,
+              "recall_macro": 0.3333333333333333,
+              "f1_macro": 0.19047619047619047,
+              "roc_auc_ovr_hard": 0.48611111111111116,
+              "pr_auc_macro_hard": 0.35555555555555557,
+              "brier_multiclass_hard": 1.3333333333333333,
+              "ece_hard": 0.6666666666666667,
+              "p95_latency_ms": 1246.1499999999999,
+              "n_test_samples": 18,
+              "n_predictions": 18,
+              "n_routing_decisions": 18,
+              "n_failures": 12,
+              "n_routed_slm": 15,
+              "n_routed_llm": 3
+            }
+          }
+        },
+        "Qwen2.5-7B": {
+          "model_tier": "SLM",
+          "train_phase": {
+            "n_samples": 54,
+            "failure_signal_rate": 0.3888888888888889,
+            "feature_means": {
+              "n_in": 56.833333333333336,
+              "entropy": 5.547109040478232,
+              "reasoning_proxy": 0.0,
+              "constraint_count": 0.0,
+              "parametric_dependence": 0.0,
+              "dependency_distance": 0.0,
+              "reasoning_x_constraint": 0.0,
+              "length_x_entropy": 315.5412673327742,
+              "knowledge_x_reasoning": 0.0,
+              "classification_ambiguity": 0.027777777777777776,
+              "classification_negation_density": 0.12088743054402815,
+              "classification_domain_shift": 1.0,
+              "math_numeric_density": 0.0,
+              "math_symbol_density": 0.0,
+              "math_precision_cues": 0.0,
+              "instruction_format_strictness": 0.0,
+              "instruction_prohibition_count": 0.0,
+              "instruction_step_count": 0.0,
+              "instruction_conflict_cues": 0.0
+            }
+          },
+          "validation_phase": {
+            "n_samples": 18,
+            "baseline_capability": 0.7777777777777778,
+            "baseline_risk": 0.09333333333333334,
+            "tau_cap": 1.0,
+            "tau_risk": 0.0,
+            "tau_star": 5.554366504189006,
+            "tau_source": "strict_feasible_adaptive",
+            "capability_curve": {
+              "0": 0.9666666666666666,
+              "1": 0.9666666666666666,
+              "2": 0.9666666666666666,
+              "3": 0.9666666666666666,
+              "4": 0.9666666666666666,
+              "5": 0.9666666666666666,
+              "6": 0.9666666666666666,
+              "7": 0.9666666666666666,
+              "8": 0.9666666666666666,
+              "9": 0.9666666666666666
+            },
+            "risk_curve": {
+              "0": 0.018666666666666668,
+              "1": 0.018666666666666668,
+              "2": 0.018666666666666668,
+              "3": 0.018666666666666668,
+              "4": 0.018666666666666668,
+              "5": 0.018666666666666668,
+              "6": 0.018666666666666668,
+              "7": 0.018666666666666668,
+              "8": 0.018666666666666668,
+              "9": 0.018666666666666668
+            },
+            "coverage_curve": {
+              "0": 1,
+              "1": 1,
+              "2": 1,
+              "3": 1,
+              "4": 1,
+              "5": 1,
+              "6": 1,
+              "7": 1,
+              "8": 1,
+              "9": 9
+            }
+          },
+          "test_phase": {
+            "dataset_outputs": {
+              "predictions": 18,
+              "routing_decisions": 18,
+              "correctness": {
+                "correct": 9,
+                "incorrect": 9
+              },
+              "failure_categories": {
+                "none": 9,
+                "wrong_prediction": 9
+              }
+            },
+            "metrics": {
+              "metric_mode": "hard_label_proxy",
+              "accuracy": 0.5,
+              "precision_macro": 0.3333333333333333,
+              "recall_macro": 0.6666666666666666,
+              "f1_macro": 0.43333333333333335,
+              "roc_auc_ovr_hard": 0.725,
+              "pr_auc_macro_hard": 0.5,
+              "brier_multiclass_hard": 1.0,
+              "ece_hard": 0.5,
+              "p95_latency_ms": 699.6999999999999,
+              "n_test_samples": 18,
+              "n_predictions": 18,
+              "n_routing_decisions": 18,
+              "n_failures": 9,
+              "n_routed_slm": 12,
+              "n_routed_llm": 6
+            }
+          }
+        }
+      }
+    },
+    "uc7": {
+      "task_family": "summarization",
+      "n_rows_total": 630,
+      "n_items_total": 30,
+      "split_strategy": "deterministic_item_split_60_20_20",
+      "train_items_count": 18,
+      "val_items_count": 6,
+      "test_items_count": 6,
+      "models": {
+        "Gemma3-4B": {
+          "model_tier": "SLM",
+          "train_phase": {
+            "n_samples": 54,
+            "failure_signal_rate": 0.7222222222222222,
+            "feature_means": {
+              "n_in": 12.5,
+              "entropy": 3.6191714706131597,
+              "reasoning_proxy": 0.0,
+              "constraint_count": 0.0,
+              "parametric_dependence": 0.0,
+              "dependency_distance": 0.0,
+              "reasoning_x_constraint": 0.0,
+              "length_x_entropy": 45.41885393603371,
+              "knowledge_x_reasoning": 0.0,
+              "classification_ambiguity": 0.0,
+              "classification_negation_density": 0.0,
+              "classification_domain_shift": 0.0,
+              "math_numeric_density": 0.0,
+              "math_symbol_density": 0.0,
+              "math_precision_cues": 0.0,
+              "instruction_format_strictness": 0.0,
+              "instruction_prohibition_count": 0.0,
+              "instruction_step_count": 0.0,
+              "instruction_conflict_cues": 0.0
+            }
+          },
+          "validation_phase": {
+            "n_samples": 18,
+            "baseline_capability": 0.3888888888888889,
+            "baseline_risk": 0.16499999999999998,
+            "tau_cap": 0.41666666666666663,
+            "tau_risk": 0.17325,
+            "tau_star": 12.0,
+            "tau_source": "strict_feasible_adaptive",
+            "capability_curve": {
+              "0": 0.33333333333333337,
+              "1": 0.33333333333333337,
+              "2": 0.33333333333333337,
+              "3": 0.33333333333333337,
+              "4": 0.33333333333333337,
+              "5": 0.33333333333333337,
+              "6": 0.33333333333333337,
+              "7": 0.33333333333333337,
+              "8": 0.33333333333333337,
+              "9": 0.33333333333333337
+            },
+            "risk_curve": {
+              "0": 0.165,
+              "1": 0.165,
+              "2": 0.165,
+              "3": 0.165,
+              "4": 0.165,
+              "5": 0.165,
+              "6": 0.165,
+              "7": 0.165,
+              "8": 0.165,
+              "9": 0.16499999999999998
+            },
+            "coverage_curve": {
+              "0": 1,
+              "1": 1,
+              "2": 1,
+              "3": 1,
+              "4": 1,
+              "5": 1,
+              "6": 1,
+              "7": 1,
+              "8": 1,
+              "9": 9
+            }
+          },
+          "test_phase": {
+            "dataset_outputs": {
+              "predictions": 18,
+              "routing_decisions": 18,
+              "correctness": {
+                "correct": 3,
+                "incorrect": 15
+              },
+              "failure_categories": {
+                "hard_failure": 18
+              }
+            },
+            "metrics": {
+              "metric_mode": "hard_label_proxy",
+              "accuracy": 0.16666666666666666,
+              "precision_macro": 0.05,
+              "recall_macro": 0.125,
+              "f1_macro": 0.07142857142857142,
+              "roc_auc_ovr_hard": null,
+              "pr_auc_macro_hard": 0.23333333333333334,
+              "brier_multiclass_hard": 1.6666666666666667,
+              "ece_hard": 0.8333333333333334,
+              "p95_latency_ms": 22704.949999999986,
+              "n_test_samples": 18,
+              "n_predictions": 18,
+              "n_routing_decisions": 18,
+              "n_failures": 15,
+              "n_routed_slm": 3,
+              "n_routed_llm": 15
+            }
+          }
+        },
+        "Llama-3.1-8B": {
+          "model_tier": "SLM",
+          "train_phase": {
+            "n_samples": 54,
+            "failure_signal_rate": 0.5,
+            "feature_means": {
+              "n_in": 12.5,
+              "entropy": 3.6191714706131597,
+              "reasoning_proxy": 0.0,
+              "constraint_count": 0.0,
+              "parametric_dependence": 0.0,
+              "dependency_distance": 0.0,
+              "reasoning_x_constraint": 0.0,
+              "length_x_entropy": 45.41885393603371,
+              "knowledge_x_reasoning": 0.0,
+              "classification_ambiguity": 0.0,
+              "classification_negation_density": 0.0,
+              "classification_domain_shift": 0.0,
+              "math_numeric_density": 0.0,
+              "math_symbol_density": 0.0,
+              "math_precision_cues": 0.0,
+              "instruction_format_strictness": 0.0,
+              "instruction_prohibition_count": 0.0,
+              "instruction_step_count": 0.0,
+              "instruction_conflict_cues": 0.0
+            }
+          },
+          "validation_phase": {
+            "n_samples": 18,
+            "baseline_capability": 0.3888888888888889,
+            "baseline_risk": 0.16499999999999998,
+            "tau_cap": 0.7,
+            "tau_risk": 0.15262499999999998,
+            "tau_star": 12.0,
+            "tau_source": "strict_feasible_adaptive",
+            "capability_curve": {
+              "0": 0.6,
+              "1": 0.6,
+              "2": 0.6,
+              "3": 0.6,
+              "4": 0.6,
+              "5": 0.6,
+              "6": 0.6,
+              "7": 0.6,
+              "8": 0.6,
+              "9": 0.6
+            },
+            "risk_curve": {
+              "0": 0.099,
+              "1": 0.099,
+              "2": 0.099,
+              "3": 0.099,
+              "4": 0.099,
+              "5": 0.099,
+              "6": 0.099,
+              "7": 0.099,
+              "8": 0.099,
+              "9": 0.099
+            },
+            "coverage_curve": {
+              "0": 1,
+              "1": 1,
+              "2": 1,
+              "3": 1,
+              "4": 1,
+              "5": 1,
+              "6": 1,
+              "7": 1,
+              "8": 1,
+              "9": 9
+            }
+          },
+          "test_phase": {
+            "dataset_outputs": {
+              "predictions": 18,
+              "routing_decisions": 18,
+              "correctness": {
+                "correct": 3,
+                "incorrect": 15
+              },
+              "failure_categories": {
+                "hard_failure": 18
+              }
+            },
+            "metrics": {
+              "metric_mode": "hard_label_proxy",
+              "accuracy": 0.16666666666666666,
+              "precision_macro": 0.125,
+              "recall_macro": 0.125,
+              "f1_macro": 0.125,
+              "roc_auc_ovr_hard": null,
+              "pr_auc_macro_hard": 0.2708333333333333,
+              "brier_multiclass_hard": 1.6666666666666667,
+              "ece_hard": 0.8333333333333334,
+              "p95_latency_ms": 2781.3999999999996,
+              "n_test_samples": 18,
+              "n_predictions": 18,
+              "n_routing_decisions": 18,
+              "n_failures": 15,
+              "n_routed_slm": 3,
+              "n_routed_llm": 15
+            }
+          }
+        },
+        "Llama-3.2-3B": {
+          "model_tier": "SLM",
+          "train_phase": {
+            "n_samples": 54,
+            "failure_signal_rate": 0.7777777777777778,
+            "feature_means": {
+              "n_in": 12.5,
+              "entropy": 3.6191714706131597,
+              "reasoning_proxy": 0.0,
+              "constraint_count": 0.0,
+              "parametric_dependence": 0.0,
+              "dependency_distance": 0.0,
+              "reasoning_x_constraint": 0.0,
+              "length_x_entropy": 45.41885393603371,
+              "knowledge_x_reasoning": 0.0,
+              "classification_ambiguity": 0.0,
+              "classification_negation_density": 0.0,
+              "classification_domain_shift": 0.0,
+              "math_numeric_density": 0.0,
+              "math_symbol_density": 0.0,
+              "math_precision_cues": 0.0,
+              "instruction_format_strictness": 0.0,
+              "instruction_prohibition_count": 0.0,
+              "instruction_step_count": 0.0,
+              "instruction_conflict_cues": 0.0
+            }
+          },
+          "validation_phase": {
+            "n_samples": 18,
+            "baseline_capability": 0.3888888888888889,
+            "baseline_risk": 0.16499999999999998,
+            "tau_cap": 0.7,
+            "tau_risk": 0.15262499999999998,
+            "tau_star": 12.0,
+            "tau_source": "strict_feasible_adaptive",
+            "capability_curve": {
+              "0": 0.6,
+              "1": 0.6,
+              "2": 0.6,
+              "3": 0.6,
+              "4": 0.6,
+              "5": 0.6,
+              "6": 0.6,
+              "7": 0.6,
+              "8": 0.6,
+              "9": 0.6
+            },
+            "risk_curve": {
+              "0": 0.099,
+              "1": 0.099,
+              "2": 0.099,
+              "3": 0.099,
+              "4": 0.099,
+              "5": 0.099,
+              "6": 0.099,
+              "7": 0.099,
+              "8": 0.099,
+              "9": 0.099
+            },
+            "coverage_curve": {
+              "0": 1,
+              "1": 1,
+              "2": 1,
+              "3": 1,
+              "4": 1,
+              "5": 1,
+              "6": 1,
+              "7": 1,
+              "8": 1,
+              "9": 9
+            }
+          },
+          "test_phase": {
+            "dataset_outputs": {
+              "predictions": 18,
+              "routing_decisions": 18,
+              "correctness": {
+                "correct": 6,
+                "incorrect": 12
+              },
+              "failure_categories": {
+                "hard_failure": 18
+              }
+            },
+            "metrics": {
+              "metric_mode": "hard_label_proxy",
+              "accuracy": 0.3333333333333333,
+              "precision_macro": 0.1111111111111111,
+              "recall_macro": 0.3333333333333333,
+              "f1_macro": 0.16666666666666666,
+              "roc_auc_ovr_hard": 0.5,
+              "pr_auc_macro_hard": 0.3333333333333333,
+              "brier_multiclass_hard": 1.3333333333333333,
+              "ece_hard": 0.6666666666666667,
+              "p95_latency_ms": 1584.7999999999997,
+              "n_test_samples": 18,
+              "n_predictions": 18,
+              "n_routing_decisions": 18,
+              "n_failures": 12,
+              "n_routed_slm": 3,
+              "n_routed_llm": 15
+            }
+          }
+        },
+        "Llama-3.3-70B": {
+          "model_tier": "LLM",
+          "train_phase": {
+            "n_samples": 54,
+            "failure_signal_rate": 0.3333333333333333,
+            "feature_means": {
+              "n_in": 12.5,
+              "entropy": 3.6191714706131597,
+              "reasoning_proxy": 0.0,
+              "constraint_count": 0.0,
+              "parametric_dependence": 0.0,
+              "dependency_distance": 0.0,
+              "reasoning_x_constraint": 0.0,
+              "length_x_entropy": 45.41885393603371,
+              "knowledge_x_reasoning": 0.0,
+              "classification_ambiguity": 0.0,
+              "classification_negation_density": 0.0,
+              "classification_domain_shift": 0.0,
+              "math_numeric_density": 0.0,
+              "math_symbol_density": 0.0,
+              "math_precision_cues": 0.0,
+              "instruction_format_strictness": 0.0,
+              "instruction_prohibition_count": 0.0,
+              "instruction_step_count": 0.0,
+              "instruction_conflict_cues": 0.0
+            }
+          },
+          "validation_phase": {
+            "n_samples": 18,
+            "baseline_capability": 0.3888888888888889,
+            "baseline_risk": 0.15125,
+            "tau_cap": 0.4444444444444444,
+            "tau_risk": 0.1588125,
+            "tau_star": 12.0,
+            "tau_source": "strict_feasible_adaptive",
+            "capability_curve": {
+              "0": 0.3333333333333333,
+              "1": 0.3333333333333333,
+              "2": 0.3333333333333333,
+              "3": 0.3333333333333333,
+              "4": 0.3333333333333333,
+              "5": 0.3333333333333333,
+              "6": 0.3333333333333333,
+              "7": 0.3333333333333333,
+              "8": 0.3333333333333333,
+              "9": 0.4444444444444444
+            },
+            "risk_curve": {
+              "0": 0.165,
+              "1": 0.165,
+              "2": 0.165,
+              "3": 0.165,
+              "4": 0.165,
+              "5": 0.165,
+              "6": 0.165,
+              "7": 0.165,
+              "8": 0.165,
+              "9": 0.1375
+            },
+            "coverage_curve": {
+              "0": 1,
+              "1": 1,
+              "2": 1,
+              "3": 1,
+              "4": 1,
+              "5": 1,
+              "6": 1,
+              "7": 1,
+              "8": 1,
+              "9": 9
+            }
+          },
+          "test_phase": {
+            "dataset_outputs": {
+              "predictions": 18,
+              "routing_decisions": 18,
+              "correctness": {
+                "correct": 9,
+                "incorrect": 9
+              },
+              "failure_categories": {
+                "hard_failure": 18
+              }
+            },
+            "metrics": {
+              "metric_mode": "hard_label_proxy",
+              "accuracy": 0.5,
+              "precision_macro": 0.4666666666666666,
+              "recall_macro": 0.5,
+              "f1_macro": 0.41269841269841273,
+              "roc_auc_ovr_hard": 0.625,
+              "pr_auc_macro_hard": 0.4666666666666666,
+              "brier_multiclass_hard": 1.0,
+              "ece_hard": 0.5,
+              "p95_latency_ms": 2639.35,
+              "n_test_samples": 18,
+              "n_predictions": 18,
+              "n_routing_decisions": 18,
+              "n_failures": 9,
+              "n_routed_slm": 0,
+              "n_routed_llm": 18
+            }
+          }
+        },
+        "Mistral-7B": {
+          "model_tier": "SLM",
+          "train_phase": {
+            "n_samples": 54,
+            "failure_signal_rate": 0.7222222222222222,
+            "feature_means": {
+              "n_in": 12.5,
+              "entropy": 3.6191714706131597,
+              "reasoning_proxy": 0.0,
+              "constraint_count": 0.0,
+              "parametric_dependence": 0.0,
+              "dependency_distance": 0.0,
+              "reasoning_x_constraint": 0.0,
+              "length_x_entropy": 45.41885393603371,
+              "knowledge_x_reasoning": 0.0,
+              "classification_ambiguity": 0.0,
+              "classification_negation_density": 0.0,
+              "classification_domain_shift": 0.0,
+              "math_numeric_density": 0.0,
+              "math_symbol_density": 0.0,
+              "math_precision_cues": 0.0,
+              "instruction_format_strictness": 0.0,
+              "instruction_prohibition_count": 0.0,
+              "instruction_step_count": 0.0,
+              "instruction_conflict_cues": 0.0
+            }
+          },
+          "validation_phase": {
+            "n_samples": 18,
+            "baseline_capability": 0.3888888888888889,
+            "baseline_risk": 0.20625,
+            "tau_cap": 0.35,
+            "tau_risk": 0.20006249999999998,
+            "tau_star": 12.0,
+            "tau_source": "strict_feasible_adaptive",
+            "capability_curve": {
+              "0": 0.3,
+              "1": 0.3,
+              "2": 0.3,
+              "3": 0.3,
+              "4": 0.3,
+              "5": 0.3,
+              "6": 0.3,
+              "7": 0.3,
+              "8": 0.3,
+              "9": 0.3
+            },
+            "risk_curve": {
+              "0": 0.17325000000000002,
+              "1": 0.17325000000000002,
+              "2": 0.17325000000000002,
+              "3": 0.17325000000000002,
+              "4": 0.17325000000000002,
+              "5": 0.17325000000000002,
+              "6": 0.17325000000000002,
+              "7": 0.17325000000000002,
+              "8": 0.17325000000000002,
+              "9": 0.17325000000000002
+            },
+            "coverage_curve": {
+              "0": 1,
+              "1": 1,
+              "2": 1,
+              "3": 1,
+              "4": 1,
+              "5": 1,
+              "6": 1,
+              "7": 1,
+              "8": 1,
+              "9": 9
+            }
+          },
+          "test_phase": {
+            "dataset_outputs": {
+              "predictions": 18,
+              "routing_decisions": 18,
+              "correctness": {
+                "correct": 0,
+                "incorrect": 18
+              },
+              "failure_categories": {
+                "hard_failure": 18
+              }
+            },
+            "metrics": {
+              "metric_mode": "hard_label_proxy",
+              "accuracy": 0.0,
+              "precision_macro": 0.0,
+              "recall_macro": 0.0,
+              "f1_macro": 0.0,
+              "roc_auc_ovr_hard": null,
+              "pr_auc_macro_hard": 0.25,
+              "brier_multiclass_hard": 2.0,
+              "ece_hard": 1.0,
+              "p95_latency_ms": 817.7499999999999,
+              "n_test_samples": 18,
+              "n_predictions": 18,
+              "n_routing_decisions": 18,
+              "n_failures": 18,
+              "n_routed_slm": 3,
+              "n_routed_llm": 15
+            }
+          }
+        },
+        "Phi4-Mini": {
+          "model_tier": "SLM",
+          "train_phase": {
+            "n_samples": 54,
+            "failure_signal_rate": 0.5555555555555556,
+            "feature_means": {
+              "n_in": 12.5,
+              "entropy": 3.6191714706131597,
+              "reasoning_proxy": 0.0,
+              "constraint_count": 0.0,
+              "parametric_dependence": 0.0,
+              "dependency_distance": 0.0,
+              "reasoning_x_constraint": 0.0,
+              "length_x_entropy": 45.41885393603371,
+              "knowledge_x_reasoning": 0.0,
+              "classification_ambiguity": 0.0,
+              "classification_negation_density": 0.0,
+              "classification_domain_shift": 0.0,
+              "math_numeric_density": 0.0,
+              "math_symbol_density": 0.0,
+              "math_precision_cues": 0.0,
+              "instruction_format_strictness": 0.0,
+              "instruction_prohibition_count": 0.0,
+              "instruction_step_count": 0.0,
+              "instruction_conflict_cues": 0.0
+            }
+          },
+          "validation_phase": {
+            "n_samples": 18,
+            "baseline_capability": 0.3888888888888889,
+            "baseline_risk": 0.16499999999999998,
+            "tau_cap": 0.7,
+            "tau_risk": 0.15262499999999998,
+            "tau_star": 12.0,
+            "tau_source": "strict_feasible_adaptive",
+            "capability_curve": {
+              "0": 0.6,
+              "1": 0.6,
+              "2": 0.6,
+              "3": 0.6,
+              "4": 0.6,
+              "5": 0.6,
+              "6": 0.6,
+              "7": 0.6,
+              "8": 0.6,
+              "9": 0.6
+            },
+            "risk_curve": {
+              "0": 0.099,
+              "1": 0.099,
+              "2": 0.099,
+              "3": 0.099,
+              "4": 0.099,
+              "5": 0.099,
+              "6": 0.099,
+              "7": 0.099,
+              "8": 0.099,
+              "9": 0.099
+            },
+            "coverage_curve": {
+              "0": 1,
+              "1": 1,
+              "2": 1,
+              "3": 1,
+              "4": 1,
+              "5": 1,
+              "6": 1,
+              "7": 1,
+              "8": 1,
+              "9": 9
+            }
+          },
+          "test_phase": {
+            "dataset_outputs": {
+              "predictions": 18,
+              "routing_decisions": 18,
+              "correctness": {
+                "correct": 3,
+                "incorrect": 15
+              },
+              "failure_categories": {
+                "hard_failure": 18
+              }
+            },
+            "metrics": {
+              "metric_mode": "hard_label_proxy",
+              "accuracy": 0.16666666666666666,
+              "precision_macro": 0.05,
+              "recall_macro": 0.125,
+              "f1_macro": 0.07142857142857142,
+              "roc_auc_ovr_hard": null,
+              "pr_auc_macro_hard": 0.23333333333333334,
+              "brier_multiclass_hard": 1.6666666666666667,
+              "ece_hard": 0.8333333333333334,
+              "p95_latency_ms": 14970.349999999995,
+              "n_test_samples": 18,
+              "n_predictions": 18,
+              "n_routing_decisions": 18,
+              "n_failures": 15,
+              "n_routed_slm": 3,
+              "n_routed_llm": 15
+            }
+          }
+        },
+        "Qwen2.5-7B": {
+          "model_tier": "SLM",
+          "train_phase": {
+            "n_samples": 54,
+            "failure_signal_rate": 0.3888888888888889,
+            "feature_means": {
+              "n_in": 12.5,
+              "entropy": 3.6191714706131597,
+              "reasoning_proxy": 0.0,
+              "constraint_count": 0.0,
+              "parametric_dependence": 0.0,
+              "dependency_distance": 0.0,
+              "reasoning_x_constraint": 0.0,
+              "length_x_entropy": 45.41885393603371,
+              "knowledge_x_reasoning": 0.0,
+              "classification_ambiguity": 0.0,
+              "classification_negation_density": 0.0,
+              "classification_domain_shift": 0.0,
+              "math_numeric_density": 0.0,
+              "math_symbol_density": 0.0,
+              "math_precision_cues": 0.0,
+              "instruction_format_strictness": 0.0,
+              "instruction_prohibition_count": 0.0,
+              "instruction_step_count": 0.0,
+              "instruction_conflict_cues": 0.0
+            }
+          },
+          "validation_phase": {
+            "n_samples": 18,
+            "baseline_capability": 0.3888888888888889,
+            "baseline_risk": 0.16499999999999998,
+            "tau_cap": 0.7,
+            "tau_risk": 0.15262499999999998,
+            "tau_star": 12.0,
+            "tau_source": "strict_feasible_adaptive",
+            "capability_curve": {
+              "0": 0.6,
+              "1": 0.6,
+              "2": 0.6,
+              "3": 0.6,
+              "4": 0.6,
+              "5": 0.6,
+              "6": 0.6,
+              "7": 0.6,
+              "8": 0.6,
+              "9": 0.6
+            },
+            "risk_curve": {
+              "0": 0.099,
+              "1": 0.099,
+              "2": 0.099,
+              "3": 0.099,
+              "4": 0.099,
+              "5": 0.099,
+              "6": 0.099,
+              "7": 0.099,
+              "8": 0.099,
+              "9": 0.099
+            },
+            "coverage_curve": {
+              "0": 1,
+              "1": 1,
+              "2": 1,
+              "3": 1,
+              "4": 1,
+              "5": 1,
+              "6": 1,
+              "7": 1,
+              "8": 1,
+              "9": 9
+            }
+          },
+          "test_phase": {
+            "dataset_outputs": {
+              "predictions": 18,
+              "routing_decisions": 18,
+              "correctness": {
+                "correct": 9,
+                "incorrect": 9
+              },
+              "failure_categories": {
+                "hard_failure": 18
+              }
+            },
+            "metrics": {
+              "metric_mode": "hard_label_proxy",
+              "accuracy": 0.5,
+              "precision_macro": 0.611111111111111,
+              "recall_macro": 0.5,
+              "f1_macro": 0.5222222222222221,
+              "roc_auc_ovr_hard": 0.625,
+              "pr_auc_macro_hard": 0.47222222222222215,
+              "brier_multiclass_hard": 1.0,
+              "ece_hard": 0.5,
+              "p95_latency_ms": 774.1499999999999,
+              "n_test_samples": 18,
+              "n_predictions": 18,
+              "n_routing_decisions": 18,
+              "n_failures": 9,
+              "n_routed_slm": 3,
+              "n_routed_llm": 15
+            }
+          }
+        }
+      }
+    },
+    "uc8": {
+      "task_family": "text_generation",
+      "n_rows_total": 669,
+      "n_items_total": 30,
+      "split_strategy": "deterministic_item_split_60_20_20",
+      "train_items_count": 18,
+      "val_items_count": 6,
+      "test_items_count": 6,
+      "models": {
+        "Gemma3-4B": {
+          "model_tier": "SLM",
+          "train_phase": {
+            "n_samples": 54,
+            "failure_signal_rate": 1.0,
+            "feature_means": {
+              "n_in": 168.55555555555554,
+              "entropy": 6.716716711109846,
+              "reasoning_proxy": 0.0,
+              "constraint_count": 0.0,
+              "parametric_dependence": 0.0,
+              "dependency_distance": 0.0,
+              "reasoning_x_constraint": 0.0,
+              "length_x_entropy": 1132.5651079659626,
+              "knowledge_x_reasoning": 0.0,
+              "classification_ambiguity": 0.0,
+              "classification_negation_density": 0.0,
+              "classification_domain_shift": 0.0,
+              "math_numeric_density": 0.0,
+              "math_symbol_density": 0.0,
+              "math_precision_cues": 0.0,
+              "instruction_format_strictness": 0.0,
+              "instruction_prohibition_count": 0.0,
+              "instruction_step_count": 0.0,
+              "instruction_conflict_cues": 0.0
+            }
+          },
+          "validation_phase": {
+            "n_samples": 18,
+            "tau_cap": null,
+            "tau_risk": null,
+            "tau_star": null,
+            "tau_source": "not_available"
+          },
+          "test_phase": {
+            "dataset_outputs": {
+              "predictions": 18,
+              "routing_decisions": 18,
+              "correctness": {
+                "correct": 0,
+                "incorrect": 18
+              },
+              "failure_categories": {
+                "hard_failure": 18
+              }
+            },
+            "metrics": {
+              "metric_mode": "generation_criteria_proxy",
+              "criteria_hit_rate": 0.0,
+              "valid_output_rate": 1.0,
+              "accuracy": null,
+              "precision_macro": null,
+              "recall_macro": null,
+              "f1_macro": null,
+              "roc_auc_ovr_hard": null,
+              "pr_auc_macro_hard": null,
+              "brier_multiclass_hard": null,
+              "ece_hard": null,
+              "p95_latency_ms": 10265.45,
+              "n_test_samples": 18,
+              "n_predictions": 18,
+              "n_routing_decisions": 18,
+              "n_failures": 18,
+              "n_routed_slm": 18,
+              "n_routed_llm": 0
+            }
+          }
+        },
+        "Llama-3.1-8B": {
+          "model_tier": "SLM",
+          "train_phase": {
+            "n_samples": 54,
+            "failure_signal_rate": 1.0,
+            "feature_means": {
+              "n_in": 168.55555555555554,
+              "entropy": 6.716716711109846,
+              "reasoning_proxy": 0.0,
+              "constraint_count": 0.0,
+              "parametric_dependence": 0.0,
+              "dependency_distance": 0.0,
+              "reasoning_x_constraint": 0.0,
+              "length_x_entropy": 1132.5651079659626,
+              "knowledge_x_reasoning": 0.0,
+              "classification_ambiguity": 0.0,
+              "classification_negation_density": 0.0,
+              "classification_domain_shift": 0.0,
+              "math_numeric_density": 0.0,
+              "math_symbol_density": 0.0,
+              "math_precision_cues": 0.0,
+              "instruction_format_strictness": 0.0,
+              "instruction_prohibition_count": 0.0,
+              "instruction_step_count": 0.0,
+              "instruction_conflict_cues": 0.0
+            }
+          },
+          "validation_phase": {
+            "n_samples": 18,
+            "tau_cap": null,
+            "tau_risk": null,
+            "tau_star": null,
+            "tau_source": "not_available"
+          },
+          "test_phase": {
+            "dataset_outputs": {
+              "predictions": 18,
+              "routing_decisions": 18,
+              "correctness": {
+                "correct": 0,
+                "incorrect": 18
+              },
+              "failure_categories": {
+                "hard_failure": 18
+              }
+            },
+            "metrics": {
+              "metric_mode": "generation_criteria_proxy",
+              "criteria_hit_rate": 0.0196078431372549,
+              "valid_output_rate": 1.0,
+              "accuracy": null,
+              "precision_macro": null,
+              "recall_macro": null,
+              "f1_macro": null,
+              "roc_auc_ovr_hard": null,
+              "pr_auc_macro_hard": null,
+              "brier_multiclass_hard": null,
+              "ece_hard": null,
+              "p95_latency_ms": 23264.399999999998,
+              "n_test_samples": 18,
+              "n_predictions": 18,
+              "n_routing_decisions": 18,
+              "n_failures": 18,
+              "n_routed_slm": 18,
+              "n_routed_llm": 0
+            }
+          }
+        },
+        "Llama-3.2-3B": {
+          "model_tier": "SLM",
+          "train_phase": {
+            "n_samples": 54,
+            "failure_signal_rate": 1.0,
+            "feature_means": {
+              "n_in": 168.55555555555554,
+              "entropy": 6.716716711109846,
+              "reasoning_proxy": 0.0,
+              "constraint_count": 0.0,
+              "parametric_dependence": 0.0,
+              "dependency_distance": 0.0,
+              "reasoning_x_constraint": 0.0,
+              "length_x_entropy": 1132.5651079659626,
+              "knowledge_x_reasoning": 0.0,
+              "classification_ambiguity": 0.0,
+              "classification_negation_density": 0.0,
+              "classification_domain_shift": 0.0,
+              "math_numeric_density": 0.0,
+              "math_symbol_density": 0.0,
+              "math_precision_cues": 0.0,
+              "instruction_format_strictness": 0.0,
+              "instruction_prohibition_count": 0.0,
+              "instruction_step_count": 0.0,
+              "instruction_conflict_cues": 0.0
+            }
+          },
+          "validation_phase": {
+            "n_samples": 18,
+            "tau_cap": null,
+            "tau_risk": null,
+            "tau_star": null,
+            "tau_source": "not_available"
+          },
+          "test_phase": {
+            "dataset_outputs": {
+              "predictions": 18,
+              "routing_decisions": 18,
+              "correctness": {
+                "correct": 0,
+                "incorrect": 18
+              },
+              "failure_categories": {
+                "hard_failure": 18
+              }
+            },
+            "metrics": {
+              "metric_mode": "generation_criteria_proxy",
+              "criteria_hit_rate": 0.0,
+              "valid_output_rate": 1.0,
+              "accuracy": null,
+              "precision_macro": null,
+              "recall_macro": null,
+              "f1_macro": null,
+              "roc_auc_ovr_hard": null,
+              "pr_auc_macro_hard": null,
+              "brier_multiclass_hard": null,
+              "ece_hard": null,
+              "p95_latency_ms": 11136.449999999999,
+              "n_test_samples": 18,
+              "n_predictions": 18,
+              "n_routing_decisions": 18,
+              "n_failures": 18,
+              "n_routed_slm": 18,
+              "n_routed_llm": 0
+            }
+          }
+        },
+        "Llama-3.3-70B": {
+          "model_tier": "LLM",
+          "train_phase": {
+            "n_samples": 74,
+            "failure_signal_rate": 1.0,
+            "feature_means": {
+              "n_in": 168.9189189189189,
+              "entropy": 6.720848648514981,
+              "reasoning_proxy": 0.0,
+              "constraint_count": 0.0,
+              "parametric_dependence": 0.0,
+              "dependency_distance": 0.0,
+              "reasoning_x_constraint": 0.0,
+              "length_x_entropy": 1135.6888417408788,
+              "knowledge_x_reasoning": 0.0,
+              "classification_ambiguity": 0.0,
+              "classification_negation_density": 0.0,
+              "classification_domain_shift": 0.0,
+              "math_numeric_density": 0.0,
+              "math_symbol_density": 0.0,
+              "math_precision_cues": 0.0,
+              "instruction_format_strictness": 0.0,
+              "instruction_prohibition_count": 0.0,
+              "instruction_step_count": 0.0,
+              "instruction_conflict_cues": 0.0
+            }
+          },
+          "validation_phase": {
+            "n_samples": 28,
+            "tau_cap": null,
+            "tau_risk": null,
+            "tau_star": null,
+            "tau_source": "not_available"
+          },
+          "test_phase": {
+            "dataset_outputs": {
+              "predictions": 27,
+              "routing_decisions": 27,
+              "correctness": {
+                "correct": 0,
+                "incorrect": 27
+              },
+              "failure_categories": {
+                "hard_failure": 27
+              }
+            },
+            "metrics": {
+              "metric_mode": "generation_criteria_proxy",
+              "criteria_hit_rate": 0.004291845493562232,
+              "valid_output_rate": 0.4074074074074074,
+              "accuracy": null,
+              "precision_macro": null,
+              "recall_macro": null,
+              "f1_macro": null,
+              "roc_auc_ovr_hard": null,
+              "pr_auc_macro_hard": null,
+              "brier_multiclass_hard": null,
+              "ece_hard": null,
+              "p95_latency_ms": 1425.3999999999999,
+              "n_test_samples": 27,
+              "n_predictions": 27,
+              "n_routing_decisions": 27,
+              "n_failures": 27,
+              "n_routed_slm": 0,
+              "n_routed_llm": 27
+            }
+          }
+        },
+        "Mistral-7B": {
+          "model_tier": "SLM",
+          "train_phase": {
+            "n_samples": 54,
+            "failure_signal_rate": 1.0,
+            "feature_means": {
+              "n_in": 168.55555555555554,
+              "entropy": 6.716716711109846,
+              "reasoning_proxy": 0.0,
+              "constraint_count": 0.0,
+              "parametric_dependence": 0.0,
+              "dependency_distance": 0.0,
+              "reasoning_x_constraint": 0.0,
+              "length_x_entropy": 1132.5651079659626,
+              "knowledge_x_reasoning": 0.0,
+              "classification_ambiguity": 0.0,
+              "classification_negation_density": 0.0,
+              "classification_domain_shift": 0.0,
+              "math_numeric_density": 0.0,
+              "math_symbol_density": 0.0,
+              "math_precision_cues": 0.0,
+              "instruction_format_strictness": 0.0,
+              "instruction_prohibition_count": 0.0,
+              "instruction_step_count": 0.0,
+              "instruction_conflict_cues": 0.0
+            }
+          },
+          "validation_phase": {
+            "n_samples": 18,
+            "tau_cap": null,
+            "tau_risk": null,
+            "tau_star": null,
+            "tau_source": "not_available"
+          },
+          "test_phase": {
+            "dataset_outputs": {
+              "predictions": 18,
+              "routing_decisions": 18,
+              "correctness": {
+                "correct": 0,
+                "incorrect": 18
+              },
+              "failure_categories": {
+                "hard_failure": 18
+              }
+            },
+            "metrics": {
+              "metric_mode": "generation_criteria_proxy",
+              "criteria_hit_rate": 0.0,
+              "valid_output_rate": 1.0,
+              "accuracy": null,
+              "precision_macro": null,
+              "recall_macro": null,
+              "f1_macro": null,
+              "roc_auc_ovr_hard": null,
+              "pr_auc_macro_hard": null,
+              "brier_multiclass_hard": null,
+              "ece_hard": null,
+              "p95_latency_ms": 18636.95,
+              "n_test_samples": 18,
+              "n_predictions": 18,
+              "n_routing_decisions": 18,
+              "n_failures": 18,
+              "n_routed_slm": 18,
+              "n_routed_llm": 0
+            }
+          }
+        },
+        "Phi4-Mini": {
+          "model_tier": "SLM",
+          "train_phase": {
+            "n_samples": 54,
+            "failure_signal_rate": 1.0,
+            "feature_means": {
+              "n_in": 168.55555555555554,
+              "entropy": 6.716716711109846,
+              "reasoning_proxy": 0.0,
+              "constraint_count": 0.0,
+              "parametric_dependence": 0.0,
+              "dependency_distance": 0.0,
+              "reasoning_x_constraint": 0.0,
+              "length_x_entropy": 1132.5651079659626,
+              "knowledge_x_reasoning": 0.0,
+              "classification_ambiguity": 0.0,
+              "classification_negation_density": 0.0,
+              "classification_domain_shift": 0.0,
+              "math_numeric_density": 0.0,
+              "math_symbol_density": 0.0,
+              "math_precision_cues": 0.0,
+              "instruction_format_strictness": 0.0,
+              "instruction_prohibition_count": 0.0,
+              "instruction_step_count": 0.0,
+              "instruction_conflict_cues": 0.0
+            }
+          },
+          "validation_phase": {
+            "n_samples": 18,
+            "tau_cap": null,
+            "tau_risk": null,
+            "tau_star": null,
+            "tau_source": "not_available"
+          },
+          "test_phase": {
+            "dataset_outputs": {
+              "predictions": 18,
+              "routing_decisions": 18,
+              "correctness": {
+                "correct": 0,
+                "incorrect": 18
+              },
+              "failure_categories": {
+                "hard_failure": 18
+              }
+            },
+            "metrics": {
+              "metric_mode": "generation_criteria_proxy",
+              "criteria_hit_rate": 0.0196078431372549,
+              "valid_output_rate": 1.0,
+              "accuracy": null,
+              "precision_macro": null,
+              "recall_macro": null,
+              "f1_macro": null,
+              "roc_auc_ovr_hard": null,
+              "pr_auc_macro_hard": null,
+              "brier_multiclass_hard": null,
+              "ece_hard": null,
+              "p95_latency_ms": 16389.95,
+              "n_test_samples": 18,
+              "n_predictions": 18,
+              "n_routing_decisions": 18,
+              "n_failures": 18,
+              "n_routed_slm": 18,
+              "n_routed_llm": 0
+            }
+          }
+        },
+        "Qwen2.5-7B": {
+          "model_tier": "SLM",
+          "train_phase": {
+            "n_samples": 54,
+            "failure_signal_rate": 1.0,
+            "feature_means": {
+              "n_in": 168.55555555555554,
+              "entropy": 6.716716711109846,
+              "reasoning_proxy": 0.0,
+              "constraint_count": 0.0,
+              "parametric_dependence": 0.0,
+              "dependency_distance": 0.0,
+              "reasoning_x_constraint": 0.0,
+              "length_x_entropy": 1132.5651079659626,
+              "knowledge_x_reasoning": 0.0,
+              "classification_ambiguity": 0.0,
+              "classification_negation_density": 0.0,
+              "classification_domain_shift": 0.0,
+              "math_numeric_density": 0.0,
+              "math_symbol_density": 0.0,
+              "math_precision_cues": 0.0,
+              "instruction_format_strictness": 0.0,
+              "instruction_prohibition_count": 0.0,
+              "instruction_step_count": 0.0,
+              "instruction_conflict_cues": 0.0
+            }
+          },
+          "validation_phase": {
+            "n_samples": 18,
+            "tau_cap": null,
+            "tau_risk": null,
+            "tau_star": null,
+            "tau_source": "not_available"
+          },
+          "test_phase": {
+            "dataset_outputs": {
+              "predictions": 18,
+              "routing_decisions": 18,
+              "correctness": {
+                "correct": 0,
+                "incorrect": 18
+              },
+              "failure_categories": {
+                "hard_failure": 18
+              }
+            },
+            "metrics": {
+              "metric_mode": "generation_criteria_proxy",
+              "criteria_hit_rate": 0.0,
+              "valid_output_rate": 1.0,
+              "accuracy": null,
+              "precision_macro": null,
+              "recall_macro": null,
+              "f1_macro": null,
+              "roc_auc_ovr_hard": null,
+              "pr_auc_macro_hard": null,
+              "brier_multiclass_hard": null,
+              "ece_hard": null,
+              "p95_latency_ms": 15009.899999999998,
+              "n_test_samples": 18,
+              "n_predictions": 18,
+              "n_routing_decisions": 18,
+              "n_failures": 18,
+              "n_routed_slm": 18,
+              "n_routed_llm": 0
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,900 @@
+
+
+===== PAGE 1 =====
+
+Decision Framework for SLMs in Enterprise AI 
+1 
+ 
+DECISION FRAMEWORK AND INDUSTRIAL 
+DEPLOYMENT PROTOCOL 
+FOR SMALL LANGUAGE MODELS IN ENTERPRISE AI 
+SYSTEMS 
+ 
+SMITHA RAJAPPA, RIDDHIMA RAMASAHAYAM REDDY, ROHIT SAVANT, 
+YASHRAJ SAXENA, SMITA SENGUPTA, ASHIM BOSE 
+ 
+Naveen Jindal School of Management, University of Texas at Dallas, 
+Richardson, TX 75080, USA 
+ 
+Received (Day Month Year)  Revised (Day Month Year) 
+ 
+Abstract 
+Enterprise adoption of large language models faces cost, latency, and data privacy constraints that 
+limit scalable deployment. Small language models (SLMs) with 3 to 8 billion parameters offer a 
+viable alternative for specific tasks, but organizations lack  systematic methods to determine which 
+tasks are suitable for local SLM deployment versus cloud based large language model (LLM) 
+inference. This paper introduces S 3 (Suitability Score for SLM Selection), a multicriteria decision 
+making framework that predi cts the appropriate deployment tier before running any inference. S 3 
+combines a weighted sum model across six task dimensions with prescreening gate rules that prevent 
+compensatory tradeoffs in safety critical scenarios. The framework maps tasks to three deployment 
+tiers: Pure SLM, Hybrid, or LLM Only. We validate S 3 across eight enterprise use cases spanning 
+cybersecurity, finance, healthcare, legal, and customer service, using seven models from 3 billion 
+to 70 billion parameters. All SLMs run locally usin g Ollama on a 16 GB workstation; the LLM 
+baseline is served through the Groq API free tier. All eight tier predictions are confirmed by 
+benchmark results. Cross framework validation against an independent runtime study (SDDF) yields 
+Spearman rank correlation of negative 0.73 (p = 0.01) between expert assigned S 3 scores and data 
+driven routing capability. Sensitivity analysis confirms seven of eight assignments are stable across 
+five organizational weight profiles. The framework is fully reproducible on consumer hardware. 
+Keywords: Small language models; enterprise AI deployment; multicriteria decision making; model 
+routing; technology management; weighted sum model; industrial deployment protocol. 
+1. Introduction 
+The rapid advancement of large language models has created a fundamental tension in enterprise 
+technology management. Organizations recognize the transformative potential of generative 
+artificial intelligence but face practical constraints: hosted LLM APIs  introduce per query cost, 
+
+===== PAGE 2 =====
+
+Decision Framework for SLMs in Enterprise AI 
+2 
+network latency, and data residency concerns, while locally deployed small language models 
+introduce quality and safety risks if applied to tasks that exceed their capability. 1,2,3 Practitioners 
+today answer the deployment question informally, through pilot studies, vendor benchmarks, or 
+intuition. There is no widely adopted, auditable protocol that turns workload characteristics into a 
+defensible deployment decision. 
+Small language models, typically ranging from 1 to 10 billion parameters, present a compelling 
+alternative for structured enterprise tasks. Recent architectural innovations have demonstrated that 
+carefully designed smaller models can match much larger ones  on targeted workloads. 1,2,4 
+Distillation, quantisation, and instruction tuning have further narrowed the gap. 5,6,7 However, 
+knowing that SLMs can sometimes match LLMs does not tell a technology manager which specific 
+task categories are safe for local deployment. 
+This paper addresses this gap by introducing S3 (Suitability Score for SLM Selection), a multicriteria 
+decision making framework grounded in the weighted sum model. 8,9 S3 evaluates tasks across six 
+dimensions: Task Complexity, Output Structure, Stakes, Data Sensitivity, Latency Tolerance, and 
+Volume. The framework produces a score between 1 and 5 that maps to one of three deployment 
+tiers: Pure SLM, Hybrid, or LLM Only. Two prescreening gate rules encode safety constraints that 
+cannot be overridden by the weighted sum, ensuring that life critical or expert level tasks are never 
+assigned to an SLM autonomously. 
+We validate the framework through a comprehensive empirical study involving eight enterprise use 
+cases across six industry domains, benchmarked on seven language models ranging from 3 billion 
+to 70 billion parameters. Six SLMs are executed locally using Ollama10 on a single 16 GB MacBook 
+Air. The 70 billion parameter LLM baseline is served through the Groq API free tier, 11 which 
+provides 14,400 requests per day at no cost. Cross framework validation against an independent 
+runtime study (SDDF, developed in p arallel by our research team) yields a Spearman rank 
+correlation of negative 0.73 (p = 0.01) between expert assigned S 3 scores and data driven routing 
+capability, providing convergent evidence that top down expert assessment and bottom up 
+operational telemetry agree. 
+The contributions of this paper are as follows. First, we propose a practical multicriteria framework 
+that enables technology managers to make SLM deployment decisions before committing resources 
+to full scale benchmarking. Second, we demonstrate that expe rt scored dimensions predict 
+benchmark outcomes across eight use cases. Third, we establish cross framework convergent 
+validity between a top down scoring protocol and a bottom up runtime routing system. Fourth, we 
+provide hardware requirements and a deployment protocol suitable for industrial adoption. Fifth, we 
+provide a complete reproducibility package including all scripts, gold sets, and configuration files. 
+The remainder of this paper is organized as follows. Section 2 reviews related literature. Section 3 
+presents the research methodology. Section 4 introduces the S 3 framework. Section 5 describes 
+implementation and deployment requirements. Section 6 presents the empirical evaluation design. 
+Section 7 reports results and analysis. Section 8 discusses implications for technology managers. 
+Section 9 addresses limitations and future research. Section 10 concludes. 
+2. Background and Related Work 
+2.1 The LLM to SLM Transition 
+The transition from large to small language models is motivated by three factors: cost, latency, and 
+data governance. Brown and colleagues 12 demonstrated that language models at the 175 billion 
+
+===== PAGE 3 =====
+
+Decision Framework for SLMs in Enterprise AI 
+3 
+parameter scale achieve remarkable few shot performance, but at prohibitive inference costs for 
+high volume enterprise tasks. Scaling laws established by Kaplan and colleagues 13 and refined by 
+Hoffmann and colleagues 14 showed that compute optimal training produces capable models at 
+smaller scales. Touvron and colleagues 1 released LLaMA, demonstrating competitive performance 
+with open weights. Jiang and colleagues2 showed that Mistral 7B matches or exceeds larger models 
+through architectural innovations including grouped query attention and sliding window attention. 
+Abdin and colleagues 15 demonstrated that the Phi series achieves strong performance at the 3 to 4 
+billion parameter scale. 
+Subramanian, Elango, and Gungor 16 demonstrated that SLMs under 4 billion parameters achieve 
+competitive performance on targeted NLP tasks when appropriately prompted. Lu and colleagues 17 
+provided a systematic evaluation of SLMs for edge deployment. Fan and colleagues 18 explored 
+collaborative frameworks where small and large models work together for cost effectiveness. These 
+findings establish that SLMs are viable for specific enterprise tasks but do not address the prior 
+question of which tasks are suitable for SLM deployment. 
+2.2 Model Routing and Cascading Frameworks 
+Several frameworks address the model selection problem at runtime. Ding and colleagues proposed 
+Hybrid LLM,19 a cost efficient query routing system that directs queries to appropriate model tiers 
+based on predicted difficulty. Ong and colleagues introduced RouteLLM, 20 which learns routing 
+policies from preference data. Hu and colleagues published RouterBench, 21 a benchmark for 
+evaluating multi LLM routing systems. Aggarwal and colleagues proposed AutoMix,22 an automatic 
+model mixing approach. Dekoninck and colleagues presented a unified approach to routing and 
+cascading.23 
+These routing frameworks operate at the query level during runtime. They do not address the prior 
+question that technology managers face: should we deploy an SLM for this task category at all? S 3 
+addresses this strategic question before any production traffic exists. 
+2.3 Multicriteria Decision Making in Technology Management 
+Multicriteria decision making methods have a long history in technology management. The Analytic 
+Hierarchy Process introduced by Saaty 24 enables structured comparison through pairwise criteria 
+weighting. Hwang and Yoon25 developed TOPSIS as a distance based ranking method. Edwards and 
+Barron26 proposed SMARTS for simplified multiattribute utility measurement. Brans and Vincke 27 
+introduced PROMETHEE as a preference ranking method. Keeney and Raiffa 28 formalised 
+multiattribute utility theory with rigorous preference elicitation. 
+The weighted sum model is the canonical MCDM method for decisions with numeric, 
+commensurable criteria. 8 Triantaphyllou9 provided a comparative study of MCDM methods. 
+Triantaphyllou and Sanchez 29 provided specific procedures for determining the minimum weight 
+change needed to alter a decision. Zavadskas and Turskis 30 surveyed MCDM applications in 
+economics. Zopounidis and Doumpos31 applied multicriteria methods to financial sorting decisions. 
+Belahcene and colleagues32 surveyed multiple criteria sorting models. We adopt WSM because our 
+six criteria are naturally expressed on a common 1 to 5 scale and because the simpler formula 
+supports stakeholder communication. 
+2.4 Technology Adoption Frameworks 
+Enterprise AI deployment decisions occur within technology adoption frameworks. The Technology 
+Acceptance Model 33 and its extension UTAUT 34 provide theoretical foundations for understanding 
+
+===== PAGE 4 =====
+
+Decision Framework for SLMs in Enterprise AI 
+4 
+adoption barriers. Tornatzky and Fleischer 35 examined how organizational context shapes 
+technology adoption processes. Rogers 36 described how innovations diffuse through organizations. 
+S3 provides the structured evaluation that organizations need to move beyond pilot stages into 
+production deployment. 
+2.5 AI Governance and Risk Frameworks 
+The governance dimension is addressed through the NIST AI Risk Management Framework 37 and 
+the European Union AI Act, 38 which classify AI systems by risk level and mandate proportional 
+safeguards. Floridi and colleagues 39 proposed an ethical framework for AI deployment. Our gate 
+rules (Section 4.4) operationalize these risk based requirements: stakes equal to five triggers 
+mandatory human oversight regardless of the model's quantitative performance. 
+2.6 The Critical Gap 
+The literature presents a gap between strategic deployment guidance and operational routing. 
+Existing MCDM frameworks have not been applied to the specific problem of SLM tier assignment. 
+Existing routing frameworks assume the deployment decision has already been made. No published 
+work provides an auditable, pre deployment scoring protocol grounded in MCDM theory that is 
+validated both empirically and against an independent runtime system. This paper fills that gap. 
+3. Research Methodology 
+3.1 Design Science Research Paradigm 
+We follow the design science research paradigm, 40,41 which positions the artefact, in our case the S 3 
+scoring protocol, as the research contribution. Design science requires demonstration and evaluation 
+against relevance and rigour criteria. Relevance is established by the identified research gap: 
+enterprises lack a systematic method for SLM deployment decisions. Rigour is established through 
+grounding in MCDM theory, 8,9 structured evaluation across eight use cases, and cross framework 
+validation. 
+3.2 Framework Development 
+The S3 framework was developed through five steps. First, we identified the decision attributes that 
+enterprise practitioners evaluate when considering SLM deployment, drawing on published 
+deployment case studies and the risk management literature. 37,38 Second, we operationalized these 
+attributes as six scored dimensions with anchored 1 to 5 scales (Table 1). Third, we selected the 
+WSM8 as the aggregation method due to its transparency and interpretability in management 
+settings. Fourth, we identified non compensatory safety constraints and encoded them as gate rules 
+following the multiattribute utility theory tradition.28 Fifth, we calibrated tier thresholds against a set 
+of eight pilot use cases. 
+3.3 Expert Elicitation Protocol 
+All eight use cases were scored by the first author, reviewed by a second domain expert, and 
+reconciled through discussion. Each dimension has published 1 to 5 anchors (Table 1) that constrain 
+interpretation. This approach is structurally identical to clin ical severity scoring systems such as 
+APACHE II42 and CURB 65, 43 both of which rely on anchored expert assessment and are accepted 
+for clinical decisions affecting patient outcomes. The scoring worksheet, including per dimension 
+rationale for each use case, was committed to the project repository before any model inference was 
+
+===== PAGE 5 =====
+
+Decision Framework for SLMs in Enterprise AI 
+5 
+executed. Human expert scoring is the sole methodology in this paper; automated scoring from task 
+prompts is discussed as future work in Section 9. 
+3.4 Research Questions 
+We investigate four research questions: 
+• RQ1 (Tier Prediction): Does the S³ score correctly predict whether an SLM can serve a 
+given enterprise workload? 
+• RQ2 (Gate Rule Necessity): Do non compensatory gate rules prevent unsafe deployments 
+that the weighted sum alone would miss? 
+• RQ3 (Cross Framework Convergence): Do expert assigned S³ scores correlate with data 
+driven runtime routing capability from an independent study? 
+• RQ4 (Robustness): Are tier assignments stable under reasonable perturbations of the weight 
+vector? 
+4. The S³ Framework 
+4.1 Dimension Definitions 
+S3 evaluates a workload on six dimensions, each scored by a domain expert on an integer 1 to 5 
+scale. The dimensions cover the capability, risk, and operational axes that drive the deployment 
+decision. 
+Table 1. S³ Dimension Definitions and Weights 
+Dim Name What It Captures Weight 
+TC Task 
+Complexity 
+Cognitive load, reasoning depth, multi step logic 3 
+OS Output Structure Constraint level of output format; higher = more constrained 2 
+SK Stakes Consequence of error: 1 = trivial, 5 = severe, irreversible, legally 
+consequential 
+4 
+DS Data Sensitivity PII, PHI, regulated or privileged content exposure 2 
+LT Latency 
+Tolerance 
+Response time budget strictness 3 
+VL Volume Query rate; higher = stronger cost pressure toward local inference 1 
+ 
+The weight vector w = (3, 2, 4, 2, 3, 1) reflects a default enterprise profile in which stakes dominate, 
+followed by complexity and latency, with volume as the smallest tiebreaker. The constraint w SK >= 
+wTC is enforced to prevent the formula from prioritizing capability over safety. The denominator 
+equals 75, ensuring scores are directly comparable across use cases. 
+4.2 The S³ Formula 
+The suitability score is the weighted sum model8,9 normalized to the 1 to 5 scale: 
+S³ = ( Σ scoreᵢ · wᵢ ) / ( Σ 5 · wᵢ ) × 5 
+where scorei is in {1, 2, 3, 4, 5} and wi is the dimension weight. This formula is the textbook WSM 
+aggregation.9 A lower S3 indicates higher suitability for SLM deployment; a higher S 3 indicates the 
+workload demands LLM capability. 
+4.3 Tier Mapping 
+
+===== PAGE 6 =====
+
+Decision Framework for SLMs in Enterprise AI 
+6 
+Scores map to deployment tiers using two calibrated thresholds: 
+• Pure SLM: S³ ≤ 3.2. The SLM can serve this workload autonomously. 
+• Hybrid: 3.2 < S³ ≤ 4.0. The SLM serves a subset of queries; the remainder escalate to the 
+LLM baseline. 
+• LLM Only: S³ > 4.0. The workload requires the LLM, with human oversight for safety 
+critical cases. 
+The thresholds were calibrated on the eight pilot use cases so that tier boundaries align with 
+empirical capability transitions. Sensitivity to this calibration is reported in Section 7.8. 
+4.4 Prescreening Gate Rules 
+Weighted sums compensate low scores on one criterion with high scores on another. In safety 
+sensitive settings, this behavior is undesirable. We therefore add three non compensatory gate rules 
+following the multiattribute utility theory tradition:28 
+• Hard Rule 1: SK = 5 → Disqualified. Route to LLM Only regardless of formula score. 
+• Hard Rule 2: TC = 5 AND SK ≥ 4 → LLM Only regardless of formula score. 
+• Flag Rule: SK ≥ 4 → Minimum tier is Hybrid. The formula may push higher but not lower. 
+Gate rules are evaluated before the formula. A disqualified use case never enters the scoring 
+arithmetic for tier assignment, although the formula value is recorded for audit purposes. The 
+necessity of these rules is demonstrated empirically in Section 7.2  and through reverse calculation 
+in Appendix D. 
+4.5 SDDF as Runtime Implementation 
+S3 produces the deployment blueprint. The SLM Deployment Decision Framework (SDDF), 
+developed in parallel by our research team, is the runtime implementation that tests whether the 
+blueprint holds in practice. SDDF logs pass/fail outcomes from live inference , computes per task 
+capability and risk bounds using Wilson confidence intervals, 44 and routes individual queries to 
+either the SLM or the LLM baseline. The runtime policy enforcement is summarized in Table 2. 
+SDDF is treated in this paper as independent  validation evidence; the full SDDF methodology is 
+reported separately. 
+Table 2. Runtime Policy Enforcement 
+S³ Tier Runtime Action Description 
+Pure SLM SLM Serve entirely with the local SLM. 
+Hybrid HYBRID ABSTAIN Serve with SLM when confidence is sufficient; otherwise escalate. 
+LLM Only BASELINE Always route to the LLM baseline. 
+Disqualified BASELINE Gate violation; route to LLM with mandatory human oversight. 
+ 
+5. Implementation and Deployment 
+5.1 Model Optimization Strategies 
+Three optimization strategies enable SLM deployment on commodity hardware. Post training 
+quantization reduces model precision to lower memory footprint and increase throughput. GPTQ 45 
+achieves significant throughput improvement through one shot second order weight quantization. 
+AWQ46 identifies salient weight channels from activation distributions, achieving lower perplexity 
+
+===== PAGE 7 =====
+
+Decision Framework for SLMs in Enterprise AI 
+7 
+degradation than uniform quantization. All SLMs in our study use Q4_K_M quantization through 
+Ollama, which applies 4 bit mixed precision quantization suitable for consumer hardware. 
+Knowledge distillation 5 transfers capability from larger teacher models to smaller student models 
+during training. Low rank adaptation (LoRA) 47 enables parameter efficient fine tuning by training 
+low rank decomposition matrices rather than full weight updates. QLoRA 6 combines quantization 
+with LoRA for memory efficient fine tuning. These techniques are not applied in our study (we use 
+pretrained models as released) but are relevant for organizations seeking to specialize SLMs for 
+specific enterprise tasks. 
+5.2 Deployment Environments 
+Three deployment profiles are supported, each with distinct hardware and privacy characteristics. 
+Table 3. Deployment Environment Profiles 
+Profile Model Size Typical Hardware Memory GPU Required 
+Edge 1B to 4B Business laptop, 8 to 16 GB 3 to 5 GB No 
+On premises 7B to 8B Workstation or server, 16 to 32 GB 6 to 10 GB Optional 
+Cloud hybrid Any + API Local SLM + cloud LLM API Varies No 
+ 
+Edge deployment runs models locally on workstations or embedded devices for maximum data 
+privacy and minimum latency. On premises deployment uses dedicated servers with optional GPU 
+acceleration for higher throughput. Cloud hybrid deployment combines local  SLM inference for 
+routine queries with cloud LLM API calls for escalated queries, matching the Hybrid tier in S 3. 
+Efficient memory management for serving is supported by systems such as PagedAttention.48 
+5.3 Hardware Requirements 
+Table 4. Minimum Hardware Requirements 
+Deployment Tier Model Size Minimum 
+RAM 
+GPU Required Example Hardware 
+Pure SLM (light) 1B to 3B 4 GB No Standard office laptop 
+Pure SLM (standard) 3B to 8B 8 GB No (CPU 
+sufficient) 
+Business workstation 
+Hybrid (local 
+component) 
+7B to 8B + API 
+access 
+16 GB Optional MacBook Air M series, 16 GB 
+LLM Only API only Any No Any internet connected device 
+ 
+An 8 GB machine can run the 3B and 4B SLMs (Llama 3.2 3B, Phi 4 Mini, Gemma 3 4B) and 
+reproduce Pure SLM tier results. A 16 GB machine is required for the 7B and 8B models (Qwen 2.5 
+7B, Mistral 7B, Llama 3.1 8B). Our full benchmark was executed on a 16 GB MacBook Air with 
+Apple M series processor in under three hours. No GPU is required; all SLMs run on CPU through 
+Ollama's quantized inference engine. 
+5.4 Capacity Planning and SLA Classes 
+Two SLA classes are defined. Interactive tasks (classification, routing, extraction) require P50 
+latency of 200 to 400 milliseconds and P95 of 1.5 to 2.0 seconds. Batch tasks (document processing, 
+analysis, report generation) tolerate P50 of 1 to 3 seconds  and P95 of 5 to 10 seconds. Our 
+benchmark results (Section 7.5) confirm that all Pure SLM use cases meet the interactive SLA on 
+the 16 GB workstation. 
+
+===== PAGE 8 =====
+
+Decision Framework for SLMs in Enterprise AI 
+8 
+6. Empirical Evaluation 
+6.1 Use Case Selection 
+Eight enterprise use cases were selected to span three criteria: industry diversity (six domains), task 
+complexity gradient (binary classification to open ended generation), and tier coverage (all three 
+tiers represented). Dimension scores were assigned by  the first author before any model inference 
+was run and were not revised afterwards. 
+Table 5. S³ Scores for Eight Enterprise Use Cases 
+UC Enterprise Task TC OS SK DS LT VL WS S³ Gate Rule Predicted 
+Tier 
+1 SMS threat detection 2 5 4 2 4 3 51 3.40 Flag (SK=4) Hybrid 
+2 Invoice field 
+extraction 
+3 3 2 2 3 3 39 2.60 Pass Pure SLM 
+3 Support ticket routing 2 5 2 2 3 3 40 2.67 Pass Pure SLM 
+4 Product review 
+sentiment 
+1 5 1 1 3 3 31 2.07 Pass Pure SLM 
+5 Automated code 
+review 
+4 5 3 2 3 2 49 3.27 Pass Hybrid 
+6 Clinical triage 4 5 5 4 4 2 64 4.27 Hard Rule 1 LLM Only 
+7 Legal contract risk 3 5 4 3 2 1 48 3.20 Flag (SK=4) Hybrid 
+8 Financial report 
+drafting 
+5 1 4 3 2 1 46 3.07 Hard Rule 2 LLM Only 
+ 
+UC6 triggers Hard Rule 1 (SK = 5). UC8 triggers Hard Rule 2 (TC = 5 and SK >= 4); its formula 
+value (3.07) lies below the threshold, which would place it in Pure SLM by formula alone, but the 
+gate rule overrides this outcome. UC1 and UC7 trigger the Flag Rule (SK = 4), enforcing a minimum 
+tier of Hybrid. UC5 enters Hybrid by formula alone (3.27 > 3.2) without requiring any gate rule. 
+6.2 Model Selection 
+We benchmarked six open weight SLMs served locally with Ollama 10 and a single LLM baseline 
+served through the Groq API free tier.11 
+Table 6. Model Registry 
+Model Parameters Quantisation Source Role 
+Llama 3.2 3B Instruct 3B Q4_K_M Ollama (local) SLM 
+Phi 4 Mini Instruct 3.8B Q4_K_M Ollama (local) SLM 
+Gemma 3 4B Instruct 4B Q4_K_M Ollama (local) SLM 
+Qwen 2.5 7B Instruct 7B Q4_K_M Ollama (local) SLM 
+Mistral 7B Instruct v0.3 7B Q4_K_M Ollama (local) SLM 
+Llama 3.1 8B Instruct 8B Q4_K_M Ollama (local) SLM 
+Llama 3.3 70B Versatile 70B Hosted 
+(FP16) 
+Groq API free tier LLM baseline 
+ 
+6.3 Gold Sets and Evaluation Protocol 
+For each use case we constructed a 100 item gold set partitioned into 70 development and 30 test 
+items. Items were authored or curated by the first author, reviewed by a second annotator, and frozen 
+before benchmarking. All system prompts use temperature 0 and three inference seeds (42, 43, 44) 
+per model. Each run captures hardware state (CPU, RAM, swap, OS) at start. 
+
+===== PAGE 9 =====
+
+Decision Framework for SLMs in Enterprise AI 
+9 
+6.4 Metrics 
+For classification tasks we report accuracy and SLM versus LLM parity (SLM accuracy divided by 
+LLM accuracy) with 95% Wilson confidence intervals.44 For structured extraction (UC2) we report 
+JSON validity (fraction of responses that parse against the declared schema). For the generative task 
+(UC8) we report an LLM as judge score 49 using the baseline LLM as judge with a fixed rubric and 
+temperature 0. Latency is reported at P50, P95, and P99. Paired comparisons use a two sided paired 
+t test at alpha = 0.05. Classification performance metrics follow Sokolova and Lapalme.50 
+6.5 Reproducibility 
+All scripts, gold sets, prompts, raw outputs, and evaluation reports are available in the project 
+repository. The full benchmark executes on a 16 GB MacBook Air in under three hours. Each 
+hardware capture includes CPU model, total RAM, swap usage, and operating system version. 
+7. Results and Analysis 
+7.1 Tier Prediction Accuracy (RQ1) 
+Table 7. Benchmark Results: All Eight Tier Predictions Confirmed 
+UC Task Predicted Tier Top SLM SLM 
+Acc 
+LLM 
+Acc 
+Parity Confirmed 
+1 SMS threat 
+detection 
+Hybrid (Flag) Mistral 7B 90.0% 90.0% 100.0% Yes 
+2 Invoice 
+extraction 
+Pure SLM Phi 4 Mini 92.2% 91.1% 101.2% Yes 
+3 Ticket routing Pure SLM Qwen 2.5 
+7B* 
+86.7% 83.3% 104.1% Yes 
+4 Review 
+sentiment 
+Pure SLM Mistral 7B 95.5% 96.7% 98.8% Yes 
+5 Code review Hybrid 
+(Formula) 
+Llama 3.1 8B 46.7% 61.1% 76.4% Yes 
+6 Clinical triage LLM Only 
+(HR1) 
+Llama 3.1 8B 73.3% 68.9% 106.4%** Yes 
+7 Legal contract Hybrid (Flag) Qwen 2.5 7B 53.3% 57.8% 92.2% Yes 
+8 Financial report LLM Only 
+(HR2) 
+Llama 3.2 3B 72.3% 80.6% 89.7% Yes 
+ 
+* UC3: Four SLMs tied at 86.7% (Llama 3.1 8B, Qwen 2.5 7B, Gemma 3 4B, Llama 3.2 3B). ** 
+UC6 parity is misleading; see Section 7.2. 
+All eight tier predictions are confirmed (RQ1). Pure SLM cases (UC2, UC3, UC4) achieve parity at 
+or above 95%, meeting the operational threshold for autonomous SLM deployment. Hybrid cases 
+(UC1, UC5, UC7) show SLMs performing adequately on a subset of queries but falling short of the 
+95% parity threshold. LLM Only cases (UC6, UC8) are gate locked and confirmed by benchmark 
+evidence. 
+7.2 Gate Rule Validation (RQ2) 
+UC6 provides the critical diagnostic for gate rule necessity. The top SLM achieves 73.3% overall 
+accuracy, which numerically exceeds the LLM baseline (106.4% parity). However, class level 
+analysis reveals systematic under triage of URGENT cases: SLM recall  on the URGENT class 
+ranges from 0% to 64% across models, versus 82% for the LLM baseline. This is exactly the failure 
+
+===== PAGE 10 =====
+
+Decision Framework for SLMs in Enterprise AI 
+10 
+mode that Hard Rule 1 (SK = 5) is designed to catch before deployment. Aggregate accuracy can 
+mask safety critical class collapse. 
+UC8 demonstrates Hard Rule 2. Its formula value S3 = 3.07 is below the threshold 3.2, which would 
+incorrectly assign Pure SLM by formula alone. TC = 5 combined with SK = 4 triggers the gate 
+override. The benchmark confirms this: the best SLM achieves only 89.7% parity, and manual audit 
+reveals fabricated figures in 3 of 30 test items. Both gate rules are empirically validated as necessary 
+safeguards. A full reverse calculation of what would happen without gate rules is provided in 
+Appendix D. 
+7.3 Pure SLM Tier Results 
+UC4 (product review sentiment) is the strongest Pure SLM case: Mistral 7B at 95.5% accuracy with 
+98.8% parity to the LLM baseline (96.7%). A paired t test yields t = 0.89, p = 0.38, indicating no 
+statistically significant difference. UC2 (invoice field ext raction) shows Phi 4 Mini at 92.2% with 
+100% schema valid JSON responses. A paired t test against the LLM baseline (91.1%) yields t = 
+1.42, p = 0.16, also not significant. UC3 (support ticket routing) shows four SLMs tied at 86.7%, all 
+exceeding the LLM baseline (83.3%). These results confirm that for Pure SLM tier tasks, the quality 
+gap between the best SLM and the LLM baseline is not statistically distinguishable. 
+7.4 Hybrid Tier Results 
+UC5 (automated code review) is the most challenging Hybrid case: the top SLM (Llama 3.1 8B) 
+achieves only 46.7% accuracy versus the LLM's 61.1% (76.4% parity). This confirms that the SLM 
+alone is insufficient and that an escalation mechanism to the LLM bas eline is required. UC7 (legal 
+contract risk) shows 53.3% versus 57.8% (92.2% parity), closer to the Pure SLM boundary but 
+below the 95% threshold. UC1 (SMS threat detection) achieves parity of 100% but is assigned 
+Hybrid by the Flag Rule because SK = 4 mandates human oversight for a task where missed threats 
+cause direct harm. 
+7.5 Latency 
+On the 16 GB workstation, end to end SLM latency at P95 stays under 500 ms for the confirmed 
+Pure SLM use cases (UC2, UC3, UC4). UC1 reaches P95 = 418 ms on Mistral 7B, meeting the 
+interactive SLA. The LLM baseline through Groq has a median latency of appr oximately 700 ms 
+from Dallas, dominated by network round trip. All Pure SLM use cases meet the interactive SLA 
+class defined in Section 5.4. 
+7.6 Three Layer Validation 
+We apply a three layer validation protocol to triangulate predictions: 
+• Layer 1 (top down): Expert S³ scores predict tiers; benchmarks test whether predictions 
+hold. 
+• Layer 2 (bottom up): Empirical results infer the most defensible tier; comparison with S³ 
+prediction reveals agreement or disagreement. 
+• Layer 3 (reverse consistency): For each empirical tier, determine whether a dimension 
+profile compatible with that tier can be reconstructed. 
+We illustrate with UC4. Layer 1: Scores TC = 1, OS = 5, SK = 1, DS = 1, LT = 3, VL = 3; weighted 
+sum = 31; S 3 = (31/75) times 5 = 2.07; no gate; Pure SLM. Layer 2: Mistral 7B at 95.5% accuracy 
+(98.8% parity); no class collapse; empirically Pure SLM. Layer 3: The observed tier is compatible 
+
+===== PAGE 11 =====
+
+Decision Framework for SLMs in Enterprise AI 
+11 
+with any S 3 in [1.0, 3.2] without gate triggers; the predicted profile lies in the interior. Agreement 
+across all three layers is 8 of 8 (Appendix E). 
+7.7 Cross Framework Validation (RQ3) 
+To test convergent validity, we compute the Spearman rank correlation 51 between S 3 scores and 
+SDDF routing capability on an independent set of eight NLP task families (classification, code 
+generation, information extraction, instruction following, mathematics, retrieval grounded QA, 
+summarization, and text generation). SDDF computes per  task routing capability from operational 
+telemetry collected across three SLMs (Qwen 2.5 at 0.5B, 3B, and 7B) and one LLM baseline 
+(Llama 3.3 70B via Groq), with 120 samples per model per task family. 
+The observed correlation is rho = negative 0.73 with p = 0.01, supporting RQ3. Tasks that S 3 rates 
+as harder for SLMs (higher score) show lower routing capability in SDDF (fewer queries 
+successfully handled locally). Tier level agreement is 6 of 8 (75%). The two disagreements are cases 
+where SDDF's learned capability exceeds what S3's gate rules permit; these are resolved in favor of 
+S3 by policy, since the blueprint's safety constraints take precedence over runtime optimism. Full 
+results are in Appendix F. 
+7.8 Sensitivity and Robustness Analysis (RQ4) 
+We test robustness by recomputing S3 for all eight use cases under five weight profiles: Default (3, 
+2, 4, 2, 3, 1), Security First (2, 2, 5, 4, 2, 1), Latency First (2, 2, 3, 2, 5, 2), Balanced (3, 3, 3, 3, 3, 
+3), and Volume Heavy (2, 2, 3, 2, 2, 5). For each use case, we compute the minimu m percentage 
+change in the weight vector required to flip the predicted tier, following Triantaphyllou.9,29 
+Table 8. Triantaphyllou Sensitivity Analysis 
+UC S³ (Default) Min % Change to Flip Stability Notes 
+1 3.40 ≥ 35% Stable Gate locked (Flag Rule) 
+2 2.60 ≥ 40% Stable Formula 
+3 2.67 ≥ 38% Stable Formula 
+4 2.07 ≥ 55% Stable Deep interior 
+5 3.27 28% Sensitive Tier boundary (formula only) 
+6 4.27 — Stable Hard Rule 1 (categorical) 
+7 3.20 ≥ 35% Stable Gate locked (Flag Rule) 
+8 3.07 — Stable Hard Rule 2 (categorical) 
+ 
+Seven of eight use cases are stable under all five profiles (RQ4). UC5 is the only case whose tier 
+flips within a plausible 28% weight perturbation, consistent with its proximity to the threshold 3.2. 
+Gate locked cases (UC1, UC6, UC7, UC8) are categoricall y stable because no weight perturbation 
+can remove a binary gate condition. 
+8. Discussion and Managerial Implications 
+8.1 Key Findings 
+Four findings emerge from this study. First, the S 3 framework correctly predicts deployment tiers 
+for all eight enterprise use cases, with Pure SLM cases achieving parity at or above 95% and gate 
+locked cases exhibiting the specific failure modes that gate rules target. Second, gate rules are 
+necessary safety mechanisms, not conservative overhead: three use cases (UC6, UC7, UC8) would 
+be misclassified or inadequately safeguarded without them (see Appendix D). Third, the Spearman 
+
+===== PAGE 12 =====
+
+Decision Framework for SLMs in Enterprise AI 
+12 
+rank correlation of negative 0.73 (p = 0.01) between expert assigned scores and independent runtime 
+routing capability establishes convergent validity across two entirely different assessment 
+methodologies. Fourth, tier assignments are robust: seven of eig ht are stable across five weight 
+profiles, and the sole sensitive case is correctly flagged. 
+8.2 Gate Rules as Safety Mechanisms 
+UC6 demonstrates why aggregate accuracy is an insufficient safety metric. The top SLM achieves 
+106.4% parity by overall accuracy, yet systematically fails on the URGENT triage class. In a clinical 
+setting, this class collapse would result in delayed treatm ent for patients requiring immediate care. 
+Hard Rule 1 (SK = 5) catches this failure mode categorically, without relying on any threshold 
+calibration. UC8 demonstrates the complementary case: a formula value that would assign Pure 
+SLM is overridden by Hard Rule 2 because expert level generative tasks under significant financial 
+stakes should not be served autonomously by an SLM. The reverse calculations in Appendix D 
+quantify exactly what would go wrong without these safeguards. 
+8.3 Hardware and Cost Implications 
+For the three confirmed Pure SLM use cases (UC2, UC3, UC4), organizations can serve all queries 
+locally on commodity hardware at zero marginal inference cost. The minimum requirement is an 8 
+GB business workstation for 3B to 4B models, or a 16 GB workstation for 7B to 8B models (Table 
+4). No GPU is required. For Hybrid use cases, the escalation rate determines cost savings: UC1 
+routes the majority of queries locally, escalating only high uncertainty cases to the LLM API. For 
+high volume tasks at tens of tho usands of queries per day, the cost differential between local SLM 
+inference (zero marginal cost) and API calls is substantial. 
+8.4 Practical Guidelines for Technology Managers 
+Based on our results, we recommend the following deployment protocol: 
+• Step 1: Score the workload on six dimensions using Table 1 anchors. Include a domain 
+expert and a compliance reviewer in the scoring session. 
+• Step 2: Check gate rules first. If SK = 5 or (TC = 5 and SK >= 4), assign LLM Only with 
+human oversight. No further analysis is needed. 
+• Step 3: Compute S³ and assign the tier. If the score is within 0.2 of a tier boundary, flag it as 
+sensitive and request additional pilot data. 
+• Step 4: Run a focused benchmark on 30 test items with the top two candidate SLMs. 
+Compare against the LLM baseline using parity at the 95% threshold. 
+• Step 5: Deploy runtime routing once 2 to 4 weeks of production telemetry is available. 
+Monitor per task routing capability and update weekly. 
+• Step 6: Re score S³ when the workload's dimensions materially change (new data type, new 
+SLA, new regulatory scope). 
+Three stage output filtering should be applied in production: input sanitization, constrained decoding 
+to prevent malformed outputs, and post generation semantic checks before execution. For tasks with 
+SK >= 4, all SLM outputs should pass through a human review gate before reaching end users. 
+9. Limitations and Future Research 
+9.1 Threats to Validity 
+
+===== PAGE 13 =====
+
+Decision Framework for SLMs in Enterprise AI 
+13 
+Construct validity. The six S3 dimensions were selected by the research team. Other dimension sets 
+are defensible; the cross framework agreement with SDDF provides evidence but not proof that our 
+six are sufficient. 
+Internal validity. Expert scoring is subjective. We mitigated this through dual scoring and 
+reconciliation, anchored scales identical in structure to clinical severity instruments, 42,43 and 
+commitment of scores before benchmarking. Rater bias cannot be fully eliminated with two raters. 
+External validity. Eight use cases from one academic enterprise context do not generalize to all 
+domains. The framework is intended to be re scored per workload, not transferred wholesale. 
+Statistical validity. The Spearman correlation uses n = 8 task families, which is small. 52 We report 
+the exact p value and note that larger scale replication is needed. 
+9.2 Automated Scoring as Future Work 
+A concurrent effort explored automated S 3 scoring from task prompts, using keyword heuristics, 
+regular expressions, and token count features. We did not adopt automated scoring in this paper 
+because three dimensions, SK (Stakes), DS (Data Sensitivity), and parts of LT (Latency Tolerance), 
+depend on enterprise context that is not recoverable from the task prompt alone. Gate rules are binary 
+safety constraints; a single misclassification of SK can invert the deployment decision. UC6 
+demonstrates this: without  contextual knowledge that the task involves emergency department 
+triage, an automated scorer would need to infer SK = 5 from prompt keywords alone, a fragile and 
+safety critical dependency. We reserve automated scoring for future work, where we plan to 
+combine prompt features with a structured intake form and a retrieval component that surfaces 
+similar prior workloads. 
+9.3 Other Future Directions 
+• Larger cross framework study (n >= 30 task families) to enable parametric inference on the 
+Spearman estimate. 
+• Dynamic operational zones at runtime offering conservative, balanced, and aggressive 
+routing strategies. 
+• Continuous validation with change point detection for streaming telemetry. 
+• Application to multimodal SLMs as vision language models reach the 3B to 8B parameter 
+range. 
+• Inter rater reliability study with n >= 5 independent scorers per use case. 
+• Integration of information theoretic difficulty measures from Shannon entropy³⁶ into the 
+scoring dimensions. 
+10. Conclusion 
+We presented S 3, a six dimension weighted sum decision framework for assigning enterprise AI 
+workloads to Pure SLM, Hybrid, or LLM Only deployment tiers. The framework combines a WSM 
+formula grounded in MCDM theory with prescreening gate rules that enforce non compensato ry 
+safety constraints for high stakes and expert level tasks. 
+Four findings support the framework's validity. First, all eight tier predictions are empirically 
+confirmed, with Pure SLM cases achieving parity at or above 95% and gate locked cases exhibiting 
+the specific failure modes that gate rules target. Second, ga te rules are necessary: three use cases 
+would be misclassified or inadequately safeguarded without them. Third, cross framework 
+
+===== PAGE 14 =====
+
+Decision Framework for SLMs in Enterprise AI 
+14 
+validation against an independent runtime study yields a Spearman rank correlation of negative 0.73 
+(p = 0.01), establishing convergent validity between expert assessment and operational telemetry. 
+Fourth, seven of eight tier assignments are stable across five organizational weight profiles, with the 
+sole sensitive case correctly identified. 
+The framework is designed as an auditable intake protocol for enterprises deciding, workload by 
+workload, which language model tier to deploy. The complete experiment is reproducible on a single 
+16 GB workstation using Ollama and the Groq API free tier. Al l scripts, gold sets, prompts, raw 
+outputs, evaluation reports, and scoring worksheets are available in the project repository. 
+Ethics and Data Statement 
+All gold set items were authored by the research team or derived from public datasets with 
+appropriate licensing. No human subjects data were collected. Personal identifiers in synthetic 
+prompts are fictitious. The clinical triage use case (UC6) uses synth etic vignettes; it is included as 
+a stress test for the gate rule mechanism and is not intended for clinical deployment. 
+References 
+1. H. Touvron, T. Lavril, G. Izacard, X. Martinet, M.A. Lachaux, T. Lacroix, B. Roziere, N. Goyal, E. Hambro, 
+F. Azhar, A. Rodriguez, A. Joulin, E. Grave and G. Lample, LLaMA: Open and efficient foundation language 
+models, arXiv preprint arXiv:2302.13971 (2023). 
+2. A.Q. Jiang, A. Sablayrolles, A. Mensch, C. Bamford, D.S. Chaplot, D. Casas, F. Bressand, G. Lengyel, G. 
+Lample, L. Saulnier and others, Mistral 7B, arXiv preprint arXiv:2310.06825 (2023). 
+3. T. Schick and H. Schutze, It's not just size that matters: Small language models are also few shot learners, 
+in Proc. NAACL (2021), pp. 2339–2352. 
+4. P. Belcak and G. Heinrich, Small language models are the future of agentic AI, arXiv preprint 
+arXiv:2506.02153 (2025). 
+5. G. Hinton, O. Vinyals and J. Dean, Distilling the knowledge in a neural network, arXiv preprint 
+arXiv:1503.02531 (2015). 
+6. T. Dettmers, A. Pagnoni, A. Holtzman and L. Zettlemoyer, QLoRA: Efficient finetuning of quantized LLMs, 
+in Advances in NeurIPS (2023). 
+7. V. Sanh, L. Debut, J. Chaumond and T. Wolf, DistilBERT, a distilled version of BERT: Smaller, faster, 
+cheaper and lighter, arXiv preprint arXiv:1910.01108 (2019). 
+8. P.C. Fishburn, Additive utilities with incomplete product sets: Applications to priorities and assignments, 
+Operations Research 15(3) (1967) 537–542. 
+9. E. Triantaphyllou, Multi -Criteria Decision Making Methods: A Comparative Study (Springer, Boston, 
+2000). 
+10. Ollama Contributors, Ollama: Run large language models locally, https://ollama.com (2024). 
+11. Groq Inc., GroqCloud API documentation, https://console.groq.com/docs (2024). 
+12. T.B. Brown, B. Mann, N. Ryder, M. Subbiah, J. Kaplan, P. Dhariwal, A. Neelakantan, P. Shyam, G. Sastry, 
+A. Askell and others, Language models are few shot learners, in Advances in NeurIPS 33 (2020), pp. 1877 –
+1901. 
+13. J. Kaplan, S. McCandlish, T. Henighan, T.B. Brown, B. Chess, R. Child, S. Gray, A. Radford, J. Wu and 
+D. Amodei, Scaling laws for neural language models, arXiv preprint arXiv:2001.08361 (2020). 
+14. J. Hoffmann, S. Borgeaud, A. Mensch, E. Buchatskaya, T. Cai, E. Rutherford and others, Training compute 
+optimal large language models, in Advances in NeurIPS 35 (2022). 
+15. M. Abdin, S.A. Jacobs, A.A. Awan, J. Aneja, A. Awadallah, H. Awadalla, N. Bach, A. Bahree, A. Bakhtiari, 
+H. Beber and others, Phi 3 technical report: A highly capable language model locally on your phone, arXiv 
+preprint arXiv:2404.14219 (2024). 
+
+===== PAGE 15 =====
+
+Decision Framework for SLMs in Enterprise AI 
+15 
+16. S. Subramanian, V. Elango and M. Gungor, Small language models can still pack a punch, arXiv preprint 
+arXiv:2501.05465 (2025). 
+17. Y. Lu, Z. Li, Y. He, H. Huang, X. Wang, S. Feng, D. Yu and L. Sun, Demystifying small language models 
+for edge deployment, in Proc. ACL (2025). 
+18. Z. Fan, Z. Gao, Y. Li and Y. Feng, Collaborating small and large language models for cost effectiveness 
+and trust, arXiv preprint arXiv:2510.13890 (2025). 
+19. W. Ding, Y. Fan, X. Liang and K. Chang, Hybrid LLM: Cost efficient and quality aware query routing, in 
+Proc. ICLR (2024). 
+20. I. Ong, A. Manickam, S. Rawal, L. Movva, J. Rao, T. Joshi, K. Goel, M. Ding, A. Chundawat, L. Wang, 
+D. Haddock, R. Nanaura and A. Pariani, RouteLLM: Learning to route LLMs with preference data, in Proc. 
+ICLR (2025). 
+21. Q.J. Hu, J. Li, Y. Peng, B. Wen and H. Jagadish, RouterBench: A benchmark for multi LLM routing system, 
+arXiv preprint arXiv:2403.12031 (2024). 
+22. P. Aggarwal, A. Madaan, Y. Yang and A. Mausam, AutoMix: Automatically mixing language models, in 
+Advances in NeurIPS (2024). 
+23. J. Dekoninck, M. Baader and M. Vechev, A unified approach to routing and cascading for LLMs, in Proc. 
+ICML (2025). 
+24. T.L. Saaty, The Analytic Hierarchy Process (McGraw Hill, New York, 1980). 
+25. C.L. Hwang and K. Yoon, Multiple Attribute Decision Making: Methods and Applications (Springer, 
+Berlin, 1981). 
+26. W. Edwards and F.H. Barron, SMARTS and SMARTER: Improved simple methods for multiattribute 
+utility measurement, Organizational Behavior and Human Decision Processes 60(3) (1994) 306–325. 
+27. J.P. Brans and P. Vincke, A preference ranking organisation method: The PROMETHEE method, 
+Management Science 31(6) (1985) 647–656. 
+28. R.L. Keeney and H. Raiffa, Decisions with Multiple Objectives: Preferences and Value Tradeoffs 
+(Cambridge University Press, Cambridge, 1993). 
+29. E. Triantaphyllou and A. Sanchez, A sensitivity analysis approach for some deterministic multi criteria 
+decision making methods, Decision Sciences 28(1) (1997) 151–194. 
+30. E.K. Zavadskas and Z. Turskis, Multiple criteria decision making (MCDM) methods in economics: An 
+overview, Technological and Economic Development of Economy 17(2) (2011) 397–427. 
+31. C. Zopounidis and M. Doumpos, A multicriteria decision aid methodology for sorting decision problems: 
+The case of financial distress, Computational Economics 14 (1999) 197–218. 
+32. K. Belahcene, C. Labreuche, N. Maudet, V. Mousseau and W. Ouerdane, Multiple criteria sorting models 
+and methods: Part I: Survey of the literature, 4OR 21(1) (2023) 1–46. 
+33. F.D. Davis, Perceived usefulness, perceived ease of use, and user acceptance of information technology, 
+MIS Quarterly 13(3) (1989) 319–340. 
+34. V. Venkatesh, M.G. Morris, G.B. Davis and F.D. Davis, User acceptance of information technology: 
+Toward a unified view, MIS Quarterly 27(3) (2003) 425–478. 
+35. L.G. Tornatzky and M. Fleischer, The Processes of Technological Innovation (Lexington Books, 
+Lexington, MA, 1990). 
+36. E.M. Rogers, Diffusion of Innovations, 5th Edition (Free Press, New York, 2003). 
+37. NIST, AI Risk Management Framework (AI RMF 1.0), NIST AI 100-1, National Institute of Standards and 
+Technology (2023). 
+38. European Parliament, Regulation (EU) 2024/1689 on Artificial Intelligence (EU AI Act), Official Journal 
+of the European Union (2024). 
+39. L. Floridi, J. Cowls, M. Beltrametti, R. Chatila, P. Chazerand, V. Dignum, C. Luetge, R. Madelin, U. 
+Pagallo, F. Rossi, B. Schafer, P. Valcke and E. Vayena, AI4People: An ethical framework for a good AI society, 
+Minds and Machines 28(4) (2018) 689–707. 
+40. A.R. Hevner, S.T. March, J. Park and S. Ram, Design science in information systems research, MIS 
+Quarterly 28(1) (2004) 75–105. 
+
+===== PAGE 16 =====
+
+Decision Framework for SLMs in Enterprise AI 
+16 
+41. K. Peffers, T. Tuunanen, M.A. Rothenberger and S. Chatterjee, A design science research methodology for 
+information systems research, Journal of Management Information Systems 24(3) (2007) 45–77. 
+42. W.A. Knaus, E.A. Draper, D.P. Wagner and J.E. Zimmerman, APACHE II: A severity of disease 
+classification system, Critical Care Medicine 13(10) (1985) 818–829. 
+43. W.S. Lim, M.M. van der Eerden, R. Laing, W.G. Boersma, N. Karalus, G.I. Town, S.A. Lewis and J.T. 
+Macfarlane, Defining community acquired pneumonia severity on presentation to hospital (CURB 65), Thorax 
+58(5) (2003) 377–382. 
+44. E.B. Wilson, Probable inference, the law of succession, and statistical inference, Journal of the American 
+Statistical Association 22(158) (1927) 209–212. 
+45. E. Frantar, S. Ashkboos, T. Hoefler and D. Alistarh, GPTQ: Accurate post training quantization for 
+generative pre trained transformers, in Proc. ICLR (2023). 
+46. J. Lin, J. Tang, H. Tang, S. Yang, X. Dang and S. Han, AWQ: Activation aware weight quantization for 
+LLM compression and acceleration, in Proc. MLSys (2024). 
+47. E. Hu, Y. Shen, P. Wallis, Z. Allen Zhu, Y. Li, S. Wang, L. Wang and W. Chen, LoRA: Low rank adaptation 
+of large language models, in Proc. ICLR (2022). 
+48. W. Kwon, Z. Li, S. Zhuang, Y. Sheng, L. Zheng, C.H. Yu, J.E. Gonzalez, H. Zhang and I. Stoica, Efficient 
+memory management for large language model serving with PagedAttention, in Proc. SOSP (2023). 
+49. L. Zheng, W.L. Chiang, Y. Sheng, S. Zhuang, Z. Wu, Y. Zhuang, Z. Lin, Z. Li, D. Li, E.P. Xing, H. Zhang, 
+J.E. Gonzalez and I. Stoica, Judging LLM as a judge with MT Bench and Chatbot Arena, in Advances in 
+NeurIPS 36 (2023). 
+50. M. Sokolova and G. Lapalme, A systematic analysis of performance measures for classification tasks, 
+Information Processing and Management 45(4) (2009) 427–437. 
+51. C. Spearman, The proof and measurement of association between two things, American Journal of 
+Psychology 15(1) (1904) 72–101. 
+52. R.D. Riley, K.I.E. Snell, J. Ensor, D.L. Burke, F.E. Harrell Jr, K.G.M. Moons and G.S. Collins, Minimum 
+sample size for external validation of a clinical prediction model with a binary outcome, Statistics in Medicine 
+40(20) (2021) 4230–4251. 
+  
+
+===== PAGE 17 =====
+
+Decision Framework for SLMs in Enterprise AI 
+17 
+Appendices 
+Appendix A. Worked S³ Calculation: UC4 (Product Review Sentiment) 
+UC4 is a 3 class sentiment classification task (POSITIVE, NEGATIVE, NEUTRAL) on publicly 
+available product reviews. 
+Dimension scores: TC = 1 (near binary difficulty), OS = 5 (single word from closed vocabulary), 
+SK = 1 (no person harmed), DS = 1 (public data), LT = 3 (interactive, P95 < 2 seconds), VL = 3 
+(tens of thousands per day). 
+Weighted sum computation: 
+1 × 3 + 5 × 2 + 1 × 4 + 1 × 2 + 3 × 3 + 3 × 1 = 3 + 10 + 4 + 2 + 9 + 3 = 31 
+S³ = (31 / 75) × 5 = 2.07 
+Gate check: SK = 1 → Pass. No gate rule applies. 
+Tier assignment: 2.07 ≤ 3.2 → Pure SLM. 
+Empirical confirmation: Mistral 7B achieves 95.5% accuracy on the 30 item test split (98.8% 
+parity to LLM baseline at 96.7%). Three additional SLMs achieve parity above 95%. Paired t test: 
+t = 0.89, p = 0.38 (not significant). No class level collapse observed. Assignment confirme d at all 
+three validation layers. 
+Appendix B. Gate Rule Override: UC6 (Clinical Triage, Hard Rule 1) 
+UC6 is a 4 class triage priority classification (CRITICAL, URGENT, SEMIURGENT, 
+NONURGENT) for emergency department patients. 
+Dimension scores: TC = 4 (multi step clinical reasoning), OS = 5 (single label), SK = 5 (patient 
+death from under triage), DS = 4 (PHI under HIPAA), LT = 4 (near real time), VL = 2 (hundreds 
+per day). 
+Weighted sum: 4 × 3 + 5 × 2 + 5 × 4 + 4 × 2 + 4 × 3 + 2 × 1 = 12 + 10 + 20 + 8 + 12 + 2 = 64. S³ = 
+(64/75) × 5 = 4.27. 
+Gate: SK = 5 triggers Hard Rule 1 → Disqualified → LLM Only with mandatory human oversight. 
+Why the gate is load bearing: The top SLM (Llama 3.1 8B) achieves 73.3% overall accuracy, 
+which is 106.4% parity to the LLM baseline (68.9%). By aggregate metrics, the SLM appears 
+competitive. However, class level analysis shows SLM recall on the URGENT class at 0% to 64% 
+across models, versus 82% for the LLM. Systematic under triage of emergent cases is exactly the 
+failure mode Hard Rule 1 targets. The formula score (4.27 > 4.0) already implies LLM Only; the 
+gate provides a categorical guarantee robust to any weight perturbation. 
+Appendix C. Gate Rule Override: UC8 (Financial Report Drafting, Hard Rule 2) 
+UC8 is a free form generative task: produce a 2 to 3 paragraph quarterly earnings summary from 
+financial data. 
+Dimension scores: TC = 5 (multi step generative reasoning across financial metrics), OS = 1 (free 
+form paragraphs), SK = 4 (SEC regulatory risk, investor misleading), DS = 3 (material non public 
+financial data), LT = 2 (batch, minutes acceptable), VL = 1 (dozens per quarter). 
+Weighted sum: 5 × 3 + 1 × 2 + 4 × 4 + 3 × 2 + 2 × 3 + 1 × 1 = 15 + 2 + 16 + 6 + 6 + 1 = 46. S³ = 
+(46/75) × 5 = 3.07. 
+
+===== PAGE 18 =====
+
+Decision Framework for SLMs in Enterprise AI 
+18 
+Critical observation: S³ = 3.07 < 3.2. By formula alone, UC8 would be assigned Pure SLM. 
+However, TC = 5 AND SK = 4 triggers Hard Rule 2 → LLM Only. 
+Empirical confirmation: The best SLM (Llama 3.2 3B) achieves 72.3% (LLM as judge score) 
+versus LLM baseline at 80.6% (89.7% parity), below the 95% threshold for Pure SLM. Manual 
+audit of the 30 item test split reveals 3 fabricated financial figures and 1 misattributed quotation. 
+Expert level generative tasks under significant financial stakes should not be served autonomously 
+by an SLM. 
+Appendix D. Reverse Calculation: What If Gate Rules Were Removed? 
+This appendix quantifies the consequences of removing gate rules from the S³ framework. For each 
+gate locked use case, we show the tier that the formula alone would assign and the empirical 
+evidence that this assignment would be incorrect or dangerous. 
+Table D1. Impact of Removing Gate Rules 
+UC S³ Formula Tier (no 
+gates) 
+Actual Tier (with gates) What Breaks Without Gates 
+6 4.27 LLM Only LLM Only (Hard Rule 1) Same by formula, but under Volume Heavy profile 
+S³ drops to 3.72 → Hybrid. Without HR1, clinical 
+triage could be served by SLM. URGENT under 
+triage risk. 
+7 3.20 Pure SLM (boundary) Hybrid (Flag Rule) Misclassified. 3.20 ≤ 3.2 by formula. SK = 4 means 
+significant legal harm. Benchmark: 92.2% parity < 
+95%. SLM alone insufficient. 
+8 3.07 Pure SLM LLM Only (Hard Rule 2) Misclassified. Formula assigns SLM autonomy for 
+financial report generation. Benchmark: 89.7% 
+parity, 3/30 fabricated figures. 
+ 
+Three use cases would be misclassified or inadequately safeguarded without gate rules. UC7 would 
+lose its safety floor (Flag Rule), allowing autonomous SLM deployment for legal contract analysis 
+with SK = 4. UC8 would be assigned Pure SLM despite expert le vel generative complexity and 
+significant financial stakes. UC6 is protected by both formula and gate, but the gate provides 
+robustness against weight profile changes that could lower the score into the Hybrid range. These 
+results demonstrate that gate rul es are necessary components of the framework, not conservative 
+overhead. 
+Appendix E. Bidirectional Validation Summary (All Eight Use Cases) 
+Table E1. Three Layer Validation Results 
+UC Layer 1 (Predicted) Layer 2 (Empirical) Layer 3 (Reverse) Status 
+1 Hybrid (Flag) Hybrid Compatible Confirmed 
+2 Pure SLM Pure SLM Compatible Confirmed 
+3 Pure SLM Pure SLM Compatible Confirmed 
+4 Pure SLM Pure SLM Compatible Confirmed 
+5 Hybrid (Formula) Hybrid Compatible Confirmed 
+6 LLM Only (Hard Rule 1) LLM Only (gate) Compatible Confirmed 
+7 Hybrid (Flag) Hybrid Compatible Confirmed 
+8 LLM Only (Hard Rule 2) LLM Only (gate) Compatible Confirmed 
+ 
+Agreement across all three layers is 8 of 8. No dimension profile required revision after 
+benchmarking. 
+
+===== PAGE 19 =====
+
+Decision Framework for SLMs in Enterprise AI 
+19 
+Appendix F. SDDF Independent Validation Results 
+The SDDF runtime study was conducted independently on eight NLP task families using three 
+SLMs (Qwen 2.5 at 0.5B, 3B, and 7B parameters) and one LLM baseline (Llama 3.3 70B Versatile 
+via Groq API). Each task family was evaluated on 120 samples per model (total: 3,840 inferences). 
+The first author scored each task family on the S³ dimensions to enable cross framework comparison. 
+Table F1. SDDF Task Family Thresholds and Cross Framework Comparison 
+Task Family Capability 
+Threshold 
+Risk 
+Threshold 
+SDDF 
+Routing 
+S³ Rating Agreement 
+Classification 0.75 0.20 High Low S³ Yes 
+Summarization 0.65 0.35 High Low S³ Yes 
+Information extraction 0.75 0.25 Medium Medium S³ Yes 
+Text generation 0.70 0.30 Medium Medium S³ Yes 
+Instruction following 0.70 0.30 Medium Medium S³ Yes 
+Retrieval grounded 
+QA 
+0.70 0.30 Low High S³ Yes 
+Mathematics 0.65 0.35 Low High S³ Yes 
+Code generation 0.55 0.40 Lowest Highest S³ Yes 
+ 
+Tasks that S 3 rates as harder for SLMs consistently show lower routing capability in SDDF. The 
+Spearman rank correlation between S3 scores and SDDF routing capability is rho = negative 0.73 (p 
+= 0.01, n = 8). Tier level agreement is 6 of 8. The two disagreements (code generation and 
+mathematics) arise because SDDF's learned capability exceeds what S3's gate rules allow; these are 
+resolved in favor of S 3 by policy, since the blueprint's safety constraints take precedence over 
+runtime optimism. 
+This cross framework validation provides convergent evidence that expert assigned S 3 scores and 
+data driven routing capability measure the same underlying construct: a workload's suitability for 
+SLM deployment. 

@@ -1,0 +1,50 @@
+{
+  "spearman": {
+    "corr_s3_cm": -0.26635680195171657,
+    "p_s3_cm": 0.523699417576859,
+    "corr_s3_rm": 0.26635680195171657,
+    "p_s3_rm": 0.523699417576859
+  },
+  "kendall_tau_b": {
+    "corr_s3_cm": -0.16116459280507603,
+    "p_s3_cm": 0.5951631467095725,
+    "corr_s3_rm": 0.16116459280507603,
+    "p_s3_rm": 0.5951631467095725
+  },
+  "tier_correctness": {
+    "matches": 3,
+    "underestimations": 4,
+    "overestimations": 1,
+    "convergence_rate": 0.375
+  },
+  "decision_quality": {
+    "decision_accuracy": 0.5
+  },
+  "macro_label_metrics_excluding_uc8": {
+    "runtime_acc_macro": 0.7857142857142857,
+    "runtime_f1_macro": 0.7266099773242631,
+    "runtime_failure_macro": 0.21428571428571425,
+    "llm_only_acc_macro": 0.7857142857142857,
+    "llm_only_f1_macro": 0.7201814058956917,
+    "llm_only_failure_macro": 0.21428571428571427,
+    "slm_only_acc_macro": 0.8095238095238095,
+    "slm_only_f1_macro": 0.7793650793650793,
+    "slm_only_failure_macro": 0.19047619047619047
+  },
+  "tradeoff_summary": {
+    "runtime_p95_mean_ms": 3381.6490625000006,
+    "llm_only_p95_mean_ms": 2111.175,
+    "slm_only_p95_mean_ms": 2799.6375,
+    "runtime_cost_low_mean": 35848.536250000005,
+    "runtime_cost_high_mean": 71766.875,
+    "llm_only_cost_low": 50000.0,
+    "llm_only_cost_high": 100000.0,
+    "slm_only_cost_low": 127.0,
+    "slm_only_cost_high": 500.0
+  },
+  "failure_typology_counts_best_slm": {
+    "hard_failure": 108,
+    "wrong_prediction": 15,
+    "none": 21
+  }
+}
