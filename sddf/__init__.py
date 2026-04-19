@@ -27,6 +27,21 @@ from .s3_feature_scoring import (
 )
 from .s3_policy_update import recommend_s3_score_overrides, recommend_task_tier_thresholds
 from .s3_runtime_policy import enforce_runtime_policy
+from .frozen_thresholds import (
+    FROZEN_TAU_CONSENSUS,
+    get_frozen_threshold,
+    validate_task_family,
+    all_frozen_thresholds,
+)
+from .runtime_routing import (
+    route_query,
+    aggregate_routing_ratio,
+    consensus_routing_ratio,
+    tier_from_consensus_ratio,
+    route_use_case,
+    route_query_multimodel,
+    route_use_case_multimodel,
+)
 
 __all__ = [
     "annotate_dominant_dimension",
@@ -53,4 +68,15 @@ __all__ = [
     "enforce_runtime_policy",
     "recommend_task_tier_thresholds",
     "recommend_s3_score_overrides",
+    "FROZEN_TAU_CONSENSUS",
+    "get_frozen_threshold",
+    "validate_task_family",
+    "all_frozen_thresholds",
+    "route_query",
+    "aggregate_routing_ratio",
+    "consensus_routing_ratio",
+    "tier_from_consensus_ratio",
+    "route_use_case",
+    "route_query_multimodel",
+    "route_use_case_multimodel",
 ]

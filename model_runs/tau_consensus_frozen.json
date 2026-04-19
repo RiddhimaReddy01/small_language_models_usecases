@@ -1,0 +1,10 @@
+{
+  "classification": 0.4284284284284284,
+  "code_generation": 0.5035035035035035,
+  "information_extraction": 0.19352686019352683,
+  "instruction_following": 0.1314647981314648,
+  "maths": 0.7542542542542543,
+  "retrieval_grounded": 0.15682349015682348,
+  "summarization": 0.3513513513513513,
+  "text_generation": 0.055055055055055056
+}

@@ -1,0 +1,82 @@
+{
+  "classification": {
+    "routing_ratio": 0.46296296296296297,
+    "capability_slm": 0.7466666666666667,
+    "capability_llm": 0.3333333333333333,
+    "capability_overall": 0.5246913580246914,
+    "risk_slm": 0.25333333333333335,
+    "risk_llm": 0.6666666666666666,
+    "slm_routed": 75,
+    "llm_routed": 87
+  },
+  "code_generation": {
+    "routing_ratio": 0.5272727272727272,
+    "capability_slm": 0.7701149425287356,
+    "capability_llm": 0.34615384615384615,
+    "capability_overall": 0.5696969696969697,
+    "risk_slm": 0.22988505747126436,
+    "risk_llm": 0.6538461538461539,
+    "slm_routed": 87,
+    "llm_routed": 78
+  },
+  "information_extraction": {
+    "routing_ratio": 0.10714285714285714,
+    "capability_slm": 0.3333333333333333,
+    "capability_llm": 0.6,
+    "capability_overall": 0.5714285714285714,
+    "risk_slm": 0.6666666666666666,
+    "risk_llm": 0.4,
+    "slm_routed": 9,
+    "llm_routed": 75
+  },
+  "instruction_following": {
+    "routing_ratio": 0.022727272727272728,
+    "capability_slm": 0.6666666666666666,
+    "capability_llm": 0.689922480620155,
+    "capability_overall": 0.6893939393939394,
+    "risk_slm": 0.3333333333333333,
+    "risk_llm": 0.31007751937984496,
+    "slm_routed": 3,
+    "llm_routed": 129
+  },
+  "maths": {
+    "routing_ratio": 0.8043478260869565,
+    "capability_slm": 0.4864864864864865,
+    "capability_llm": 0.037037037037037035,
+    "capability_overall": 0.39855072463768115,
+    "risk_slm": 0.5135135135135135,
+    "risk_llm": 0.9629629629629629,
+    "slm_routed": 111,
+    "llm_routed": 27
+  },
+  "retrieval_grounded": {
+    "routing_ratio": 0.0,
+    "capability_slm": 0.0,
+    "capability_llm": 0.610062893081761,
+    "capability_overall": 0.610062893081761,
+    "risk_slm": 0.0,
+    "risk_llm": 0.389937106918239,
+    "slm_routed": 0,
+    "llm_routed": 159
+  },
+  "summarization": {
+    "routing_ratio": 0.6666666666666666,
+    "capability_slm": 0.7192982456140351,
+    "capability_llm": 0.543859649122807,
+    "capability_overall": 0.6608187134502924,
+    "risk_slm": 0.2807017543859649,
+    "risk_llm": 0.45614035087719296,
+    "slm_routed": 114,
+    "llm_routed": 57
+  },
+  "text_generation": {
+    "routing_ratio": 0.023809523809523808,
+    "capability_slm": 1.0,
+    "capability_llm": 0.5691056910569106,
+    "capability_overall": 0.5793650793650794,
+    "risk_slm": 0.0,
+    "risk_llm": 0.43089430894308944,
+    "slm_routed": 3,
+    "llm_routed": 123
+  }
+}
