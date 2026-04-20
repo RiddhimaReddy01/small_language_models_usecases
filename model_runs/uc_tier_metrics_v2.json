@@ -1,0 +1,779 @@
+{
+  "metrics_description": {
+    "tier_diversity_score": "How balanced are tiers? (0-1, higher=balanced)",
+    "robustness_score": "How stable are assignments? (0-1, higher=stable)",
+    "mean_confidence": "How certain are assignments? (0-100%, higher=certain)",
+    "min_confidence": "What's the riskiest UC? (0-100%, higher=safer)",
+    "gap": "HYBRID zone width (higher=more separation)"
+  },
+  "sweep_results": [
+    {
+      "slm_threshold": 0.5,
+      "llm_threshold": 0.1,
+      "tier_diversity_score": 0.2187499999999999,
+      "robustness_score": 1.0,
+      "mean_confidence": 80.05833333333334,
+      "min_confidence": 38.79999999999999,
+      "riskiest_uc": "UC1",
+      "gap": 0.4,
+      "tier_counts": {
+        "SLM": 6,
+        "HYBRID": 1,
+        "LLM": 1
+      },
+      "slm_coverage": 0.75
+    },
+    {
+      "slm_threshold": 0.5,
+      "llm_threshold": 0.15000000000000002,
+      "tier_diversity_score": 0.2187499999999999,
+      "robustness_score": 1.0,
+      "mean_confidence": 80.94126984126984,
+      "min_confidence": 38.79999999999999,
+      "riskiest_uc": "UC1",
+      "gap": 0.35,
+      "tier_counts": {
+        "SLM": 6,
+        "HYBRID": 1,
+        "LLM": 1
+      },
+      "slm_coverage": 0.75
+    },
+    {
+      "slm_threshold": 0.5,
+      "llm_threshold": 0.20000000000000004,
+      "tier_diversity_score": 0.2187499999999999,
+      "robustness_score": 1.0,
+      "mean_confidence": 80.61388888888888,
+      "min_confidence": 38.79999999999999,
+      "riskiest_uc": "UC1",
+      "gap": 0.29999999999999993,
+      "tier_counts": {
+        "SLM": 6,
+        "HYBRID": 1,
+        "LLM": 1
+      },
+      "slm_coverage": 0.75
+    },
+    {
+      "slm_threshold": 0.5,
+      "llm_threshold": 0.25000000000000006,
+      "tier_diversity_score": 0.2187499999999999,
+      "robustness_score": 1.0,
+      "mean_confidence": 79.26666666666667,
+      "min_confidence": 33.33333333333331,
+      "riskiest_uc": "UC2",
+      "gap": 0.24999999999999994,
+      "tier_counts": {
+        "SLM": 6,
+        "HYBRID": 1,
+        "LLM": 1
+      },
+      "slm_coverage": 0.75
+    },
+    {
+      "slm_threshold": 0.5,
+      "llm_threshold": 0.30000000000000004,
+      "tier_diversity_score": 0.2187499999999999,
+      "robustness_score": 1.0,
+      "mean_confidence": 77.21111111111111,
+      "min_confidence": 16.66666666666664,
+      "riskiest_uc": "UC2",
+      "gap": 0.19999999999999996,
+      "tier_counts": {
+        "SLM": 6,
+        "HYBRID": 1,
+        "LLM": 1
+      },
+      "slm_coverage": 0.75
+    },
+    {
+      "slm_threshold": 0.5,
+      "llm_threshold": 0.3500000000000001,
+      "tier_diversity_score": 0.1250000000000001,
+      "robustness_score": 1.0,
+      "mean_confidence": 75.74285714285713,
+      "min_confidence": 4.761904761904791,
+      "riskiest_uc": "UC2",
+      "gap": 0.1499999999999999,
+      "tier_counts": {
+        "SLM": 6,
+        "HYBRID": 0,
+        "LLM": 2
+      },
+      "slm_coverage": 0.75
+    },
+    {
+      "slm_threshold": 0.55,
+      "llm_threshold": 0.1,
+      "tier_diversity_score": 0.2187499999999999,
+      "robustness_score": 1.0,
+      "mean_confidence": 79.50925925925927,
+      "min_confidence": 31.999999999999986,
+      "riskiest_uc": "UC1",
+      "gap": 0.45000000000000007,
+      "tier_counts": {
+        "SLM": 6,
+        "HYBRID": 1,
+        "LLM": 1
+      },
+      "slm_coverage": 0.75
+    },
+    {
+      "slm_threshold": 0.55,
+      "llm_threshold": 0.15000000000000002,
+      "tier_diversity_score": 0.2187499999999999,
+      "robustness_score": 1.0,
+      "mean_confidence": 79.35879629629629,
+      "min_confidence": 31.999999999999986,
+      "riskiest_uc": "UC1",
+      "gap": 0.4,
+      "tier_counts": {
+        "SLM": 6,
+        "HYBRID": 1,
+        "LLM": 1
+      },
+      "slm_coverage": 0.75
+    },
+    {
+      "slm_threshold": 0.55,
+      "llm_threshold": 0.20000000000000004,
+      "tier_diversity_score": 0.2187499999999999,
+      "robustness_score": 1.0,
+      "mean_confidence": 78.46097883597884,
+      "min_confidence": 31.999999999999986,
+      "riskiest_uc": "UC1",
+      "gap": 0.35,
+      "tier_counts": {
+        "SLM": 6,
+        "HYBRID": 1,
+        "LLM": 1
+      },
+      "slm_coverage": 0.75
+    },
+    {
+      "slm_threshold": 0.55,
+      "llm_threshold": 0.25000000000000006,
+      "tier_diversity_score": 0.2187499999999999,
+      "robustness_score": 1.0,
+      "mean_confidence": 77.21296296296296,
+      "min_confidence": 27.777777777777757,
+      "riskiest_uc": "UC2",
+      "gap": 0.3,
+      "tier_counts": {
+        "SLM": 6,
+        "HYBRID": 1,
+        "LLM": 1
+      },
+      "slm_coverage": 0.75
+    },
+    {
+      "slm_threshold": 0.55,
+      "llm_threshold": 0.30000000000000004,
+      "tier_diversity_score": 0.2187499999999999,
+      "robustness_score": 1.0,
+      "mean_confidence": 75.43518518518518,
+      "min_confidence": 13.333333333333307,
+      "riskiest_uc": "UC2",
+      "gap": 0.25,
+      "tier_counts": {
+        "SLM": 6,
+        "HYBRID": 1,
+        "LLM": 1
+      },
+      "slm_coverage": 0.75
+    },
+    {
+      "slm_threshold": 0.55,
+      "llm_threshold": 0.3500000000000001,
+      "tier_diversity_score": 0.1250000000000001,
+      "robustness_score": 1.0,
+      "mean_confidence": 74.38359788359787,
+      "min_confidence": 4.761904761904791,
+      "riskiest_uc": "UC2",
+      "gap": 0.19999999999999996,
+      "tier_counts": {
+        "SLM": 6,
+        "HYBRID": 0,
+        "LLM": 2
+      },
+      "slm_coverage": 0.75
+    },
+    {
+      "slm_threshold": 0.6000000000000001,
+      "llm_threshold": 0.1,
+      "tier_diversity_score": 0.2187499999999999,
+      "robustness_score": 1.0,
+      "mean_confidence": 77.625,
+      "min_confidence": 23.49999999999997,
+      "riskiest_uc": "UC1",
+      "gap": 0.5000000000000001,
+      "tier_counts": {
+        "SLM": 6,
+        "HYBRID": 1,
+        "LLM": 1
+      },
+      "slm_coverage": 0.75
+    },
+    {
+      "slm_threshold": 0.6000000000000001,
+      "llm_threshold": 0.15000000000000002,
+      "tier_diversity_score": 0.2187499999999999,
+      "robustness_score": 1.0,
+      "mean_confidence": 77.02314814814814,
+      "min_confidence": 23.49999999999997,
+      "riskiest_uc": "UC1",
+      "gap": 0.45000000000000007,
+      "tier_counts": {
+        "SLM": 6,
+        "HYBRID": 1,
+        "LLM": 1
+      },
+      "slm_coverage": 0.75
+    },
+    {
+      "slm_threshold": 0.6000000000000001,
+      "llm_threshold": 0.20000000000000004,
+      "tier_diversity_score": 0.2187499999999999,
+      "robustness_score": 1.0,
+      "mean_confidence": 76.16666666666666,
+      "min_confidence": 23.49999999999997,
+      "riskiest_uc": "UC1",
+      "gap": 0.4,
+      "tier_counts": {
+        "SLM": 6,
+        "HYBRID": 1,
+        "LLM": 1
+      },
+      "slm_coverage": 0.75
+    },
+    {
+      "slm_threshold": 0.6000000000000001,
+      "llm_threshold": 0.25000000000000006,
+      "tier_diversity_score": 0.2187499999999999,
+      "robustness_score": 1.0,
+      "mean_confidence": 75.01785714285714,
+      "min_confidence": 23.49999999999997,
+      "riskiest_uc": "UC1",
+      "gap": 0.35000000000000003,
+      "tier_counts": {
+        "SLM": 6,
+        "HYBRID": 1,
+        "LLM": 1
+      },
+      "slm_coverage": 0.75
+    },
+    {
+      "slm_threshold": 0.6000000000000001,
+      "llm_threshold": 0.30000000000000004,
+      "tier_diversity_score": 0.2187499999999999,
+      "robustness_score": 1.0,
+      "mean_confidence": 73.45833333333333,
+      "min_confidence": 11.111111111111088,
+      "riskiest_uc": "UC2",
+      "gap": 0.30000000000000004,
+      "tier_counts": {
+        "SLM": 6,
+        "HYBRID": 1,
+        "LLM": 1
+      },
+      "slm_coverage": 0.75
+    },
+    {
+      "slm_threshold": 0.6000000000000001,
+      "llm_threshold": 0.3500000000000001,
+      "tier_diversity_score": 0.1250000000000001,
+      "robustness_score": 1.0,
+      "mean_confidence": 72.68452380952381,
+      "min_confidence": 4.761904761904791,
+      "riskiest_uc": "UC2",
+      "gap": 0.25,
+      "tier_counts": {
+        "SLM": 6,
+        "HYBRID": 0,
+        "LLM": 2
+      },
+      "slm_coverage": 0.75
+    },
+    {
+      "slm_threshold": 0.6500000000000001,
+      "llm_threshold": 0.1,
+      "tier_diversity_score": 0.2187499999999999,
+      "robustness_score": 1.0,
+      "mean_confidence": 74.91017316017314,
+      "min_confidence": 12.571428571428525,
+      "riskiest_uc": "UC1",
+      "gap": 0.5500000000000002,
+      "tier_counts": {
+        "SLM": 6,
+        "HYBRID": 1,
+        "LLM": 1
+      },
+      "slm_coverage": 0.75
+    },
+    {
+      "slm_threshold": 0.6500000000000001,
+      "llm_threshold": 0.15000000000000002,
+      "tier_diversity_score": 0.2187499999999999,
+      "robustness_score": 1.0,
+      "mean_confidence": 74.32936507936506,
+      "min_confidence": 12.571428571428525,
+      "riskiest_uc": "UC1",
+      "gap": 0.5000000000000001,
+      "tier_counts": {
+        "SLM": 6,
+        "HYBRID": 1,
+        "LLM": 1
+      },
+      "slm_coverage": 0.75
+    },
+    {
+      "slm_threshold": 0.6500000000000001,
+      "llm_threshold": 0.20000000000000004,
+      "tier_diversity_score": 0.2187499999999999,
+      "robustness_score": 1.0,
+      "mean_confidence": 73.51917989417989,
+      "min_confidence": 12.571428571428525,
+      "riskiest_uc": "UC1",
+      "gap": 0.45000000000000007,
+      "tier_counts": {
+        "SLM": 6,
+        "HYBRID": 1,
+        "LLM": 1
+      },
+      "slm_coverage": 0.75
+    },
+    {
+      "slm_threshold": 0.6500000000000001,
+      "llm_threshold": 0.25000000000000006,
+      "tier_diversity_score": 0.2187499999999999,
+      "robustness_score": 1.0,
+      "mean_confidence": 72.46130952380952,
+      "min_confidence": 12.571428571428525,
+      "riskiest_uc": "UC1",
+      "gap": 0.4000000000000001,
+      "tier_counts": {
+        "SLM": 6,
+        "HYBRID": 1,
+        "LLM": 1
+      },
+      "slm_coverage": 0.75
+    },
+    {
+      "slm_threshold": 0.6500000000000001,
+      "llm_threshold": 0.30000000000000004,
+      "tier_diversity_score": 0.2187499999999999,
+      "robustness_score": 1.0,
+      "mean_confidence": 71.07539682539681,
+      "min_confidence": 9.523809523809504,
+      "riskiest_uc": "UC2",
+      "gap": 0.3500000000000001,
+      "tier_counts": {
+        "SLM": 6,
+        "HYBRID": 1,
+        "LLM": 1
+      },
+      "slm_coverage": 0.75
+    },
+    {
+      "slm_threshold": 0.6500000000000001,
+      "llm_threshold": 0.3500000000000001,
+      "tier_diversity_score": 0.1250000000000001,
+      "robustness_score": 1.0,
+      "mean_confidence": 70.5,
+      "min_confidence": 4.761904761904791,
+      "riskiest_uc": "UC2",
+      "gap": 0.30000000000000004,
+      "tier_counts": {
+        "SLM": 6,
+        "HYBRID": 0,
+        "LLM": 2
+      },
+      "slm_coverage": 0.75
+    },
+    {
+      "slm_threshold": 0.7000000000000002,
+      "llm_threshold": 0.1,
+      "tier_diversity_score": 0.59375,
+      "robustness_score": 1.0,
+      "mean_confidence": 71.93055555555556,
+      "min_confidence": 1.0000000000000375,
+      "riskiest_uc": "UC1",
+      "gap": 0.6000000000000002,
+      "tier_counts": {
+        "SLM": 5,
+        "HYBRID": 2,
+        "LLM": 1
+      },
+      "slm_coverage": 0.625
+    },
+    {
+      "slm_threshold": 0.7000000000000002,
+      "llm_threshold": 0.15000000000000002,
+      "tier_diversity_score": 0.59375,
+      "robustness_score": 1.0,
+      "mean_confidence": 71.38636363636363,
+      "min_confidence": 1.090909090909132,
+      "riskiest_uc": "UC1",
+      "gap": 0.5500000000000002,
+      "tier_counts": {
+        "SLM": 5,
+        "HYBRID": 2,
+        "LLM": 1
+      },
+      "slm_coverage": 0.625
+    },
+    {
+      "slm_threshold": 0.7000000000000002,
+      "llm_threshold": 0.20000000000000004,
+      "tier_diversity_score": 0.59375,
+      "robustness_score": 1.0,
+      "mean_confidence": 70.63611111111112,
+      "min_confidence": 1.200000000000045,
+      "riskiest_uc": "UC1",
+      "gap": 0.5000000000000001,
+      "tier_counts": {
+        "SLM": 5,
+        "HYBRID": 2,
+        "LLM": 1
+      },
+      "slm_coverage": 0.625
+    },
+    {
+      "slm_threshold": 0.7000000000000002,
+      "llm_threshold": 0.25000000000000006,
+      "tier_diversity_score": 0.59375,
+      "robustness_score": 1.0,
+      "mean_confidence": 69.67592592592592,
+      "min_confidence": 1.3333333333333837,
+      "riskiest_uc": "UC1",
+      "gap": 0.4500000000000001,
+      "tier_counts": {
+        "SLM": 5,
+        "HYBRID": 2,
+        "LLM": 1
+      },
+      "slm_coverage": 0.625
+    },
+    {
+      "slm_threshold": 0.7000000000000002,
+      "llm_threshold": 0.30000000000000004,
+      "tier_diversity_score": 0.59375,
+      "robustness_score": 1.0,
+      "mean_confidence": 68.45138888888889,
+      "min_confidence": 1.5000000000000564,
+      "riskiest_uc": "UC1",
+      "gap": 0.40000000000000013,
+      "tier_counts": {
+        "SLM": 5,
+        "HYBRID": 2,
+        "LLM": 1
+      },
+      "slm_coverage": 0.625
+    },
+    {
+      "slm_threshold": 0.7000000000000002,
+      "llm_threshold": 0.3500000000000001,
+      "tier_diversity_score": 0.59375,
+      "robustness_score": 1.0,
+      "mean_confidence": 68.0515873015873,
+      "min_confidence": 1.7142857142857788,
+      "riskiest_uc": "UC1",
+      "gap": 0.3500000000000001,
+      "tier_counts": {
+        "SLM": 5,
+        "HYBRID": 1,
+        "LLM": 2
+      },
+      "slm_coverage": 0.625
+    },
+    {
+      "slm_threshold": 0.7500000000000002,
+      "llm_threshold": 0.1,
+      "tier_diversity_score": 0.59375,
+      "robustness_score": 0.907916666666666,
+      "mean_confidence": 70.98076923076923,
+      "min_confidence": 8.615384615384654,
+      "riskiest_uc": "UC1",
+      "gap": 0.6500000000000002,
+      "tier_counts": {
+        "SLM": 5,
+        "HYBRID": 2,
+        "LLM": 1
+      },
+      "slm_coverage": 0.625
+    },
+    {
+      "slm_threshold": 0.7500000000000002,
+      "llm_threshold": 0.15000000000000002,
+      "tier_diversity_score": 0.59375,
+      "robustness_score": 0.9079166666666662,
+      "mean_confidence": 70.54166666666666,
+      "min_confidence": 9.333333333333375,
+      "riskiest_uc": "UC1",
+      "gap": 0.6000000000000002,
+      "tier_counts": {
+        "SLM": 5,
+        "HYBRID": 2,
+        "LLM": 1
+      },
+      "slm_coverage": 0.625
+    },
+    {
+      "slm_threshold": 0.7500000000000002,
+      "llm_threshold": 0.20000000000000004,
+      "tier_diversity_score": 0.59375,
+      "robustness_score": 0.9079166666666662,
+      "mean_confidence": 69.92803030303031,
+      "min_confidence": 10.181818181818228,
+      "riskiest_uc": "UC1",
+      "gap": 0.5500000000000002,
+      "tier_counts": {
+        "SLM": 5,
+        "HYBRID": 2,
+        "LLM": 1
+      },
+      "slm_coverage": 0.625
+    },
+    {
+      "slm_threshold": 0.7500000000000002,
+      "llm_threshold": 0.25000000000000006,
+      "tier_diversity_score": 0.59375,
+      "robustness_score": 0.907916666666666,
+      "mean_confidence": 69.15,
+      "min_confidence": 11.200000000000049,
+      "riskiest_uc": "UC1",
+      "gap": 0.5000000000000002,
+      "tier_counts": {
+        "SLM": 5,
+        "HYBRID": 2,
+        "LLM": 1
+      },
+      "slm_coverage": 0.625
+    },
+    {
+      "slm_threshold": 0.7500000000000002,
+      "llm_threshold": 0.30000000000000004,
+      "tier_diversity_score": 0.59375,
+      "robustness_score": 0.907916666666666,
+      "mean_confidence": 68.17592592592592,
+      "min_confidence": 7.407407407407391,
+      "riskiest_uc": "UC2",
+      "gap": 0.4500000000000002,
+      "tier_counts": {
+        "SLM": 5,
+        "HYBRID": 2,
+        "LLM": 1
+      },
+      "slm_coverage": 0.625
+    },
+    {
+      "slm_threshold": 0.7500000000000002,
+      "llm_threshold": 0.3500000000000001,
+      "tier_diversity_score": 0.59375,
+      "robustness_score": 0.9287499999999995,
+      "mean_confidence": 68.05952380952381,
+      "min_confidence": 4.761904761904791,
+      "riskiest_uc": "UC2",
+      "gap": 0.40000000000000013,
+      "tier_counts": {
+        "SLM": 5,
+        "HYBRID": 1,
+        "LLM": 2
+      },
+      "slm_coverage": 0.625
+    },
+    {
+      "slm_threshold": 0.8000000000000003,
+      "llm_threshold": 0.1,
+      "tier_diversity_score": 0.59375,
+      "robustness_score": 0.7829166666666659,
+      "mean_confidence": 69.1845238095238,
+      "min_confidence": 15.142857142857183,
+      "riskiest_uc": "UC1",
+      "gap": 0.7000000000000003,
+      "tier_counts": {
+        "SLM": 5,
+        "HYBRID": 2,
+        "LLM": 1
+      },
+      "slm_coverage": 0.625
+    },
+    {
+      "slm_threshold": 0.8000000000000003,
+      "llm_threshold": 0.15000000000000002,
+      "tier_diversity_score": 0.59375,
+      "robustness_score": 0.782916666666666,
+      "mean_confidence": 68.82799145299144,
+      "min_confidence": 16.30769230769235,
+      "riskiest_uc": "UC1",
+      "gap": 0.6500000000000002,
+      "tier_counts": {
+        "SLM": 5,
+        "HYBRID": 2,
+        "LLM": 1
+      },
+      "slm_coverage": 0.625
+    },
+    {
+      "slm_threshold": 0.8000000000000003,
+      "llm_threshold": 0.20000000000000004,
+      "tier_diversity_score": 0.59375,
+      "robustness_score": 0.782916666666666,
+      "mean_confidence": 68.31944444444443,
+      "min_confidence": 17.666666666666714,
+      "riskiest_uc": "UC1",
+      "gap": 0.6000000000000002,
+      "tier_counts": {
+        "SLM": 5,
+        "HYBRID": 2,
+        "LLM": 1
+      },
+      "slm_coverage": 0.625
+    },
+    {
+      "slm_threshold": 0.8000000000000003,
+      "llm_threshold": 0.25000000000000006,
+      "tier_diversity_score": 0.59375,
+      "robustness_score": 0.7829166666666659,
+      "mean_confidence": 67.67803030303028,
+      "min_confidence": 15.15151515151513,
+      "riskiest_uc": "UC2",
+      "gap": 0.5500000000000003,
+      "tier_counts": {
+        "SLM": 5,
+        "HYBRID": 2,
+        "LLM": 1
+      },
+      "slm_coverage": 0.625
+    },
+    {
+      "slm_threshold": 0.8000000000000003,
+      "llm_threshold": 0.30000000000000004,
+      "tier_diversity_score": 0.59375,
+      "robustness_score": 0.7829166666666659,
+      "mean_confidence": 66.8861111111111,
+      "min_confidence": 6.666666666666651,
+      "riskiest_uc": "UC2",
+      "gap": 0.5000000000000002,
+      "tier_counts": {
+        "SLM": 5,
+        "HYBRID": 2,
+        "LLM": 1
+      },
+      "slm_coverage": 0.625
+    },
+    {
+      "slm_threshold": 0.8000000000000003,
+      "llm_threshold": 0.3500000000000001,
+      "tier_diversity_score": 0.59375,
+      "robustness_score": 0.8037499999999995,
+      "mean_confidence": 66.96230158730158,
+      "min_confidence": 4.761904761904791,
+      "riskiest_uc": "UC2",
+      "gap": 0.4500000000000002,
+      "tier_counts": {
+        "SLM": 5,
+        "HYBRID": 1,
+        "LLM": 2
+      },
+      "slm_coverage": 0.625
+    },
+    {
+      "slm_threshold": 0.8500000000000003,
+      "llm_threshold": 0.1,
+      "tier_diversity_score": 0.59375,
+      "robustness_score": 0.6579166666666658,
+      "mean_confidence": 65.79444444444442,
+      "min_confidence": 17.33333333333316,
+      "riskiest_uc": "UC4",
+      "gap": 0.7500000000000003,
+      "tier_counts": {
+        "SLM": 5,
+        "HYBRID": 2,
+        "LLM": 1
+      },
+      "slm_coverage": 0.625
+    },
+    {
+      "slm_threshold": 0.8500000000000003,
+      "llm_threshold": 0.15000000000000002,
+      "tier_diversity_score": 0.59375,
+      "robustness_score": 0.6579166666666659,
+      "mean_confidence": 65.50396825396822,
+      "min_confidence": 17.33333333333316,
+      "riskiest_uc": "UC4",
+      "gap": 0.7000000000000003,
+      "tier_counts": {
+        "SLM": 5,
+        "HYBRID": 2,
+        "LLM": 1
+      },
+      "slm_coverage": 0.625
+    },
+    {
+      "slm_threshold": 0.8500000000000003,
+      "llm_threshold": 0.20000000000000004,
+      "tier_diversity_score": 0.59375,
+      "robustness_score": 0.6579166666666659,
+      "mean_confidence": 65.07799145299143,
+      "min_confidence": 17.33333333333316,
+      "riskiest_uc": "UC4",
+      "gap": 0.6500000000000002,
+      "tier_counts": {
+        "SLM": 5,
+        "HYBRID": 2,
+        "LLM": 1
+      },
+      "slm_coverage": 0.625
+    },
+    {
+      "slm_threshold": 0.8500000000000003,
+      "llm_threshold": 0.25000000000000006,
+      "tier_diversity_score": 0.59375,
+      "robustness_score": 0.6579166666666658,
+      "mean_confidence": 64.54166666666664,
+      "min_confidence": 13.88888888888887,
+      "riskiest_uc": "UC2",
+      "gap": 0.6000000000000003,
+      "tier_counts": {
+        "SLM": 5,
+        "HYBRID": 2,
+        "LLM": 1
+      },
+      "slm_coverage": 0.625
+    },
+    {
+      "slm_threshold": 0.8500000000000003,
+      "llm_threshold": 0.30000000000000004,
+      "tier_diversity_score": 0.59375,
+      "robustness_score": 0.6579166666666658,
+      "mean_confidence": 63.88636363636361,
+      "min_confidence": 6.060606060606046,
+      "riskiest_uc": "UC2",
+      "gap": 0.5500000000000003,
+      "tier_counts": {
+        "SLM": 5,
+        "HYBRID": 2,
+        "LLM": 1
+      },
+      "slm_coverage": 0.625
+    },
+    {
+      "slm_threshold": 0.8500000000000003,
+      "llm_threshold": 0.3500000000000001,
+      "tier_diversity_score": 0.59375,
+      "robustness_score": 0.6787499999999993,
+      "mean_confidence": 64.09841269841267,
+      "min_confidence": 4.761904761904791,
+      "riskiest_uc": "UC2",
+      "gap": 0.5000000000000002,
+      "tier_counts": {
+        "SLM": 5,
+        "HYBRID": 1,
+        "LLM": 2
+      },
+      "slm_coverage": 0.625
+    }
+  ]
+}
