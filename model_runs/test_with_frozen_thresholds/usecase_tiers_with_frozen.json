@@ -1,0 +1,196 @@
+{
+  "summary": {
+    "total_usecases": 8,
+    "validation_tiers": {
+      "SLM": 8,
+      "HYBRID": 0,
+      "LLM": 0
+    },
+    "test_tiers": {
+      "SLM": 1,
+      "HYBRID": 1,
+      "LLM": 6
+    },
+    "tier_agreement": "1/8"
+  },
+  "validation": {
+    "UC1": {
+      "usecase_id": "UC1",
+      "name": "SMS Threat Detection",
+      "task_family": "classification",
+      "domain": "cybersecurity",
+      "description": "Classify SMS messages as threat/benign",
+      "tier": "SLM",
+      "rho_bar": 1.0,
+      "explanation": "High SLM routing confidence (rho_bar=1.0000 >= 0.70)",
+      "error": false
+    },
+    "UC2": {
+      "usecase_id": "UC2",
+      "name": "Invoice Field Extraction",
+      "task_family": "information_extraction",
+      "domain": "finance",
+      "description": "Extract fixed fields from invoice documents",
+      "tier": "SLM",
+      "rho_bar": 1.0,
+      "explanation": "High SLM routing confidence (rho_bar=1.0000 >= 0.70)",
+      "error": false
+    },
+    "UC3": {
+      "usecase_id": "UC3",
+      "name": "Support Ticket Routing",
+      "task_family": "classification",
+      "domain": "customer_service",
+      "description": "Route support tickets into fixed categories",
+      "tier": "SLM",
+      "rho_bar": 1.0,
+      "explanation": "High SLM routing confidence (rho_bar=1.0000 >= 0.70)",
+      "error": false
+    },
+    "UC4": {
+      "usecase_id": "UC4",
+      "name": "Product Review Sentiment",
+      "task_family": "classification",
+      "domain": "customer_service",
+      "description": "Predict sentiment class from product reviews",
+      "tier": "SLM",
+      "rho_bar": 1.0,
+      "explanation": "High SLM routing confidence (rho_bar=1.0000 >= 0.70)",
+      "error": false
+    },
+    "UC5": {
+      "usecase_id": "UC5",
+      "name": "Automated Code Review",
+      "task_family": "code_generation",
+      "domain": "developer_tools",
+      "description": "Classify code issues and suggest fixes",
+      "tier": "SLM",
+      "rho_bar": 1.0,
+      "explanation": "High SLM routing confidence (rho_bar=1.0000 >= 0.70)",
+      "error": false
+    },
+    "UC6": {
+      "usecase_id": "UC6",
+      "name": "Clinical Triage",
+      "task_family": "classification",
+      "domain": "healthcare",
+      "description": "Predict patient triage priority class",
+      "tier": "SLM",
+      "rho_bar": 1.0,
+      "explanation": "High SLM routing confidence (rho_bar=1.0000 >= 0.70)",
+      "error": false
+    },
+    "UC7": {
+      "usecase_id": "UC7",
+      "name": "Legal Contract Risk",
+      "task_family": "summarization",
+      "domain": "legal",
+      "description": "Classify contract clause risk with synthesis",
+      "tier": "SLM",
+      "rho_bar": 0.9285714285714286,
+      "explanation": "High SLM routing confidence (rho_bar=0.9286 >= 0.70)",
+      "error": false
+    },
+    "UC8": {
+      "usecase_id": "UC8",
+      "name": "Financial Report Drafting",
+      "task_family": "text_generation",
+      "domain": "finance",
+      "description": "Draft financial narratives from tabular data",
+      "tier": "SLM",
+      "rho_bar": 1.0,
+      "explanation": "High SLM routing confidence (rho_bar=1.0000 >= 0.70)",
+      "error": false
+    }
+  },
+  "test": {
+    "UC1": {
+      "usecase_id": "UC1",
+      "name": "SMS Threat Detection",
+      "task_family": "classification",
+      "domain": "cybersecurity",
+      "description": "Classify SMS messages as threat/benign",
+      "tier": "LLM",
+      "rho_bar": 0.0,
+      "explanation": "Low SLM routing confidence (rho_bar=0.0000 <= 0.30)",
+      "error": false
+    },
+    "UC2": {
+      "usecase_id": "UC2",
+      "name": "Invoice Field Extraction",
+      "task_family": "information_extraction",
+      "domain": "finance",
+      "description": "Extract fixed fields from invoice documents",
+      "tier": "HYBRID",
+      "rho_bar": 0.5,
+      "explanation": "Mixed routing outcomes (0.30 < rho_bar=0.5000 < 0.70)",
+      "error": false
+    },
+    "UC3": {
+      "usecase_id": "UC3",
+      "name": "Support Ticket Routing",
+      "task_family": "classification",
+      "domain": "customer_service",
+      "description": "Route support tickets into fixed categories",
+      "tier": "LLM",
+      "rho_bar": 0.0,
+      "explanation": "Low SLM routing confidence (rho_bar=0.0000 <= 0.30)",
+      "error": false
+    },
+    "UC4": {
+      "usecase_id": "UC4",
+      "name": "Product Review Sentiment",
+      "task_family": "classification",
+      "domain": "customer_service",
+      "description": "Predict sentiment class from product reviews",
+      "tier": "LLM",
+      "rho_bar": 0.0,
+      "explanation": "Low SLM routing confidence (rho_bar=0.0000 <= 0.30)",
+      "error": false
+    },
+    "UC5": {
+      "usecase_id": "UC5",
+      "name": "Automated Code Review",
+      "task_family": "code_generation",
+      "domain": "developer_tools",
+      "description": "Classify code issues and suggest fixes",
+      "tier": "LLM",
+      "rho_bar": 0.0,
+      "explanation": "Low SLM routing confidence (rho_bar=0.0000 <= 0.30)",
+      "error": false
+    },
+    "UC6": {
+      "usecase_id": "UC6",
+      "name": "Clinical Triage",
+      "task_family": "classification",
+      "domain": "healthcare",
+      "description": "Predict patient triage priority class",
+      "tier": "LLM",
+      "rho_bar": 0.0,
+      "explanation": "Low SLM routing confidence (rho_bar=0.0000 <= 0.30)",
+      "error": false
+    },
+    "UC7": {
+      "usecase_id": "UC7",
+      "name": "Legal Contract Risk",
+      "task_family": "summarization",
+      "domain": "legal",
+      "description": "Classify contract clause risk with synthesis",
+      "tier": "LLM",
+      "rho_bar": 0.0,
+      "explanation": "Low SLM routing confidence (rho_bar=0.0000 <= 0.30)",
+      "error": false
+    },
+    "UC8": {
+      "usecase_id": "UC8",
+      "name": "Financial Report Drafting",
+      "task_family": "text_generation",
+      "domain": "finance",
+      "description": "Draft financial narratives from tabular data",
+      "tier": "SLM",
+      "rho_bar": 0.875,
+      "explanation": "High SLM routing confidence (rho_bar=0.8750 >= 0.70)",
+      "error": false
+    }
+  }
+}

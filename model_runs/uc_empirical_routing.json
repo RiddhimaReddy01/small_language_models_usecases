@@ -1,0 +1,298 @@
+{
+  "UC1": {
+    "uc": "UC1",
+    "name": "SMS Threat Detection",
+    "task_family": "classification",
+    "domain": "cybersecurity",
+    "description": "Classify SMS messages as threat/benign",
+    "tau_frozen": 0.6667,
+    "total_rows": 500,
+    "per_model_results": {
+      "qwen2.5_0.5b": {
+        "total_rows": 500,
+        "slm_routed": 500,
+        "llm_routed": 0,
+        "rho": 1.0
+      },
+      "qwen2.5_3b": {
+        "total_rows": 500,
+        "slm_routed": 296,
+        "llm_routed": 204,
+        "rho": 0.592
+      },
+      "qwen2.5_7b": {
+        "total_rows": 500,
+        "slm_routed": 245,
+        "llm_routed": 255,
+        "rho": 0.49
+      }
+    },
+    "per_model_rho": {
+      "qwen2.5_0.5b": 1.0,
+      "qwen2.5_3b": 0.592,
+      "qwen2.5_7b": 0.49
+    },
+    "rho_bar": 0.694,
+    "tier": "HYBRID",
+    "explanation": "Mixed routing outcomes (0.30 < rho_bar=0.6940 < 0.70)"
+  },
+  "UC2": {
+    "uc": "UC2",
+    "name": "Invoice Field Extraction",
+    "task_family": "information_extraction",
+    "domain": "finance",
+    "description": "Extract fixed fields from invoice documents",
+    "tau_frozen": 0.9167,
+    "total_rows": 100,
+    "per_model_results": {
+      "qwen2.5_0.5b": {
+        "total_rows": 100,
+        "slm_routed": 100,
+        "llm_routed": 0,
+        "rho": 1.0
+      },
+      "qwen2.5_3b": {
+        "total_rows": 100,
+        "slm_routed": 0,
+        "llm_routed": 100,
+        "rho": 0.0
+      },
+      "qwen2.5_7b": {
+        "total_rows": 100,
+        "slm_routed": 0,
+        "llm_routed": 100,
+        "rho": 0.0
+      }
+    },
+    "per_model_rho": {
+      "qwen2.5_0.5b": 1.0,
+      "qwen2.5_3b": 0.0,
+      "qwen2.5_7b": 0.0
+    },
+    "rho_bar": 0.3333333333333333,
+    "tier": "HYBRID",
+    "explanation": "Mixed routing outcomes (0.30 < rho_bar=0.3333 < 0.70)"
+  },
+  "UC3": {
+    "uc": "UC3",
+    "name": "Support Ticket Routing",
+    "task_family": "classification",
+    "domain": "customer_service",
+    "description": "Route support tickets into fixed categories",
+    "tau_frozen": 0.6667,
+    "total_rows": 500,
+    "per_model_results": {
+      "qwen2.5_0.5b": {
+        "total_rows": 500,
+        "slm_routed": 500,
+        "llm_routed": 0,
+        "rho": 1.0
+      },
+      "qwen2.5_3b": {
+        "total_rows": 500,
+        "slm_routed": 447,
+        "llm_routed": 53,
+        "rho": 0.894
+      },
+      "qwen2.5_7b": {
+        "total_rows": 500,
+        "slm_routed": 464,
+        "llm_routed": 36,
+        "rho": 0.928
+      }
+    },
+    "per_model_rho": {
+      "qwen2.5_0.5b": 1.0,
+      "qwen2.5_3b": 0.894,
+      "qwen2.5_7b": 0.928
+    },
+    "rho_bar": 0.9406666666666667,
+    "tier": "SLM",
+    "explanation": "High SLM routing confidence (rho_bar=0.9407 >= 0.70)"
+  },
+  "UC4": {
+    "uc": "UC4",
+    "name": "Product Review Sentiment",
+    "task_family": "classification",
+    "domain": "customer_service",
+    "description": "Predict sentiment class from product reviews",
+    "tau_frozen": 0.6667,
+    "total_rows": 500,
+    "per_model_results": {
+      "qwen2.5_0.5b": {
+        "total_rows": 500,
+        "slm_routed": 500,
+        "llm_routed": 0,
+        "rho": 1.0
+      },
+      "qwen2.5_3b": {
+        "total_rows": 500,
+        "slm_routed": 467,
+        "llm_routed": 33,
+        "rho": 0.934
+      },
+      "qwen2.5_7b": {
+        "total_rows": 500,
+        "slm_routed": 347,
+        "llm_routed": 153,
+        "rho": 0.694
+      }
+    },
+    "per_model_rho": {
+      "qwen2.5_0.5b": 1.0,
+      "qwen2.5_3b": 0.934,
+      "qwen2.5_7b": 0.694
+    },
+    "rho_bar": 0.876,
+    "tier": "SLM",
+    "explanation": "High SLM routing confidence (rho_bar=0.8760 >= 0.70)"
+  },
+  "UC5": {
+    "uc": "UC5",
+    "name": "Automated Code Review",
+    "task_family": "code_generation",
+    "domain": "developer_tools",
+    "description": "Classify code issues and suggest fixes",
+    "tau_frozen": 1.0,
+    "total_rows": 500,
+    "per_model_results": {
+      "qwen2.5_0.5b": {
+        "total_rows": 500,
+        "slm_routed": 500,
+        "llm_routed": 0,
+        "rho": 1.0
+      },
+      "qwen2.5_3b": {
+        "total_rows": 500,
+        "slm_routed": 500,
+        "llm_routed": 0,
+        "rho": 1.0
+      },
+      "qwen2.5_7b": {
+        "total_rows": 500,
+        "slm_routed": 500,
+        "llm_routed": 0,
+        "rho": 1.0
+      }
+    },
+    "per_model_rho": {
+      "qwen2.5_0.5b": 1.0,
+      "qwen2.5_3b": 1.0,
+      "qwen2.5_7b": 1.0
+    },
+    "rho_bar": 1.0,
+    "tier": "SLM",
+    "explanation": "High SLM routing confidence (rho_bar=1.0000 >= 0.70)"
+  },
+  "UC6": {
+    "uc": "UC6",
+    "name": "Clinical Triage",
+    "task_family": "classification",
+    "domain": "healthcare",
+    "description": "Predict patient triage priority class",
+    "tau_frozen": 0.6667,
+    "total_rows": 100,
+    "per_model_results": {
+      "qwen2.5_0.5b": {
+        "total_rows": 100,
+        "slm_routed": 1,
+        "llm_routed": 99,
+        "rho": 0.01
+      },
+      "qwen2.5_3b": {
+        "total_rows": 100,
+        "slm_routed": 0,
+        "llm_routed": 100,
+        "rho": 0.0
+      },
+      "qwen2.5_7b": {
+        "total_rows": 100,
+        "slm_routed": 0,
+        "llm_routed": 100,
+        "rho": 0.0
+      }
+    },
+    "per_model_rho": {
+      "qwen2.5_0.5b": 0.01,
+      "qwen2.5_3b": 0.0,
+      "qwen2.5_7b": 0.0
+    },
+    "rho_bar": 0.0033333333333333335,
+    "tier": "LLM",
+    "explanation": "Low SLM routing confidence (rho_bar=0.0033 <= 0.30)"
+  },
+  "UC7": {
+    "uc": "UC7",
+    "name": "Legal Contract Risk",
+    "task_family": "summarization",
+    "domain": "legal",
+    "description": "Classify contract clause risk with synthesis",
+    "tau_frozen": 1.0,
+    "total_rows": 500,
+    "per_model_results": {
+      "qwen2.5_0.5b": {
+        "total_rows": 500,
+        "slm_routed": 500,
+        "llm_routed": 0,
+        "rho": 1.0
+      },
+      "qwen2.5_3b": {
+        "total_rows": 500,
+        "slm_routed": 500,
+        "llm_routed": 0,
+        "rho": 1.0
+      },
+      "qwen2.5_7b": {
+        "total_rows": 500,
+        "slm_routed": 500,
+        "llm_routed": 0,
+        "rho": 1.0
+      }
+    },
+    "per_model_rho": {
+      "qwen2.5_0.5b": 1.0,
+      "qwen2.5_3b": 1.0,
+      "qwen2.5_7b": 1.0
+    },
+    "rho_bar": 1.0,
+    "tier": "SLM",
+    "explanation": "High SLM routing confidence (rho_bar=1.0000 >= 0.70)"
+  },
+  "UC8": {
+    "uc": "UC8",
+    "name": "Financial Report Drafting",
+    "task_family": "text_generation",
+    "domain": "finance",
+    "description": "Draft financial narratives from tabular data",
+    "tau_frozen": 1.0,
+    "total_rows": 100,
+    "per_model_results": {
+      "qwen2.5_0.5b": {
+        "total_rows": 100,
+        "slm_routed": 100,
+        "llm_routed": 0,
+        "rho": 1.0
+      },
+      "qwen2.5_3b": {
+        "total_rows": 100,
+        "slm_routed": 100,
+        "llm_routed": 0,
+        "rho": 1.0
+      },
+      "qwen2.5_7b": {
+        "total_rows": 100,
+        "slm_routed": 100,
+        "llm_routed": 0,
+        "rho": 1.0
+      }
+    },
+    "per_model_rho": {
+      "qwen2.5_0.5b": 1.0,
+      "qwen2.5_3b": 1.0,
+      "qwen2.5_7b": 1.0
+    },
+    "rho_bar": 1.0,
+    "tier": "SLM",
+    "explanation": "High SLM routing confidence (rho_bar=1.0000 >= 0.70)"
+  }
+}

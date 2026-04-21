@@ -1,0 +1,60 @@
+{
+  "paper_baseline": {
+    "slm_threshold": 0.7,
+    "llm_threshold": 0.3,
+    "gap": 0.4,
+    "tier_counts": {
+      "SLM": 5,
+      "HYBRID": 2,
+      "LLM": 1
+    },
+    "slm_coverage": 0.625
+  },
+  "optimal_configurations": {
+    "minimize_hybrid": {
+      "slm_threshold": 0.5,
+      "llm_threshold": 0.3500000000000001,
+      "gap": 0.1499999999999999,
+      "tier_counts": {
+        "SLM": 6,
+        "HYBRID": 0,
+        "LLM": 2
+      },
+      "reason": "Clearest tier classification (fewest UCs in HYBRID)"
+    },
+    "maximize_slm": {
+      "slm_threshold": 0.5,
+      "llm_threshold": 0.1,
+      "gap": 0.4,
+      "tier_counts": {
+        "SLM": 6,
+        "HYBRID": 1,
+        "LLM": 1
+      },
+      "reason": "Lowest cost (most UCs use SLM)"
+    },
+    "maximize_gap": {
+      "slm_threshold": 0.8500000000000003,
+      "llm_threshold": 0.1,
+      "gap": 0.7500000000000003,
+      "tier_counts": {
+        "SLM": 5,
+        "HYBRID": 2,
+        "LLM": 1
+      },
+      "reason": "Widest HYBRID zone (most room for nuance)"
+    }
+  },
+  "sweep_summary": {
+    "total_configs": 48,
+    "slm_threshold_range": [
+      0.5,
+      0.85
+    ],
+    "llm_threshold_range": [
+      0.1,
+      0.35
+    ],
+    "step": 0.05
+  }
+}

@@ -1,0 +1,2448 @@
+{
+  "summary": {
+    "total_sweep_points": 105,
+    "threshold_range": [
+      0.2,
+      0.9
+    ],
+    "step": 0.05
+  },
+  "optimal_thresholds": {
+    "slm_threshold": 0.25,
+    "llm_threshold": 0.2,
+    "overall_accuracy": 1.0,
+    "tier_distribution": {
+      "SLM": 4,
+      "HYBRID": 0,
+      "LLM": 4
+    },
+    "coverage_pct": {
+      "SLM": 0.5,
+      "HYBRID": 0.0,
+      "LLM": 0.5
+    },
+    "reason": "Maximizes overall weighted accuracy across all tiers"
+  },
+  "current_thresholds": {
+    "slm_threshold": 0.7,
+    "llm_threshold": 0.3,
+    "note": "Original frozen threshold values"
+  },
+  "sweep_results": [
+    {
+      "slm_threshold": 0.25,
+      "llm_threshold": 0.2,
+      "tier_distribution": {
+        "SLM": 4,
+        "HYBRID": 0,
+        "LLM": 4
+      },
+      "coverage_pct": {
+        "SLM": 0.5,
+        "HYBRID": 0.0,
+        "LLM": 0.5
+      },
+      "avg_accuracy_per_tier": {
+        "SLM": 1.0,
+        "HYBRID": 0.0,
+        "LLM": 1.0
+      },
+      "overall_weighted_accuracy": 1.0,
+      "slm_coverage": 0.5,
+      "hybrid_coverage": 0.0,
+      "llm_coverage": 0.5
+    },
+    {
+      "slm_threshold": 0.3,
+      "llm_threshold": 0.2,
+      "tier_distribution": {
+        "SLM": 4,
+        "HYBRID": 0,
+        "LLM": 4
+      },
+      "coverage_pct": {
+        "SLM": 0.5,
+        "HYBRID": 0.0,
+        "LLM": 0.5
+      },
+      "avg_accuracy_per_tier": {
+        "SLM": 1.0,
+        "HYBRID": 0.0,
+        "LLM": 1.0
+      },
+      "overall_weighted_accuracy": 1.0,
+      "slm_coverage": 0.5,
+      "hybrid_coverage": 0.0,
+      "llm_coverage": 0.5
+    },
+    {
+      "slm_threshold": 0.3,
+      "llm_threshold": 0.25,
+      "tier_distribution": {
+        "SLM": 4,
+        "HYBRID": 0,
+        "LLM": 4
+      },
+      "coverage_pct": {
+        "SLM": 0.5,
+        "HYBRID": 0.0,
+        "LLM": 0.5
+      },
+      "avg_accuracy_per_tier": {
+        "SLM": 1.0,
+        "HYBRID": 0.0,
+        "LLM": 1.0
+      },
+      "overall_weighted_accuracy": 1.0,
+      "slm_coverage": 0.5,
+      "hybrid_coverage": 0.0,
+      "llm_coverage": 0.5
+    },
+    {
+      "slm_threshold": 0.35,
+      "llm_threshold": 0.2,
+      "tier_distribution": {
+        "SLM": 4,
+        "HYBRID": 0,
+        "LLM": 4
+      },
+      "coverage_pct": {
+        "SLM": 0.5,
+        "HYBRID": 0.0,
+        "LLM": 0.5
+      },
+      "avg_accuracy_per_tier": {
+        "SLM": 1.0,
+        "HYBRID": 0.0,
+        "LLM": 1.0
+      },
+      "overall_weighted_accuracy": 1.0,
+      "slm_coverage": 0.5,
+      "hybrid_coverage": 0.0,
+      "llm_coverage": 0.5
+    },
+    {
+      "slm_threshold": 0.35,
+      "llm_threshold": 0.25,
+      "tier_distribution": {
+        "SLM": 4,
+        "HYBRID": 0,
+        "LLM": 4
+      },
+      "coverage_pct": {
+        "SLM": 0.5,
+        "HYBRID": 0.0,
+        "LLM": 0.5
+      },
+      "avg_accuracy_per_tier": {
+        "SLM": 1.0,
+        "HYBRID": 0.0,
+        "LLM": 1.0
+      },
+      "overall_weighted_accuracy": 1.0,
+      "slm_coverage": 0.5,
+      "hybrid_coverage": 0.0,
+      "llm_coverage": 0.5
+    },
+    {
+      "slm_threshold": 0.35,
+      "llm_threshold": 0.3,
+      "tier_distribution": {
+        "SLM": 4,
+        "HYBRID": 0,
+        "LLM": 4
+      },
+      "coverage_pct": {
+        "SLM": 0.5,
+        "HYBRID": 0.0,
+        "LLM": 0.5
+      },
+      "avg_accuracy_per_tier": {
+        "SLM": 1.0,
+        "HYBRID": 0.0,
+        "LLM": 1.0
+      },
+      "overall_weighted_accuracy": 1.0,
+      "slm_coverage": 0.5,
+      "hybrid_coverage": 0.0,
+      "llm_coverage": 0.5
+    },
+    {
+      "slm_threshold": 0.39999999999999997,
+      "llm_threshold": 0.2,
+      "tier_distribution": {
+        "SLM": 3,
+        "HYBRID": 1,
+        "LLM": 4
+      },
+      "coverage_pct": {
+        "SLM": 0.375,
+        "HYBRID": 0.125,
+        "LLM": 0.5
+      },
+      "avg_accuracy_per_tier": {
+        "SLM": 1.0,
+        "HYBRID": 1.0,
+        "LLM": 1.0
+      },
+      "overall_weighted_accuracy": 1.0,
+      "slm_coverage": 0.375,
+      "hybrid_coverage": 0.125,
+      "llm_coverage": 0.5
+    },
+    {
+      "slm_threshold": 0.39999999999999997,
+      "llm_threshold": 0.25,
+      "tier_distribution": {
+        "SLM": 3,
+        "HYBRID": 1,
+        "LLM": 4
+      },
+      "coverage_pct": {
+        "SLM": 0.375,
+        "HYBRID": 0.125,
+        "LLM": 0.5
+      },
+      "avg_accuracy_per_tier": {
+        "SLM": 1.0,
+        "HYBRID": 1.0,
+        "LLM": 1.0
+      },
+      "overall_weighted_accuracy": 1.0,
+      "slm_coverage": 0.375,
+      "hybrid_coverage": 0.125,
+      "llm_coverage": 0.5
+    },
+    {
+      "slm_threshold": 0.39999999999999997,
+      "llm_threshold": 0.3,
+      "tier_distribution": {
+        "SLM": 3,
+        "HYBRID": 1,
+        "LLM": 4
+      },
+      "coverage_pct": {
+        "SLM": 0.375,
+        "HYBRID": 0.125,
+        "LLM": 0.5
+      },
+      "avg_accuracy_per_tier": {
+        "SLM": 1.0,
+        "HYBRID": 1.0,
+        "LLM": 1.0
+      },
+      "overall_weighted_accuracy": 1.0,
+      "slm_coverage": 0.375,
+      "hybrid_coverage": 0.125,
+      "llm_coverage": 0.5
+    },
+    {
+      "slm_threshold": 0.39999999999999997,
+      "llm_threshold": 0.35,
+      "tier_distribution": {
+        "SLM": 3,
+        "HYBRID": 0,
+        "LLM": 5
+      },
+      "coverage_pct": {
+        "SLM": 0.375,
+        "HYBRID": 0.0,
+        "LLM": 0.625
+      },
+      "avg_accuracy_per_tier": {
+        "SLM": 1.0,
+        "HYBRID": 0.0,
+        "LLM": 1.0
+      },
+      "overall_weighted_accuracy": 1.0,
+      "slm_coverage": 0.375,
+      "hybrid_coverage": 0.0,
+      "llm_coverage": 0.625
+    },
+    {
+      "slm_threshold": 0.44999999999999996,
+      "llm_threshold": 0.2,
+      "tier_distribution": {
+        "SLM": 2,
+        "HYBRID": 2,
+        "LLM": 4
+      },
+      "coverage_pct": {
+        "SLM": 0.25,
+        "HYBRID": 0.25,
+        "LLM": 0.5
+      },
+      "avg_accuracy_per_tier": {
+        "SLM": 1.0,
+        "HYBRID": 1.0,
+        "LLM": 1.0
+      },
+      "overall_weighted_accuracy": 1.0,
+      "slm_coverage": 0.25,
+      "hybrid_coverage": 0.25,
+      "llm_coverage": 0.5
+    },
+    {
+      "slm_threshold": 0.44999999999999996,
+      "llm_threshold": 0.25,
+      "tier_distribution": {
+        "SLM": 2,
+        "HYBRID": 2,
+        "LLM": 4
+      },
+      "coverage_pct": {
+        "SLM": 0.25,
+        "HYBRID": 0.25,
+        "LLM": 0.5
+      },
+      "avg_accuracy_per_tier": {
+        "SLM": 1.0,
+        "HYBRID": 1.0,
+        "LLM": 1.0
+      },
+      "overall_weighted_accuracy": 1.0,
+      "slm_coverage": 0.25,
+      "hybrid_coverage": 0.25,
+      "llm_coverage": 0.5
+    },
+    {
+      "slm_threshold": 0.44999999999999996,
+      "llm_threshold": 0.3,
+      "tier_distribution": {
+        "SLM": 2,
+        "HYBRID": 2,
+        "LLM": 4
+      },
+      "coverage_pct": {
+        "SLM": 0.25,
+        "HYBRID": 0.25,
+        "LLM": 0.5
+      },
+      "avg_accuracy_per_tier": {
+        "SLM": 1.0,
+        "HYBRID": 1.0,
+        "LLM": 1.0
+      },
+      "overall_weighted_accuracy": 1.0,
+      "slm_coverage": 0.25,
+      "hybrid_coverage": 0.25,
+      "llm_coverage": 0.5
+    },
+    {
+      "slm_threshold": 0.44999999999999996,
+      "llm_threshold": 0.35,
+      "tier_distribution": {
+        "SLM": 2,
+        "HYBRID": 1,
+        "LLM": 5
+      },
+      "coverage_pct": {
+        "SLM": 0.25,
+        "HYBRID": 0.125,
+        "LLM": 0.625
+      },
+      "avg_accuracy_per_tier": {
+        "SLM": 1.0,
+        "HYBRID": 1.0,
+        "LLM": 1.0
+      },
+      "overall_weighted_accuracy": 1.0,
+      "slm_coverage": 0.25,
+      "hybrid_coverage": 0.125,
+      "llm_coverage": 0.625
+    },
+    {
+      "slm_threshold": 0.44999999999999996,
+      "llm_threshold": 0.39999999999999997,
+      "tier_distribution": {
+        "SLM": 2,
+        "HYBRID": 1,
+        "LLM": 5
+      },
+      "coverage_pct": {
+        "SLM": 0.25,
+        "HYBRID": 0.125,
+        "LLM": 0.625
+      },
+      "avg_accuracy_per_tier": {
+        "SLM": 1.0,
+        "HYBRID": 1.0,
+        "LLM": 1.0
+      },
+      "overall_weighted_accuracy": 1.0,
+      "slm_coverage": 0.25,
+      "hybrid_coverage": 0.125,
+      "llm_coverage": 0.625
+    },
+    {
+      "slm_threshold": 0.49999999999999994,
+      "llm_threshold": 0.2,
+      "tier_distribution": {
+        "SLM": 2,
+        "HYBRID": 2,
+        "LLM": 4
+      },
+      "coverage_pct": {
+        "SLM": 0.25,
+        "HYBRID": 0.25,
+        "LLM": 0.5
+      },
+      "avg_accuracy_per_tier": {
+        "SLM": 1.0,
+        "HYBRID": 1.0,
+        "LLM": 1.0
+      },
+      "overall_weighted_accuracy": 1.0,
+      "slm_coverage": 0.25,
+      "hybrid_coverage": 0.25,
+      "llm_coverage": 0.5
+    },
+    {
+      "slm_threshold": 0.49999999999999994,
+      "llm_threshold": 0.25,
+      "tier_distribution": {
+        "SLM": 2,
+        "HYBRID": 2,
+        "LLM": 4
+      },
+      "coverage_pct": {
+        "SLM": 0.25,
+        "HYBRID": 0.25,
+        "LLM": 0.5
+      },
+      "avg_accuracy_per_tier": {
+        "SLM": 1.0,
+        "HYBRID": 1.0,
+        "LLM": 1.0
+      },
+      "overall_weighted_accuracy": 1.0,
+      "slm_coverage": 0.25,
+      "hybrid_coverage": 0.25,
+      "llm_coverage": 0.5
+    },
+    {
+      "slm_threshold": 0.49999999999999994,
+      "llm_threshold": 0.3,
+      "tier_distribution": {
+        "SLM": 2,
+        "HYBRID": 2,
+        "LLM": 4
+      },
+      "coverage_pct": {
+        "SLM": 0.25,
+        "HYBRID": 0.25,
+        "LLM": 0.5
+      },
+      "avg_accuracy_per_tier": {
+        "SLM": 1.0,
+        "HYBRID": 1.0,
+        "LLM": 1.0
+      },
+      "overall_weighted_accuracy": 1.0,
+      "slm_coverage": 0.25,
+      "hybrid_coverage": 0.25,
+      "llm_coverage": 0.5
+    },
+    {
+      "slm_threshold": 0.49999999999999994,
+      "llm_threshold": 0.35,
+      "tier_distribution": {
+        "SLM": 2,
+        "HYBRID": 1,
+        "LLM": 5
+      },
+      "coverage_pct": {
+        "SLM": 0.25,
+        "HYBRID": 0.125,
+        "LLM": 0.625
+      },
+      "avg_accuracy_per_tier": {
+        "SLM": 1.0,
+        "HYBRID": 1.0,
+        "LLM": 1.0
+      },
+      "overall_weighted_accuracy": 1.0,
+      "slm_coverage": 0.25,
+      "hybrid_coverage": 0.125,
+      "llm_coverage": 0.625
+    },
+    {
+      "slm_threshold": 0.49999999999999994,
+      "llm_threshold": 0.39999999999999997,
+      "tier_distribution": {
+        "SLM": 2,
+        "HYBRID": 1,
+        "LLM": 5
+      },
+      "coverage_pct": {
+        "SLM": 0.25,
+        "HYBRID": 0.125,
+        "LLM": 0.625
+      },
+      "avg_accuracy_per_tier": {
+        "SLM": 1.0,
+        "HYBRID": 1.0,
+        "LLM": 1.0
+      },
+      "overall_weighted_accuracy": 1.0,
+      "slm_coverage": 0.25,
+      "hybrid_coverage": 0.125,
+      "llm_coverage": 0.625
+    },
+    {
+      "slm_threshold": 0.49999999999999994,
+      "llm_threshold": 0.44999999999999996,
+      "tier_distribution": {
+        "SLM": 2,
+        "HYBRID": 0,
+        "LLM": 6
+      },
+      "coverage_pct": {
+        "SLM": 0.25,
+        "HYBRID": 0.0,
+        "LLM": 0.75
+      },
+      "avg_accuracy_per_tier": {
+        "SLM": 1.0,
+        "HYBRID": 0.0,
+        "LLM": 1.0
+      },
+      "overall_weighted_accuracy": 1.0,
+      "slm_coverage": 0.25,
+      "hybrid_coverage": 0.0,
+      "llm_coverage": 0.75
+    },
+    {
+      "slm_threshold": 0.5499999999999999,
+      "llm_threshold": 0.2,
+      "tier_distribution": {
+        "SLM": 1,
+        "HYBRID": 3,
+        "LLM": 4
+      },
+      "coverage_pct": {
+        "SLM": 0.125,
+        "HYBRID": 0.375,
+        "LLM": 0.5
+      },
+      "avg_accuracy_per_tier": {
+        "SLM": 1.0,
+        "HYBRID": 1.0,
+        "LLM": 1.0
+      },
+      "overall_weighted_accuracy": 1.0,
+      "slm_coverage": 0.125,
+      "hybrid_coverage": 0.375,
+      "llm_coverage": 0.5
+    },
+    {
+      "slm_threshold": 0.5499999999999999,
+      "llm_threshold": 0.25,
+      "tier_distribution": {
+        "SLM": 1,
+        "HYBRID": 3,
+        "LLM": 4
+      },
+      "coverage_pct": {
+        "SLM": 0.125,
+        "HYBRID": 0.375,
+        "LLM": 0.5
+      },
+      "avg_accuracy_per_tier": {
+        "SLM": 1.0,
+        "HYBRID": 1.0,
+        "LLM": 1.0
+      },
+      "overall_weighted_accuracy": 1.0,
+      "slm_coverage": 0.125,
+      "hybrid_coverage": 0.375,
+      "llm_coverage": 0.5
+    },
+    {
+      "slm_threshold": 0.5499999999999999,
+      "llm_threshold": 0.3,
+      "tier_distribution": {
+        "SLM": 1,
+        "HYBRID": 3,
+        "LLM": 4
+      },
+      "coverage_pct": {
+        "SLM": 0.125,
+        "HYBRID": 0.375,
+        "LLM": 0.5
+      },
+      "avg_accuracy_per_tier": {
+        "SLM": 1.0,
+        "HYBRID": 1.0,
+        "LLM": 1.0
+      },
+      "overall_weighted_accuracy": 1.0,
+      "slm_coverage": 0.125,
+      "hybrid_coverage": 0.375,
+      "llm_coverage": 0.5
+    },
+    {
+      "slm_threshold": 0.5499999999999999,
+      "llm_threshold": 0.35,
+      "tier_distribution": {
+        "SLM": 1,
+        "HYBRID": 2,
+        "LLM": 5
+      },
+      "coverage_pct": {
+        "SLM": 0.125,
+        "HYBRID": 0.25,
+        "LLM": 0.625
+      },
+      "avg_accuracy_per_tier": {
+        "SLM": 1.0,
+        "HYBRID": 1.0,
+        "LLM": 1.0
+      },
+      "overall_weighted_accuracy": 1.0,
+      "slm_coverage": 0.125,
+      "hybrid_coverage": 0.25,
+      "llm_coverage": 0.625
+    },
+    {
+      "slm_threshold": 0.5499999999999999,
+      "llm_threshold": 0.39999999999999997,
+      "tier_distribution": {
+        "SLM": 1,
+        "HYBRID": 2,
+        "LLM": 5
+      },
+      "coverage_pct": {
+        "SLM": 0.125,
+        "HYBRID": 0.25,
+        "LLM": 0.625
+      },
+      "avg_accuracy_per_tier": {
+        "SLM": 1.0,
+        "HYBRID": 1.0,
+        "LLM": 1.0
+      },
+      "overall_weighted_accuracy": 1.0,
+      "slm_coverage": 0.125,
+      "hybrid_coverage": 0.25,
+      "llm_coverage": 0.625
+    },
+    {
+      "slm_threshold": 0.5499999999999999,
+      "llm_threshold": 0.44999999999999996,
+      "tier_distribution": {
+        "SLM": 1,
+        "HYBRID": 1,
+        "LLM": 6
+      },
+      "coverage_pct": {
+        "SLM": 0.125,
+        "HYBRID": 0.125,
+        "LLM": 0.75
+      },
+      "avg_accuracy_per_tier": {
+        "SLM": 1.0,
+        "HYBRID": 1.0,
+        "LLM": 1.0
+      },
+      "overall_weighted_accuracy": 1.0,
+      "slm_coverage": 0.125,
+      "hybrid_coverage": 0.125,
+      "llm_coverage": 0.75
+    },
+    {
+      "slm_threshold": 0.5499999999999999,
+      "llm_threshold": 0.49999999999999994,
+      "tier_distribution": {
+        "SLM": 1,
+        "HYBRID": 1,
+        "LLM": 6
+      },
+      "coverage_pct": {
+        "SLM": 0.125,
+        "HYBRID": 0.125,
+        "LLM": 0.75
+      },
+      "avg_accuracy_per_tier": {
+        "SLM": 1.0,
+        "HYBRID": 1.0,
+        "LLM": 1.0
+      },
+      "overall_weighted_accuracy": 1.0,
+      "slm_coverage": 0.125,
+      "hybrid_coverage": 0.125,
+      "llm_coverage": 0.75
+    },
+    {
+      "slm_threshold": 0.5999999999999999,
+      "llm_threshold": 0.2,
+      "tier_distribution": {
+        "SLM": 1,
+        "HYBRID": 3,
+        "LLM": 4
+      },
+      "coverage_pct": {
+        "SLM": 0.125,
+        "HYBRID": 0.375,
+        "LLM": 0.5
+      },
+      "avg_accuracy_per_tier": {
+        "SLM": 1.0,
+        "HYBRID": 1.0,
+        "LLM": 1.0
+      },
+      "overall_weighted_accuracy": 1.0,
+      "slm_coverage": 0.125,
+      "hybrid_coverage": 0.375,
+      "llm_coverage": 0.5
+    },
+    {
+      "slm_threshold": 0.5999999999999999,
+      "llm_threshold": 0.25,
+      "tier_distribution": {
+        "SLM": 1,
+        "HYBRID": 3,
+        "LLM": 4
+      },
+      "coverage_pct": {
+        "SLM": 0.125,
+        "HYBRID": 0.375,
+        "LLM": 0.5
+      },
+      "avg_accuracy_per_tier": {
+        "SLM": 1.0,
+        "HYBRID": 1.0,
+        "LLM": 1.0
+      },
+      "overall_weighted_accuracy": 1.0,
+      "slm_coverage": 0.125,
+      "hybrid_coverage": 0.375,
+      "llm_coverage": 0.5
+    },
+    {
+      "slm_threshold": 0.5999999999999999,
+      "llm_threshold": 0.3,
+      "tier_distribution": {
+        "SLM": 1,
+        "HYBRID": 3,
+        "LLM": 4
+      },
+      "coverage_pct": {
+        "SLM": 0.125,
+        "HYBRID": 0.375,
+        "LLM": 0.5
+      },
+      "avg_accuracy_per_tier": {
+        "SLM": 1.0,
+        "HYBRID": 1.0,
+        "LLM": 1.0
+      },
+      "overall_weighted_accuracy": 1.0,
+      "slm_coverage": 0.125,
+      "hybrid_coverage": 0.375,
+      "llm_coverage": 0.5
+    },
+    {
+      "slm_threshold": 0.5999999999999999,
+      "llm_threshold": 0.35,
+      "tier_distribution": {
+        "SLM": 1,
+        "HYBRID": 2,
+        "LLM": 5
+      },
+      "coverage_pct": {
+        "SLM": 0.125,
+        "HYBRID": 0.25,
+        "LLM": 0.625
+      },
+      "avg_accuracy_per_tier": {
+        "SLM": 1.0,
+        "HYBRID": 1.0,
+        "LLM": 1.0
+      },
+      "overall_weighted_accuracy": 1.0,
+      "slm_coverage": 0.125,
+      "hybrid_coverage": 0.25,
+      "llm_coverage": 0.625
+    },
+    {
+      "slm_threshold": 0.5999999999999999,
+      "llm_threshold": 0.39999999999999997,
+      "tier_distribution": {
+        "SLM": 1,
+        "HYBRID": 2,
+        "LLM": 5
+      },
+      "coverage_pct": {
+        "SLM": 0.125,
+        "HYBRID": 0.25,
+        "LLM": 0.625
+      },
+      "avg_accuracy_per_tier": {
+        "SLM": 1.0,
+        "HYBRID": 1.0,
+        "LLM": 1.0
+      },
+      "overall_weighted_accuracy": 1.0,
+      "slm_coverage": 0.125,
+      "hybrid_coverage": 0.25,
+      "llm_coverage": 0.625
+    },
+    {
+      "slm_threshold": 0.5999999999999999,
+      "llm_threshold": 0.44999999999999996,
+      "tier_distribution": {
+        "SLM": 1,
+        "HYBRID": 1,
+        "LLM": 6
+      },
+      "coverage_pct": {
+        "SLM": 0.125,
+        "HYBRID": 0.125,
+        "LLM": 0.75
+      },
+      "avg_accuracy_per_tier": {
+        "SLM": 1.0,
+        "HYBRID": 1.0,
+        "LLM": 1.0
+      },
+      "overall_weighted_accuracy": 1.0,
+      "slm_coverage": 0.125,
+      "hybrid_coverage": 0.125,
+      "llm_coverage": 0.75
+    },
+    {
+      "slm_threshold": 0.5999999999999999,
+      "llm_threshold": 0.49999999999999994,
+      "tier_distribution": {
+        "SLM": 1,
+        "HYBRID": 1,
+        "LLM": 6
+      },
+      "coverage_pct": {
+        "SLM": 0.125,
+        "HYBRID": 0.125,
+        "LLM": 0.75
+      },
+      "avg_accuracy_per_tier": {
+        "SLM": 1.0,
+        "HYBRID": 1.0,
+        "LLM": 1.0
+      },
+      "overall_weighted_accuracy": 1.0,
+      "slm_coverage": 0.125,
+      "hybrid_coverage": 0.125,
+      "llm_coverage": 0.75
+    },
+    {
+      "slm_threshold": 0.5999999999999999,
+      "llm_threshold": 0.5499999999999999,
+      "tier_distribution": {
+        "SLM": 1,
+        "HYBRID": 0,
+        "LLM": 7
+      },
+      "coverage_pct": {
+        "SLM": 0.125,
+        "HYBRID": 0.0,
+        "LLM": 0.875
+      },
+      "avg_accuracy_per_tier": {
+        "SLM": 1.0,
+        "HYBRID": 0.0,
+        "LLM": 1.0
+      },
+      "overall_weighted_accuracy": 1.0,
+      "slm_coverage": 0.125,
+      "hybrid_coverage": 0.0,
+      "llm_coverage": 0.875
+    },
+    {
+      "slm_threshold": 0.6499999999999999,
+      "llm_threshold": 0.2,
+      "tier_distribution": {
+        "SLM": 1,
+        "HYBRID": 3,
+        "LLM": 4
+      },
+      "coverage_pct": {
+        "SLM": 0.125,
+        "HYBRID": 0.375,
+        "LLM": 0.5
+      },
+      "avg_accuracy_per_tier": {
+        "SLM": 1.0,
+        "HYBRID": 1.0,
+        "LLM": 1.0
+      },
+      "overall_weighted_accuracy": 1.0,
+      "slm_coverage": 0.125,
+      "hybrid_coverage": 0.375,
+      "llm_coverage": 0.5
+    },
+    {
+      "slm_threshold": 0.6499999999999999,
+      "llm_threshold": 0.25,
+      "tier_distribution": {
+        "SLM": 1,
+        "HYBRID": 3,
+        "LLM": 4
+      },
+      "coverage_pct": {
+        "SLM": 0.125,
+        "HYBRID": 0.375,
+        "LLM": 0.5
+      },
+      "avg_accuracy_per_tier": {
+        "SLM": 1.0,
+        "HYBRID": 1.0,
+        "LLM": 1.0
+      },
+      "overall_weighted_accuracy": 1.0,
+      "slm_coverage": 0.125,
+      "hybrid_coverage": 0.375,
+      "llm_coverage": 0.5
+    },
+    {
+      "slm_threshold": 0.6499999999999999,
+      "llm_threshold": 0.3,
+      "tier_distribution": {
+        "SLM": 1,
+        "HYBRID": 3,
+        "LLM": 4
+      },
+      "coverage_pct": {
+        "SLM": 0.125,
+        "HYBRID": 0.375,
+        "LLM": 0.5
+      },
+      "avg_accuracy_per_tier": {
+        "SLM": 1.0,
+        "HYBRID": 1.0,
+        "LLM": 1.0
+      },
+      "overall_weighted_accuracy": 1.0,
+      "slm_coverage": 0.125,
+      "hybrid_coverage": 0.375,
+      "llm_coverage": 0.5
+    },
+    {
+      "slm_threshold": 0.6499999999999999,
+      "llm_threshold": 0.35,
+      "tier_distribution": {
+        "SLM": 1,
+        "HYBRID": 2,
+        "LLM": 5
+      },
+      "coverage_pct": {
+        "SLM": 0.125,
+        "HYBRID": 0.25,
+        "LLM": 0.625
+      },
+      "avg_accuracy_per_tier": {
+        "SLM": 1.0,
+        "HYBRID": 1.0,
+        "LLM": 1.0
+      },
+      "overall_weighted_accuracy": 1.0,
+      "slm_coverage": 0.125,
+      "hybrid_coverage": 0.25,
+      "llm_coverage": 0.625
+    },
+    {
+      "slm_threshold": 0.6499999999999999,
+      "llm_threshold": 0.39999999999999997,
+      "tier_distribution": {
+        "SLM": 1,
+        "HYBRID": 2,
+        "LLM": 5
+      },
+      "coverage_pct": {
+        "SLM": 0.125,
+        "HYBRID": 0.25,
+        "LLM": 0.625
+      },
+      "avg_accuracy_per_tier": {
+        "SLM": 1.0,
+        "HYBRID": 1.0,
+        "LLM": 1.0
+      },
+      "overall_weighted_accuracy": 1.0,
+      "slm_coverage": 0.125,
+      "hybrid_coverage": 0.25,
+      "llm_coverage": 0.625
+    },
+    {
+      "slm_threshold": 0.6499999999999999,
+      "llm_threshold": 0.44999999999999996,
+      "tier_distribution": {
+        "SLM": 1,
+        "HYBRID": 1,
+        "LLM": 6
+      },
+      "coverage_pct": {
+        "SLM": 0.125,
+        "HYBRID": 0.125,
+        "LLM": 0.75
+      },
+      "avg_accuracy_per_tier": {
+        "SLM": 1.0,
+        "HYBRID": 1.0,
+        "LLM": 1.0
+      },
+      "overall_weighted_accuracy": 1.0,
+      "slm_coverage": 0.125,
+      "hybrid_coverage": 0.125,
+      "llm_coverage": 0.75
+    },
+    {
+      "slm_threshold": 0.6499999999999999,
+      "llm_threshold": 0.49999999999999994,
+      "tier_distribution": {
+        "SLM": 1,
+        "HYBRID": 1,
+        "LLM": 6
+      },
+      "coverage_pct": {
+        "SLM": 0.125,
+        "HYBRID": 0.125,
+        "LLM": 0.75
+      },
+      "avg_accuracy_per_tier": {
+        "SLM": 1.0,
+        "HYBRID": 1.0,
+        "LLM": 1.0
+      },
+      "overall_weighted_accuracy": 1.0,
+      "slm_coverage": 0.125,
+      "hybrid_coverage": 0.125,
+      "llm_coverage": 0.75
+    },
+    {
+      "slm_threshold": 0.6499999999999999,
+      "llm_threshold": 0.5499999999999999,
+      "tier_distribution": {
+        "SLM": 1,
+        "HYBRID": 0,
+        "LLM": 7
+      },
+      "coverage_pct": {
+        "SLM": 0.125,
+        "HYBRID": 0.0,
+        "LLM": 0.875
+      },
+      "avg_accuracy_per_tier": {
+        "SLM": 1.0,
+        "HYBRID": 0.0,
+        "LLM": 1.0
+      },
+      "overall_weighted_accuracy": 1.0,
+      "slm_coverage": 0.125,
+      "hybrid_coverage": 0.0,
+      "llm_coverage": 0.875
+    },
+    {
+      "slm_threshold": 0.6499999999999999,
+      "llm_threshold": 0.5999999999999999,
+      "tier_distribution": {
+        "SLM": 1,
+        "HYBRID": 0,
+        "LLM": 7
+      },
+      "coverage_pct": {
+        "SLM": 0.125,
+        "HYBRID": 0.0,
+        "LLM": 0.875
+      },
+      "avg_accuracy_per_tier": {
+        "SLM": 1.0,
+        "HYBRID": 0.0,
+        "LLM": 1.0
+      },
+      "overall_weighted_accuracy": 1.0,
+      "slm_coverage": 0.125,
+      "hybrid_coverage": 0.0,
+      "llm_coverage": 0.875
+    },
+    {
+      "slm_threshold": 0.7,
+      "llm_threshold": 0.2,
+      "tier_distribution": {
+        "SLM": 1,
+        "HYBRID": 3,
+        "LLM": 4
+      },
+      "coverage_pct": {
+        "SLM": 0.125,
+        "HYBRID": 0.375,
+        "LLM": 0.5
+      },
+      "avg_accuracy_per_tier": {
+        "SLM": 1.0,
+        "HYBRID": 1.0,
+        "LLM": 1.0
+      },
+      "overall_weighted_accuracy": 1.0,
+      "slm_coverage": 0.125,
+      "hybrid_coverage": 0.375,
+      "llm_coverage": 0.5
+    },
+    {
+      "slm_threshold": 0.7,
+      "llm_threshold": 0.25,
+      "tier_distribution": {
+        "SLM": 1,
+        "HYBRID": 3,
+        "LLM": 4
+      },
+      "coverage_pct": {
+        "SLM": 0.125,
+        "HYBRID": 0.375,
+        "LLM": 0.5
+      },
+      "avg_accuracy_per_tier": {
+        "SLM": 1.0,
+        "HYBRID": 1.0,
+        "LLM": 1.0
+      },
+      "overall_weighted_accuracy": 1.0,
+      "slm_coverage": 0.125,
+      "hybrid_coverage": 0.375,
+      "llm_coverage": 0.5
+    },
+    {
+      "slm_threshold": 0.7,
+      "llm_threshold": 0.3,
+      "tier_distribution": {
+        "SLM": 1,
+        "HYBRID": 3,
+        "LLM": 4
+      },
+      "coverage_pct": {
+        "SLM": 0.125,
+        "HYBRID": 0.375,
+        "LLM": 0.5
+      },
+      "avg_accuracy_per_tier": {
+        "SLM": 1.0,
+        "HYBRID": 1.0,
+        "LLM": 1.0
+      },
+      "overall_weighted_accuracy": 1.0,
+      "slm_coverage": 0.125,
+      "hybrid_coverage": 0.375,
+      "llm_coverage": 0.5
+    },
+    {
+      "slm_threshold": 0.7,
+      "llm_threshold": 0.35,
+      "tier_distribution": {
+        "SLM": 1,
+        "HYBRID": 2,
+        "LLM": 5
+      },
+      "coverage_pct": {
+        "SLM": 0.125,
+        "HYBRID": 0.25,
+        "LLM": 0.625
+      },
+      "avg_accuracy_per_tier": {
+        "SLM": 1.0,
+        "HYBRID": 1.0,
+        "LLM": 1.0
+      },
+      "overall_weighted_accuracy": 1.0,
+      "slm_coverage": 0.125,
+      "hybrid_coverage": 0.25,
+      "llm_coverage": 0.625
+    },
+    {
+      "slm_threshold": 0.7,
+      "llm_threshold": 0.39999999999999997,
+      "tier_distribution": {
+        "SLM": 1,
+        "HYBRID": 2,
+        "LLM": 5
+      },
+      "coverage_pct": {
+        "SLM": 0.125,
+        "HYBRID": 0.25,
+        "LLM": 0.625
+      },
+      "avg_accuracy_per_tier": {
+        "SLM": 1.0,
+        "HYBRID": 1.0,
+        "LLM": 1.0
+      },
+      "overall_weighted_accuracy": 1.0,
+      "slm_coverage": 0.125,
+      "hybrid_coverage": 0.25,
+      "llm_coverage": 0.625
+    },
+    {
+      "slm_threshold": 0.7,
+      "llm_threshold": 0.44999999999999996,
+      "tier_distribution": {
+        "SLM": 1,
+        "HYBRID": 1,
+        "LLM": 6
+      },
+      "coverage_pct": {
+        "SLM": 0.125,
+        "HYBRID": 0.125,
+        "LLM": 0.75
+      },
+      "avg_accuracy_per_tier": {
+        "SLM": 1.0,
+        "HYBRID": 1.0,
+        "LLM": 1.0
+      },
+      "overall_weighted_accuracy": 1.0,
+      "slm_coverage": 0.125,
+      "hybrid_coverage": 0.125,
+      "llm_coverage": 0.75
+    },
+    {
+      "slm_threshold": 0.7,
+      "llm_threshold": 0.49999999999999994,
+      "tier_distribution": {
+        "SLM": 1,
+        "HYBRID": 1,
+        "LLM": 6
+      },
+      "coverage_pct": {
+        "SLM": 0.125,
+        "HYBRID": 0.125,
+        "LLM": 0.75
+      },
+      "avg_accuracy_per_tier": {
+        "SLM": 1.0,
+        "HYBRID": 1.0,
+        "LLM": 1.0
+      },
+      "overall_weighted_accuracy": 1.0,
+      "slm_coverage": 0.125,
+      "hybrid_coverage": 0.125,
+      "llm_coverage": 0.75
+    },
+    {
+      "slm_threshold": 0.7,
+      "llm_threshold": 0.5499999999999999,
+      "tier_distribution": {
+        "SLM": 1,
+        "HYBRID": 0,
+        "LLM": 7
+      },
+      "coverage_pct": {
+        "SLM": 0.125,
+        "HYBRID": 0.0,
+        "LLM": 0.875
+      },
+      "avg_accuracy_per_tier": {
+        "SLM": 1.0,
+        "HYBRID": 0.0,
+        "LLM": 1.0
+      },
+      "overall_weighted_accuracy": 1.0,
+      "slm_coverage": 0.125,
+      "hybrid_coverage": 0.0,
+      "llm_coverage": 0.875
+    },
+    {
+      "slm_threshold": 0.7,
+      "llm_threshold": 0.5999999999999999,
+      "tier_distribution": {
+        "SLM": 1,
+        "HYBRID": 0,
+        "LLM": 7
+      },
+      "coverage_pct": {
+        "SLM": 0.125,
+        "HYBRID": 0.0,
+        "LLM": 0.875
+      },
+      "avg_accuracy_per_tier": {
+        "SLM": 1.0,
+        "HYBRID": 0.0,
+        "LLM": 1.0
+      },
+      "overall_weighted_accuracy": 1.0,
+      "slm_coverage": 0.125,
+      "hybrid_coverage": 0.0,
+      "llm_coverage": 0.875
+    },
+    {
+      "slm_threshold": 0.7,
+      "llm_threshold": 0.6499999999999999,
+      "tier_distribution": {
+        "SLM": 1,
+        "HYBRID": 0,
+        "LLM": 7
+      },
+      "coverage_pct": {
+        "SLM": 0.125,
+        "HYBRID": 0.0,
+        "LLM": 0.875
+      },
+      "avg_accuracy_per_tier": {
+        "SLM": 1.0,
+        "HYBRID": 0.0,
+        "LLM": 1.0
+      },
+      "overall_weighted_accuracy": 1.0,
+      "slm_coverage": 0.125,
+      "hybrid_coverage": 0.0,
+      "llm_coverage": 0.875
+    },
+    {
+      "slm_threshold": 0.7499999999999998,
+      "llm_threshold": 0.2,
+      "tier_distribution": {
+        "SLM": 1,
+        "HYBRID": 3,
+        "LLM": 4
+      },
+      "coverage_pct": {
+        "SLM": 0.125,
+        "HYBRID": 0.375,
+        "LLM": 0.5
+      },
+      "avg_accuracy_per_tier": {
+        "SLM": 1.0,
+        "HYBRID": 1.0,
+        "LLM": 1.0
+      },
+      "overall_weighted_accuracy": 1.0,
+      "slm_coverage": 0.125,
+      "hybrid_coverage": 0.375,
+      "llm_coverage": 0.5
+    },
+    {
+      "slm_threshold": 0.7499999999999998,
+      "llm_threshold": 0.25,
+      "tier_distribution": {
+        "SLM": 1,
+        "HYBRID": 3,
+        "LLM": 4
+      },
+      "coverage_pct": {
+        "SLM": 0.125,
+        "HYBRID": 0.375,
+        "LLM": 0.5
+      },
+      "avg_accuracy_per_tier": {
+        "SLM": 1.0,
+        "HYBRID": 1.0,
+        "LLM": 1.0
+      },
+      "overall_weighted_accuracy": 1.0,
+      "slm_coverage": 0.125,
+      "hybrid_coverage": 0.375,
+      "llm_coverage": 0.5
+    },
+    {
+      "slm_threshold": 0.7499999999999998,
+      "llm_threshold": 0.3,
+      "tier_distribution": {
+        "SLM": 1,
+        "HYBRID": 3,
+        "LLM": 4
+      },
+      "coverage_pct": {
+        "SLM": 0.125,
+        "HYBRID": 0.375,
+        "LLM": 0.5
+      },
+      "avg_accuracy_per_tier": {
+        "SLM": 1.0,
+        "HYBRID": 1.0,
+        "LLM": 1.0
+      },
+      "overall_weighted_accuracy": 1.0,
+      "slm_coverage": 0.125,
+      "hybrid_coverage": 0.375,
+      "llm_coverage": 0.5
+    },
+    {
+      "slm_threshold": 0.7499999999999998,
+      "llm_threshold": 0.35,
+      "tier_distribution": {
+        "SLM": 1,
+        "HYBRID": 2,
+        "LLM": 5
+      },
+      "coverage_pct": {
+        "SLM": 0.125,
+        "HYBRID": 0.25,
+        "LLM": 0.625
+      },
+      "avg_accuracy_per_tier": {
+        "SLM": 1.0,
+        "HYBRID": 1.0,
+        "LLM": 1.0
+      },
+      "overall_weighted_accuracy": 1.0,
+      "slm_coverage": 0.125,
+      "hybrid_coverage": 0.25,
+      "llm_coverage": 0.625
+    },
+    {
+      "slm_threshold": 0.7499999999999998,
+      "llm_threshold": 0.39999999999999997,
+      "tier_distribution": {
+        "SLM": 1,
+        "HYBRID": 2,
+        "LLM": 5
+      },
+      "coverage_pct": {
+        "SLM": 0.125,
+        "HYBRID": 0.25,
+        "LLM": 0.625
+      },
+      "avg_accuracy_per_tier": {
+        "SLM": 1.0,
+        "HYBRID": 1.0,
+        "LLM": 1.0
+      },
+      "overall_weighted_accuracy": 1.0,
+      "slm_coverage": 0.125,
+      "hybrid_coverage": 0.25,
+      "llm_coverage": 0.625
+    },
+    {
+      "slm_threshold": 0.7499999999999998,
+      "llm_threshold": 0.44999999999999996,
+      "tier_distribution": {
+        "SLM": 1,
+        "HYBRID": 1,
+        "LLM": 6
+      },
+      "coverage_pct": {
+        "SLM": 0.125,
+        "HYBRID": 0.125,
+        "LLM": 0.75
+      },
+      "avg_accuracy_per_tier": {
+        "SLM": 1.0,
+        "HYBRID": 1.0,
+        "LLM": 1.0
+      },
+      "overall_weighted_accuracy": 1.0,
+      "slm_coverage": 0.125,
+      "hybrid_coverage": 0.125,
+      "llm_coverage": 0.75
+    },
+    {
+      "slm_threshold": 0.7499999999999998,
+      "llm_threshold": 0.49999999999999994,
+      "tier_distribution": {
+        "SLM": 1,
+        "HYBRID": 1,
+        "LLM": 6
+      },
+      "coverage_pct": {
+        "SLM": 0.125,
+        "HYBRID": 0.125,
+        "LLM": 0.75
+      },
+      "avg_accuracy_per_tier": {
+        "SLM": 1.0,
+        "HYBRID": 1.0,
+        "LLM": 1.0
+      },
+      "overall_weighted_accuracy": 1.0,
+      "slm_coverage": 0.125,
+      "hybrid_coverage": 0.125,
+      "llm_coverage": 0.75
+    },
+    {
+      "slm_threshold": 0.7499999999999998,
+      "llm_threshold": 0.5499999999999999,
+      "tier_distribution": {
+        "SLM": 1,
+        "HYBRID": 0,
+        "LLM": 7
+      },
+      "coverage_pct": {
+        "SLM": 0.125,
+        "HYBRID": 0.0,
+        "LLM": 0.875
+      },
+      "avg_accuracy_per_tier": {
+        "SLM": 1.0,
+        "HYBRID": 0.0,
+        "LLM": 1.0
+      },
+      "overall_weighted_accuracy": 1.0,
+      "slm_coverage": 0.125,
+      "hybrid_coverage": 0.0,
+      "llm_coverage": 0.875
+    },
+    {
+      "slm_threshold": 0.7499999999999998,
+      "llm_threshold": 0.5999999999999999,
+      "tier_distribution": {
+        "SLM": 1,
+        "HYBRID": 0,
+        "LLM": 7
+      },
+      "coverage_pct": {
+        "SLM": 0.125,
+        "HYBRID": 0.0,
+        "LLM": 0.875
+      },
+      "avg_accuracy_per_tier": {
+        "SLM": 1.0,
+        "HYBRID": 0.0,
+        "LLM": 1.0
+      },
+      "overall_weighted_accuracy": 1.0,
+      "slm_coverage": 0.125,
+      "hybrid_coverage": 0.0,
+      "llm_coverage": 0.875
+    },
+    {
+      "slm_threshold": 0.7499999999999998,
+      "llm_threshold": 0.6499999999999999,
+      "tier_distribution": {
+        "SLM": 1,
+        "HYBRID": 0,
+        "LLM": 7
+      },
+      "coverage_pct": {
+        "SLM": 0.125,
+        "HYBRID": 0.0,
+        "LLM": 0.875
+      },
+      "avg_accuracy_per_tier": {
+        "SLM": 1.0,
+        "HYBRID": 0.0,
+        "LLM": 1.0
+      },
+      "overall_weighted_accuracy": 1.0,
+      "slm_coverage": 0.125,
+      "hybrid_coverage": 0.0,
+      "llm_coverage": 0.875
+    },
+    {
+      "slm_threshold": 0.7499999999999998,
+      "llm_threshold": 0.7,
+      "tier_distribution": {
+        "SLM": 1,
+        "HYBRID": 0,
+        "LLM": 7
+      },
+      "coverage_pct": {
+        "SLM": 0.125,
+        "HYBRID": 0.0,
+        "LLM": 0.875
+      },
+      "avg_accuracy_per_tier": {
+        "SLM": 1.0,
+        "HYBRID": 0.0,
+        "LLM": 1.0
+      },
+      "overall_weighted_accuracy": 1.0,
+      "slm_coverage": 0.125,
+      "hybrid_coverage": 0.0,
+      "llm_coverage": 0.875
+    },
+    {
+      "slm_threshold": 0.7999999999999998,
+      "llm_threshold": 0.2,
+      "tier_distribution": {
+        "SLM": 1,
+        "HYBRID": 3,
+        "LLM": 4
+      },
+      "coverage_pct": {
+        "SLM": 0.125,
+        "HYBRID": 0.375,
+        "LLM": 0.5
+      },
+      "avg_accuracy_per_tier": {
+        "SLM": 1.0,
+        "HYBRID": 1.0,
+        "LLM": 1.0
+      },
+      "overall_weighted_accuracy": 1.0,
+      "slm_coverage": 0.125,
+      "hybrid_coverage": 0.375,
+      "llm_coverage": 0.5
+    },
+    {
+      "slm_threshold": 0.7999999999999998,
+      "llm_threshold": 0.25,
+      "tier_distribution": {
+        "SLM": 1,
+        "HYBRID": 3,
+        "LLM": 4
+      },
+      "coverage_pct": {
+        "SLM": 0.125,
+        "HYBRID": 0.375,
+        "LLM": 0.5
+      },
+      "avg_accuracy_per_tier": {
+        "SLM": 1.0,
+        "HYBRID": 1.0,
+        "LLM": 1.0
+      },
+      "overall_weighted_accuracy": 1.0,
+      "slm_coverage": 0.125,
+      "hybrid_coverage": 0.375,
+      "llm_coverage": 0.5
+    },
+    {
+      "slm_threshold": 0.7999999999999998,
+      "llm_threshold": 0.3,
+      "tier_distribution": {
+        "SLM": 1,
+        "HYBRID": 3,
+        "LLM": 4
+      },
+      "coverage_pct": {
+        "SLM": 0.125,
+        "HYBRID": 0.375,
+        "LLM": 0.5
+      },
+      "avg_accuracy_per_tier": {
+        "SLM": 1.0,
+        "HYBRID": 1.0,
+        "LLM": 1.0
+      },
+      "overall_weighted_accuracy": 1.0,
+      "slm_coverage": 0.125,
+      "hybrid_coverage": 0.375,
+      "llm_coverage": 0.5
+    },
+    {
+      "slm_threshold": 0.7999999999999998,
+      "llm_threshold": 0.35,
+      "tier_distribution": {
+        "SLM": 1,
+        "HYBRID": 2,
+        "LLM": 5
+      },
+      "coverage_pct": {
+        "SLM": 0.125,
+        "HYBRID": 0.25,
+        "LLM": 0.625
+      },
+      "avg_accuracy_per_tier": {
+        "SLM": 1.0,
+        "HYBRID": 1.0,
+        "LLM": 1.0
+      },
+      "overall_weighted_accuracy": 1.0,
+      "slm_coverage": 0.125,
+      "hybrid_coverage": 0.25,
+      "llm_coverage": 0.625
+    },
+    {
+      "slm_threshold": 0.7999999999999998,
+      "llm_threshold": 0.39999999999999997,
+      "tier_distribution": {
+        "SLM": 1,
+        "HYBRID": 2,
+        "LLM": 5
+      },
+      "coverage_pct": {
+        "SLM": 0.125,
+        "HYBRID": 0.25,
+        "LLM": 0.625
+      },
+      "avg_accuracy_per_tier": {
+        "SLM": 1.0,
+        "HYBRID": 1.0,
+        "LLM": 1.0
+      },
+      "overall_weighted_accuracy": 1.0,
+      "slm_coverage": 0.125,
+      "hybrid_coverage": 0.25,
+      "llm_coverage": 0.625
+    },
+    {
+      "slm_threshold": 0.7999999999999998,
+      "llm_threshold": 0.44999999999999996,
+      "tier_distribution": {
+        "SLM": 1,
+        "HYBRID": 1,
+        "LLM": 6
+      },
+      "coverage_pct": {
+        "SLM": 0.125,
+        "HYBRID": 0.125,
+        "LLM": 0.75
+      },
+      "avg_accuracy_per_tier": {
+        "SLM": 1.0,
+        "HYBRID": 1.0,
+        "LLM": 1.0
+      },
+      "overall_weighted_accuracy": 1.0,
+      "slm_coverage": 0.125,
+      "hybrid_coverage": 0.125,
+      "llm_coverage": 0.75
+    },
+    {
+      "slm_threshold": 0.7999999999999998,
+      "llm_threshold": 0.49999999999999994,
+      "tier_distribution": {
+        "SLM": 1,
+        "HYBRID": 1,
+        "LLM": 6
+      },
+      "coverage_pct": {
+        "SLM": 0.125,
+        "HYBRID": 0.125,
+        "LLM": 0.75
+      },
+      "avg_accuracy_per_tier": {
+        "SLM": 1.0,
+        "HYBRID": 1.0,
+        "LLM": 1.0
+      },
+      "overall_weighted_accuracy": 1.0,
+      "slm_coverage": 0.125,
+      "hybrid_coverage": 0.125,
+      "llm_coverage": 0.75
+    },
+    {
+      "slm_threshold": 0.7999999999999998,
+      "llm_threshold": 0.5499999999999999,
+      "tier_distribution": {
+        "SLM": 1,
+        "HYBRID": 0,
+        "LLM": 7
+      },
+      "coverage_pct": {
+        "SLM": 0.125,
+        "HYBRID": 0.0,
+        "LLM": 0.875
+      },
+      "avg_accuracy_per_tier": {
+        "SLM": 1.0,
+        "HYBRID": 0.0,
+        "LLM": 1.0
+      },
+      "overall_weighted_accuracy": 1.0,
+      "slm_coverage": 0.125,
+      "hybrid_coverage": 0.0,
+      "llm_coverage": 0.875
+    },
+    {
+      "slm_threshold": 0.7999999999999998,
+      "llm_threshold": 0.5999999999999999,
+      "tier_distribution": {
+        "SLM": 1,
+        "HYBRID": 0,
+        "LLM": 7
+      },
+      "coverage_pct": {
+        "SLM": 0.125,
+        "HYBRID": 0.0,
+        "LLM": 0.875
+      },
+      "avg_accuracy_per_tier": {
+        "SLM": 1.0,
+        "HYBRID": 0.0,
+        "LLM": 1.0
+      },
+      "overall_weighted_accuracy": 1.0,
+      "slm_coverage": 0.125,
+      "hybrid_coverage": 0.0,
+      "llm_coverage": 0.875
+    },
+    {
+      "slm_threshold": 0.7999999999999998,
+      "llm_threshold": 0.6499999999999999,
+      "tier_distribution": {
+        "SLM": 1,
+        "HYBRID": 0,
+        "LLM": 7
+      },
+      "coverage_pct": {
+        "SLM": 0.125,
+        "HYBRID": 0.0,
+        "LLM": 0.875
+      },
+      "avg_accuracy_per_tier": {
+        "SLM": 1.0,
+        "HYBRID": 0.0,
+        "LLM": 1.0
+      },
+      "overall_weighted_accuracy": 1.0,
+      "slm_coverage": 0.125,
+      "hybrid_coverage": 0.0,
+      "llm_coverage": 0.875
+    },
+    {
+      "slm_threshold": 0.7999999999999998,
+      "llm_threshold": 0.7,
+      "tier_distribution": {
+        "SLM": 1,
+        "HYBRID": 0,
+        "LLM": 7
+      },
+      "coverage_pct": {
+        "SLM": 0.125,
+        "HYBRID": 0.0,
+        "LLM": 0.875
+      },
+      "avg_accuracy_per_tier": {
+        "SLM": 1.0,
+        "HYBRID": 0.0,
+        "LLM": 1.0
+      },
+      "overall_weighted_accuracy": 1.0,
+      "slm_coverage": 0.125,
+      "hybrid_coverage": 0.0,
+      "llm_coverage": 0.875
+    },
+    {
+      "slm_threshold": 0.7999999999999998,
+      "llm_threshold": 0.7499999999999998,
+      "tier_distribution": {
+        "SLM": 1,
+        "HYBRID": 0,
+        "LLM": 7
+      },
+      "coverage_pct": {
+        "SLM": 0.125,
+        "HYBRID": 0.0,
+        "LLM": 0.875
+      },
+      "avg_accuracy_per_tier": {
+        "SLM": 1.0,
+        "HYBRID": 0.0,
+        "LLM": 1.0
+      },
+      "overall_weighted_accuracy": 1.0,
+      "slm_coverage": 0.125,
+      "hybrid_coverage": 0.0,
+      "llm_coverage": 0.875
+    },
+    {
+      "slm_threshold": 0.8499999999999999,
+      "llm_threshold": 0.2,
+      "tier_distribution": {
+        "SLM": 1,
+        "HYBRID": 3,
+        "LLM": 4
+      },
+      "coverage_pct": {
+        "SLM": 0.125,
+        "HYBRID": 0.375,
+        "LLM": 0.5
+      },
+      "avg_accuracy_per_tier": {
+        "SLM": 1.0,
+        "HYBRID": 1.0,
+        "LLM": 1.0
+      },
+      "overall_weighted_accuracy": 1.0,
+      "slm_coverage": 0.125,
+      "hybrid_coverage": 0.375,
+      "llm_coverage": 0.5
+    },
+    {
+      "slm_threshold": 0.8499999999999999,
+      "llm_threshold": 0.25,
+      "tier_distribution": {
+        "SLM": 1,
+        "HYBRID": 3,
+        "LLM": 4
+      },
+      "coverage_pct": {
+        "SLM": 0.125,
+        "HYBRID": 0.375,
+        "LLM": 0.5
+      },
+      "avg_accuracy_per_tier": {
+        "SLM": 1.0,
+        "HYBRID": 1.0,
+        "LLM": 1.0
+      },
+      "overall_weighted_accuracy": 1.0,
+      "slm_coverage": 0.125,
+      "hybrid_coverage": 0.375,
+      "llm_coverage": 0.5
+    },
+    {
+      "slm_threshold": 0.8499999999999999,
+      "llm_threshold": 0.3,
+      "tier_distribution": {
+        "SLM": 1,
+        "HYBRID": 3,
+        "LLM": 4
+      },
+      "coverage_pct": {
+        "SLM": 0.125,
+        "HYBRID": 0.375,
+        "LLM": 0.5
+      },
+      "avg_accuracy_per_tier": {
+        "SLM": 1.0,
+        "HYBRID": 1.0,
+        "LLM": 1.0
+      },
+      "overall_weighted_accuracy": 1.0,
+      "slm_coverage": 0.125,
+      "hybrid_coverage": 0.375,
+      "llm_coverage": 0.5
+    },
+    {
+      "slm_threshold": 0.8499999999999999,
+      "llm_threshold": 0.35,
+      "tier_distribution": {
+        "SLM": 1,
+        "HYBRID": 2,
+        "LLM": 5
+      },
+      "coverage_pct": {
+        "SLM": 0.125,
+        "HYBRID": 0.25,
+        "LLM": 0.625
+      },
+      "avg_accuracy_per_tier": {
+        "SLM": 1.0,
+        "HYBRID": 1.0,
+        "LLM": 1.0
+      },
+      "overall_weighted_accuracy": 1.0,
+      "slm_coverage": 0.125,
+      "hybrid_coverage": 0.25,
+      "llm_coverage": 0.625
+    },
+    {
+      "slm_threshold": 0.8499999999999999,
+      "llm_threshold": 0.39999999999999997,
+      "tier_distribution": {
+        "SLM": 1,
+        "HYBRID": 2,
+        "LLM": 5
+      },
+      "coverage_pct": {
+        "SLM": 0.125,
+        "HYBRID": 0.25,
+        "LLM": 0.625
+      },
+      "avg_accuracy_per_tier": {
+        "SLM": 1.0,
+        "HYBRID": 1.0,
+        "LLM": 1.0
+      },
+      "overall_weighted_accuracy": 1.0,
+      "slm_coverage": 0.125,
+      "hybrid_coverage": 0.25,
+      "llm_coverage": 0.625
+    },
+    {
+      "slm_threshold": 0.8499999999999999,
+      "llm_threshold": 0.44999999999999996,
+      "tier_distribution": {
+        "SLM": 1,
+        "HYBRID": 1,
+        "LLM": 6
+      },
+      "coverage_pct": {
+        "SLM": 0.125,
+        "HYBRID": 0.125,
+        "LLM": 0.75
+      },
+      "avg_accuracy_per_tier": {
+        "SLM": 1.0,
+        "HYBRID": 1.0,
+        "LLM": 1.0
+      },
+      "overall_weighted_accuracy": 1.0,
+      "slm_coverage": 0.125,
+      "hybrid_coverage": 0.125,
+      "llm_coverage": 0.75
+    },
+    {
+      "slm_threshold": 0.8499999999999999,
+      "llm_threshold": 0.49999999999999994,
+      "tier_distribution": {
+        "SLM": 1,
+        "HYBRID": 1,
+        "LLM": 6
+      },
+      "coverage_pct": {
+        "SLM": 0.125,
+        "HYBRID": 0.125,
+        "LLM": 0.75
+      },
+      "avg_accuracy_per_tier": {
+        "SLM": 1.0,
+        "HYBRID": 1.0,
+        "LLM": 1.0
+      },
+      "overall_weighted_accuracy": 1.0,
+      "slm_coverage": 0.125,
+      "hybrid_coverage": 0.125,
+      "llm_coverage": 0.75
+    },
+    {
+      "slm_threshold": 0.8499999999999999,
+      "llm_threshold": 0.5499999999999999,
+      "tier_distribution": {
+        "SLM": 1,
+        "HYBRID": 0,
+        "LLM": 7
+      },
+      "coverage_pct": {
+        "SLM": 0.125,
+        "HYBRID": 0.0,
+        "LLM": 0.875
+      },
+      "avg_accuracy_per_tier": {
+        "SLM": 1.0,
+        "HYBRID": 0.0,
+        "LLM": 1.0
+      },
+      "overall_weighted_accuracy": 1.0,
+      "slm_coverage": 0.125,
+      "hybrid_coverage": 0.0,
+      "llm_coverage": 0.875
+    },
+    {
+      "slm_threshold": 0.8499999999999999,
+      "llm_threshold": 0.5999999999999999,
+      "tier_distribution": {
+        "SLM": 1,
+        "HYBRID": 0,
+        "LLM": 7
+      },
+      "coverage_pct": {
+        "SLM": 0.125,
+        "HYBRID": 0.0,
+        "LLM": 0.875
+      },
+      "avg_accuracy_per_tier": {
+        "SLM": 1.0,
+        "HYBRID": 0.0,
+        "LLM": 1.0
+      },
+      "overall_weighted_accuracy": 1.0,
+      "slm_coverage": 0.125,
+      "hybrid_coverage": 0.0,
+      "llm_coverage": 0.875
+    },
+    {
+      "slm_threshold": 0.8499999999999999,
+      "llm_threshold": 0.6499999999999999,
+      "tier_distribution": {
+        "SLM": 1,
+        "HYBRID": 0,
+        "LLM": 7
+      },
+      "coverage_pct": {
+        "SLM": 0.125,
+        "HYBRID": 0.0,
+        "LLM": 0.875
+      },
+      "avg_accuracy_per_tier": {
+        "SLM": 1.0,
+        "HYBRID": 0.0,
+        "LLM": 1.0
+      },
+      "overall_weighted_accuracy": 1.0,
+      "slm_coverage": 0.125,
+      "hybrid_coverage": 0.0,
+      "llm_coverage": 0.875
+    },
+    {
+      "slm_threshold": 0.8499999999999999,
+      "llm_threshold": 0.7,
+      "tier_distribution": {
+        "SLM": 1,
+        "HYBRID": 0,
+        "LLM": 7
+      },
+      "coverage_pct": {
+        "SLM": 0.125,
+        "HYBRID": 0.0,
+        "LLM": 0.875
+      },
+      "avg_accuracy_per_tier": {
+        "SLM": 1.0,
+        "HYBRID": 0.0,
+        "LLM": 1.0
+      },
+      "overall_weighted_accuracy": 1.0,
+      "slm_coverage": 0.125,
+      "hybrid_coverage": 0.0,
+      "llm_coverage": 0.875
+    },
+    {
+      "slm_threshold": 0.8499999999999999,
+      "llm_threshold": 0.7499999999999998,
+      "tier_distribution": {
+        "SLM": 1,
+        "HYBRID": 0,
+        "LLM": 7
+      },
+      "coverage_pct": {
+        "SLM": 0.125,
+        "HYBRID": 0.0,
+        "LLM": 0.875
+      },
+      "avg_accuracy_per_tier": {
+        "SLM": 1.0,
+        "HYBRID": 0.0,
+        "LLM": 1.0
+      },
+      "overall_weighted_accuracy": 1.0,
+      "slm_coverage": 0.125,
+      "hybrid_coverage": 0.0,
+      "llm_coverage": 0.875
+    },
+    {
+      "slm_threshold": 0.8499999999999999,
+      "llm_threshold": 0.7999999999999998,
+      "tier_distribution": {
+        "SLM": 1,
+        "HYBRID": 0,
+        "LLM": 7
+      },
+      "coverage_pct": {
+        "SLM": 0.125,
+        "HYBRID": 0.0,
+        "LLM": 0.875
+      },
+      "avg_accuracy_per_tier": {
+        "SLM": 1.0,
+        "HYBRID": 0.0,
+        "LLM": 1.0
+      },
+      "overall_weighted_accuracy": 1.0,
+      "slm_coverage": 0.125,
+      "hybrid_coverage": 0.0,
+      "llm_coverage": 0.875
+    },
+    {
+      "slm_threshold": 0.8999999999999999,
+      "llm_threshold": 0.2,
+      "tier_distribution": {
+        "SLM": 0,
+        "HYBRID": 4,
+        "LLM": 4
+      },
+      "coverage_pct": {
+        "SLM": 0.0,
+        "HYBRID": 0.5,
+        "LLM": 0.5
+      },
+      "avg_accuracy_per_tier": {
+        "SLM": 0.0,
+        "HYBRID": 1.0,
+        "LLM": 1.0
+      },
+      "overall_weighted_accuracy": 1.0,
+      "slm_coverage": 0.0,
+      "hybrid_coverage": 0.5,
+      "llm_coverage": 0.5
+    },
+    {
+      "slm_threshold": 0.8999999999999999,
+      "llm_threshold": 0.25,
+      "tier_distribution": {
+        "SLM": 0,
+        "HYBRID": 4,
+        "LLM": 4
+      },
+      "coverage_pct": {
+        "SLM": 0.0,
+        "HYBRID": 0.5,
+        "LLM": 0.5
+      },
+      "avg_accuracy_per_tier": {
+        "SLM": 0.0,
+        "HYBRID": 1.0,
+        "LLM": 1.0
+      },
+      "overall_weighted_accuracy": 1.0,
+      "slm_coverage": 0.0,
+      "hybrid_coverage": 0.5,
+      "llm_coverage": 0.5
+    },
+    {
+      "slm_threshold": 0.8999999999999999,
+      "llm_threshold": 0.3,
+      "tier_distribution": {
+        "SLM": 0,
+        "HYBRID": 4,
+        "LLM": 4
+      },
+      "coverage_pct": {
+        "SLM": 0.0,
+        "HYBRID": 0.5,
+        "LLM": 0.5
+      },
+      "avg_accuracy_per_tier": {
+        "SLM": 0.0,
+        "HYBRID": 1.0,
+        "LLM": 1.0
+      },
+      "overall_weighted_accuracy": 1.0,
+      "slm_coverage": 0.0,
+      "hybrid_coverage": 0.5,
+      "llm_coverage": 0.5
+    },
+    {
+      "slm_threshold": 0.8999999999999999,
+      "llm_threshold": 0.35,
+      "tier_distribution": {
+        "SLM": 0,
+        "HYBRID": 3,
+        "LLM": 5
+      },
+      "coverage_pct": {
+        "SLM": 0.0,
+        "HYBRID": 0.375,
+        "LLM": 0.625
+      },
+      "avg_accuracy_per_tier": {
+        "SLM": 0.0,
+        "HYBRID": 1.0,
+        "LLM": 1.0
+      },
+      "overall_weighted_accuracy": 1.0,
+      "slm_coverage": 0.0,
+      "hybrid_coverage": 0.375,
+      "llm_coverage": 0.625
+    },
+    {
+      "slm_threshold": 0.8999999999999999,
+      "llm_threshold": 0.39999999999999997,
+      "tier_distribution": {
+        "SLM": 0,
+        "HYBRID": 3,
+        "LLM": 5
+      },
+      "coverage_pct": {
+        "SLM": 0.0,
+        "HYBRID": 0.375,
+        "LLM": 0.625
+      },
+      "avg_accuracy_per_tier": {
+        "SLM": 0.0,
+        "HYBRID": 1.0,
+        "LLM": 1.0
+      },
+      "overall_weighted_accuracy": 1.0,
+      "slm_coverage": 0.0,
+      "hybrid_coverage": 0.375,
+      "llm_coverage": 0.625
+    },
+    {
+      "slm_threshold": 0.8999999999999999,
+      "llm_threshold": 0.44999999999999996,
+      "tier_distribution": {
+        "SLM": 0,
+        "HYBRID": 2,
+        "LLM": 6
+      },
+      "coverage_pct": {
+        "SLM": 0.0,
+        "HYBRID": 0.25,
+        "LLM": 0.75
+      },
+      "avg_accuracy_per_tier": {
+        "SLM": 0.0,
+        "HYBRID": 1.0,
+        "LLM": 1.0
+      },
+      "overall_weighted_accuracy": 1.0,
+      "slm_coverage": 0.0,
+      "hybrid_coverage": 0.25,
+      "llm_coverage": 0.75
+    },
+    {
+      "slm_threshold": 0.8999999999999999,
+      "llm_threshold": 0.49999999999999994,
+      "tier_distribution": {
+        "SLM": 0,
+        "HYBRID": 2,
+        "LLM": 6
+      },
+      "coverage_pct": {
+        "SLM": 0.0,
+        "HYBRID": 0.25,
+        "LLM": 0.75
+      },
+      "avg_accuracy_per_tier": {
+        "SLM": 0.0,
+        "HYBRID": 1.0,
+        "LLM": 1.0
+      },
+      "overall_weighted_accuracy": 1.0,
+      "slm_coverage": 0.0,
+      "hybrid_coverage": 0.25,
+      "llm_coverage": 0.75
+    },
+    {
+      "slm_threshold": 0.8999999999999999,
+      "llm_threshold": 0.5499999999999999,
+      "tier_distribution": {
+        "SLM": 0,
+        "HYBRID": 1,
+        "LLM": 7
+      },
+      "coverage_pct": {
+        "SLM": 0.0,
+        "HYBRID": 0.125,
+        "LLM": 0.875
+      },
+      "avg_accuracy_per_tier": {
+        "SLM": 0.0,
+        "HYBRID": 1.0,
+        "LLM": 1.0
+      },
+      "overall_weighted_accuracy": 1.0,
+      "slm_coverage": 0.0,
+      "hybrid_coverage": 0.125,
+      "llm_coverage": 0.875
+    },
+    {
+      "slm_threshold": 0.8999999999999999,
+      "llm_threshold": 0.5999999999999999,
+      "tier_distribution": {
+        "SLM": 0,
+        "HYBRID": 1,
+        "LLM": 7
+      },
+      "coverage_pct": {
+        "SLM": 0.0,
+        "HYBRID": 0.125,
+        "LLM": 0.875
+      },
+      "avg_accuracy_per_tier": {
+        "SLM": 0.0,
+        "HYBRID": 1.0,
+        "LLM": 1.0
+      },
+      "overall_weighted_accuracy": 1.0,
+      "slm_coverage": 0.0,
+      "hybrid_coverage": 0.125,
+      "llm_coverage": 0.875
+    },
+    {
+      "slm_threshold": 0.8999999999999999,
+      "llm_threshold": 0.6499999999999999,
+      "tier_distribution": {
+        "SLM": 0,
+        "HYBRID": 1,
+        "LLM": 7
+      },
+      "coverage_pct": {
+        "SLM": 0.0,
+        "HYBRID": 0.125,
+        "LLM": 0.875
+      },
+      "avg_accuracy_per_tier": {
+        "SLM": 0.0,
+        "HYBRID": 1.0,
+        "LLM": 1.0
+      },
+      "overall_weighted_accuracy": 1.0,
+      "slm_coverage": 0.0,
+      "hybrid_coverage": 0.125,
+      "llm_coverage": 0.875
+    },
+    {
+      "slm_threshold": 0.8999999999999999,
+      "llm_threshold": 0.7,
+      "tier_distribution": {
+        "SLM": 0,
+        "HYBRID": 1,
+        "LLM": 7
+      },
+      "coverage_pct": {
+        "SLM": 0.0,
+        "HYBRID": 0.125,
+        "LLM": 0.875
+      },
+      "avg_accuracy_per_tier": {
+        "SLM": 0.0,
+        "HYBRID": 1.0,
+        "LLM": 1.0
+      },
+      "overall_weighted_accuracy": 1.0,
+      "slm_coverage": 0.0,
+      "hybrid_coverage": 0.125,
+      "llm_coverage": 0.875
+    },
+    {
+      "slm_threshold": 0.8999999999999999,
+      "llm_threshold": 0.7499999999999998,
+      "tier_distribution": {
+        "SLM": 0,
+        "HYBRID": 1,
+        "LLM": 7
+      },
+      "coverage_pct": {
+        "SLM": 0.0,
+        "HYBRID": 0.125,
+        "LLM": 0.875
+      },
+      "avg_accuracy_per_tier": {
+        "SLM": 0.0,
+        "HYBRID": 1.0,
+        "LLM": 1.0
+      },
+      "overall_weighted_accuracy": 1.0,
+      "slm_coverage": 0.0,
+      "hybrid_coverage": 0.125,
+      "llm_coverage": 0.875
+    },
+    {
+      "slm_threshold": 0.8999999999999999,
+      "llm_threshold": 0.7999999999999998,
+      "tier_distribution": {
+        "SLM": 0,
+        "HYBRID": 1,
+        "LLM": 7
+      },
+      "coverage_pct": {
+        "SLM": 0.0,
+        "HYBRID": 0.125,
+        "LLM": 0.875
+      },
+      "avg_accuracy_per_tier": {
+        "SLM": 0.0,
+        "HYBRID": 1.0,
+        "LLM": 1.0
+      },
+      "overall_weighted_accuracy": 1.0,
+      "slm_coverage": 0.0,
+      "hybrid_coverage": 0.125,
+      "llm_coverage": 0.875
+    },
+    {
+      "slm_threshold": 0.8999999999999999,
+      "llm_threshold": 0.8499999999999999,
+      "tier_distribution": {
+        "SLM": 0,
+        "HYBRID": 1,
+        "LLM": 7
+      },
+      "coverage_pct": {
+        "SLM": 0.0,
+        "HYBRID": 0.125,
+        "LLM": 0.875
+      },
+      "avg_accuracy_per_tier": {
+        "SLM": 0.0,
+        "HYBRID": 1.0,
+        "LLM": 1.0
+      },
+      "overall_weighted_accuracy": 1.0,
+      "slm_coverage": 0.0,
+      "hybrid_coverage": 0.125,
+      "llm_coverage": 0.875
+    }
+  ]
+}

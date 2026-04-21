@@ -1,0 +1,322 @@
+{
+  "summary": {
+    "tasks_validated": 8,
+    "slm_tier_count": 8,
+    "hybrid_tier_count": 0,
+    "llm_tier_count": 0
+  },
+  "results": {
+    "classification": {
+      "task_family": "classification",
+      "tau_frozen": 0.6667,
+      "per_model_metrics": {
+        "qwen2.5_0.5b": {
+          "rho": 1.0,
+          "slm_routed": 9,
+          "llm_routed": 0,
+          "routes": [
+            "SLM",
+            "SLM",
+            "SLM",
+            "SLM",
+            "SLM",
+            "SLM",
+            "SLM",
+            "SLM",
+            "SLM"
+          ]
+        },
+        "qwen2.5_3b": {
+          "rho": 1.0,
+          "slm_routed": 9,
+          "llm_routed": 0,
+          "routes": [
+            "SLM",
+            "SLM",
+            "SLM",
+            "SLM",
+            "SLM",
+            "SLM",
+            "SLM",
+            "SLM",
+            "SLM"
+          ]
+        }
+      },
+      "consensus_metrics": {
+        "rho_bar": 1.0,
+        "tier": "SLM",
+        "explanation": "High SLM routing confidence (rho_bar=1.0000 >= 0.70)"
+      },
+      "quality_metrics": {
+        "slm_accuracy": 1.0,
+        "llm_accuracy": 1.0,
+        "slm_failures": 0,
+        "total_queries": 18
+      }
+    },
+    "code_generation": {
+      "task_family": "code_generation",
+      "tau_frozen": 0.6667,
+      "per_model_metrics": {
+        "qwen2.5_0.5b": {
+          "rho": 1.0,
+          "slm_routed": 5,
+          "llm_routed": 0,
+          "routes": [
+            "SLM",
+            "SLM",
+            "SLM",
+            "SLM",
+            "SLM"
+          ]
+        },
+        "qwen2.5_3b": {
+          "rho": 1.0,
+          "slm_routed": 5,
+          "llm_routed": 0,
+          "routes": [
+            "SLM",
+            "SLM",
+            "SLM",
+            "SLM",
+            "SLM"
+          ]
+        }
+      },
+      "consensus_metrics": {
+        "rho_bar": 1.0,
+        "tier": "SLM",
+        "explanation": "High SLM routing confidence (rho_bar=1.0000 >= 0.70)"
+      },
+      "quality_metrics": {
+        "slm_accuracy": 1.0,
+        "llm_accuracy": 1.0,
+        "slm_failures": 0,
+        "total_queries": 10
+      }
+    },
+    "information_extraction": {
+      "task_family": "information_extraction",
+      "tau_frozen": 1.0,
+      "per_model_metrics": {
+        "qwen2.5_0.5b": {
+          "rho": 1.0,
+          "slm_routed": 1,
+          "llm_routed": 0,
+          "routes": [
+            "SLM"
+          ]
+        },
+        "qwen2.5_3b": {
+          "rho": 1.0,
+          "slm_routed": 1,
+          "llm_routed": 0,
+          "routes": [
+            "SLM"
+          ]
+        }
+      },
+      "consensus_metrics": {
+        "rho_bar": 1.0,
+        "tier": "SLM",
+        "explanation": "High SLM routing confidence (rho_bar=1.0000 >= 0.70)"
+      },
+      "quality_metrics": {
+        "slm_accuracy": 1.0,
+        "llm_accuracy": 1.0,
+        "slm_failures": 0,
+        "total_queries": 2
+      }
+    },
+    "instruction_following": {
+      "task_family": "instruction_following",
+      "tau_frozen": 1.0,
+      "per_model_metrics": {
+        "qwen2.5_0.5b": {
+          "rho": 1.0,
+          "slm_routed": 5,
+          "llm_routed": 0,
+          "routes": [
+            "SLM",
+            "SLM",
+            "SLM",
+            "SLM",
+            "SLM"
+          ]
+        },
+        "qwen2.5_3b": {
+          "rho": 1.0,
+          "slm_routed": 5,
+          "llm_routed": 0,
+          "routes": [
+            "SLM",
+            "SLM",
+            "SLM",
+            "SLM",
+            "SLM"
+          ]
+        }
+      },
+      "consensus_metrics": {
+        "rho_bar": 1.0,
+        "tier": "SLM",
+        "explanation": "High SLM routing confidence (rho_bar=1.0000 >= 0.70)"
+      },
+      "quality_metrics": {
+        "slm_accuracy": 1.0,
+        "llm_accuracy": 1.0,
+        "slm_failures": 0,
+        "total_queries": 10
+      }
+    },
+    "maths": {
+      "task_family": "maths",
+      "tau_frozen": 0.3333,
+      "per_model_metrics": {
+        "qwen2.5_0.5b": {
+          "rho": 1.0,
+          "slm_routed": 4,
+          "llm_routed": 0,
+          "routes": [
+            "SLM",
+            "SLM",
+            "SLM",
+            "SLM"
+          ]
+        },
+        "qwen2.5_3b": {
+          "rho": 1.0,
+          "slm_routed": 4,
+          "llm_routed": 0,
+          "routes": [
+            "SLM",
+            "SLM",
+            "SLM",
+            "SLM"
+          ]
+        }
+      },
+      "consensus_metrics": {
+        "rho_bar": 1.0,
+        "tier": "SLM",
+        "explanation": "High SLM routing confidence (rho_bar=1.0000 >= 0.70)"
+      },
+      "quality_metrics": {
+        "slm_accuracy": 1.0,
+        "llm_accuracy": 1.0,
+        "slm_failures": 0,
+        "total_queries": 8
+      }
+    },
+    "retrieval_grounded": {
+      "task_family": "retrieval_grounded",
+      "tau_frozen": 1.0,
+      "per_model_metrics": {
+        "qwen2.5_0.5b": {
+          "rho": 1.0,
+          "slm_routed": 2,
+          "llm_routed": 0,
+          "routes": [
+            "SLM",
+            "SLM"
+          ]
+        },
+        "qwen2.5_3b": {
+          "rho": 1.0,
+          "slm_routed": 2,
+          "llm_routed": 0,
+          "routes": [
+            "SLM",
+            "SLM"
+          ]
+        }
+      },
+      "consensus_metrics": {
+        "rho_bar": 1.0,
+        "tier": "SLM",
+        "explanation": "High SLM routing confidence (rho_bar=1.0000 >= 0.70)"
+      },
+      "quality_metrics": {
+        "slm_accuracy": 1.0,
+        "llm_accuracy": 1.0,
+        "slm_failures": 0,
+        "total_queries": 4
+      }
+    },
+    "summarization": {
+      "task_family": "summarization",
+      "tau_frozen": 0.2972,
+      "per_model_metrics": {
+        "qwen2.5_0.5b": {
+          "rho": 0.8571428571428571,
+          "slm_routed": 6,
+          "llm_routed": 1,
+          "routes": [
+            "SLM",
+            "SLM",
+            "SLM",
+            "SLM",
+            "SLM",
+            "SLM",
+            "LLM"
+          ]
+        },
+        "qwen2.5_3b": {
+          "rho": 1.0,
+          "slm_routed": 7,
+          "llm_routed": 0,
+          "routes": [
+            "SLM",
+            "SLM",
+            "SLM",
+            "SLM",
+            "SLM",
+            "SLM",
+            "SLM"
+          ]
+        }
+      },
+      "consensus_metrics": {
+        "rho_bar": 0.9285714285714286,
+        "tier": "SLM",
+        "explanation": "High SLM routing confidence (rho_bar=0.9286 >= 0.70)"
+      },
+      "quality_metrics": {
+        "slm_accuracy": 1.0,
+        "llm_accuracy": 1.0,
+        "slm_failures": 0,
+        "total_queries": 14
+      }
+    },
+    "text_generation": {
+      "task_family": "text_generation",
+      "tau_frozen": 0.9333,
+      "per_model_metrics": {
+        "qwen2.5_0.5b": {
+          "rho": 1.0,
+          "slm_routed": 5,
+          "llm_routed": 0,
+          "routes": [
+            "SLM",
+            "SLM",
+            "SLM",
+            "SLM",
+            "SLM"
+          ]
+        }
+      },
+      "consensus_metrics": {
+        "rho_bar": 1.0,
+        "tier": "SLM",
+        "explanation": "High SLM routing confidence (rho_bar=1.0000 >= 0.70)"
+      },
+      "quality_metrics": {
+        "slm_accuracy": 1.0,
+        "llm_accuracy": 1.0,
+        "slm_failures": 0,
+        "total_queries": 5
+      }
+    }
+  }
+}
