@@ -1,16 +1,11 @@
 """
-Learned τ^consensus from SDDF v3 Training (seed42)
+Frozen τ^consensus from SDDF v3 Training
 
-These are the consensus τ^consensus values learned empirically from SDDF v3 training data
-across the three SLM candidates {qwen2.5_0.5b, qwen2.5_3b, qwen2.5_7b}.
+Consensus thresholds learned empirically from SDDF v3 training across three SLM models
+(qwen2.5_0.5b, qwen2.5_3b, qwen2.5_7b). These frozen thresholds are used at runtime
+to route queries: if difficulty < τ, send to SLM; else escalate to LLM.
 
-These are ground-truth thresholds derived from our actual training runs, not paper values.
-They represent the maximum difficulty where SLM matches LLM on both capability and risk.
-
-Source: model_runs/sddf_training_splits_slm_only/sddf_pipeline_artifacts_v3/
-         tableY_threshold_calibration_seed42.csv
-
-Computation: tau_consensus = (1/3) * (tau_0.5b + tau_3b + tau_7b)
+Computation: tau_consensus = mean(tau_0.5b, tau_3b, tau_7b) per task family
 """
 
 from __future__ import annotations
