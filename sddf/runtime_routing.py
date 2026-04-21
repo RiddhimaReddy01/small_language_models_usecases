@@ -86,24 +86,32 @@ def consensus_routing_ratio(
 
 def tier_from_consensus_ratio(
     rho_bar: float,
+    slm_threshold: float = 0.70,
+    llm_threshold: float = 0.30,
 ) -> TierDecision:
     """
-    Map consensus routing ratio to deployment tier (Paper Section 7.3).
+    Map consensus routing ratio to deployment tier.
+
+    Thresholds are optimized via threshold sensitivity analysis (SelectiveNet-inspired
+    risk-coverage tradeoff). Default values are starting points; optimal values should
+    be determined from sensitivity analysis on deployment data.
 
     Args:
         rho_bar: Consensus routing ratio ρ̄ ∈ [0, 1]
+        slm_threshold: Minimum ρ̄ for SLM tier (default 0.70, optimized via sensitivity analysis)
+        llm_threshold: Maximum ρ̄ for LLM tier (default 0.30, optimized via sensitivity analysis)
 
     Returns:
         Tier decision: "SLM", "HYBRID", or "LLM"
 
     Decision ranges:
-        - SLM    if ρ̄ ≥ 0.70
-        - HYBRID if 0.30 < ρ̄ < 0.70
-        - LLM    if ρ̄ ≤ 0.30
+        - SLM    if ρ̄ ≥ slm_threshold
+        - HYBRID if llm_threshold < ρ̄ < slm_threshold
+        - LLM    if ρ̄ ≤ llm_threshold
     """
-    if rho_bar >= 0.70:
+    if rho_bar >= slm_threshold:
         return "SLM"
-    elif rho_bar <= 0.30:
+    elif rho_bar <= llm_threshold:
         return "LLM"
     else:
         return "HYBRID"
@@ -196,17 +204,24 @@ def route_query_multimodel(
 def route_use_case_multimodel(
     query_failures_by_model: dict[str, dict[str, float]],
     task_family: str,
+    slm_threshold: float = 0.70,
+    llm_threshold: float = 0.30,
 ) -> dict[str, float | str]:
     """
     Complete multimodel use-case routing with consensus (Paper Sections 7.2-7.4).
 
+    Tier thresholds are optimized via threshold sensitivity analysis. Values provided
+    here are defaults; optimal values should be determined from sensitivity analysis.
+
     Args:
         query_failures_by_model: Dict mapping model_name → {query_id → p_fail}
         task_family: Task family name
+        slm_threshold: Minimum ρ̄ for SLM tier (default 0.70, from sensitivity analysis)
+        llm_threshold: Maximum ρ̄ for LLM tier (default 0.30, from sensitivity analysis)
 
     Returns:
         Dict with:
-            - 'tier': Final tier decision
+            - 'tier': Final tier decision based on optimal thresholds
             - 'rho_bar': Consensus ratio across models
             - 'per_model_rho': Dict of rho per model
             - 'per_model_routes': Dict of routing decisions per model
@@ -230,8 +245,8 @@ def route_use_case_multimodel(
     # Consensus aggregation across models
     rho_bar = consensus_routing_ratio(per_model_rho)
 
-    # Tier decision
-    tier = tier_from_consensus_ratio(rho_bar)
+    # Tier decision using optimal thresholds from sensitivity analysis
+    tier = tier_from_consensus_ratio(rho_bar, slm_threshold, llm_threshold)
 
     return {
         "task_family": task_family,
@@ -239,4 +254,8 @@ def route_use_case_multimodel(
         "rho_bar": rho_bar,
         "per_model_rho": per_model_rho,
         "per_model_routes": per_model_routes,
+        "thresholds": {
+            "slm_threshold": slm_threshold,
+            "llm_threshold": llm_threshold,
+        },
     }
