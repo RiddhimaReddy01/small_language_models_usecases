@@ -1,0 +1,100 @@
+{
+  "benchmarks": [
+    {
+      "name": "classification",
+      "benchmark_root": "tasks/classification",
+      "config_paths": ["tasks/classification/README.md"],
+      "code_paths": [
+        "tasks/classification/scripts/dataset_sampling.py",
+        "tasks/classification/scripts/model_inference.py",
+        "tasks/classification/scripts/prediction_storage.py",
+        "tasks/classification/scripts/metric_computation.py",
+        "tasks/classification/scripts/benchmark_report.py"
+      ]
+    },
+    {
+      "name": "text_generation",
+      "benchmark_root": "tasks/text_generation",
+      "config_paths": ["tasks/text_generation/README.md"],
+      "code_paths": [
+        "tasks/text_generation/scripts/dataset_sampling.py",
+        "tasks/text_generation/scripts/model_inference.py",
+        "tasks/text_generation/scripts/prediction_storage.py",
+        "tasks/text_generation/scripts/metric_computation.py",
+        "tasks/text_generation/scripts/benchmark_report.py"
+      ]
+    },
+    {
+      "name": "information_extraction",
+      "benchmark_root": "tasks/Information Extraction",
+      "config_paths": ["tasks/Information Extraction/README.md"],
+      "code_paths": [
+        "tasks/Information Extraction/scripts/dataset_sampling.py",
+        "tasks/Information Extraction/scripts/model_inference.py",
+        "tasks/Information Extraction/scripts/prediction_storage.py",
+        "tasks/Information Extraction/scripts/metric_computation.py",
+        "tasks/Information Extraction/scripts/benchmark_report.py"
+      ]
+    },
+    {
+      "name": "summarization",
+      "benchmark_root": "tasks/Summarization",
+      "config_paths": ["tasks/Summarization/README.md"],
+      "code_paths": [
+        "tasks/Summarization/scripts/dataset_sampling.py",
+        "tasks/Summarization/scripts/model_inference.py",
+        "tasks/Summarization/scripts/prediction_storage.py",
+        "tasks/Summarization/scripts/metric_computation.py",
+        "tasks/Summarization/scripts/benchmark_report.py"
+      ]
+    },
+    {
+      "name": "code_generation",
+      "benchmark_root": "tasks/code_generation",
+      "config_paths": ["tasks/code_generation/README.md"],
+      "code_paths": [
+        "tasks/code_generation/scripts/dataset_sampling.py",
+        "tasks/code_generation/scripts/model_inference.py",
+        "tasks/code_generation/scripts/prediction_storage.py",
+        "tasks/code_generation/scripts/metric_computation.py",
+        "tasks/code_generation/scripts/benchmark_report.py"
+      ]
+    },
+    {
+      "name": "instruction_following",
+      "benchmark_root": "tasks/instruction_following",
+      "config_paths": ["tasks/instruction_following/README.md"],
+      "code_paths": [
+        "tasks/instruction_following/scripts/dataset_sampling.py",
+        "tasks/instruction_following/scripts/model_inference.py",
+        "tasks/instruction_following/scripts/prediction_storage.py",
+        "tasks/instruction_following/scripts/metric_computation.py",
+        "tasks/instruction_following/scripts/benchmark_report.py"
+      ]
+    },
+    {
+      "name": "maths",
+      "benchmark_root": "tasks/maths",
+      "config_paths": ["tasks/maths/README.md"],
+      "code_paths": [
+        "tasks/maths/scripts/dataset_sampling.py",
+        "tasks/maths/scripts/model_inference.py",
+        "tasks/maths/scripts/prediction_storage.py",
+        "tasks/maths/scripts/metric_computation.py",
+        "tasks/maths/scripts/benchmark_report.py"
+      ]
+    },
+    {
+      "name": "retrieval_grounded",
+      "benchmark_root": "tasks/Retrieval_grounded",
+      "config_paths": ["tasks/Retrieval_grounded/README.md"],
+      "code_paths": [
+        "tasks/Retrieval_grounded/scripts/dataset_sampling.py",
+        "tasks/Retrieval_grounded/scripts/model_inference.py",
+        "tasks/Retrieval_grounded/scripts/prediction_storage.py",
+        "tasks/Retrieval_grounded/scripts/metric_computation.py",
+        "tasks/Retrieval_grounded/scripts/benchmark_report.py"
+      ]
+    }
+  ]
+}

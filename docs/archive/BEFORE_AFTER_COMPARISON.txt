@@ -1,0 +1,227 @@
+================================================================================
+BEFORE vs AFTER: Dynamic Operational Zones
+================================================================================
+
+BEFORE (CURRENT - WRONG):
+================================================================================
+
+CODE_GENERATION / qwen2.5_0.5b
+  TAU: 0.200
+  Capability: 55.1%
+  Risk: 0.226
+  
+Problem:
+  - Single TAU value (doesn't show the range)
+  - No indication of routing flexibility
+  - Hard task looks the same as easy task
+  - User can't choose conservative/balanced/aggressive strategy
+
+SUMMARIZATION / qwen2.5_0.5b
+  TAU: 0.777
+  Capability: 65.4%
+  Risk: 0.063
+  
+Problem:
+  - Single TAU value (doesn't show why this is larger than code_gen TAU)
+  - Easy task looks the same as hard task
+  - No indication this is a wide zone
+
+---
+
+AFTER (CORRECT - NEW):
+================================================================================
+
+CODE_GENERATION / qwen2.5_0.5b (MEDIUM Task)
+  Operational Zone: [0.0, 2.0]
+  Zone Size: 2.0 (MEDIUM - flexible)
+  Strategy: balanced
+  Recommended TAU: 1.0
+  
+  Three options:
+    Conservative (TAU=0.0): Route 5% of queries, cap=88%, risk=0.10
+    Balanced    (TAU=1.0): Route 30% of queries, cap=73%, risk=0.15 ← RECOMMENDED
+    Aggressive  (TAU=2.0): Route 60% of queries, cap=61%, risk=0.20
+
+Benefits:
+  ✓ Shows zone size (2.0 = medium flexibility)
+  ✓ Explains why this strategy is chosen
+  ✓ Gives user THREE options (not forced to one TAU)
+  ✓ Shows what each option achieves
+
+SUMMARIZATION / qwen2.5_0.5b (EASY Task)
+  Operational Zone: [0.0, 4.0]
+  Zone Size: 4.0 (WIDE - very flexible)
+  Strategy: aggressive
+  Recommended TAU: 4.0
+  
+  Three options:
+    Conservative (TAU=0.0): Route 5% of queries, cap=96%, risk=0.02
+    Balanced    (TAU=2.0): Route 40% of queries, cap=78%, risk=0.04
+    Aggressive  (TAU=4.0): Route 80% of queries, cap=65%, risk=0.06 ← RECOMMENDED
+
+Benefits:
+  ✓ Zone size 4.0 is LARGER than code_gen (2.0) - clearly shows it's easier
+  ✓ Larger zone means more routing options
+  ✓ Aggressive strategy makes sense for easy task
+  ✓ Can save ~80% compute cost
+
+RETRIEVAL_GROUNDED / qwen2.5_3b (HARD Task)
+  Operational Zone: [0.0, 1.0]
+  Zone Size: 1.0 (NARROW - not flexible)
+  Strategy: conservative
+  Recommended TAU: 0.0
+  
+  Three options:
+    Conservative (TAU=0.0): Route 8% of queries, cap=92%, risk=0.05 ← RECOMMENDED
+    Balanced    (TAU=0.5): Route 20% of queries, cap=78%, risk=0.10
+    Aggressive  (TAU=1.0): Route 35% of queries, cap=65%, risk=0.15
+
+Benefits:
+  ✓ Zone size 1.0 is SMALLER - clearly harder task
+  ✓ Conservative strategy needed (must be careful)
+  ✓ Limited routing options (can't be aggressive)
+  ✓ User understands constraints
+
+CLASSIFICATION (IMPOSSIBLE Task)
+  Operational Zone: [] (EMPTY)
+  Zone Size: 0.0 (NO OPTIONS)
+  Strategy: none
+  Recommended TAU: None
+  
+  Explanation:
+    "Empty operational zone: No valid TAU found.
+     Cannot meet both capability and risk thresholds simultaneously.
+     Recommendation: Always route to baseline (LLM)."
+
+Benefits:
+  ✓ Clearly shows routing is impossible
+  ✓ Explains why (constraints conflict)
+  ✓ Gives clear recommendation
+
+================================================================================
+RESULTS TABLE: BEFORE vs AFTER
+================================================================================
+
+BEFORE (Single TAU):
+| Task | Model | TAU | Capability | Risk |
+|------|-------|-----|------------|------|
+| CODE_GEN | 0.5b | 0.200 | 55.1% | 0.226 |
+| SUMMARIZATION | 0.5b | 0.777 | 65.4% | 0.063 |
+| RETRIEVAL | 3b | 0.500 | 70.4% | 0.113 |
+| CLASSIFICATION | 0.5b | None | — | — |
+
+Problem: Can't tell which tasks are flexible vs restrictive
+
+---
+
+AFTER (Operational Zones):
+| Task | Model | Zone | Zone_Size | Strategy | Recommended_TAU |
+|------|-------|------|-----------|----------|-----------------|
+| CODE_GEN | 0.5b | [0.0-2.0] | 2.0 | balanced | 1.0 |
+| SUMMARIZATION | 0.5b | [0.0-4.0] | 4.0 | aggressive | 4.0 |
+| RETRIEVAL | 3b | [0.0-1.0] | 1.0 | conservative | 0.0 |
+| CLASSIFICATION | 0.5b | [] | 0.0 | none | None |
+
+Benefit: Zone sizes (4.0 vs 2.0 vs 1.0 vs 0.0) immediately show task difficulty!
+
+================================================================================
+KEY CHANGES IN CODE
+================================================================================
+
+CHANGE 1: Output Structure
+  Before:
+    "tau": 0.200
+    "capability": 55.1%
+    "risk": 0.226
+  
+  After:
+    "operational_zone": {
+      "zone_min": 0.0,
+      "zone_max": 2.0,
+      "zone_size": 2.0,
+      "strategy": "balanced"
+    }
+    "routing_decision": {
+      "recommended_tau": 1.0,
+      "rationale": "Medium zone: use balanced routing"
+    }
+    "three_options": [
+      {tau: 0.0, strategy: conservative, ...},
+      {tau: 1.0, strategy: balanced, ...},
+      {tau: 2.0, strategy: aggressive, ...}
+    ]
+
+CHANGE 2: New Functions
+  Add: select_tau_strategy(feasible_set)
+    → Determines conservative/balanced/aggressive based on zone size
+  
+  Add: get_strategy_rationale(zone_size)
+    → Explains why this strategy was chosen
+
+CHANGE 3: Algorithm (No Change!)
+  Validation algorithm stays the SAME:
+    1. Score validation samples
+    2. Build capability/risk curves
+    3. Compute dynamic thresholds
+    4. Find feasible set F (operational zone)
+    5. CHANGE: Return zone info + recommended TAU
+    6. CHANGE: Show all three options
+
+================================================================================
+BENEFITS OF DYNAMIC OPERATIONAL ZONES
+================================================================================
+
+1. TRANSPARENCY:
+   User sees the complete zone, not just one TAU
+   User understands how flexible routing can be
+
+2. FLEXIBILITY:
+   User can choose strategy based on business goals:
+   - Minimize risk? Use conservative
+   - Maximize savings? Use aggressive
+   - Balance both? Use balanced
+
+3. CLARITY:
+   Zone size immediately shows task difficulty:
+   - Zone=4.0: Easy task, many routing options
+   - Zone=2.0: Medium task, some routing options
+   - Zone=1.0: Hard task, limited routing
+   - Zone=0.0: Impossible, no routing
+
+4. DECISION SUPPORT:
+   Shows what each option achieves:
+   - Conservative: cap=92%, risk=0.05
+   - Balanced: cap=78%, risk=0.10
+   - Aggressive: cap=65%, risk=0.15
+   User picks based on business risk tolerance
+
+5. AUDITABILITY:
+   Rationale is explicit: "Medium zone (2.0): use balanced"
+   Can explain to stakeholders WHY this TAU was chosen
+
+================================================================================
+NEXT STEPS
+================================================================================
+
+1. Implement changes in sddf/validation_dynamic.py:
+   - Modify find_operational_zone() return
+   - Add select_tau_strategy()
+   - Add get_strategy_rationale()
+
+2. Update tools/run_sddf_validation.py:
+   - Change output structure
+   - Show zone info instead of single TAU
+
+3. Update demo_validation.py:
+   - Show operational zone computation
+   - Show strategy selection
+
+4. Create new results table:
+   - Show zones [min, max]
+   - Show zone sizes
+   - Show recommended strategies
+
+5. Test with existing data:
+   - Verify zones make sense per task family
+   - Confirm easy tasks have wider zones
+   - Confirm hard tasks have narrower zones
