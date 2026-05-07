@@ -8,7 +8,7 @@ Uses:
 - Frozen thresholds τ per (task_family, model_size)
 
 Paper Section 7.2: route_m(x_j) = SLM if p̂_fail(x_j) < τ_m, else LLM
-Paper Section 7.3: ρ̄ = (1/3) * Σ ρ^(m)  →  Tier: SLM if ≥0.70, LLM if ≤0.30, else HYBRID
+Paper Section 7.3: ρ̄ = (1/3) * Σ ρ^(m)  →  Tier: SLM if ≥0.50, LLM if <0.30, else HYBRID
 
 Run: python section7_runtime_routing.py
 """
@@ -436,7 +436,7 @@ def aggregate_routing_results(
     ρ^(m) = (1/N) * Σ_j 𝟙[route_m(x_j) = SLM]
     ρ̄ = (1/3) * Σ_m ρ^(m)
 
-    Tier: SLM if ρ̄ ≥ 0.70, LLM if ρ̄ ≤ 0.30, else HYBRID
+    Tier: SLM if ρ̄ ≥ 0.50, LLM if ρ̄ < 0.30, else HYBRID
     """
 
     # Group by model size
@@ -459,9 +459,9 @@ def aggregate_routing_results(
     rho_bar = np.mean(list(rho_per_model.values()))
 
     # Determine tier
-    if rho_bar >= 0.70:
+    if rho_bar >= 0.50:
         predicted_tier = "SLM"
-    elif rho_bar <= 0.30:
+    elif rho_bar < 0.30:
         predicted_tier = "LLM"
     else:
         predicted_tier = "HYBRID"

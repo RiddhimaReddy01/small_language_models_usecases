@@ -86,15 +86,14 @@ def consensus_routing_ratio(
 
 def tier_from_consensus_ratio(
     rho_bar: float,
-    slm_threshold: float = 0.70,
+    slm_threshold: float = 0.50,
     llm_threshold: float = 0.30,
 ) -> TierDecision:
     """
     Map consensus routing ratio to deployment tier.
 
-    Thresholds are optimized via threshold sensitivity analysis (SelectiveNet-inspired
-    risk-coverage tradeoff). Default values are starting points; optimal values should
-    be determined from sensitivity analysis on deployment data.
+    Defaults match the paper runtime bands. Sensitivity analysis can override
+    them for a deployment-specific operating point.
 
     Args:
         rho_bar: Consensus routing ratio ρ̄ ∈ [0, 1]
@@ -111,7 +110,7 @@ def tier_from_consensus_ratio(
     """
     if rho_bar >= slm_threshold:
         return "SLM"
-    elif rho_bar <= llm_threshold:
+    elif rho_bar < llm_threshold:
         return "LLM"
     else:
         return "HYBRID"
@@ -204,7 +203,7 @@ def route_query_multimodel(
 def route_use_case_multimodel(
     query_failures_by_model: dict[str, dict[str, float]],
     task_family: str,
-    slm_threshold: float = 0.70,
+    slm_threshold: float = 0.50,
     llm_threshold: float = 0.30,
 ) -> dict[str, float | str]:
     """

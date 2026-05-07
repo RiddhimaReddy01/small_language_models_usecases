@@ -89,7 +89,7 @@ def plot_uc_empirical_routing(results: Dict, output_path: Path = Path("model_run
     ax = axes[0, 1]
     x_pos = np.arange(len(uc_names))
     bars = ax.bar(x_pos, rho_bars, color=colors, edgecolor="black", linewidth=1.5)
-    ax.axhline(y=0.70, color="green", linestyle="--", linewidth=2, label="SLM threshold (0.70)")
+    ax.axhline(y=0.50, color="green", linestyle="--", linewidth=2, label="SLM threshold (0.50)")
     ax.axhline(y=0.30, color="red", linestyle="--", linewidth=2, label="LLM threshold (0.30)")
     ax.set_xticks(x_pos)
     ax.set_xticklabels(uc_names, fontsize=10)
@@ -114,7 +114,7 @@ def plot_uc_empirical_routing(results: Dict, output_path: Path = Path("model_run
     for i, model in enumerate(model_names):
         ax.bar(x_pos + i*width, model_rhos[model], width, label=model, color=model_colors[i], edgecolor="black", linewidth=1)
 
-    ax.axhline(y=0.70, color="green", linestyle="--", linewidth=1.5, alpha=0.5, label="SLM threshold")
+    ax.axhline(y=0.50, color="green", linestyle="--", linewidth=1.5, alpha=0.5, label="SLM threshold")
     ax.axhline(y=0.30, color="red", linestyle="--", linewidth=1.5, alpha=0.5, label="LLM threshold")
     ax.set_xticks(x_pos + width)
     ax.set_xticklabels(uc_names, fontsize=10)

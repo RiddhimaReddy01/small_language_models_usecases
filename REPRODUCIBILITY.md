@@ -46,7 +46,7 @@ from sddf.config import (
     LR_SOLVER,                # lbfgs
     LR_MAX_ITER,              # 1000
     FROZEN_TAU_CONSENSUS,     # Learned thresholds
-    TIER_SLM_THRESHOLD,       # 0.70 (default)
+    TIER_SLM_THRESHOLD,       # 0.50 (paper default)
     TIER_LLM_THRESHOLD,       # 0.30 (default)
     SENSITIVITY_THRESHOLD_RANGE,  # (0.2, 0.9)
     SENSITIVITY_THRESHOLD_STEP,   # 0.05
@@ -191,7 +191,7 @@ If you want to understand each step:
 Training happens offline and produces `FROZEN_TAU_CONSENSUS` (stored in `sddf/frozen_thresholds.py`).
 
 ```python
-from sddf.train_paper_aligned_multimodel import train_all_tasks_multimodel
+from sddf.training import train_all_tasks_multimodel
 
 # This trains all 8 tasks × 3 models = 24 combinations
 # Results: Logistic regression models + weights + biases (already frozen in config)

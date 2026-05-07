@@ -107,12 +107,12 @@ def validate_frozen_thresholds_on_task(
     tier = tier_from_consensus_ratio(rho_bar)
 
     # Explain tier
-    if rho_bar >= 0.70:
-        explanation = f"High SLM routing confidence (rho_bar={rho_bar:.4f} >= 0.70)"
-    elif rho_bar <= 0.30:
-        explanation = f"Low SLM routing confidence (rho_bar={rho_bar:.4f} <= 0.30)"
+    if rho_bar >= 0.50:
+        explanation = f"High SLM routing confidence (rho_bar={rho_bar:.4f} >= 0.50)"
+    elif rho_bar < 0.30:
+        explanation = f"Low SLM routing confidence (rho_bar={rho_bar:.4f} < 0.30)"
     else:
-        explanation = f"Mixed routing outcomes (0.30 < rho_bar={rho_bar:.4f} < 0.70)"
+        explanation = f"Mixed routing outcomes (0.30 <= rho_bar={rho_bar:.4f} < 0.50)"
 
     # Quality metrics
     slm_correct_count = 0

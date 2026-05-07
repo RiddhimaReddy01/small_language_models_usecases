@@ -9,14 +9,15 @@ from .difficulty import (
     make_difficulty_bins,
 )
 from .difficulty_weights import DifficultyWeightLearner
-from .s3_config_builder import (
+from .s3 import (
     DEFAULT_S3_WEIGHTS,
+    S3ScoringInput,
     build_s3_task_config,
     build_task_scores,
+    enforce_runtime_policy,
     normalize_weights,
-)
-from .s3_feature_scoring import (
-    S3ScoringInput,
+    recommend_s3_score_overrides,
+    recommend_task_tier_thresholds,
     score_data_sensitivity,
     score_latency_tolerance,
     score_output_structure,
@@ -25,8 +26,6 @@ from .s3_feature_scoring import (
     score_task_complexity,
     score_volume_load,
 )
-from .s3_policy_update import recommend_s3_score_overrides, recommend_task_tier_thresholds
-from .s3_runtime_policy import enforce_runtime_policy
 from .frozen_thresholds import (
     FROZEN_TAU_CONSENSUS,
     get_frozen_threshold,

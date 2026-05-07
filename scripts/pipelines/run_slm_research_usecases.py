@@ -212,9 +212,9 @@ def run_uc_pipeline(uc_num: str, sample_size: int = 100):
     rho_7b = slm_count_7b / len(converted_records) if converted_records else 0.0
     rho_bar = (rho_0_5b + rho_3b + rho_7b) / 3.0
 
-    if rho_bar >= 0.70:
+    if rho_bar >= 0.50:
         predicted_tier = "SLM"
-    elif rho_bar <= 0.30:
+    elif rho_bar < 0.30:
         predicted_tier = "LLM"
     else:
         predicted_tier = "HYBRID"

@@ -141,12 +141,12 @@ def demo_multimodel_routing():
 
     # Explain tier decision
     rho_bar = result["rho_bar"]
-    if rho_bar >= 0.70:
-        explanation = "High SLM routing confidence (rho_bar >= 0.70)"
-    elif rho_bar <= 0.30:
-        explanation = "Low SLM routing confidence (rho_bar <= 0.30)"
+    if rho_bar >= 0.50:
+        explanation = "High SLM routing confidence (rho_bar >= 0.50)"
+    elif rho_bar < 0.30:
+        explanation = "Low SLM routing confidence (rho_bar < 0.30)"
     else:
-        explanation = "Mixed routing outcomes (0.30 < rho_bar < 0.70)"
+        explanation = "Mixed routing outcomes (0.30 <= rho_bar < 0.50)"
 
     print(f"  ({explanation})")
 

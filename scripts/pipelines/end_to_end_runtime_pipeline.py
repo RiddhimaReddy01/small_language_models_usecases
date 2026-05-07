@@ -483,9 +483,9 @@ def run_end_to_end_pipeline(
     rho_bar = (rho_0_5b + rho_3b + rho_7b) / 3.0
 
     # Tier decision
-    if rho_bar >= 0.70:
+    if rho_bar >= 0.50:
         predicted_tier = "SLM"
-    elif rho_bar <= 0.30:
+    elif rho_bar < 0.30:
         predicted_tier = "LLM"
     else:
         predicted_tier = "HYBRID"
@@ -507,8 +507,8 @@ def run_end_to_end_pipeline(
     print(f"  rho_bar = (rho_0.5b + rho_3b + rho_7b) / 3 = {rho_bar:.4f}")
 
     print(f"\nTier Decision:")
-    print(f"  if rho_bar >= 0.70 -> SLM")
-    print(f"  if rho_bar <= 0.30 -> LLM")
+    print(f"  if rho_bar >= 0.50 -> SLM")
+    print(f"  if rho_bar < 0.30 -> LLM")
     print(f"  else               -> HYBRID")
     print(f"\n  Result: {predicted_tier} (rho_bar = {rho_bar:.4f})")
 

@@ -502,9 +502,9 @@ def aggregate_use_case_routing(
     ρ̄ = (1/3) * Σ_m∈{0.5b, 3b, 7b} ρ^(m)
 
     Tier decision:
-    - ρ̄ ≥ 0.70 → SLM
-    - ρ̄ ≤ 0.30 → LLM
-    - 0.30 < ρ̄ < 0.70 → HYBRID
+    - ρ̄ ≥ 0.50 → SLM
+    - ρ̄ < 0.30 → LLM
+    - 0.30 <= ρ̄ < 0.50 → HYBRID
     """
 
     # Group by model size
@@ -526,9 +526,9 @@ def aggregate_use_case_routing(
     rho_bar = np.mean(list(rho_per_model.values()))
 
     # Determine tier
-    if rho_bar >= 0.70:
+    if rho_bar >= 0.50:
         predicted_tier = "SLM"
-    elif rho_bar <= 0.30:
+    elif rho_bar < 0.30:
         predicted_tier = "LLM"
     else:
         predicted_tier = "HYBRID"
@@ -726,7 +726,7 @@ def main():
     print(f"\nConsensus Routing Ratio:")
     print(f"  ρ̄ = {uc_result.rho_bar:.4f}")
     print(f"\nPredicted Tier: {uc_result.predicted_tier}")
-    print(f"  (ρ̄ ≥ 0.70 → SLM, ρ̄ ≤ 0.30 → LLM, else HYBRID)")
+    print(f"  (ρ̄ ≥ 0.50 → SLM, ρ̄ < 0.30 → LLM, else HYBRID)")
 
     # Save results
     output_file = Path("routing_results.json")

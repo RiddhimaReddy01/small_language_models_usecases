@@ -408,12 +408,12 @@ def compute_uc_routing(uc_num: str, model_names: List[str] | None = None) -> Dic
         "rho_bar": rho_bar,
         "tier": tier,
         "explanation": (
-            f"High SLM routing confidence (rho_bar={rho_bar:.4f} >= 0.70)"
-            if rho_bar >= 0.70
+            f"High SLM routing confidence (rho_bar={rho_bar:.4f} >= 0.50)"
+            if rho_bar >= 0.50
             else (
-                f"Low SLM routing confidence (rho_bar={rho_bar:.4f} <= 0.30)"
-                if rho_bar <= 0.30
-                else f"Mixed routing outcomes (0.30 < rho_bar={rho_bar:.4f} < 0.70)"
+                f"Low SLM routing confidence (rho_bar={rho_bar:.4f} < 0.30)"
+                if rho_bar < 0.30
+                else f"Mixed routing outcomes (0.30 <= rho_bar={rho_bar:.4f} < 0.50)"
             )
         ),
     }

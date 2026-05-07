@@ -89,7 +89,7 @@ def get_all_usecases() -> list[str]:
 
 def assign_usecase_tiers(
     taskfamily_rho_bar: dict[str, float],
-    slm_threshold: float = 0.70,
+    slm_threshold: float = 0.50,
     llm_threshold: float = 0.30,
 ) -> dict[str, dict[str, Any]]:
     """
@@ -131,10 +131,10 @@ def assign_usecase_tiers(
         # Explain tier decision with actual thresholds
         if rho_bar >= slm_threshold:
             explanation = f"High SLM routing confidence (rho_bar={rho_bar:.4f} >= {slm_threshold})"
-        elif rho_bar <= llm_threshold:
-            explanation = f"Low SLM routing confidence (rho_bar={rho_bar:.4f} <= {llm_threshold})"
+        elif rho_bar < llm_threshold:
+            explanation = f"Low SLM routing confidence (rho_bar={rho_bar:.4f} < {llm_threshold})"
         else:
-            explanation = f"Mixed routing outcomes ({llm_threshold} < rho_bar={rho_bar:.4f} < {slm_threshold})"
+            explanation = f"Mixed routing outcomes ({llm_threshold} <= rho_bar={rho_bar:.4f} < {slm_threshold})"
 
         usecase_tiers[usecase_id] = {
             "usecase_id": usecase_id,

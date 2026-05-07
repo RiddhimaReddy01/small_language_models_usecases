@@ -53,9 +53,14 @@ outputs/benchmark/
 outputs/analysis/*.json
 outputs/analysis/*.csv
 outputs/analysis/*.pdf
+model_runs/
+logs/
+tmp/
 
 # Data & Results (large files)
 data/
+repos/SLM_Research_Project/data/
+repos/SLM_Research_Project/evaluation/
 *.jsonl
 *.log
 
@@ -63,6 +68,7 @@ data/
 *.tmp
 *.bak
 .tmp_*
+tasks__removed/
 
 # OS
 Thumbs.db

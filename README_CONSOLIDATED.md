@@ -65,8 +65,8 @@ All parameters are centralized in `sddf/config.py`:
 | **LR Max Iterations** | 1000 | Convergence criterion | ✅ |
 | **Frozen τ (consensus)** | {task: threshold} | Fixed routing thresholds | ✅ |
 | **Sensitivity Sweep** | (0.2, 0.9), step=0.05 | Threshold optimization range | ✅ |
-| **Tier SLM Threshold** | 0.70 (default) | ρ̄ ≥ 0.70 → SLM | ✅ |
-| **Tier LLM Threshold** | 0.30 (default) | ρ̄ ≤ 0.30 → LLM | ✅ |
+| **Tier SLM Threshold** | 0.50 (paper default) | ρ̄ ≥ 0.50 → SLM | ✅ |
+| **Tier LLM Threshold** | 0.30 (paper default) | ρ̄ < 0.30 → LLM | ✅ |
 
 **Optimal thresholds** (from sensitivity analysis) override defaults at runtime.
 
@@ -131,7 +131,7 @@ DEPLOYMENT RECOMMENDATION
 sddf/
 ├── config.py                        # 🔑 REPRODUCIBILITY: All parameters
 ├── frozen_thresholds.py             # τ values (fixed at runtime)
-├── train_paper_aligned_multimodel.py # Phase 1: Train logistic regression
+├── training.py                      # Phase 1: Train logistic regression
 ├── validation_with_frozen.py        # Phase 2: Validation
 ├── test_with_frozen.py              # Phase 3: Test
 ├── runtime_routing.py               # Runtime: Query routing, tier assignment
@@ -181,13 +181,13 @@ from sddf import consensus_routing_ratio, tier_from_consensus_ratio
 rho_bar = consensus_routing_ratio({"qwen2.5_0.5b": 0.8, "qwen2.5_3b": 0.9, "qwen2.5_7b": 1.0})
 # → 0.9333
 
-tier = tier_from_consensus_ratio(rho_bar, slm_threshold=0.70, llm_threshold=0.30)
-# → "SLM" (since 0.9333 ≥ 0.70)
+tier = tier_from_consensus_ratio(rho_bar, slm_threshold=0.50, llm_threshold=0.30)
+# → "SLM" (since 0.9333 ≥ 0.50)
 
 # Step 4: Map to use case
 from sddf.usecase_mapping import get_task_family, assign_usecase_tiers
 task_family = get_task_family("UC1")  # → "classification"
-tiers = assign_usecase_tiers({"classification": 0.9333}, slm_threshold=0.70, llm_threshold=0.30)
+tiers = assign_usecase_tiers({"classification": 0.9333}, slm_threshold=0.50, llm_threshold=0.30)
 # → {"UC1": {"tier": "SLM", ...}}
 ```
 
@@ -210,7 +210,7 @@ tiers = assign_usecase_tiers({"classification": 0.9333}, slm_threshold=0.70, llm
 ### Tier Assignment (Data-Driven)
 - Not fixed rules, but optimized thresholds
 - **SelectiveNet principle:** Find thresholds that maximize accuracy while minimizing LLM fallback
-- Default thresholds (0.70/0.30) are starting points
+- Default thresholds (0.50/0.30) match the paper runtime bands
 - Optimal thresholds computed via sensitivity analysis sweep
 - Always use optimal thresholds if available
 
@@ -245,7 +245,7 @@ tiers = assign_usecase_tiers({"classification": 0.9333}, slm_threshold=0.70, llm
 - `sddf/threshold_sensitivity_analysis.py` - Threshold optimization
 
 **Supporting:**
-- `sddf/train_paper_aligned_multimodel.py` - Training logic
+- `sddf/training.py` - Training logic
 - `sddf/validation_with_frozen.py` - Validation phase
 - `sddf/test_with_frozen.py` - Test phase
 - `requirements.txt` - Dependencies

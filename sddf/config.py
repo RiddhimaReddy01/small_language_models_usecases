@@ -101,9 +101,9 @@ FROZEN_TAU_CONSENSUS = {
 # These are DEFAULT values; use sensitivity analysis to find optimal thresholds
 # that maximize weighted accuracy for your deployment data
 
-TIER_SLM_THRESHOLD = 0.70      # Default: ρ̄ ≥ 0.70 → SLM tier
-TIER_LLM_THRESHOLD = 0.30      # Default: ρ̄ ≤ 0.30 → LLM tier
-# HYBRID tier: 0.30 < ρ̄ < 0.70
+TIER_SLM_THRESHOLD = 0.50      # Paper band: rho_bar >= 0.50 -> SLM tier
+TIER_LLM_THRESHOLD = 0.30      # Paper band: rho_bar < 0.30 -> LLM tier
+# HYBRID tier: 0.30 <= rho_bar < 0.50
 
 
 # ============================================================================
