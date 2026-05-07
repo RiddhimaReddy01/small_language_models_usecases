@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from sddf.s3_framework import decide_s3_and_route
+from sddf.s3 import decide_s3_and_route
 
 
 def test_gate_override_exposes_formula_and_final_tier() -> None:

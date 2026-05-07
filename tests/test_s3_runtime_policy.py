@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from sddf.s3_runtime_policy import enforce_runtime_policy
+from sddf.s3 import enforce_runtime_policy
 
 
 def test_disqualified_forces_baseline() -> None:

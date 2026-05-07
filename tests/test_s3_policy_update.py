@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from sddf.s3_policy_update import recommend_s3_score_overrides, recommend_task_tier_thresholds
+from sddf.s3 import recommend_s3_score_overrides, recommend_task_tier_thresholds
 
 
 def test_recommend_task_tier_thresholds_lowers_on_high_failure() -> None:

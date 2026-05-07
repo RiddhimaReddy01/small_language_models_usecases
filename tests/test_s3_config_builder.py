@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from sddf.s3_config_builder import build_s3_task_config, normalize_weights
+from sddf.s3 import build_s3_task_config, normalize_weights
 
 
 def test_normalize_weights_validates_and_keeps_dims() -> None:

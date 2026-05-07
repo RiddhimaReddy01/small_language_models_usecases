@@ -10,8 +10,7 @@ ROOT = Path(__file__).resolve().parents[1]
 if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
-from sddf.s3_feature_scoring import score_s3_dimensions
-from sddf.s3_framework import decide_s3_and_route
+from sddf.s3 import score_s3_dimensions, decide_s3_and_route
 
 
 TASK_FAMILIES = (

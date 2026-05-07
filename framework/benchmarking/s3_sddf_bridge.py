@@ -10,7 +10,7 @@ ROOT = Path(__file__).resolve().parents[2]
 if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
-from sddf.s3_framework import decide_s3_and_route
+from sddf.s3 import decide_s3_and_route
 
 
 def _load_json(path: Path) -> dict[str, Any]:

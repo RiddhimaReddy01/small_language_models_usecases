@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from sddf.s3_feature_scoring import S3ScoringInput, score_s3_dimensions
+from sddf.s3 import S3ScoringInput, score_s3_dimensions
 
 
 def test_s3_dimension_scores_in_range() -> None:
