@@ -10,16 +10,17 @@ Computation: tau_consensus = mean(tau_0.5b, tau_3b, tau_7b) per task family
 
 from __future__ import annotations
 
-# SDDF v3 Learned consensus thresholds per task family (seed42)
+# Paper Table IV: Learned consensus thresholds per task family
+# Source: Validation phase with capability/risk curves and constraints
 FROZEN_TAU_CONSENSUS: dict[str, float] = {
-    "classification": 0.6667,           # consensus of [1.00, 0.50, 0.50]
-    "code_generation": 1.0000,          # consensus of [1.00, 1.00, 1.00]
-    "information_extraction": 0.9167,   # consensus of [0.75, 1.00, 1.00]
-    "instruction_following": 0.9167,    # consensus of [0.75, 1.00, 1.00]
-    "maths": 0.3333,                    # consensus of [1.00, 0.00, 0.00]
-    "retrieval_grounded": 0.9167,       # consensus of [0.75, 1.00, 1.00]
-    "summarization": 1.0000,            # consensus of [1.00, 1.00, 1.00]
-    "text_generation": 1.0000,          # consensus of [1.00, 1.00, 1.00]
+    "classification": 0.6667,           # Mean C(τ*) = 0.3145, Mean R(τ*) = 0.3428
+    "code_generation": 0.6667,          # Mean C(τ*) = 0.3044, Mean R(τ*) = 0.3478
+    "information_extraction": 1.0000,   # Mean C(τ*) = 0.7037, Mean R(τ*) = 0.1481
+    "instruction_following": 1.0000,    # Mean C(τ*) = 0.7133, Mean R(τ*) = 0.1433
+    "maths": 0.3333,                    # Mean C(τ*) = 0.1439, Mean R(τ*) = 0.4280
+    "retrieval_grounded": 1.0000,       # Mean C(τ*) = 0.5159, Mean R(τ*) = 0.2421
+    "summarization": 0.2972,            # Mean C(τ*) = 0.8350, Mean R(τ*) = 0.0825
+    "text_generation": 0.9333,          # Mean C(τ*) = 0.8479, Mean R(τ*) = 0.0761
 }
 
 
